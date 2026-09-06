@@ -45,14 +45,13 @@ REPORT_EVERY = 14
 PAUSE_DAYS = 42
 # quante apparizioni mute prima di liberare lo slot
 MUTE_LIMIT = 3
-# quante voci ha il radar, quante sono sonde, e quante sono presidio
-RADAR_SLOTS, RADAR_PROBES, AI_SLOTS = 6, 2, 1
+# quante voci ha il radar, e quante di queste sono sonde
+RADAR_SLOTS, RADAR_PROBES = 5, 2
 
-# Il presidio AI. I laboratori — OpenAI, Anthropic, Google — non sono un tema
-# come gli altri: sono il fronte su cui si decide anche quello che Apple fara'.
-# Una casella del radar e' loro per statuto, come il nucleo Apple nelle
-# notizie: i pollici scelgono *quale* topic AI mostrare, non se mostrarne uno.
-# Un topic e' del presidio se in data/radar_topics.json ha "axis": "ai".
+# L'AI non passa piu' dal radar: dal 6 settembre 2026 ha una sezione sua, con
+# i suoi pollici. I topic marcati "axis": "ai" in data/radar_topics.json
+# restano scritti per storia ma stanno fuori dalla rotazione — altrimenti la
+# stessa cosa uscirebbe due volte nella stessa edizione.
 AI_AXIS = "ai"
 
 
@@ -127,6 +126,18 @@ def index_archive():
                 "genere": (v.get("kind") or "").lower(),
                 "sources": [v.get("source")] if v.get("source") else [],
             }
+        # la sezione AI impara su due cose: il laboratorio e il genere
+        # (modello, uso, trucco...). Lo strato — cronaca o bottega — si
+        # ricava dal genere.
+        for a in b.get("ai", []):
+            if not a.get("id"):
+                continue
+            idx[f"{day}/ai:{a['id']}"] = {
+                "kind": "ai", "date": day, "title": a.get("title", ""),
+                "lab": (a.get("lab") or "altri").lower(),
+                "genere": (a.get("kind") or "").lower(),
+                "sources": [a.get("source")] if a.get("source") else [],
+            }
         for m in b.get("recap", []):
             if not m.get("id"):
                 continue
@@ -163,6 +174,7 @@ def tally(votes, idx):
     non difesa."""
     axes = {"categoria": defaultdict(list), "tag": defaultdict(list),
             "fonte": defaultdict(list), "banco": defaultdict(list),
+            "lab": defaultdict(list), "ai": defaultdict(list),
             "sezione": defaultdict(list)}
     unknown = 0
     for row in votes:
@@ -176,6 +188,13 @@ def tally(votes, idx):
         if meta["kind"] == "banco":
             if meta.get("genere"):
                 axes["banco"][meta["genere"]].append(v)
+            for s in meta["sources"]:
+                axes["fonte"][s].append(v)
+            continue
+        if meta["kind"] == "ai":
+            axes["lab"][meta.get("lab") or "altri"].append(v)
+            if meta.get("genere"):
+                axes["ai"][meta["genere"]].append(v)
             for s in meta["sources"]:
                 axes["fonte"][s].append(v)
             continue
@@ -273,26 +292,11 @@ def topic_states(votes, idx, topics):
     return topics, last_up
 
 
-def ai_pick(topics):
-    """Il topic AI di oggi: quello vivo che manca da piu' tempo.
-
-    L'ordine preferisce i confermati, poi gli incerti, poi i sospesi, e solo
-    in ultima istanza gli archiviati — perche' la casella non resta mai vuota.
-    A parita', vince chi non esce da piu' tempo: cosi' i laboratori ruotano
-    invece di darsi il cambio sempre nello stesso ordine."""
-    pool = [t for t, e in topics.items() if e.get("axis") == AI_AXIS]
-    if not pool:
-        return []
-    rank = {"confermato": 0, "in prova": 1, "nuovo": 1, "in pausa": 2, "archiviato": 3}
-    return sorted(pool, key=lambda t: (rank.get(topics[t]["state"], 1),
-                                       topics[t].get("last", ""), t))
-
-
 def radar_plan(topics, last_up, archive_last_day):
-    """Le sei caselle di oggi: una di presidio AI, le confermate a rotazione,
-    piu' le sonde. Un pollice su ieri vale un seguito oggi — e' la reazione
-    che si sente."""
-    follow = [t for t, day in last_up.items() if day == archive_last_day]
+    """Le cinque caselle di oggi: le confermate a rotazione, piu' le sonde.
+    Un pollice su ieri vale un seguito oggi — e' la reazione che si sente."""
+    topics = {t: e for t, e in topics.items() if e.get("axis") != AI_AXIS}
+    follow = [t for t, day in last_up.items() if day == archive_last_day and t in topics]
     confirmed = sorted([t for t, e in topics.items() if e["state"] == "confermato"],
                        key=lambda t: topics[t].get("last", ""))
     trial = sorted([t for t, e in topics.items() if e["state"] == "in prova"],
@@ -310,10 +314,6 @@ def radar_plan(topics, last_up, archive_last_day):
             plan.append((t, etichetta(t)))
             used.add(t)
             quanti -= 1
-
-    # la casella di presidio: si assegna per prima, cosi' non se la mangiano
-    # le altre regole nelle giornate in cui i topic confermati abbondano
-    prendi(ai_pick(topics), AI_SLOTS, lambda t: "presidio AI")
 
     # le caselle sicure: il seguito di ieri, poi i confermati, e finche' non
     # ce ne sono abbastanza i topic gia' visti ma ancora senza verdetto
@@ -354,8 +354,7 @@ def digest(state, topics, plan, follow, axes, rules, votes, idx):
     for t, why in plan:
         e = topics.get(t, {})
         marker = {"seguito": "↑ seguito di ieri", "confermato": "confermato",
-                  "in prova": "in prova", "sonda": "sonda",
-                  "presidio AI": "presidio AI (fisso)"}.get(why, why)
+                  "in prova": "in prova", "sonda": "sonda"}.get(why, why)
         n_out = e.get('seen', 0)
         conto = f"{e.get('up',0)}↑ {e.get('down',0)}↓ · {n_out} uscit" + ("a" if n_out == 1 else "e")
         print(f"  · {t:26} {marker:18} {conto}")

@@ -468,6 +468,53 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
   text-transform:uppercase; color:var(--ink-3);
 }
 
+/* ---------------- AI ----------------
+   Due strati: la cronaca (cosa fanno i laboratori) e la bottega (cosa ci fa
+   la gente). La riga "prova" e' la sezione: come lo provi tu, in una riga. */
+.ailist{list-style:none; margin:0; padding:0}
+.ailist li{border-top:1px solid var(--rule); padding:.95rem 0; display:grid; gap:.35rem}
+.ailist h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
+.ailist p{font-size:.91rem; color:var(--ink-2); line-height:1.5}
+.ailist .head{display:flex; flex-wrap:wrap; gap:.3rem .5rem; align-items:center}
+.ailist .lab,.ailist .kind{
+  font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  padding:.2rem .45rem; border-radius:2px;
+}
+.ailist .lab{background:var(--ink); color:var(--bone)}
+.ailist .kind{background:var(--paper-2); color:var(--ink-2)}
+.ailist .kind.bottega{background:var(--yellow); color:var(--on-fill)}
+.ailist .prova{
+  font-size:.89rem; color:var(--ink); line-height:1.5; margin-top:.1rem;
+  padding-left:.9rem; box-shadow:inset 3px 0 0 var(--yellow);
+}
+.ailist .apple{
+  font-size:.86rem; color:var(--ink-2); line-height:1.5; margin-top:.1rem;
+  padding-left:.9rem; box-shadow:inset 3px 0 0 var(--rule-strong);
+}
+.ailist .foot{display:flex; align-items:center; gap:.6rem; margin-top:.15rem}
+.ailist .src,.ailist .when{font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+/* il fronte: l'ultimo modello di ogni laboratorio */
+.fronte{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(11rem,1fr)); gap:.8rem;
+  margin:.2rem 0 1.4rem; padding-bottom:1.4rem; border-bottom:1.5px solid var(--ink);
+}
+.fronte .lab{font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.fronte b{display:block; font-family:var(--display); font-weight:700; font-size:1.25rem; line-height:1.1; margin:.2rem 0 .15rem}
+.fronte b a{color:var(--ink); text-decoration:none}
+.fronte .when{font-size:.7rem; color:var(--ink-3)}
+/* i filtri della vista AI: due file di pillole, come i mesi dell'archivio */
+.filters{display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 .6rem}
+.filters button{
+  background:none; border:0; border-radius:999px; padding:.34rem .75rem;
+  font-family:var(--display); font-weight:600; font-size:.88rem;
+  text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3);
+  box-shadow:inset 0 0 0 1.5px var(--rule-strong);
+}
+.filters button:hover{color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--ink)}
+.filters button[aria-current="true"]{background:var(--ink); color:var(--bone); box-shadow:none}
+.filters.strati{margin-bottom:1.4rem}
+.filters.strati button[aria-current="true"]{background:var(--yellow); color:var(--on-fill)}
+
 /* ---------------- se te lo fossi perso ----------------
    Roba vecchia di giorni: la cornice deve dire subito quanto, altrimenti
    sembra che la rassegna sia in ritardo. */
@@ -692,7 +739,6 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 .hist .when{font-size:.68rem; letter-spacing:.06em; text-transform:uppercase}
 
 /* ---------------- vista dei fili ---------------- */
-#view-fili .intro{margin-bottom:1.7rem}
 .thread{border-top:1px solid var(--rule); padding:1.3rem 0 1.1rem}
 .thread:first-of-type{border-top:1.5px solid var(--ink)}
 .thread h3{
@@ -772,7 +818,7 @@ footer.colophon .sp{flex:1}
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab" data-view="oggi" role="tab">Edizione</button>
-      <button class="tab" data-view="fili" role="tab" hidden>Fili<span class="count" id="cFili"></span></button>
+      <button class="tab" data-view="ai" role="tab">AI<span class="count" id="cAI"></span></button>
       <button class="tab" data-view="archivio" role="tab">Archivio<span class="count" id="cArch"></span></button>
       <button class="tab" data-view="salvati" role="tab">Salvati<span class="count" id="cStar"></span></button>
       <button class="tab" data-view="diario" role="tab">Diario<span class="count" id="cDiary"></span></button>
@@ -783,7 +829,7 @@ footer.colophon .sp{flex:1}
 
 <main id="main" hidden>
   <section class="view" id="view-oggi"></section>
-  <section class="view" id="view-fili" hidden></section>
+  <section class="view" id="view-ai" hidden></section>
   <section class="view" id="view-archivio" hidden></section>
   <section class="view" id="view-salvati" hidden></section>
   <section class="view" id="view-diario" hidden></section>
@@ -1692,9 +1738,13 @@ function storyNode(brief, n, index){
       el("span", {class:"long", text:" puntata"}),
       el("span", {text:" di " + thread.episodes.length})
     ]);
-    const open = function(ev){ ev.stopPropagation(); openThread(thread.slug); };
-    chip.addEventListener("click", open);
-    chip.addEventListener("keydown", function(ev){ if(ev.key === "Enter" || ev.key === " ") open(ev); });
+    const prev = thread.episodes[epIndex - 1];
+    const open = function(ev){ ev.stopPropagation(); if(prev) openEdition(prev.date); };
+    if(prev){
+      chip.title = "Puntata precedente: " + fmtShort(prev.date);
+      chip.addEventListener("click", open);
+      chip.addEventListener("keydown", function(ev){ if(ev.key === "Enter" || ev.key === " ") open(ev); });
+    }
     chips.appendChild(chip);
   }
 
@@ -1757,11 +1807,12 @@ function storyNode(brief, n, index){
     body.appendChild(box);
   });
 
-  if(thread && thread.episodes.length > 1){
+  if(thread && thread.episodes.length > 1 && epIndex > 0){
+    const prev = thread.episodes[epIndex - 1];
     const line = el("div", {class:"readmore"}, [
       el("span", {class:"sources", text:"Filo — " + thread.label}),
-      el("a", {href:"#", text:"tutte le " + thread.episodes.length + " puntate →",
-        onclick:function(ev){ ev.preventDefault(); ev.stopPropagation(); openThread(thread.slug); }})
+      el("a", {href:"#", text:"puntata precedente, " + fmtShort(prev.date) + " →",
+        onclick:function(ev){ ev.preventDefault(); ev.stopPropagation(); openEdition(prev.date); }})
     ]);
     body.appendChild(line);
   }
@@ -1882,6 +1933,15 @@ function renderEdition(){
     el("span", {class:"eyebrow hint", text:"tocca un titolo per aprirlo"})
   ]));
   (brief.news || []).forEach(function(n, i){ col.appendChild(storyNode(brief, n, i)); });
+
+  if(brief.ai && brief.ai.length){
+    const pipA = el("span", {class:"pip"}); pipA.style.background = "var(--ink)";
+    col.appendChild(el("div", {class:"section-head"}, [
+      pipA, el("h2", {text:"AI"}),
+      el("span", {class:"eyebrow hint", text:"cosa fanno i laboratori, cosa ci fa la gente"})
+    ]));
+    col.appendChild(aiList(brief.ai.map(function(a){ return {a:a, date:brief.date}; }), false));
+  }
 
   if(brief.radar && brief.radar.length){
     const pipB = el("span", {class:"pip"}); pipB.style.background = "var(--blue)";
@@ -2333,107 +2393,106 @@ function renderSearch(){
   });
 }
 
-/* ================= i fili delle storie ================= */
-const EPISODES_SHOWN = 4;
+/* ================= AI ================= */
+const AI_BOTTEGA = {uso:1, demo:1, trucco:1, sapevi:1};
+const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["altri","Altri"]];
+function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })[0]; return m ? m[1] : (l || "Altri"); }
 
-function threadList(){
-  return Object.keys(THREADS).map(function(s){ return THREADS[s]; })
-    .filter(function(t){ return t.episodes.length > 1; })
-    .sort(function(a, b){
-      const la = a.episodes[a.episodes.length-1].date, lb = b.episodes[b.episodes.length-1].date;
-      if(la !== lb) return la < lb ? 1 : -1;
-      return b.episodes.length - a.episodes.length;
+/* una voce AI, uguale nell'edizione e nel flusso; nel flusso porta anche la data */
+function aiList(rows, withDate){
+  const ul = el("ul", {class:"ailist"});
+  rows.forEach(function(r){
+    const a = r.a, u = safeUrl(a.link);
+    const kind = String(a.kind || "").toLowerCase(), bottega = !!AI_BOTTEGA[kind];
+    const head = el("div", {class:"head"}, [
+      el("span", {class:"lab", text:labName(String(a.lab || "altri").toLowerCase())}),
+      kind ? el("span", {class:"kind" + (bottega ? " bottega" : ""), text:kind}) : null
+    ]);
+    const foot = el("div", {class:"foot"}, [el("span", {class:"src", text:a.source || ""})]);
+    if(withDate) foot.appendChild(el("span", {class:"when", text:fmtShort(r.date)}));
+    if(NOTES && a.id) foot.appendChild(voteBox(key(r.date, "ai:" + a.id)));
+    ul.appendChild(el("li", {}, [
+      head,
+      el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:a.title}) : el("span", {text:a.title})]),
+      a.note ? el("p", {text:a.note}) : null,
+      a.prova ? el("p", {class:"prova", text:a.prova}) : null,
+      a.apple ? el("p", {class:"apple", text:a.apple}) : null,
+      foot
+    ]));
+  });
+  return ul;
+}
+
+/* il fronte si ricava dall'archivio: l'ultima voce di genere "modello" per
+   laboratorio. Niente registro a parte: vive dentro le edizioni come tutto */
+function fronte(){
+  const out = {};
+  BRIEFS.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; }).forEach(function(b){
+    (b.ai || []).forEach(function(a){
+      if(String(a.kind || "").toLowerCase() !== "modello") return;
+      const l = String(a.lab || "altri").toLowerCase();
+      if(!out[l]) out[l] = {a:a, date:b.date};
     });
+  });
+  return AI_LABS.map(function(x){ return out[x[0]] ? [x[1], out[x[0]]] : null; }).filter(Boolean);
 }
 
-function openThread(slug){
-  show("fili");
-  window.scrollTo({top:0});
-  setTimeout(function(){
-    const t = document.getElementById("t-" + slug);
-    if(t) t.scrollIntoView({behavior:"smooth", block:"start"});
-  }, 30);
-}
-
-function renderThreads(){
-  const root = document.getElementById("view-fili");
+let aiLab = "tutti", aiStrato = "tutti";
+function renderAI(){
+  const root = document.getElementById("view-ai");
   root.innerHTML = "";
   const col = el("div", {class:"col-main"});
-  const list = threadList();
-
-  const pipT = el("span", {class:"pip"}); pipT.style.background = "var(--blue)";
+  const pip = el("span", {class:"pip"}); pip.style.background = "var(--ink)";
+  const rows = [];
+  BRIEFS.forEach(function(b){ (b.ai || []).forEach(function(a){ rows.push({a:a, date:b.date}); }); });
+  rows.sort(function(x, y){ return x.date < y.date ? 1 : -1; });
   col.appendChild(el("div", {class:"section-head"}, [
-    pipT, el("h2", {text:"I fili"}),
-    el("span", {class:"eyebrow hint", text:list.length + (list.length === 1 ? " storia aperta" : " storie aperte")})
+    pip, el("h2", {text:"AI"}),
+    el("span", {class:"eyebrow hint", text:rows.length ? rows.length + " voci" : "cosa fanno i laboratori, cosa ci fa la gente"})
   ]));
-
-  if(!list.length){
-    col.appendChild(el("div", {class:"empty", html:"<b>Ancora nessun filo</b>Un filo nasce quando una storia torna: la seconda puntata la lega alla prima, e da lì in poi la rassegna ha memoria."}));
-    root.appendChild(col);
-    return;
+  if(!rows.length){
+    col.appendChild(el("div", {class:"empty", html:"<b>Ancora niente</b>La sezione si riempie con la prossima edizione: la cronaca dei laboratori e quello che la gente ci fa."}));
+    root.appendChild(col); return;
   }
-
-  col.appendChild(el("p", {class:"intro", text:"Le storie che non finiscono in un giorno, dalla prima puntata all'ultima. Tocca una riga per aprire quella notizia nella sua edizione."}));
-
-  list.forEach(function(t){
-    const first = t.episodes[0].date, last = t.episodes[t.episodes.length-1].date;
-    const span = el("div", {class:"span"}, [
-      el("span", {class:"eyebrow", text:t.episodes.length + " puntate"}),
-      el("span", {class:"eyebrow", text:"dal " + fmtShort(first) + " al " + fmtShort(last)})
-    ]);
-    const card = el("article", {class:"thread", id:"t-" + t.slug}, [
-      el("h3", {text:t.label}),
-      t.note ? el("p", {class:"note", text:t.note}) : null,
-      span
-    ]);
-
-    const ul = el("ul", {class:"timeline"});
-    const ordered = t.episodes.slice().reverse();   /* l'ultima puntata in cima */
-    let collapsed = ordered.length > EPISODES_SHOWN;
-
-    function paint(){
-      ul.innerHTML = "";
-      const shown = collapsed ? ordered.slice(0, EPISODES_SHOWN) : ordered;
-      shown.forEach(function(e, i){
-        const li = el("li", {class:i === 0 ? "last" : ""});
-        li.appendChild(el("button", {type:"button", onclick:function(){ jumpTo(e.date, e.news.id); }}, [
-          el("span", {class:"when", text:fmtShort(e.date)}),
-          el("span", {class:"what", text:e.news.title})
-        ]));
-        ul.appendChild(li);
-      });
-    }
-    paint();
-    card.appendChild(ul);
-
-    /* i numeri del filo: la stessa metrica letta in puntate diverse */
-    const seen = {}, threadFacts = [];
-    t.episodes.forEach(function(e){
-      (e.news.facts || []).forEach(function(f){
-        if(f && f.key && !seen[f.key]){ seen[f.key] = 1; threadFacts.push(f); }
-      });
+  const fr = fronte();
+  if(fr.length){
+    const g = el("div", {class:"fronte"});
+    fr.forEach(function(x){
+      const u = safeUrl(x[1].a.link);
+      g.appendChild(el("div", {}, [
+        el("span", {class:"lab", text:x[0]}),
+        el("b", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:x[1].a.title}) : el("span", {text:x[1].a.title})]),
+        el("span", {class:"when", text:fmtShort(x[1].date)})
+      ]));
     });
-    const tn = numbersNode(threadFacts, "I numeri di questo filo");
-    if(tn) card.appendChild(tn);
-    if(ordered.length > EPISODES_SHOWN){
-      const more = el("button", {class:"expand", type:"button"});
-      const label = function(){
-        more.textContent = collapsed
-          ? "↓ le altre " + (ordered.length - EPISODES_SHOWN) + " puntate"
-          : "↑ mostra solo le ultime " + EPISODES_SHOWN;
-      };
-      more.addEventListener("click", function(){ collapsed = !collapsed; paint(); label(); });
-      label();
-      card.appendChild(more);
-    }
-    col.appendChild(card);
+    col.appendChild(g);
+  }
+  const labs = [["tutti","Tutti"]].concat(AI_LABS.filter(function(x){ return rows.some(function(r){ return String(r.a.lab || "altri").toLowerCase() === x[0]; }); }));
+  const fl = el("div", {class:"filters"});
+  labs.forEach(function(x){
+    fl.appendChild(el("button", {type:"button", "aria-current": aiLab === x[0] ? "true" : null,
+      onclick:function(){ aiLab = x[0]; renderAI(); }}, [document.createTextNode(x[1])]));
   });
-
+  col.appendChild(fl);
+  const fs = el("div", {class:"filters strati"});
+  [["tutti","Tutto"],["cronaca","Cronaca"],["bottega","Bottega"]].forEach(function(x){
+    fs.appendChild(el("button", {type:"button", "aria-current": aiStrato === x[0] ? "true" : null,
+      onclick:function(){ aiStrato = x[0]; renderAI(); }}, [document.createTextNode(x[1])]));
+  });
+  col.appendChild(fs);
+  const shown = rows.filter(function(r){
+    const l = String(r.a.lab || "altri").toLowerCase(), b = !!AI_BOTTEGA[String(r.a.kind || "").toLowerCase()];
+    if(aiLab !== "tutti" && l !== aiLab) return false;
+    if(aiStrato === "cronaca" && b) return false;
+    if(aiStrato === "bottega" && !b) return false;
+    return true;
+  });
+  col.appendChild(aiList(shown, true));
   root.appendChild(col);
 }
 
 /* ================= navigazione ================= */
-const views = ["oggi","fili","archivio","salvati","diario","cerca"];
+const views = ["oggi","ai","archivio","salvati","diario","cerca"];
 let currentView = "oggi";
 
 function show(name){
@@ -2447,7 +2506,7 @@ function show(name){
     if(on && t.scrollIntoView) t.scrollIntoView({block:"nearest", inline:"nearest"});
   });
   tabsOverflow();
-  if(name === "fili") renderThreads();
+  if(name === "ai") renderAI();
   if(name === "archivio") renderArchive();
   if(name === "salvati") renderStarred();
   if(name === "diario") renderDiary();
@@ -2455,7 +2514,7 @@ function show(name){
 }
 function repaint(){
   if(currentView === "oggi") renderEdition();
-  else if(currentView === "fili") renderThreads();
+  else if(currentView === "ai") renderAI();
   else if(currentView === "archivio") renderArchive();
   else if(currentView === "salvati") renderStarred();
   else if(currentView === "diario") renderDiary();
@@ -2484,11 +2543,8 @@ function tabsOverflow(){
 
 function refreshCounts(){
   document.getElementById("cArch").textContent = BRIEFS.length;
-  /* la scheda dei fili compare solo quando c'e' almeno una storia con seguito */
-  const nFili = threadList().length;
-  document.getElementById("cFili").textContent = nFili || "";
-  const tabFili = document.querySelector('.tab[data-view="fili"]');
-  if(tabFili) tabFili.hidden = !nFili;
+  const nAI = BRIEFS.reduce(function(n, b){ return n + (b.ai || []).length; }, 0);
+  document.getElementById("cAI").textContent = nAI || "";
   const stars = Object.keys(S.marks).filter(function(k){ return S.marks[k].starred_at; }).length;
   document.getElementById("cStar").textContent = stars || "";
   document.getElementById("cDiary").textContent = liveDiary().length || "";

@@ -26,6 +26,7 @@ a meno che Mike non chieda esplicitamente di rifarla.
 ```bash
 python3 pipeline/fetch.py --hours 26
 python3 pipeline/social.py --hours 30
+python3 pipeline/bottega.py --hours 30
 python3 pipeline/taste.py
 python3 pipeline/missed.py
 ```
@@ -35,10 +36,10 @@ Leggi il file grezzo appena scritto. Scegli le notizie che contano e, per le
 servono dati e citazioni verificabili, l'abstract RSS non basta. **Prendi gli
 URL dal file grezzo, non ricostruirli dal titolo** — cambiano.
 
-Ogni articolo grezzo ha un `tier` che dice dove va a finire: `ai` alimenta il
-presidio AI del radar, `banco` la sezione *Sul banco*, e nessuno dei due entra
-fra le notizie se non tocca Apple direttamente. `taste.py` propone le sei
-caselle del radar, `missed.py` i candidati per *Se te lo fossi perso* — quasi
+Ogni articolo grezzo ha un `tier` che dice dove va a finire: `ai` e `bottega`
+alimentano la sezione *AI* (cronaca e bottega), `banco` la sezione *Sul banco*,
+e nessuno entra fra le notizie se non tocca Apple direttamente. `taste.py`
+propone le cinque caselle del radar, `missed.py` i candidati per *Se te lo fossi perso* — quasi
 sempre non se ne prende nessuno, e va bene così.
 
 Scrivi `data/briefs/YYYY-MM-DD.json` seguendo lo schema di

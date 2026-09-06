@@ -13,7 +13,7 @@ Il file e' data/sources.json e ha una riga per fonte:
     "Wired Italia": {
       "url": "https://www.wired.it/feed/rss",
       "state": "panchina",           attiva | panchina
-      "tier": "redazionale",         primaria | redazionale | larga | ai | banco
+      "tier": "redazionale",         primaria | redazionale | larga | ai | banco | bottega
       "since": "2026-08-09",         da quando e' in questo stato
       "reason": "fermo da 39 giorni",
       "checked": "2026-08-16",       ultima riprova
@@ -57,11 +57,19 @@ BANCO = {"DDay.it", "HDblog", "GSMArena", "Android Authority",
          "Andrea Galeazzi", "MKBHD"}
 
 
+# Fonti di bottega: non cosa fanno i laboratori, cosa ci fa la gente. Usi,
+# demo, trucchi, "sapevi che". Alimentano lo strato "bottega" della sezione AI.
+BOTTEGA = {"Simon Willison", "One Useful Thing", "Latent Space",
+           "Anthropic cookbook", "Matt Wolfe", "AI Explained"}
+
+
 def _tier(name):
     if name in PRIMARY:
         return "primaria"
     if name in AI:
         return "ai"
+    if name in BOTTEGA:
+        return "bottega"
     if name in BANCO:
         return "banco"
     return "larga" if name in BROAD else "redazionale"
@@ -99,6 +107,14 @@ SEED = {
     "Android Authority": "https://www.androidauthority.com/feed/",
     "Andrea Galeazzi": "https://www.youtube.com/feeds/videos.xml?channel_id=UC5yXB_ThsufRJYMRlzIGoeQ",
     "MKBHD": "https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ",
+
+    # Bottega — cosa ci fa la gente con i modelli
+    "Simon Willison": "https://simonwillison.net/atom/everything/",
+    "One Useful Thing": "https://www.oneusefulthing.org/feed",
+    "Latent Space": "https://www.latent.space/feed",
+    "Anthropic cookbook": "https://github.com/anthropics/anthropic-cookbook/commits/main.atom",
+    "Matt Wolfe": "https://www.youtube.com/feeds/videos.xml?channel_id=UChpleBmo18P08aKCIgti38g",
+    "AI Explained": "https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw",
 }
 
 

@@ -40,11 +40,16 @@ RELIABILITY = {"alta", "media", "bassa"}
 
 # le misure dichiarate in CLAUDE.md
 NEWS_MIN, NEWS_MAX = 15, 20
-RADAR_MIN, RADAR_MAX = 6, 6
+RADAR_MIN, RADAR_MAX = 5, 5
 SOCIAL_MAX = 5
 BANCO_MIN, BANCO_MAX = 3, 5
 BANCO_KINDS = {"recensione", "video", "confronto", "curiosità", "guida"}
 RECAP_MAX = 3
+AI_MIN, AI_MAX = 4, 8
+AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "altri"}
+# cronaca: cosa fanno i laboratori. bottega: cosa ci fa la gente.
+AI_CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
+AI_BOTTEGA = {"uso", "demo", "trucco", "sapevi"}
 # "Se te lo fossi perso" guarda indietro: sotto i due giorni e' la rassegna di
 # ieri, oltre il mese non se l'e' perso, l'ha dimenticato
 RECAP_MIN_AGE, RECAP_MAX_AGE = 2, 30
@@ -143,6 +148,28 @@ def check_shape(brief, r):
             r.error("banco", f"voce senza link: {titolo}")
 
     check_recap(brief, r)
+
+    ai = brief.get("ai") or []
+    if ai and not (AI_MIN <= len(ai) <= AI_MAX):
+        r.warn("ai", f"{len(ai)} voci, attese {AI_MIN}-{AI_MAX}")
+    for v in ai:
+        titolo = (v.get("title") or "")[:46]
+        if not v.get("id"):
+            r.warn("ai", f"voce senza id, non votabile: {titolo}")
+        if (v.get("lab") or "").lower() not in AI_LABS:
+            r.warn("ai", f"laboratorio non ammesso ({v.get('lab')!r}): {titolo}")
+        kind = (v.get("kind") or "").lower()
+        if kind in AI_BOTTEGA and not v.get("prova"):
+            # senza "come lo provi tu" e' una curiosita'; con quella e' lo sblocco
+            r.error("ai", f"voce di bottega senza il come provarlo: {titolo}")
+        elif kind in AI_CRONACA and not v.get("apple"):
+            r.warn("ai", f"cronaca senza la riga su Apple (anche «niente, per ora»): {titolo}")
+        elif kind not in AI_CRONACA | AI_BOTTEGA:
+            r.warn("ai", f"genere non ammesso ({v.get('kind')!r}): {titolo}")
+        if not v.get("link"):
+            r.error("ai", f"voce senza link: {titolo}")
+    if ai and not any((v.get("kind") or "").lower() in AI_BOTTEGA for v in ai):
+        r.warn("ai", "solo cronaca, niente bottega: la sezione e' meta' di quello che deve essere")
 
     social = brief.get("social") or []
     if len(social) > SOCIAL_MAX:
@@ -340,7 +367,7 @@ def check_links(brief, r):
         for extra in n.get("extra_links") or []:
             if extra.get("url"):
                 urls.append((f"news/{n.get('id')}", extra["url"]))
-    for sec in ("radar", "banco", "recap", "social"):
+    for sec in ("radar", "banco", "recap", "ai", "social"):
         for s in brief.get(sec) or []:
             if s.get("link"):
                 urls.append((sec, s["link"]))

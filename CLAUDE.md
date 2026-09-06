@@ -36,10 +36,11 @@ che parte dell'edizione finirà:
 | `primaria` | Apple Newsroom, Apple Developer | fra le notizie, e chiude i rumor |
 | `redazionale` | 9to5Mac, MacRumors, Macitynet, iSpazio, BGR, Tom's, The Verge | fra le notizie |
 | `larga` | Ars Technica, TechCrunch | sonde del radar |
-| `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI | presidio AI del radar |
+| `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI | sezione *AI*, strato cronaca |
+| `bottega` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato bottega |
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
 
-`ai` e `banco` pubblicano a strappi: un laboratorio annuncia quando ha finito, un canale
+`ai`, `bottega` e `banco` pubblicano a strappi: un laboratorio annuncia quando ha finito, un canale
 quando il video è montato. Il campanello dei feed muti per loro suona dopo una settimana
 (dodici giorni per i video), non dopo un giorno, e `feedcheck.py` non li manda in panchina
 per una settimana di silenzio.
@@ -52,6 +53,15 @@ Raccoglie le discussioni — Reddit, Hacker News e quello che hai incollato a ma
 `data/social/manual.md` — e le divide in due mucchi: **eco** (si parla di una notizia che
 abbiamo già) e **nuovo** (se ne parla e da noi non c'è). Il secondo mucchio è il motivo
 per cui esiste il passo: a volte lì dentro c'è una cosa che le testate non hanno ancora.
+
+```bash
+python3 pipeline/bottega.py --hours 30
+```
+
+Raccoglie **cosa ci fa la gente** con i modelli: il top del giorno di r/ClaudeAI, r/OpenAI,
+r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti di bottega già scaricate da
+`fetch.py`; e i link che hai incollato in `data/social/manual.md`. È la materia dello
+strato *bottega* della sezione AI (vedi *La sezione AI*).
 
 ### 2. Selezione e scrittura
 
@@ -112,18 +122,11 @@ Campo `reliability`: `alta` | `media` | `bassa`, con `reliability_note` che spie
 
 Rumor e gossip **si includono**, ma sempre marcati con `tag: "RUMOR"` e una nota sulla fonte.
 
-`radar`: **6 voci** brevi di contorno tech non-Apple, ognuna con `id` (slug stabile, serve
-al voto) e `topic` (l'unità su cui il radar impara). Una casella è il **presidio AI** e non
-si muove, tre vengono da temi già graditi, due sono **sonde** su temi da provare: la
-composizione la propone `taste.py` (vedi *Il gusto*).
-
-**Il presidio AI.** I laboratori — OpenAI, Anthropic, Google DeepMind — non sono un tema
-come gli altri: sono il fronte su cui si decide anche quello che Apple farà fra due anni.
-Una casella del radar è loro per statuto, come il nucleo Apple fra le notizie. I pollici
-scelgono *quale* topic AI mostrare, non se mostrarne uno. I topic del presidio sono quelli
-che in `data/radar_topics.json` hanno `"axis": "ai"` — oggi `openai`, `anthropic`,
-`google-ai` (è Gemini), `modelli-ai`, `ai-agenti`, `ai-regole`. Se ne aggiunge uno
-scrivendolo nel file con quel campo.
+`radar`: **5 voci** brevi di contorno tech non-Apple, ognuna con `id` (slug stabile, serve
+al voto) e `topic` (l'unità su cui il radar impara). Tre vengono da temi già graditi, due
+sono **sonde** su temi da provare: la composizione la propone `taste.py` (vedi *Il gusto*).
+**L'AI non passa dal radar**: ha la sua sezione (sotto), e i topic marcati `"axis": "ai"`
+in `data/radar_topics.json` stanno fuori dalla rotazione.
 
 ```json
 {"id": "pebble-ritorno", "topic": "hardware-indipendente",
@@ -136,7 +139,10 @@ nell'edizione e si guarda dal Mac con `lint.py` e `feedcheck.py`.
 
 #### Il filo — `thread`
 
-Se la notizia è una puntata di una storia che va avanti nel tempo, aggiungi lo slug del filo:
+La scheda «Fili» **non esiste più** dal 6 settembre 2026 (Mike non la guardava; al suo
+posto c'è la scheda AI). Il campo resta, e serve *dentro* la notizia: la pastiglia
+«3ª puntata di 5» porta alla puntata precedente. Se la notizia è una puntata di una storia
+che va avanti nel tempo, aggiungi lo slug del filo:
 
 ```json
 "thread": "silicio-mac"
@@ -257,6 +263,45 @@ gratuita, e raschiare le pagine viola le condizioni. Il percorso è manuale e fu
 bene: quando vedi un thread che conta, incolla il link in `data/social/manual.md` con
 una riga di contesto, e al giro dopo entra nella raccolta come tutto il resto.
 
+#### La sezione AI — `ai`
+
+Non è «notizie AI»: è **cronaca e bottega insieme**. Cosa fanno i laboratori, e cosa ci fa
+la gente. **4–8 voci** al giorno, e almeno una deve essere di bottega — solo cronaca è
+metà sezione, e il lint lo dice.
+
+```json
+{"id": "gpt-6-astra", "lab": "openai", "kind": "modello",
+ "title": "…", "note": "3 righe: cos'è, che numeri porta",
+ "apple": "Una riga: cosa c'entra con Apple, o «niente, per ora»",
+ "link": "…", "source": "OpenAI"}
+
+{"id": "claude-contabilita", "lab": "anthropic", "kind": "uso",
+ "title": "…", "note": "3 righe: cosa ha fatto, come, cosa ne è uscito",
+ "prova": "Come lo provi tu, in una riga: il prompt, la funzione, il primo passo",
+ "link": "…", "source": "Reddit r/ClaudeAI"}
+```
+
+`lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `altri`.
+`kind` decide lo strato: **cronaca** = `modello` · `funzione` · `affari` · `regole` ·
+`ricerca`; **bottega** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
+costruita che puoi provare) · `trucco` (un prompt, una funzione, un modo d'uso) ·
+`sapevi` («sai che puoi…»: c'è già e nessuno la usa).
+
+**`prova` è la sezione**: ogni voce di bottega deve dire come lo provi tu, in una riga.
+Senza è una curiosità, con quella è lo sblocco; il lint la respinge come errore. Sulla
+cronaca la riga `apple` è attesa (anche «niente, per ora»): è il motivo per cui l'AI sta
+in una rassegna Apple.
+
+**Il fronte.** L'app mostra in testa alla scheda AI l'ultimo modello di ogni laboratorio:
+lo ricava da sola dalle voci `kind: "modello"` dell'archivio, la più recente per `lab`.
+Quindi **ogni modello nuovo va scritto come voce `modello` con il nome del modello nel
+titolo**, altrimenti il fronte resta indietro. Niente registro a parte.
+
+Da dove viene: la cronaca dal girone `ai` del grezzo; la bottega da `bottega.py`
+(Reddit, Show HN, le fonti `bottega`, i tuoi appunti da X in `manual.md`). Un thread su X
+che ti ha colpito è già una voce `uso`: incolla il link con tre parole, il resto lo fa la
+corsa del mattino.
+
 #### La sezione da lavoro — `banco`
 
 Mike sta dietro il banco di un Apple Store. Metà delle domande che riceve non riguardano
@@ -350,8 +395,9 @@ python3 pipeline/taste.py report     # il briefing, ogni 14 giorni
 
 I voti stanno nella colonna `vote` di `brief_marks` (migrazione in
 `supabase/migrazioni.sql`, da lanciare una volta sola). `taste.py` li rilegge, li incrocia
-con l'archivio locale e ne ricava i pattern lungo cinque assi: **categoria**, **tag**,
-**fonte**, **banco** (il genere: recensione, video, confronto…) e **sezione**.
+con l'archivio locale e ne ricava i pattern lungo sette assi: **categoria**, **tag**,
+**fonte**, **banco** (il genere: recensione, video, confronto…), **lab** e **ai** (il
+laboratorio e il genere delle voci AI) e **sezione**.
 
 L'asse `sezione` è quello che tiene onesto l'impianto: se «Se te lo fossi perso» prende tre
 pollici giù di fila, la sezione non serve e va tolta, non difesa. Vale per tutte e tre le
@@ -362,9 +408,9 @@ Tre regole non negoziabili:
 - **Si declassa, non si cancella.** Un pattern confermato manda la notizia in coda o nel
   radar. Non la fa sparire.
 - **Il nucleo Apple non si tocca.** I voti agiscono su contorno, ordine e radar. Se Apple
-  prende una multa UE quella notizia entra, quanti pollici giù ci siano stati. Lo stesso
-  vale per il presidio AI: i pollici scelgono quale laboratorio mostrare, non se mostrarne
-  uno.
+  prende una multa UE quella notizia entra, quanti pollici giù ci siano stati. Nella
+  sezione AI i pollici scelgono quale laboratorio e quale genere pesano di più, non se
+  la sezione esiste.
 - **Il silenzio non è un no.** Contano solo i voti espressi, e servono 3 voti concordi
   sullo stesso asse (75% di concordia) prima di dare retta a un pattern.
 
@@ -536,6 +582,7 @@ pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       copertura + trazione online  ->  candidati per il ripescaggio
+pipeline/bottega.py      Reddit AI + Show HN + fonti bottega + appunti  ->  data/bottega/
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
@@ -566,6 +613,7 @@ data/taste.json          l'ultimo scarico dei voti + le regole ricavate + data d
 data/radar_topics.json   i temi del radar e il loro stato (nuovo, in prova, confermato…)
 data/social/             le discussioni raccolte per data
 data/missed/             i candidati al ripescaggio, per data
+data/bottega/            cosa ci fa la gente con i modelli, per data
 data/social/manual.md    dove incolli a mano i link da X e affini
 app/                     output generato, non modificare a mano
 ```
@@ -608,6 +656,11 @@ MIT Technology Review AI
 > dalle sei fonti qui sopra, che la coprono tutte, e dai suoi annunci quando finiscono su
 > Hacker News — che è come li ha trovati `missed.py` la prima volta. Se un giorno aprono
 > un feed, va aggiunto al `SEED` con `tier: "ai"`.
+
+**Bottega** (cosa ci fa la gente con i modelli, per lo strato bottega della sezione AI):
+Simon Willison · One Useful Thing (Ethan Mollick) · Latent Space · Anthropic cookbook (i
+commit su GitHub) · Matt Wolfe (YouTube) · AI Explained (YouTube). Provate e scartate il
+6 settembre 2026 perché senza feed: Ben's Bites, The Neuron, Every.to.
 
 **Banco** (la concorrenza e chi la prova, per la sezione *Sul banco*): DDay.it · HDblog ·
 GSMArena · Android Authority · Andrea Galeazzi (YouTube) · MKBHD (YouTube)
