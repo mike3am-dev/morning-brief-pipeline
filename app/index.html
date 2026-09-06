@@ -217,9 +217,34 @@ nav.tabs.more-left:not(.more-right){
   .brand-tools{gap:0}
   .icon-btn{width:29px; height:29px; font-size:.92rem}
   #syncPip{margin:0 .2rem 0 .1rem}
-  .tab{font-size:.82rem; margin-right:.95rem; letter-spacing:.03em}
+  /* meno schede, piu' grandi: Diario e Cerca vanno sotto i tre puntini, e la
+     riga delle schede torna leggibile senza scorrere */
+  .tab{font-size:.95rem; margin-right:1.1rem; letter-spacing:.03em; padding:.35rem 0 .5rem}
   .tab:last-child{margin-right:0}
+  .tab[data-view="diario"],.tab[data-view="cerca"]{display:none}
+  .tab.more{display:inline-block; font-size:1.2rem; line-height:1; padding:.25rem .1rem .45rem}
+  .masthead-inner{padding-top:.4rem}
+  nav.tabs{margin-top:.15rem}
+  /* il primo titolo di sezione sta piu' vicino alle schede: sul telefono la
+     testata occupa gia' due righe, il vuoto sotto era la terza */
+  .col-main > .section-head:first-child{padding-top:1.1rem}
+  .hero{padding-top:1.1rem}
 }
+.tab.more{display:none}
+.masthead-inner{position:relative}
+.tabmenu{
+  position:absolute; right:var(--gutter); top:100%; z-index:20; min-width:11rem;
+  background:var(--paper); border-radius:6px; box-shadow:var(--shadow), 0 0 0 1.5px var(--rule);
+  padding:.4rem; display:flex; flex-direction:column;
+}
+.tabmenu[hidden]{display:none}
+.tabmenu button{
+  background:none; border:0; text-align:left; padding:.6rem .8rem; border-radius:4px;
+  font-family:var(--display); font-weight:600; font-size:1rem; text-transform:uppercase;
+  letter-spacing:.05em; color:var(--ink-2);
+}
+.tabmenu button:hover{background:var(--paper-2); color:var(--ink)}
+.tabmenu .count{font-family:var(--body); font-size:.6rem; font-weight:700; color:var(--ink-3); margin-left:.35rem; vertical-align:.35em; letter-spacing:0}
 
 /* ---------------- impaginato ---------------- */
 main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
@@ -485,52 +510,36 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 }
 
 /* ---------------- AI ----------------
-   Due strati: la cronaca (cosa fanno i laboratori) e la bottega (cosa ci fa
-   la gente). La riga "prova" e' la sezione: come lo provi tu, in una riga. */
-.ailist{list-style:none; margin:0; padding:0}
-.ailist li{border-top:1px solid var(--rule); padding:.95rem 0; display:grid; gap:.35rem}
-.ailist h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
-.ailist p{font-size:.91rem; color:var(--ink-2); line-height:1.5}
-.ailist .head{display:flex; flex-wrap:wrap; gap:.3rem .5rem; align-items:center}
-.ailist .lab,.ailist .kind{
-  font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
-  padding:.2rem .45rem; border-radius:2px;
-}
-.ailist .lab{background:var(--ink); color:var(--bone)}
-.ailist .kind{background:var(--paper-2); color:var(--ink-2)}
-.ailist .kind.bottega{background:var(--yellow); color:var(--on-fill)}
-.ailist .prova{
-  font-size:.89rem; color:var(--ink); line-height:1.5; margin-top:.1rem;
+   Le voci AI hanno la stessa forma delle notizie: pallino, pastiglie, titolo,
+   una riga, la foto; il resto si apre al tocco. Due strati: la cronaca (cosa
+   fanno i laboratori) e il LAB (cosa ci fa la gente). La riga "prova" e' la
+   sezione: come lo provi tu. */
+.chip.lab-name{background:var(--ink); color:var(--bone)}
+.chip.k-lab{background:var(--yellow); color:var(--on-fill)}
+.story-body .prova{
+  font-size:.95rem; color:var(--ink); line-height:1.5;
   padding-left:.9rem; box-shadow:inset 3px 0 0 var(--yellow);
 }
-.ailist .apple{
-  font-size:.86rem; color:var(--ink-2); line-height:1.5; margin-top:.1rem;
+.story-body .apple{
+  font-size:.92rem; color:var(--ink-2); line-height:1.5;
   padding-left:.9rem; box-shadow:inset 3px 0 0 var(--rule-strong);
 }
-.ailist .foot{display:flex; align-items:center; gap:.6rem; margin-top:.15rem}
-.ailist .foot .tools{margin-left:auto}
-.ailist .src,.ailist .when{font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
 /* il fronte: l'ultimo modello di ogni laboratorio */
 .fronte{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(11rem,1fr)); gap:.8rem;
-  margin:.2rem 0 1.4rem; padding-bottom:1.4rem; border-bottom:1.5px solid var(--ink);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:.8rem;
+  margin:.2rem 0 .4rem; padding-bottom:1.2rem; border-bottom:1.5px solid var(--ink);
 }
 .fronte .lab{font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
-.fronte b{display:block; font-family:var(--display); font-weight:700; font-size:1.25rem; line-height:1.1; margin:.2rem 0 .15rem}
+.fronte b{display:block; font-family:var(--display); font-weight:700; font-size:1.2rem; line-height:1.1; margin:.2rem 0 .15rem}
 .fronte b a{color:var(--ink); text-decoration:none}
 .fronte .when{font-size:.7rem; color:var(--ink-3)}
-/* i filtri della vista AI: due file di pillole, come i mesi dell'archivio */
-.filters{display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 .6rem}
-.filters button{
-  background:none; border:0; border-radius:999px; padding:.34rem .75rem;
-  font-family:var(--display); font-weight:600; font-size:.88rem;
-  text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3);
-  box-shadow:inset 0 0 0 1.5px var(--rule-strong);
+/* il flusso della scheda AI e' diviso per giorno */
+.daymark{
+  display:flex; align-items:center; gap:.6rem; margin:1.9rem 0 .2rem;
+  font-size:.63rem; font-weight:700; letter-spacing:.19em; text-transform:uppercase; color:var(--ink-3);
 }
-.filters button:hover{color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--ink)}
-.filters button[aria-current="true"]{background:var(--ink); color:var(--bone); box-shadow:none}
-.filters.strati{margin-bottom:1.4rem}
-.filters.strati button[aria-current="true"]{background:var(--yellow); color:var(--on-fill)}
+.daymark::after{content:""; flex:1; height:1px; background:var(--rule-strong)}
+.daymark:first-of-type{margin-top:.9rem}
 
 /* ---------------- se te lo fossi perso ----------------
    Roba vecchia di giorni: la cornice deve dire subito quanto, altrimenti
@@ -842,7 +851,12 @@ footer.colophon .sp{flex:1}
       <button class="tab" data-view="salvati" role="tab">Salvati<span class="count" id="cStar"></span></button>
       <button class="tab" data-view="diario" role="tab">Diario<span class="count" id="cDiary"></span></button>
       <button class="tab" data-view="cerca" role="tab">Cerca</button>
+      <button class="tab more" type="button" id="moreTab" aria-haspopup="true" aria-expanded="false" title="Altro">⋯</button>
     </nav>
+    <div class="tabmenu" id="tabmenu" hidden>
+      <button type="button" data-go="diario">Diario<span class="count" id="cDiary2"></span></button>
+      <button type="button" data-go="cerca">Cerca</button>
+    </div>
   </div>
 </header>
 
@@ -1959,7 +1973,7 @@ function renderEdition(){
       pipA, el("h2", {text:"AI"}),
       el("span", {class:"eyebrow hint", text:"cosa fanno i laboratori, cosa ci fa la gente"})
     ]));
-    col.appendChild(aiList(brief.ai.map(function(a){ return {a:a, date:brief.date}; }), false));
+    brief.ai.forEach(function(a, i){ col.appendChild(aiCard(brief.date, a, i)); });
   }
 
   if(brief.radar && brief.radar.length){
@@ -2413,40 +2427,57 @@ function renderSearch(){
 }
 
 /* ================= AI ================= */
-const AI_BOTTEGA = {uso:1, demo:1, trucco:1, sapevi:1};
+const AI_LAB = {uso:1, demo:1, trucco:1, sapevi:1};
 const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["altri","Altri"]];
 function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })[0]; return m ? m[1] : (l || "Altri"); }
 
-/* una voce AI, uguale nell'edizione e nel flusso; nel flusso porta anche la data */
-function aiList(rows, withDate){
-  const ul = el("ul", {class:"ailist"});
-  rows.forEach(function(r){
-    const a = r.a, u = safeUrl(a.link);
-    const kind = String(a.kind || "").toLowerCase(), bottega = !!AI_BOTTEGA[kind];
-    const head = el("div", {class:"head"}, [
-      el("span", {class:"lab", text:labName(String(a.lab || "altri").toLowerCase())}),
-      kind ? el("span", {class:"kind" + (bottega ? " bottega" : ""), text:kind}) : null
-    ]);
-    /* stessa barra delle notizie: salva, appunti, due pollici. Una demo da
-       provare stasera si salva e si annota come una notizia. */
-    const tools = (NOTES && a.id)
-      ? itemTools(key(r.date, "ai:" + a.id),
-                  {ref:{date:r.date, id:"ai:" + a.id, title:a.title}})
-      : null;
-    const foot = el("div", {class:"foot"}, [el("span", {class:"src", text:a.source || ""})]);
-    if(withDate) foot.appendChild(el("span", {class:"when", text:fmtShort(r.date)}));
-    if(tools) foot.appendChild(tools.bar);
-    ul.appendChild(el("li", {}, [
-      head,
-      el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:a.title}) : el("span", {text:a.title})]),
-      a.note ? el("p", {text:a.note}) : null,
-      a.prova ? el("p", {class:"prova", text:a.prova}) : null,
-      a.apple ? el("p", {class:"apple", text:a.apple}) : null,
-      foot,
-      tools ? tools.panel : null
-    ]));
+/* la prima frase della nota: e' la riga che si vede a scheda chiusa */
+function firstLine(t){
+  t = String(t || "").trim();
+  const m = t.match(/^(.{40,180}?[.!?:])(\s|$)/);
+  return m ? m[1] : (t.length > 160 ? t.slice(0, 157).replace(/\s+\S*$/, "") + "…" : t);
+}
+
+/* una voce AI, con la stessa forma di una notizia: si apre al tocco */
+function aiCard(date, a, index){
+  const k = key(date, "ai:" + a.id);
+  const wrap = el("article", {class:"story ai", id:"a-" + a.id});
+  const kind = String(a.kind || "").toLowerCase(), isLab = !!AI_LAB[kind];
+  const chips = el("div", {class:"chips"}, [
+    el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
+    kind ? el("span", {class:"chip " + (isLab ? "k-lab" : "cat"), text:isLab ? "LAB · " + kind : kind}) : null
+  ]);
+  const head = el("div", {class:"story-head"}, [
+    bead(index, String(index + 1)),
+    chips,
+    el("h3", {text:a.title}),
+    el("p", {class:"lede", text:isLab && a.prova ? a.prova : firstLine(a.note)})
+  ]);
+  if(a.image){
+    head.classList.add("with-thumb");
+    head.appendChild(el("img", {class:"thumb", src:a.image, alt:"", loading:"lazy", decoding:"async"}));
+  }
+  const body = el("div", {class:"story-body", hidden:"hidden"});
+  if(a.note) body.appendChild(el("p", {text:a.note}));
+  if(isLab && a.prova) body.appendChild(el("p", {class:"prova", text:a.prova}));
+  if(!isLab && a.apple) body.appendChild(el("p", {class:"apple", text:a.apple}));
+  const u = safeUrl(a.link);
+  const read = el("div", {class:"readmore"});
+  if(u) read.appendChild(el("a", {class:"primary", href:u, target:"_blank", rel:"noopener noreferrer",
+                              text:(/youtube\.com|youtu\.be/.test(u) ? "Guarda il video →" : "Apri →")}));
+  if(a.source) read.appendChild(el("span", {class:"sources", text:a.source}));
+  body.appendChild(read);
+
+  const tools = (NOTES && a.id)
+    ? itemTools(k, {ref:{date:date, id:"ai:" + a.id, title:a.title}}) : null;
+  head.addEventListener("click", function(){
+    body.hidden = !body.hidden;
+    wrap.classList.toggle("is-open", !body.hidden);
   });
-  return ul;
+  wrap.appendChild(head);
+  wrap.appendChild(body);
+  if(tools){ wrap.appendChild(tools.bar); wrap.appendChild(tools.panel); }
+  return wrap;
 }
 
 /* il fronte si ricava dall'archivio: l'ultima voce di genere "modello" per
@@ -2463,20 +2494,19 @@ function fronte(){
   return AI_LABS.map(function(x){ return out[x[0]] ? [x[1], out[x[0]]] : null; }).filter(Boolean);
 }
 
-let aiLab = "tutti", aiStrato = "tutti";
 function renderAI(){
   const root = document.getElementById("view-ai");
   root.innerHTML = "";
   const col = el("div", {class:"col-main"});
   const pip = el("span", {class:"pip"}); pip.style.background = "var(--ink)";
-  const rows = [];
-  BRIEFS.forEach(function(b){ (b.ai || []).forEach(function(a){ rows.push({a:a, date:b.date}); }); });
-  rows.sort(function(x, y){ return x.date < y.date ? 1 : -1; });
+  const days = BRIEFS.filter(function(b){ return (b.ai || []).length; })
+                     .sort(function(x, y){ return x.date < y.date ? 1 : -1; });
+  const total = days.reduce(function(n, b){ return n + b.ai.length; }, 0);
   col.appendChild(el("div", {class:"section-head"}, [
     pip, el("h2", {text:"AI"}),
-    el("span", {class:"eyebrow hint", text:rows.length ? rows.length + " voci" : "cosa fanno i laboratori, cosa ci fa la gente"})
+    el("span", {class:"eyebrow hint", text:total ? total + " voci" : "cosa fanno i laboratori, cosa ci fa la gente"})
   ]));
-  if(!rows.length){
+  if(!total){
     col.appendChild(el("div", {class:"empty", html:"<b>Ancora niente</b>La sezione si riempie con la prossima edizione: la cronaca dei laboratori e quello che la gente ci fa."}));
     root.appendChild(col); return;
   }
@@ -2493,27 +2523,13 @@ function renderAI(){
     });
     col.appendChild(g);
   }
-  const labs = [["tutti","Tutti"]].concat(AI_LABS.filter(function(x){ return rows.some(function(r){ return String(r.a.lab || "altri").toLowerCase() === x[0]; }); }));
-  const fl = el("div", {class:"filters"});
-  labs.forEach(function(x){
-    fl.appendChild(el("button", {type:"button", "aria-current": aiLab === x[0] ? "true" : null,
-      onclick:function(){ aiLab = x[0]; renderAI(); }}, [document.createTextNode(x[1])]));
+  /* niente filtri: si entra e si scorre. Un giorno alla volta, dal piu' recente */
+  const today = BRIEFS[0] ? BRIEFS[0].date : "";
+  days.forEach(function(b){
+    const ago = fmtAgo(b.date, today);
+    col.appendChild(el("div", {class:"daymark", text:(ago === "oggi" || ago === "ieri") ? ago + " · " + fmtShort(b.date) : fmtDate(b.date)}));
+    b.ai.forEach(function(a, i){ col.appendChild(aiCard(b.date, a, i)); });
   });
-  col.appendChild(fl);
-  const fs = el("div", {class:"filters strati"});
-  [["tutti","Tutto"],["cronaca","Cronaca"],["bottega","Bottega"]].forEach(function(x){
-    fs.appendChild(el("button", {type:"button", "aria-current": aiStrato === x[0] ? "true" : null,
-      onclick:function(){ aiStrato = x[0]; renderAI(); }}, [document.createTextNode(x[1])]));
-  });
-  col.appendChild(fs);
-  const shown = rows.filter(function(r){
-    const l = String(r.a.lab || "altri").toLowerCase(), b = !!AI_BOTTEGA[String(r.a.kind || "").toLowerCase()];
-    if(aiLab !== "tutti" && l !== aiLab) return false;
-    if(aiStrato === "cronaca" && b) return false;
-    if(aiStrato === "bottega" && !b) return false;
-    return true;
-  });
-  col.appendChild(aiList(shown, true));
   root.appendChild(col);
 }
 
@@ -2525,7 +2541,7 @@ function show(name){
   currentView = name;
   views.forEach(function(v){ document.getElementById("view-" + v).hidden = (v !== name); });
   Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
-    const on = t.dataset.view === name;
+    const on = t.classList.contains("more") ? (name === "diario" || name === "cerca") : t.dataset.view === name;
     t.setAttribute("aria-current", on ? "true" : "false");
     /* con sei schede la barra sul telefono non ci sta: la scheda attiva si
        porta sempre dentro la finestra, cosi' non resta mezza tagliata */
@@ -2538,6 +2554,21 @@ function show(name){
   if(name === "diario") renderDiary();
   if(name === "cerca"){ renderSearch(); const i = document.querySelector("#view-cerca input"); if(i) i.focus(); }
 }
+/* i tre puntini sul telefono: Diario e Cerca stanno li' dentro */
+(function(){
+  const more = document.getElementById("moreTab"), menu = document.getElementById("tabmenu");
+  if(!more || !menu) return;
+  function close(){ menu.hidden = true; more.setAttribute("aria-expanded", "false"); }
+  more.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    menu.hidden = !menu.hidden; more.setAttribute("aria-expanded", menu.hidden ? "false" : "true");
+  });
+  Array.prototype.forEach.call(menu.querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){ close(); show(b.dataset.go); });
+  });
+  document.addEventListener("click", function(ev){ if(!menu.hidden && !menu.contains(ev.target)) close(); });
+})();
+
 function repaint(){
   if(currentView === "oggi") renderEdition();
   else if(currentView === "ai") renderAI();
@@ -2547,6 +2578,7 @@ function repaint(){
   refreshCounts();
 }
 Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
+  if(t.classList.contains("more")) return;
   t.addEventListener("click", function(){ show(t.dataset.view); window.scrollTo({top:0, behavior:"smooth"}); });
 });
 
@@ -2574,6 +2606,7 @@ function refreshCounts(){
   const stars = Object.keys(S.marks).filter(function(k){ return S.marks[k].starred_at; }).length;
   document.getElementById("cStar").textContent = stars || "";
   document.getElementById("cDiary").textContent = liveDiary().length || "";
+  const d2 = document.getElementById("cDiary2"); if(d2) d2.textContent = liveDiary().length || "";
 }
 
 /* ================= tema ================= */

@@ -56,7 +56,39 @@ def fetch(url, timeout=25):
         return b""
 
 
+# Le immagini "di servizio" che un sito manda quando non ha niente da mostrare:
+# il logo di X sulle pagine che non rende ai bot, il cartello di Reddit.
+GENERIC = re.compile(r"abs\.twimg\.com/rweb/ssr/default|redditstatic\.com/.*(logo|icon)", re.I)
+
+
+def x_image(page_url):
+    """Un post su X non espone l'immagine ai bot: la pagina e' tutta script.
+    Passa da api.fxtwitter.com, che restituisce i media del post in JSON.
+    Se un giorno chiude, la voce resta senza foto, non senza pagina."""
+    m = re.search(r"(?:x|twitter)\.com/[^/]+/status/(\d+)", page_url)
+    if not m:
+        return None
+    raw = fetch("https://api.fxtwitter.com/status/" + m.group(1))
+    try:
+        tw = json.loads(raw.decode("utf-8", "replace")).get("tweet") or {}
+    except ValueError:
+        return None
+    media = (tw.get("media") or {})
+    for kind in ("photos", "videos"):
+        for item in media.get(kind) or []:
+            src = item.get("thumbnail_url") or item.get("url")
+            if src and src.startswith("http"):
+                return src
+    return None
+
+
 def find_image_url(page_url):
+    # YouTube: la miniatura ha un indirizzo fisso, niente da cercare
+    m = re.search(r"youtube\.com/watch\?(?:.*&)?v=([A-Za-z0-9_-]{6,})", page_url)
+    if m:
+        return f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
+    if re.search(r"https?://(www\.)?(x|twitter)\.com/", page_url):
+        return x_image(page_url)
     html = fetch(page_url).decode("utf-8", "replace")
     for pat in OG_PATTERNS:
         m = re.search(pat, html, re.I)
@@ -64,6 +96,8 @@ def find_image_url(page_url):
             src = m.group(1).strip()
             if src.startswith("//"):
                 src = "https:" + src
+            if GENERIC.search(src):
+                return None
             return src if src.startswith("http") else None
     return None
 
@@ -113,7 +147,11 @@ def enrich(path, refresh=False):
 
     jobs = [(i, n) for i, n in enumerate(brief.get("news", [])[:THUMBS])
             if refresh or not n.get("image")]
-    if not jobs:
+    # la sezione AI e' fatta per essere guardata prima che letta: ogni voce
+    # prende la sua miniatura (mai la grande: quella e' della notizia d'apertura)
+    ai_jobs = [(i, a) for i, a in enumerate(brief.get("ai", []))
+               if refresh or not a.get("image")]
+    if not jobs and not ai_jobs:
         print("Immagini già presenti, niente da fare.")
         return 0
 
@@ -128,12 +166,18 @@ def enrich(path, refresh=False):
             if hero:
                 news["hero"] = hero
             print(f"  {news['id']:22} {'immagine acquisita' if thumb else 'nessuna immagine'}")
+        for idx, thumb, _ in pool.map(harvest, [(1000 + i, a) for i, a in ai_jobs]):
+            a = brief["ai"][idx - 1000]
+            if thumb:
+                a["image"] = thumb
+                got += 1
+            print(f"  ai/{a['id']:19} {'immagine acquisita' if thumb else 'nessuna immagine'}")
 
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(brief, fh, ensure_ascii=False, indent=1)
 
     size = os.path.getsize(path) // 1024
-    print(f"{got} immagini su {len(jobs)} notizie · edizione ora {size} KB")
+    print(f"{got} immagini su {len(jobs) + len(ai_jobs)} voci · edizione ora {size} KB")
     return 0
 
 

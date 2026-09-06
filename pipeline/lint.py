@@ -45,11 +45,11 @@ SOCIAL_MAX = 5
 BANCO_MIN, BANCO_MAX = 3, 5
 BANCO_KINDS = {"recensione", "video", "confronto", "curiosità", "guida"}
 RECAP_MAX = 3
-AI_MIN, AI_MAX = 4, 8
+AI_MIN, AI_MAX = 6, 12
 AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "altri"}
-# cronaca: cosa fanno i laboratori. bottega: cosa ci fa la gente.
+# cronaca: cosa fanno i laboratori. LAB: cosa ci fa la gente.
 AI_CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
-AI_BOTTEGA = {"uso", "demo", "trucco", "sapevi"}
+AI_LAB = {"uso", "demo", "trucco", "sapevi"}
 # "Se te lo fossi perso" guarda indietro: sotto i due giorni e' la rassegna di
 # ieri, oltre il mese non se l'e' perso, l'ha dimenticato
 RECAP_MIN_AGE, RECAP_MAX_AGE = 2, 30
@@ -159,17 +159,17 @@ def check_shape(brief, r):
         if (v.get("lab") or "").lower() not in AI_LABS:
             r.warn("ai", f"laboratorio non ammesso ({v.get('lab')!r}): {titolo}")
         kind = (v.get("kind") or "").lower()
-        if kind in AI_BOTTEGA and not v.get("prova"):
+        if kind in AI_LAB and not v.get("prova"):
             # senza "come lo provi tu" e' una curiosita'; con quella e' lo sblocco
-            r.error("ai", f"voce di bottega senza il come provarlo: {titolo}")
+            r.error("ai", f"voce LAB senza il come provarlo: {titolo}")
         elif kind in AI_CRONACA and not v.get("apple"):
             r.warn("ai", f"cronaca senza la riga su Apple (anche «niente, per ora»): {titolo}")
-        elif kind not in AI_CRONACA | AI_BOTTEGA:
+        elif kind not in AI_CRONACA | AI_LAB:
             r.warn("ai", f"genere non ammesso ({v.get('kind')!r}): {titolo}")
         if not v.get("link"):
             r.error("ai", f"voce senza link: {titolo}")
-    if ai and not any((v.get("kind") or "").lower() in AI_BOTTEGA for v in ai):
-        r.warn("ai", "solo cronaca, niente bottega: la sezione e' meta' di quello che deve essere")
+    if ai and not any((v.get("kind") or "").lower() in AI_LAB for v in ai):
+        r.warn("ai", "solo cronaca, niente LAB: la sezione e' meta' di quello che deve essere")
 
     social = brief.get("social") or []
     if len(social) > SOCIAL_MAX:

@@ -37,10 +37,10 @@ che parte dell'edizione finirà:
 | `redazionale` | 9to5Mac, MacRumors, Macitynet, iSpazio, BGR, Tom's, The Verge | fra le notizie |
 | `larga` | Ars Technica, TechCrunch | sonde del radar |
 | `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI | sezione *AI*, strato cronaca |
-| `bottega` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato bottega |
+| `lab` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato LAB |
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
 
-`ai`, `bottega` e `banco` pubblicano a strappi: un laboratorio annuncia quando ha finito, un canale
+`ai`, `lab` e `banco` pubblicano a strappi: un laboratorio annuncia quando ha finito, un canale
 quando il video è montato. Il campanello dei feed muti per loro suona dopo una settimana
 (dodici giorni per i video), non dopo un giorno, e `feedcheck.py` non li manda in panchina
 per una settimana di silenzio.
@@ -55,13 +55,13 @@ abbiamo già) e **nuovo** (se ne parla e da noi non c'è). Il secondo mucchio è
 per cui esiste il passo: a volte lì dentro c'è una cosa che le testate non hanno ancora.
 
 ```bash
-python3 pipeline/bottega.py --hours 30
+python3 pipeline/lab.py --hours 30
 ```
 
 Raccoglie **cosa ci fa la gente** con i modelli: il top del giorno di r/ClaudeAI, r/OpenAI,
-r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti di bottega già scaricate da
+r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti LAB già scaricate da
 `fetch.py`; e i link che hai incollato in `data/social/manual.md`. È la materia dello
-strato *bottega* della sezione AI (vedi *La sezione AI*).
+strato *LAB* della sezione AI (vedi *La sezione AI*).
 
 ### 2. Selezione e scrittura
 
@@ -265,9 +265,15 @@ una riga di contesto, e al giro dopo entra nella raccolta come tutto il resto.
 
 #### La sezione AI — `ai`
 
-Non è «notizie AI»: è **cronaca e bottega insieme**. Cosa fanno i laboratori, e cosa ci fa
-la gente. **4–8 voci** al giorno, e almeno una deve essere di bottega — solo cronaca è
-metà sezione, e il lint lo dice.
+Non è «notizie AI»: è **cronaca e LAB insieme**. Cosa fanno i laboratori, e cosa ci fa
+la gente. **6–12 voci** al giorno, una decina come misura giusta, e almeno un terzo deve
+essere LAB — solo cronaca è metà sezione, e il lint lo dice.
+
+Nell'app le voci hanno la stessa forma delle notizie: pallino, pastiglie, titolo, una riga
+e la foto, e si aprono al tocco. **Ogni voce ha bisogno di un'immagine**: `images.py` la
+ricava dal link (og:image, miniatura YouTube, media del post su X via fxtwitter). Un link
+che non dà immagine è un motivo per preferirne un altro sullo stesso fatto. Mike guarda
+prima di leggere: una voce senza foto è una voce che non apre.
 
 ```json
 {"id": "gpt-6-astra", "lab": "openai", "kind": "modello",
@@ -284,11 +290,12 @@ metà sezione, e il lint lo dice.
 `lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `altri`.
 `kind` decide lo strato: **cronaca** = `modello` · `funzione` · `affari` · `regole` ·
 `ricerca`; `modello` è **solo per i modelli di punta**, quelli che cambiano il fronte — un
-modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **bottega** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
+modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **LAB** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
 costruita che puoi provare) · `trucco` (un prompt, una funzione, un modo d'uso) ·
 `sapevi` («sai che puoi…»: c'è già e nessuno la usa).
 
-**`prova` è la sezione**: ogni voce di bottega deve dire come lo provi tu, in una riga.
+**`prova` è la sezione**: ogni voce LAB deve dire come lo provi tu, in una riga — a scheda
+chiusa è la riga che si legge sotto il titolo.
 Senza è una curiosità, con quella è lo sblocco; il lint la respinge come errore. Sulla
 cronaca la riga `apple` è attesa (anche «niente, per ora»): è il motivo per cui l'AI sta
 in una rassegna Apple.
@@ -298,8 +305,11 @@ lo ricava da sola dalle voci `kind: "modello"` dell'archivio, la più recente pe
 Quindi **ogni modello nuovo va scritto come voce `modello` con il nome del modello nel
 titolo**, altrimenti il fronte resta indietro. Niente registro a parte.
 
-Da dove viene: la cronaca dal girone `ai` del grezzo; la bottega da `bottega.py`
-(Reddit, Show HN, le fonti `bottega`, i tuoi appunti da X in `manual.md`). Un thread su X
+Da dove viene: la cronaca dal girone `ai` del grezzo; il LAB da `lab.py`
+(Reddit, Show HN, le fonti `lab`, i tuoi appunti da X in `manual.md`). Quello che cattura
+Mike su X è esattamente questo: «GPT-6 Astra mi ha ricreato Sydney in 3D», «una casa in
+3D da una foto», «un sito di anatomia in 2.234 pezzi» — cose fatte, con un'immagine.
+Ogni post così incollato in `manual.md` è una voce `demo` o `uso` già pronta. Un thread su X
 che ti ha colpito è già una voce `uso`: incolla il link con tre parole, il resto lo fa la
 corsa del mattino.
 
@@ -446,7 +456,7 @@ quello che è uscito gli manca. Il digest avvisa da solo quando è il momento.
 python3 pipeline/images.py
 ```
 
-Legge l'og:image di ogni articolo fra i primi otto, lo ritaglia in 16:9 e lo incorpora
+Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI, lo ritaglia in 16:9 e lo incorpora
 nell'edizione come data URI: miniatura da 480px per tutti, più una da 880px per la notizia
 di apertura. Incorporare invece di linkare serve perché le immagini funzionino offline e
 perché la copia su Artifact le mostri — la sua CSP blocca ogni richiesta esterna.
@@ -583,7 +593,7 @@ pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       copertura + trazione online  ->  candidati per il ripescaggio
-pipeline/bottega.py      Reddit AI + Show HN + fonti bottega + appunti  ->  data/bottega/
+pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
@@ -614,7 +624,7 @@ data/taste.json          l'ultimo scarico dei voti + le regole ricavate + data d
 data/radar_topics.json   i temi del radar e il loro stato (nuovo, in prova, confermato…)
 data/social/             le discussioni raccolte per data
 data/missed/             i candidati al ripescaggio, per data
-data/bottega/            cosa ci fa la gente con i modelli, per data
+data/lab/                cosa ci fa la gente con i modelli, per data
 data/social/manual.md    dove incolli a mano i link da X e affini
 app/                     output generato, non modificare a mano
 ```
@@ -658,7 +668,7 @@ MIT Technology Review AI
 > Hacker News — che è come li ha trovati `missed.py` la prima volta. Se un giorno aprono
 > un feed, va aggiunto al `SEED` con `tier: "ai"`.
 
-**Bottega** (cosa ci fa la gente con i modelli, per lo strato bottega della sezione AI):
+**LAB** (cosa ci fa la gente con i modelli, per lo strato LAB della sezione AI):
 Simon Willison · One Useful Thing (Ethan Mollick) · Latent Space · Anthropic cookbook (i
 commit su GitHub) · Matt Wolfe (YouTube) · AI Explained (YouTube). Provate e scartate il
 6 settembre 2026 perché senza feed: Ben's Bites, The Neuron, Every.to.

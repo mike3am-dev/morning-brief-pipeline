@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-La bottega: cosa ci fa la gente con i modelli.
+Il LAB: cosa ci fa la gente con i modelli.
 
-I laboratori raccontano cosa hanno costruito; la bottega racconta cosa ci fa
+I laboratori raccontano cosa hanno costruito; il LAB racconta cosa ci fa
 la gente. Un utente che ha fatto tenere la contabilita' a Claude, una demo
 messa in piedi in un pomeriggio, un trucco di prompt, una funzione che c'e'
-da mesi e nessuno usa. E' il pezzo della sezione AI che sblocca, non quello
+da mesi e nessuno usa. E' lo strato della sezione AI che sblocca, non quello
 che informa — e vive in posti diversi dai feed delle testate:
 
   Reddit          il top del giorno delle bacheche AI (r/ClaudeAI, r/OpenAI,
@@ -16,14 +16,14 @@ che informa — e vive in posti diversi dai feed delle testate:
                   E' l'unico modo onesto per X, e funziona: tre parole di
                   contesto e il link, al giro dopo e' in edizione.
 
-Le fonti di bottega con un feed (Simon Willison, Mollick, Latent Space, il
+Le fonti del LAB con un feed (Simon Willison, Mollick, Latent Space, il
 cookbook di Anthropic, Matt Wolfe, AI Explained) arrivano invece da fetch.py,
-marcate "tier": "bottega" nel file grezzo: questo script le rilegge e le
+marcate "tier": "lab" nel file grezzo: questo script le rilegge e le
 mette in fila con il resto, cosi' la mattina si guarda un mucchio solo.
 
-    python3 pipeline/bottega.py               raccolta di oggi
-    python3 pipeline/bottega.py --hours 36
-    python3 pipeline/bottega.py --show        rilegge l'ultimo file raccolto
+    python3 pipeline/lab.py               raccolta di oggi
+    python3 pipeline/lab.py --hours 36
+    python3 pipeline/lab.py --show        rilegge l'ultimo file raccolto
 """
 
 import argparse
@@ -42,7 +42,7 @@ import common as C
 from fetch import UA, download, parse_date, strip_html
 from social import REDDIT_UA, REDDIT_RETRY_S, RITUAL_RE, manual
 
-BOTTEGA_DIR = os.path.join(C.ROOT, "data", "bottega")
+LAB_DIR = os.path.join(C.ROOT, "data", "lab")
 ATOM = {"atom": "http://www.w3.org/2005/Atom"}
 
 SUBS = ["ClaudeAI", "OpenAI", "ChatGPT", "LocalLLaMA", "artificial"]
@@ -51,15 +51,15 @@ KEEP_HN = 8
 # sotto questi punti una Show HN non ha ancora fatto il giro
 HN_MIN_POINTS = 60
 
-# I post che non sono bottega: lamentele, assistenza, meme, "il modello e'
+# I post che non sono LAB: lamentele, assistenza, meme, "il modello e'
 # diventato stupido". Si mettono da parte, non si buttano: se la stessa
-# lamentela torna per giorni e' cronaca, non bottega.
+# lamentela torna per giorni e' cronaca, non LAB.
 NOISE_RE = re.compile(
     r"\b(rate limit|limits?|banned|refund|subscription|cancel(led)?|down\b|outage|"
     r"nerf(ed)?|dumber|worse|broken|bug|error|help|why (is|does|won)|"
     r"unpopular opinion|rant|meme|petition|lawsuit)\b", re.I)
 
-# Le parole che fanno bottega: qualcuno ha fatto, costruito, scoperto.
+# Le parole che fanno LAB: qualcuno ha fatto, costruito, scoperto.
 MAKE_RE = re.compile(
     r"\b(i (built|made|used|got|asked|let|had|created|trained|generated)|"
     r"built|made|making|building|created|generated?|workflow|prompt|"
@@ -110,7 +110,7 @@ def reddit(cutoff):
             "link": link_el.get("href", "") if link_el is not None else "",
             "when": when.isoformat() if when else None,
             "tipo": "rumore" if NOISE_RE.search(title) else
-                    ("bottega" if MAKE_RE.search(title) else "discussione"),
+                    ("lab" if MAKE_RE.search(title) else "discussione"),
             "signal": f"{i + 1}º fra i più votati del giorno su {sub}",
             "source": f"Reddit {sub}",
         })
@@ -143,7 +143,7 @@ def show_hn(cutoff):
             "discussion": f"https://news.ycombinator.com/item?id={h.get('objectID')}",
             "when": h.get("created_at"),
             "points": points, "comments": comments,
-            "tipo": "bottega",
+            "tipo": "lab",
             "signal": f"{points} punti, {comments} commenti su Hacker News",
             "source": C.domain(h.get("url") or "") or "Hacker News",
         })
@@ -152,13 +152,13 @@ def show_hn(cutoff):
 
 
 def from_raw():
-    """Le fonti di bottega con un feed, gia' scaricate da fetch.py oggi."""
+    """Le fonti del LAB con un feed, gia' scaricate da fetch.py oggi."""
     paths = C.raw_paths()
     if not paths:
         return []
     out = []
     for it in C.load_json(paths[-1]).get("items", []):
-        if it.get("tier") != "bottega":
+        if it.get("tier") != "lab":
             continue
         out.append({
             "platform": it.get("source"),
@@ -166,7 +166,7 @@ def from_raw():
             "title": it.get("title", ""),
             "link": it.get("link", ""),
             "when": it.get("date"),
-            "tipo": "bottega",
+            "tipo": "lab",
             "signal": "dal feed",
             "source": it.get("source"),
             "summary": (it.get("summary") or "")[:200],
@@ -178,18 +178,18 @@ def from_raw():
 
 def report(payload):
     items = payload["items"]
-    bottega = [i for i in items if i.get("tipo") == "bottega"]
+    lab = [i for i in items if i.get("tipo") == "lab"]
     talk = [i for i in items if i.get("tipo") == "discussione"]
     noise = [i for i in items if i.get("tipo") == "rumore"]
 
-    print(C.rule(f"Bottega — cosa ci fa la gente ({len(bottega)})"))
-    for i in bottega:
+    print(C.rule(f"LAB — cosa ci fa la gente ({len(lab)})"))
+    for i in lab:
         print(f"\n  [{i['platform']}] {i['title'][:96]}")
         print(f"    {i['signal']}")
         if i.get("summary"):
             print(f"    {i['summary'][:120]}")
         print(f"    {i['link']}")
-    print(C.rule(f"Se ne parla, ma non e' bottega ({len(talk)})"))
+    print(C.rule(f"Se ne parla, ma non e' LAB ({len(talk)})"))
     for i in talk[:10]:
         print(f"  [{i['platform']}] {i['title'][:80]}")
     if noise:
@@ -205,21 +205,21 @@ def main():
     ap.add_argument("--hours", type=float, default=30.0)
     ap.add_argument("--show", action="store_true")
     args = ap.parse_args()
-    os.makedirs(BOTTEGA_DIR, exist_ok=True)
+    os.makedirs(LAB_DIR, exist_ok=True)
 
     if args.show:
-        files = sorted(f for f in os.listdir(BOTTEGA_DIR) if f.endswith(".json"))
+        files = sorted(f for f in os.listdir(LAB_DIR) if f.endswith(".json"))
         if not files:
-            print("Ancora niente in data/bottega/.", file=sys.stderr)
+            print("Ancora niente in data/lab/.", file=sys.stderr)
             return 1
-        report(C.load_json(os.path.join(BOTTEGA_DIR, files[-1])))
+        report(C.load_json(os.path.join(LAB_DIR, files[-1])))
         return 0
 
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(hours=args.hours)
     items = reddit(cutoff) + show_hn(cutoff) + from_raw() + manual()
     for it in items:
-        it.setdefault("tipo", "bottega")
+        it.setdefault("tipo", "lab")
 
     seen, deduped = set(), []
     for it in items:
@@ -231,7 +231,7 @@ def main():
 
     payload = {"fetched_at": now.isoformat(), "window_hours": args.hours,
                "count": len(deduped), "items": deduped}
-    out = os.path.join(BOTTEGA_DIR, f"{now.astimezone().strftime('%Y-%m-%d')}.json")
+    out = os.path.join(LAB_DIR, f"{now.astimezone().strftime('%Y-%m-%d')}.json")
     C.save_json(out, payload)
     print(f"Raccolte {len(deduped)} voci in {out}")
     report(payload)

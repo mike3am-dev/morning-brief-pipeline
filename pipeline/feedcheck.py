@@ -391,7 +391,7 @@ def judge(s, st, solo_share, follow_share, days, name=""):
     # qui non vale — misurato con quello, MKBHD sarebbe da panchina ogni
     # settimana in cui non esce niente.
     tier = TIERS.get(name)
-    rado = tier in ("ai", "banco", "bottega")
+    rado = tier in ("ai", "banco", "lab")
 
     if state in ("unreachable", "parse-error"):
         return "PANCHINA", "il feed non risponde o non si legge"

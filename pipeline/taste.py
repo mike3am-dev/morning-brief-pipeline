@@ -127,7 +127,7 @@ def index_archive():
                 "sources": [v.get("source")] if v.get("source") else [],
             }
         # la sezione AI impara su due cose: il laboratorio e il genere
-        # (modello, uso, trucco...). Lo strato — cronaca o bottega — si
+        # (modello, uso, trucco...). Lo strato — cronaca o LAB — si
         # ricava dal genere.
         for a in b.get("ai", []):
             if not a.get("id"):
