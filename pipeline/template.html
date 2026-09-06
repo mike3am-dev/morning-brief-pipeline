@@ -2419,7 +2419,7 @@ function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })
 /* la prima frase della nota: e' la riga che si vede a scheda chiusa */
 function firstLine(t){
   t = String(t || "").trim();
-  const m = t.match(/^(.{40,180}?[.!?:])(\s|$)/);
+  const m = t.match(/^(.{40,180}?[.!?])(\s|$)/);
   return m ? m[1] : (t.length > 160 ? t.slice(0, 157).replace(/\s+\S*$/, "") + "…" : t);
 }
 
