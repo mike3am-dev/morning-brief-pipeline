@@ -497,11 +497,16 @@ python3 pipeline/build.py && python3 pipeline/publish_site.py
 ```
 
 `publish_site.py` copia il file in `site/index.html` e lo carica da solo su GitHub
-(repository `c4gv4kf4d7-dev/morning-brief`, API Contents) con `GITHUB_TOKEN` letto da
-`.env.local`. Niente caricamento a mano, niente `gh`: la CLI su questo Mac non è
-autenticabile perché l'accesso interattivo vuole una conferma via GitHub Mobile, app che
-l'utente non ha. Il token è fine-grained, limitato a quel repository, permesso
-Contents: Read and write.
+(repository `mike3am-dev/morning-brief`, API Contents). Per autenticarsi prova prima
+`GITHUB_TOKEN` in `.env.local`, e se manca usa il login della CLI `gh`, che su questo Mac
+è quello di `mike3am-dev` (scope `repo` e `workflow`): oggi è la strada in uso, e non c'è
+nessun token da tenere aggiornato.
+
+**Tutto vive sull'account `mike3am-dev`** dal 6 settembre 2026: prima stava su
+`c4gv4kf4d7-dev`, un account condiviso, e il Mac non aveva diritto di scrittura sulla
+pipeline. I due repository sono `morning-brief-pipeline` (questa cartella: ci gira la
+routine delle 7:00) e `morning-brief` (un solo file, `index.html`: **è l'app**, servita da
+GitHub Pages — non è un doppione e non si cancella).
 
 Lo script salta il caricamento se online c'è già lo stesso file, e distingue gli errori:
 401 token scaduto, 403 permessi mancanti. In ogni caso il ripiego è il caricamento dal

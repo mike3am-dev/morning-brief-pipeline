@@ -2,7 +2,7 @@
 
 Una rassegna stampa Apple al giorno, scritta alle 7:00, sincronizzata fra Mac e iPhone.
 
-- **App:** https://c4gv4kf4d7-dev.github.io/morning-brief/
+- **App:** https://mike3am-dev.github.io/morning-brief/
 - **Copia di riserva (appunti locali):** https://claude.ai/code/artifact/d308625e-2cb9-48ef-8da6-fa8a2690cb1c
 
 ## Come funziona

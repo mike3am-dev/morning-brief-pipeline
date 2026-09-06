@@ -3,13 +3,13 @@
 Pubblica l'app su GitHub Pages.
 
 Copia app/index.html in site/index.html e lo carica nel repository
-c4gv4kf4d7-dev/morning-brief usando l'API Contents di GitHub. Serve solo
+mike3am-dev/morning-brief usando l'API Contents di GitHub. Serve solo
 quando cambia pipeline/template.html: le edizioni quotidiane viaggiano su
 Supabase e non toccano la pagina.
 
-Autenticazione: GITHUB_TOKEN in .env.local (token fine-grained con permesso
-Contents: Read and write sul solo repository morning-brief). Non serve la CLI
-gh, che su questo Mac non e' autenticabile senza GitHub Mobile.
+Autenticazione, in ordine: GITHUB_TOKEN in .env.local (token con permesso
+Contents: Read and write sul repository morning-brief), altrimenti il login
+della CLI gh (`gh auth token`), che su questo Mac e' quello di mike3am-dev.
 
     python3 pipeline/publish_site.py            carica
     python3 pipeline/publish_site.py --local    solo copia in site/, niente rete
@@ -24,10 +24,10 @@ import urllib.error
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REPO = "c4gv4kf4d7-dev/morning-brief"
+REPO = "mike3am-dev/morning-brief"
 PATH = "index.html"
 API = "https://api.github.com/repos/%s/contents/%s" % (REPO, PATH)
-PAGE = "https://c4gv4kf4d7-dev.github.io/morning-brief/"
+PAGE = "https://mike3am-dev.github.io/morning-brief/"
 
 
 def read_token():
@@ -38,7 +38,15 @@ def read_token():
                 line = line.strip()
                 if line.startswith("GITHUB_TOKEN=") and not line.startswith("#"):
                     return line.split("=", 1)[1].strip()
-    return os.environ.get("GITHUB_TOKEN", "").strip()
+    if os.environ.get("GITHUB_TOKEN", "").strip():
+        return os.environ["GITHUB_TOKEN"].strip()
+    # nessun token scritto: si prova il login della CLI gh, senza mai stamparlo
+    try:
+        import subprocess
+        out = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=10)
+        return out.stdout.strip() if out.returncode == 0 else ""
+    except (OSError, subprocess.SubprocessError):
+        return ""
 
 
 def call(token, method="GET", payload=None):
