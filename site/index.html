@@ -500,20 +500,62 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 }
 
 /* ---------------- AI ----------------
-   Le voci AI hanno la stessa forma delle notizie: pallino, pastiglie, titolo,
-   una riga, la foto; il resto si apre al tocco. Due strati: la cronaca (cosa
-   fanno i laboratori) e il LAB (cosa ci fa la gente). La riga "prova" e' la
-   sezione: come lo provi tu. */
+   Due blocchi, due forme. "Cosa e' successo" e' un dispaccio: righe fitte,
+   niente foto (nelle notizie AI la foto e' un logo, e un logo non dice
+   niente). "Cosa puoi provare" e' una galleria: la foto e' il risultato —
+   la citta' in 3D, il pellicano renderizzato — ed e' lei che fa dire
+   "ah, si puo' fare questo?". */
 .chip.lab-name{background:var(--ink); color:var(--bone)}
 .chip.k-lab{background:var(--yellow); color:var(--on-fill)}
-.story-body .prova{
-  font-size:.95rem; color:var(--ink); line-height:1.5;
+.subhead{
+  display:flex; align-items:baseline; gap:.6rem; margin:1.6rem 0 .5rem;
+  font-family:var(--display); font-weight:700; text-transform:uppercase;
+  font-size:1.05rem; letter-spacing:.02em;
+}
+.subhead .eyebrow{margin-left:auto}
+.subhead.lab::before{content:""; width:.7rem; height:.7rem; background:var(--yellow); border-radius:2px; align-self:center}
+.subhead.wire::before{content:""; width:.7rem; height:.7rem; background:var(--ink); border-radius:50%; align-self:center}
+
+/* il dispaccio */
+.wire{list-style:none; margin:0 0 .4rem; padding:0; border-top:1.5px solid var(--ink)}
+.wire li{border-bottom:1px solid var(--rule)}
+.wire .row{
+  display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:.6rem; align-items:baseline;
+  padding:.7rem 0 .6rem; cursor:pointer;
+}
+.wire .row .chip{font-size:.55rem; padding:.18rem .4rem; align-self:center}
+.wire .row h4{font-family:var(--display); font-weight:600; font-size:1.12rem; line-height:1.15}
+.wire .body{padding:0 0 .9rem; display:flex; flex-direction:column; gap:.7rem}
+.wire .body[hidden]{display:none}
+.wire .body p{font-size:.93rem; color:var(--ink-2); line-height:1.5}
+.wire .body .apple{
+  color:var(--ink); padding-left:.9rem; box-shadow:inset 3px 0 0 var(--rule-strong);
+}
+.wire .foot{display:flex; align-items:center; gap:.6rem .9rem; flex-wrap:wrap; font-size:.9rem}
+.wire .foot .tools{margin-left:auto}
+
+/* la galleria */
+.labcard{padding:.9rem 0 1rem; border-bottom:1px solid var(--rule)}
+.labcard .shot{
+  display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:5px;
+  background:var(--paper-2); cursor:pointer;
+}
+.labcard .chips{margin:.7rem 0 .35rem}
+.labcard h4{font-family:var(--display); font-weight:700; font-size:1.32rem; line-height:1.12; cursor:pointer}
+.labcard .prova{
+  margin-top:.45rem; font-size:.97rem; color:var(--ink); line-height:1.5;
   padding-left:.9rem; box-shadow:inset 3px 0 0 var(--yellow);
 }
-.story-body .apple{
-  font-size:.92rem; color:var(--ink-2); line-height:1.5;
-  padding-left:.9rem; box-shadow:inset 3px 0 0 var(--rule-strong);
+.labcard .body{margin-top:.7rem; display:flex; flex-direction:column; gap:.7rem}
+.labcard .body[hidden]{display:none}
+.labcard .body p{font-size:.93rem; color:var(--ink-2); line-height:1.5}
+.labcard .foot{display:flex; align-items:center; gap:.6rem .9rem; flex-wrap:wrap; margin-top:.6rem; font-size:.9rem}
+.labcard .foot .tools{margin-left:auto}
+.labcard.noshot .shot{display:none}
+@media (min-width:700px){
+  .labgrid{display:grid; grid-template-columns:1fr 1fr; gap:0 1.6rem}
 }
+
 /* il fronte: l'ultimo modello di ogni laboratorio */
 .fronte{
   display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:.8rem;
@@ -1976,7 +2018,7 @@ function renderEdition(){
       pipA, el("h2", {text:"AI"}),
       el("span", {class:"eyebrow hint", text:"cosa fanno i laboratori, cosa ci fa la gente"})
     ]));
-    brief.ai.forEach(function(a, i){ col.appendChild(aiCard(brief.date, a, i)); });
+    aiBlocks(col, brief.date, brief.ai);
   }
 
   if(brief.radar && brief.radar.length){
@@ -2433,54 +2475,80 @@ function renderSearch(){
 const AI_LAB = {uso:1, demo:1, trucco:1, sapevi:1};
 const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["altri","Altri"]];
 function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })[0]; return m ? m[1] : (l || "Altri"); }
+function isLab(a){ return !!AI_LAB[String(a.kind || "").toLowerCase()]; }
 
-/* la prima frase della nota: e' la riga che si vede a scheda chiusa */
-function firstLine(t){
-  t = String(t || "").trim();
-  const m = t.match(/^(.{40,180}?[.!?])(\s|$)/);
-  return m ? m[1] : (t.length > 160 ? t.slice(0, 157).replace(/\s+\S*$/, "") + "…" : t);
+function aiFoot(date, a, extra){
+  const u = safeUrl(a.link);
+  const foot = el("div", {class:"foot"});
+  if(u) foot.appendChild(el("a", {class:"primary", href:u, target:"_blank", rel:"noopener noreferrer",
+                              text:(/youtube\.com|youtu\.be/.test(u) ? "Guarda il video →" : "Apri →")}));
+  if(a.source) foot.appendChild(el("span", {class:"sources", text:a.source}));
+  if(extra) foot.appendChild(extra);
+  const tools = (NOTES && a.id)
+    ? itemTools(key(date, "ai:" + a.id), {ref:{date:date, id:"ai:" + a.id, title:a.title}}) : null;
+  if(tools) foot.appendChild(tools.bar);
+  return {foot:foot, panel:tools ? tools.panel : null};
 }
 
-/* una voce AI, con la stessa forma di una notizia: si apre al tocco */
-function aiCard(date, a, index){
-  const k = key(date, "ai:" + a.id);
-  const wrap = el("article", {class:"story ai", id:"a-" + a.id});
-  const kind = String(a.kind || "").toLowerCase(), isLab = !!AI_LAB[kind];
-  const chips = el("div", {class:"chips"}, [
+/* una riga del dispaccio: laboratorio e titolo; il resto al tocco */
+function wireRow(date, a){
+  const li = el("li");
+  const row = el("div", {class:"row"}, [
     el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
-    kind ? el("span", {class:"chip " + (isLab ? "k-lab" : "cat"), text:isLab ? "LAB · " + kind : kind}) : null
+    el("h4", {text:a.title})
   ]);
-  const head = el("div", {class:"story-head"}, [
-    bead(index, String(index + 1)),
-    chips,
-    el("h3", {text:a.title}),
-    el("p", {class:"lede", text:isLab && a.prova ? a.prova : firstLine(a.note)})
-  ]);
-  if(a.image){
-    head.classList.add("with-thumb");
-    head.appendChild(el("img", {class:"thumb", src:a.image, alt:"", loading:"lazy", decoding:"async"}));
-  }
-  const body = el("div", {class:"story-body", hidden:"hidden"});
+  const body = el("div", {class:"body", hidden:"hidden"});
   if(a.note) body.appendChild(el("p", {text:a.note}));
-  if(isLab && a.prova) body.appendChild(el("p", {class:"prova", text:a.prova}));
-  if(!isLab && a.apple) body.appendChild(el("p", {class:"apple", text:a.apple}));
-  const u = safeUrl(a.link);
-  const read = el("div", {class:"readmore"});
-  if(u) read.appendChild(el("a", {class:"primary", href:u, target:"_blank", rel:"noopener noreferrer",
-                              text:(/youtube\.com|youtu\.be/.test(u) ? "Guarda il video →" : "Apri →")}));
-  if(a.source) read.appendChild(el("span", {class:"sources", text:a.source}));
-  body.appendChild(read);
+  if(a.apple) body.appendChild(el("p", {class:"apple", text:a.apple}));
+  const f = aiFoot(date, a, a.kind ? el("span", {class:"sources", text:a.kind}) : null);
+  body.appendChild(f.foot);
+  if(f.panel) body.appendChild(f.panel);
+  row.addEventListener("click", function(){ body.hidden = !body.hidden; li.classList.toggle("is-open", !body.hidden); });
+  li.appendChild(row); li.appendChild(body);
+  return li;
+}
 
-  const tools = (NOTES && a.id)
-    ? itemTools(k, {ref:{date:date, id:"ai:" + a.id, title:a.title}}) : null;
-  head.addEventListener("click", function(){
-    body.hidden = !body.hidden;
-    wrap.classList.toggle("is-open", !body.hidden);
-  });
-  wrap.appendChild(head);
-  wrap.appendChild(body);
-  if(tools){ wrap.appendChild(tools.bar); wrap.appendChild(tools.panel); }
-  return wrap;
+/* una scheda della galleria: la foto e' il risultato, sotto il come provarlo */
+function labCard(date, a){
+  const card = el("article", {class:"labcard" + (a.image ? "" : " noshot"), id:"a-" + a.id});
+  const body = el("div", {class:"body", hidden:"hidden"});
+  const toggle = function(){ body.hidden = !body.hidden; card.classList.toggle("is-open", !body.hidden); };
+  if(a.image) card.appendChild(el("img", {class:"shot", src:a.image, alt:"", loading:"lazy", decoding:"async", onclick:toggle}));
+  card.appendChild(el("div", {class:"chips"}, [
+    el("span", {class:"chip k-lab", text:"LAB · " + String(a.kind || "")}),
+    el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())})
+  ]));
+  card.appendChild(el("h4", {text:a.title, onclick:toggle}));
+  if(a.prova) card.appendChild(el("p", {class:"prova", text:a.prova}));
+  if(a.note) body.appendChild(el("p", {text:a.note}));
+  card.appendChild(body);
+  const f = aiFoot(date, a, null);
+  card.appendChild(f.foot);
+  if(f.panel) card.appendChild(f.panel);
+  return card;
+}
+
+/* i due blocchi di un giorno, nell'ordine in cui si leggono: prima cosa e'
+   successo, poi cosa puoi provare */
+function aiBlocks(col, date, items){
+  const cron = items.filter(function(a){ return !isLab(a); });
+  const lab = items.filter(isLab);
+  if(cron.length){
+    col.appendChild(el("div", {class:"subhead wire"}, [
+      el("span", {text:"Cosa è successo"}), el("span", {class:"eyebrow", text:cron.length + (cron.length === 1 ? " voce" : " voci")})
+    ]));
+    const ul = el("ul", {class:"wire"});
+    cron.forEach(function(a){ ul.appendChild(wireRow(date, a)); });
+    col.appendChild(ul);
+  }
+  if(lab.length){
+    col.appendChild(el("div", {class:"subhead lab"}, [
+      el("span", {text:"Cosa puoi provare"}), el("span", {class:"eyebrow", text:"LAB · " + lab.length})
+    ]));
+    const grid = el("div", {class:"labgrid"});
+    lab.forEach(function(a){ grid.appendChild(labCard(date, a)); });
+    col.appendChild(grid);
+  }
 }
 
 /* il fronte si ricava dall'archivio: l'ultima voce di genere "modello" per
@@ -2507,7 +2575,7 @@ function renderAI(){
   const total = days.reduce(function(n, b){ return n + b.ai.length; }, 0);
   col.appendChild(el("div", {class:"section-head"}, [
     pip, el("h2", {text:"AI"}),
-    el("span", {class:"eyebrow hint", text:total ? total + " voci" : "cosa fanno i laboratori, cosa ci fa la gente"})
+    el("span", {class:"eyebrow hint", text:"cosa è successo, cosa puoi provare"})
   ]));
   if(!total){
     col.appendChild(el("div", {class:"empty", html:"<b>Ancora niente</b>La sezione si riempie con la prossima edizione: la cronaca dei laboratori e quello che la gente ci fa."}));
@@ -2531,7 +2599,7 @@ function renderAI(){
   days.forEach(function(b){
     const ago = fmtAgo(b.date, today);
     col.appendChild(el("div", {class:"daymark", text:(ago === "oggi" || ago === "ieri") ? ago + " · " + fmtShort(b.date) : fmtDate(b.date)}));
-    b.ai.forEach(function(a, i){ col.appendChild(aiCard(b.date, a, i)); });
+    aiBlocks(col, b.date, b.ai);
   });
   root.appendChild(col);
 }

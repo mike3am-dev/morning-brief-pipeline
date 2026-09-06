@@ -147,10 +147,16 @@ def enrich(path, refresh=False):
 
     jobs = [(i, n) for i, n in enumerate(brief.get("news", [])[:THUMBS])
             if refresh or not n.get("image")]
-    # la sezione AI e' fatta per essere guardata prima che letta: ogni voce
-    # prende la sua miniatura (mai la grande: quella e' della notizia d'apertura)
+    # Nella sezione AI la foto va solo alle voci LAB (uso, demo, trucco,
+    # sapevi): li' e' il risultato — la citta' in 3D, il render — ed e' lei
+    # che fa aprire la voce. Sulla cronaca sarebbe il logo del laboratorio,
+    # e un logo non dice niente: meglio niente.
+    LAB = {"uso", "demo", "trucco", "sapevi"}
     ai_jobs = [(i, a) for i, a in enumerate(brief.get("ai", []))
-               if refresh or not a.get("image")]
+               if (a.get("kind") or "").lower() in LAB and (refresh or not a.get("image"))]
+    for a in brief.get("ai", []):
+        if (a.get("kind") or "").lower() not in LAB:
+            a.pop("image", None)
     if not jobs and not ai_jobs:
         print("Immagini già presenti, niente da fare.")
         return 0

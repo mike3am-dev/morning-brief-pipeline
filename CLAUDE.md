@@ -269,11 +269,19 @@ Non è «notizie AI»: è **cronaca e LAB insieme**. Cosa fanno i laboratori, e 
 la gente. **6–12 voci** al giorno, una decina come misura giusta, e almeno un terzo deve
 essere LAB — solo cronaca è metà sezione, e il lint lo dice.
 
-Nell'app le voci hanno la stessa forma delle notizie: pallino, pastiglie, titolo, una riga
-e la foto, e si aprono al tocco. **Ogni voce ha bisogno di un'immagine**: `images.py` la
-ricava dal link (og:image, miniatura YouTube, media del post su X via fxtwitter). Un link
-che non dà immagine è un motivo per preferirne un altro sullo stesso fatto. Mike guarda
-prima di leggere: una voce senza foto è una voce che non apre.
+Nell'app la sezione ha **due blocchi con due forme**. «Cosa è successo» (la cronaca) è un
+dispaccio: righe fitte, laboratorio e titolo, niente foto — nelle notizie AI la foto
+sarebbe il logo del laboratorio, e un logo non dice niente. «Cosa puoi provare» (il LAB) è
+una galleria: **la foto è il risultato** — la città in 3D, la casa ricostruita da una foto,
+il render del pellicano — e sotto c'è la riga «prova». È la foto che fa dire «ah, si può
+fare questo?», che è esattamente quello che funziona su X.
+
+Quindi **ogni voce LAB ha bisogno di un'immagine che mostri il risultato**: `images.py` la
+ricava dal link (og:image, miniatura YouTube, media del post su X via fxtwitter) e la mette
+solo sulle voci LAB. Un link il cui og:image è un'illustrazione generica o un logo è un
+motivo per preferirne un altro sullo stesso fatto — il post su X con il video, la pagina
+del progetto, il thread Reddit con l'immagine. Il lint avvisa quando una voce LAB resta
+senza foto.
 
 ```json
 {"id": "gpt-6-astra", "lab": "openai", "kind": "modello",
@@ -294,8 +302,8 @@ modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **LAB** = `
 costruita che puoi provare) · `trucco` (un prompt, una funzione, un modo d'uso) ·
 `sapevi` («sai che puoi…»: c'è già e nessuno la usa).
 
-**`prova` è la sezione**: ogni voce LAB deve dire come lo provi tu, in una riga — a scheda
-chiusa è la riga che si legge sotto il titolo.
+**`prova` è la sezione**: ogni voce LAB deve dire come lo provi tu, in una riga — nella
+galleria è la riga gialla sotto il titolo, sempre visibile.
 Senza è una curiosità, con quella è lo sblocco; il lint la respinge come errore. Sulla
 cronaca la riga `apple` è attesa (anche «niente, per ora»): è il motivo per cui l'AI sta
 in una rassegna Apple.
@@ -456,7 +464,7 @@ quello che è uscito gli manca. Il digest avvisa da solo quando è il momento.
 python3 pipeline/images.py
 ```
 
-Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI, lo ritaglia in 16:9 e lo incorpora
+Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI di tipo LAB, lo ritaglia in 16:9 e lo incorpora
 nell'edizione come data URI: miniatura da 480px per tutti, più una da 880px per la notizia
 di apertura. Incorporare invece di linkare serve perché le immagini funzionino offline e
 perché la copia su Artifact le mostri — la sua CSP blocca ogni richiesta esterna.

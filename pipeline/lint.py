@@ -162,6 +162,10 @@ def check_shape(brief, r):
         if kind in AI_LAB and not v.get("prova"):
             # senza "come lo provi tu" e' una curiosita'; con quella e' lo sblocco
             r.error("ai", f"voce LAB senza il come provarlo: {titolo}")
+        if kind in AI_LAB and not v.get("image"):
+            # la foto del LAB e' il risultato: senza, l'occhio non si ferma
+            r.warn("ai", f"voce LAB senza foto (lancia images.py, o scegli un link "
+                         f"che mostri il risultato): {titolo}")
         elif kind in AI_CRONACA and not v.get("apple"):
             r.warn("ai", f"cronaca senza la riga su Apple (anche «niente, per ora»): {titolo}")
         elif kind not in AI_CRONACA | AI_LAB:
