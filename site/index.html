@@ -508,6 +508,7 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
   padding-left:.9rem; box-shadow:inset 3px 0 0 var(--rule-strong);
 }
 .ailist .foot{display:flex; align-items:center; gap:.6rem; margin-top:.15rem}
+.ailist .foot .tools{margin-left:auto}
 .ailist .src,.ailist .when{font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
 /* il fronte: l'ultimo modello di ogni laboratorio */
 .fronte{
@@ -2426,16 +2427,23 @@ function aiList(rows, withDate){
       el("span", {class:"lab", text:labName(String(a.lab || "altri").toLowerCase())}),
       kind ? el("span", {class:"kind" + (bottega ? " bottega" : ""), text:kind}) : null
     ]);
+    /* stessa barra delle notizie: salva, appunti, due pollici. Una demo da
+       provare stasera si salva e si annota come una notizia. */
+    const tools = (NOTES && a.id)
+      ? itemTools(key(r.date, "ai:" + a.id),
+                  {ref:{date:r.date, id:"ai:" + a.id, title:a.title}})
+      : null;
     const foot = el("div", {class:"foot"}, [el("span", {class:"src", text:a.source || ""})]);
     if(withDate) foot.appendChild(el("span", {class:"when", text:fmtShort(r.date)}));
-    if(NOTES && a.id) foot.appendChild(voteBox(key(r.date, "ai:" + a.id)));
+    if(tools) foot.appendChild(tools.bar);
     ul.appendChild(el("li", {}, [
       head,
       el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:a.title}) : el("span", {text:a.title})]),
       a.note ? el("p", {text:a.note}) : null,
       a.prova ? el("p", {class:"prova", text:a.prova}) : null,
       a.apple ? el("p", {class:"apple", text:a.apple}) : null,
-      foot
+      foot,
+      tools ? tools.panel : null
     ]));
   });
   return ul;
