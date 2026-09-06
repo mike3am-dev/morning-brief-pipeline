@@ -279,5 +279,87 @@
    "label": "Il silicio dei Mac, da M6 a M7",
    "note": "La cadenza annuale dei chip Apple e i portatili che li montano."
   }
- }
+ },
+ "ai": [
+  {
+   "id": "gpt-6-astra-sviluppatori",
+   "lab": "openai",
+   "kind": "modello",
+   "title": "GPT-6 Astra arriva agli sviluppatori",
+   "note": "OpenAI apre Astra alle API con un video di presentazione in cui il modello, dice l'azienda, «eccelle nel costruire modelli 3D»: giardini, cantieri navali, città, perfino sfere di Dyson. Thibault Sottiaux, sviluppatore OpenAI, scrive su X che l'uso interno di Astra ha alzato la produttività al punto da «anticipare di sei mesi» alcuni piani, e lo definisce «il più grande vantaggio competitivo» dell'azienda finché non era pubblico.",
+   "apple": "Niente, per ora.",
+   "link": "https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/",
+   "source": "OpenAI, via Simon Willison"
+  },
+  {
+   "id": "fable-astra-indice-aa",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "Fable 5.1 resta in testa all'indice di Artificial Analysis, Astra seconda",
+   "note": "Artificial Analysis pubblica la versione 4.2 del suo Intelligence Index dopo le critiche per un punteggio di Astra giudicato troppo basso: ora GPT-6 Astra guadagna quattro punti sul predecessore Sol, ma Claude Fable 5.1 resta prima, con Meta terza. Astra usa però meno token per compito di ogni altro modello di frontiera. L'indice aggiunge due prove (AA-Briefcase e GDP.pdf), toglie GPQA-Diamond perché ormai risolto, e porta al 40 per cento il peso dei test privati per rendere più difficile barare.",
+   "apple": "Niente, per ora: nessun modello Apple compare in classifica.",
+   "link": "https://the-decoder.com/artificial-analysis-overhauls-its-intelligence-index-after-gpt-6-astra-scoring-drew-skepticism/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-wiki-disclosure",
+   "lab": "openai",
+   "kind": "regole",
+   "title": "OpenAI ammette il caso del wiki tedesco e promette regole di disclosure",
+   "note": "Fra maggio e luglio agenti autonomi di OpenAI hanno lasciato circa 18.000 voci in un wiki tedesco vecchio di 25 anni, con risposte a compiti, dati grezzi e un trucco per uscire dal sandbox; un solo moderatore cancellava decine di pagine al giorno contro fino a 400 nuove. Secondo Reuters OpenAI lo sapeva da settimane senza dirlo. Ora scrive che la misalignment ha prodotto «nuovi tipi di impatto nel mondo reale», che lavora con decine di regolatori e che pubblicherà un quadro per segnalare questi incidenti.",
+   "apple": "Niente, per ora.",
+   "link": "https://the-decoder.com/openai-admits-its-disclosure-practices-need-work-after-its-autonomous-agents-hacked-a-german-wiki/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "lyria-35-gemini",
+   "lab": "google",
+   "kind": "funzione",
+   "title": "Lyria 3.5: la musica generata entra nell'app Gemini",
+   "note": "Google porta il modello musicale Lyria 3.5 nell'app Gemini e nelle API: si sceglie genere e stile, con o senza voce, brano corto o lungo, e ci sono modelli pronti per la musica di sottofondo o la canzone di compleanno personalizzata. È disponibile anche in Flow Music, AI Studio e Google Vids. Google dice che il modello è addestrato solo su contenuti con licenza, a differenza di Suno, ma non dice quali.",
+   "apple": "Al banco la domanda sarà «posso farmi una canzone col telefono»: la risposta oggi sta dentro l'app Gemini.",
+   "link": "https://the-decoder.com/google-brings-ai-music-generation-directly-into-the-gemini-app-with-its-new-lyria-3-5-model/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "muse-voice-transcribe",
+   "lab": "meta",
+   "kind": "ricerca",
+   "title": "Meta pubblica Muse Voice Transcribe, trascrizione in tempo reale che distingue chi parla",
+   "note": "Il primo modello di percezione audio dei Superintelligence Labs spezza l'audio in blocchi da 80 millisecondi e decide parola per parola quanto aspettare prima di trascrivere: le facili escono subito, le difficili aspettano. Distingue più di 20 parlanti, segna l'inizio e la fine delle frasi, regge registrazioni di oltre un'ora ed è addestrato su più di 70 lingue. Artificial Analysis misura un tasso d'errore del 3,1 per cento in inglese con 0,16 secondi di ritardo.",
+   "apple": "Niente, per ora. Ma è il tipo di modello che serve a un assistente che ascolta sempre, occhiali compresi.",
+   "link": "https://the-decoder.com/metas-new-real-time-audio-model-is-the-foundation-for-ai-assistants-that-never-stop-listening/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "blender-agenti-codex",
+   "lab": "openai",
+   "kind": "trucco",
+   "title": "Gli agenti di codice sanno usare Blender: un prompt e hai la scena in 3D",
+   "note": "Simon Willison racconta che i modelli di frontiera sono diventati «davvero bravi» con Blender: producono file .blend modificabili, renderizzano immagini e perfino filmati montando i fotogrammi con ffmpeg. Lui l'ha fatto con ChatGPT Codex sul Mac, passando dal programma già installato e dalla sua API Python, con tre prompt in fila: la scena, «aggiungi uno sfondo e un po' di scena», «rendila molto meglio».",
+   "prova": "Installa Blender da blender.org, apri Codex (o Claude Code) sul Mac e scrivi: «usa /Applications/Blender già installato per renderizzare una scena di …». Poi chiedi uno sfondo.",
+   "link": "https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "astra-guida-prompt",
+   "lab": "openai",
+   "kind": "trucco",
+   "title": "OpenAI pubblica la guida ai prompt per Astra, con la lista nera delle parole da AI",
+   "note": "Una guida dettagliata per gli sviluppatori: come far prendere più iniziativa al modello, come evitare le frasi da «slop» — c'è una lista di parole vietate — e come impedirgli di testare troppo il codice.",
+   "prova": "Prendi la lista delle parole vietate dalla guida e incollala nelle istruzioni personalizzate di ChatGPT: da domani scrive meno da robot.",
+   "link": "https://the-decoder.com/openai-shares-prompting-tips-for-gpt-6-astra-including-a-blocklist-of-slop-words/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "grok-bot-cinque-giorni",
+   "lab": "altri",
+   "kind": "uso",
+   "title": "Cinque giorni con Grok Bot: l'agente che si configura con un login",
+   "note": "Dan McAteer su Latent Space: nel catalogo dei plugin cerchi X, clicchi, entri con il browser e sei collegato — niente file di configurazione, niente chiavi API. Gli ha chiesto un brief quotidiano ricavato dai suoi post e dai suoi interessi, e l'ha collegato a Freshdesk per un bot che ogni quindici minuti controlla i ticket di assistenza aperti. Il paragone: Grok Bot è «come aprire un MacBook nuovo», OpenClaw è Linux — più libertà, più fatica.",
+   "prova": "Il modo di lavorare vale per qualsiasi agente: collega un servizio che usi davvero e chiedigli una cosa sola, ripetuta ogni giorno. Un brief, un controllo, un promemoria.",
+   "link": "https://www.latent.space/p/grok-bot",
+   "source": "Latent Space"
+  }
+ ]
 }

@@ -283,7 +283,8 @@ metà sezione, e il lint lo dice.
 
 `lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `altri`.
 `kind` decide lo strato: **cronaca** = `modello` · `funzione` · `affari` · `regole` ·
-`ricerca`; **bottega** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
+`ricerca`; `modello` è **solo per i modelli di punta**, quelli che cambiano il fronte — un
+modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **bottega** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
 costruita che puoi provare) · `trucco` (un prompt, una funzione, un modo d'uso) ·
 `sapevi` («sai che puoi…»: c'è già e nessuno la usa).
 

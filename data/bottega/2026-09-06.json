@@ -1,7 +1,7 @@
 {
- "fetched_at": "2026-09-06T11:06:15.568002+00:00",
- "window_hours": 30.0,
- "count": 16,
+ "fetched_at": "2026-09-06T11:10:31.253219+00:00",
+ "window_hours": 36.0,
+ "count": 20,
  "items": [
   {
    "platform": "Reddit r/ClaudeAI",
@@ -9,7 +9,7 @@
    "title": "sub agents being released into my codebase",
    "link": "https://www.reddit.com/r/ClaudeAI/comments/1w801bh/sub_agents_being_released_into_my_codebase/",
    "when": "2026-09-05T12:55:56+00:00",
-   "tipo": "discussione",
+   "tipo": "bottega",
    "signal": "1º fra i più votati del giorno su r/ClaudeAI",
    "source": "Reddit r/ClaudeAI"
   },
@@ -29,7 +29,7 @@
    "title": "sub agents being released into my codebase",
    "link": "https://www.reddit.com/r/OpenAI/comments/1w80ggu/sub_agents_being_released_into_my_codebase/",
    "when": "2026-09-05T13:13:53+00:00",
-   "tipo": "discussione",
+   "tipo": "bottega",
    "signal": "3º fra i più votati del giorno su r/OpenAI",
    "source": "Reddit r/OpenAI"
   },
@@ -39,7 +39,7 @@
    "title": "Day 5 of making a cozy game with no dev experience. The world is growing!",
    "link": "https://www.reddit.com/r/ClaudeAI/comments/1w8mwa7/day_5_of_making_a_cozy_game_with_no_dev/",
    "when": "2026-09-06T05:10:07+00:00",
-   "tipo": "discussione",
+   "tipo": "bottega",
    "signal": "4º fra i più votati del giorno su r/ClaudeAI",
    "source": "Reddit r/ClaudeAI"
   },
@@ -162,6 +162,50 @@
    "tipo": "discussione",
    "signal": "16º fra i più votati del giorno su r/ClaudeAI",
    "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "platform": "Simon Willison",
+   "rank": null,
+   "title": "Quoting Zach Kehs",
+   "link": "https://simonwillison.net/2026/Sep/6/zach-kehs/",
+   "when": "2026-09-06T08:42:49+00:00",
+   "tipo": "bottega",
+   "signal": "dal feed",
+   "source": "Simon Willison",
+   "summary": "If you continue to add floors and rooms to a building forever, it will collapse. Software faces no such constraint. The code can always get worse. There can always be a new layer of indirection or a r"
+  },
+  {
+   "platform": "Simon Willison",
+   "rank": null,
+   "title": "Introducing GPT-6 Astra for developers",
+   "link": "https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/",
+   "when": "2026-09-05T23:27:48+00:00",
+   "tipo": "bottega",
+   "signal": "dal feed",
+   "source": "Simon Willison",
+   "summary": "Introducing GPT-6 Astra for developers Blink and you'll miss it, but there's a familiar creature at 1m59s : Across the board, Astra has more attention to detail, better understanding of the user's pro"
+  },
+  {
+   "platform": "Simon Willison",
+   "rank": null,
+   "title": "Using Blender with coding agents on macOS",
+   "link": "https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/",
+   "when": "2026-09-05T15:51:09+00:00",
+   "tipo": "bottega",
+   "signal": "dal feed",
+   "source": "Simon Willison",
+   "summary": "TIL: Using Blender with coding agents on macOS I've been having fun with Blender in ChatGPT Codex on my Mac recently. Getting it to work with coding agents is really easy: install the full Mac applica"
+  },
+  {
+   "platform": "Latent Space",
+   "rank": null,
+   "title": "OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot",
+   "link": "https://www.latent.space/p/grok-bot",
+   "when": "2026-09-05T15:01:02+00:00",
+   "tipo": "bottega",
+   "signal": "dal feed",
+   "source": "Latent Space",
+   "summary": "SpaceXAI’s Grok Bot has the same level of programming power as OpenClaw, but it’s programmable at a different level of abstraction."
   }
  ]
 }
