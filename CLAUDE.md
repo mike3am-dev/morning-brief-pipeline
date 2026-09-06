@@ -285,7 +285,8 @@ senza foto.
 
 ```json
 {"id": "gpt-6-astra", "lab": "openai", "kind": "modello",
- "title": "…", "note": "3 righe: cos'è, che numeri porta",
+ "title": "…", "sintesi": "Una frase intera, con un dato: è la riga che si legge a voce chiusa",
+ "note": "3 righe: cos'è, che numeri porta",
  "apple": "Una riga: cosa c'entra con Apple, o «niente, per ora»",
  "link": "…", "source": "OpenAI"}
 
@@ -302,8 +303,13 @@ modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **LAB** = `
 costruita che puoi provare) · `trucco` (un prompt, una funzione, un modo d'uso) ·
 `sapevi` («sai che puoi…»: c'è già e nessuno la usa).
 
-**`prova` è la sezione**: ogni voce LAB deve dire come lo provi tu, in una riga — nella
-galleria è la riga gialla sotto il titolo, sempre visibile.
+**`sintesi` è la riga che si legge a voce chiusa** sulle notizie: una frase intera che
+sta in piedi da sola, con il dato che conta — mai un troncamento con i puntini, che il
+lint segnala. **`prova` è la sezione** sul LAB: ogni voce LAB deve dire come lo provi tu,
+in una riga — nella galleria è la riga gialla sotto il titolo, sempre visibile.
+
+Nella scheda AI dell'app ci sono due schede, **Notizie** e **LAB**: Mike tocca una delle
+due e scorre. Niente filtri per laboratorio: i pollici decidono chi pesa di più.
 Senza è una curiosità, con quella è lo sblocco; il lint la respinge come errore. Sulla
 cronaca la riga `apple` è attesa (anche «niente, per ora»): è il motivo per cui l'AI sta
 in una rassegna Apple.

@@ -172,6 +172,16 @@ def check_shape(brief, r):
             r.warn("ai", f"genere non ammesso ({v.get('kind')!r}): {titolo}")
         if not v.get("link"):
             r.error("ai", f"voce senza link: {titolo}")
+        # la riga che si legge a voce chiusa: una frase intera, mai un
+        # troncamento. Sulla cronaca e' obbligatoria; sul LAB fa il lavoro
+        # la riga "prova".
+        sin = (v.get("sintesi") or "").strip()
+        if kind in AI_CRONACA and not sin:
+            r.warn("ai", f"cronaca senza sintesi (la riga a voce chiusa): {titolo}")
+        if sin and (sin.endswith("…") or sin.endswith("...")):
+            r.warn("ai", f"la sintesi finisce con i puntini, dev'essere una frase intera: {titolo}")
+        if len(sin) > 190:
+            r.warn("ai", f"sintesi di {len(sin)} caratteri: dev'essere una riga: {titolo}")
     if ai and not any((v.get("kind") or "").lower() in AI_LAB for v in ai):
         r.warn("ai", "solo cronaca, niente LAB: la sezione e' meta' di quello che deve essere")
 

@@ -513,18 +513,31 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
   font-size:1.05rem; letter-spacing:.02em;
 }
 .subhead .eyebrow{margin-left:auto}
+/* il selettore della scheda AI: due schede grandi, una sola scelta, si ricorda */
+.aiswitch{display:grid; grid-template-columns:1fr 1fr; margin:.2rem 0 1.1rem; border-bottom:1.5px solid var(--ink)}
+.aiswitch button{
+  background:none; border:0; padding:.7rem .4rem .75rem; position:relative;
+  font-family:var(--display); font-weight:700; font-size:1.15rem; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--ink-3);
+}
+.aiswitch button .count{font-family:var(--body); font-size:.62rem; font-weight:700; margin-left:.4rem; vertical-align:.35em; letter-spacing:0}
+.aiswitch button[aria-current="true"]{color:var(--ink)}
+.aiswitch button[aria-current="true"]::after{content:""; position:absolute; left:0; right:0; bottom:-1.5px; height:4px; background:var(--ink)}
+.aiswitch button[data-mode="lab"][aria-current="true"]::after{background:var(--yellow)}
 .subhead.lab::before{content:""; width:.7rem; height:.7rem; background:var(--yellow); border-radius:2px; align-self:center}
 .subhead.wire::before{content:""; width:.7rem; height:.7rem; background:var(--ink); border-radius:50%; align-self:center}
 
 /* il dispaccio */
-.wire{list-style:none; margin:0 0 .4rem; padding:0; border-top:1.5px solid var(--ink)}
+.wire{list-style:none; margin:0 0 .4rem; padding:0}
+.subhead + .wire{border-top:1.5px solid var(--ink)}
 .wire li{border-bottom:1px solid var(--rule)}
 .wire .row{
   display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:.6rem; align-items:baseline;
   padding:.7rem 0 .6rem; cursor:pointer;
 }
 .wire .row .chip{font-size:.55rem; padding:.18rem .4rem; align-self:center}
-.wire .row h4{font-family:var(--display); font-weight:600; font-size:1.12rem; line-height:1.15}
+.wire .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
+.wire .row .sintesi{grid-column:2; margin-top:.3rem; font-size:.93rem; color:var(--ink-2); line-height:1.45}
 .wire .body{padding:0 0 .9rem; display:flex; flex-direction:column; gap:.7rem}
 .wire .body[hidden]{display:none}
 .wire .body p{font-size:.93rem; color:var(--ink-2); line-height:1.5}
@@ -572,6 +585,7 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 }
 .daymark::after{content:""; flex:1; height:1px; background:var(--rule-strong)}
 .daymark:first-of-type{margin-top:.9rem}
+.aiswitch + .daymark{display:none}
 
 /* ---------------- se te lo fossi perso ----------------
    Roba vecchia di giorni: la cornice deve dire subito quanto, altrimenti
@@ -2495,7 +2509,8 @@ function wireRow(date, a){
   const li = el("li");
   const row = el("div", {class:"row"}, [
     el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
-    el("h4", {text:a.title})
+    el("h4", {text:a.title}),
+    a.sintesi ? el("p", {class:"sintesi", text:a.sintesi}) : null
   ]);
   const body = el("div", {class:"body", hidden:"hidden"});
   if(a.note) body.appendChild(el("p", {text:a.note}));
@@ -2565,6 +2580,9 @@ function fronte(){
   return AI_LABS.map(function(x){ return out[x[0]] ? [x[1], out[x[0]]] : null; }).filter(Boolean);
 }
 
+let aiMode = "notizie";
+try{ aiMode = localStorage.getItem("mb_aiMode") === "lab" ? "lab" : "notizie"; }catch(e){}
+
 function renderAI(){
   const root = document.getElementById("view-ai");
   root.innerHTML = "";
@@ -2572,17 +2590,27 @@ function renderAI(){
   const pip = el("span", {class:"pip"}); pip.style.background = "var(--ink)";
   const days = BRIEFS.filter(function(b){ return (b.ai || []).length; })
                      .sort(function(x, y){ return x.date < y.date ? 1 : -1; });
-  const total = days.reduce(function(n, b){ return n + b.ai.length; }, 0);
-  col.appendChild(el("div", {class:"section-head"}, [
-    pip, el("h2", {text:"AI"}),
-    el("span", {class:"eyebrow hint", text:"cosa è successo, cosa puoi provare"})
-  ]));
-  if(!total){
+  const nCron = days.reduce(function(n, b){ return n + b.ai.filter(function(a){ return !isLab(a); }).length; }, 0);
+  const nLab = days.reduce(function(n, b){ return n + b.ai.filter(isLab).length; }, 0);
+  col.appendChild(el("div", {class:"section-head"}, [pip, el("h2", {text:"AI"})]));
+  if(!nCron && !nLab){
     col.appendChild(el("div", {class:"empty", html:"<b>Ancora niente</b>La sezione si riempie con la prossima edizione: la cronaca dei laboratori e quello che la gente ci fa."}));
     root.appendChild(col); return;
   }
-  const fr = fronte();
-  if(fr.length){
+  /* due schede, una scelta: Notizie (cosa e' successo) o LAB (cosa puoi provare) */
+  const sw = el("div", {class:"aiswitch", role:"tablist"});
+  [["notizie","Notizie",nCron],["lab","LAB",nLab]].forEach(function(x){
+    sw.appendChild(el("button", {type:"button", role:"tab", "data-mode":x[0],
+      "aria-current": aiMode === x[0] ? "true" : null,
+      onclick:function(){ aiMode = x[0]; try{ localStorage.setItem("mb_aiMode", aiMode); }catch(e){} renderAI(); window.scrollTo(0,0); }}, [
+      el("span", {text:x[1]}), x[2] ? el("span", {class:"count", text:String(x[2])}) : null
+    ]));
+  });
+  col.appendChild(sw);
+  /* il fronte (l'ultimo modello per laboratorio) solo quando ha qualcosa da
+     confrontare: con un laboratorio solo e' rumore */
+  const fr = aiMode === "notizie" ? fronte() : [];
+  if(fr.length >= 2){
     const g = el("div", {class:"fronte"});
     fr.forEach(function(x){
       const u = safeUrl(x[1].a.link);
@@ -2594,12 +2622,27 @@ function renderAI(){
     });
     col.appendChild(g);
   }
-  /* niente filtri: si entra e si scorre. Un giorno alla volta, dal piu' recente */
+  /* un giorno alla volta, dal piu' recente; il segno del giorno solo dal secondo in poi */
   const today = BRIEFS[0] ? BRIEFS[0].date : "";
+  let first = true;
   days.forEach(function(b){
-    const ago = fmtAgo(b.date, today);
-    col.appendChild(el("div", {class:"daymark", text:(ago === "oggi" || ago === "ieri") ? ago + " · " + fmtShort(b.date) : fmtDate(b.date)}));
-    aiBlocks(col, b.date, b.ai);
+    const items = b.ai.filter(function(a){ return aiMode === "lab" ? isLab(a) : !isLab(a); });
+    if(!items.length) return;
+    if(!first){
+      const ago = fmtAgo(b.date, today);
+      col.appendChild(el("div", {class:"daymark", text:(ago === "oggi" || ago === "ieri") ? ago + " · " + fmtShort(b.date) : fmtDate(b.date)}));
+    }
+    first = false;
+    if(aiMode === "lab"){
+      const grid = el("div", {class:"labgrid"});
+      items.forEach(function(a){ grid.appendChild(labCard(b.date, a)); });
+      col.appendChild(grid);
+    } else {
+      const ul = el("ul", {class:"wire"});
+      ul.style.borderTop = "0";
+      items.forEach(function(a){ ul.appendChild(wireRow(b.date, a)); });
+      col.appendChild(ul);
+    }
   });
   root.appendChild(col);
 }
