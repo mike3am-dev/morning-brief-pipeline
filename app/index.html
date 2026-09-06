@@ -531,13 +531,12 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .wire{list-style:none; margin:0 0 .4rem; padding:0}
 .subhead + .wire{border-top:1.5px solid var(--ink)}
 .wire li{border-bottom:1px solid var(--rule)}
-.wire .row{
-  display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:.6rem; align-items:baseline;
-  padding:.7rem 0 .6rem; cursor:pointer;
-}
-.wire .row .chip{font-size:.55rem; padding:.18rem .4rem; align-self:center}
+/* pastiglia sopra, titolo e sintesi a filo di colonna: con la pastiglia di
+   fianco i titoli partivano ognuno a una larghezza diversa */
+.wire .row{display:grid; grid-template-columns:minmax(0,1fr); row-gap:.3rem; padding:.75rem 0 .65rem; cursor:pointer}
+.wire .row .chip{font-size:.55rem; padding:.18rem .4rem; justify-self:start}
 .wire .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
-.wire .row .sintesi{grid-column:2; margin-top:.3rem; font-size:.93rem; color:var(--ink-2); line-height:1.45}
+.wire .row .sintesi{margin-top:0; font-size:.93rem; color:var(--ink-2); line-height:1.45}
 .wire .body{padding:0 0 .9rem; display:flex; flex-direction:column; gap:.7rem}
 .wire .body[hidden]{display:none}
 .wire .body p{font-size:.93rem; color:var(--ink-2); line-height:1.5}
