@@ -201,18 +201,8 @@ nav.tabs.more-left:not(.more-right){
   .brand-tools{gap:0}
   .icon-btn{width:29px; height:29px; font-size:.92rem}
   #syncPip{margin:0 .2rem 0 .1rem}
-  /* meno schede, piu' grandi: Diario e Cerca vanno sotto i tre puntini, e la
-     riga delle schede torna leggibile senza scorrere */
-  .tab{font-size:.95rem; margin-right:1.1rem; letter-spacing:.03em; padding:.35rem 0 .5rem}
+  .tab{font-size:.82rem; margin-right:.95rem; letter-spacing:.03em}
   .tab:last-child{margin-right:0}
-  .tab[data-view="diario"],.tab[data-view="cerca"]{display:none}
-  .tab.more{display:inline-block; font-size:1.2rem; line-height:1; padding:.25rem .1rem .45rem}
-  .masthead-inner{padding-top:.4rem}
-  nav.tabs{margin-top:.15rem}
-  /* il primo titolo di sezione sta piu' vicino alle schede: sul telefono la
-     testata occupa gia' due righe, il vuoto sotto era la terza */
-  .col-main > .section-head:first-child{padding-top:1.1rem}
-  .hero{padding-top:1.1rem}
 }
 .tab.more{display:none}
 .masthead-inner{position:relative}
@@ -792,6 +782,19 @@ footer.colophon{
 }
 footer.colophon[hidden]{display:none}
 footer.colophon .sp{flex:1}
+/* ---------------- telefono: testata compatta ----------------
+   Sta in fondo apposta: a parita' di specificita' vince chi viene dopo, e
+   queste devono vincere su .tab, .hero e .section-head scritte sopra.
+   Meno schede, piu' grandi: Diario e Cerca vanno sotto i tre puntini. */
+@media (max-width:600px){
+  .tab{font-size:.95rem; margin-right:1.1rem; letter-spacing:.03em; padding:.35rem 0 .5rem}
+  .tab[data-view="diario"],.tab[data-view="cerca"]{display:none}
+  .tab.more{display:inline-block; font-size:1.25rem; line-height:1; padding:.22rem .1rem .45rem; margin-right:0}
+  .masthead-inner{padding-top:.4rem}
+  nav.tabs{margin-top:.15rem}
+  .hero{padding-top:.6rem}
+  .col-main > .section-head:first-child{padding-top:1.1rem}
+}
 </style>
 
 <div class="gate" id="gate" hidden>
