@@ -525,7 +525,42 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .stat span{font-size:.66rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
 .rail .notice{display:flex; flex-direction:column; gap:.5rem; font-size:.78rem; color:var(--ink-3); line-height:1.45}
 
-/* ---------------- archivio ---------------- */
+/* ---------------- archivio ----------------
+   Un mese alla volta. La striscia dei mesi sceglie, il calendario a pallini
+   dice quali giorni hanno un'edizione — e' lo stesso campo di pallini della
+   testata, messo in riga — e la lista sotto le racconta. */
+.months{display:flex; flex-wrap:wrap; gap:.45rem; margin:.1rem 0 1.5rem}
+.months button{
+  background:none; border:0; border-radius:999px; padding:.42rem .9rem;
+  font-family:var(--display); font-weight:600; font-size:.95rem;
+  text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3);
+  box-shadow:inset 0 0 0 1.5px var(--rule-strong); transition:color .15s;
+}
+.months button:hover{color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--ink)}
+.months button[aria-current="true"]{background:var(--ink); color:var(--bone); box-shadow:none}
+.months .count{
+  font-family:var(--body); font-size:.6rem; font-weight:700;
+  margin-left:.4rem; vertical-align:.3em; letter-spacing:0; opacity:.75;
+}
+.cal{
+  display:grid; grid-template-columns:repeat(7,1fr); gap:.4rem .3rem;
+  max-width:24rem; margin:0 0 2.4rem;
+}
+.cal .wd{
+  text-align:center; padding-bottom:.35rem; font-size:.58rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.cal .day{
+  aspect-ratio:1; display:grid; place-items:center; border-radius:50%;
+  background:none; border:0; font-size:.88rem; font-weight:600;
+  font-variant-numeric:tabular-nums; color:var(--ink-3); transition:transform .12s;
+}
+.cal .day.void{visibility:hidden}
+.cal .day.none{color:var(--rule-strong); cursor:default}
+.cal .day.has{color:var(--on-fill); font-weight:700}
+.cal .day.has:hover{transform:scale(1.12)}
+.cal .day.has.current{box-shadow:0 0 0 2.5px var(--bone), 0 0 0 4.5px var(--ink)}
+
 .archive-list{list-style:none; margin:0; padding:0}
 .archive-list li{border-top:1px solid var(--rule)}
 .archive-list li:last-child{border-bottom:1px solid var(--rule)}
@@ -1992,6 +2027,14 @@ function renderEdition(){
 }
 
 /* ================= archivio ================= */
+/* il mese aperto nell'archivio: resta quello scelto finche' non se ne sceglie
+   un altro, cosi' tornare indietro da un'edizione non riporta in cima */
+let archiveMonth = null;
+
+function openEdition(date){
+  currentDate = date; renderEdition(); show("oggi"); window.scrollTo(0,0);
+}
+
 function renderArchive(){
   const root = document.getElementById("view-archivio");
   root.innerHTML = "";
@@ -2000,13 +2043,67 @@ function renderArchive(){
     el("span", {class:"pip"}), el("h2", {text:"Archivio"}),
     el("span", {class:"eyebrow hint", text:BRIEFS.length + (BRIEFS.length === 1 ? " edizione" : " edizioni")})
   ]));
-  const ul = el("ul", {class:"archive-list"});
+  if(!BRIEFS.length){ root.appendChild(col); return; }
+
+  /* le edizioni per mese, dal piu' recente; l'indice in BRIEFS da' il colore
+     del pallino, lo stesso che la notizia ha ovunque nell'app */
+  const byMonth = {};
   BRIEFS.forEach(function(b, i){
-    const n = (b.news || []).length;
+    const m = String(b.date).slice(0,7);
+    (byMonth[m] = byMonth[m] || []).push({b:b, i:i});
+  });
+  const months = Object.keys(byMonth).sort().reverse();
+  if(!archiveMonth || !byMonth[archiveMonth]) archiveMonth = months[0];
+
+  const strip = el("div", {class:"months", role:"tablist"});
+  months.forEach(function(m){
+    const y = m.slice(0,4), mi = parseInt(m.slice(5,7), 10) - 1;
+    /* l'anno si scrive solo quando ce n'e' piu' d'uno in archivio */
+    const sameYear = months.every(function(x){ return x.slice(0,4) === y; });
+    const label = MESI[mi] + (sameYear ? "" : " " + y);
+    strip.appendChild(el("button", {type:"button", role:"tab",
+      "aria-current": m === archiveMonth ? "true" : null,
+      onclick:function(){ archiveMonth = m; renderArchive(); }}, [
+      el("span", {text:label}),
+      el("span", {class:"count", text:String(byMonth[m].length)})
+    ]));
+  });
+  col.appendChild(strip);
+
+  /* il calendario del mese: lunedi' in testa, un pallino pieno dove c'e'
+     un'edizione, il numero spento dove non c'e' */
+  const y = parseInt(archiveMonth.slice(0,4), 10), mi = parseInt(archiveMonth.slice(5,7), 10) - 1;
+  const first = new Date(y, mi, 1), nDays = new Date(y, mi + 1, 0).getDate();
+  const offset = (first.getDay() + 6) % 7;
+  const byDay = {};
+  byMonth[archiveMonth].forEach(function(e){ byDay[parseInt(e.b.date.slice(8,10), 10)] = e; });
+
+  const cal = el("div", {class:"cal", role:"grid", "aria-label":MESI[mi] + " " + y});
+  ["lun","mar","mer","gio","ven","sab","dom"].forEach(function(w){ cal.appendChild(el("span", {class:"wd", text:w})); });
+  for(let k = 0; k < offset; k++) cal.appendChild(el("span", {class:"day void"}));
+  for(let d = 1; d <= nDays; d++){
+    const e = byDay[d];
+    if(!e){ cal.appendChild(el("span", {class:"day none", text:String(d)})); continue; }
+    const v = BEADS[e.i % BEADS.length];
+    const btn = el("button", {type:"button",
+      class:"day has" + (e.b.date === currentDate ? " current" : ""),
+      "aria-label":fmtDate(e.b.date), title:(e.b.top3 || [""])[0],
+      onclick:function(){ openEdition(e.b.date); }}, [document.createTextNode(String(d))]);
+    btn.style.background = "var(" + v + ")";
+    if(v === "--ink") btn.style.color = "var(--bone)";
+    cal.appendChild(btn);
+  }
+  col.appendChild(cal);
+
+  /* le edizioni del mese, dalla piu' recente: il titolo d'apertura e' quello
+     che fa ricordare "ah, quel giorno" */
+  const ul = el("ul", {class:"archive-list"});
+  byMonth[archiveMonth].forEach(function(e){
+    const b = e.b, n = (b.news || []).length;
     const starred = (b.news || []).filter(function(x){ const m = mk(key(b.date, x.id)); return m && m.starred_at; }).length;
     ul.appendChild(el("li", {}, [
-      el("button", {type:"button", onclick:function(){ currentDate = b.date; renderEdition(); show("oggi"); window.scrollTo(0,0); }}, [
-        bead(i, String(new Date(b.date + "T12:00:00").getDate())),
+      el("button", {type:"button", onclick:function(){ openEdition(b.date); }}, [
+        bead(e.i, String(new Date(b.date + "T12:00:00").getDate())),
         el("span", {}, [
           el("span", {class:"eyebrow d", text:fmtDate(b.date)}),
           el("span", {class:"h", text:(b.top3 || [""])[0]}),
