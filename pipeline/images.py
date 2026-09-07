@@ -74,6 +74,12 @@ def find_image_url(page_url):
         return f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
     if re.search(r"https?://(www\.)?(x|twitter)\.com/", page_url):
         return x_image(page_url)
+    # Reddit: al browser non da' l'og:image, ma l'anteprima ufficiale del post
+    # ha un indirizzo fisso e risponde con un JPEG (e' quella che X e Slack
+    # mostrano). Per i post con immagine e' il risultato stesso.
+    m = re.search(r"reddit\.com/r/[^/]+/comments/([a-z0-9]+)", page_url)
+    if m:
+        return f"https://share.redd.it/preview/post/{m.group(1)}"
     html = fetch(page_url).decode("utf-8", "replace")
     for pat in OG_PATTERNS:
         m = re.search(pat, html, re.I)

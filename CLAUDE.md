@@ -280,7 +280,8 @@ il render del pellicano — e sotto c'è la riga «prova». È la foto che fa di
 fare questo?», che è esattamente quello che funziona su X.
 
 Quindi **ogni voce LAB ha bisogno di un'immagine che mostri il risultato**: `images.py` la
-ricava dal link (og:image, miniatura YouTube, media del post su X via fxtwitter) e la mette
+ricava dal link (og:image, miniatura YouTube, anteprima ufficiale del post Reddit, media del post su X via
+fxtwitter) e la mette
 solo sulle voci LAB. Un link il cui og:image è un'illustrazione generica o un logo è un
 motivo per preferirne un altro sullo stesso fatto — il post su X con il video, la pagina
 del progetto, il thread Reddit con l'immagine. Il lint avvisa quando una voce LAB resta
