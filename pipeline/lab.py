@@ -12,9 +12,16 @@ che informa — e vive in posti diversi dai feed delle testate:
                   r/ChatGPT, r/LocalLLaMA, r/artificial): gente che mostra.
   Show HN         le demo con trazione su Hacker News. In missed.py sono
                   rumore, qui sono il segnale.
+  Liste curate    i repository "awesome" che raccolgono le demo di un
+                  modello con il link al post originale su X e il nome di chi
+                  l'ha fatta. Sono il modo piu' onesto per arrivare a X senza
+                  raschiare X: qualcuno ha gia' fatto la selezione.
   Appunti a mano  data/social/manual.md, dove incolli il thread visto su X.
-                  E' l'unico modo onesto per X, e funziona: tre parole di
-                  contesto e il link, al giro dopo e' in edizione.
+                  Tre parole di contesto e il link, al giro dopo e' in edizione.
+
+Ogni link a X, da qualunque mucchio arrivi, viene letto con common.xpost
+(fxtwitter): autore, testo, mi piace, visualizzazioni e miniatura. Cosi' il
+post si giudica da cosa dice e da quanto ha girato, non dal solo indirizzo.
 
 Le fonti del LAB con un feed (Simon Willison, Mollick, Latent Space, il
 cookbook di Anthropic, Matt Wolfe, AI Explained) arrivano invece da fetch.py,
@@ -50,6 +57,15 @@ KEEP_REDDIT = 16
 KEEP_HN = 8
 # sotto questi punti una Show HN non ha ancora fatto il giro
 HN_MIN_POINTS = 60
+
+# Le liste curate: README su GitHub con i post originali. Si aggiungono qui
+# quando un modello nuovo ne fa nascere una (succede a ogni lancio grosso).
+AWESOME = {
+    "awesome-gpt-6-astra":
+        "https://raw.githubusercontent.com/magiccreator-ai/awesome-gpt-6-astra/main/README.md",
+}
+# quanti post prendere da ogni lista: i primi sono i piu' in vista
+KEEP_AWESOME = 25
 
 # I post che non sono LAB: lamentele, assistenza, meme, "il modello e'
 # diventato stupido". Si mettono da parte, non si buttano: se la stessa
@@ -151,6 +167,61 @@ def show_hn(cutoff):
     return out[:KEEP_HN]
 
 
+def awesome_lists():
+    """I post su X raccolti dalle liste curate, con la didascalia della lista."""
+    out = []
+    for name, url in AWESOME.items():
+        _, _, blob = download(name, url)
+        if not blob:
+            continue
+        text = blob.decode("utf-8", "replace")
+        seen = set()
+        # nella lista ogni voce ha un titolo (### ...), una riga di descrizione
+        # e il link al post: si tengono insieme scorrendo il testo
+        for m in re.finditer(r"(?:^|\n)#{2,4}\s*(?:Featured:\s*)?([^\n]+)\n(.*?)(?=\n#{2,4}\s|\Z)", text, re.S):
+            title, body = m.group(1).strip(), m.group(2)
+            link = re.search(r"https://x\.com/[A-Za-z0-9_]+/status/\d+", body)
+            if not link or link.group(0) in seen:
+                continue
+            seen.add(link.group(0))
+            desc = re.sub(r"\[!\[.*?\]\(.*?\)\]\(.*?\)|\[([^\]]*)\]\([^)]*\)|<[^>]+>", lambda mm: mm.group(1) or "", body)
+            desc = " ".join(l.strip() for l in desc.split("\n") if l.strip() and not l.strip().startswith(("Creator", "Watch", "View")))
+            out.append({
+                "platform": "X via " + name,
+                "rank": None,
+                "title": title,
+                "link": link.group(0),
+                "when": None,
+                "tipo": "lab",
+                "signal": "in una lista curata",
+                "source": "X",
+                "summary": desc[:220],
+            })
+            if len(out) >= KEEP_AWESOME:
+                break
+    return out
+
+
+def read_x(items):
+    """Arricchisce ogni link a X con quel che dice il post e quanto ha girato."""
+    for it in items:
+        if not C.X_STATUS.search(it.get("link") or ""):
+            continue
+        post = C.xpost(it["link"])
+        if not post:
+            continue
+        it["author"] = post["author"]
+        it["source"] = "X · @" + post["author"]
+        it["summary"] = (it.get("summary") or "") or post["text"][:220]
+        it["text"] = post["text"][:600]
+        it["when"] = it.get("when") or post["when"]
+        it["likes"], it["views"], it["thumb"] = post["likes"], post["views"], post["thumb"]
+        it["signal"] = f"{post['likes']:,} mi piace, {post['views']:,} visualizzazioni su X".replace(",", ".")
+        if not it.get("title") or it["title"] == it["link"]:
+            it["title"] = post["text"].split("\n")[0][:110]
+    return items
+
+
 def from_raw():
     """Le fonti del LAB con un feed, gia' scaricate da fetch.py oggi."""
     paths = C.raw_paths()
@@ -183,11 +254,13 @@ def report(payload):
     noise = [i for i in items if i.get("tipo") == "rumore"]
 
     print(C.rule(f"LAB — cosa ci fa la gente ({len(lab)})"))
+    # prima quelli che hanno girato di piu': e' il segnale che Mike guarda su X
+    lab.sort(key=lambda i: -(i.get("views") or 0))
     for i in lab:
         print(f"\n  [{i['platform']}] {i['title'][:96]}")
-        print(f"    {i['signal']}")
+        print(f"    {i['signal']}" + ("  · con foto" if i.get("thumb") else ""))
         if i.get("summary"):
-            print(f"    {i['summary'][:120]}")
+            print(f"    {i['summary'][:140]}")
         print(f"    {i['link']}")
     print(C.rule(f"Se ne parla, ma non e' LAB ({len(talk)})"))
     for i in talk[:10]:
@@ -217,9 +290,10 @@ def main():
 
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(hours=args.hours)
-    items = reddit(cutoff) + show_hn(cutoff) + from_raw() + manual()
+    items = reddit(cutoff) + show_hn(cutoff) + from_raw() + awesome_lists() + manual()
     for it in items:
         it.setdefault("tipo", "lab")
+    read_x(items)
 
     seen, deduped = set(), []
     for it in items:

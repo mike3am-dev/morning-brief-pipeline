@@ -244,3 +244,43 @@ def table(rows, headers, gap=2):
 
 def rule(title):
     return f"\n{title}\n{'=' * len(title)}"
+
+
+# ------------------------------------------------------------------ X
+# Un post su X non si legge da fuori: la pagina e' tutta script. Passa da
+# api.fxtwitter.com, che restituisce autore, testo e media in JSON. E' un
+# servizio di terzi: se un giorno chiude, il post resta senza foto e senza
+# testo, non senza indirizzo.
+X_STATUS = re.compile(r"(?:x|twitter)\.com/([^/]+)/status/(\d+)")
+
+
+def xpost(url, timeout=20):
+    """Autore, testo, data e miniatura di un post su X, o None."""
+    import json, subprocess
+    m = X_STATUS.search(url or "")
+    if not m:
+        return None
+    try:
+        out = subprocess.run(["curl", "-s", "--max-time", str(timeout),
+                              "https://api.fxtwitter.com/status/" + m.group(2)],
+                             capture_output=True, timeout=timeout + 5).stdout
+        tw = json.loads(out.decode("utf-8", "replace")).get("tweet") or {}
+    except Exception:
+        return None
+    if not tw:
+        return None
+    media = tw.get("media") or {}
+    thumb = None
+    for kind in ("photos", "videos"):
+        for item in media.get(kind) or []:
+            thumb = thumb or item.get("thumbnail_url") or item.get("url")
+    return {
+        "author": (tw.get("author") or {}).get("screen_name") or m.group(1),
+        "name": (tw.get("author") or {}).get("name") or "",
+        "text": (tw.get("text") or "").strip(),
+        "when": tw.get("created_at") or "",
+        "likes": tw.get("likes") or 0,
+        "views": tw.get("views") or 0,
+        "thumb": thumb,
+        "url": f"https://x.com/{m.group(1)}/status/{m.group(2)}",
+    }

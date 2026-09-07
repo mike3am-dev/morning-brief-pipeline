@@ -60,8 +60,10 @@ python3 pipeline/lab.py --hours 30
 
 Raccoglie **cosa ci fa la gente** con i modelli: il top del giorno di r/ClaudeAI, r/OpenAI,
 r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti LAB già scaricate da
-`fetch.py`; e i link che hai incollato in `data/social/manual.md`. È la materia dello
-strato *LAB* della sezione AI (vedi *La sezione AI*).
+`fetch.py`; le liste curate «awesome» su GitHub; e i link che hai incollato in
+`data/social/manual.md`. Ogni link a X viene aperto con fxtwitter: testo, autore, mi piace,
+visualizzazioni, miniatura. È la materia dello strato *LAB* della sezione AI (vedi *La
+sezione AI* e *La caccia LAB*).
 
 ### 2. Selezione e scrittura
 
@@ -327,6 +329,37 @@ Mike su X è esattamente questo: «GPT-6 Astra mi ha ricreato Sydney in 3D», «
 Ogni post così incollato in `manual.md` è una voce `demo` o `uso` già pronta. Un thread su X
 che ti ha colpito è già una voce `uso`: incolla il link con tre parole, il resto lo fa la
 corsa del mattino.
+
+**La caccia LAB — come si trovano queste cose.** Il 6 settembre 2026 Mike ha portato
+cinque post da X che sono il modello esatto della sezione: la Notte stellata di Van Gogh
+resa mondo 3D percorribile, un paesaggio urbano modellato in Blender da una sola foto, un
+gioco di pigmenti per indovinare la tinta, un atlante 3D dell'anatomia dentale, Pong neon
+su Apple TV da un prompt di tre righe. Hanno tutti la stessa forma, ed è quella da cercare:
+
+- **prima persona e verbo fatto**: «ho usato Astra per…», «I built…», «gli ho passato una
+  foto e…». Non «Astra può», non un articolo che ne parla: la persona che l'ha fatto.
+- **un risultato che si vede**: video o immagine del prodotto finito, non del prompt.
+- **il come**: il prompt, il setup (Codex + Blender MCP), quanto è costato — è la riga
+  `prova` già scritta.
+- **il segnale**: mi piace e visualizzazioni. Un post da 300.000 visualizzazioni è già
+  passato al vaglio di molta gente.
+
+Dove si cerca, in ordine di resa:
+
+1. **Le liste curate** su GitHub (`AWESOME` in `lab.py`): a ogni lancio grosso qualcuno
+   apre un repository «awesome-<modello>» con i post originali e i nomi degli autori.
+   `lab.py` le legge, apre ogni post con fxtwitter e li ordina per visualizzazioni. È il
+   modo onesto di arrivare a X senza raschiare X: la selezione l'ha già fatta qualcuno.
+2. **Reddit e Show HN**, che `lab.py` già raccoglie: lì i post di X vengono ripostati.
+3. **La ricerca web**, che la routine ha: `"GPT-6 Astra" "I used"`, `"I built" site:x.com
+   Astra`, il nome del modello più *Blender*, *3D*, *game*, *app*. I risultati su x.com si
+   leggono con `common.xpost`, che dà testo, autore, numeri e miniatura.
+4. **`data/social/manual.md`**: quello che Mike ha visto lui. Ha la precedenza su tutto:
+   se c'è un link lì, entra, con la foto del post.
+
+Un post su X **si cita con il suo indirizzo `x.com/<autore>/status/<id>`**, mai con il
+profilo: senza l'id non c'è foto e non c'è verifica. Se l'indirizzo non si trova, la voce
+non si scrive.
 
 #### La sezione da lavoro — `banco`
 

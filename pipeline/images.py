@@ -62,24 +62,9 @@ GENERIC = re.compile(r"abs\.twimg\.com/rweb/ssr/default|redditstatic\.com/.*(log
 
 
 def x_image(page_url):
-    """Un post su X non espone l'immagine ai bot: la pagina e' tutta script.
-    Passa da api.fxtwitter.com, che restituisce i media del post in JSON.
-    Se un giorno chiude, la voce resta senza foto, non senza pagina."""
-    m = re.search(r"(?:x|twitter)\.com/[^/]+/status/(\d+)", page_url)
-    if not m:
-        return None
-    raw = fetch("https://api.fxtwitter.com/status/" + m.group(1))
-    try:
-        tw = json.loads(raw.decode("utf-8", "replace")).get("tweet") or {}
-    except ValueError:
-        return None
-    media = (tw.get("media") or {})
-    for kind in ("photos", "videos"):
-        for item in media.get(kind) or []:
-            src = item.get("thumbnail_url") or item.get("url")
-            if src and src.startswith("http"):
-                return src
-    return None
+    """La miniatura di un post su X, via common.xpost (fxtwitter)."""
+    post = C.xpost(page_url)
+    return post["thumb"] if post and post.get("thumb") else None
 
 
 def find_image_url(page_url):
