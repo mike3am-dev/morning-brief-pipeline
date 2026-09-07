@@ -269,7 +269,8 @@ Non è «notizie AI»: è **cronaca e LAB insieme**. Cosa fanno i laboratori, e 
 la gente. **6–12 voci** al giorno, una decina come misura giusta, e almeno un terzo deve
 essere LAB — solo cronaca è metà sezione, e il lint lo dice.
 
-Nell'app la sezione ha **due blocchi con due forme**. «Cosa è successo» (la cronaca) è un
+Nell'app le voci AI stanno **solo nella scheda AI**, non nell'edizione: sarebbero un doppione.
+La scheda ha **due blocchi con due forme**. «Cosa è successo» (la cronaca) è un
 dispaccio: righe fitte, laboratorio e titolo, niente foto — nelle notizie AI la foto
 sarebbe il logo del laboratorio, e un logo non dice niente. «Cosa puoi provare» (il LAB) è
 una galleria: **la foto è il risultato** — la città in 3D, la casa ricostruita da una foto,

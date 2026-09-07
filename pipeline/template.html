@@ -2007,14 +2007,8 @@ function renderEdition(){
   ]));
   (brief.news || []).forEach(function(n, i){ col.appendChild(storyNode(brief, n, i)); });
 
-  if(brief.ai && brief.ai.length){
-    const pipA = el("span", {class:"pip"}); pipA.style.background = "var(--ink)";
-    col.appendChild(el("div", {class:"section-head"}, [
-      pipA, el("h2", {text:"AI"}),
-      el("span", {class:"eyebrow hint", text:"cosa fanno i laboratori, cosa ci fa la gente"})
-    ]));
-    aiBlocks(col, brief.date, brief.ai);
-  }
+  /* le voci AI non stanno nell'edizione: hanno la loro scheda accanto, con
+     Notizie e LAB. Qui sarebbero un doppione, e allungherebbero la pagina. */
 
   if(brief.radar && brief.radar.length){
     const pipB = el("span", {class:"pip"}); pipB.style.background = "var(--blue)";
