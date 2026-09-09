@@ -27,6 +27,8 @@ from datetime import datetime, timedelta
 
 from PIL import Image
 
+import common as C
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BRIEFS = os.path.join(ROOT, "data", "briefs")
 
