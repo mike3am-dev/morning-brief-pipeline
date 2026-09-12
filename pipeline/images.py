@@ -42,6 +42,15 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
 THUMBS = 8
 THUMB_PX, THUMB_Q = 480, 60
 HERO_PX, HERO_Q = 880, 70
+# la miniatura quadrata della cronaca AI: nella scheda occupa 5,2rem (~83
+# punti), qui sta a 240 per reggere lo schermo a tripla densita'. Sono ~12 KB
+# l'una: una decina di voci pesano quanto due foto delle notizie.
+SQUARE_PX, SQUARE_Q = 240, 62
+
+# le tre forme: 16:9 per le notizie e per il LAB (dove la foto e' il risultato
+# e va larga), quadrata per la riga di cronaca
+WIDE = (THUMB_PX, THUMB_Q, 16 / 9)
+SQUARE = (SQUARE_PX, SQUARE_Q, 1.0)
 
 OG_PATTERNS = (
     r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
@@ -96,15 +105,14 @@ def find_image_url(page_url):
     return None
 
 
-def encode(raw, width, quality):
-    """Ridimensiona, ritaglia in 16:9 e restituisce un data URI JPEG."""
+def encode(raw, width, quality, target=16 / 9):
+    """Ridimensiona, ritaglia nel formato chiesto e restituisce un data URI JPEG."""
     try:
         img = Image.open(io.BytesIO(raw))
     except Exception:
         return None
     img = img.convert("RGB")
 
-    target = 16 / 9
     w, h = img.size
     if w / h > target:                       # troppo larga: taglio ai lati
         new_w = int(h * target)
@@ -123,14 +131,15 @@ def encode(raw, width, quality):
 
 
 def harvest(job):
-    idx, news = job
-    src = find_image_url(news.get("link", ""))
+    idx, item, shape = job
+    src = find_image_url(item.get("link", ""))
     if not src:
         return idx, None, None
     raw = fetch(src)
     if not raw:
         return idx, None, None
-    thumb = encode(raw, THUMB_PX, THUMB_Q)
+    width, quality, ratio = shape
+    thumb = encode(raw, width, quality, ratio)
     hero = encode(raw, HERO_PX, HERO_Q) if idx == 0 else None
     return idx, thumb, hero
 
@@ -139,18 +148,16 @@ def enrich(path, refresh=False):
     with open(path, encoding="utf-8") as fh:
         brief = json.load(fh)
 
-    jobs = [(i, n) for i, n in enumerate(brief.get("news", [])[:THUMBS])
+    jobs = [(i, n, WIDE) for i, n in enumerate(brief.get("news", [])[:THUMBS])
             if refresh or not n.get("image")]
-    # Nella sezione AI la foto va solo alle voci LAB (uso, demo, trucco,
-    # sapevi): li' e' il risultato — la citta' in 3D, il render — ed e' lei
-    # che fa aprire la voce. Sulla cronaca sarebbe il logo del laboratorio,
-    # e un logo non dice niente: meglio niente.
+    # Le due forme della sezione AI. Sul LAB la foto e' il risultato — la citta'
+    # in 3D, il render — e va larga: e' lei che fa aprire la voce. Sulla cronaca
+    # e' una miniatura quadrata di fianco al titolo, come in un lettore di feed:
+    # non racconta il fatto, tiene l'occhio su una colonna di soli titoli.
     LAB = {"uso", "demo", "trucco", "sapevi"}
-    ai_jobs = [(i, a) for i, a in enumerate(brief.get("ai", []))
-               if (a.get("kind") or "").lower() in LAB and (refresh or not a.get("image"))]
-    for a in brief.get("ai", []):
-        if (a.get("kind") or "").lower() not in LAB:
-            a.pop("image", None)
+    ai_jobs = [(i, a, WIDE if (a.get("kind") or "").lower() in LAB else SQUARE)
+               for i, a in enumerate(brief.get("ai", []))
+               if refresh or not a.get("image")]
     if not jobs and not ai_jobs:
         print("Immagini già presenti, niente da fare.")
         return 0
@@ -166,7 +173,7 @@ def enrich(path, refresh=False):
             if hero:
                 news["hero"] = hero
             print(f"  {news['id']:22} {'immagine acquisita' if thumb else 'nessuna immagine'}")
-        for idx, thumb, _ in pool.map(harvest, [(1000 + i, a) for i, a in ai_jobs]):
+        for idx, thumb, _ in pool.map(harvest, [(1000 + i, a, shape) for i, a, shape in ai_jobs]):
             a = brief["ai"][idx - 1000]
             if thumb:
                 a["image"] = thumb
@@ -192,14 +199,15 @@ def prune(days):
             brief = json.load(fh)
         before = os.path.getsize(path)
         stripped = False
-        for n in brief.get("news", []):
+        # anche le voci AI, che dal 12 settembre 2026 hanno la loro foto: se
+        # restassero, l'alleggerimento lascerebbe indietro meta' del peso
+        for item in list(brief.get("news", [])) + list(brief.get("ai", [])):
             for k in ("image", "hero"):
-                if n.pop(k, None) is not None:
+                if item.pop(k, None) is not None:
                     stripped = True
         if stripped:
             with open(path, "w", encoding="utf-8") as fh:
                 json.dump(brief, fh, ensure_ascii=False, indent=1)
-            fh.write("\n")
             print(f"  {day}: {before // 1024} KB -> {os.path.getsize(path) // 1024} KB")
             touched += 1
     print(f"Alleggerite {touched} edizioni oltre i {days} giorni.")
