@@ -59,6 +59,18 @@ python3 pipeline/push.py
 Artifact non si aggiorna più da agosto 2026 (vedi `CLAUDE.md`). `build.py` e
 `publish_site.py` si lanciano solo se hai modificato `pipeline/template.html`.
 
+Poi il commit della continuità, senza cui domani si riparte da zero — e il
+prefisso `claude/` è l'unica cosa che fa scattare il merge su `main`:
+
+```bash
+git checkout -b claude/rassegna-$(date +%F)
+git add data/ && git commit && git push -u origin claude/rassegna-$(date +%F)
+```
+
+TMB sta su `mike3am-dev` e su nessun altro account: se la sessione è
+autenticata su GitHub con un'altra identità, non cercare strade alternative —
+fermati e dillo a Mike (vedi *Solo `mike3am-dev`* in `CLAUDE.md`).
+
 ## Chiusura
 
 Un messaggio breve: data, le tre notizie di apertura, quante notizie
