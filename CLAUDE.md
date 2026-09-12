@@ -535,7 +535,25 @@ python3 pipeline/push.py
 Carica l'edizione di oggi nella tabella `brief_editions` di Supabase. L'app la vede al successivo
 avvio o cambio di scheda: **il file dell'app non va ritoccato**.
 
-### 5. Chiusura
+### 5. Il commit della continuità
+
+L'edizione è su Supabase, ma i file che tengono la memoria fra una corsa e l'altra — fili
+aperti, previsioni, stato del radar, pollici — vivono in `data/`. Senza commit, la corsa di
+domani riparte da zero.
+
+```bash
+git checkout -b claude/rassegna-$(date +%F)
+git add data/ && git commit && git push -u origin claude/rassegna-$(date +%F)
+```
+
+**Il prefisso `claude/` non è un vezzo: è l'unica cosa che fa scattare il merge.** Il
+workflow `.github/workflows/merge-claude-branches.yml` ascolta solo `claude/**` e unisce da
+sé su `main`. Un branch chiamato `rassegna-2026-09-08` viene spinto, sembra andato a buon
+fine, e resta lì per sempre: è successo l'8 e il 9 settembre 2026, e quelle due edizioni
+sono rimaste fuori da `main` finché non le si è unite a mano. Niente pull request: ci pensa
+il workflow.
+
+### 6. Chiusura
 
 Un messaggio breve: data dell'edizione, le tre notizie di apertura, quante notizie selezionate
 su quanti articoli letti, eventuali feed muti. Se una previsione è stata chiusa, una riga anche
@@ -613,6 +631,23 @@ nessun token da tenere aggiornato.
 pipeline. I due repository sono `morning-brief-pipeline` (questa cartella: ci gira la
 routine delle 7:00) e `morning-brief` (un solo file, `index.html`: **è l'app**, servita da
 GitHub Pages — non è un doppione e non si cancella).
+
+**Solo `mike3am-dev`, nessun altro account.** The Morning Brief non tocca e non passa da
+altre identità GitHub: né account condivisi, né organizzazioni, né connettori di terzi.
+Prima di scrivere qualsiasi cosa su GitHub, una corsa in cloud verifica con chi è
+autenticata:
+
+```bash
+curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/user
+```
+
+Se il login che torna non è `mike3am-dev`, **non si spinge niente da nessuna parte**: non si
+cerca un'altra strada, non si apre una pull request da un altro account, non si crea un
+repository di appoggio. Si ferma, si dice a Mike qual è l'identità sbagliata che ha
+risposto, e l'edizione del giorno resta comunque pubblicata su Supabase — quello è il
+canale che conta per l'app. Il 12 settembre 2026 la sessione in cloud si è trovata il
+connettore GitHub autenticato come `8BitStudios-dev`, senza diritto di scrittura qui: il
+commit della continuità è stato consegnato a mano e applicato dal Mac.
 
 Lo script salta il caricamento se online c'è già lo stesso file, e distingue gli errori:
 401 token scaduto, 403 permessi mancanti. In ogni caso il ripiego è il caricamento dal
