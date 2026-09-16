@@ -272,20 +272,30 @@ la gente. **6–12 voci** al giorno, una decina come misura giusta, e almeno un 
 essere LAB — solo cronaca è metà sezione, e il lint lo dice.
 
 Nell'app le voci AI stanno **solo nella scheda AI**, non nell'edizione: sarebbero un doppione.
+E la scheda mostra **una sola edizione per volta, come le notizie Apple nella home**: segue
+il giorno che stai leggendo, e i giorni prima si raggiungono dall'archivio. Fino all'11
+settembre 2026 impilava tutto l'archivio di seguito, così sotto le voci di oggi
+ricomparivano quelle di ieri: una scheda che si allungava da sola invece di svuotarsi ogni
+mattina.
+
 La scheda ha **due blocchi con due forme**. «Cosa è successo» (la cronaca) è un
-dispaccio: righe fitte, laboratorio e titolo, niente foto — nelle notizie AI la foto
-sarebbe il logo del laboratorio, e un logo non dice niente. «Cosa puoi provare» (il LAB) è
+dispaccio: righe fitte, laboratorio e titolo, con una **miniatura quadrata a destra** come
+in un lettore di feed. Quella foto non racconta il fatto — spesso è l'illustrazione del
+pezzo — e non deve pretendere di farlo: serve a dare un appiglio all'occhio in una colonna
+di soli titoli. Se manca, la riga sta in piedi lo stesso. «Cosa puoi provare» (il LAB) è
 una galleria: **la foto è il risultato** — la città in 3D, la casa ricostruita da una foto,
 il render del pellicano — e sotto c'è la riga «prova». È la foto che fa dire «ah, si può
 fare questo?», che è esattamente quello che funziona su X.
 
 Quindi **ogni voce LAB ha bisogno di un'immagine che mostri il risultato**: `images.py` la
 ricava dal link (og:image, miniatura YouTube, anteprima ufficiale del post Reddit, media del post su X via
-fxtwitter) e la mette
-solo sulle voci LAB. Un link il cui og:image è un'illustrazione generica o un logo è un
+fxtwitter). Un link il cui og:image è un'illustrazione generica o un logo è un
 motivo per preferirne un altro sullo stesso fatto — il post su X con il video, la pagina
 del progetto, il thread Reddit con l'immagine. Il lint avvisa quando una voce LAB resta
-senza foto.
+senza foto. Sulla cronaca `images.py` prende la stessa og:image ma la ritaglia **quadrata a
+240px** (~6 KB): lì il criterio è più largo, perché quella miniatura non deve dimostrare
+niente, e una voce senza foto non è un problema — il blog di Simon Willison non ne ha, e va
+benissimo così.
 
 ```json
 {"id": "gpt-6-astra", "lab": "openai", "kind": "modello",
@@ -505,10 +515,11 @@ quello che è uscito gli manca. Il digest avvisa da solo quando è il momento.
 python3 pipeline/images.py
 ```
 
-Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI di tipo LAB, lo ritaglia in 16:9 e lo incorpora
-nell'edizione come data URI: miniatura da 480px per tutti, più una da 880px per la notizia
-di apertura. Incorporare invece di linkare serve perché le immagini funzionino offline e
-perché la copia su Artifact le mostri — la sua CSP blocca ogni richiesta esterna.
+Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI, e la incorpora
+nell'edizione come data URI. Tre formati: 16:9 da 480px per le notizie e per il LAB, 880px
+per la notizia di apertura, e **quadrata da 240px per la cronaca AI** (la miniatura di
+fianco al titolo). Incorporare invece di linkare serve perché le immagini funzionino
+offline e perché la copia su Artifact le mostri — la sua CSP blocca ogni richiesta esterna.
 
 480px perché sul telefono la foto occupa tutta la colonna (~341 punti): a 300px si vedeva
 la sgranatura. Se un giorno cambi di nuovo il formato, `--refresh` riscarica anche le
@@ -519,8 +530,10 @@ lascia al suo posto l'immagine vecchia invece di cancellarla.
 python3 pipeline/images.py --all --refresh && python3 pipeline/push.py --all
 ```
 
-Costo: circa 150 KB per edizione, una cinquantina di MB l'anno. Ogni tanto alleggerisci
-l'archivio, poi ricaricalo:
+Costo: circa 400 KB per edizione — otto notizie, la foto grande di apertura, le schede LAB
+e le miniature della cronaca AI. Fa un centinaio di MB l'anno, quindi `--prune` non è un
+vezzo: toglie le immagini (notizie e AI) alle edizioni oltre i giorni indicati. Ogni tanto
+alleggerisci l'archivio, poi ricaricalo:
 
 ```bash
 python3 pipeline/images.py --prune 60 && python3 pipeline/push.py --all
@@ -535,7 +548,25 @@ python3 pipeline/push.py
 Carica l'edizione di oggi nella tabella `brief_editions` di Supabase. L'app la vede al successivo
 avvio o cambio di scheda: **il file dell'app non va ritoccato**.
 
-### 5. Chiusura
+### 5. Il commit della continuità
+
+L'edizione è su Supabase, ma i file che tengono la memoria fra una corsa e l'altra — fili
+aperti, previsioni, stato del radar, pollici — vivono in `data/`. Senza commit, la corsa di
+domani riparte da zero.
+
+```bash
+git checkout -b claude/rassegna-$(date +%F)
+git add data/ && git commit && git push -u origin claude/rassegna-$(date +%F)
+```
+
+**Il prefisso `claude/` non è un vezzo: è l'unica cosa che fa scattare il merge.** Il
+workflow `.github/workflows/merge-claude-branches.yml` ascolta solo `claude/**` e unisce da
+sé su `main`. Un branch chiamato `rassegna-2026-09-08` viene spinto, sembra andato a buon
+fine, e resta lì per sempre: è successo l'8 e il 9 settembre 2026, e quelle due edizioni
+sono rimaste fuori da `main` finché non le si è unite a mano. Niente pull request: ci pensa
+il workflow.
+
+### 6. Chiusura
 
 Un messaggio breve: data dell'edizione, le tre notizie di apertura, quante notizie selezionate
 su quanti articoli letti, eventuali feed muti. Se una previsione è stata chiusa, una riga anche
@@ -613,6 +644,23 @@ nessun token da tenere aggiornato.
 pipeline. I due repository sono `morning-brief-pipeline` (questa cartella: ci gira la
 routine delle 7:00) e `morning-brief` (un solo file, `index.html`: **è l'app**, servita da
 GitHub Pages — non è un doppione e non si cancella).
+
+**Solo `mike3am-dev`, nessun altro account.** The Morning Brief non tocca e non passa da
+altre identità GitHub: né account condivisi, né organizzazioni, né connettori di terzi.
+Prima di scrivere qualsiasi cosa su GitHub, una corsa in cloud verifica con chi è
+autenticata:
+
+```bash
+curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/user
+```
+
+Se il login che torna non è `mike3am-dev`, **non si spinge niente da nessuna parte**: non si
+cerca un'altra strada, non si apre una pull request da un altro account, non si crea un
+repository di appoggio. Si ferma, si dice a Mike qual è l'identità sbagliata che ha
+risposto, e l'edizione del giorno resta comunque pubblicata su Supabase — quello è il
+canale che conta per l'app. Il 12 settembre 2026 la sessione in cloud si è trovata il
+connettore GitHub autenticato come `8BitStudios-dev`, senza diritto di scrittura qui: il
+commit della continuità è stato consegnato a mano e applicato dal Mac.
 
 Lo script salta il caricamento se online c'è già lo stesso file, e distingue gli errori:
 401 token scaduto, 403 permessi mancanti. In ogni caso il ripiego è il caricamento dal

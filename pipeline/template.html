@@ -508,12 +508,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .aiswitch button[aria-current="true"]{color:var(--ink)}
 .aiswitch button[aria-current="true"]::after{content:""; position:absolute; left:0; right:0; bottom:-1.5px; height:4px; background:var(--ink)}
 .aiswitch button[data-mode="lab"][aria-current="true"]::after{background:var(--yellow)}
-.aiold{
-  display:block; width:100%; margin:1.4rem 0 .4rem; padding:.7rem; background:none;
-  border:1.5px solid var(--rule); border-radius:4px; font-family:var(--body); font-size:.8rem;
-  font-weight:700; color:var(--ink-3); cursor:pointer;
-}
-.aiold:hover{color:var(--ink); border-color:var(--ink)}
 .subhead.lab::before{content:""; width:.7rem; height:.7rem; background:var(--yellow); border-radius:2px; align-self:center}
 .subhead.wire::before{content:""; width:.7rem; height:.7rem; background:var(--ink); border-radius:50%; align-self:center}
 
@@ -523,10 +517,18 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .wire li{border-bottom:1px solid var(--rule)}
 /* pastiglia sopra, titolo e sintesi a filo di colonna: con la pastiglia di
    fianco i titoli partivano ognuno a una larghezza diversa */
-.wire .row{display:grid; grid-template-columns:minmax(0,1fr); row-gap:.3rem; padding:.75rem 0 .65rem; cursor:pointer}
+.wire .row{display:flex; align-items:flex-start; gap:.9rem; padding:.75rem 0 .65rem; cursor:pointer}
+.wire .row .rowtext{flex:1; min-width:0; display:grid; grid-template-columns:minmax(0,1fr); row-gap:.3rem}
 .wire .row .chip{font-size:.55rem; padding:.18rem .4rem; justify-self:start}
 .wire .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
 .wire .row .sintesi{margin-top:0; font-size:.93rem; color:var(--ink-2); line-height:1.45}
+/* la miniatura quadrata a destra, come in un lettore di feed: non e' il
+   risultato (quello e' il LAB, e la' la foto e' grande), e' il punto d'appoggio
+   per l'occhio che scorre una colonna di soli titoli */
+.wire .row .thumb{
+  flex:none; width:5.2rem; aspect-ratio:1; object-fit:cover;
+  border-radius:5px; background:var(--paper-2);
+}
 .wire .body{padding:0 0 .9rem; display:flex; flex-direction:column; gap:.7rem}
 .wire .body[hidden]{display:none}
 .wire .body p{font-size:.93rem; color:var(--ink-2); line-height:1.5}
@@ -567,14 +569,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .fronte b{display:block; font-family:var(--display); font-weight:700; font-size:1.2rem; line-height:1.1; margin:.2rem 0 .15rem}
 .fronte b a{color:var(--ink); text-decoration:none}
 .fronte .when{font-size:.7rem; color:var(--ink-3)}
-/* il flusso della scheda AI e' diviso per giorno */
-.daymark{
-  display:flex; align-items:center; gap:.6rem; margin:1.9rem 0 .2rem;
-  font-size:.63rem; font-weight:700; letter-spacing:.19em; text-transform:uppercase; color:var(--ink-3);
-}
-.daymark::after{content:""; flex:1; height:1px; background:var(--rule-strong)}
-.daymark:first-of-type{margin-top:.9rem}
-.aiswitch + .daymark{display:none}
 
 /* ---------------- se te lo fossi perso ----------------
    Roba vecchia di giorni: la cornice deve dire subito quanto, altrimenti
@@ -2172,6 +2166,9 @@ function renderEdition(){
     ? "Appunti e diario sincronizzati tra i tuoi dispositivi"
     : (NOTES ? "Appunti e diario salvati su questo dispositivo — usa ↧ per farne una copia"
              : "Copia di sola lettura");
+  /* il numero sulla scheda AI e' quello dell'edizione aperta: cambiando
+     giorno dall'archivio va rifatto qui, o resta indietro di un giorno */
+  refreshCounts();
 }
 
 /* ================= archivio ================= */
@@ -2485,13 +2482,16 @@ function aiFoot(date, a, extra){
   return {foot:foot, panel:tools ? tools.panel : null};
 }
 
-/* una riga del dispaccio: laboratorio e titolo; il resto al tocco */
+/* una riga del dispaccio: laboratorio, titolo e la miniatura; il resto al tocco */
 function wireRow(date, a){
   const li = el("li");
   const row = el("div", {class:"row"}, [
-    el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
-    el("h4", {text:a.title}),
-    a.sintesi ? el("p", {class:"sintesi", text:a.sintesi}) : null
+    el("div", {class:"rowtext"}, [
+      el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
+      el("h4", {text:a.title}),
+      a.sintesi ? el("p", {class:"sintesi", text:a.sintesi}) : null
+    ]),
+    a.image ? el("img", {class:"thumb", src:a.image, alt:"", loading:"lazy", decoding:"async"}) : null
   ]);
   const body = el("div", {class:"body", hidden:"hidden"});
   if(a.note) body.appendChild(el("p", {text:a.note}));
@@ -2564,21 +2564,14 @@ function fronte(){
 let aiMode = "notizie";
 try{ aiMode = localStorage.getItem("mb_aiMode") === "lab" ? "lab" : "notizie"; }catch(e){}
 
-/* la scheda AI e' un flusso: si legge quello che e' arrivato da quando l'hai
-   aperta l'ultima volta, e basta. Una voce e' "vista" quando e' comparsa nella
-   scheda (segno read_at sulla sua chiave ai:, che viaggia con la sincronizzazione,
-   quindi vale su Mac e iPhone). Quello che e' comparso in questa sessione resta
-   in pagina finche' non ricarichi: sparisce alla visita dopo, non sotto gli occhi.
-   Le gia' lette si riaprono a richiesta, non stanno in mezzo */
-const aiSeen = {};
-let aiShowAll = false;
+/* una voce AI e' "vista" quando e' comparsa nella scheda: segno read_at sulla
+   sua chiave ai:, che viaggia con la sincronizzazione e quindi vale su Mac e
+   iPhone. Serve al numero sulla scheda, che conta solo il nuovo */
 function aiKey(date, a){ return key(date, "ai:" + a.id); }
 function aiRead(date, a){ if(!a.id) return false; const m = mk(aiKey(date, a)); return !!(m && m.read_at); }
-function aiFresh(date, a){ return !a.id || !aiRead(date, a) || !!aiSeen[aiKey(date, a)]; }
 function aiMarkSeen(date, a){
   if(!NOTES || !a.id || aiRead(date, a)) return false;
-  const k = aiKey(date, a); aiSeen[k] = true;
-  const m = mark(k); m.read_at = new Date().toISOString(); m.updated_at = m.read_at; m.dirty = true;
+  const m = mark(aiKey(date, a)); m.read_at = new Date().toISOString(); m.updated_at = m.read_at; m.dirty = true;
   return true;
 }
 
@@ -2587,23 +2580,18 @@ function renderAI(){
   root.innerHTML = "";
   const col = el("div", {class:"col-main"});
   const pip = el("span", {class:"pip"}); pip.style.background = "var(--ink)";
-  const nAll = BRIEFS.reduce(function(n, b){ return n + (b.ai || []).length; }, 0);
-  /* le voci in pagina: le nuove (piu' quelle gia' comparse in questa sessione),
-     oppure tutto se hai chiesto di rivedere le gia' lette */
-  const days = BRIEFS.map(function(b){
-      return {date:b.date, ai:(b.ai || []).filter(function(a){ return aiShowAll || aiFresh(b.date, a); })};
-    }).filter(function(b){ return b.ai.length; })
-      .sort(function(x, y){ return x.date < y.date ? 1 : -1; });
-  const nCron = days.reduce(function(n, b){ return n + b.ai.filter(function(a){ return !isLab(a); }).length; }, 0);
-  const nLab = days.reduce(function(n, b){ return n + b.ai.filter(isLab).length; }, 0);
-  const nOld = nAll - nCron - nLab;
-  col.appendChild(el("div", {class:"section-head"}, [pip, el("h2", {text:"AI"})]));
+  /* una sola edizione, come le notizie Apple nella home: la scheda segue il
+     giorno che stai leggendo. Prima scorrevano di seguito tutti i giorni
+     dell'archivio, e sotto le voci di oggi ricomparivano quelle di ieri. */
+  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
+  const items = (brief && brief.ai) || [];
+  const cron = items.filter(function(a){ return !isLab(a); });
+  const lab = items.filter(isLab);
+  const nCron = cron.length, nLab = lab.length;
+  col.appendChild(el("div", {class:"section-head"}, [pip, el("h2", {text:"AI"}),
+    brief ? el("span", {class:"eyebrow hint", text:fmtShort(brief.date)}) : null]));
   if(!nCron && !nLab){
-    const msg = nAll
-      ? "<b>Niente di nuovo</b>Hai già visto tutto: la scheda si riempie con la prossima edizione."
-      : "<b>Ancora niente</b>La sezione si riempie con la prossima edizione: la cronaca dei laboratori e quello che la gente ci fa.";
-    col.appendChild(el("div", {class:"empty", html:msg}));
-    if(nAll) col.appendChild(aiOldBtn(nAll));
+    col.appendChild(el("div", {class:"empty", html:"<b>Niente AI in questa edizione</b>Le altre giornate si raggiungono dall'archivio."}));
     root.appendChild(col); return;
   }
   /* due schede, una scelta: Notizie (cosa e' successo) o LAB (cosa puoi provare) */
@@ -2631,38 +2619,28 @@ function renderAI(){
     });
     col.appendChild(g);
   }
-  /* un giorno alla volta, dal piu' recente; il segno del giorno solo dal secondo in poi */
-  const today = BRIEFS[0] ? BRIEFS[0].date : "";
-  let first = true;
-  days.forEach(function(b){
-    const items = b.ai.filter(function(a){ return aiMode === "lab" ? isLab(a) : !isLab(a); });
-    if(!items.length) return;
-    if(!first){
-      const ago = fmtAgo(b.date, today);
-      col.appendChild(el("div", {class:"daymark", text:(ago === "oggi" || ago === "ieri") ? ago + " · " + fmtShort(b.date) : fmtDate(b.date)}));
-    }
-    first = false;
-    if(aiMode === "lab"){
-      const grid = el("div", {class:"labgrid"});
-      items.forEach(function(a){ grid.appendChild(labCard(b.date, a)); });
-      col.appendChild(grid);
-    } else {
-      const ul = el("ul", {class:"wire"});
-      ul.style.borderTop = "0";
-      items.forEach(function(a){ ul.appendChild(wireRow(b.date, a)); });
-      col.appendChild(ul);
-    }
-  });
-  if(!aiShowAll && nOld) col.appendChild(aiOldBtn(nOld));
+  const shown = aiMode === "lab" ? lab : cron;
+  if(!shown.length){
+    col.appendChild(el("div", {class:"empty", html: aiMode === "lab"
+      ? "<b>Nessuna voce LAB oggi</b>Questa edizione porta solo cronaca: passa a Notizie."
+      : "<b>Nessuna notizia AI oggi</b>Questa edizione porta solo LAB: passa alla scheda accanto."}));
+    root.appendChild(col); return;
+  }
+  if(aiMode === "lab"){
+    const grid = el("div", {class:"labgrid"});
+    shown.forEach(function(a){ grid.appendChild(labCard(brief.date, a)); });
+    col.appendChild(grid);
+  } else {
+    const ul = el("ul", {class:"wire"});
+    ul.style.borderTop = "0";
+    shown.forEach(function(a){ ul.appendChild(wireRow(brief.date, a)); });
+    col.appendChild(ul);
+  }
   root.appendChild(col);
   /* quello che e' comparso adesso e' visto: un solo salvataggio per tutte */
   let seen = 0;
-  days.forEach(function(b){ b.ai.forEach(function(a){ if(aiMarkSeen(b.date, a)) seen++; }); });
+  shown.forEach(function(a){ if(aiMarkSeen(brief.date, a)) seen++; });
   if(seen){ save(); queueSync(); refreshCounts(); }
-}
-function aiOldBtn(n){
-  return el("button", {type:"button", class:"aiold", text:"Rivedi le già lette (" + n + ")",
-    onclick:function(){ aiShowAll = true; renderAI(); }});
 }
 
 /* ================= navigazione ================= */
@@ -2733,9 +2711,10 @@ function tabsOverflow(){
 
 function refreshCounts(){
   /* l'archivio non ha numero: quante edizioni ci siano non e' un'informazione.
-     Il numero dell'AI conta solo le voci non ancora viste: e' un flusso, non
-     un'edizione, e quello che hai gia' letto non deve pesare */
-  const nAI = BRIEFS.reduce(function(n, b){ return n + (b.ai || []).filter(function(a){ return !aiRead(b.date, a); }).length; }, 0);
+     Il numero sulla scheda AI conta solo quello che non hai ancora visto
+     dell'edizione aperta: aperta la scheda, si azzera */
+  const day = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0] || {};
+  const nAI = (day.ai || []).filter(function(a){ return !aiRead(day.date, a); }).length;
   document.getElementById("cAI").textContent = nAI || "";
   const stars = Object.keys(S.marks).filter(function(k){ return S.marks[k].starred_at; }).length;
   document.getElementById("cStar").textContent = stars || "";
