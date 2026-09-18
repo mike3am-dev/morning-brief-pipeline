@@ -1,261 +1,266 @@
 {
  "ai-agenti": {
-  "state": "confermato",
-  "since": "2026-08-12",
-  "up": 3,
+  "axis": "ai",
   "down": 0,
-  "seen": 27,
   "last": "2026-09-06",
-  "axis": "ai"
+  "seen": 27,
+  "since": "2026-08-12",
+  "state": "confermato",
+  "up": 3
  },
  "ai-finanza": {
-  "state": "in pausa",
-  "since": "2026-08-29",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-28",
-  "paused_until": "2026-10-10"
+  "paused_until": "2026-10-10",
+  "seen": 3,
+  "since": "2026-08-29",
+  "state": "in pausa",
+  "up": 0
  },
  "ai-regole": {
-  "state": "confermato",
-  "since": "2026-08-12",
-  "up": 3,
+  "axis": "ai",
   "down": 0,
-  "seen": 27,
   "last": "2026-09-06",
-  "axis": "ai"
+  "seen": 27,
+  "since": "2026-08-12",
+  "state": "confermato",
+  "up": 3
  },
  "ai-salute": {
-  "state": "in pausa",
-  "since": "2026-09-06",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-09-05",
-  "paused_until": "2026-10-18"
+  "paused_until": "2026-10-18",
+  "seen": 3,
+  "since": "2026-09-06",
+  "state": "in pausa",
+  "up": 0
  },
  "anthropic": {
-  "state": "in prova",
-  "since": "2026-08-12",
-  "up": 1,
+  "axis": "ai",
   "down": 0,
-  "seen": 17,
   "last": "2026-09-05",
-  "axis": "ai"
+  "seen": 17,
+  "since": "2026-08-12",
+  "state": "in prova",
+  "up": 1
  },
  "apple-contorno": {
-  "state": "in prova",
-  "since": "2026-08-09",
-  "up": 1,
   "down": 0,
-  "seen": 25,
-  "last": "2026-09-15"
+  "last": "2026-09-17",
+  "seen": 27,
+  "since": "2026-08-09",
+  "state": "in prova",
+  "up": 1
  },
  "auto-elettriche": {
-  "state": "in pausa",
-  "since": "2026-08-12",
-  "up": 0,
   "down": 1,
-  "seen": 1,
   "last": "2026-08-11",
-  "paused_until": "2026-09-23"
+  "paused_until": "2026-09-23",
+  "seen": 1,
+  "since": "2026-08-12",
+  "state": "in pausa",
+  "up": 0
  },
  "biotech": {
-  "state": "in pausa",
-  "since": "2026-08-23",
-  "up": 0,
   "down": 0,
-  "seen": 3,
-  "last": "2026-08-22",
-  "paused_until": "2026-10-04"
+  "last": "2026-09-17",
+  "paused_until": "2026-10-04",
+  "seen": 4,
+  "since": "2026-08-23",
+  "state": "in pausa",
+  "up": 0
  },
  "browser-web": {
-  "state": "in pausa",
-  "since": "2026-08-18",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-17",
-  "paused_until": "2026-09-29"
+  "paused_until": "2026-09-29",
+  "seen": 3,
+  "since": "2026-08-18",
+  "state": "in pausa",
+  "up": 0
  },
  "capitali-ai": {
-  "state": "in pausa",
-  "up": 0,
   "down": 0,
-  "seen": 5,
   "last": "2026-09-03",
+  "paused_until": "2026-10-16",
+  "seen": 5,
   "since": "2026-09-04",
-  "paused_until": "2026-10-16"
+  "state": "in pausa",
+  "up": 0
  },
  "chip-ai": {
-  "state": "in pausa",
-  "since": "2026-08-16",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-15",
-  "paused_until": "2026-09-27"
+  "paused_until": "2026-09-27",
+  "seen": 3,
+  "since": "2026-08-16",
+  "state": "in pausa",
+  "up": 0
  },
  "energia": {
-  "state": "in pausa",
-  "since": "2026-08-21",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-20",
-  "paused_until": "2026-10-02"
+  "paused_until": "2026-10-02",
+  "seen": 3,
+  "since": "2026-08-21",
+  "state": "in pausa",
+  "up": 0
  },
  "fintech-sicurezza": {
-  "state": "in prova",
-  "since": "2026-09-14",
-  "up": 0,
   "down": 0,
-  "seen": 2,
-  "last": "2026-09-15"
+  "last": "2026-09-16",
+  "paused_until": "2026-10-30",
+  "seen": 3,
+  "since": "2026-09-18",
+  "state": "in pausa",
+  "up": 0
  },
  "google-ai": {
-  "state": "in pausa",
-  "since": "2026-08-16",
-  "up": 0,
-  "down": 0,
-  "seen": 3,
-  "last": "2026-08-15",
   "axis": "ai",
-  "paused_until": "2026-09-27"
+  "down": 0,
+  "last": "2026-08-15",
+  "paused_until": "2026-09-27",
+  "seen": 3,
+  "since": "2026-08-16",
+  "state": "in pausa",
+  "up": 0
  },
  "governance-open-source": {
-  "state": "in pausa",
-  "since": "2026-09-16",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-09-15",
-  "paused_until": "2026-10-28"
+  "paused_until": "2026-10-28",
+  "seen": 3,
+  "since": "2026-09-16",
+  "state": "in pausa",
+  "up": 0
  },
  "hardware-indipendente": {
-  "state": "in prova",
-  "since": "2026-08-09",
-  "up": 1,
   "down": 0,
-  "seen": 24,
-  "last": "2026-09-15"
+  "last": "2026-09-17",
+  "seen": 26,
+  "since": "2026-08-09",
+  "state": "in prova",
+  "up": 1
  },
  "modelli-ai": {
-  "state": "in pausa",
-  "since": "2026-08-18",
-  "up": 0,
-  "down": 0,
-  "seen": 3,
-  "last": "2026-08-17",
   "axis": "ai",
-  "paused_until": "2026-09-29"
+  "down": 0,
+  "last": "2026-08-17",
+  "paused_until": "2026-09-29",
+  "seen": 3,
+  "since": "2026-08-18",
+  "state": "in pausa",
+  "up": 0
  },
  "openai": {
-  "state": "in pausa",
-  "since": "2026-08-19",
-  "up": 0,
-  "down": 0,
-  "seen": 3,
-  "last": "2026-08-18",
   "axis": "ai",
-  "paused_until": "2026-09-30"
+  "down": 0,
+  "last": "2026-08-18",
+  "paused_until": "2026-09-30",
+  "seen": 3,
+  "since": "2026-08-19",
+  "state": "in pausa",
+  "up": 0
  },
  "piattaforme-social": {
-  "state": "in pausa",
-  "since": "2026-08-21",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-20",
-  "paused_until": "2026-10-02"
+  "paused_until": "2026-10-02",
+  "seen": 3,
+  "since": "2026-08-21",
+  "state": "in pausa",
+  "up": 0
  },
  "privacy-sicurezza": {
-  "state": "in pausa",
-  "since": "2026-08-11",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-10",
-  "paused_until": "2026-09-22"
+  "paused_until": "2026-09-22",
+  "seen": 3,
+  "since": "2026-08-11",
+  "state": "in pausa",
+  "up": 0
  },
  "quantistica": {
-  "state": "in pausa",
-  "since": "2026-09-15",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-09-14",
-  "paused_until": "2026-10-27"
+  "paused_until": "2026-10-27",
+  "seen": 3,
+  "since": "2026-09-15",
+  "state": "in pausa",
+  "up": 0
  },
  "regolamentazione-tech": {
-  "state": "in pausa",
-  "since": "2026-08-22",
-  "up": 0,
   "down": 0,
-  "seen": 3,
-  "last": "2026-08-21",
-  "paused_until": "2026-10-03"
+  "last": "2026-09-17",
+  "paused_until": "2026-10-03",
+  "seen": 4,
+  "since": "2026-08-22",
+  "state": "in pausa",
+  "up": 0
  },
  "robotica": {
-  "state": "in pausa",
-  "since": "2026-08-18",
-  "up": 0,
   "down": 0,
-  "seen": 4,
   "last": "2026-08-24",
-  "paused_until": "2026-09-29"
+  "paused_until": "2026-09-29",
+  "seen": 4,
+  "since": "2026-08-18",
+  "state": "in pausa",
+  "up": 0
  },
  "scienza-spazio": {
-  "state": "in prova",
-  "since": "2026-09-16",
-  "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-09-15"
+  "last": "2026-09-16",
+  "seen": 2,
+  "since": "2026-09-16",
+  "state": "in prova",
+  "up": 0
  },
  "sicurezza-cripto": {
-  "state": "in prova",
-  "since": "2026-09-13",
-  "up": 0,
   "down": 0,
-  "seen": 2,
-  "last": "2026-09-14"
+  "last": "2026-09-17",
+  "paused_until": "2026-10-30",
+  "seen": 4,
+  "since": "2026-09-18",
+  "state": "in pausa",
+  "up": 0
  },
  "spazio": {
-  "state": "in pausa",
-  "since": "2026-08-12",
-  "up": 0,
   "down": 1,
-  "seen": 1,
   "last": "2026-08-11",
-  "paused_until": "2026-09-23"
+  "paused_until": "2026-09-23",
+  "seen": 1,
+  "since": "2026-08-12",
+  "state": "in pausa",
+  "up": 0
  },
  "strumenti-sviluppo": {
-  "state": "in pausa",
-  "since": "2026-08-19",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-18",
-  "paused_until": "2026-09-30"
+  "paused_until": "2026-09-30",
+  "seen": 3,
+  "since": "2026-08-19",
+  "state": "in pausa",
+  "up": 0
+ },
+ "veicoli-autonomi": {
+  "state": "nuovo"
  },
  "videogiochi": {
-  "state": "in pausa",
-  "since": "2026-08-23",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-08-22",
-  "paused_until": "2026-10-04"
+  "paused_until": "2026-10-04",
+  "seen": 3,
+  "since": "2026-08-23",
+  "state": "in pausa",
+  "up": 0
  },
  "voli-spaziali-privati": {
-  "state": "in pausa",
-  "since": "2026-09-13",
-  "up": 0,
   "down": 0,
-  "seen": 3,
   "last": "2026-09-12",
-  "paused_until": "2026-10-25"
+  "paused_until": "2026-10-25",
+  "seen": 3,
+  "since": "2026-09-13",
+  "state": "in pausa",
+  "up": 0
  }
 }
