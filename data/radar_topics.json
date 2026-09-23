@@ -46,8 +46,8 @@
  },
  "apple-contorno": {
   "down": 0,
-  "last": "2026-09-20",
-  "seen": 30,
+  "last": "2026-09-22",
+  "seen": 31,
   "since": "2026-08-09",
   "state": "in prova",
   "up": 1
@@ -102,8 +102,8 @@
   "since": "2026-09-22",
   "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-09-21"
+  "seen": 2,
+  "last": "2026-09-22"
  },
  "energia": {
   "down": 0,
@@ -144,8 +144,8 @@
  },
  "hardware-indipendente": {
   "down": 0,
-  "last": "2026-09-21",
-  "seen": 30,
+  "last": "2026-09-22",
+  "seen": 31,
   "since": "2026-08-09",
   "state": "in prova",
   "up": 1
@@ -182,11 +182,12 @@
  "privacy-sicurezza": {
   "down": 0,
   "last": "2026-08-10",
-  "paused_until": "2026-09-22",
   "seen": 3,
-  "since": "2026-08-11",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-09-23",
+  "state": "in prova",
+  "up": 0,
+  "pausa_finita": "2026-09-23",
+  "seen_a_fine_pausa": 3
  },
  "quantistica": {
   "down": 0,
@@ -243,12 +244,13 @@
   "paused_until": "2026-11-03"
  },
  "sovranita-media": {
-  "state": "in prova",
-  "since": "2026-09-19",
+  "state": "in pausa",
+  "since": "2026-09-23",
   "up": 0,
   "down": 0,
-  "seen": 2,
-  "last": "2026-09-21"
+  "seen": 3,
+  "last": "2026-09-22",
+  "paused_until": "2026-11-04"
  },
  "spazio": {
   "down": 1,
@@ -273,8 +275,8 @@
   "since": "2026-09-22",
   "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-09-21"
+  "seen": 2,
+  "last": "2026-09-22"
  },
  "veicoli-autonomi": {
   "state": "in pausa",
