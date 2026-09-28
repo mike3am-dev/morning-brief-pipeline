@@ -1,12 +1,4 @@
 {
- "social-alternativo": {
-  "down": 0,
-  "last": "2026-09-27",
-  "seen": 1,
-  "since": "2026-09-27",
-  "state": "in prova",
-  "up": 0
- },
  "ai-agenti": {
   "axis": "ai",
   "down": 0,
@@ -54,16 +46,16 @@
  },
  "apple-contorno": {
   "down": 0,
-  "last": "2026-09-26",
-  "seen": 35,
+  "last": "2026-09-27",
+  "seen": 36,
   "since": "2026-08-09",
   "state": "in prova",
   "up": 1
  },
  "auto-elettriche": {
   "down": 1,
-  "last": "2026-09-26",
-  "seen": 4,
+  "last": "2026-09-27",
+  "seen": 5,
   "since": "2026-09-24",
   "state": "in prova",
   "up": 0,
@@ -100,11 +92,12 @@
  "chip-ai": {
   "down": 0,
   "last": "2026-08-15",
-  "paused_until": "2026-09-27",
   "seen": 3,
-  "since": "2026-08-16",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-09-28",
+  "state": "in prova",
+  "up": 0,
+  "pausa_finita": "2026-09-28",
+  "seen_a_fine_pausa": 3
  },
  "connessione-offline": {
   "state": "in pausa",
@@ -137,11 +130,12 @@
   "axis": "ai",
   "down": 0,
   "last": "2026-08-15",
-  "paused_until": "2026-09-27",
   "seen": 3,
-  "since": "2026-08-16",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-09-28",
+  "state": "in prova",
+  "up": 0,
+  "pausa_finita": "2026-09-28",
+  "seen_a_fine_pausa": 3
  },
  "governance-open-source": {
   "down": 0,
@@ -154,8 +148,8 @@
  },
  "hardware-indipendente": {
   "down": 0,
-  "last": "2026-09-26",
-  "seen": 35,
+  "last": "2026-09-27",
+  "seen": 36,
   "since": "2026-08-09",
   "state": "in prova",
   "up": 1
@@ -254,6 +248,14 @@
   "last": "2026-09-21",
   "paused_until": "2026-11-03"
  },
+ "social-alternativo": {
+  "down": 0,
+  "last": "2026-09-27",
+  "seen": 1,
+  "since": "2026-09-27",
+  "state": "in prova",
+  "up": 0
+ },
  "sovranita-media": {
   "state": "in pausa",
   "since": "2026-09-23",
@@ -265,8 +267,8 @@
  },
  "spazio": {
   "down": 1,
-  "last": "2026-09-26",
-  "seen": 4,
+  "last": "2026-09-27",
+  "seen": 5,
   "since": "2026-09-24",
   "state": "in prova",
   "up": 0,
