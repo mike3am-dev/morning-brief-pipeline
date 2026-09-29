@@ -548,6 +548,15 @@ python3 pipeline/push.py
 Carica l'edizione di oggi nella tabella `brief_editions` di Supabase. L'app la vede al successivo
 avvio o cambio di scheda: **il file dell'app non va ritoccato**.
 
+Subito dopo, l'alleggerimento automatico: ogni 15 giorni toglie le immagini alle edizioni
+più vecchie di 15 giorni e le ricarica su Supabase (altrimenti l'app scarica troppi MB e
+può andare in timeout senza avvisare). Ricorda l'ultima volta in `data/prune.json`, quindi
+va lanciato **ogni giorno**: salta da solo se non è ancora ora.
+
+```bash
+python3 pipeline/prune_auto.py
+```
+
 ### 5. Il commit della continuità
 
 L'edizione è su Supabase, ma i file che tengono la memoria fra una corsa e l'altra — fili
