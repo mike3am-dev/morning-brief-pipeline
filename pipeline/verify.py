@@ -91,6 +91,10 @@ ORIGIN_DOMAINS = {
     "arstechnica.com": "Ars Technica",
     "apple.com": "Apple",
     "developer.apple.com": "Apple",
+    "jiemian.com": "Jiemian News",
+    "mydrivers.com": "MyDrivers",
+    "cnn.com": "CNN",
+    "axios.com": "Axios",
     "sec.gov": "documenti SEC",
     "courtlistener.com": "atti giudiziari",
     "ec.europa.eu": "Commissione europea",
@@ -103,7 +107,7 @@ ORIGIN_DOMAINS = {
 SCOOP = {"Bloomberg", "The Information", "Wall Street Journal", "Financial Times",
          "Nikkei", "Digitimes", "ETNews", "The Elec", "Ming-Chi Kuo", "Ross Young",
          "Jeff Pu", "Sonny Dickson", "Majin Bu", "Instant Digital",
-         "Fixed Focus Digital", "Digital Chat Station", "Weibo"}
+         "Fixed Focus Digital", "Digital Chat Station", "Weibo", "Jiemian News", "MyDrivers"}
 
 
 def is_scoop(origin):
@@ -129,6 +133,8 @@ NAMES = {
     "sonny dickson": "Sonny Dickson", "majin bu": "Majin Bu",
     "instant digital": "Instant Digital", "fixed focus digital": "Fixed Focus Digital",
     "digital chat station": "Digital Chat Station",
+    "jiemian news": "Jiemian News", "jiemian": "Jiemian News", "mydrivers": "MyDrivers",
+    "cnn": "CNN", "axios": "Axios",
 }
 
 # un'attribuzione vera ha un verbo davanti al nome: "secondo Gurman", "according

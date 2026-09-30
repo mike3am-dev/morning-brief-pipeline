@@ -839,6 +839,274 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 }
 .thread .expand:hover{color:var(--ink)}
 
+/* ---------------- affidabilita' dei rumor: tre pallini ----------------
+   Solo sui rumor: su una notizia confermata e' ovvia, e le parole
+   "affidabilita' alta" su ogni scheda erano scritte in piu'. */
+.meter{display:inline-flex; gap:3px; align-items:center; padding:0 .15rem}
+.meter i{width:7px; height:7px; border-radius:50%; background:var(--rule-strong); display:block}
+.meter.m-alta i.on{background:var(--blue)}
+.meter.m-media i.on{background:var(--yellow)}
+.meter.m-bassa i.on{background:var(--red)}
+.chip.deep-mark{background:none; box-shadow:inset 0 0 0 1.5px var(--yellow); color:var(--yellow-ink)}
+
+/* ---------------- approfondisci e ascolta ---------------- */
+.deep-acts{display:flex; flex-wrap:wrap; gap:.5rem; margin:.2rem 0 .1rem}
+.deep-open,.listen-btn{
+  display:inline-flex; align-items:center; gap:.5rem; border:0; border-radius:999px;
+  padding:.5rem 1.05rem; font-family:var(--display); font-weight:700; font-size:.95rem;
+  letter-spacing:.04em; text-transform:uppercase; cursor:pointer;
+}
+.deep-open{background:var(--yellow); color:#17181B}
+.deep-open i{font-style:normal; transition:transform .2s}
+.deep-open.on i{transform:rotate(180deg)}
+.listen-btn{background:none; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--ink)}
+.listen-btn i{font-style:normal; font-size:.7rem}
+.listen-btn:hover{background:var(--ink); color:var(--bone)}
+
+.deep{
+  margin:.4rem 0 .6rem; padding:1.2rem 0 .4rem; border-top:3px solid var(--ink);
+  display:flex; flex-direction:column; gap:1.5rem;
+}
+.deep[hidden]{display:none}
+.deep-top{display:flex; align-items:center; gap:.6rem}
+.deep-top .dots{display:flex; gap:3px}
+.deep-top .dots i{width:9px; height:9px; border-radius:50%; display:block}
+.deep-punto{
+  font-family:var(--display); font-weight:700; font-size:clamp(1.3rem,4.4vw,1.75rem);
+  line-height:1.16; letter-spacing:-.005em; padding-left:1rem; border-left:6px solid var(--yellow);
+  text-wrap:pretty;
+}
+.deep-sec{display:flex; flex-direction:column; gap:.65rem}
+.deep-sec h4{
+  display:flex; align-items:center; gap:.55rem; font-size:.66rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2);
+}
+.deep-sec h4 .pip{width:11px; height:11px; border-radius:50%; flex:none}
+.deep-sec p{font-size:1rem; line-height:1.62}
+.deep-tappe{list-style:none; margin:0; padding:0 0 0 1.1rem; position:relative}
+.deep-tappe::before{content:""; position:absolute; left:.28rem; top:.5rem; bottom:.5rem; width:2px; background:var(--rule-strong)}
+.deep-tappe li{position:relative; padding:0 0 .9rem .6rem}
+.deep-tappe li::before{
+  content:""; position:absolute; left:-1.1rem; top:.35rem; width:11px; height:11px; border-radius:50%;
+  background:var(--bone); box-shadow:inset 0 0 0 2.5px var(--ink-3);
+}
+.deep-tappe li.now::before{background:var(--orange); box-shadow:none}
+.deep-tappe .d{display:block; font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.deep-tappe .t{font-size:.95rem; line-height:1.5}
+.deep-tappe a{font-weight:700; text-decoration:none; margin-left:.25rem}
+.deep-fonti{background:var(--paper); border-radius:4px; padding:.85rem 1rem; box-shadow:inset 4px 0 0 var(--blue);
+  font-size:.95rem; line-height:1.55; color:var(--ink-2)}
+.deep-dopo{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.55rem}
+.deep-dopo li{display:grid; grid-template-columns:auto 1fr; gap:.7rem; align-items:baseline; font-size:.95rem; line-height:1.5}
+.deep-dopo .when{
+  font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;
+  background:var(--orange); color:#17181B; padding:.2rem .45rem; border-radius:2px;
+}
+.deep-dopo .when.none{background:var(--paper-2); color:var(--ink-3)}
+.deep-cards{display:grid; grid-template-columns:1fr; gap:.7rem}
+@media (min-width:640px){ .deep-cards{grid-template-columns:1fr 1fr} }
+.deep-card{
+  display:flex; flex-direction:column; gap:.35rem; text-decoration:none; color:var(--ink);
+  background:var(--paper); border-radius:6px; padding:.85rem .95rem .9rem; box-shadow:var(--shadow);
+  transition:transform .15s;
+}
+.deep-card:hover{transform:translateY(-2px)}
+.deep-card .k{
+  align-self:flex-start; font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  padding:.22rem .5rem; border-radius:2px; color:#17181B;
+}
+.deep-card .k.leggi{background:var(--blue)}
+.deep-card .k.ascolta{background:var(--orange)}
+.deep-card .k.guarda{background:var(--red); color:#FFF}
+.deep-card b{font-family:var(--display); font-weight:600; font-size:1.08rem; line-height:1.2}
+.deep-card .src{font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+.deep-card .why{font-size:.88rem; line-height:1.45; color:var(--ink-2)}
+.deep-foot{font-size:.62rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+
+/* ---------------- il lettore: la barra in fondo mentre ascolti ---------------- */
+.player{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:calc(.9rem + env(safe-area-inset-bottom));
+  z-index:70; width:min(560px, calc(100% - 1.4rem));
+  background:var(--ink); color:var(--bone); border-radius:14px; box-shadow:0 12px 36px -12px rgba(0,0,0,.55);
+  display:grid; grid-template-columns:auto 1fr auto auto; gap:.2rem .75rem; align-items:center;
+  padding:.6rem .7rem .6rem .6rem;
+}
+.player[hidden]{display:none}
+.player .pp{
+  width:44px; height:44px; border-radius:50%; border:0; background:var(--yellow); color:#17181B;
+  font-size:1rem; display:grid; place-items:center; cursor:pointer;
+}
+.player .what{min-width:0; display:flex; flex-direction:column; gap:.1rem}
+.player .what b{font-family:var(--display); font-weight:600; font-size:.98rem; line-height:1.15;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.player .what span{font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; opacity:.7}
+.player .bar{grid-column:1 / -1; height:3px; background:rgba(255,255,255,.18); border-radius:2px; overflow:hidden}
+.player .bar i{display:block; height:100%; width:0; background:var(--yellow); transition:width .3s}
+.player .sp,.player .x{
+  border:0; background:none; color:var(--bone); cursor:pointer; font-weight:700; font-size:.8rem;
+  padding:.4rem .45rem; border-radius:6px; opacity:.85;
+}
+.player .sp:hover,.player .x:hover{background:rgba(255,255,255,.1); opacity:1}
+
+/* ---------------- visualizzazioni degli approfondimenti ----------------
+   Tutte nello stesso sistema: fondo carta, campiture piatte, i quattro
+   colori con il loro ruolo, condensato per i numeri grandi. */
+.vis{margin:0; background:var(--paper); border-radius:8px; padding:1rem 1rem .9rem;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.7rem; overflow:hidden}
+.vis-title{font-family:var(--display); font-weight:700; font-size:1.12rem; line-height:1.15; text-transform:uppercase; letter-spacing:.01em}
+.vis-cap{font-size:.86rem; line-height:1.5; color:var(--ink-2)}
+.vis-src{font-size:.6rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.vis-svg{width:100%; height:auto; display:block; overflow:visible}
+.vis-canvas{width:100%; display:block; border-radius:4px}
+.vis-canvas.tap{cursor:crosshair; touch-action:manipulation}
+.vis-controls{display:flex; align-items:center; gap:.8rem; flex-wrap:wrap}
+.vis-controls input[type=range]{flex:1 1 160px; accent-color:var(--orange); min-width:0}
+.vis-controls .lbl{display:flex; align-items:baseline; gap:.45rem; font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.vis .big{font-family:var(--display); font-weight:700; font-size:1.7rem; line-height:1; color:var(--ink); letter-spacing:0}
+.vis-btn{border:0; border-radius:999px; background:var(--ink); color:var(--bone); padding:.45rem 1rem;
+  font-family:var(--display); font-weight:700; font-size:.88rem; letter-spacing:.05em; text-transform:uppercase; cursor:pointer}
+.vis-toggle{display:inline-flex; align-self:flex-start; background:var(--paper-2); border-radius:999px; padding:3px}
+.vis-toggle button{border:0; background:none; border-radius:999px; padding:.38rem .9rem; cursor:pointer;
+  font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
+.vis-toggle button[aria-selected=true]{background:var(--ink); color:var(--bone)}
+.vis-legend{display:flex; gap:1rem; font-size:.7rem; color:var(--ink-3); align-items:center}
+.vis-legend span{display:inline-flex; gap:.35rem; align-items:center}
+.vis-legend .lg{width:11px; height:11px; border-radius:50%; display:block}
+.vis-legend .lg.ring{box-shadow:inset 0 0 0 2.5px var(--orange)}
+.vis-legend .lg.full{background:var(--blue)}
+
+/* stime */
+.vis-stime .grid{stroke:var(--rule); stroke-width:1}
+.vis-stime .ax{fill:var(--ink-3); font-size:15px; font-weight:600}
+.vis-stime .line{fill:none; stroke:var(--ink-3); stroke-width:2.5; stroke-dasharray:0}
+.vis-stime .tip{fill:var(--ink-2); font-size:17px; font-weight:700}
+.vis-stime .pt{cursor:pointer}
+.vis-stime .pt circle{fill:var(--paper); stroke:var(--orange); stroke-width:4}
+.vis-stime .pt.real circle{fill:var(--blue); stroke:none}
+.vis-stime .pt.sel circle{stroke:var(--ink); stroke-width:5}
+.vis-stime .val{fill:var(--ink); font-size:18px; font-weight:800}
+
+/* barre */
+.bars{display:flex; flex-direction:column; gap:.95rem}
+.bar-head{display:flex; justify-content:space-between; gap:.8rem; align-items:baseline}
+.bar-label{font-size:.9rem; color:var(--ink-2)}
+.bar-head b{font-family:var(--display); font-weight:700; font-size:1.2rem; white-space:nowrap}
+.bar-track{position:relative; height:14px; background:var(--paper-2); border-radius:3px; margin-top:.3rem; overflow:hidden}
+.bar-full,.bar-ext{position:absolute; top:0; bottom:0; left:0; width:0; transition:width 1.1s cubic-bezier(.2,.8,.2,1), left 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar-ext{border:2px dashed; border-left:0; border-radius:0 3px 3px 0; box-sizing:border-box; opacity:.8}
+.bar-note{display:block; font-size:.72rem; color:var(--ink-3); margin-top:.25rem}
+
+/* resa */
+.vis-resa .counts{font-size:.72rem; font-weight:600; letter-spacing:.06em; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.vis-resa .need{font-size:.98rem; line-height:1.45}
+.vis-resa .need b{font-family:var(--display); font-size:1.3rem; color:var(--red)}
+
+/* piega: il Duo in 3D */
+.duo-stage{height:250px; perspective:1100px; display:grid; place-items:center; cursor:grab; touch-action:none;
+  background:radial-gradient(circle at 50% 60%, var(--paper-2), transparent 70%)}
+.duo-stage:active{cursor:grabbing}
+.duo-rig{position:relative; width:220px; height:152px; transform-style:preserve-3d}
+.duo-half{position:absolute; top:0; width:110px; height:152px; transform-style:preserve-3d}
+.duo-l{left:0; transform:translateZ(-1px)}
+.duo-r{left:110px; transform-origin:0 50%}
+.duo-face{position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  background:var(--duo-frame, #E9E6E0); box-shadow:inset 0 0 0 3px rgba(0,0,0,.18)}
+.duo-l .duo-face{border-radius:14px 0 0 14px}
+.duo-r .duo-face{border-radius:0 14px 14px 0}
+.duo-in{padding:6px; background:#0d0e12}
+/* lo sfondo e' uno solo, largo il doppio: ogni meta' ne mostra la sua parte,
+   cosi' da aperto l'immagine continua da uno schermo all'altro */
+.duo-in::after{content:""; position:absolute; inset:5px; border-radius:inherit;
+  background:radial-gradient(circle at 18% 30%, var(--orange) 0 5%, transparent 5.5%),
+             radial-gradient(circle at 44% 64%, var(--blue) 0 7%, transparent 7.5%),
+             radial-gradient(circle at 62% 26%, var(--red) 0 4.5%, transparent 5%),
+             radial-gradient(circle at 80% 72%, var(--yellow) 0 6%, transparent 6.5%),
+             radial-gradient(circle at 30% 82%, var(--yellow) 0 3.5%, transparent 4%),
+             linear-gradient(160deg, #1d2130, #0f1116);
+  background-size:200% 100%}
+.duo-l .duo-in::after{border-radius:10px 0 0 10px; background-position:0 0}
+.duo-r .duo-in::after{border-radius:0 10px 10px 0; background-position:100% 0}
+.duo-back{transform:rotateY(180deg)}
+.duo-l .duo-back{border-radius:0 14px 14px 0}
+.duo-r .duo-back{border-radius:14px 0 0 14px}
+.duo-outer{padding:8px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:2px;
+  background:#101216; color:#fff}
+.duo-outer .duo-clock{font-family:var(--display); font-weight:700; font-size:34px; line-height:1}
+.duo-outer .duo-date{font-size:8px; letter-spacing:.08em; text-transform:uppercase; opacity:.75}
+.duo-cam{position:absolute; top:10px; right:10px; width:34px; height:34px; border-radius:9px; background:rgba(0,0,0,.14);
+  display:grid; grid-template-columns:1fr 1fr; gap:3px; padding:5px}
+.duo-cam i{width:11px; height:11px; border-radius:50%; background:#1b1d22; box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+.duo-state{font-family:var(--display); font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:.03em; text-align:center}
+.duo-colors{display:flex; align-items:center; gap:.6rem}
+.duo-swatches{display:flex; gap:.45rem}
+.duo-swatches .sw{width:26px; height:26px; border-radius:50%; border:0; cursor:pointer; box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.25)}
+.duo-swatches .sw.on{box-shadow:0 0 0 2px var(--paper), 0 0 0 4px var(--ink)}
+.duo-colors .sw-name{font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+
+/* anno */
+.vis-anno .anno{max-width:360px; margin:0 auto}
+.vis-anno .ring{fill:none; stroke:var(--rule-strong); stroke-width:10}
+.vis-anno .band{fill:none; stroke:var(--yellow); stroke-width:10; transition:opacity .6s}
+.vis-anno .tick{stroke:var(--paper); stroke-width:2}
+.vis-anno .mo{fill:var(--ink-3); font-size:13px; font-weight:700}
+.vis-anno .ev{cursor:pointer}
+.vis-anno .ev circle{fill:var(--blue); stroke:var(--paper); stroke-width:3; transition:r .2s}
+.vis-anno .ev.sel circle{fill:var(--orange)}
+.vis-anno .big{font-family:var(--display); font-size:64px; font-weight:700; fill:var(--ink)}
+.vis-anno .small{font-size:12px; font-weight:700; letter-spacing:.08em; fill:var(--ink-3); text-transform:uppercase}
+.anno-detail{text-align:center; font-size:.92rem; min-height:1.4em; color:var(--ink-2)}
+
+/* raggio */
+.raggio-count{font-family:var(--display); font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:.02em}
+
+/* flusso */
+.vis-flusso .road{fill:none; stroke:var(--rule-strong); stroke-width:10; stroke-linecap:round}
+.vis-flusso .node{stroke:var(--paper); stroke-width:4}
+.vis-flusso .node.you{fill:var(--ink)}
+.vis-flusso .node.shop{fill:var(--ink)}
+.vis-flusso .node.sink{fill:var(--blue); transition:fill .4s}
+.vis-flusso .mid{fill:var(--blue); transition:fill .4s}
+.vis-flusso .nlabel{fill:var(--bone); font-size:19px; font-weight:800; pointer-events:none}
+.vis-flusso .nlabel.out{fill:var(--ink); font-size:21px}
+.vis-flusso .coin{fill:var(--yellow); stroke:#17181B; stroke-width:1.5}
+.vis-flusso.agent .mid{fill:var(--red)}
+.vis-flusso.agent .node.sink{fill:var(--red)}
+.flusso-note{font-size:.95rem; line-height:1.5; min-height:3em}
+
+@media (max-width:600px){
+  .vis-flusso .nlabel{font-size:23px}
+  .vis-flusso .nlabel.out{font-size:25px}
+  .vis-stime .ax{font-size:20px} .vis-stime .val{font-size:22px} .vis-stime .tip{font-size:22px}
+}
+
+/* esploso */
+.xp-scene{height:280px; perspective:1000px; display:grid; place-items:center; overflow:visible}
+.xp-stack{position:relative; width:200px; height:146px; transform-style:preserve-3d;
+  transform:rotateX(58deg) rotateZ(-38deg); transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.xp-plate{position:absolute; inset:0; border:0; padding:0; background:none; cursor:pointer; transform-style:preserve-3d;
+  transform:translateZ(calc(var(--i) * 6px)); transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.vis-esploso.open .xp-plate{transform:translateZ(calc(var(--i) * 46px))}
+.vis-esploso.open .xp-stack{transform:rotateX(62deg) rotateZ(-38deg) translateZ(-60px)}
+.xp-face{position:absolute; inset:0; border-radius:18px; background:var(--c); opacity:.92;
+  box-shadow:0 0 0 2px var(--paper) inset, 0 10px 24px -12px rgba(0,0,0,.6)}
+.xp-plate.warn .xp-face{background:repeating-linear-gradient(45deg, var(--c) 0 10px, color-mix(in srgb, var(--c) 70%, #fff) 10px 20px)}
+.xp-plate.sel .xp-face{box-shadow:0 0 0 4px var(--yellow) inset, 0 10px 24px -12px rgba(0,0,0,.6)}
+.xp-tag{position:absolute; left:100%; top:50%; margin-left:26px; white-space:nowrap;
+  transform:rotateZ(38deg) rotateX(-58deg); transform-origin:0 0;
+  font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink);
+  background:var(--paper); padding:2px 6px; border-radius:3px; opacity:0; transition:opacity .4s .3s}
+.vis-esploso.open .xp-tag{opacity:1}
+.xp-info{background:var(--bone); border-radius:6px; padding:.7rem .85rem; display:flex; flex-direction:column; gap:.25rem; min-height:4.2em}
+.xp-info b{font-family:var(--display); font-weight:700; font-size:1.05rem; text-transform:uppercase}
+.xp-info span{font-size:.9rem; line-height:1.45; color:var(--ink-2)}
+@media (max-width:600px){
+  /* sul telefono la pila va a sinistra, cosi' le etichette hanno spazio */
+  .xp-scene{height:250px; justify-items:start; padding-left:4%}
+  .xp-stack{width:132px; height:96px}
+  .vis-esploso.open .xp-plate{transform:translateZ(calc(var(--i) * 38px))}
+  .xp-tag{font-size:9.5px; margin-left:18px; letter-spacing:.05em}
+}
+
 footer.colophon{
   max-width:1240px; margin:0 auto; padding:1.8rem var(--gutter) 3.5rem;
   border-top:1.5px solid var(--ink); color:var(--ink-3);
@@ -1855,44 +2123,856 @@ function verificaText(v){
 }
 
 /* ================= notizia ================= */
+/* ================= approfondimento =================
+   Il pezzo lungo che la corsa del mattino scrive per le prime cinque notizie.
+   La parte di testo e' dati (punto, sotto, tappe, fonti, dopo, approfondire).
+   Le visualizzazioni invece sono codice, e stanno *qui*: l'edizione dice solo
+   quale usare e con quali numeri ("visivi": [{"tipo": "resa", ...}]). Cosi'
+   dal database non arriva mai codice da eseguire, e ogni visualizzazione
+   costruita una volta resta nel kit per tutte le mattine dopo. */
+
+const STILL = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+function cssv(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function tone(c){ return cssv("--" + (c || "blue")) || c; }
+const SVGNS = "http://www.w3.org/2000/svg";
+function sv(tag, attrs, kids){
+  const n = document.createElementNS(SVGNS, tag);
+  for(const k in (attrs || {})){ if(attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]); }
+  (kids || []).forEach(function(c){ if(c) n.appendChild(c); });
+  return n;
+}
+function svText(x, y, txt, attrs){ const t = sv("text", Object.assign({x:x, y:y}, attrs || {})); t.textContent = txt; return t; }
+
+/* "2025-04" -> "apr 2025", "2026-09-30" -> "30 set 2026" */
+function fmtDeepDate(d){
+  d = String(d || "");
+  if(/^\d{4}-\d{2}$/.test(d)) return MESI[+d.slice(5,7) - 1].slice(0,3) + " " + d.slice(0,4);
+  return fmtShort(d);
+}
+function spokenDate(d){
+  d = String(d || "");
+  if(/^\d{4}-\d{2}$/.test(d)) return MESI[+d.slice(5,7) - 1] + " " + d.slice(0,4);
+  const x = new Date(d.slice(0,10) + "T12:00:00");
+  return isNaN(x) ? d : x.getDate() + " " + MESI[x.getMonth()];
+}
+function daysUntil(d, ref){
+  const a = new Date(String(d).slice(0,10) + "T12:00:00"), b = new Date(String(ref).slice(0,10) + "T12:00:00");
+  return (isNaN(a) || isNaN(b)) ? null : Math.round((a - b) / 86400000);
+}
+
+/* Parte quando la visualizzazione entra nello schermo, una volta sola: le
+   animazioni viste a pannello chiuso sarebbero sprecate. */
+function whenSeen(node, fn){
+  if(!("IntersectionObserver" in window)){ setTimeout(fn, 60); return; }
+  const io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); fn(); } });
+  }, {threshold:.35});
+  io.observe(node);
+}
+
+/* Un canvas nitido sugli schermi densi, che segue la larghezza del contenitore */
+function crispCanvas(canvas, ratio){
+  const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  const w = canvas.clientWidth || canvas.parentNode.clientWidth || 320;
+  const h = Math.round(w * ratio);
+  canvas.style.height = h + "px";
+  canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return {ctx:ctx, w:w, h:h};
+}
+
+function visFrame(v, kind){
+  const box = el("figure", {class:"vis vis-" + kind});
+  if(v.titolo) box.appendChild(el("figcaption", {class:"vis-title", text:v.titolo}));
+  return box;
+}
+function visCaption(box, v){
+  if(v.didascalia) box.appendChild(el("p", {class:"vis-cap", text:v.didascalia}));
+  if(v.fonte) box.appendChild(el("p", {class:"vis-src", text:"Fonte: " + v.fonte}));
+}
+function toggleRow(options, onPick){
+  const row = el("div", {class:"vis-toggle", role:"tablist"});
+  options.forEach(function(o, i){
+    const b = el("button", {type:"button", role:"tab", "aria-selected":i === 0 ? "true" : "false", text:o[1]});
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(row.children, function(x){ x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+      onPick(o[0]);
+    });
+    row.appendChild(b);
+  });
+  return row;
+}
+
+/* ---------- stime: i numeri che si muovono, disegnati ----------
+   Le stime come anelli, il dato vero come pallino pieno: si vede a colpo
+   d'occhio chi ci aveva preso. Legge dai numeri dell'archivio (chiave) o
+   dai punti scritti nell'edizione. */
+function visStime(v){
+  const box = visFrame(v, "stime");
+  let pts = v.punti;
+  let unit = v.unita || "";
+  if(!pts && v.chiave && FACTS[v.chiave]){
+    pts = FACTS[v.chiave].map(function(r){ return {data:r.date, valore:r.value, fonte:r.source, tipo:r.kind}; });
+    unit = unit || (FACTS[v.chiave][0] || {}).unit || "";
+  }
+  pts = (pts || []).filter(function(p){ return typeof p.valore === "number"; });
+  if(pts.length < 2){ return null; }
+  const W = 640, H = 300, L = 70, R = 28, T = 34, B = 46;
+  const ts = pts.map(function(p){ return new Date(p.data + "T12:00:00").getTime(); });
+  let t0 = Math.min.apply(null, ts), t1 = Math.max.apply(null, ts);
+  if(t0 === t1){ t0 -= 864e5; t1 += 864e5; }
+  const span = t1 - t0; t0 -= span * .05; t1 += span * .05;
+  const vs = pts.map(function(p){ return p.valore; });
+  let v0 = Math.min.apply(null, vs), v1 = Math.max.apply(null, vs);
+  const m = (v1 - v0) || Math.abs(v1) * .1 || 1; v0 -= m * .35; v1 += m * .35;
+  const X = function(t){ return L + (t - t0) / (t1 - t0) * (W - L - R); };
+  const Y = function(x){ return T + (1 - (x - v0) / (v1 - v0)) * (H - T - B); };
+  const svg = sv("svg", {viewBox:"0 0 " + W + " " + H, class:"vis-svg", role:"img", "aria-label":v.titolo || "serie di stime"});
+  /* tacche su cifre tonde: 2.000, 2.050, 2.100 — non 2.077 */
+  const raw = (v1 - v0) / 3, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(function(k){ return k * mag; }).filter(function(k){ return k >= raw; })[0] || raw;
+  for(let val = Math.ceil(v0 / step) * step; val <= v1; val += step){
+    const y = Y(val);
+    svg.appendChild(sv("line", {x1:L, x2:W - R, y1:y, y2:y, class:"grid"}));
+    svg.appendChild(svText(L - 10, y + 4, fmtVal(Math.round(val * 100) / 100, unit), {class:"ax", "text-anchor":"end"}));
+  }
+  let d = "";
+  pts.forEach(function(p, i){ d += (i ? " L" : "M") + X(ts[i]).toFixed(1) + " " + Y(p.valore).toFixed(1); });
+  const path = sv("path", {d:d, class:"line"});
+  svg.appendChild(path);
+  const tip = svText(L, 18, "Tocca un punto per vedere chi l'ha detto", {class:"tip"});
+  svg.appendChild(tip);
+  const dots = [];
+  pts.forEach(function(p, i){
+    const real = p.tipo === "dato";
+    const g = sv("g", {class:"pt" + (real ? " real" : ""), tabindex:"0", style:"opacity:0"});
+    g.appendChild(sv("circle", {cx:X(ts[i]), cy:Y(p.valore), r:real ? 11 : 8}));
+    g.appendChild(svText(X(ts[i]), Y(p.valore) - 17, fmtVal(p.valore, unit), {class:"val", "text-anchor":"middle"}));
+    g.appendChild(svText(X(ts[i]), H - B + 22, fmtShort(p.data).replace(/ \d{4}$/, ""), {class:"ax", "text-anchor":"middle"}));
+    const show = function(){
+      dots.forEach(function(x){ x.classList.remove("sel"); });
+      g.classList.add("sel");
+      tip.textContent = (real ? "DATO · " : "STIMA · ") + fmtShort(p.data) + " · " + (p.fonte || "");
+    };
+    g.addEventListener("click", show);
+    g.addEventListener("keydown", function(e){ if(e.key === "Enter") show(); });
+    dots.push(g); svg.appendChild(g);
+  });
+  box.appendChild(svg);
+  box.appendChild(el("div", {class:"vis-legend"}, [
+    el("span", {}, [el("i", {class:"lg ring"}), el("span", {text:"stima"})]),
+    el("span", {}, [el("i", {class:"lg full"}), el("span", {text:"dato ufficiale"})])
+  ]));
+  visCaption(box, v);
+  whenSeen(box, function(){
+    const len = path.getTotalLength ? path.getTotalLength() : 1000;
+    path.style.strokeDasharray = len; path.style.strokeDashoffset = STILL ? 0 : len;
+    requestAnimationFrame(function(){ path.style.transition = "stroke-dashoffset 1.6s ease"; path.style.strokeDashoffset = 0; });
+    dots.forEach(function(g, i){ setTimeout(function(){ g.style.transition = "opacity .4s"; g.style.opacity = 1; }, STILL ? 0 : 250 + i * 320); });
+  });
+  return box;
+}
+
+/* ---------- barre: le grandezze a confronto ----------
+   Forchette vere (min-max), non numeri tondi: la parte piena e' il minimo,
+   quella tratteggiata arriva al massimo. */
+function visBarre(v){
+  const box = visFrame(v, "barre");
+  const voci = v.voci || [];
+  const top = Math.max.apply(null, voci.map(function(x){ return x.max || x.min || 0; })) || 1;
+  const list = el("div", {class:"bars"});
+  const fills = [];
+  voci.forEach(function(x){
+    const lo = x.min || 0, hi = x.max || lo;
+    const bar = el("div", {class:"bar-track"});
+    const full = el("i", {class:"bar-full"}); full.style.background = tone(x.colore);
+    const ext = el("i", {class:"bar-ext"}); ext.style.borderColor = tone(x.colore);
+    bar.appendChild(full); bar.appendChild(ext);
+    fills.push([full, ext, lo / top * 100, (hi - lo) / top * 100]);
+    list.appendChild(el("div", {class:"bar-row"}, [
+      el("div", {class:"bar-head"}, [
+        el("span", {class:"bar-label", text:x.etichetta}),
+        el("b", {text:(hi > lo ? fmtNum(lo) + "–" + fmtNum(hi) : fmtNum(lo)) + (v.unita ? " " + v.unita : "")})
+      ]),
+      bar,
+      x.nota ? el("span", {class:"bar-note", text:x.nota}) : null
+    ]));
+  });
+  box.appendChild(list);
+  visCaption(box, v);
+  whenSeen(box, function(){
+    fills.forEach(function(f, i){
+      setTimeout(function(){
+        f[0].style.width = f[2] + "%";
+        f[1].style.left = f[2] + "%"; f[1].style.width = f[3] + "%";
+      }, STILL ? 0 : 120 + i * 260);
+    });
+  });
+  return box;
+}
+function fmtNum(x){
+  const neg = x < 0, parts = String(Math.round(Math.abs(x) * 100) / 100).split(".");
+  return (neg ? "-" : "") + parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".") + (parts[1] ? "," + parts[1] : "");
+}
+
+/* ---------- resa: la linea di montaggio ----------
+   I telefoni escono dal nastro, passano il controllo o finiscono nel cesto.
+   Il cursore cambia la resa, e il conto in basso dice quanti ne vanno montati
+   per arrivare all'obiettivo. Aritmetica, niente di inventato. */
+function visResa(v){
+  const box = visFrame(v, "resa");
+  const canvas = el("canvas", {class:"vis-canvas", "aria-hidden":"true"});
+  box.appendChild(canvas);
+  let resa = Math.max(.05, Math.min(.99, v.resa || .6));
+  const slider = el("input", {type:"range", min:"30", max:"99", value:String(Math.round(resa * 100)), "aria-label":"resa di assemblaggio"});
+  const pct = el("b", {class:"big", text:Math.round(resa * 100) + "%"});
+  const counts = el("span", {class:"counts"});
+  const need = el("p", {class:"need"});
+  box.appendChild(el("div", {class:"vis-controls"}, [
+    el("label", {class:"lbl"}, [el("span", {text:"Resa"}), pct]), slider
+  ]));
+  box.appendChild(counts);
+  box.appendChild(need);
+  const goal = v.obiettivo || 0;
+  let made = 0, good = 0, bad = 0;
+  function readout(){
+    pct.textContent = Math.round(resa * 100) + "%";
+    counts.textContent = "Montati " + made + " · passano " + good + " · scartati " + bad;
+    if(goal){
+      const n = goal / resa;
+      need.innerHTML = "";
+      need.appendChild(el("span", {text:"Per " + (v.etichetta_obiettivo || fmtNum(goal) + " buoni") + " ne vanno montati "}));
+      need.appendChild(el("b", {text:(n >= 1e6 ? fmtNum(Math.round(n / 1e5) / 10) + " milioni" : fmtNum(Math.round(n)))}));
+      need.appendChild(el("span", {text:" — su 100 che escono dalla linea, " + Math.round(resa * 100) + " passano il controllo."}));
+    }
+  }
+  slider.addEventListener("input", function(){ resa = +slider.value / 100; made = good = bad = 0; readout(); });
+  readout();
+  visCaption(box, v);
+
+  whenSeen(box, function(){
+    let geo = crispCanvas(canvas, .36);
+    window.addEventListener("resize", function(){ geo = crispCanvas(canvas, .36); });
+    const items = [];
+    let last = 0;
+    const blue = tone("blue"), red = tone("red"), ink = cssv("--ink"), rule = cssv("--rule-strong"), paper = cssv("--paper-2");
+    function phone(ctx, x, y, col, mark){
+      ctx.fillStyle = col;
+      const w = 18, h = 24, r = 4;
+      ctx.beginPath();
+      ctx.moveTo(x - w/2 + r, y - h/2); ctx.arcTo(x + w/2, y - h/2, x + w/2, y + h/2, r);
+      ctx.arcTo(x + w/2, y + h/2, x - w/2, y + h/2, r); ctx.arcTo(x - w/2, y + h/2, x - w/2, y - h/2, r);
+      ctx.arcTo(x - w/2, y - h/2, x + w/2, y - h/2, r); ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,.55)"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, y - h/2 + 3); ctx.lineTo(x, y + h/2 - 3); ctx.stroke();
+      if(mark){ ctx.fillStyle = "#fff"; ctx.font = "700 11px system-ui"; ctx.textAlign = "center"; ctx.fillText(mark, x, y + 4); }
+    }
+    function frame(now){
+      const ctx = geo.ctx, w = geo.w, h = geo.h;
+      const beltY = h * .42, gate = w * .56;
+      ctx.clearRect(0, 0, w, h);
+      /* nastro */
+      ctx.fillStyle = paper; ctx.fillRect(0, beltY + 14, w, 8);
+      ctx.fillStyle = rule;
+      for(let x = ((now / 18) % 22); x < w; x += 22){ ctx.beginPath(); ctx.arc(x, beltY + 18, 2.2, 0, 7); ctx.fill(); }
+      /* controllo qualita' */
+      ctx.fillStyle = ink; ctx.fillRect(gate - 2, beltY - 30, 4, 44);
+      ctx.fillRect(gate - 16, beltY - 34, 32, 6);
+      ctx.font = "700 9px system-ui"; ctx.textAlign = "center"; ctx.fillText("CONTROLLO", gate, beltY - 40);
+      /* cesto degli scarti */
+      ctx.strokeStyle = red; ctx.lineWidth = 2;
+      ctx.strokeRect(gate + 30, h - 34, 64, 26);
+      ctx.fillStyle = red; ctx.font = "700 9px system-ui"; ctx.fillText("SCARTI", gate + 62, h - 40);
+      if(now - last > (STILL ? 1e9 : 520)){ items.push({x:-14, y:beltY, st:0}); last = now; made++; readout(); }
+      for(let i = items.length - 1; i >= 0; i--){
+        const it = items[i];
+        if(it.st === 0){ it.x += 1.6; if(it.x >= gate){ it.st = Math.random() < resa ? 1 : 2; if(it.st === 1) good++; else bad++; readout(); } }
+        else if(it.st === 1){ it.x += 1.6; }
+        else { it.x += .9; it.y += 2.2; if(it.y > h - 22){ it.y = h - 22; it.x = Math.min(it.x, gate + 86); it.st = 3; it.t = now; } }
+        const col = it.st === 0 ? ink : (it.st === 1 ? blue : red);
+        phone(ctx, it.x, it.y, col, it.st === 1 ? "✓" : (it.st >= 2 ? "✕" : ""));
+        if(it.x > w + 20 || (it.st === 3 && now - it.t > 1600)) items.splice(i, 1);
+      }
+      if(!STILL) requestAnimationFrame(frame);
+    }
+    if(STILL){ /* senza movimento: dieci telefoni fermi, colorati secondo la resa */
+      const ctx = geo.ctx; for(let i = 0; i < 10; i++){ phone(ctx, 24 + i * 28, geo.h * .45, i < Math.round(resa * 10) ? tone("blue") : tone("red")); }
+    } else requestAnimationFrame(frame);
+  });
+  return box;
+}
+
+/* ---------- piega: il Duo in 3D ----------
+   Due meta' unite da una cerniera, disegnate con le trasformazioni 3D della
+   pagina: niente librerie, niente modelli da scaricare. Trascina per girarlo,
+   il cursore apre e chiude. Le proporzioni sono quelle dichiarate (7,6"
+   aperto, 5,4" chiuso), i colori indicativi. */
+function visPiega(v){
+  const box = visFrame(v, "piega");
+  const rig = el("div", {class:"duo-rig"});
+  const left = el("div", {class:"duo-half duo-l"}, [
+    el("div", {class:"duo-face duo-in"}),
+    el("div", {class:"duo-face duo-back"}, [el("div", {class:"duo-cam"}, [el("i"), el("i")])])
+  ]);
+  const right = el("div", {class:"duo-half duo-r"}, [
+    el("div", {class:"duo-face duo-in"}),
+    el("div", {class:"duo-face duo-back duo-outer"}, [
+      el("div", {class:"duo-clock", text:"9:41"}),
+      el("div", {class:"duo-date", text:"venerdì 23 ottobre"})
+    ])
+  ]);
+  rig.appendChild(left); rig.appendChild(right);
+  const stage = el("div", {class:"duo-stage"}, [rig]);
+  box.appendChild(stage);
+  const state = el("p", {class:"duo-state"});
+  const slider = el("input", {type:"range", min:"0", max:"180", value:"180", "aria-label":"apertura della cerniera"});
+  const btn = el("button", {type:"button", class:"vis-btn", text:"Chiudi"});
+  const sw = el("div", {class:"duo-swatches"});
+  (v.colori || []).forEach(function(c, i){
+    const b = el("button", {type:"button", class:"sw" + (i === 0 ? " on" : ""), title:c.nome, "aria-label":c.nome});
+    b.style.background = c.hex;
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(sw.children, function(x){ x.classList.toggle("on", x === b); });
+      box.style.setProperty("--duo-frame", c.hex); swName.textContent = c.nome;
+    });
+    sw.appendChild(b);
+  });
+  const swName = el("span", {class:"sw-name", text:(v.colori && v.colori[0]) ? v.colori[0].nome : ""});
+  if(v.colori && v.colori[0]) box.style.setProperty("--duo-frame", v.colori[0].hex);
+  box.appendChild(state);
+  box.appendChild(el("div", {class:"vis-controls"}, [btn, slider]));
+  if(v.colori && v.colori.length) box.appendChild(el("div", {class:"duo-colors"}, [sw, swName]));
+  visCaption(box, v);
+
+  let open = 180, target = 180, ry = -28, rx = 20, drag = null, auto = !STILL, t0 = performance.now();
+  function paint(){
+    right.style.transform = "rotateY(" + (-(180 - open)) + "deg)";
+    rig.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+    slider.value = String(Math.round(open));
+    state.textContent = open < 12 ? "Chiuso · schermo esterno da " + (v.esterno || "5,4″")
+      : (open > 168 ? "Aperto · schermo interno da " + (v.interno || "7,6″") : "Cerniera a " + Math.round(open) + "°");
+    btn.textContent = open > 90 ? "Chiudi" : "Apri";
+  }
+  function tick(now){
+    if(Math.abs(target - open) > .5){ open += (target - open) * .12; }
+    else open = target;
+    if(auto && !drag) ry = -24 + Math.sin((now - t0) / 2600) * 34;
+    paint();
+    requestAnimationFrame(tick);
+  }
+  slider.addEventListener("input", function(){ target = open = +slider.value; auto = false; paint(); });
+  btn.addEventListener("click", function(){ target = open > 90 ? 0 : 180; auto = false; });
+  stage.addEventListener("pointerdown", function(e){ drag = {x:e.clientX, y:e.clientY, ry:ry, rx:rx}; auto = false; stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener("pointermove", function(e){
+    if(!drag) return;
+    ry = drag.ry + (e.clientX - drag.x) * .5;
+    rx = Math.max(-30, Math.min(55, drag.rx - (e.clientY - drag.y) * .35));
+  });
+  stage.addEventListener("pointerup", function(){ drag = null; });
+  stage.addEventListener("pointercancel", function(){ drag = null; });
+  paint();
+  whenSeen(box, function(){
+    if(STILL){ paint(); return; }
+    /* una piccola dimostrazione: si chiude e si riapre da solo, poi e' tuo */
+    target = 0; setTimeout(function(){ target = 180; }, 1700);
+    requestAnimationFrame(tick);
+  });
+  return box;
+}
+
+/* ---------- anno: quando lancia Apple ----------
+   L'anno come un quadrante. I lanci veri cadono a grappoli su due stagioni;
+   l'interruttore mostra l'obiettivo — lanci lungo tutto l'anno — che e' una
+   direzione dichiarata, non un calendario: per questo e' una fascia, non
+   dei punti inventati. */
+function visAnno(v){
+  const box = visFrame(v, "anno");
+  const S = 360, C = S / 2, R = 128;
+  const svg = sv("svg", {viewBox:"0 0 " + S + " " + S, class:"vis-svg anno", role:"img", "aria-label":v.titolo || "l'anno dei lanci"});
+  const ang = function(doy){ return (doy / 365) * Math.PI * 2 - Math.PI / 2; };
+  const pt = function(doy, r){ const a = ang(doy); return [C + Math.cos(a) * r, C + Math.sin(a) * r]; };
+  svg.appendChild(sv("circle", {cx:C, cy:C, r:R, class:"ring"}));
+  const band = sv("circle", {cx:C, cy:C, r:R, class:"band", style:"opacity:0"});
+  svg.appendChild(band);
+  "GFMAMGLASOND".split("").forEach(function(ch, i){
+    const doy = i * 30.4 + 15;
+    const p = pt(doy, R + 24);
+    svg.appendChild(svText(p[0], p[1] + 4, ch, {class:"mo", "text-anchor":"middle"}));
+    const a = pt(i * 30.4, R - 6), b = pt(i * 30.4, R + 6);
+    svg.appendChild(sv("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1], class:"tick"}));
+  });
+  const evs = (v.eventi || []).map(function(e){
+    const d = new Date(e.data + "T12:00:00");
+    const start = new Date(d.getFullYear(), 0, 1);
+    return {e:e, doy:Math.round((d - start) / 86400000)};
+  });
+  const big = svText(C, C - 4, String(evs.length), {class:"big", "text-anchor":"middle"});
+  const small = svText(C, C + 22, v.centro || "giornate di lancio", {class:"small", "text-anchor":"middle"});
+  svg.appendChild(big); svg.appendChild(small);
+  const dots = [];
+  const detail = el("p", {class:"anno-detail", text:"Tocca un pallino"});
+  evs.forEach(function(x, i){
+    const p = pt(x.doy, R);
+    const g = sv("g", {class:"ev", tabindex:"0", style:"opacity:0"});
+    g.appendChild(sv("circle", {cx:p[0], cy:p[1], r:9}));
+    const show = function(){ dots.forEach(function(d){ d.classList.remove("sel"); }); g.classList.add("sel");
+      detail.textContent = fmtShort(x.e.data) + " — " + x.e.etichetta; };
+    g.addEventListener("click", show); g.addEventListener("keydown", function(e){ if(e.key === "Enter") show(); });
+    dots.push(g); svg.appendChild(g);
+  });
+  box.appendChild(svg);
+  box.appendChild(detail);
+  box.appendChild(toggleRow([["oggi", v.etichetta_oggi || "Com'è oggi"], ["obiettivo", v.etichetta_obiettivo || "L'obiettivo"]], function(mode){
+    const goal = mode === "obiettivo";
+    band.style.opacity = goal ? 1 : 0;
+    dots.forEach(function(d){ d.style.opacity = goal ? .3 : 1; });
+    big.textContent = goal ? "12" : String(evs.length);
+    small.textContent = goal ? (v.centro_obiettivo || "mesi utili per lanciare") : (v.centro || "giornate di lancio");
+    detail.textContent = goal ? (v.obiettivo || "") : "Tocca un pallino";
+  }));
+  visCaption(box, v);
+  whenSeen(box, function(){
+    dots.forEach(function(g, i){ setTimeout(function(){ g.style.transition = "opacity .35s"; g.style.opacity = 1; }, STILL ? 0 : 200 + i * 260); });
+  });
+  return box;
+}
+
+/* ---------- raggio: chi viene avvisato ----------
+   Una citta' di puntini. Tocchi un punto, parte la segnalazione, e il
+   cerchio del raggio dichiarato accende chi ci sta dentro. Serve a capire
+   il meccanismo di cui si parla, non a mappare niente di reale. */
+function visRaggio(v){
+  const box = visFrame(v, "raggio");
+  const canvas = el("canvas", {class:"vis-canvas tap", "aria-label":"tocca per simulare una segnalazione", role:"img"});
+  const counter = el("p", {class:"raggio-count", text:"Tocca la mappa per simulare una segnalazione"});
+  box.appendChild(canvas); box.appendChild(counter);
+  visCaption(box, v);
+  const WORLD = v.lato_km || 40, RK = v.raggio_km || 8;
+  let geo = null, people = [], pings = [];
+  function seed(){
+    people = [];
+    let s = 7;
+    const rnd = function(){ s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const hubs = [[.3,.4],[.62,.55],[.5,.25],[.78,.3],[.22,.75]];
+    for(let i = 0; i < 900; i++){
+      const hb = hubs[i % hubs.length], r = Math.pow(rnd(), .7) * .22, a = rnd() * 7;
+      people.push({x:Math.min(.98, Math.max(.02, hb[0] + Math.cos(a) * r * 1.2)), y:Math.min(.97, Math.max(.03, hb[1] + Math.sin(a) * r)), lit:0});
+    }
+  }
+  function draw(now){
+    const ctx = geo.ctx, w = geo.w, h = geo.h, kmPx = w / WORLD;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = cssv("--rule"); ctx.lineWidth = 1;
+    for(let x = 0; x < w; x += kmPx * 4){ ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for(let y = 0; y < h; y += kmPx * 4){ ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    const orange = tone("orange"), ink = cssv("--ink-3"), red = tone("red");
+    pings.forEach(function(p){
+      const k = STILL ? 1 : Math.min(1, (now - p.t) / 900);
+      const r = RK * kmPx * (1 - Math.pow(1 - k, 3));
+      ctx.fillStyle = orange + "22"; ctx.strokeStyle = orange; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(p.x * w, p.y * h, r, 0, 7); ctx.fill(); ctx.stroke();
+      p.r = r;
+    });
+    let lit = 0;
+    people.forEach(function(q){
+      const px = q.x * w, py = q.y * h;
+      const inside = pings.some(function(p){ return Math.hypot(px - p.x * w, py - p.y * h) <= (p.r || 0); });
+      if(inside) lit++;
+      ctx.fillStyle = inside ? orange : ink;
+      ctx.beginPath(); ctx.arc(px, py, inside ? 2.6 : 1.8, 0, 7); ctx.fill();
+    });
+    pings.forEach(function(p){
+      ctx.fillStyle = red; ctx.beginPath(); ctx.arc(p.x * w, p.y * h, 6, 0, 7); ctx.fill();
+      ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(p.x * w, p.y * h, 2.2, 0, 7); ctx.fill();
+    });
+    /* scala */
+    ctx.fillStyle = cssv("--ink"); ctx.fillRect(12, h - 16, RK * kmPx, 3);
+    ctx.font = "700 10px system-ui"; ctx.textAlign = "left";
+    ctx.fillText((v.etichetta_raggio || RK + " km"), 12, h - 22);
+    if(pings.length) counter.textContent = "Avvisati " + lit + " puntini su " + people.length + (pings.length > 1 ? " · " + pings.length + " segnalazioni" : "");
+    if(!STILL) requestAnimationFrame(draw);
+  }
+  canvas.addEventListener("click", function(e){
+    const r = canvas.getBoundingClientRect();
+    pings.push({x:(e.clientX - r.left) / r.width, y:(e.clientY - r.top) / r.height, t:performance.now()});
+    if(pings.length > 3) pings.shift();
+    if(STILL) draw(performance.now());
+  });
+  whenSeen(box, function(){
+    seed(); geo = crispCanvas(canvas, .62);
+    window.addEventListener("resize", function(){ geo = crispCanvas(canvas, .62); });
+    pings.push({x:.44, y:.46, t:performance.now() + 400});
+    requestAnimationFrame(draw);
+  });
+  return box;
+}
+
+/* ---------- flusso: dove passano i soldi ----------
+   Due strade dallo stesso punto di partenza allo stesso negozio. Nel mezzo,
+   o c'e' l'ecosistema che incassa sul passaggio, o c'e' un agente. */
+function visFlusso(v){
+  const box = visFrame(v, "flusso");
+  const W = 640, H = 262, Y0 = 84;
+  const svg = sv("svg", {viewBox:"0 0 " + W + " " + H, class:"vis-svg flusso", role:"img", "aria-label":v.titolo || "flusso"});
+  const main = sv("path", {d:"M 70 " + Y0 + " C 200 " + Y0 + ", 200 " + Y0 + ", 320 " + Y0 + " S 440 " + Y0 + ", 570 " + Y0, class:"road"});
+  const branch = sv("path", {d:"M 320 " + Y0 + " C 326 140, 326 170, 320 206", class:"road branch"});
+  svg.appendChild(main); svg.appendChild(branch);
+  function node(x, y, r, cls){ return sv("circle", {cx:x, cy:y, r:r, class:"node " + cls}); }
+  /* le etichette stanno fuori dai cerchi: "Negozio" dentro un pallino non ci stava */
+  svg.appendChild(node(70, Y0, 24, "you")); svg.appendChild(svText(70, Y0 + 48, v.partenza || "Tu", {class:"nlabel out", "text-anchor":"middle"}));
+  const midBox = sv("rect", {x:196, y:Y0 - 30, width:248, height:60, rx:10, class:"mid"});
+  svg.appendChild(midBox);
+  const midTxt = svText(320, Y0 + 6, "", {class:"nlabel mid-t", "text-anchor":"middle"});
+  svg.appendChild(midTxt);
+  svg.appendChild(node(570, Y0, 24, "shop")); svg.appendChild(svText(570, Y0 + 48, v.arrivo || "Negozio", {class:"nlabel out", "text-anchor":"middle"}));
+  const sink = node(320, 214, 22, "sink");
+  svg.appendChild(sink);
+  const sinkTxt = svText(320, 256, "", {class:"nlabel out", "text-anchor":"middle"});
+  svg.appendChild(sinkTxt);
+  const coins = sv("g");
+  svg.appendChild(coins);
+  box.appendChild(svg);
+  const note = el("p", {class:"flusso-note"});
+  box.appendChild(note);
+  let mode = "oggi";
+  function apply(){
+    const m = v[mode] || {};
+    midTxt.textContent = m.centro || "";
+    sinkTxt.textContent = m.incassa || "";
+    note.textContent = m.nota || "";
+    box.classList.toggle("agent", mode === "agente");
+  }
+  box.appendChild(toggleRow([["oggi", (v.oggi || {}).etichetta || "Oggi"], ["agente", (v.agente || {}).etichetta || "Con un agente"]], function(m){ mode = m; apply(); }));
+  apply();
+  visCaption(box, v);
+  whenSeen(box, function(){
+    if(STILL) return;
+    const L1 = main.getTotalLength(), L2 = branch.getTotalLength();
+    const list = [];
+    let last = 0;
+    function step(now){
+      if(now - last > 380){
+        const c = sv("circle", {r:6, class:"coin"}); coins.appendChild(c);
+        list.push({c:c, s:0, br:Math.random() < .45, done:false}); last = now;
+      }
+      for(let i = list.length - 1; i >= 0; i--){
+        const k = list[i];
+        k.s += 3.2;
+        let p;
+        if(k.br && k.s > L1 / 2){
+          const s2 = k.s - L1 / 2;
+          if(s2 > L2){ k.c.remove(); list.splice(i, 1); continue; }
+          p = branch.getPointAtLength(s2);
+        } else {
+          if(k.s > L1){ k.c.remove(); list.splice(i, 1); continue; }
+          p = main.getPointAtLength(k.s);
+        }
+        k.c.setAttribute("cx", p.x); k.c.setAttribute("cy", p.y);
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+  return box;
+}
+
+/* ---------- onde: la cancellazione del rumore ----------
+   Nel kit per la prima notizia che la tocchera': il rumore, l'onda opposta
+   che le cuffie generano, e quello che resta. Il cursore sposta il ritardo
+   dell'antirumore: si vede perche' conta la velocita' del chip. */
+function visOnde(v){
+  const box = visFrame(v, "onde");
+  const canvas = el("canvas", {class:"vis-canvas", "aria-hidden":"true"});
+  box.appendChild(canvas);
+  const slider = el("input", {type:"range", min:"0", max:"100", value:"4", "aria-label":"ritardo dell'antirumore"});
+  const lab = el("b", {class:"big", text:""});
+  const on = el("button", {type:"button", class:"vis-btn", text:"Antirumore: acceso"});
+  let active = true, delay = .04;
+  box.appendChild(el("div", {class:"vis-controls"}, [on, el("label", {class:"lbl"}, [el("span", {text:"Ritardo"}), lab]), slider]));
+  visCaption(box, v);
+  on.addEventListener("click", function(){ active = !active; on.textContent = "Antirumore: " + (active ? "acceso" : "spento"); });
+  slider.addEventListener("input", function(){ delay = +slider.value / 100; });
+  whenSeen(box, function(){
+    let geo = crispCanvas(canvas, .5);
+    function noise(t, x){ return Math.sin(x * .045 + t * 2.1) * .55 + Math.sin(x * .11 - t * 3.3) * .3 + Math.sin(x * .023 + t) * .15; }
+    function frame(now){
+      const t = now / 1000, ctx = geo.ctx, w = geo.w, h = geo.h, rows = [h * .2, h * .5, h * .8], amp = h * .11;
+      ctx.clearRect(0, 0, w, h);
+      lab.textContent = Math.round(delay * 100) + "%";
+      const lines = [["rumore", tone("red"), function(x){ return noise(t, x); }],
+                     ["antirumore", tone("blue"), function(x){ return active ? -noise(t, x - delay * 60) : 0; }],
+                     ["quello che senti", cssv("--ink"), function(x){ return noise(t, x) + (active ? -noise(t, x - delay * 60) : 0); }]];
+      lines.forEach(function(L, i){
+        ctx.strokeStyle = L[1]; ctx.lineWidth = i === 2 ? 3 : 2; ctx.beginPath();
+        for(let x = 0; x <= w; x += 3){ const y = rows[i] + L[2](x) * amp; if(x) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+        ctx.stroke();
+        ctx.fillStyle = L[1]; ctx.font = "700 10px system-ui"; ctx.fillText(L[0].toUpperCase(), 8, rows[i] - amp - 4);
+      });
+      if(!STILL) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+  return box;
+}
+
+
+/* ---------- esploso: l'oggetto scomposto a strati ----------
+   Le parti una sopra l'altra, come in un'illustrazione tecnica. "Scomponi"
+   le allontana nello spazio; ogni strato si tocca e racconta la sua parte.
+   Serve per un telefono, un paio di AirPods, un chip: gli strati li scrive
+   l'edizione, il disegno e' lo stesso. */
+function visEsploso(v){
+  const box = visFrame(v, "esploso");
+  const strati = v.strati || [];
+  const stack = el("div", {class:"xp-stack"});
+  const plates = [];
+  const info = el("div", {class:"xp-info"}, [el("b", {text:"Tocca uno strato"}), el("span", {text:v.invito || ""})]);
+  strati.forEach(function(s, i){
+    const pl = el("button", {type:"button", class:"xp-plate" + (s.stato === "problema" ? " warn" : ""), "aria-label":s.nome});
+    pl.style.setProperty("--i", String(i));
+    pl.style.setProperty("--n", String(strati.length));
+    pl.style.setProperty("--c", tone(s.colore || (s.stato === "problema" ? "red" : "ink-3")));
+    pl.appendChild(el("span", {class:"xp-face"}));
+    pl.appendChild(el("span", {class:"xp-tag", text:s.nome}));
+    pl.addEventListener("click", function(){
+      plates.forEach(function(p){ p.classList.remove("sel"); }); pl.classList.add("sel");
+      info.innerHTML = "";
+      info.appendChild(el("b", {text:s.nome}));
+      info.appendChild(el("span", {text:s.nota || ""}));
+      if(!box.classList.contains("open")) toggle(true);
+    });
+    plates.push(pl); stack.appendChild(pl);
+  });
+  const scene = el("div", {class:"xp-scene"}, [stack]);
+  box.appendChild(scene);
+  const btn = el("button", {type:"button", class:"vis-btn", text:"Scomponi"});
+  function toggle(force){
+    const on = typeof force === "boolean" ? force : !box.classList.contains("open");
+    box.classList.toggle("open", on);
+    btn.textContent = on ? "Ricomponi" : "Scomponi";
+  }
+  btn.addEventListener("click", function(){ toggle(); });
+  box.appendChild(el("div", {class:"vis-controls"}, [btn]));
+  box.appendChild(info);
+  visCaption(box, v);
+  whenSeen(box, function(){ if(!STILL) setTimeout(function(){ toggle(true); }, 500); });
+  return box;
+}
+
+const VISUALS = {esploso:visEsploso, stime:visStime, barre:visBarre, resa:visResa, piega:visPiega, anno:visAnno,
+                 raggio:visRaggio, flusso:visFlusso, onde:visOnde};
+function visualNode(v){
+  const f = v && VISUALS[v.tipo];
+  if(!f) return null;
+  try{ return f(v); }catch(e){ return null; }   /* una visualizzazione rotta non rompe la notizia */
+}
+
+function deepSec(title, color, kids){
+  const pip = el("span", {class:"pip"}); pip.style.background = "var(" + color + ")";
+  return el("div", {class:"deep-sec"}, [el("h4", {}, [pip, el("span", {text:title})])].concat(kids));
+}
+
+function deepNode(brief, n){
+  const a = n.approfondimento || {};
+  const box = el("section", {class:"deep", hidden:"hidden", "aria-label":"Approfondimento"});
+  box.appendChild(el("div", {class:"deep-top"}, [
+    el("span", {class:"dots", "aria-hidden":"true"}, [
+      (function(){ const i = el("i"); i.style.background = "var(--red)"; return i; })(),
+      (function(){ const i = el("i"); i.style.background = "var(--yellow)"; return i; })(),
+      (function(){ const i = el("i"); i.style.background = "var(--blue)"; return i; })()
+    ]),
+    el("span", {class:"eyebrow", text:"Approfondimento"})
+  ]));
+  if(a.punto) box.appendChild(el("p", {class:"deep-punto", text:a.punto}));
+  const vis = (a.visivi || []).map(visualNode).filter(Boolean);
+  if(vis[0]) box.appendChild(vis[0]);
+  if(a.sotto && a.sotto.length){
+    box.appendChild(deepSec("Cosa c'è sotto", "--blue", [].concat(a.sotto).map(function(p){ return el("p", {text:p}); })));
+  }
+  vis.slice(1).forEach(function(x){ box.appendChild(x); });
+  if(a.tappe && a.tappe.length){
+    const ol = el("ol", {class:"deep-tappe"});
+    a.tappe.forEach(function(t){
+      const u = safeUrl(t.link);
+      ol.appendChild(el("li", {class:t.data === brief.date ? "now" : ""}, [
+        el("span", {class:"d", text:fmtDeepDate(t.data)}),
+        el("span", {class:"t", text:t.testo}),
+        u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:"→", "aria-label":"apri la fonte"}) : null
+      ]));
+    });
+    box.appendChild(deepSec("Come ci siamo arrivati", "--ink", [ol]));
+  }
+  if(a.fonti) box.appendChild(deepSec("Chi lo dice", "--red", [el("div", {class:"deep-fonti", text:a.fonti})]));
+  if(a.dopo && a.dopo.length){
+    const ul = el("ul", {class:"deep-dopo"});
+    a.dopo.forEach(function(d){
+      let when = "da seguire", cls = "when none";
+      if(d.data){
+        const left = daysUntil(d.data, brief.date);
+        when = fmtDeepDate(d.data).replace(/ \d{4}$/, "") + (left !== null && left > 0 ? " · fra " + left + (left === 1 ? " giorno" : " giorni") : "");
+        cls = "when";
+      }
+      ul.appendChild(el("li", {}, [el("span", {class:cls, text:when}), el("span", {text:d.testo})]));
+    });
+    box.appendChild(deepSec("Cosa aspettarsi", "--orange", [ul]));
+  }
+  if(a.approfondire && a.approfondire.length){
+    const grid = el("div", {class:"deep-cards"});
+    a.approfondire.forEach(function(x){
+      const u = safeUrl(x.link);
+      if(!u) return;
+      const k = String(x.tipo || "leggi").toLowerCase();
+      grid.appendChild(el("a", {class:"deep-card", href:u, target:"_blank", rel:"noopener noreferrer"}, [
+        el("span", {class:"k " + k, text:k}),
+        el("b", {text:x.titolo}),
+        el("span", {class:"src", text:[x.fonte, x.durata].filter(Boolean).join(" · ")}),
+        x.perche ? el("span", {class:"why", text:x.perche}) : null
+      ]));
+    });
+    box.appendChild(deepSec("Se ti interessa", "--yellow", [grid]));
+  }
+  box.appendChild(el("p", {class:"deep-foot", text:"Approfondimento scritto il " + fmtShort(a.scritto || brief.date)}));
+  return box;
+}
+
+/* ================= ascolta =================
+   La voce del sistema, dentro la pagina: nessun file da scaricare, niente
+   da pagare. Legge a frasi, cosi' si puo' fermare e riprendere dal punto
+   giusto e la barra sa a che punto sei. Finche' legge tiene lo schermo
+   acceso: con lo schermo bloccato iOS ferma la voce. */
+const Voice = (function(){
+  const ok = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+  let chunks = [], idx = 0, playing = false, rate = 1, voice = null, title = "", lock = null, bar = null;
+  const RATES = [1, 1.15, 1.3, .9];
+
+  function pickVoice(){
+    const all = ok ? speechSynthesis.getVoices() : [];
+    const it = all.filter(function(x){ return /^it(-|_|$)/i.test(x.lang); });
+    const score = function(x){
+      let s = 0;
+      if(/premium|enhanced|neural|natural|siri/i.test(x.name)) s += 4;
+      if(/google/i.test(x.name)) s += 2;
+      if(/alice|federica|emma|luca|paola/i.test(x.name)) s += 1;
+      if(x.localService) s += 1;
+      return s;
+    };
+    it.sort(function(a, b){ return score(b) - score(a); });
+    voice = it[0] || null;
+  }
+  if(ok){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+
+  function split(text){
+    const out = [];
+    String(text || "").replace(/\s+/g, " ").split(/(?<=[.!?…»”])\s+(?=[A-ZÀ-Ý«“"0-9])/).forEach(function(s){
+      s = s.trim(); if(!s) return;
+      while(s.length > 240){
+        const cut = s.lastIndexOf(",", 240) > 80 ? s.lastIndexOf(",", 240) + 1 : 240;
+        out.push(s.slice(0, cut).trim()); s = s.slice(cut).trim();
+      }
+      out.push(s);
+    });
+    return out;
+  }
+
+  function script(brief, n){
+    const a = n.approfondimento, parts = [n.title + "."];
+    if(!a){ parts.push(n.sintesi || ""); parts.push(n.descrizione || ""); return parts; }
+    if(a.punto) parts.push(a.punto);
+    (a.visivi || []).forEach(function(v){ if(v.didascalia) parts.push(v.didascalia); });
+    if(a.sotto && a.sotto.length){ parts.push("Cosa c'è sotto."); [].concat(a.sotto).forEach(function(p){ parts.push(p); }); }
+    if(a.tappe && a.tappe.length){
+      parts.push("Come ci siamo arrivati.");
+      a.tappe.forEach(function(t){ parts.push((/^\d{4}-\d{2}$/.test(t.data) ? "A " : "Il ") + spokenDate(t.data) + ": " + t.testo); });
+    }
+    if(a.fonti){ parts.push("Chi lo dice."); parts.push(a.fonti); }
+    if(a.dopo && a.dopo.length){
+      parts.push("Cosa aspettarsi.");
+      a.dopo.forEach(function(d){ parts.push((d.data ? "Il " + spokenDate(d.data) + ": " : "") + d.testo); });
+    }
+    parts.push("Fine dell'approfondimento.");
+    return parts;
+  }
+
+  function ui(){
+    if(bar) return bar;
+    const pp = el("button", {type:"button", class:"pp", "aria-label":"pausa", text:"❚❚"});
+    const what = el("div", {class:"what"}, [el("b"), el("span")]);
+    const sp = el("button", {type:"button", class:"sp", text:"1×", "aria-label":"velocità"});
+    const x = el("button", {type:"button", class:"x", text:"✕", "aria-label":"chiudi"});
+    const prog = el("div", {class:"bar"}, [el("i")]);
+    bar = el("div", {class:"player", hidden:"hidden", role:"region", "aria-label":"Lettura ad alta voce"}, [pp, what, sp, x, prog]);
+    pp.addEventListener("click", function(){ playing ? pause() : resume(); });
+    sp.addEventListener("click", function(){
+      rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length];
+      sp.textContent = String(rate).replace(".", ",") + "×";
+      if(playing){ speechSynthesis.cancel(); speak(); }
+    });
+    x.addEventListener("click", stop);
+    document.body.appendChild(bar);
+    return bar;
+  }
+  function paint(){
+    const b = ui();
+    b.hidden = false;
+    b.querySelector(".what b").textContent = title;
+    b.querySelector(".what span").textContent = (playing ? "In ascolto" : "In pausa") + " · " + Math.min(idx + 1, chunks.length) + "/" + chunks.length;
+    b.querySelector(".pp").textContent = playing ? "❚❚" : "▶";
+    b.querySelector(".bar i").style.width = (chunks.length ? idx / chunks.length * 100 : 0) + "%";
+  }
+  async function wake(on){
+    try{
+      if(on && navigator.wakeLock && !lock){ lock = await navigator.wakeLock.request("screen"); }
+      if(!on && lock){ lock.release(); lock = null; }
+    }catch(e){}
+  }
+  function speak(){
+    if(idx >= chunks.length){ stop(); return; }
+    const u = new SpeechSynthesisUtterance(chunks[idx]);
+    u.lang = "it-IT"; u.rate = rate; if(voice) u.voice = voice;
+    u.onend = function(){ if(!playing) return; idx++; paint(); speak(); };
+    u.onerror = function(e){ if(e.error === "interrupted" || e.error === "canceled") return; idx++; if(playing) speak(); };
+    speechSynthesis.speak(u);
+  }
+  function play(brief, n){
+    if(!ok) return;
+    speechSynthesis.cancel();
+    chunks = [];
+    script(brief, n).forEach(function(p){ chunks = chunks.concat(split(p)); });
+    idx = 0; playing = true; title = n.title;
+    if("mediaSession" in navigator){
+      try{ navigator.mediaSession.metadata = new MediaMetadata({title:n.title, artist:"The Morning Brief", album:fmtShort(brief.date)}); }catch(e){}
+    }
+    wake(true); paint(); speak();
+  }
+  function pause(){ playing = false; speechSynthesis.cancel(); wake(false); paint(); }
+  function resume(){ if(!chunks.length) return; playing = true; wake(true); paint(); speak(); }
+  function stop(){ playing = false; speechSynthesis.cancel(); wake(false); chunks = []; idx = 0; if(bar) bar.hidden = true; }
+  document.addEventListener("visibilitychange", function(){ if(!document.hidden && playing && lock === null) wake(true); });
+  return {ok:ok, play:play, stop:stop};
+})();
+
+
 function storyNode(brief, n, index){
   const k = key(brief.date, n.id);
   const wrap = el("article", {class:"story", id:"s-" + n.id});
   const m0 = mk(k);
   if(m0 && m0.read_at) wrap.classList.add("is-read");
 
+  /* Una riga di pastiglie sola: il tag, e sui rumor quanto e' solido. Su una
+     notizia confermata "affidabilita' alta" e' ovvio, e categoria e numero di
+     puntata erano scritte in piu' che nessuno leggeva (30 settembre 2026). */
   const chips = el("div", {class:"chips"});
   if(n.tag) chips.appendChild(el("span", {class:tagClass(n.tag), text:n.tag}));
-  if(n.category) chips.appendChild(el("span", {class:"chip cat", text:n.category}));
-  if(n.reliability){
-    /* "affidabilita'" e "puntata" sono parole lunghe che sul telefono mandano a
-       capo la riga dei metadati: restano nella marcatura, le nasconde la CSS. */
-    chips.appendChild(el("span", {class:"chip rel rel-" + n.reliability}, [
-      el("span", {class:"dot"}),
-      el("span", {class:"long", text:"affidabilità"}),
-      el("span", {text:n.reliability})
-    ]));
+  if(n.tag === "RUMOR" && n.reliability){
+    const lv = {alta:3, media:2, bassa:1}[n.reliability] || 0;
+    const meter = el("span", {class:"meter m-" + n.reliability, role:"img",
+      "aria-label":"affidabilità " + n.reliability, title:"affidabilità " + n.reliability});
+    for(let i = 1; i <= 3; i++) meter.appendChild(el("i", {class:i <= lv ? "on" : ""}));
+    chips.appendChild(meter);
   }
+  if(n.approfondimento) chips.appendChild(el("span", {class:"chip deep-mark", text:"approfondita"}));
   const thread = n.thread ? THREADS[n.thread] : null;
-  const epIndex = thread ? thread.episodes.findIndex(function(e){
-    return e.date === brief.date && e.news.id === n.id;
-  }) : -1;
-  if(thread && thread.episodes.length > 1 && epIndex >= 0){
-    const chip = el("span", {class:"chip filo", role:"button", tabindex:"0",
-                             title:"Il filo: " + thread.label}, [
-      el("b", {text:ordinal(epIndex + 1)}),
-      el("span", {class:"long", text:" puntata"}),
-      el("span", {text:" di " + thread.episodes.length})
-    ]);
-    const prev = thread.episodes[epIndex - 1];
-    const open = function(ev){ ev.stopPropagation(); if(prev) openEpisode(prev); };
-    if(prev){
-      chip.title = "Puntata precedente: " + fmtShort(prev.date);
-      chip.addEventListener("click", open);
-      chip.addEventListener("keydown", function(ev){ if(ev.key === "Enter" || ev.key === " ") open(ev); });
-    }
-    chips.appendChild(chip);
-  }
 
   const head = el("div", {class:"story-head"}, [
     bead(typeof index === "number" ? index : 0, String(typeof index === "number" ? index + 1 : (n.rank || 0))),
@@ -1909,6 +2989,34 @@ function storyNode(brief, n, index){
   body.appendChild(el("p", {text:n.descrizione || ""}));
   const nums = numbersNode(n.facts);
   if(nums) body.appendChild(nums);
+
+  /* Approfondisci e Ascolta: il primo apre il pezzo lungo scritto la mattina
+     per le prime notizie, il secondo lo legge ad alta voce (o legge la
+     notizia, se l'approfondimento non c'e'). */
+  const deep = n.approfondimento ? deepNode(brief, n) : null;
+  const acts = el("div", {class:"deep-acts"});
+  if(deep){
+    const openBtn = el("button", {type:"button", class:"deep-open", "aria-expanded":"false"}, [
+      el("span", {text:"Approfondisci"}), el("i", {"aria-hidden":"true", text:"↓"})
+    ]);
+    openBtn.addEventListener("click", function(ev){
+      ev.stopPropagation();
+      const on = deep.hidden;
+      deep.hidden = !on;
+      openBtn.setAttribute("aria-expanded", on ? "true" : "false");
+      openBtn.classList.toggle("on", on);
+      if(on) setTimeout(function(){ deep.scrollIntoView({behavior:"smooth", block:"start"}); }, 30);
+    });
+    acts.appendChild(openBtn);
+  }
+  const listen = el("button", {type:"button", class:"listen-btn"}, [
+    el("i", {"aria-hidden":"true", text:"▶"}),
+    el("span", {text:deep ? "Ascolta l'approfondimento" : "Ascolta"})
+  ]);
+  listen.addEventListener("click", function(ev){ ev.stopPropagation(); Voice.play(brief, n); });
+  if(Voice.ok) acts.appendChild(listen);
+  if(acts.childNodes.length) body.appendChild(acts);
+  if(deep) body.appendChild(deep);
   if(n.reliability_note){
     body.appendChild(el("div", {class:"rel-note"}, [
       el("b", {text:"Nota sulla fonte"}), el("span", {text:n.reliability_note})
@@ -1952,16 +3060,6 @@ function storyNode(brief, n, index){
     }
     body.appendChild(box);
   });
-
-  if(thread && thread.episodes.length > 1 && epIndex > 0){
-    const prev = thread.episodes[epIndex - 1];
-    const line = el("div", {class:"readmore"}, [
-      el("span", {class:"sources", text:"Filo — " + thread.label}),
-      el("a", {href:"#", text:"puntata precedente, " + fmtShort(prev.date) + " →",
-        onclick:function(ev){ ev.preventDefault(); ev.stopPropagation(); openEpisode(prev); }})
-    ]);
-    body.appendChild(line);
-  }
 
   const read = el("div", {class:"readmore"});
   const primary = safeUrl(n.link);

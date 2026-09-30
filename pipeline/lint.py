@@ -331,6 +331,66 @@ def check_memory(brief, r):
                 break
 
 
+# ---------------------------------------------------------------- approfondimento
+
+DEEP_TOP = 5
+DEEP_KINDS = {"leggi", "ascolta", "guarda"}
+# le visualizzazioni che l'app sa disegnare, e cosa serve a ognuna. Un tipo
+# che l'app non conosce non si vede e non da' errore: per questo lo blocca qui
+VISIVI = {
+    "stime": lambda v: len(v.get("punti") or []) >= 2 or bool(v.get("chiave")),
+    "barre": lambda v: bool(v.get("voci")),
+    "resa": lambda v: isinstance(v.get("resa"), (int, float)),
+    "esploso": lambda v: len(v.get("strati") or []) >= 2,
+    "piega": lambda v: True,
+    "anno": lambda v: bool(v.get("eventi")),
+    "raggio": lambda v: isinstance(v.get("raggio_km"), (int, float)),
+    "flusso": lambda v: bool(v.get("oggi")) and bool(v.get("agente")),
+    "onde": lambda v: True,
+}
+DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
+
+
+def check_approfondimento(brief, r):
+    """Le prime cinque notizie hanno l'approfondimento, e l'approfondimento
+    ha le sue parti: il punto, cosa c'e' sotto, chi lo dice, almeno due
+    letture vere e — se c'e' — una visualizzazione che l'app sa disegnare."""
+    news = sorted(brief.get("news") or [], key=lambda n: n.get("rank") or 99)
+    for n in news[:DEEP_TOP]:
+        if not n.get("approfondimento"):
+            r.warn(f"news/{n.get('id')}", f"fra le prime {DEEP_TOP} ma senza approfondimento")
+    for n in news:
+        a = n.get("approfondimento")
+        if not a:
+            continue
+        where = f"news/{n.get('id')}/approfondimento"
+        for field in ("punto", "sotto", "fonti"):
+            if not a.get(field):
+                r.error(where, f"manca {field}")
+        letture = a.get("approfondire") or []
+        if len(letture) < 2:
+            r.warn(where, "meno di due letture in «Se ti interessa»")
+        for x in letture:
+            if not str(x.get("link", "")).startswith(("http://", "https://")):
+                r.error(where, f"lettura senza link valido: {x.get('titolo', '')[:40]}")
+            if x.get("tipo") not in DEEP_KINDS:
+                r.error(where, f"tipo di lettura non ammesso: {x.get('tipo')!r}")
+        for t in (a.get("tappe") or []) + (a.get("dopo") or []):
+            if t.get("data") and not DATA_OK.match(str(t["data"])):
+                r.error(where, f"data non leggibile: {t['data']!r}")
+        visivi = a.get("visivi") or []
+        if not visivi:
+            r.warn(where, "nessuna visualizzazione: un approfondimento senza e' mezzo approfondimento")
+        for v in visivi:
+            check = VISIVI.get(v.get("tipo"))
+            if not check:
+                r.error(where, f"visualizzazione sconosciuta all'app: {v.get('tipo')!r}")
+            elif not check(v):
+                r.error(where, f"visualizzazione «{v.get('tipo')}» senza i dati che le servono")
+            if not v.get("didascalia"):
+                r.warn(where, f"visualizzazione «{v.get('tipo')}» senza didascalia (e' anche quello che legge la voce)")
+
+
 # ---------------------------------------------------------------- verifica
 
 def check_verifica(brief, r):
@@ -481,6 +541,7 @@ def lint(brief, with_links):
     check_duplicates(news, r)
     check_memory(brief, r)
     check_verifica(brief, r)
+    check_approfondimento(brief, r)
     check_ranking(news, r)
     if with_links:
         check_links(brief, r)

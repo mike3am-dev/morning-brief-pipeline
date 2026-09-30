@@ -49,7 +49,10 @@ doppione (lo scarti) o seguito (stesso `thread`, e nel testo dici cosa è cambia
 Il filo vale anche per le voci AI.
 
 Scrivi `data/briefs/YYYY-MM-DD.json` seguendo lo schema di
-`data/briefs/2026-08-09.json`. Leggi l'edizione del giorno prima e non ripetere
+`data/briefs/2026-08-09.json`. Le **prime cinque notizie** hanno il campo
+`approfondimento`: leggi gli articoli interi, prendi le tappe dall'archivio,
+verifica ogni link, e metti almeno una visualizzazione del kit (vedi
+*L'approfondimento* in `CLAUDE.md`: esempio completo in `data/briefs/2026-09-30.json`). Leggi l'edizione del giorno prima e non ripetere
 le stesse notizie senza sviluppi nuovi.
 
 ```bash

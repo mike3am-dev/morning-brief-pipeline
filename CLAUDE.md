@@ -150,6 +150,14 @@ in `data/radar_topics.json` stanno fuori dalla rotazione.
 nell'app** — è diagnostica della pipeline, non roba da leggere a colazione: resta
 nell'edizione e si guarda dal Mac con `lint.py` e `feedcheck.py`.
 
+#### Le pastiglie della notizia
+
+Una riga sola: il **tag**, e sui soli `RUMOR` **tre pallini** per l'affidabilità (blu alta,
+gialli media, rossi bassa). Su una notizia confermata «affidabilità alta» è ovvio. Categoria
+e «14ª puntata di 14» non si mostrano più: erano scritte in più (30 settembre 2026). I campi
+restano nell'edizione, perché servono a `taste.py` e alla memoria. Chi ha l'approfondimento
+porta la pastiglia gialla *approfondita*.
+
 #### Il filo — `thread`
 
 La scheda «Fili» **non esiste più** dal 6 settembre 2026 (Mike non la guardava; al suo
@@ -493,6 +501,72 @@ Lo script **non cambia i tag**: dice cosa ha visto, la decisione è tua. Il lint
 suoi avvisi, così non si perdono. Gli articoli già letti restano in
 `data/verify/cache.json` per un mese.
 
+#### L'approfondimento — `approfondimento`
+
+Le **prime cinque notizie** hanno un approfondimento già scritto: nell'app c'è il pulsante
+giallo *Approfondisci* sotto la notizia, e *Ascolta* lo legge ad alta voce. Non sono tre
+righe in più. È un pezzo che fa **capire**, e dove può fa **vedere**: il 30 settembre 2026
+Mike ha chiesto una testata futuristica, «un progetto visto anziché raccontato».
+
+**Quali cinque.** Il rank segue l'importanza, e le prime cinque sono quelle che la meritano.
+Il metro: peso della notizia, quanto ha girato (posizione su Reddit, numero di testate in
+`verifica`) e quanto serve a Mike al banco. Se due delle cinque raccontano lo stesso fatto,
+i due approfondimenti devono guardarlo da lati diversi (il 30 settembre: la produzione del
+Duo *come fabbrica*, i preordini *come acquisto*).
+
+```json
+"approfondimento": {
+  "punto": "1–2 frasi: il senso, detto meglio del titolo",
+  "visivi": [ {"tipo": "resa", "titolo": "…", "didascalia": "…", …} ],
+  "sotto": ["Cosa c'è sotto: 2–3 paragrafi che spiegano il meccanismo"],
+  "tappe": [ {"data": "2026-09-05", "testo": "…", "link": "…"} ],
+  "fonti": "Chi lo dice: la catena delle fonti e i dubbi",
+  "dopo": [ {"data": "2026-10-16", "testo": "…"}, {"testo": "da seguire, senza data"} ],
+  "approfondire": [ {"tipo": "leggi|ascolta|guarda", "titolo": "…", "fonte": "…",
+                     "durata": "85 min", "link": "…", "perche": "una riga: perché aprirlo"} ],
+  "scritto": "2026-09-30"
+}
+```
+
+Regole:
+- **Non inventare nulla**, qui più che altrove: ogni numero e ogni citazione devono stare
+  negli articoli letti o nell'archivio. Si leggono gli articoli **interi**.
+- `tappe` viene dall'archivio: `threads.py show <filo>` dà le puntate con i link. Date
+  `YYYY-MM-DD`, oppure `YYYY-MM` per i fatti di cui si conosce solo il mese.
+- `fonti` dice la catena vera (usa `verify.py`): «quattro testate, una fonte».
+- `approfondire`: 2–4 voci, **ogni link aperto e verificato**. Un podcast o un video
+  valgono doppio se sono sull'argomento preciso: puntata specifica, mai la home.
+- `dopo` con la data: l'app scrive da sola «fra 16 giorni».
+- La voce legge titolo, punto, didascalie delle visualizzazioni, `sotto`, `tappe`, `fonti`
+  e `dopo`: scrivi frasi che stanno in piedi anche ascoltate.
+
+**Le visualizzazioni — il kit.** Il codice sta nell'app, l'edizione passa solo il tipo e i
+numeri: dal database non arriva mai codice da eseguire. Almeno una per approfondimento,
+quando c'è qualcosa da far vedere. Il lint respinge un tipo che l'app non conosce.
+
+| `tipo` | Cosa mostra | Dati |
+|---|---|---|
+| `stime` | le stime nel tempo contro il dato vero (anelli e pallino pieno) | `punti: [{data, valore, tipo: stima\|dato, fonte}]`, `unita` |
+| `barre` | grandezze a confronto, con le forchette min–max | `voci: [{etichetta, min, max, colore, nota}]`, `unita` |
+| `resa` | una linea di montaggio: pezzi buoni e scarti, cursore della resa | `resa: 0.6`, `obiettivo`, `etichetta_obiettivo` |
+| `esploso` | l'oggetto scomposto a strati, un tocco per strato | `strati: [{nome, nota, colore, stato: problema}]`, `invito` |
+| `piega` | il Duo in 3D che si apre e si chiude, si trascina per girarlo | `interno`, `esterno`, `colori: [{nome, hex}]` |
+| `anno` | l'anno come quadrante, con gli eventi e un obiettivo | `eventi: [{data, etichetta}]`, `obiettivo`, `centro` |
+| `raggio` | una città di puntini: tocchi e il raggio avvisa chi c'è dentro | `raggio_km`, `lato_km`, `etichetta_raggio` |
+| `flusso` | dove passano i soldi, oggi contro un'ipotesi | `oggi` e `agente`: `{etichetta, centro, incassa, nota}` |
+| `onde` | la cancellazione del rumore: rumore, antirumore, quello che resta | — (pronta per la prima notizia sugli AirPods) |
+
+Tutte vogliono `titolo` e `didascalia`, `fonte` quando i numeri vengono da qualcuno. Una
+visualizzazione **illustrativa** lo dichiara nella didascalia («schema illustrativo»,
+«puntini simulati»). I dati di `stime` si scrivono nell'edizione, non si prendono dal
+registro: l'approfondimento deve stare in piedi da solo.
+
+**Quando serve una visualizzazione che non c'è**, si costruisce nell'app: una funzione
+`vis<Nome>` in `pipeline/template.html`, registrata in `VISUALS`, poi il tipo in `VISIVI`
+dentro `lint.py` e una riga in questa tabella. Idee già pronte da fare quando arriverà la
+notizia giusta: la resistenza del vetro, un chip che si scompone per core, la mappa dei
+paesi di un lancio.
+
 #### Controllo prima di pubblicare
 
 ```bash
@@ -502,6 +576,8 @@ python3 pipeline/lint.py
 
 I due `sync` registrano fili e metriche nuove e ne ricopiano le etichette dentro le
 edizioni — **vanno lanciati sempre**, altrimenti l'app mostra lo slug al posto del nome.
+
+Prima del collaudo, la verifica delle fonti: `python3 pipeline/verify.py` (vedi *La verifica*).
 
 `lint.py` collauda l'edizione contro le regole di questo file: campi obbligatori, rank
 senza buchi, descrizioni senza un solo dato concreto, citazioni senza attribuzione,
