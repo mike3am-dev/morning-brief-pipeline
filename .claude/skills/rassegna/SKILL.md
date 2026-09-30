@@ -29,6 +29,7 @@ python3 pipeline/social.py --hours 30
 python3 pipeline/lab.py --hours 30
 python3 pipeline/taste.py
 python3 pipeline/missed.py
+python3 pipeline/threads.py recall --raw
 ```
 
 Leggi il file grezzo appena scritto. Scegli le notizie che contano e, per le
@@ -42,18 +43,30 @@ e nessuno entra fra le notizie se non tocca Apple direttamente. `taste.py`
 propone le cinque caselle del radar, `missed.py` i candidati per *Se te lo fossi perso* — quasi
 sempre non se ne prende nessuno, e va bene così.
 
+`threads.py recall --raw` è la memoria: gli articoli del grezzo che raccontano
+cose già uscite nei 14 giorni prima, notizie e sezione AI. Per ognuno scegli —
+doppione (lo scarti) o seguito (stesso `thread`, e nel testo dici cosa è cambiato).
+Il filo vale anche per le voci AI.
+
 Scrivi `data/briefs/YYYY-MM-DD.json` seguendo lo schema di
 `data/briefs/2026-08-09.json`. Leggi l'edizione del giorno prima e non ripetere
 le stesse notizie senza sviluppi nuovi.
 
 ```bash
+python3 pipeline/verify.py
 python3 pipeline/threads.py sync && python3 pipeline/facts.py sync
 python3 pipeline/lint.py
 python3 pipeline/images.py
 python3 pipeline/push.py
 ```
 
-`lint.py` esce con 1 se trova errori: sistemali prima di pubblicare.
+`verify.py` risale la catena delle fonti di ogni notizia e segnala dove tag e
+affidabilità non tornano — tipicamente un `CONFERMATO` che poggia su un'esclusiva
+sola. Non cambia i tag: guarda gli avvisi e decidi. Più testate che riprendono la
+stessa fonte **non** sono conferme.
+
+`lint.py` esce con 1 se trova errori: sistemali prima di pubblicare. Fra gli
+errori ora c'è anche il link già uscito in una vecchia edizione.
 
 **Non serve toccare l'app**: le edizioni viaggiano sul database, e la copia
 Artifact non si aggiorna più da agosto 2026 (vedi `CLAUDE.md`). `build.py` e

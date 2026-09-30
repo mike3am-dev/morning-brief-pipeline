@@ -2,8 +2,8 @@
 """
 I fili delle storie: dare memoria alla rassegna.
 
-Ogni notizia puo' dichiarare un filo, cioe' la storia lunga di cui e' una
-puntata:
+Ogni notizia — e ogni voce della sezione AI — puo' dichiarare un filo, cioe'
+la storia lunga di cui e' una puntata:
 
     "thread": "silicio-mac"
 
@@ -22,6 +22,8 @@ Comandi:
     python3 pipeline/threads.py list            i fili aperti, per recenza
     python3 pipeline/threads.py show <slug>     la cronologia di un filo
     python3 pipeline/threads.py suggest [data]  a quale filo agganciare le notizie di oggi
+    python3 pipeline/threads.py recall --raw    prima di scrivere: cosa del grezzo abbiamo gia' raccontato
+    python3 pipeline/threads.py recall [data]   dopo: quali voci dell'edizione riprendono cose gia' uscite
     python3 pipeline/threads.py close <slug>    chiude un filo (resta consultabile)
     python3 pipeline/threads.py check           controlli di integrita'
 """
@@ -50,14 +52,20 @@ def save_registry(reg):
     C.save_json(C.THREADS_FILE, dict(sorted(reg.items())))
 
 
+SECTION_NAME = {"news": "notizie", "ai": "AI"}
+
+
 def episodes():
-    """Tutte le puntate raccolte per filo, in ordine cronologico."""
+    """Tutte le puntate raccolte per filo, in ordine cronologico.
+
+    Ogni puntata e' (data, voce, sezione): un filo puo' passare dalle notizie
+    Apple alla sezione AI e ritorno — l'accordo Apple-Gemini e' tutte e due."""
     out = {}
-    for day, brief, news in C.stories():
-        slug = news.get("thread")
+    for day, sec, item in C.items():
+        slug = item.get("thread")
         if not slug:
             continue
-        out.setdefault(slug, []).append((day, news))
+        out.setdefault(slug, []).append((day, item, sec))
     for slug in out:
         out[slug].sort(key=lambda x: x[0])
     return out
@@ -71,7 +79,7 @@ def cmd_sync(args):
     added, relabelled = [], []
 
     for slug, items in sorted(eps.items()):
-        first_day, first_news = items[0]
+        first_day, first_news, _ = items[0]
         if slug not in reg:
             reg[slug] = {
                 "label": first_news.get("title", slug)[:70],
@@ -90,7 +98,7 @@ def cmd_sync(args):
     touched = 0
     for path, brief in C.briefs():
         used = {}
-        for news in brief.get("news", []):
+        for news in [it for sec in C.MEMORY_SECTIONS for it in brief.get(sec) or []]:
             slug = news.get("thread")
             if slug and slug in reg:
                 # etichetta secca se basta, etichetta piu' nota quando c'e':
@@ -137,9 +145,11 @@ def cmd_list(args):
             continue
         last = items[-1][0]
         gap = C.days_between(today, last)
+        dove = sorted({SECTION_NAME.get(x[2], x[2]) for x in items})
         rows.append((last, [
             slug,
             entry.get("label", "")[:46],
+            " + ".join(dove),
             str(len(items)),
             items[0][0],
             last,
@@ -151,7 +161,7 @@ def cmd_list(args):
         print("Nessun filo ancora. Assegna 'thread' alle notizie e lancia sync.")
         return 0
     print(C.table([r[1] for r in rows],
-                  ["filo", "etichetta", "punt.", "aperto", "ultima", "distanza", ""]))
+                  ["filo", "etichetta", "dove", "punt.", "aperto", "ultima", "distanza", ""]))
     return 0
 
 
@@ -168,8 +178,9 @@ def cmd_show(args):
     if entry.get("note"):
         print(entry["note"])
     print()
-    for day, news in eps[slug]:
-        print(f"{day}  [{news.get('tag','')}] {news.get('title','')}")
+    for day, news, sec in eps[slug]:
+        tag = news.get("tag") or ("AI · " + str(news.get("kind", "")))
+        print(f"{day}  [{tag}] {news.get('title','')}")
         if news.get("sintesi"):
             print(f"            {news['sintesi']}")
     return 0
@@ -192,16 +203,17 @@ def cmd_suggest(args):
         if reg.get(slug, {}).get("closed"):
             continue
         blob = " ".join((n.get("title", "") + " " + n.get("sintesi", ""))
-                        for d, n in items if d != day)
+                        for d, n, _ in items if d != day)
         if blob.strip():
             corpus[slug] = blob
 
-    todo = [n for n in brief.get("news", []) if not n.get("thread")]
+    todo = [n for sec in C.MEMORY_SECTIONS for n in brief.get(sec) or []
+            if not n.get("thread")]
     if not todo:
-        print(f"Tutte le notizie del {day} hanno gia' un filo.")
+        print(f"Tutte le voci del {day} hanno gia' un filo.")
         return 0
 
-    print(f"Notizie del {day} senza filo: {len(todo)}\n")
+    print(f"Notizie e voci AI del {day} senza filo: {len(todo)}\n")
     for news in todo:
         text = news.get("title", "") + " " + news.get("sintesi", "")
         scored = sorted(((C.similarity(text, blob), slug)
@@ -214,7 +226,96 @@ def cmd_suggest(args):
         for score, slug in hits:
             print(f"      {score:.2f}  {slug}  ({reg.get(slug,{}).get('label','')[:50]})")
     print("\nLa proposta e' solo un promemoria: il filo lo decidi tu, e va "
-          "scritto nel campo \"thread\" della notizia.")
+          "scritto nel campo \"thread\" della voce.")
+    return 0
+
+
+# ---------------------------------------------------------------- recall
+
+# sopra questa somiglianza due titoli parlano dello stesso fatto o della sua
+# puntata successiva: a quel punto si sceglie, doppione o seguito
+RECALL_FLOOR = 0.34
+RECALL_DAYS = 14
+
+
+def published(before, days=RECALL_DAYS):
+    """Le voci uscite nei giorni prima di `before`: (data, sezione, voce)."""
+    out = []
+    for day, sec, it in C.items():
+        gap = C.days_between(before, day)
+        if gap is not None and 0 < gap <= days:
+            out.append((day, sec, it))
+    return out
+
+
+def best_match(title, url, pool, cross=True):
+    """La voce gia' uscita che piu' somiglia: (punteggio, data, sezione, voce)."""
+    nu = C.norm_url(url) if url else None
+    best = None
+    for day, sec, it in pool:
+        if nu and C.norm_url(it.get("link")) == nu:
+            return (1.0, day, sec, it)
+        # col grezzo in inglese serve la scorciatoia fra lingue; fra le
+        # nostre voci, tutte in italiano, no (vedi C.similarity)
+        s = C.similarity(title, it.get("title", ""), cross_language=cross)
+        if s >= RECALL_FLOOR and (best is None or s > best[0]):
+            best = (s, day, sec, it)
+    return best
+
+
+def cmd_recall(args):
+    """La memoria editoriale, detta prima di scrivere.
+
+    Con --raw legge il grezzo di oggi e segnala gli articoli che raccontano
+    una cosa gia' uscita in edizione: o e' un doppione (e si scarta), o e' la
+    puntata successiva (e si dice, con lo stesso filo). Senza --raw fa lo
+    stesso sulle voci gia' scritte dell'edizione."""
+    day = args.date or C.today()
+    pool = published(day, args.days)
+    if not pool:
+        print(f"Niente in archivio nei {args.days} giorni prima del {day}.")
+        return 0
+
+    if args.raw:
+        path = os.path.join(C.RAW_DIR, f"{day}.json")
+        if not os.path.exists(path):
+            print(f"Nessun grezzo per il {day}: lancia prima fetch.py.", file=sys.stderr)
+            return 1
+        cands = [(i.get("title", ""), i.get("link"), i.get("source", ""))
+                 for i in C.load_json(path).get("items", [])
+                 if i.get("tier") in (None, "primaria", "redazionale", "ai", "lab")]
+    else:
+        path = os.path.join(C.BRIEFS_DIR, f"{day}.json")
+        if not os.path.exists(path):
+            print(f"Nessuna edizione per il {day}.", file=sys.stderr)
+            return 1
+        brief = C.load_json(path)
+        cands = [(it.get("title", ""), it.get("link"),
+                  SECTION_NAME.get(sec, sec) + (" · filo " + it["thread"] if it.get("thread") else ""))
+                 for sec in C.MEMORY_SECTIONS for it in brief.get(sec) or []]
+
+    hits = []
+    for title, url, where in cands:
+        m = best_match(title, url, pool, cross=args.raw)
+        if m:
+            hits.append((m, title, where))
+    if not hits:
+        print(f"Niente di gia' raccontato fra le {len(cands)} voci del {day}.")
+        return 0
+
+    hits.sort(key=lambda h: -h[0][0])
+    print(C.rule(f"Gia' raccontato — {len(hits)} su {len(cands)}"))
+    for (score, pday, psec, pit), title, where in hits:
+        same = "STESSO LINK" if score == 1.0 else f"{score:.2f}"
+        filo = pit.get("thread")
+        print(f"\n  oggi   {title[:88]}")
+        print(f"         {where}")
+        print(f"  {pday[5:]}  {pit.get('title','')[:88]}")
+        print(f"         {SECTION_NAME.get(psec, psec)} · {same}"
+              + (f" · filo {filo}" if filo else " · nessun filo"))
+    print("\nPer ognuna si sceglie: doppione (si scarta) o seguito (stesso "
+          "\"thread\", e nel testo si dice\ncosa e' cambiato rispetto a "
+          "allora). Lo stesso link gia' uscito il lint lo blocca.")
     return 0
 
 
@@ -260,7 +361,7 @@ def cmd_check(args):
 
     for path, brief in C.briefs():
         labels = brief.get("threads") or {}
-        for news in brief.get("news", []):
+        for news in [it for sec in C.MEMORY_SECTIONS for it in brief.get(sec) or []]:
             slug = news.get("thread")
             if slug and slug not in labels:
                 print(f"  {brief.get('date')}/{news.get('id')}: filo {slug} "
@@ -282,6 +383,10 @@ def main():
     p.add_argument("slug")
     p = sub.add_parser("suggest", help="proposte di aggancio per un'edizione")
     p.add_argument("date", nargs="?")
+    p = sub.add_parser("recall", help="cosa abbiamo gia' raccontato")
+    p.add_argument("date", nargs="?")
+    p.add_argument("--raw", action="store_true", help="sul grezzo, prima di scrivere")
+    p.add_argument("--days", type=int, default=RECALL_DAYS)
     p = sub.add_parser("close", help="chiude un filo")
     p.add_argument("slug")
     p.add_argument("--date")
@@ -289,7 +394,8 @@ def main():
 
     args = ap.parse_args()
     fn = {"sync": cmd_sync, "list": cmd_list, "show": cmd_show,
-          "suggest": cmd_suggest, "close": cmd_close, "check": cmd_check}
+          "suggest": cmd_suggest, "recall": cmd_recall, "close": cmd_close,
+          "check": cmd_check}
     if not args.cmd:
         return cmd_list(argparse.Namespace(all=False))
     return fn[args.cmd](args)

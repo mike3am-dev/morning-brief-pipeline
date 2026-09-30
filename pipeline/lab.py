@@ -167,8 +167,14 @@ def show_hn(cutoff):
     return out[:KEEP_HN]
 
 
-def awesome_lists():
-    """I post su X raccolti dalle liste curate, con la didascalia della lista."""
+def awesome_lists(skip=()):
+    """I post su X raccolti dalle liste curate, con la didascalia della lista.
+
+    Le liste sono ferme: la stessa pagina, ogni mattina, con gli stessi post in
+    cima. Senza `skip` i piu' visti tornavano su tutti i giorni, e fra il 10 e
+    il 30 settembre 2026 trentanove voci LAB sono uscite due o tre volte.
+    Quello che e' gia' uscito si salta *prima* di contare fino a KEEP_AWESOME,
+    altrimenti la quota si riempie di ripetizioni e i post nuovi non arrivano."""
     out = []
     for name, url in AWESOME.items():
         _, _, blob = download(name, url)
@@ -181,7 +187,7 @@ def awesome_lists():
         for m in re.finditer(r"(?:^|\n)#{2,4}\s*(?:Featured:\s*)?([^\n]+)\n(.*?)(?=\n#{2,4}\s|\Z)", text, re.S):
             title, body = m.group(1).strip(), m.group(2)
             link = re.search(r"https://x\.com/[A-Za-z0-9_]+/status/\d+", body)
-            if not link or link.group(0) in seen:
+            if not link or link.group(0) in seen or C.norm_url(link.group(0)) in skip:
                 continue
             seen.add(link.group(0))
             desc = re.sub(r"\[!\[.*?\]\(.*?\)\]\(.*?\)|\[([^\]]*)\]\([^)]*\)|<[^>]+>", lambda mm: mm.group(1) or "", body)
@@ -290,18 +296,26 @@ def main():
 
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(hours=args.hours)
-    items = reddit(cutoff) + show_hn(cutoff) + from_raw() + awesome_lists() + manual()
+    # quello che e' gia' uscito in edizione non torna: il LAB e' fatto di
+    # cose da provare, e la stessa cosa riproposta dopo tre settimane e' un
+    # doppione anche se il post e' ancora in cima alla lista
+    gia = C.published_links()
+    items = (reddit(cutoff) + show_hn(cutoff) + from_raw()
+             + awesome_lists(skip=gia) + manual())
     for it in items:
         it.setdefault("tipo", "lab")
-    read_x(items)
 
-    seen, deduped = set(), []
+    seen, deduped, repeated = set(), [], []
     for it in items:
         k = C.norm_url(it.get("link"))
         if k and k in seen:
             continue
         seen.add(k)
+        if k in gia:
+            repeated.append((it, gia[k]))
+            continue
         deduped.append(it)
+    read_x(deduped)
 
     payload = {"fetched_at": now.isoformat(), "window_hours": args.hours,
                "count": len(deduped), "items": deduped}
@@ -309,6 +323,10 @@ def main():
     C.save_json(out, payload)
     print(f"Raccolte {len(deduped)} voci in {out}")
     report(payload)
+    if repeated:
+        print(C.rule(f"Escluse perche' gia' uscite — {len(repeated)}"))
+        for it, (day, sec, title) in repeated[:8]:
+            print(f"  {day}  {title[:80]}")
     return 0
 
 

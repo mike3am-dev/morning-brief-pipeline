@@ -538,6 +538,15 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .wire .row .chip{font-size:.55rem; padding:.18rem .4rem; justify-self:start}
 .wire .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
 .wire .row .sintesi{margin-top:0; font-size:.93rem; color:var(--ink-2); line-height:1.45}
+/* la memoria della sezione AI: "segue da ieri" porta alla puntata prima */
+.segue{
+  justify-self:start; background:none; border:0; padding:0; text-align:left;
+  font-size:.72rem; font-weight:600; letter-spacing:.02em; color:var(--ink-3);
+  line-height:1.35; cursor:pointer;
+}
+.segue b{font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.6rem; margin-right:.35rem; color:var(--ink-2)}
+.segue:hover{color:var(--ink)}
+.labcard .segue{margin:.1rem 0 .35rem}
 /* la miniatura quadrata a destra, come in un lettore di feed: non e' il
    risultato (quello e' il LAB, e la' la foto e' grande), e' il punto d'appoggio
    per l'occhio che scorre una colonna di soli titoli */
@@ -1366,7 +1375,12 @@ function indexThreads(){
   THREADS = {};
   byDate(true).forEach(function(b){
     const labels = b.threads || {};
-    (b.news || []).forEach(function(n){
+    /* notizie e voci AI: un filo puo' passare dall'una all'altra sezione
+       (Muse di Meta e' nata nella scheda AI ed e' arrivata fra le notizie) */
+    (b.news || []).map(function(n){ return [n, "news"]; })
+      .concat((b.ai || []).map(function(a){ return [a, "ai"]; }))
+      .forEach(function(pair){
+      const n = pair[0], section = pair[1];
       if(!n.thread) return;
       let t = THREADS[n.thread];
       if(!t) t = THREADS[n.thread] = {slug:n.thread, label:n.thread, note:"", episodes:[]};
@@ -1377,7 +1391,7 @@ function indexThreads(){
         t.note = (typeof lab === "string") ? "" : (lab.note || "");
         t.named = true;
       }
-      t.episodes.push({date:b.date, brief:b, news:n});
+      t.episodes.push({date:b.date, brief:b, news:n, section:section});
     });
   });
   Object.keys(THREADS).forEach(function(s){
@@ -1571,6 +1585,49 @@ function openStory(id, block){
   const body = t.querySelector(".story-body");
   if(head && body && body.hidden) head.click();
   return t;
+}
+
+/* Apre una puntata di un filo dove sta davvero: nell'edizione se e' una
+   notizia, nella scheda AI di quel giorno se e' una voce AI. */
+function openEpisode(ep){
+  if(!ep) return;
+  if(ep.section === "ai"){
+    currentDate = ep.date;
+    show("ai");
+    setTimeout(function(){
+      const t = document.getElementById("a-" + ep.news.id);
+      if(!t) return;
+      t.scrollIntoView({block:"center"});
+      const row = t.querySelector(".row");
+      const body = t.querySelector(".body");
+      if(row && body && body.hidden) row.click();
+    }, 40);
+    return;
+  }
+  jumpTo(ep.date, ep.news.id);
+}
+
+/* L'ultima puntata uscita in un giorno *prima* di questo, se la voce sta in
+   un filo: {ep, thread} o null. Le puntate dello stesso giorno si leggono
+   gia' insieme, "segue da oggi" non direbbe niente. */
+function prevEpisode(date, item){
+  const thread = item && item.thread ? THREADS[item.thread] : null;
+  if(!thread) return null;
+  const before = thread.episodes.filter(function(e){ return e.date < date; });
+  return before.length ? {ep:before[before.length - 1], thread:thread} : null;
+}
+
+/* La riga "segue": dice da quando, e cosa si era detto. Tocca e vai. */
+function segueNode(date, item){
+  const p = prevEpisode(date, item);
+  if(!p) return null;
+  /* la sezione si dice solo quando cambia: una voce AI che segue una notizia */
+  const where = p.ep.section === "news" ? " · dalle notizie" : "";
+  return el("button", {type:"button", class:"segue", title:"Il filo: " + p.thread.label,
+    onclick:function(ev){ ev.stopPropagation(); openEpisode(p.ep); }}, [
+    el("b", {text:"Segue · " + fmtAgo(p.ep.date, date) + where}),
+    el("span", {text:p.ep.news.title})
+  ]);
 }
 
 /* Porta la vista sulla notizia, cambiando edizione se serve. */
@@ -1799,6 +1856,22 @@ function itemTools(k, opts){
   return {bar:bar, panel:panel};
 }
 
+/* La catena delle fonti (pipeline/verify.py), detta in una riga. Si mostra
+   solo quando dice qualcosa: se nessuna testata dichiara da dove viene, spesso
+   e' perche' la fonte e' la testata stessa — ha provato la beta, era in sala —
+   e scriverlo sembrerebbe un sospetto che non c'e'. */
+function verificaText(v){
+  if(!v) return "";
+  const official = ["Apple", "documenti SEC", "atti giudiziari", "Commissione europea"];
+  const indip = (v.origini || []).filter(function(o){ return official.indexOf(o) < 0; });
+  const tail = v.testate > 1 ? " · " + v.testate + " testate" : "";
+  if(v.ufficiale) return "Verifica · c'è la parola di Apple" + tail;
+  if(indip.length >= 2) return "Verifica · " + indip.length + " fonti indipendenti: " + indip.join(", ");
+  if(indip.length === 1) return "Verifica · una sola fonte d'origine, " + indip[0]
+    + (v.riprese >= 2 ? ", ripresa da " + v.riprese + " testate" : "");
+  return "";
+}
+
 /* ================= notizia ================= */
 function storyNode(brief, n, index){
   const k = key(brief.date, n.id);
@@ -1830,7 +1903,7 @@ function storyNode(brief, n, index){
       el("span", {text:" di " + thread.episodes.length})
     ]);
     const prev = thread.episodes[epIndex - 1];
-    const open = function(ev){ ev.stopPropagation(); if(prev) openEdition(prev.date); };
+    const open = function(ev){ ev.stopPropagation(); if(prev) openEpisode(prev); };
     if(prev){
       chip.title = "Puntata precedente: " + fmtShort(prev.date);
       chip.addEventListener("click", open);
@@ -1903,7 +1976,7 @@ function storyNode(brief, n, index){
     const line = el("div", {class:"readmore"}, [
       el("span", {class:"sources", text:"Filo — " + thread.label}),
       el("a", {href:"#", text:"puntata precedente, " + fmtShort(prev.date) + " →",
-        onclick:function(ev){ ev.preventDefault(); ev.stopPropagation(); openEdition(prev.date); }})
+        onclick:function(ev){ ev.preventDefault(); ev.stopPropagation(); openEpisode(prev); }})
     ]);
     body.appendChild(line);
   }
@@ -1919,6 +1992,8 @@ function storyNode(brief, n, index){
   if(n.sources && n.sources.length){
     body.appendChild(el("p", {class:"sources", text:n.sources.length + (n.sources.length === 1 ? " fonte — " : " fonti — ") + n.sources.join(", ")}));
   }
+  const ver = verificaText(n.verifica);
+  if(ver) body.appendChild(el("p", {class:"sources verifica", text:ver}));
 
   head.addEventListener("click", function(){
     body.hidden = !body.hidden;
@@ -2502,12 +2577,13 @@ function aiFoot(date, a, extra){
 
 /* una riga del dispaccio: laboratorio, titolo e la miniatura; il resto al tocco */
 function wireRow(date, a){
-  const li = el("li");
+  const li = el("li", {id:"a-" + a.id});
   const row = el("div", {class:"row"}, [
     el("div", {class:"rowtext"}, [
       el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())}),
       el("h4", {text:a.title}),
-      a.sintesi ? el("p", {class:"sintesi", text:a.sintesi}) : null
+      a.sintesi ? el("p", {class:"sintesi", text:a.sintesi}) : null,
+      segueNode(date, a)
     ]),
     a.image ? el("img", {class:"thumb", src:a.image, alt:"", loading:"lazy", decoding:"async"}) : null
   ]);
@@ -2533,6 +2609,8 @@ function labCard(date, a){
     el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())})
   ]));
   card.appendChild(el("h4", {text:a.title, onclick:toggle}));
+  const seg = segueNode(date, a);
+  if(seg) card.appendChild(seg);
   if(a.prova) card.appendChild(el("p", {class:"prova", text:a.prova}));
   if(a.note) body.appendChild(el("p", {text:a.note}));
   card.appendChild(body);

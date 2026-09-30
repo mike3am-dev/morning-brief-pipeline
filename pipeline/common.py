@@ -82,6 +82,51 @@ def stories(reverse=False):
             yield brief.get("date", ""), brief, news
 
 
+# Le sezioni che hanno memoria: le notizie Apple e le voci AI. Radar, banco e
+# ripescaggio no — sono contorno di giornata, e un filo li' non racconterebbe
+# niente. La sezione AI e' entrata qui il 30 settembre 2026: prima si
+# svegliava ogni mattina senza ricordi, e "ieri OpenAI ha presentato Dots,
+# oggi le prime prove" non si poteva dire.
+MEMORY_SECTIONS = ("news", "ai")
+
+
+def items(reverse=False, sections=MEMORY_SECTIONS):
+    """Scorre notizie e voci AI di tutte le edizioni: (data, sezione, voce)."""
+    for _, brief in briefs(reverse=reverse):
+        for sec in sections:
+            for it in brief.get(sec) or []:
+                yield brief.get("date", ""), sec, it
+
+
+# tutte le sezioni che portano un link: quello che e' uscito una volta, in
+# qualunque punto dell'edizione, e' uscito
+LINKED_SECTIONS = ("news", "ai", "radar", "banco", "recap", "social")
+
+
+def published_links(before=None):
+    """Gli indirizzi gia' usciti in edizione -> (data, sezione, titolo).
+
+    Con `before` conta solo le edizioni precedenti a quella data, cosi' il
+    collaudo di oggi non trova oggi dentro se stesso. Se un link e' uscito
+    piu' volte vince la prima: e' quella che conta per dire "gia' uscito"."""
+    out = {}
+    for _, brief in briefs():
+        day = brief.get("date", "")
+        if before and day >= before:
+            continue
+        for sec in LINKED_SECTIONS:
+            for it in brief.get(sec) or []:
+                if not it.get("link"):
+                    continue
+                k = norm_url(it["link"])
+                if k not in out:
+                    out[k] = (day, sec, it.get("title", ""))
+                for extra in it.get("extra_links") or []:
+                    if extra.get("url"):
+                        out.setdefault(norm_url(extra["url"]), (day, sec, it.get("title", "")))
+    return out
+
+
 def today():
     return date.today().isoformat()
 
@@ -161,7 +206,7 @@ def entities(text):
     return out
 
 
-def similarity(a, b):
+def similarity(a, b, cross_language=True):
     """Quanto due titoli raccontano lo stesso fatto, fra 0 e 1.
 
     Due titoli sullo stesso fatto condividono le parole che contano ma
@@ -181,7 +226,12 @@ def similarity(a, b):
     score = (jaccard + contain) / 2
 
     # scorciatoia fra lingue diverse: le parole comuni non coincidono, i nomi
-    # propri e le sigle si' (iPhone, AirPods, M6, iOS 27)
+    # propri e le sigle si' (iPhone, AirPods, M6, iOS 27). Fra due titoli
+    # italiani della nostra stessa rassegna pero' e' una trappola: "iPhone 18
+    # Pro" o "GPT-6 Astra" stanno in meta' dei titoli di un mese, e bastano a
+    # far sembrare gemelle due notizie che non c'entrano. Li' si spegne.
+    if not cross_language:
+        return score
     ea, eb = entities(a), entities(b)
     se = ea & eb
     if len(se) >= 2:

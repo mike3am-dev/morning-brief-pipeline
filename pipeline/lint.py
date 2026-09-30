@@ -228,7 +228,7 @@ def archivio():
             for n in b.get("news", []):
                 rows.append((day, n.get("title", ""),
                              C.norm_url(n["link"]) if n.get("link") else None))
-            for sec in ("radar", "banco", "recap"):
+            for sec in ("ai", "radar", "banco", "recap"):
                 for v in b.get(sec) or []:
                     rows.append((day, v.get("title", ""),
                                  C.norm_url(v["link"]) if v.get("link") else None))
@@ -276,6 +276,80 @@ def check_recap(brief, r):
             if C.similarity(v.get("title", ""), t) >= DUP:
                 r.error("recap", f"{titolo}: gliel'abbiamo gia' data — «{t[:50]}»")
                 break
+
+
+# ---------------------------------------------------------------- memoria
+
+# Per somiglianza di titolo si guarda solo ai giorni appena prima: e' li' che
+# nasce il doppione ("ieri Dots, oggi di nuovo Dots"). Il link identico invece
+# non ha scadenza — un post uscito tre settimane fa e' uscito.
+MEMORY_DAYS = 3
+SEC_NAME = {"news": "notizie", "ai": "AI", "radar": "radar", "banco": "banco",
+            "social": "discussioni", "recap": "ripescaggio"}
+
+
+def check_memory(brief, r):
+    """Quello che abbiamo gia' raccontato non si racconta di nuovo per sbaglio.
+
+    Due casi. Stesso link di una vecchia edizione: e' un doppione e basta,
+    errore. Titolo molto simile a una voce dei giorni appena prima: puo' essere
+    un doppione o la puntata successiva — se ha lo stesso filo e' un seguito
+    dichiarato e va bene, altrimenti e' un avviso che chiede di scegliere.
+
+    Il ripescaggio ha il suo controllo (check_recap), qui non si ripete."""
+    oggi = brief.get("date") or C.today()
+    gia = C.published_links(before=oggi)
+    recent = [(d, sec, it) for d, sec, it in C.items()
+              if 0 < (C.days_between(oggi, d) or 0) <= MEMORY_DAYS]
+
+    for sec in ("news", "ai", "radar", "banco", "social"):
+        for it in brief.get(sec) or []:
+            where = f"{sec}/{it.get('id') or '?'}"
+            title = it.get("title", "")
+            hit = gia.get(C.norm_url(it["link"])) if it.get("link") else None
+            if hit:
+                r.error(where, f"gia' uscita il {hit[0]} ({SEC_NAME.get(hit[1], hit[1])}): "
+                               f"«{hit[2][:56]}»")
+                continue
+            for extra in it.get("extra_links") or []:
+                prev = gia.get(C.norm_url(extra.get("url", "")))
+                if prev:
+                    r.warn(where, f"fra i link c'e' un articolo gia' uscito il {prev[0]}: "
+                                  "se e' la stessa notizia e' un doppione, se e' un seguito "
+                                  "dagli un filo")
+                    break
+            if sec not in C.MEMORY_SECTIONS:
+                continue
+            for d, psec, p in recent:
+                if C.similarity(title, p.get("title", ""), cross_language=False) < DUP:
+                    continue
+                if it.get("thread") and it.get("thread") == p.get("thread"):
+                    break                      # seguito dichiarato: e' la memoria che funziona
+                r.warn(where, f"somiglia a «{p.get('title','')[:50]}» del {d} "
+                              f"({SEC_NAME.get(psec, psec)}): se e' un seguito dagli lo "
+                              "stesso filo e di' cosa e' cambiato, se no e' un doppione")
+                break
+
+
+# ---------------------------------------------------------------- verifica
+
+def check_verifica(brief, r):
+    """La catena delle fonti, riletta: verify.py la scrive nell'edizione, qui
+    si ripetono i suoi avvisi, cosi' non si perdono se chi scrive ha lanciato
+    verify.py e poi e' andato avanti senza guardare."""
+    news = brief.get("news") or []
+    if not news:
+        return
+    if not any(n.get("verifica") for n in news):
+        r.warn("verifica", "nessuna notizia ha la catena delle fonti: lancia verify.py")
+        return
+    import verify
+    for n in news:
+        v = n.get("verifica")
+        if not v:
+            continue
+        for w in verify.mismatch(n, v):
+            r.warn(f"news/{n.get('id') or '?'}", w)
 
 
 # ---------------------------------------------------------------- notizie
@@ -405,6 +479,8 @@ def lint(brief, with_links):
     for n in news:
         check_story(n, r)
     check_duplicates(news, r)
+    check_memory(brief, r)
+    check_verifica(brief, r)
     check_ranking(news, r)
     if with_links:
         check_links(brief, r)

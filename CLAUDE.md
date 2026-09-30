@@ -76,7 +76,18 @@ python3 pipeline/missed.py
 
 Le storie in corso, le previsioni che stanno per scadere, i numeri che si sono mossi.
 Se una notizia di oggi continua un filo, chiude una previsione o rivede una stima, va
-detto: è il motivo per cui esistono. L'ultimo comando propone i candidati per «Se te lo
+detto: è il motivo per cui esistono.
+
+Poi la memoria vera e propria — cosa del grezzo di oggi abbiamo già raccontato:
+
+```bash
+python3 pipeline/threads.py recall --raw
+```
+
+Per ogni articolo che somiglia a una voce uscita nei 14 giorni prima (notizie **e**
+sezione AI) stampa le due righe affiancate. Per ognuna si sceglie: **doppione** (si
+scarta) o **seguito** (stesso `thread`, e nel testo si dice cosa è cambiato: «ieri
+presentato, oggi le prime prove»). Lo stesso link già uscito il lint lo blocca comunque. L'ultimo comando propone i candidati per «Se te lo
 fossi perso» (vedi *Il ripescaggio*): quasi sempre non se ne prende nessuno, e va bene.
 
 Poi guarda cosa hanno detto i pollici, che è il modo in cui la selezione si tara:
@@ -156,6 +167,13 @@ agganciare le notizie di oggi:
 ```bash
 python3 pipeline/threads.py suggest
 ```
+
+**Il filo vale anche per le voci AI**, con lo stesso campo e lo stesso registro, e può
+attraversare le due sezioni: Muse di Meta è nata nella scheda AI ed è arrivata fra le
+notizie quando Bank of America l'ha messa fra i rischi per Apple (filo
+`agenti-personali`). Nella scheda AI la voce che ha una puntata precedente porta la riga
+«Segue · 2 giorni fa — …», che tocca e porta lì. È la memoria che mancava alla sezione:
+fino al 30 settembre 2026 si svegliava ogni mattina senza ricordi.
 
 È solo una proposta per somiglianza: la decisione è editoriale. Un filo nuovo si apre
 scrivendo uno slug che non esiste ancora — `threads.py sync` lo registra con
@@ -361,6 +379,10 @@ Dove si cerca, in ordine di resa:
    apre un repository «awesome-<modello>» con i post originali e i nomi degli autori.
    `lab.py` le legge, apre ogni post con fxtwitter e li ordina per visualizzazioni. È il
    modo onesto di arrivare a X senza raschiare X: la selezione l'ha già fatta qualcuno.
+   Le liste però sono **ferme**: ogni mattina la stessa pagina, con gli stessi post più
+   visti in cima. Fra il 10 e il 30 settembre 2026 trentanove voci LAB sono uscite due o
+   tre volte, cinque solo il 30. Da allora `lab.py` salta tutto quello che è già uscito
+   in edizione *prima* di riempire la quota, e lo elenca in fondo come «escluse».
 2. **Reddit e Show HN**, che `lab.py` già raccoglie: lì i post di X vengono ripostati.
 3. **La ricerca web**, che la routine ha: `"GPT-6 Astra" "I used"`, `"I built" site:x.com
    Astra`, il nome del modello più *Blender*, *3D*, *game*, *app*. I risultati su x.com si
@@ -429,6 +451,48 @@ senso, e il collaudo la blocca.
 `signal` è obbligatorio ed è la misura, non il giudizio: quanti punti, quante testate,
 quale posizione. È il motivo per cui la voce sta lì.
 
+#### La verifica — `verifica`
+
+Cinque siti che scrivono la stessa cosa sembrano cinque conferme. Quasi mai lo sono: se
+9to5Mac, MacRumors, iSpazio e Macitynet citano tutti Gurman, la fonte è **una** e le altre
+sono riprese. Scrivere «ripresi e confermati da 9to5Mac, iSpazio e Macitynet» — è
+successo, nella nota della notizia d'apertura del 30 settembre 2026 — è esattamente
+l'errore da non fare.
+
+Scritta l'edizione, prima del collaudo:
+
+```bash
+python3 pipeline/verify.py
+```
+
+Per ogni notizia mette insieme gli articoli che la raccontano (link, `extra_links`, e quelli
+del grezzo che somigliano), li apre e cerca **da dove dicono di averla presa**: i link nel
+testo verso una testata d'origine (bloomberg.com, theinformation.com…), le attribuzioni
+scritte («secondo Mark Gurman», «according to The Elec»), i comunicati della newsroom
+Apple di questo mese o del precedente, le dichiarazioni di un portavoce. Poi scrive nella
+notizia:
+
+```json
+"verifica": {"testate": 4, "origini": ["Bloomberg"], "ufficiale": false,
+             "riprese": 2, "senza_fonte": 2, "il": "2026-09-30"}
+```
+
+e stampa le notizie da riguardare. Gli avvisi scattano **solo su prove positive**:
+- `CONFERMATO` quando la catena porta a un'esclusiva sola (Bloomberg, The Information,
+  un leaker su X…) e nessuna parola di Apple → autorevole, ma è un `RUMOR` ad affidabilità alta;
+- `RUMOR` quando una testata riporta un comunicato o un portavoce di Apple → forse non lo è più;
+- `RUMOR` ad affidabilità alta senza che nessuno dica da chi viene;
+- `RUMOR` con due esclusive indipendenti → l'affidabilità può salire.
+
+Una testata che non cita nessuno **non è sospetta**: spesso è la fonte di se stessa (ha
+provato la beta, era in sala). Per questo «origine non dichiarata» non fa scattare niente
+e nell'app non compare. L'app mostra la riga solo quando dice qualcosa: «c'è la parola di
+Apple», «una sola fonte d'origine, Bloomberg, ripresa da 3 testate», «2 fonti indipendenti».
+
+Lo script **non cambia i tag**: dice cosa ha visto, la decisione è tua. Il lint ripete i
+suoi avvisi, così non si perdono. Gli articoli già letti restano in
+`data/verify/cache.json` per un mese.
+
 #### Controllo prima di pubblicare
 
 ```bash
@@ -441,7 +505,10 @@ edizioni — **vanno lanciati sempre**, altrimenti l'app mostra lo slug al posto
 
 `lint.py` collauda l'edizione contro le regole di questo file: campi obbligatori, rank
 senza buchi, descrizioni senza un solo dato concreto, citazioni senza attribuzione,
-doppioni, tono da creator, rumor senza previsione. Distingue **errori** (l'edizione è
+doppioni, tono da creator, rumor senza previsione. **Anche fra un giorno e l'altro**: una
+voce (notizie, AI, radar, banco, discussioni) con un link già uscito in una vecchia
+edizione è un errore; un titolo molto simile a una voce dei tre giorni prima è un avviso,
+a meno che le due non abbiano lo stesso `thread` — allora è un seguito dichiarato. Distingue **errori** (l'edizione è
 rotta, si sistema prima di pubblicare) da **avvisi** (fuori misura, spesso voluto, ma
 da guardare), ed esce con 1 se trova errori. Con `--links` controlla anche che ogni
 indirizzo apra davvero.
@@ -700,6 +767,8 @@ pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       copertura + trazione online  ->  candidati per il ripescaggio
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
+                         (salta tutto quello che è già uscito in edizione)
+pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
@@ -731,6 +800,7 @@ data/radar_topics.json   i temi del radar e il loro stato (nuovo, in prova, conf
 data/social/             le discussioni raccolte per data
 data/missed/             i candidati al ripescaggio, per data
 data/lab/                cosa ci fa la gente con i modelli, per data
+data/verify/cache.json   gli articoli già letti da verify.py, per un mese
 data/social/manual.md    dove incolli a mano i link da X e affini
 app/                     output generato, non modificare a mano
 ```
