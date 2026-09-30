@@ -60,6 +60,7 @@ python3 pipeline/verify.py
 python3 pipeline/threads.py sync && python3 pipeline/facts.py sync
 python3 pipeline/lint.py
 python3 pipeline/images.py
+python3 pipeline/audio.py
 python3 pipeline/push.py
 ```
 

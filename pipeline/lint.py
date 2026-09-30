@@ -349,6 +349,10 @@ VISIVI = {
     "onde": lambda v: True,
 }
 DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
+# le misure dell'approfondimento sul telefono: oltre, si scorre troppo
+# (30 settembre 2026, "scorro scorro tante sezioni")
+DEEP_MAX = {"punto": 220, "sotto_par": 2, "sotto_len": 450, "tappe": 4, "tappa_len": 90,
+            "fonti": 250, "dopo": 3, "dopo_len": 90, "letture": 3, "perche_len": 70}
 
 
 def check_approfondimento(brief, r):
@@ -378,6 +382,22 @@ def check_approfondimento(brief, r):
         for t in (a.get("tappe") or []) + (a.get("dopo") or []):
             if t.get("data") and not DATA_OK.match(str(t["data"])):
                 r.error(where, f"data non leggibile: {t['data']!r}")
+        M = DEEP_MAX
+        if len(a.get("punto") or "") > M["punto"]:
+            r.warn(where, f"punto di {len(a['punto'])} caratteri, massimo {M['punto']}")
+        sotto = a.get("sotto") or []
+        if len(sotto) > M["sotto_par"] or any(len(x) > M["sotto_len"] for x in sotto):
+            r.warn(where, f"«Cosa c'è sotto» troppo lungo: al massimo {M['sotto_par']} paragrafi da {M['sotto_len']} caratteri")
+        tappe = a.get("tappe") or []
+        if len(tappe) > M["tappe"] or any(len(t.get("testo", "")) > M["tappa_len"] for t in tappe):
+            r.warn(where, f"tappe: al massimo {M['tappe']}, da {M['tappa_len']} caratteri l'una")
+        if len(a.get("fonti") or "") > M["fonti"]:
+            r.warn(where, f"«Chi lo dice» di {len(a['fonti'])} caratteri, massimo {M['fonti']}")
+        dopo = a.get("dopo") or []
+        if len(dopo) > M["dopo"] or any(len(d.get("testo", "")) > M["dopo_len"] for d in dopo):
+            r.warn(where, f"«Cosa aspettarsi»: al massimo {M['dopo']} voci da {M['dopo_len']} caratteri")
+        if len(letture) > M["letture"] or any(len(x.get("perche", "")) > M["perche_len"] for x in letture):
+            r.warn(where, f"«Se ti interessa»: al massimo {M['letture']} voci, «perché» entro {M['perche_len']} caratteri")
         visivi = a.get("visivi") or []
         if not visivi:
             r.warn(where, "nessuna visualizzazione: un approfondimento senza e' mezzo approfondimento")

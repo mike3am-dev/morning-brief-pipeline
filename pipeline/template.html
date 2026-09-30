@@ -864,8 +864,8 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 .listen-btn:hover{background:var(--ink); color:var(--bone)}
 
 .deep{
-  margin:.4rem 0 .6rem; padding:1.2rem 0 .4rem; border-top:3px solid var(--ink);
-  display:flex; flex-direction:column; gap:1.5rem;
+  margin:.4rem 0 .6rem; padding:1.1rem 0 .4rem; border-top:3px solid var(--ink);
+  display:flex; flex-direction:column; gap:1.1rem;
 }
 .deep[hidden]{display:none}
 .deep-top{display:flex; align-items:center; gap:.6rem}
@@ -1106,6 +1106,54 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
   .vis-esploso.open .xp-plate{transform:translateZ(calc(var(--i) * 38px))}
   .xp-tag{font-size:9.5px; margin-left:18px; letter-spacing:.05em}
 }
+
+/* ---------------- approfondimento compatto ----------------
+   Una scheda alla volta, i grafici di lato, la barra per uscire. */
+.story{scroll-margin-top:7.4rem}
+.deep-tabs{display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; margin:0 -.1rem; padding:.1rem .1rem .2rem;
+  scroll-snap-type:x proximity}
+.deep-tabs::-webkit-scrollbar{display:none}
+.deep-tabs button{
+  flex:none; display:inline-flex; align-items:center; gap:.4rem; border:0; cursor:pointer; scroll-snap-align:start;
+  background:var(--paper); color:var(--ink-3); border-radius:999px; padding:.42rem .8rem;
+  font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;
+  box-shadow:inset 0 0 0 1.5px var(--rule)}
+.deep-tabs button i{width:8px; height:8px; border-radius:50%; display:block}
+.deep-tabs button[aria-selected=true]{background:var(--ink); color:var(--bone); box-shadow:none}
+.deep-pane{display:flex; flex-direction:column; gap:.7rem; min-height:4rem}
+.deep-pane p{font-size:1rem; line-height:1.6}
+.deep-gallery{display:flex; flex-direction:column; gap:.5rem}
+.deep-carousel{display:flex; align-items:flex-start; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory;
+  scrollbar-width:none; gap:0; margin:0 -.2rem; -webkit-overflow-scrolling:touch; transition:height .35s ease}
+.deep-carousel::-webkit-scrollbar{display:none}
+.deep-carousel .slide{flex:0 0 100%; scroll-snap-align:start; padding:.2rem .2rem .6rem; box-sizing:border-box}
+.deep-gallery-foot{display:flex; justify-content:space-between; align-items:center}
+.deep-pips{display:flex; gap:.4rem}
+.deep-pips button{width:9px; height:9px; border-radius:50%; border:0; padding:0; background:var(--rule-strong); cursor:pointer}
+.deep-pips button.on{background:var(--ink); width:22px; border-radius:5px}
+.deep-links{display:flex; flex-direction:column}
+.deep-link{display:grid; grid-template-columns:auto 1fr auto; gap:.2rem .7rem; align-items:start; padding:.65rem 0;
+  border-top:1px solid var(--rule); text-decoration:none; color:var(--ink)}
+.deep-link:first-child{border-top:0}
+.deep-link .k{font-size:.56rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:.2rem .45rem;
+  border-radius:2px; color:#17181B; margin-top:.15rem}
+.deep-link .k.leggi{background:var(--blue)}
+.deep-link .k.ascolta{background:var(--orange)}
+.deep-link .k.guarda{background:var(--red); color:#FFF}
+.deep-link .body{display:flex; flex-direction:column; gap:.15rem; min-width:0}
+.deep-link b{font-family:var(--display); font-weight:600; font-size:1.02rem; line-height:1.2}
+.deep-link .src{font-size:.8rem; line-height:1.4; color:var(--ink-3)}
+.deep-link i{font-style:normal; color:var(--ink-3); margin-top:.1rem}
+.deep-bar{
+  position:sticky; bottom:calc(.7rem + env(safe-area-inset-bottom)); z-index:20;
+  display:flex; gap:.5rem; justify-content:space-between; margin-top:.4rem;
+  background:var(--ink); border-radius:999px; padding:.3rem; box-shadow:0 10px 28px -12px rgba(0,0,0,.55)}
+.deep-bar button{border:0; cursor:pointer; border-radius:999px; padding:.55rem 1rem; display:inline-flex; gap:.45rem; align-items:center;
+  font-family:var(--display); font-weight:700; font-size:.92rem; letter-spacing:.04em; text-transform:uppercase}
+.deep-bar .close{background:none; color:var(--bone)}
+.deep-bar .next{background:var(--yellow); color:#17181B}
+.deep-bar i{font-style:normal}
+body.has-player .deep-bar{bottom:calc(6.4rem + env(safe-area-inset-bottom))}
 
 footer.colophon{
   max-width:1240px; margin:0 auto; padding:1.8rem var(--gutter) 3.5rem;
@@ -2785,12 +2833,52 @@ function deepNode(brief, n){
     el("span", {class:"eyebrow", text:"Approfondimento"})
   ]));
   if(a.punto) box.appendChild(el("p", {class:"deep-punto", text:a.punto}));
+
+  /* I grafici non si impilano: scorrono di lato, uno per schermata, con i
+     pallini che dicono quanti sono. Sul telefono tre grafici uno sotto
+     l'altro erano tre schermate di scorrimento prima di arrivare al testo. */
   const vis = (a.visivi || []).map(visualNode).filter(Boolean);
-  if(vis[0]) box.appendChild(vis[0]);
-  if(a.sotto && a.sotto.length){
-    box.appendChild(deepSec("Cosa c'è sotto", "--blue", [].concat(a.sotto).map(function(p){ return el("p", {text:p}); })));
+  if(vis.length === 1) box.appendChild(vis[0]);
+  if(vis.length > 1){
+    const track = el("div", {class:"deep-carousel"});
+    vis.forEach(function(x){ track.appendChild(el("div", {class:"slide"}, [x])); });
+    const pips = el("div", {class:"deep-pips", role:"tablist"});
+    vis.forEach(function(x, i){
+      const b = el("button", {type:"button", class:i === 0 ? "on" : "", "aria-label":"grafico " + (i + 1)});
+      b.addEventListener("click", function(){ track.scrollTo({left:track.clientWidth * i, behavior:"smooth"}); });
+      pips.appendChild(b);
+    });
+    /* il carosello prende l'altezza del grafico che stai guardando, non del
+       piu' alto: altrimenti sotto un grafico basso resta un buco */
+    let cur = -1;
+    const fit = function(){
+      const i = Math.max(0, Math.min(vis.length - 1, Math.round(track.scrollLeft / Math.max(1, track.clientWidth))));
+      Array.prototype.forEach.call(pips.children, function(b, j){ b.classList.toggle("on", j === i); });
+      const h = track.children[i].firstChild.offsetHeight;
+      if(h) track.style.height = (h + 12) + "px";
+      cur = i;
+    };
+    track.addEventListener("scroll", fit, {passive:true});
+    whenSeen(track, fit);
+    window.addEventListener("resize", fit);
+    /* i grafici cambiano altezza mentre si animano (l'esploso si apre, la
+       tela si ridimensiona): si riadatta quando succede */
+    if("ResizeObserver" in window){
+      const ro = new ResizeObserver(function(){ if(cur >= 0) fit(); });
+      Array.prototype.forEach.call(track.children, function(sl){ ro.observe(sl.firstChild); });
+    }
+    box.appendChild(el("div", {class:"deep-gallery"}, [track, el("div", {class:"deep-gallery-foot"}, [
+      el("span", {class:"eyebrow", text:vis.length + " grafici · scorri"}), pips
+    ])]));
   }
-  vis.slice(1).forEach(function(x){ box.appendChild(x); });
+
+  /* Le sezioni sono schede: se ne legge una alla volta. Prima scorrevano
+     tutte di seguito, e sul telefono l'approfondimento era lungo sei
+     schermate. La prima, "Cosa c'e' sotto", e' aperta da sola. */
+  const panes = [];
+  if(a.sotto && a.sotto.length){
+    panes.push(["Cosa c'è sotto", "--blue", [].concat(a.sotto).map(function(p){ return el("p", {text:p}); })]);
+  }
   if(a.tappe && a.tappe.length){
     const ol = el("ol", {class:"deep-tappe"});
     a.tappe.forEach(function(t){
@@ -2801,9 +2889,9 @@ function deepNode(brief, n){
         u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:"→", "aria-label":"apri la fonte"}) : null
       ]));
     });
-    box.appendChild(deepSec("Come ci siamo arrivati", "--ink", [ol]));
+    panes.push(["Tappe", "--ink", [ol]]);
   }
-  if(a.fonti) box.appendChild(deepSec("Chi lo dice", "--red", [el("div", {class:"deep-fonti", text:a.fonti})]));
+  if(a.fonti) panes.push(["Chi lo dice", "--red", [el("div", {class:"deep-fonti", text:a.fonti})]]);
   if(a.dopo && a.dopo.length){
     const ul = el("ul", {class:"deep-dopo"});
     a.dopo.forEach(function(d){
@@ -2815,24 +2903,55 @@ function deepNode(brief, n){
       }
       ul.appendChild(el("li", {}, [el("span", {class:cls, text:when}), el("span", {text:d.testo})]));
     });
-    box.appendChild(deepSec("Cosa aspettarsi", "--orange", [ul]));
+    panes.push(["Cosa aspettarsi", "--orange", [ul]]);
   }
   if(a.approfondire && a.approfondire.length){
-    const grid = el("div", {class:"deep-cards"});
+    const list = el("div", {class:"deep-links"});
     a.approfondire.forEach(function(x){
       const u = safeUrl(x.link);
       if(!u) return;
       const k = String(x.tipo || "leggi").toLowerCase();
-      grid.appendChild(el("a", {class:"deep-card", href:u, target:"_blank", rel:"noopener noreferrer"}, [
+      list.appendChild(el("a", {class:"deep-link", href:u, target:"_blank", rel:"noopener noreferrer"}, [
         el("span", {class:"k " + k, text:k}),
-        el("b", {text:x.titolo}),
-        el("span", {class:"src", text:[x.fonte, x.durata].filter(Boolean).join(" · ")}),
-        x.perche ? el("span", {class:"why", text:x.perche}) : null
+        el("span", {class:"body"}, [
+          el("b", {text:x.titolo}),
+          el("span", {class:"src", text:[x.fonte, x.durata].filter(Boolean).join(" · ") + (x.perche ? " — " + x.perche : "")})
+        ]),
+        el("i", {"aria-hidden":"true", text:"↗"})
       ]));
     });
-    box.appendChild(deepSec("Se ti interessa", "--yellow", [grid]));
+    panes.push(["Se ti interessa", "--yellow", [list]]);
+  }
+  if(panes.length){
+    const tabs = el("div", {class:"deep-tabs", role:"tablist"});
+    const stage = el("div", {class:"deep-pane"});
+    const show = function(i){
+      Array.prototype.forEach.call(tabs.children, function(b, j){ b.setAttribute("aria-selected", j === i ? "true" : "false"); });
+      stage.innerHTML = "";
+      panes[i][2].forEach(function(x){ stage.appendChild(x); });
+    };
+    panes.forEach(function(p, i){
+      const pip = el("i"); pip.style.background = "var(" + p[1] + ")";
+      const b = el("button", {type:"button", role:"tab"}, [pip, el("span", {text:p[0]})]);
+      b.addEventListener("click", function(){
+        show(i);
+        b.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+      });
+      tabs.appendChild(b);
+    });
+    box.appendChild(tabs);
+    box.appendChild(stage);
+    show(0);
   }
   box.appendChild(el("p", {class:"deep-foot", text:"Approfondimento scritto il " + fmtShort(a.scritto || brief.date)}));
+
+  /* La barra che accompagna la lettura: resta attaccata in fondo allo schermo
+     finche' sei dentro l'approfondimento. Chiudi, oppure vai avanti. */
+  const bar = el("div", {class:"deep-bar"}, [
+    el("button", {type:"button", class:"close", "data-act":"close"}, [el("i", {text:"↑"}), el("span", {text:"Chiudi"})]),
+    el("button", {type:"button", class:"next", "data-act":"next"}, [el("span", {text:"Prossima notizia"}), el("i", {text:"→"})])
+  ]);
+  box.appendChild(bar);
   return box;
 }
 
@@ -2842,12 +2961,18 @@ function deepNode(brief, n){
    giusto e la barra sa a che punto sei. Finche' legge tiene lo schermo
    acceso: con lo schermo bloccato iOS ferma la voce. */
 const Voice = (function(){
-  const ok = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+  /* Due voci. Se l'approfondimento ha il suo file (pipeline/audio.py), suona
+     quello con un normale elemento <audio>: continua a schermo bloccato, con i
+     comandi sulla schermata di blocco, e non tace col telefono in silenzioso.
+     Altrimenti legge la voce del browser, a frasi. */
+  const tts = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+  const ok = tts || typeof Audio !== "undefined";
   let chunks = [], idx = 0, playing = false, rate = 1, voice = null, title = "", lock = null, bar = null;
+  let mode = null, audio = null, started = false, watchdog = null, note = "";
   const RATES = [1, 1.15, 1.3, .9];
 
   function pickVoice(){
-    const all = ok ? speechSynthesis.getVoices() : [];
+    const all = tts ? speechSynthesis.getVoices() : [];
     const it = all.filter(function(x){ return /^it(-|_|$)/i.test(x.lang); });
     const score = function(x){
       let s = 0;
@@ -2860,7 +2985,11 @@ const Voice = (function(){
     it.sort(function(a, b){ return score(b) - score(a); });
     voice = it[0] || null;
   }
-  if(ok){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  if(tts){
+    pickVoice();
+    if(speechSynthesis.addEventListener) speechSynthesis.addEventListener("voiceschanged", pickVoice);
+    else speechSynthesis.onvoiceschanged = pickVoice;
+  }
 
   function split(text){
     const out = [];
@@ -2894,6 +3023,8 @@ const Voice = (function(){
     return parts;
   }
 
+  function mmss(x){ x = Math.max(0, Math.round(x || 0)); return Math.floor(x / 60) + ":" + String(x % 60).padStart(2, "0"); }
+
   function ui(){
     if(bar) return bar;
     const pp = el("button", {type:"button", class:"pp", "aria-label":"pausa", text:"❚❚"});
@@ -2906,19 +3037,35 @@ const Voice = (function(){
     sp.addEventListener("click", function(){
       rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length];
       sp.textContent = String(rate).replace(".", ",") + "×";
-      if(playing){ speechSynthesis.cancel(); speak(); }
+      if(mode === "file" && audio) audio.playbackRate = rate;
+      else if(playing){ speechSynthesis.cancel(); speak(); }
     });
     x.addEventListener("click", stop);
+    /* sulla traccia del file si puo' toccare per saltare avanti o indietro */
+    prog.addEventListener("click", function(e){
+      if(mode !== "file" || !audio || !audio.duration) return;
+      const r = prog.getBoundingClientRect();
+      audio.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * audio.duration;
+    });
     document.body.appendChild(bar);
     return bar;
   }
   function paint(){
     const b = ui();
     b.hidden = false;
+    document.body.classList.add("has-player");
     b.querySelector(".what b").textContent = title;
-    b.querySelector(".what span").textContent = (playing ? "In ascolto" : "In pausa") + " · " + Math.min(idx + 1, chunks.length) + "/" + chunks.length;
+    let sub;
+    if(note) sub = note;
+    else if(mode === "file" && audio){
+      sub = (playing ? "In ascolto" : "In pausa") + " · " + mmss(audio.currentTime) + " / " + mmss(audio.duration);
+    } else {
+      sub = (playing ? "In ascolto" : "In pausa") + " · " + Math.min(idx + 1, chunks.length) + "/" + chunks.length;
+    }
+    b.querySelector(".what span").textContent = sub;
     b.querySelector(".pp").textContent = playing ? "❚❚" : "▶";
-    b.querySelector(".bar i").style.width = (chunks.length ? idx / chunks.length * 100 : 0) + "%";
+    const f = mode === "file" && audio && audio.duration ? audio.currentTime / audio.duration : (chunks.length ? idx / chunks.length : 0);
+    b.querySelector(".bar i").style.width = (f * 100) + "%";
   }
   async function wake(on){
     try{
@@ -2926,29 +3073,105 @@ const Voice = (function(){
       if(!on && lock){ lock.release(); lock = null; }
     }catch(e){}
   }
+  function session(n, brief){
+    if(!("mediaSession" in navigator)) return;
+    try{
+      navigator.mediaSession.metadata = new MediaMetadata({title:n.title, artist:"The Morning Brief", album:fmtShort(brief.date)});
+      navigator.mediaSession.setActionHandler("play", resume);
+      navigator.mediaSession.setActionHandler("pause", pause);
+      navigator.mediaSession.setActionHandler("seekbackward", function(){ if(audio) audio.currentTime = Math.max(0, audio.currentTime - 15); });
+      navigator.mediaSession.setActionHandler("seekforward", function(){ if(audio) audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); });
+    }catch(e){}
+  }
+
+  /* ---- la voce del browser ---- */
   function speak(){
     if(idx >= chunks.length){ stop(); return; }
     const u = new SpeechSynthesisUtterance(chunks[idx]);
-    u.lang = "it-IT"; u.rate = rate; if(voice) u.voice = voice;
+    u.lang = "it-IT"; u.rate = rate;
+    /* la voce si riprende dalla lista di adesso: un oggetto voce preso prima
+       che la lista fosse pronta, su iOS, fa tacere l'enunciato */
+    const now = speechSynthesis.getVoices().filter(function(v){ return voice && v.name === voice.name; })[0];
+    if(now) u.voice = now;
+    u.onstart = function(){ started = true; if(note){ note = ""; paint(); } };
     u.onend = function(){ if(!playing) return; idx++; paint(); speak(); };
     u.onerror = function(e){ if(e.error === "interrupted" || e.error === "canceled") return; idx++; if(playing) speak(); };
     speechSynthesis.speak(u);
   }
-  function play(brief, n){
-    if(!ok) return;
-    speechSynthesis.cancel();
+  function playSpeech(brief, n){
+    /* cancel() subito prima di speak() su Safari fa cadere il nuovo
+       enunciato: si cancella solo se c'e' davvero qualcosa in corso */
+    if(speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
+    try{ if(navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
     chunks = [];
     script(brief, n).forEach(function(p){ chunks = chunks.concat(split(p)); });
-    idx = 0; playing = true; title = n.title;
-    if("mediaSession" in navigator){
-      try{ navigator.mediaSession.metadata = new MediaMetadata({title:n.title, artist:"The Morning Brief", album:fmtShort(brief.date)}); }catch(e){}
+    idx = 0; playing = true; started = false; mode = "speech";
+    speak();                      /* dentro il tocco, prima di tutto il resto */
+    wake(true); session(n, brief); paint();
+    clearTimeout(watchdog);
+    watchdog = setTimeout(function(){
+      if(!started && playing){
+        note = "Non si sente? Controlla che l'iPhone non sia in modalità silenziosa";
+        paint();
+      }
+    }, 2500);
+  }
+
+  /* ---- il file audio ---- */
+  function playFile(brief, n, url){
+    if(!audio){
+      audio = new Audio();
+      audio.preload = "auto";
+      audio.addEventListener("timeupdate", paint);
+      audio.addEventListener("loadedmetadata", paint);
+      audio.addEventListener("ended", stop);
+      audio.addEventListener("error", function(){
+        /* se il file non arriva (niente rete, deposito irraggiungibile) si
+           ripiega sulla voce del browser */
+        if(mode !== "file") return;
+        mode = null;
+        if(tts && current) playSpeech(current[0], current[1]);
+      });
     }
+    mode = "file"; playing = true; note = "";
+    audio.src = url;
+    audio.playbackRate = rate;
+    const p = audio.play();
+    if(p && p.catch) p.catch(function(){ playing = false; paint(); });
+    session(n, brief); paint();
+  }
+
+  let current = null;
+  function play(brief, n){
+    if(!ok) return;
+    stop(true);
+    current = [brief, n];
+    title = n.title;
+    const a = n.approfondimento, url = a && a.audio && safeUrl(a.audio.url);
+    /* la copia Artifact non puo' caricare file esterni: li' resta la voce */
+    if(url && MODE !== "local"){ playFile(brief, n, url); return; }
+    if(tts) playSpeech(brief, n);
+  }
+  function pause(){
+    playing = false;
+    if(mode === "file" && audio) audio.pause();
+    else if(tts) speechSynthesis.cancel();
+    wake(false); paint();
+  }
+  function resume(){
+    playing = true;
+    if(mode === "file" && audio){ const p = audio.play(); if(p && p.catch) p.catch(function(){}); paint(); return; }
+    if(!chunks.length) return;
     wake(true); paint(); speak();
   }
-  function pause(){ playing = false; speechSynthesis.cancel(); wake(false); paint(); }
-  function resume(){ if(!chunks.length) return; playing = true; wake(true); paint(); speak(); }
-  function stop(){ playing = false; speechSynthesis.cancel(); wake(false); chunks = []; idx = 0; if(bar) bar.hidden = true; }
-  document.addEventListener("visibilitychange", function(){ if(!document.hidden && playing && lock === null) wake(true); });
+  function stop(keep){
+    playing = false; clearTimeout(watchdog); note = "";
+    if(audio){ audio.pause(); }
+    if(tts && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel();
+    wake(false); chunks = []; idx = 0; mode = null;
+    if(keep !== true){ if(bar) bar.hidden = true; document.body.classList.remove("has-player"); }
+  }
+  document.addEventListener("visibilitychange", function(){ if(!document.hidden && playing && mode === "speech" && lock === null) wake(true); });
   return {ok:ok, play:play, stop:stop};
 })();
 
@@ -2999,19 +3222,44 @@ function storyNode(brief, n, index){
     const openBtn = el("button", {type:"button", class:"deep-open", "aria-expanded":"false"}, [
       el("span", {text:"Approfondisci"}), el("i", {"aria-hidden":"true", text:"↓"})
     ]);
-    openBtn.addEventListener("click", function(ev){
-      ev.stopPropagation();
-      const on = deep.hidden;
+    const setDeep = function(on){
       deep.hidden = !on;
       openBtn.setAttribute("aria-expanded", on ? "true" : "false");
       openBtn.classList.toggle("on", on);
+      openBtn.firstChild.textContent = on ? "Chiudi approfondimento" : "Approfondisci";
+    };
+    openBtn.addEventListener("click", function(ev){
+      ev.stopPropagation();
+      const on = deep.hidden;
+      setDeep(on);
       if(on) setTimeout(function(){ deep.scrollIntoView({behavior:"smooth", block:"start"}); }, 30);
+    });
+    /* la barra in fondo: Chiudi riporta al titolo, Prossima chiude questa
+       notizia e apre la successiva — il "va bene, basta" che mancava */
+    deep.querySelector('[data-act="close"]').addEventListener("click", function(ev){
+      ev.stopPropagation(); setDeep(false);
+      wrap.scrollIntoView({block:"start"});
+    });
+    deep.querySelector('[data-act="next"]').addEventListener("click", function(ev){
+      ev.stopPropagation(); setDeep(false);
+      body.hidden = true; wrap.classList.remove("is-open");
+      let next = wrap.nextElementSibling;
+      while(next && !(next.classList && next.classList.contains("story"))) next = next.nextElementSibling;
+      if(!next){ wrap.scrollIntoView({block:"start"}); return; }
+      /* prima si apre la prossima, poi si salta al suo titolo senza
+         animazione: con lo scorrimento morbido, la notizia sopra che si
+         chiude spostava tutto a meta' corsa e si finiva altrove */
+      const nb = next.querySelector(".story-body");
+      if(nb && nb.hidden) next.querySelector(".story-head").click();
+      next.scrollIntoView({block:"start"});
     });
     acts.appendChild(openBtn);
   }
+  const au = n.approfondimento && n.approfondimento.audio;
+  const dur = au && au.durata ? Math.floor(au.durata / 60) + ":" + String(au.durata % 60).padStart(2, "0") : "";
   const listen = el("button", {type:"button", class:"listen-btn"}, [
     el("i", {"aria-hidden":"true", text:"▶"}),
-    el("span", {text:deep ? "Ascolta l'approfondimento" : "Ascolta"})
+    el("span", {text:deep ? (dur && MODE !== "local" ? "Ascolta · " + dur : "Ascolta l'approfondimento") : "Ascolta"})
   ]);
   listen.addEventListener("click", function(ev){ ev.stopPropagation(); Voice.play(brief, n); });
   if(Voice.ok) acts.appendChild(listen);

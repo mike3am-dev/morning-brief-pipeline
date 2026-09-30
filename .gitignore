@@ -3,3 +3,6 @@
 __pycache__/
 *.pyc
 .claude/launch.json
+
+# la voce e il motore di audio.py: si riscaricano da soli
+.cache/

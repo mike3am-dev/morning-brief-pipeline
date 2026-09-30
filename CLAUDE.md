@@ -528,6 +528,22 @@ Duo *come fabbrica*, i preordini *come acquisto*).
 }
 ```
 
+**Asciutto.** Si legge sul telefono, una scheda alla volta: il 30 settembre 2026 la prima
+versione era lunga sei schermate e Mike ha chiesto di tagliare. Le misure, che il lint
+controlla:
+
+| Campo | Massimo |
+|---|---|
+| `punto` | 220 caratteri |
+| `sotto` | 2 paragrafi da 450 |
+| `tappe` | 4 tappe da 90 (sempre l'ultima, quella di oggi) |
+| `fonti` | 250 caratteri: «quattro testate, una fonte: Bloomberg» |
+| `dopo` | 3 voci da 90 |
+| `approfondire` | 3 voci, `perche` entro 70 |
+
+Accorciare non autorizza ad arrotondare: «poco sopra il 60%» non diventa «al 60%», e la
+stima della fonte di Jiemian non diventa la stima di Jiemian.
+
 Regole:
 - **Non inventare nulla**, qui più che altrove: ogni numero e ogni citazione devono stare
   negli articoli letti o nell'archivio. Si leggono gli articoli **interi**.
@@ -681,6 +697,25 @@ alleggerisci l'archivio, poi ricaricalo:
 ```bash
 python3 pipeline/images.py --prune 60 && python3 pipeline/push.py --all
 ```
+
+### 3b. La voce degli approfondimenti
+
+```bash
+python3 pipeline/audio.py
+```
+
+Legge ad alta voce i cinque approfondimenti e ne fa file audio veri: Piper, sintesi vocale
+open source che gira in locale, voce italiana «paola». I file vanno nel bucket pubblico
+`brief-audio` di Supabase Storage e l'indirizzo finisce nell'approfondimento (`audio`).
+Nell'app *Ascolta* suona quelli: continuano a schermo bloccato, con i comandi sulla
+schermata di blocco, e non tacciono col telefono in silenzioso — la voce del browser su
+iPhone faceva l'una e l'altra cosa (30 settembre 2026: «parte l'animazione ma non sento
+niente»). Se il file manca, l'app ripiega sulla voce del browser.
+
+La prima volta scarica Piper e la voce (63 MB) in `.cache/`, che non si versiona. Circa un
+minuto per cinque approfondimenti, un MB ciascuno. Se il testo non cambia il file non si
+rifà. Licenza: il dataset della voce è CC0, il modello nasce da una voce inglese con licenza
+non commerciale — per un'app personale va bene, per un prodotto a pagamento no.
 
 ### 4. Pubblicazione sull'app sincronizzata
 
@@ -845,6 +880,7 @@ pipeline/missed.py       copertura + trazione online  ->  candidati per il ripes
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
+pipeline/audio.py        gli approfondimenti letti ad alta voce (Piper) -> Supabase Storage
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
