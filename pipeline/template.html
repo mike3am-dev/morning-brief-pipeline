@@ -736,6 +736,8 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
   transition:opacity .2s, transform .2s; z-index:60; max-width:90vw; text-align:center;
 }
 .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+/* col lettore aperto il messaggio sale sopra di lui, invece di finirci sotto */
+body.has-player .toast{bottom:calc(6.6rem + env(safe-area-inset-bottom))}
 
 /* ---------------- fili e previsioni ----------------
    Il filo e' la storia lunga di cui una notizia e' una puntata; la
@@ -903,6 +905,11 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
   background:var(--orange); color:#17181B; padding:.2rem .45rem; border-radius:2px;
 }
 .deep-dopo .when.none{background:var(--paper-2); color:var(--ink-3)}
+/* sul telefono la data sta sopra: il testo prende tutta la riga */
+@media (max-width:600px){
+  .deep-dopo li{grid-template-columns:1fr; gap:.25rem}
+  .deep-dopo .when{justify-self:start}
+}
 .deep-cards{display:grid; grid-template-columns:1fr; gap:.7rem}
 @media (min-width:640px){ .deep-cards{grid-template-columns:1fr 1fr} }
 .deep-card{
@@ -940,8 +947,13 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 .player .what b{font-family:var(--display); font-weight:600; font-size:.98rem; line-height:1.15;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .player .what span{font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; opacity:.7}
-.player .bar{grid-column:1 / -1; height:3px; background:rgba(255,255,255,.18); border-radius:2px; overflow:hidden}
-.player .bar i{display:block; height:100%; width:0; background:var(--yellow); transition:width .3s}
+/* la traccia: una fascia da 24px che si tocca bene, con la linea da 3px al centro */
+.player .bar{grid-column:1 / -1; position:relative; height:24px; margin:-7px 0 -9px; cursor:pointer; touch-action:manipulation;
+  background:linear-gradient(color-mix(in srgb, var(--bone) 30%, transparent), color-mix(in srgb, var(--bone) 30%, transparent)) center / 100% 3px no-repeat}
+.player .bar i{position:absolute; left:0; top:50%; height:3px; margin-top:-1.5px; width:0; border-radius:2px;
+  background:var(--yellow); transition:width .3s}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .player .bar i{background:var(--bone)} }
+:root[data-theme="dark"] .player .bar i{background:var(--bone)}
 .player .sp,.player .x{
   border:0; background:none; color:var(--bone); cursor:pointer; font-weight:700; font-size:.8rem;
   padding:.4rem .45rem; border-radius:6px; opacity:.85;
@@ -1002,7 +1014,7 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 .vis-resa .need b{font-family:var(--display); font-size:1.3rem; color:var(--red)}
 
 /* piega: il Duo in 3D */
-.duo-stage{height:250px; perspective:1100px; display:grid; place-items:center; cursor:grab; touch-action:none;
+.duo-stage{height:250px; perspective:1100px; display:grid; place-items:center; cursor:grab; touch-action:pan-y;
   background:radial-gradient(circle at 50% 60%, var(--paper-2), transparent 70%)}
 .duo-stage:active{cursor:grabbing}
 .duo-rig{position:relative; width:220px; height:152px; transform-style:preserve-3d}
@@ -1109,7 +1121,8 @@ mark{background:var(--yellow); color:#17181B; border-radius:2px; padding:0 .12em
 
 /* ---------------- approfondimento compatto ----------------
    Una scheda alla volta, i grafici di lato, la barra per uscire. */
-.story{scroll-margin-top:7.4rem}
+.story,.deep{scroll-margin-top:7.4rem}
+@media (max-width:600px){ .story,.deep{scroll-margin-top:5.6rem} }
 .deep-tabs{display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; margin:0 -.1rem; padding:.1rem .1rem .2rem;
   scroll-snap-type:x proximity}
 .deep-tabs::-webkit-scrollbar{display:none}
@@ -1610,12 +1623,20 @@ function saveBriefsCache(list){
   try{ localStorage.removeItem(K_BRIEFS); }catch(e){}
 }
 
+/* l'impronta dell'edizione a schermo: se il download porta la stessa, non
+   si ridisegna niente (sul cellulare arriva dopo secondi, e intanto magari
+   hai gia' aperto una notizia) */
+function shownSig(){
+  const b = BRIEFS.filter(function(x){ return x.date === currentDate; })[0] || BRIEFS[0];
+  return b ? b.date + ":" + JSON.stringify(b).length : "";
+}
 async function loadBriefs(){
   if(!CLOUD){ indexAll(); return; }
   try{
     const cached = JSON.parse(localStorage.getItem(K_BRIEFS) || "null");
     if(cached && cached.length){ BRIEFS = cached; indexAll(); repaint(); }
   }catch(e){}
+  const before = BRIEFS.length ? shownSig() : "";
   try{
     const res = await sb("/rest/v1/brief_editions?select=payload&order=date.desc&limit=400");
     if(!res.ok) throw new Error("brief_editions " + res.status);
@@ -1627,7 +1648,8 @@ async function loadBriefs(){
       if(!currentDate || !BRIEFS.some(function(b){ return b.date === currentDate; })){
         currentDate = BRIEFS[0].date;
       }
-      repaint();
+      if(before && (currentView === "oggi" || currentView === "ai") && shownSig() === before) refreshCounts();
+      else repaint();
     }
   }catch(err){
     if(!BRIEFS.length) toast("Nessuna edizione scaricata — controlla la connessione");
@@ -2182,6 +2204,9 @@ function verificaText(v){
 const STILL = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 function cssv(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 function tone(c){ return cssv("--" + (c || "blue")) || c; }
+/* per i colori messi nello stile degli elementi: un riferimento alla variabile,
+   non il valore di adesso, cosi' seguono il cambio di tema */
+function toneVar(c){ c = c || "blue"; return /^[a-z][a-z0-9-]*$/.test(c) ? "var(--" + c + ", " + c + ")" : c; }
 const SVGNS = "http://www.w3.org/2000/svg";
 function sv(tag, attrs, kids){
   const n = document.createElementNS(SVGNS, tag);
@@ -2216,6 +2241,33 @@ function whenSeen(node, fn){
     es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); fn(); } });
   }, {threshold:.35});
   io.observe(node);
+}
+
+/* Un'animazione che gira solo mentre si vede. Fuori schermo si ferma e
+   riparte al ritorno; quando il nodo esce dalla pagina (l'edizione ridisegnata)
+   finisce per sempre, invece di accumularsi a ogni nuovo disegno. Se il passo
+   lancia un errore il ciclo non muore: il fotogramma dopo si chiede prima. */
+function liveLoop(node, step){
+  let vis = false, on = false;
+  const io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(es){
+    vis = es[es.length - 1].isIntersecting;
+    if(vis && !on){ on = true; requestAnimationFrame(run); }
+  }) : null;
+  function run(t){
+    if(!node.isConnected){ if(io) io.disconnect(); on = false; return; }
+    if(!vis){ on = false; return; }
+    requestAnimationFrame(run);
+    step(t);
+  }
+  if(io) io.observe(node); else { vis = true; on = true; requestAnimationFrame(run); }
+}
+/* La tela si ridimensiona con il suo contenitore. ResizeObserver invece di
+   window resize: non si accumula e non tiene in vita le edizioni staccate. */
+function onResize(node, fn){
+  if("ResizeObserver" in window){
+    let w = node.clientWidth;
+    new ResizeObserver(function(){ if(node.clientWidth !== w){ w = node.clientWidth; fn(); } }).observe(node);
+  }
 }
 
 /* Un canvas nitido sugli schermi densi, che segue la larghezza del contenitore */
@@ -2334,8 +2386,8 @@ function visBarre(v){
   voci.forEach(function(x){
     const lo = x.min || 0, hi = x.max || lo;
     const bar = el("div", {class:"bar-track"});
-    const full = el("i", {class:"bar-full"}); full.style.background = tone(x.colore);
-    const ext = el("i", {class:"bar-ext"}); ext.style.borderColor = tone(x.colore);
+    const full = el("i", {class:"bar-full"}); full.style.background = toneVar(x.colore);
+    const ext = el("i", {class:"bar-ext"}); ext.style.borderColor = toneVar(x.colore);
     bar.appendChild(full); bar.appendChild(ext);
     fills.push([full, ext, lo / top * 100, (hi - lo) / top * 100]);
     list.appendChild(el("div", {class:"bar-row"}, [
@@ -2383,7 +2435,25 @@ function visResa(v){
   box.appendChild(counts);
   box.appendChild(need);
   const goal = v.obiettivo || 0;
-  let made = 0, good = 0, bad = 0;
+  let made = 0, good = 0, bad = 0, geo = null;
+  const items = [];
+  function phone(ctx, x, y, col, mark){
+    ctx.fillStyle = col;
+    const w = 18, h = 24, r = 4;
+    ctx.beginPath();
+    ctx.moveTo(x - w/2 + r, y - h/2); ctx.arcTo(x + w/2, y - h/2, x + w/2, y + h/2, r);
+    ctx.arcTo(x + w/2, y + h/2, x - w/2, y + h/2, r); ctx.arcTo(x - w/2, y + h/2, x - w/2, y - h/2, r);
+    ctx.arcTo(x - w/2, y - h/2, x + w/2, y - h/2, r); ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,.55)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, y - h/2 + 3); ctx.lineTo(x, y + h/2 - 3); ctx.stroke();
+    if(mark){ ctx.fillStyle = "#fff"; ctx.font = "700 11px system-ui"; ctx.textAlign = "center"; ctx.fillText(mark, x, y + 4); }
+  }
+  /* senza movimento: dieci telefoni fermi, colorati secondo la resa */
+  function drawStill(){
+    if(!geo) return;
+    geo.ctx.clearRect(0, 0, geo.w, geo.h);
+    for(let i = 0; i < 10; i++) phone(geo.ctx, 24 + i * 28, geo.h * .45, i < Math.round(resa * 10) ? tone("blue") : tone("red"));
+  }
   function readout(){
     pct.textContent = Math.round(resa * 100) + "%";
     counts.textContent = "Montati " + made + " · passano " + good + " · scartati " + bad;
@@ -2395,28 +2465,24 @@ function visResa(v){
       need.appendChild(el("span", {text:" — su 100 che escono dalla linea, " + Math.round(resa * 100) + " passano il controllo."}));
     }
   }
-  slider.addEventListener("input", function(){ resa = +slider.value / 100; made = good = bad = 0; readout(); });
+  /* i telefoni gia' sul nastro contano come montati: cosi' promossi e
+     scartati non superano mai i montati */
+  slider.addEventListener("input", function(){
+    resa = +slider.value / 100;
+    made = items.filter(function(it){ return it.st === 0; }).length; good = bad = 0;
+    readout(); if(STILL) drawStill();
+  });
   readout();
   visCaption(box, v);
 
   whenSeen(box, function(){
-    let geo = crispCanvas(canvas, .36);
-    window.addEventListener("resize", function(){ geo = crispCanvas(canvas, .36); });
-    const items = [];
+    geo = crispCanvas(canvas, .36);
+    onResize(canvas, function(){ geo = crispCanvas(canvas, .36); if(STILL) drawStill(); });
     let last = 0;
-    const blue = tone("blue"), red = tone("red"), ink = cssv("--ink"), rule = cssv("--rule-strong"), paper = cssv("--paper-2");
-    function phone(ctx, x, y, col, mark){
-      ctx.fillStyle = col;
-      const w = 18, h = 24, r = 4;
-      ctx.beginPath();
-      ctx.moveTo(x - w/2 + r, y - h/2); ctx.arcTo(x + w/2, y - h/2, x + w/2, y + h/2, r);
-      ctx.arcTo(x + w/2, y + h/2, x - w/2, y + h/2, r); ctx.arcTo(x - w/2, y + h/2, x - w/2, y - h/2, r);
-      ctx.arcTo(x - w/2, y - h/2, x + w/2, y - h/2, r); ctx.fill();
-      ctx.strokeStyle = "rgba(255,255,255,.55)"; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(x, y - h/2 + 3); ctx.lineTo(x, y + h/2 - 3); ctx.stroke();
-      if(mark){ ctx.fillStyle = "#fff"; ctx.font = "700 11px system-ui"; ctx.textAlign = "center"; ctx.fillText(mark, x, y + 4); }
-    }
     function frame(now){
+      /* i colori si leggono a ogni fotogramma: cambiando tema a grafico
+         aperto, niente resta chiaro su chiaro */
+      const blue = tone("blue"), red = tone("red"), ink = cssv("--ink"), rule = cssv("--rule-strong"), paper = cssv("--paper-2");
       const ctx = geo.ctx, w = geo.w, h = geo.h;
       const beltY = h * .42, gate = w * .56;
       ctx.clearRect(0, 0, w, h);
@@ -2442,11 +2508,8 @@ function visResa(v){
         phone(ctx, it.x, it.y, col, it.st === 1 ? "✓" : (it.st >= 2 ? "✕" : ""));
         if(it.x > w + 20 || (it.st === 3 && now - it.t > 1600)) items.splice(i, 1);
       }
-      if(!STILL) requestAnimationFrame(frame);
     }
-    if(STILL){ /* senza movimento: dieci telefoni fermi, colorati secondo la resa */
-      const ctx = geo.ctx; for(let i = 0; i < 10; i++){ phone(ctx, 24 + i * 28, geo.h * .45, i < Math.round(resa * 10) ? tone("blue") : tone("red")); }
-    } else requestAnimationFrame(frame);
+    if(STILL) drawStill(); else liveLoop(box, frame);
   });
   return box;
 }
@@ -2507,15 +2570,20 @@ function visPiega(v){
     else open = target;
     if(auto && !drag) ry = -24 + Math.sin((now - t0) / 2600) * 34;
     paint();
-    requestAnimationFrame(tick);
   }
   slider.addEventListener("input", function(){ target = open = +slider.value; auto = false; paint(); });
-  btn.addEventListener("click", function(){ target = open > 90 ? 0 : 180; auto = false; });
-  stage.addEventListener("pointerdown", function(e){ drag = {x:e.clientX, y:e.clientY, ry:ry, rx:rx}; auto = false; stage.setPointerCapture(e.pointerId); });
+  /* senza movimento il ciclo non gira: si salta subito alla posizione */
+  btn.addEventListener("click", function(){ target = open > 90 ? 0 : 180; auto = false; if(STILL){ open = target; paint(); } });
+  /* sul telefono il gesto verticale e' della pagina (touch-action:pan-y):
+     il dito gira il modello solo in orizzontale, il mouse anche in verticale */
+  stage.addEventListener("pointerdown", function(e){ drag = {x:e.clientX, y:e.clientY, ry:ry, rx:rx, moved:false}; try{ stage.setPointerCapture(e.pointerId); }catch(err){} });
   stage.addEventListener("pointermove", function(e){
     if(!drag) return;
+    if(!drag.moved && Math.abs(e.clientX - drag.x) < 4 && Math.abs(e.clientY - drag.y) < 4) return;
+    drag.moved = true; auto = false;
     ry = drag.ry + (e.clientX - drag.x) * .5;
-    rx = Math.max(-30, Math.min(55, drag.rx - (e.clientY - drag.y) * .35));
+    if(e.pointerType !== "touch") rx = Math.max(-30, Math.min(55, drag.rx - (e.clientY - drag.y) * .35));
+    if(STILL) paint();
   });
   stage.addEventListener("pointerup", function(){ drag = null; });
   stage.addEventListener("pointercancel", function(){ drag = null; });
@@ -2524,7 +2592,7 @@ function visPiega(v){
     if(STILL){ paint(); return; }
     /* una piccola dimostrazione: si chiude e si riapre da solo, poi e' tuo */
     target = 0; setTimeout(function(){ target = 180; }, 1700);
-    requestAnimationFrame(tick);
+    liveLoop(box, tick);
   });
   return box;
 }
@@ -2616,8 +2684,10 @@ function visRaggio(v){
     for(let y = 0; y < h; y += kmPx * 4){ ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
     const orange = tone("orange"), ink = cssv("--ink-3"), red = tone("red");
     pings.forEach(function(p){
-      const k = STILL ? 1 : Math.min(1, (now - p.t) / 900);
-      const r = RK * kmPx * (1 - Math.pow(1 - k, 3));
+      /* k parte da 0: il primo segnale nasce 400 ms nel futuro, e un raggio
+         negativo fa lanciare arc() */
+      const k = STILL ? 1 : Math.max(0, Math.min(1, (now - p.t) / 900));
+      const r = Math.max(0, RK * kmPx * (1 - Math.pow(1 - k, 3)));
       ctx.fillStyle = orange + "22"; ctx.strokeStyle = orange; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.arc(p.x * w, p.y * h, r, 0, 7); ctx.fill(); ctx.stroke();
       p.r = r;
@@ -2639,19 +2709,18 @@ function visRaggio(v){
     ctx.font = "700 10px system-ui"; ctx.textAlign = "left";
     ctx.fillText((v.etichetta_raggio || RK + " km"), 12, h - 22);
     if(pings.length) counter.textContent = "Avvisati " + lit + " puntini su " + people.length + (pings.length > 1 ? " · " + pings.length + " segnalazioni" : "");
-    if(!STILL) requestAnimationFrame(draw);
   }
   canvas.addEventListener("click", function(e){
     const r = canvas.getBoundingClientRect();
     pings.push({x:(e.clientX - r.left) / r.width, y:(e.clientY - r.top) / r.height, t:performance.now()});
     if(pings.length > 3) pings.shift();
-    if(STILL) draw(performance.now());
+    if(STILL && geo) draw(performance.now());
   });
   whenSeen(box, function(){
     seed(); geo = crispCanvas(canvas, .62);
-    window.addEventListener("resize", function(){ geo = crispCanvas(canvas, .62); });
+    onResize(canvas, function(){ geo = crispCanvas(canvas, .62); if(STILL) draw(performance.now()); });
     pings.push({x:.44, y:.46, t:performance.now() + 400});
-    requestAnimationFrame(draw);
+    if(STILL) draw(performance.now()); else liveLoop(box, draw);
   });
   return box;
 }
@@ -2718,9 +2787,8 @@ function visFlusso(v){
         }
         k.c.setAttribute("cx", p.x); k.c.setAttribute("cy", p.y);
       }
-      requestAnimationFrame(step);
     }
-    requestAnimationFrame(step);
+    liveLoop(box, step);
   });
   return box;
 }
@@ -2739,12 +2807,16 @@ function visOnde(v){
   let active = true, delay = .04;
   box.appendChild(el("div", {class:"vis-controls"}, [on, el("label", {class:"lbl"}, [el("span", {text:"Ritardo"}), lab]), slider]));
   visCaption(box, v);
-  on.addEventListener("click", function(){ active = !active; on.textContent = "Antirumore: " + (active ? "acceso" : "spento"); });
-  slider.addEventListener("input", function(){ delay = +slider.value / 100; });
+  let geo = null, frame = null;
+  /* senza movimento il disegno fermo si rifà a ogni tocco */
+  const still = function(){ if(STILL && frame) frame(0); };
+  on.addEventListener("click", function(){ active = !active; on.textContent = "Antirumore: " + (active ? "acceso" : "spento"); still(); });
+  slider.addEventListener("input", function(){ delay = +slider.value / 100; still(); });
   whenSeen(box, function(){
-    let geo = crispCanvas(canvas, .5);
+    geo = crispCanvas(canvas, .5);
+    onResize(canvas, function(){ geo = crispCanvas(canvas, .5); still(); });
     function noise(t, x){ return Math.sin(x * .045 + t * 2.1) * .55 + Math.sin(x * .11 - t * 3.3) * .3 + Math.sin(x * .023 + t) * .15; }
-    function frame(now){
+    frame = function(now){
       const t = now / 1000, ctx = geo.ctx, w = geo.w, h = geo.h, rows = [h * .2, h * .5, h * .8], amp = h * .11;
       ctx.clearRect(0, 0, w, h);
       lab.textContent = Math.round(delay * 100) + "%";
@@ -2757,9 +2829,8 @@ function visOnde(v){
         ctx.stroke();
         ctx.fillStyle = L[1]; ctx.font = "700 10px system-ui"; ctx.fillText(L[0].toUpperCase(), 8, rows[i] - amp - 4);
       });
-      if(!STILL) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+    };
+    if(STILL) frame(0); else liveLoop(box, frame);
   });
   return box;
 }
@@ -2780,7 +2851,7 @@ function visEsploso(v){
     const pl = el("button", {type:"button", class:"xp-plate" + (s.stato === "problema" ? " warn" : ""), "aria-label":s.nome});
     pl.style.setProperty("--i", String(i));
     pl.style.setProperty("--n", String(strati.length));
-    pl.style.setProperty("--c", tone(s.colore || (s.stato === "problema" ? "red" : "ink-3")));
+    pl.style.setProperty("--c", toneVar(s.colore || (s.stato === "problema" ? "red" : "ink-3")));
     pl.appendChild(el("span", {class:"xp-face"}));
     pl.appendChild(el("span", {class:"xp-tag", text:s.nome}));
     pl.addEventListener("click", function(){
@@ -2856,17 +2927,19 @@ function deepNode(brief, n){
       Array.prototype.forEach.call(pips.children, function(b, j){ b.classList.toggle("on", j === i); });
       const h = track.children[i].firstChild.offsetHeight;
       if(h) track.style.height = (h + 12) + "px";
-      cur = i;
+      cur = i; box.dataset.slide = String(i);
     };
     track.addEventListener("scroll", fit, {passive:true});
     whenSeen(track, fit);
-    window.addEventListener("resize", fit);
     /* i grafici cambiano altezza mentre si animano (l'esploso si apre, la
-       tela si ridimensiona): si riadatta quando succede */
+       tela si ridimensiona): si riadatta quando succede. window resize solo
+       come ripiego: si accumulerebbe a ogni nuovo disegno dell'edizione */
     if("ResizeObserver" in window){
       const ro = new ResizeObserver(function(){ if(cur >= 0) fit(); });
       Array.prototype.forEach.call(track.children, function(sl){ ro.observe(sl.firstChild); });
-    }
+    } else window.addEventListener("resize", fit);
+    /* per ritrovare il grafico giusto dopo un nuovo disegno dell'edizione */
+    box._slide = function(i){ track.scrollLeft = track.clientWidth * i; fit(); };
     box.appendChild(el("div", {class:"deep-gallery"}, [track, el("div", {class:"deep-gallery-foot"}, [
       el("span", {class:"eyebrow", text:vis.length + " grafici · scorri"}), pips
     ])]));
@@ -2926,10 +2999,13 @@ function deepNode(brief, n){
     const tabs = el("div", {class:"deep-tabs", role:"tablist"});
     const stage = el("div", {class:"deep-pane"});
     const show = function(i){
+      i = Math.max(0, Math.min(panes.length - 1, i || 0));
       Array.prototype.forEach.call(tabs.children, function(b, j){ b.setAttribute("aria-selected", j === i ? "true" : "false"); });
       stage.innerHTML = "";
       panes[i][2].forEach(function(x){ stage.appendChild(x); });
+      box.dataset.tab = String(i);
     };
+    box._tab = show;
     panes.forEach(function(p, i){
       const pip = el("i"); pip.style.background = "var(" + p[1] + ")";
       const b = el("button", {type:"button", role:"tab"}, [pip, el("span", {text:p[0]})]);
@@ -2968,7 +3044,12 @@ const Voice = (function(){
   const tts = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
   const ok = tts || typeof Audio !== "undefined";
   let chunks = [], idx = 0, playing = false, rate = 1, voice = null, title = "", lock = null, bar = null;
-  let mode = null, audio = null, started = false, watchdog = null, note = "";
+  let mode = null, audio = null, started = false, watchdog = null, note = "", gen = 0, bare = false, voiceURI = null;
+  /* fileGen: il numero del file in corso, per ignorare le risposte in ritardo
+     di quello prima. fallback: il file non e' arrivato, e il prossimo tocco su
+     ▶ passa alla voce del telefono (fuori dal tocco iOS la lascerebbe muta).
+     lastCancel: quando si e' zittita l'ultima voce, per non ripartire troppo presto. */
+  let fileGen = 0, fallback = false, lastCancel = 0, current = null;
   const RATES = [1, 1.15, 1.3, .9];
 
   function pickVoice(){
@@ -2984,6 +3065,9 @@ const Voice = (function(){
     };
     it.sort(function(a, b){ return score(b) - score(a); });
     voice = it[0] || null;
+    /* si tiene solo l'identificativo: l'oggetto voce si ripesca al momento
+       di parlare, dalla lista di allora */
+    voiceURI = voice ? voice.voiceURI : null;
   }
   if(tts){
     pickVoice();
@@ -3037,8 +3121,9 @@ const Voice = (function(){
     sp.addEventListener("click", function(){
       rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length];
       sp.textContent = String(rate).replace(".", ",") + "×";
+      /* sul file cambia subito; sulla voce vale dalla frase dopo: fermarla e
+         ripartire e' proprio quello che su Safari fa perdere l'enunciato */
       if(mode === "file" && audio) audio.playbackRate = rate;
-      else if(playing){ speechSynthesis.cancel(); speak(); }
     });
     x.addEventListener("click", stop);
     /* sulla traccia del file si puo' toccare per saltare avanti o indietro */
@@ -3051,6 +3136,8 @@ const Voice = (function(){
     return bar;
   }
   function paint(){
+    /* un evento in ritardo del file appena chiuso non deve riaprire la barra */
+    if(!mode && !fallback) return;
     const b = ui();
     b.hidden = false;
     document.body.classList.add("has-player");
@@ -3059,6 +3146,8 @@ const Voice = (function(){
     if(note) sub = note;
     else if(mode === "file" && audio){
       sub = (playing ? "In ascolto" : "In pausa") + " · " + mmss(audio.currentTime) + " / " + mmss(audio.duration);
+    } else if(mode === "speech" && playing && !started){
+      sub = "Avvio…";
     } else {
       sub = (playing ? "In ascolto" : "In pausa") + " · " + Math.min(idx + 1, chunks.length) + "/" + chunks.length;
     }
@@ -3066,6 +3155,7 @@ const Voice = (function(){
     b.querySelector(".pp").textContent = playing ? "❚❚" : "▶";
     const f = mode === "file" && audio && audio.duration ? audio.currentTime / audio.duration : (chunks.length ? idx / chunks.length : 0);
     b.querySelector(".bar i").style.width = (f * 100) + "%";
+    if("mediaSession" in navigator){ try{ navigator.mediaSession.playbackState = playing ? "playing" : "paused"; }catch(e){} }
   }
   async function wake(on){
     try{
@@ -3075,46 +3165,82 @@ const Voice = (function(){
   }
   function session(n, brief){
     if(!("mediaSession" in navigator)) return;
+    const ms = navigator.mediaSession, file = mode === "file";
     try{
-      navigator.mediaSession.metadata = new MediaMetadata({title:n.title, artist:"The Morning Brief", album:fmtShort(brief.date)});
-      navigator.mediaSession.setActionHandler("play", resume);
-      navigator.mediaSession.setActionHandler("pause", pause);
-      navigator.mediaSession.setActionHandler("seekbackward", function(){ if(audio) audio.currentTime = Math.max(0, audio.currentTime - 15); });
-      navigator.mediaSession.setActionHandler("seekforward", function(){ if(audio) audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); });
+      ms.metadata = new MediaMetadata({title:n.title, artist:"The Morning Brief", album:fmtShort(brief.date)});
+      ms.setActionHandler("play", resume);
+      ms.setActionHandler("pause", pause);
+      /* ±15 s solo sul file: sulla voce sposterebbero un file vecchio in pausa */
+      ms.setActionHandler("seekbackward", file ? function(){ if(mode === "file" && audio) audio.currentTime = Math.max(0, audio.currentTime - 15); } : null);
+      ms.setActionHandler("seekforward", file ? function(){ if(mode === "file" && audio) audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); } : null);
     }catch(e){}
+  }
+  function unsession(){
+    if(!("mediaSession" in navigator)) return;
+    const ms = navigator.mediaSession;
+    try{ ms.metadata = null; ms.playbackState = "none"; }catch(e){}
+    ["play", "pause", "seekbackward", "seekforward"].forEach(function(a){ try{ ms.setActionHandler(a, null); }catch(e){} });
+  }
+
+  /* zittisce la voce e segna quando: speak() subito dopo un cancel() che ha
+     davvero fermato qualcosa, su Safari, perde l'enunciato (WebKit 191745, 238189) */
+  function hush(force){
+    if(!tts) return;
+    if(force || speechSynthesis.speaking || speechSynthesis.pending){ speechSynthesis.cancel(); lastCancel = Date.now(); }
+  }
+  /* parte subito, o 160 ms dopo l'ultimo cancel. Un timer sotto il secondo
+     conta ancora come tocco, quindi iOS lo lascia parlare. */
+  function kick(){
+    const my = gen, wait = 160 - (Date.now() - lastCancel);
+    if(wait > 0) setTimeout(function(){ if(my === gen && playing) speak(); }, wait);
+    else speak();
   }
 
   /* ---- la voce del browser ---- */
   function speak(){
     if(idx >= chunks.length){ stop(); return; }
+    const my = gen;
     const u = new SpeechSynthesisUtterance(chunks[idx]);
     u.lang = "it-IT"; u.rate = rate;
     /* la voce si riprende dalla lista di adesso: un oggetto voce preso prima
        che la lista fosse pronta, su iOS, fa tacere l'enunciato */
-    const now = speechSynthesis.getVoices().filter(function(v){ return voice && v.name === voice.name; })[0];
+    const now = bare ? null : speechSynthesis.getVoices().filter(function(v){ return v.voiceURI === voiceURI; })[0];
     if(now) u.voice = now;
-    u.onstart = function(){ started = true; if(note){ note = ""; paint(); } };
-    u.onend = function(){ if(!playing) return; idx++; paint(); speak(); };
-    u.onerror = function(e){ if(e.error === "interrupted" || e.error === "canceled") return; idx++; if(playing) speak(); };
+    /* ogni evento porta il numero della lettura che l'ha generato: quelli di
+       una lettura gia' fermata (Safari li spara anche dentro cancel) si
+       ignorano, invece di far saltare o bloccare quella nuova */
+    u.onstart = function(){ if(my !== gen) return; if(!started){ started = true; note = ""; paint(); } };
+    u.onend = function(){ if(my !== gen || !playing) return; idx++; paint(); speak(); };
+    u.onerror = function(e){
+      if(my !== gen) return;
+      if(e.error === "interrupted" || e.error === "canceled"){
+        /* cancellato senza che l'abbiamo chiesto noi: si riprova la frase */
+        if(playing){ lastCancel = Date.now(); kick(); }
+        return;
+      }
+      idx++; if(playing) speak();
+    };
     speechSynthesis.speak(u);
   }
   function playSpeech(brief, n){
-    /* cancel() subito prima di speak() su Safari fa cadere il nuovo
-       enunciato: si cancella solo se c'e' davvero qualcosa in corso */
-    if(speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
+    /* si zittisce solo se c'e' qualcosa in corso; kick() aspetta i 160 ms
+       dopo un cancel, anche quello fatto da stop() passando da una notizia all'altra */
+    gen++; hush();
     try{ if(navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
     chunks = [];
     script(brief, n).forEach(function(p){ chunks = chunks.concat(split(p)); });
-    idx = 0; playing = true; started = false; mode = "speech";
-    speak();                      /* dentro il tocco, prima di tutto il resto */
+    idx = 0; playing = true; started = false; mode = "speech"; bare = false; note = ""; fallback = false;
+    kick();   /* dentro il tocco, prima di tutto il resto */
     wake(true); session(n, brief); paint();
     clearTimeout(watchdog);
     watchdog = setTimeout(function(){
-      if(!started && playing){
-        note = "Non si sente? Controlla che l'iPhone non sia in modalità silenziosa";
-        paint();
-      }
-    }, 2500);
+      if(started || !playing) return;
+      /* dopo quattro secondi senza voce: si riprova una volta con la voce
+         predefinita, e si dice la causa piu' probabile */
+      note = "Non si sente? Togli il Silenzioso e alza il volume";
+      bare = true; gen++; hush(true); kick();
+      paint();
+    }, 4000);
   }
 
   /* ---- il file audio ---- */
@@ -3122,26 +3248,37 @@ const Voice = (function(){
     if(!audio){
       audio = new Audio();
       audio.preload = "auto";
-      audio.addEventListener("timeupdate", paint);
-      audio.addEventListener("loadedmetadata", paint);
-      audio.addEventListener("ended", stop);
+      audio.addEventListener("timeupdate", function(){ if(mode === "file") paint(); });
+      audio.addEventListener("loadedmetadata", function(){ if(mode === "file") paint(); });
+      audio.addEventListener("ended", function(){ if(mode === "file") stop(); });
+      /* il sistema puo' fermare il file da se' (una chiamata, le cuffie tolte):
+         la barra segue l'elemento invece di restare su ❚❚ */
+      audio.addEventListener("pause", function(){ if(mode === "file" && playing && !audio.ended){ playing = false; wake(false); paint(); } });
+      audio.addEventListener("play", function(){ if(mode === "file" && !playing){ playing = true; paint(); } });
       audio.addEventListener("error", function(){
-        /* se il file non arriva (niente rete, deposito irraggiungibile) si
-           ripiega sulla voce del browser */
-        if(mode !== "file") return;
-        mode = null;
-        if(tts && current) playSpeech(current[0], current[1]);
+        /* il file non arriva (niente rete, deposito irraggiungibile). La voce
+           del telefono non si fa partire da qui: fuori dal tocco iOS la
+           lascerebbe muta. Si prepara il ripiego per il prossimo ▶. */
+        if(mode !== "file" || !audio.getAttribute("src")) return;
+        fileGen++; mode = null; playing = false; wake(false);
+        fallback = true;
+        note = tts ? "Audio non disponibile · ▶ voce del telefono" : "Audio non disponibile · ▶ riprova";
+        paint();
       });
     }
-    mode = "file"; playing = true; note = "";
+    mode = "file"; playing = true; note = ""; fallback = false;
     audio.src = url;
     audio.playbackRate = rate;
-    const p = audio.play();
-    if(p && p.catch) p.catch(function(){ playing = false; paint(); });
-    session(n, brief); paint();
+    const my = ++fileGen, p = audio.play();
+    /* la risposta arriva dopo: se nel frattempo si e' chiuso o cambiato file,
+       non tocca la lettura nuova. AbortError e' solo il file cambiato. */
+    if(p && p.catch) p.catch(function(e){
+      if(my !== fileGen || mode !== "file" || (e && e.name === "AbortError")) return;
+      playing = false; paint();
+    });
+    wake(true); session(n, brief); paint();
   }
 
-  let current = null;
   function play(brief, n){
     if(!ok) return;
     stop(true);
@@ -3153,25 +3290,51 @@ const Voice = (function(){
     if(tts) playSpeech(brief, n);
   }
   function pause(){
+    if(!mode) return;
     playing = false;
     if(mode === "file" && audio) audio.pause();
-    else if(tts) speechSynthesis.cancel();
+    else { gen++; hush(); }
     wake(false); paint();
   }
   function resume(){
+    /* il file non e' arrivato: la voce del telefono, dentro questo tocco;
+       senza voce, si riprova il file */
+    if(fallback && current){
+      fallback = false;
+      if(tts) playSpeech(current[0], current[1]); else play(current[0], current[1]);
+      return;
+    }
+    if(!mode) return;
     playing = true;
-    if(mode === "file" && audio){ const p = audio.play(); if(p && p.catch) p.catch(function(){}); paint(); return; }
+    if(mode === "file" && audio){
+      const my = fileGen, p = audio.play();
+      if(p && p.catch) p.catch(function(e){ if(my === fileGen && mode === "file" && !(e && e.name === "AbortError")){ playing = false; paint(); } });
+      wake(true); paint(); return;
+    }
     if(!chunks.length) return;
-    wake(true); paint(); speak();
+    gen++; wake(true); paint(); kick();
   }
   function stop(keep){
-    playing = false; clearTimeout(watchdog); note = "";
-    if(audio){ audio.pause(); }
-    if(tts && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel();
-    wake(false); chunks = []; idx = 0; mode = null;
-    if(keep !== true){ if(bar) bar.hidden = true; document.body.classList.remove("has-player"); }
+    const close = keep !== true;
+    playing = false; clearTimeout(watchdog); note = ""; fallback = false;
+    gen++; fileGen++; mode = null;
+    /* si scarica il file: altrimenti resta in pausa sulla schermata di blocco
+       e i suoi eventi in ritardo riaprono la barra */
+    if(audio){ audio.pause(); if(audio.getAttribute("src")){ audio.removeAttribute("src"); audio.load(); } }
+    hush();
+    wake(false); chunks = []; idx = 0;
+    if(close){
+      current = null; unsession();
+      if(bar) bar.hidden = true; document.body.classList.remove("has-player");
+    }
   }
-  document.addEventListener("visibilitychange", function(){ if(!document.hidden && playing && mode === "speech" && lock === null) wake(true); });
+  /* la voce del browser si ferma a pagina nascosta, e al ritorno non manda
+     gli eventi che aspettiamo: meglio metterla in pausa noi e mostrarlo */
+  document.addEventListener("visibilitychange", function(){
+    if(mode !== "speech") return;
+    if(document.hidden && playing) pause();
+  });
+  window.addEventListener("pagehide", function(){ if(mode === "speech") stop(); });
   return {ok:ok, play:play, stop:stop};
 })();
 
@@ -3228,6 +3391,7 @@ function storyNode(brief, n, index){
       openBtn.classList.toggle("on", on);
       openBtn.firstChild.textContent = on ? "Chiudi approfondimento" : "Approfondisci";
     };
+    wrap._deep = setDeep;
     openBtn.addEventListener("click", function(ev){
       ev.stopPropagation();
       const on = deep.hidden;
@@ -3369,9 +3533,36 @@ function liveDiary(){ return S.diary.filter(function(e){ return !e.deleted_at; }
 /* ================= vista edizione ================= */
 let currentDate = BRIEFS[0] ? BRIEFS[0].date : null;
 
+/* Ridisegnare l'edizione (download finito, sincronizzazione dall'altro
+   dispositivo) non deve chiudere quello che stai leggendo: si ricordano le
+   notizie aperte, l'approfondimento con la sua scheda e il suo grafico, e
+   il punto della pagina, e si rimettono com'erano. Solo se l'edizione e' la stessa. */
 function renderEdition(){
-  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   const root = document.getElementById("view-oggi");
+  const was = root.dataset.date || "", y = window.scrollY, open = [];
+  Array.prototype.forEach.call(root.querySelectorAll(".story.is-open"), function(w){
+    const d = w.querySelector(".deep");
+    open.push({id:w.id, deep:!!(d && !d.hidden), tab:d ? d.dataset.tab : null, slide:d ? d.dataset.slide : null});
+  });
+  const brief = drawEdition(root);
+  root.dataset.date = brief ? brief.date : "";
+  if(!was || was !== root.dataset.date) return;
+  open.forEach(function(o){
+    const w = document.getElementById(o.id);
+    if(!w || !root.contains(w)) return;
+    const body = w.querySelector(".story-body");
+    if(body){ body.hidden = false; w.classList.add("is-open"); }
+    if(o.deep && w._deep){
+      w._deep(true);
+      const d = w.querySelector(".deep");
+      if(d && d._tab && o.tab) d._tab(+o.tab);
+      if(d && d._slide && o.slide && +o.slide > 0) d._slide(+o.slide);
+    }
+  });
+  window.scrollTo(0, y);
+}
+function drawEdition(root){
+  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   root.innerHTML = "";
   if(!brief){
     root.appendChild(el("div", {class:"empty", html:"<b>Nessuna edizione</b>La prima rassegna arriva domani mattina alle 7."}));
@@ -3590,6 +3781,7 @@ function renderEdition(){
   /* il numero sulla scheda AI e' quello dell'edizione aperta: cambiando
      giorno dall'archivio va rifatto qui, o resta indietro di un giorno */
   refreshCounts();
+  return brief;
 }
 
 /* ================= archivio ================= */

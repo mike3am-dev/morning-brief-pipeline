@@ -17,11 +17,13 @@ didascalie dei grafici, cosa c'e' sotto, le tappe, chi lo dice, cosa aspettarsi.
 Il file va su Supabase Storage (bucket pubblico "brief-audio") e l'indirizzo
 finisce nell'edizione, dentro l'approfondimento:
 
-    "audio": {"url": "…/2026-09-30/iphone-duo-yield-produzione.m4a",
-              "durata": 142, "voce": "paola", "impronta": "…"}
+    "audio": {"url": "…/2026-09-30/iphone-duo-yield-produzione-3f2a9c1b7d4e.m4a",
+              "durata": 142, "voce": "paola", "impronta": "3f2a9c1b7d4e"}
 
 L'impronta e' quella del testo: se l'approfondimento non cambia, il file non si
-rifa'. La prima corsa scarica Piper (una decina di secondi) e la voce (63 MB),
+rifa'. E sta nel nome del file: un testo corretto e' un indirizzo nuovo, perche'
+il file si tiene in cache per un anno e l'iPhone continuerebbe a suonare quello
+vecchio. La prima corsa scarica Piper (una decina di secondi) e la voce (63 MB),
 e li tiene in .cache/ per le volte successive.
 
     python3 pipeline/audio.py                 l'edizione di oggi
@@ -39,6 +41,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import wave
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -48,9 +51,21 @@ from push import load_config, service_key
 
 CACHE = os.path.join(C.ROOT, ".cache", "piper")
 VENV = os.path.join(CACHE, "venv")
-VOICE = "it_IT-paola-medium"
-VOICE_BASE = "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/"
+# Le voci italiane di Piper provate il 30 settembre 2026. "paola" e' veloce
+# (dieci secondi per approfondimento); "serena" e' di qualita' piu' alta, ha
+# una licenza piu' pulita (CC-BY 4.0, addestrata da zero, va citata) ma e'
+# sei volte piu' lenta. La scelta e' di Mike, a orecchio.
+VOICES = {
+    "paola": ("it_IT-paola-medium", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/"),
+    "serena": ("it_IT-serena-high", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/serena/high/"),
+}
+DEFAULT_VOICE = "paola"
+# quanti giorni restano gli audio su Storage: 1 GB gratuito, condiviso con altre app
+KEEP_DAYS = 30
 BUCKET = "brief-audio"
+# Entra nell'impronta: si alza quando cambia il modo di dire il testo
+# (speakable, le pause), cosi' la corsa dopo rifa' i file da sola.
+RESA = 2
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
         "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 
@@ -92,18 +107,35 @@ def script(news):
     return [p for p in parts if p and p.strip()]
 
 
+def _dollari(m):
+    num, scala = m.group(1), m.group(2)
+    # "$1,299" all'americana: la virgola e' delle migliaia, non dei decimali
+    if re.fullmatch(r"\d{1,3}(,\d{3})+", num):
+        num = num.replace(",", "")
+    num = num.rstrip(".,")
+    return f"{num}{scala} di dollari" if scala else f"{num} dollari"
+
+
 def speakable(text):
     """Il testo scritto diventa testo da dire: la sintesi vocale legge alla
     lettera, e "2.369" le suona come "due punto trecentosessantanove"."""
     t = text
+    t = re.sub(r"(\d)\s*[″\"]", r"\1 pollici", t)          # 13" prima di togliere le virgolette
     t = re.sub(r"[«»“”\"]", "", t)
     t = t.replace("→", "").replace("·", ",").replace("—", ",").replace("…", ".")
-    t = re.sub(r"\$\s?(\d[\d.,]*)", r"\1 dollari", t)
+    # $999 -> 999 dollari; $2,5 miliardi -> 2,5 miliardi di dollari
+    t = re.sub(r"\$\s?(\d+(?:[.,]\d+)*)(\s+(?:miliardi|milioni|mila|miliardo|milione))?", _dollari, t)
     t = re.sub(r"(\d)\.(?=\d{3}\b)", r"\1", t)             # 2.369 -> 2369
     t = re.sub(r"(\d)\.(?=\d{3}\b)", r"\1", t)             # 1.000.000
-    t = re.sub(r"(\d)\s*[–-]\s*(\d)", r"\1 o \2", t)        # 6–8 -> 6 o 8
+    # le date ISO si dicono per esteso, e gli intervalli restano intervalli:
+    # "2025-2026" e' "dal 2025 al 2026", "6–8 milioni" e' "fra 6 e 8 milioni"
+    t = re.sub(r"\b\d{4}-\d{2}-\d{2}\b", lambda m: spoken_date(m.group()), t)
+    t = re.sub(r"\b(\d{2})(\d{2})\s*[–-]\s*(\d{2})\b(?!\d)", r"dal \1\2 al \1\3", t)   # 2026-27
+    t = re.sub(r"\b(\d{4})\s*[–-]\s*(\d{4})\b", r"dal \1 al \2", t)
+    mesi = "|".join(MESI)
+    t = re.sub(r"\b(?:dal\s+)?(\d{1,2})\s*[–-]\s*(\d{1,2})\s+(" + mesi + r")\b", r"dal \1 al \2 \3", t)
+    t = re.sub(r"(?<![\d,])(\d{1,3}(?:,\d+)?)\s*[–-]\s*(\d{1,3}(?:,\d+)?)(?![\d,])", r"fra \1 e \2", t)
     t = re.sub(r"(\d)\s*%", r"\1 per cento", t)
-    t = re.sub(r"(\d)\s*[″\"]", r"\1 pollici", t)
     t = re.sub(r"(\d)\s*°", r"\1 gradi", t)
     t = re.sub(r"\b(\d+)\s*GB\b", r"\1 gigabyte", t)
     t = re.sub(r"\b(\d+)\s*TB\b", r"\1 terabyte", t)
@@ -129,27 +161,77 @@ def ensure_piper():
     return py
 
 
-def ensure_voice():
-    onnx = os.path.join(CACHE, VOICE + ".onnx")
-    for name in (VOICE + ".onnx", VOICE + ".onnx.json"):
+def _voice_ok(path):
+    """Una voce vera pesa 60-115 MB e il suo .json si legge: un download
+    interrotto o una pagina d'errore non passano per buoni."""
+    if not os.path.exists(path):
+        return False
+    if path.endswith(".json"):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                json.load(fh)
+            return True
+        except ValueError:
+            return False
+    return os.path.getsize(path) > 10_000_000
+
+
+def ensure_voice(key=DEFAULT_VOICE):
+    voice, base = VOICES[key]
+    onnx = os.path.join(CACHE, voice + ".onnx")
+    os.makedirs(CACHE, exist_ok=True)
+    for name in (voice + ".onnx", voice + ".onnx.json"):
         path = os.path.join(CACHE, name)
-        if os.path.exists(path) and os.path.getsize(path) > 1000:
+        if _voice_ok(path):
             continue
-        r = subprocess.run(["curl", "-sSL", "--max-time", "300", "-o", path, VOICE_BASE + name])
-        if r.returncode != 0 or not os.path.exists(path):
-            raise RuntimeError(f"voce {name} non scaricata")
+        # si scarica di lato e si sposta solo se e' intero: un file a meta' col
+        # nome giusto rompeva tutte le corse successive
+        part = path + ".part"
+        r = subprocess.run(["curl", "-fsSL", "--retry", "3", "--retry-delay", "5",
+                            "--max-time", "900", "-o", part, base + name])
+        if r.returncode != 0 or not _voice_ok(part):
+            if os.path.exists(part):
+                os.unlink(part)
+            raise RuntimeError(f"voce {name} non scaricata (curl {r.returncode})")
+        os.replace(part, path)
     return onnx
 
 
+# Il programma di Piper mette la pausa solo fra le frasi della stessa riga,
+# mai fra una riga e l'altra: i titoli di sezione ("Chi lo dice.") partivano
+# attaccati al paragrafo prima. Qui la voce si carica una volta e le pause si
+# scrivono a mano: breve fra le frasi, piu' lunga fra i paragrafi.
+SYNTH = """
+import json, sys, wave
+from piper import PiperVoice
+onnx, out, frase, paragrafo = sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4])
+paras = json.load(sys.stdin)
+voice = PiperVoice.load(onnx)
+rate = voice.config.sample_rate
+gap = lambda s: bytes(int(rate * s) * 2)
+with wave.open(out, "wb") as w:
+    w.setframerate(rate); w.setsampwidth(2); w.setnchannels(1)
+    for j, p in enumerate(paras):
+        if j:
+            w.writeframes(gap(paragrafo))
+        for i, chunk in enumerate(voice.synthesize(p)):
+            if i:
+                w.writeframes(gap(frase))
+            w.writeframes(chunk.audio_int16_bytes)
+"""
+
+
+def _chiuso(p):
+    p = speakable(p)
+    return p if re.search(r"[.!?:;]$", p) else p + "."
+
+
 def synth(py, onnx, paragraphs, wav_path):
-    with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as fh:
-        fh.write("\n".join(speakable(p) for p in paragraphs))
-        txt = fh.name
-    try:
-        subprocess.run([py, "-m", "piper", "-m", onnx, "-i", txt, "-f", wav_path,
-                        "--sentence-silence", "0.35"], check=True, capture_output=True)
-    finally:
-        os.unlink(txt)
+    paras = [_chiuso(p) for p in paragraphs if p and p.strip()]
+    r = subprocess.run([py, "-c", SYNTH, onnx, wav_path, "0.35", "0.8"],
+                       input=json.dumps(paras).encode("utf-8"), capture_output=True)
+    if r.returncode != 0:
+        raise RuntimeError("piper: " + r.stderr.decode("utf-8", "replace")[-500:])
     with wave.open(wav_path) as w:
         return round(w.getnframes() / w.getframerate())
 
@@ -175,7 +257,7 @@ def encode(wav_path):
 # ------------------------------------------------------------------ il deposito
 
 def storage(cfg, key, method, path, data=None, ctype="application/json", extra=()):
-    cmd = ["curl", "-sS", "-o", "/dev/stdout", "-w", "\n%{http_code}", "-X", method,
+    cmd = ["curl", "-sS", "--max-time", "120", "--retry", "2", "-o", "/dev/stdout", "-w", "\n%{http_code}", "-X", method,
            f"{cfg['url']}/storage/v1/{path}",
            "-H", f"apikey: {key}", "-H", f"Authorization: Bearer {key}",
            "-H", f"Content-Type: {ctype}"]
@@ -197,14 +279,81 @@ def ensure_bucket(cfg, key):
     raise RuntimeError(f"bucket {BUCKET}: HTTP {code} {body[:200]}")
 
 
+def public_url(cfg, dest):
+    return f"{cfg['url']}/storage/v1/object/public/{BUCKET}/{dest}"
+
+
 def upload(cfg, key, local, dest, mime):
+    """Il nome porta l'impronta, quindi ogni versione ha il suo indirizzo e la
+    cache lunga non serve mai un file vecchio."""
     with open(local, "rb") as fh:
         data = fh.read()
     code, body = storage(cfg, key, "POST", f"object/{BUCKET}/{dest}", data, mime,
                          extra=("x-upsert: true", "Cache-Control: max-age=31536000"))
     if not code.startswith("2"):
         raise RuntimeError(f"caricamento {dest}: HTTP {code} {body[:200]}")
-    return f"{cfg['url']}/storage/v1/object/public/{BUCKET}/{dest}"
+    return public_url(cfg, dest)
+
+
+def remove(cfg, key, url):
+    """Toglie da Storage la versione sostituita. Se non riesce non e' grave:
+    la pulizia dei 30 giorni se la porta via con la sua cartella."""
+    marker = f"/public/{BUCKET}/"
+    if not url or marker not in url:
+        return
+    dest = url.split(marker, 1)[1].split("?", 1)[0]
+    code, body = storage(cfg, key, "DELETE", f"object/{BUCKET}", json.dumps({"prefixes": [dest]}).encode())
+    if not code.startswith("2"):
+        print(f"  (la versione vecchia {dest} resta su Storage: HTTP {code})")
+
+
+def prune(cfg, key, days):
+    """Toglie da Storage gli audio piu' vecchi di `days` giorni, e dalle
+    edizioni l'indirizzo che non porterebbe piu' a niente."""
+    limit = C.today()
+    from datetime import date, timedelta
+    limit = (date.fromisoformat(limit) - timedelta(days=days)).isoformat()
+    code, body = storage(cfg, key, "POST", f"object/list/{BUCKET}",
+                         json.dumps({"prefix": "", "limit": 1000}).encode())
+    if not code.startswith("2"):
+        raise RuntimeError(f"elenco del bucket: HTTP {code} {body[:200]}")
+    old = sorted(e["name"] for e in json.loads(body or "[]")
+                 if re.match(r"^\d{4}-\d{2}-\d{2}$", e.get("name", "")) and e["name"] < limit)
+    # prima si tolgono gli indirizzi dalle edizioni, poi i file: a meta' corsa
+    # e' meglio un file senza indirizzo che un indirizzo che non porta a niente
+    touched = []
+    for path in C.brief_paths():
+        day = os.path.basename(path)[:10]
+        if day >= limit:
+            continue
+        b = C.load_json(path)
+        hit = False
+        for n in b.get("news", []):
+            a = n.get("approfondimento") or {}
+            if a.pop("audio", None) is not None:
+                hit = True
+        if hit:
+            C.save_json(path, b)
+            touched.append(day)
+    gone = failed = 0
+    for day in old:
+        code, body = storage(cfg, key, "POST", f"object/list/{BUCKET}",
+                             json.dumps({"prefix": day + "/", "limit": 100}).encode())
+        if not code.startswith("2"):
+            print(f"  elenco di {day}: HTTP {code} {body[:200]}", file=sys.stderr)
+            failed += 1
+            continue
+        files = [f"{day}/{e['name']}" for e in json.loads(body or "[]") if e.get("id")]
+        if files:
+            code, body = storage(cfg, key, "DELETE", f"object/{BUCKET}", json.dumps({"prefixes": files}).encode())
+            if code.startswith("2"):
+                gone += len(files)
+            else:
+                print(f"  cancellazione di {day}: HTTP {code} {body[:200]}", file=sys.stderr)
+                failed += 1
+    print(f"Audio oltre i {days} giorni: {gone} file tolti da Storage, "
+          f"{len(touched)} edizioni aggiornate" + (f", {failed} giorni non riusciti." if failed else "."))
+    return 1 if failed else 0
 
 
 # ------------------------------------------------------------------ corsa
@@ -214,7 +363,13 @@ def main():
     ap.add_argument("date", nargs="?")
     ap.add_argument("--dry", action="store_true", help="genera in locale, non carica")
     ap.add_argument("--force", action="store_true", help="rifa' anche i file gia' fatti")
+    ap.add_argument("--voce", choices=sorted(VOICES), default=DEFAULT_VOICE)
+    ap.add_argument("--prune", type=int, metavar="GIORNI",
+                    help=f"toglie gli audio oltre i giorni indicati (di solito {KEEP_DAYS})")
     args = ap.parse_args()
+
+    if args.prune is not None:
+        return prune(load_config(), service_key(), args.prune)
 
     day = args.date or C.today()
     path = os.path.join(C.BRIEFS_DIR, f"{day}.json")
@@ -228,37 +383,56 @@ def main():
         return 0
 
     py = ensure_piper()
-    onnx = ensure_voice()
+    onnx = ensure_voice(args.voce)
     cfg = key = None
     if not args.dry:
         cfg, key = load_config(), service_key()
         ensure_bucket(cfg, key)
 
     outdir = tempfile.mkdtemp(prefix="brief-audio-")
-    made = 0
-    for n in todo:
-        a = n["approfondimento"]
-        paragraphs = script(n)
-        stamp = hashlib.sha1("\n".join(paragraphs).encode("utf-8")).hexdigest()[:12]
-        if not args.force and (a.get("audio") or {}).get("impronta") == stamp:
-            print(f"  {n['id']}: gia' fatto, il testo non e' cambiato")
-            continue
-        wav = os.path.join(outdir, n["id"] + ".wav")
-        secs = synth(py, onnx, paragraphs, wav)
-        local, mime = encode(wav)
-        size = os.path.getsize(local) // 1024
-        if args.dry:
-            print(f"  {n['id']}: {secs // 60}:{secs % 60:02d}, {size} KB  ->  {local}")
-            continue
-        ext = os.path.splitext(local)[1]
-        url = upload(cfg, key, local, f"{day}/{n['id']}{ext}", mime)
-        a["audio"] = {"url": url, "durata": secs, "voce": "paola", "impronta": stamp}
-        made += 1
-        print(f"  {n['id']}: {secs // 60}:{secs % 60:02d}, {size} KB, caricato")
+    made = failed = 0
+    try:
+        for n in todo:
+            a = n["approfondimento"]
+            paragraphs = script(n)
+            stamp = hashlib.sha1(("\n".join(paragraphs) + args.voce + str(RESA)).encode("utf-8")).hexdigest()[:12]
+            if not args.force and (a.get("audio") or {}).get("impronta") == stamp:
+                print(f"  {n['id']}: gia' fatto, il testo non e' cambiato")
+                continue
+            try:
+                wav = os.path.join(outdir, n["id"] + ".wav")
+                secs = synth(py, onnx, paragraphs, wav)
+                local, mime = encode(wav)
+                size = os.path.getsize(local) // 1024
+                if args.dry:
+                    print(f"  {n['id']}: {secs // 60}:{secs % 60:02d}, {size} KB  ->  {local}")
+                    continue
+                os.unlink(wav)
+                ext = os.path.splitext(local)[1]
+                # --force con lo stesso testo: stesso nome, quindi un sale per
+                # avere comunque un indirizzo nuovo
+                name = stamp if not args.force else stamp + "-" + hashlib.sha1(str(time.time()).encode()).hexdigest()[:4]
+                old = (a.get("audio") or {}).get("url")
+                url = upload(cfg, key, local, f"{day}/{n['id']}-{name}{ext}", mime)
+                a["audio"] = {"url": url, "durata": secs, "voce": args.voce, "impronta": stamp}
+                # si salva subito: un errore alla voce dopo non butta via questa
+                C.save_json(path, brief)
+                made += 1
+                print(f"  {n['id']}: {secs // 60}:{secs % 60:02d}, {size} KB, caricato")
+                if old and old != url:
+                    remove(cfg, key, old)
+            except Exception as e:
+                failed += 1
+                print(f"  {n['id']}: NON FATTO — {e}", file=sys.stderr)
+    finally:
+        if not args.dry:
+            shutil.rmtree(outdir, ignore_errors=True)
 
     if made:
-        C.save_json(path, brief)
         print(f"\n{made} audio nell'edizione del {day}. Ricaricala: python3 pipeline/push.py {day}")
+    if failed:
+        print(f"{failed} approfondimenti senza audio: rilancia, rifa' solo quelli.", file=sys.stderr)
+        return 1
     return 0
 
 

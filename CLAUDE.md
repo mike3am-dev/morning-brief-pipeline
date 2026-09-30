@@ -710,11 +710,18 @@ open source che gira in locale, voce italiana «paola». I file vanno nel bucket
 Nell'app *Ascolta* suona quelli: continuano a schermo bloccato, con i comandi sulla
 schermata di blocco, e non tacciono col telefono in silenzioso — la voce del browser su
 iPhone faceva l'una e l'altra cosa (30 settembre 2026: «parte l'animazione ma non sento
-niente»). Se il file manca, l'app ripiega sulla voce del browser.
+niente»). Se il file manca, l'app legge con la voce del browser; se c'è ma non arriva
+(niente rete), lo dice e passa alla voce del telefono al tocco su ▶ — fatta partire da
+sola, fuori dal tocco, iOS la lascerebbe muta.
 
 La prima volta scarica Piper e la voce (63 MB) in `.cache/`, che non si versiona. Circa un
 minuto per cinque approfondimenti, un MB ciascuno. Se il testo non cambia il file non si
-rifà. Licenza: il dataset della voce è CC0, il modello nasce da una voce inglese con licenza
+rifà. L'impronta del testo sta **nel nome del file** (`…/2026-09-30/<id>-<impronta>.m4a`):
+i file si tengono in cache per un anno, quindi un testo corretto deve avere un indirizzo
+nuovo, altrimenti l'iPhone continua a suonare la versione vecchia. La versione sostituita
+si toglie da Storage da sola. Se cambi il modo in cui il testo viene detto (`speakable`,
+le pause), alza `RESA` in `audio.py`: la corsa dopo rifà tutti i file. Se un
+approfondimento fallisce lo script esce con 1, e rilanciarlo rifà solo quello. Licenza: il dataset della voce è CC0, il modello nasce da una voce inglese con licenza
 non commerciale — per un'app personale va bene, per un prodotto a pagamento no.
 
 ### 4. Pubblicazione sull'app sincronizzata
@@ -727,7 +734,7 @@ Carica l'edizione di oggi nella tabella `brief_editions` di Supabase. L'app la v
 avvio o cambio di scheda: **il file dell'app non va ritoccato**.
 
 Subito dopo, l'alleggerimento automatico: ogni 15 giorni toglie le immagini alle edizioni
-più vecchie di 15 giorni e le ricarica su Supabase (altrimenti l'app scarica troppi MB e
+più vecchie di 15 giorni e gli audio a quelle oltre i 30, e le ricarica su Supabase (altrimenti l'app scarica troppi MB e
 può andare in timeout senza avvisare). Ricorda l'ultima volta in `data/prune.json`, quindi
 va lanciato **ogni giorno**: salta da solo se non è ancora ora.
 

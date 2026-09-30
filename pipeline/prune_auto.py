@@ -16,7 +16,8 @@ def main():
     if ultima and (oggi - ultima).days < OGNI and "--force" not in sys.argv:
         print(f"Alleggerimento fatto il {ultima}: prossimo fra {OGNI - (oggi - ultima).days} giorni.")
         return
-    for cmd in (["images.py", "--prune", str(TIENI)], ["push.py", "--all"]):
+    # anche gli audio degli approfondimenti: 30 giorni, poi via da Storage
+    for cmd in (["images.py", "--prune", str(TIENI)], ["audio.py", "--prune", "30"], ["push.py", "--all"]):
         r = subprocess.run([sys.executable, os.path.join(ROOT, "pipeline", cmd[0])] + cmd[1:])
         if r.returncode != 0:
             sys.exit(f"{cmd[0]} fallito: alleggerimento non registrato, si riprova alla prossima corsa.")
