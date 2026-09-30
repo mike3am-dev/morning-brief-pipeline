@@ -11,6 +11,12 @@
   "note": "Counterpoint Research, primo semestre 2026 su base annua.",
   "opened": "2026-09-23"
  },
+ "airpods-repairability-score": {
+  "label": "Punteggio di riparabilità iFixit, AirPods",
+  "unit": "/10",
+  "note": "Sale o scende a ogni nuova generazione con il teardown iFixit; tutte le generazioni precedenti alle AirPods 5 avevano preso 0/10.",
+  "opened": "2026-09-30"
+ },
  "app-store-ricavi-usa": {
   "label": "Ricavi da commissioni App Store USA, variazione annua",
   "note": "Primo semestre 2026. Stima di analisti, non un dato di bilancio Apple dedicato a questa voce.",
@@ -125,11 +131,23 @@
   "opened": "2026-09-12",
   "unit": "USD"
  },
+ "iphone-duo-scorte-2026": {
+  "label": "Scorte globali target, iPhone Duo (2026)",
+  "unit": "unità",
+  "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News; forchetta originale 6-8 milioni, registrato l'estremo basso. Confronto: 20-30 milioni tipici per un iPhone Pro/Pro Max sull'intero ciclo.",
+  "opened": "2026-09-30"
+ },
  "iphone-duo-spedizioni-2026": {
   "label": "Spedizioni stimate, iPhone Duo (2026)",
   "note": "Stima di unità spedite entro fine 2026, non il totale del primo anno di vendita (che si estende oltre dicembre).",
   "opened": "2026-09-16",
   "unit": "milioni"
+ },
+ "iphone-duo-yield-assemblaggio": {
+  "label": "Resa di assemblaggio finale, iPhone Duo",
+  "unit": "%",
+  "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News, non confermata da Apple.",
+  "opened": "2026-09-30"
  },
  "iphone-fatturato-trimestre-giugno": {
   "label": "Fatturato iPhone, trimestre di giugno",
