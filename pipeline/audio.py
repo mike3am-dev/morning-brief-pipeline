@@ -166,7 +166,11 @@ def _voice_ok(path):
     interrotto o una pagina d'errore non passano per buoni."""
     if not os.path.exists(path):
         return False
-    if path.endswith(".json"):
+    # il file scaricato porta ancora il suffisso ".part": va riconosciuto
+    # come .json anche così, altrimenti il controllo cade sulla dimensione
+    # e un .json legittimo (poche decine di KB) risulta sempre "non valido"
+    check_name = path[:-len(".part")] if path.endswith(".part") else path
+    if check_name.endswith(".json"):
         try:
             with open(path, encoding="utf-8") as fh:
                 json.load(fh)
