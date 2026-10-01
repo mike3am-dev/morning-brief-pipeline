@@ -59,7 +59,19 @@ VOICES = {
     "paola": ("it_IT-paola-medium", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/"),
     "serena": ("it_IT-serena-high", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/serena/high/"),
 }
-DEFAULT_VOICE = "paola"
+# Dal 1 ottobre 2026 la voce e' Isabella, una voce neurale di Microsoft (Azure
+# Speech): Mike ha trovato Piper robotica e incomprensibile. Serve la chiave
+# AZURE_SPEECH_KEY (e AZURE_SPEECH_REGION) in .env.local sul Mac e nell'ambiente
+# della routine. Il piano gratuito F0 copre 500.000 caratteri neurali al mese;
+# cinque approfondimenti sono circa 10.000 caratteri al giorno. Senza chiave si
+# ripiega su Piper, cosi' l'audio non manca mai.
+AZURE_VOICES = {
+    "isabella": "it-IT-IsabellaNeural",
+    "giuseppe": "it-IT-GiuseppeMultilingualNeural",
+    "diego": "it-IT-DiegoNeural",
+    "elsa": "it-IT-ElsaNeural",
+}
+DEFAULT_VOICE = "isabella"
 # quanti giorni restano gli audio su Storage: 1 GB gratuito, condiviso con altre app
 KEEP_DAYS = 30
 BUCKET = "brief-audio"
@@ -145,6 +157,43 @@ def speakable(text):
 
 
 # ------------------------------------------------------------------ la voce
+
+def secret(name):
+    """Un segreto dall'ambiente o da .env.local, come la service key."""
+    v = os.environ.get(name, "").strip()
+    if v and "INCOLLA" not in v:
+        return v
+    env = os.path.join(C.ROOT, ".env.local")
+    if os.path.exists(env):
+        with open(env, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if line.startswith(name + "="):
+                    v = line.split("=", 1)[1].strip().strip('"').strip("'")
+                    return "" if "INCOLLA" in v else v
+    return ""
+
+
+def azure_synth(voice, paragraphs, wav_path):
+    """La voce neurale di Azure, in un'unica richiesta: un paragrafo dopo
+    l'altro con una pausa vera fra uno e l'altro. Torna la durata in secondi."""
+    from xml.sax.saxutils import escape
+    key, region = secret("AZURE_SPEECH_KEY"), secret("AZURE_SPEECH_REGION") or "westeurope"
+    body = "".join(f"<p>{escape(_chiuso(p))}</p><break time=\"700ms\"/>" for p in paragraphs if p and p.strip())
+    ssml = ("<speak version='1.0' xml:lang='it-IT'>"
+            f"<voice name='{voice}'><prosody rate='+4%'>{body}</prosody></voice></speak>")
+    r = subprocess.run(["curl", "-sS", "-f", "--max-time", "180", "--retry", "2", "-o", wav_path, "-w", "%{http_code}",
+                        "-X", "POST", f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1",
+                        "-H", f"Ocp-Apim-Subscription-Key: {key}",
+                        "-H", "Content-Type: application/ssml+xml",
+                        "-H", "X-Microsoft-OutputFormat: riff-24khz-16bit-mono-pcm",
+                        "-H", "User-Agent: morning-brief",
+                        "--data-binary", "@-"], input=ssml.encode("utf-8"), capture_output=True)
+    if r.returncode != 0 or not os.path.exists(wav_path) or os.path.getsize(wav_path) < 10000:
+        raise RuntimeError(f"Azure: HTTP {r.stdout.decode()[-3:]} {r.stderr.decode('utf-8', 'replace')[-300:]}")
+    with wave.open(wav_path) as w:
+        return round(w.getnframes() / w.getframerate())
+
 
 def ensure_piper():
     """Piper in un ambiente suo, dentro .cache/: niente da installare nel
@@ -248,6 +297,8 @@ def encode(wav_path):
         subprocess.run(["afconvert", "-f", "m4af", "-d", "aac", "-b", "48000", wav_path, out], check=True)
         return out, "audio/mp4"
     py = os.path.join(VENV, "bin", "python")
+    if not os.path.exists(py):          # con Azure Piper non serve, e il suo ambiente non c'e'
+        py = sys.executable
     subprocess.run([py, "-m", "pip", "install", "-q", "lameenc"], check=True)
     out = wav_path[:-4] + ".mp3"
     code = ("import lameenc,wave,sys\n"
@@ -367,7 +418,7 @@ def main():
     ap.add_argument("date", nargs="?")
     ap.add_argument("--dry", action="store_true", help="genera in locale, non carica")
     ap.add_argument("--force", action="store_true", help="rifa' anche i file gia' fatti")
-    ap.add_argument("--voce", choices=sorted(VOICES), default=DEFAULT_VOICE)
+    ap.add_argument("--voce", choices=sorted(VOICES) + sorted(AZURE_VOICES), default=DEFAULT_VOICE)
     ap.add_argument("--prune", type=int, metavar="GIORNI",
                     help=f"toglie gli audio oltre i giorni indicati (di solito {KEEP_DAYS})")
     args = ap.parse_args()
@@ -386,8 +437,13 @@ def main():
         print("Nessun approfondimento in questa edizione: niente da leggere.")
         return 0
 
-    py = ensure_piper()
-    onnx = ensure_voice(args.voce)
+    py = onnx = None
+    if args.voce in AZURE_VOICES and not secret("AZURE_SPEECH_KEY"):
+        print("AZURE_SPEECH_KEY mancante: ripiego su Piper (paola).", file=sys.stderr)
+        args.voce = "paola"
+    if args.voce in VOICES:
+        py = ensure_piper()
+        onnx = ensure_voice(args.voce)
     cfg = key = None
     if not args.dry:
         cfg, key = load_config(), service_key()
@@ -405,7 +461,10 @@ def main():
                 continue
             try:
                 wav = os.path.join(outdir, n["id"] + ".wav")
-                secs = synth(py, onnx, paragraphs, wav)
+                if args.voce in AZURE_VOICES:
+                    secs = azure_synth(AZURE_VOICES[args.voce], paragraphs, wav)
+                else:
+                    secs = synth(py, onnx, paragraphs, wav)
                 local, mime = encode(wav)
                 size = os.path.getsize(local) // 1024
                 if args.dry:
