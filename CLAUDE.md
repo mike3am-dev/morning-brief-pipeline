@@ -611,37 +611,58 @@ Per i controlli più fini, che il lint non ripete:
 python3 pipeline/threads.py check && python3 pipeline/claims.py check && python3 pipeline/facts.py check
 ```
 
-#### Il gusto — i pollici, `taste.py`
+#### Il gusto — come legge Mike, `taste.py`
 
-Ogni notizia e ogni voce di radar, banco e ripescaggio hanno due pollici nell'app. Il voto
-**non dice "mi piace l'argomento"**, dice *questa voce meritava di stare in rassegna*: è il
-segnale con cui si tara la selezione, non il perimetro.
+**Dal 1 ottobre 2026 la rassegna impara da come si legge, non dai pollici.** Mike non li
+premeva. L'app registra per ogni voce: se è arrivata a schermo (`v`), se è stata aperta
+(`o`), quanti secondi è rimasta aperta e a schermo (`t`), se l'approfondimento è stato aperto
+(`d`), se è stata ascoltata (`a`), se l'articolo è stato aperto alla fonte (`l`). Resta solo il
+**pollice giù**, «Non mi interessa»: il segnale esplicito più forte.
+
+I segnali stanno in **una riga al giorno per lettore** in `brief_marks` (chiave
+`segnali/AAAA-MM-GG`, il JSON nel campo `note`): niente migrazioni, e la tabella non cresce
+di una riga per voce. Due dispositivi sulla stessa giornata si sommano, non si sovrascrivono.
+`taste.py` legge solo quelli del proprietario (`owner_id`): gli altri lettori non tarano niente.
+
+| Segnale | Peso |
+|---|---|
+| pollice giù | −2 |
+| vista e saltata (solo edizioni dei giorni prima) | −0,5 |
+| aperta e chiusa subito | +0,25 |
+| aperta e letta, 12 secondi o più | +0,5 |
+| approfondita, ascoltata, aperta alla fonte, o letta 40 secondi o più | +1 |
+
+Una voce mai arrivata a schermo non dice niente: non è un salto. Per l'archivio prima dei
+segnali c'era solo «notizia aperta»: nei giorni in cui Mike ne ha aperta almeno una, le
+altre notizie dell'edizione si contano come saltate (i titoli stanno in fila, li ha scorsi).
+
+**Il metro è relativo.** Mike apre circa una notizia su tre, quindi «saltata due volte su
+tre» è la media, non un rifiuto. Un gruppo (una categoria, un tag, una fonte) diventa regola
+quando si legge sensibilmente meno — o più — della media della sua sezione: `MARGIN` in
+`taste.py`, con la media di ogni gruppo tirata verso quella generale (`SHRINK`) perché tre
+salti su un gruppo piccolo non bastino a condannarlo.
 
 ```bash
 python3 pipeline/taste.py            # il digest, prima di scrivere
 python3 pipeline/taste.py report     # il briefing, ogni 14 giorni
 ```
 
-I voti stanno nella colonna `vote` di `brief_marks` (migrazione in
-`supabase/migrazioni.sql`, da lanciare una volta sola). `taste.py` li rilegge, li incrocia
-con l'archivio locale e ne ricava i pattern lungo sette assi: **categoria**, **tag**,
-**fonte**, **banco** (il genere: recensione, video, confronto…), **lab** e **ai** (il
-laboratorio e il genere delle voci AI) e **sezione**.
-
-L'asse `sezione` è quello che tiene onesto l'impianto: se «Se te lo fossi perso» prende tre
-pollici giù di fila, la sezione non serve e va tolta, non difesa. Vale per tutte e tre le
-sezioni non-notizia — radar, banco, ripescaggio.
+Gli assi sono sette: **categoria**, **tag**, **fonte**, **banco** (il genere: recensione,
+video, confronto…), **lab** e **ai** (il laboratorio e il genere delle voci AI) e
+**sezione**. L'asse `sezione` tiene onesto l'impianto: se «Se te lo fossi perso» si salta
+sempre, la sezione non serve e va tolta, non difesa. Si giudica solo sui segnali di
+lettura, non sui vecchi pollici.
 
 Tre regole non negoziabili:
 
 - **Si declassa, non si cancella.** Un pattern confermato manda la notizia in coda o nel
   radar. Non la fa sparire.
-- **Il nucleo Apple non si tocca.** I voti agiscono su contorno, ordine e radar. Se Apple
-  prende una multa UE quella notizia entra, quanti pollici giù ci siano stati. Nella
-  sezione AI i pollici scelgono quale laboratorio e quale genere pesano di più, non se
-  la sezione esiste.
-- **Il silenzio non è un no.** Contano solo i voti espressi, e servono 3 voti concordi
-  sullo stesso asse (75% di concordia) prima di dare retta a un pattern.
+- **Il nucleo Apple non si tocca.** I segnali agiscono su contorno, ordine e radar. Se Apple
+  prende una multa UE quella notizia entra, per quante volte si sia saltata la categoria.
+  Nella sezione AI scelgono quale laboratorio e quale genere pesano di più, non se la
+  sezione esiste.
+- **Quello che non si è visto non conta.** Un salto vale solo su una voce arrivata a
+  schermo, e servono almeno 3 voci con un segnale sullo stesso gruppo.
 
 **Il radar impara per topic.** Ogni topic ha uno stato in `data/radar_topics.json`:
 
@@ -649,8 +670,8 @@ Tre regole non negoziabili:
 |---|---|---|
 | `nuovo` | mai mostrato | candidato per una sonda |
 | `in prova` | mostrato, nessun verdetto | può tornare |
-| `confermato` | +2 di scarto fra su e giù | casella fissa nella rotazione |
-| `in pausa` | 1 pollice giù, o 3 uscite mute | torna fra 6 settimane |
+| `confermato` | +2 di scarto fra voci lette e pollici giù | casella fissa nella rotazione |
+| `in pausa` | 1 pollice giù, o 3 uscite viste e saltate | torna fra 6 settimane |
 | `archiviato` | 2 pollici giù | non torna |
 
 **La pausa si sconta una volta sola.** Un pollice giù resta scritto per sempre, quindi
@@ -660,8 +681,11 @@ uscite mute, che si ricontano da zero al rientro (`pausa_finita` e `seen_a_fine_
 file tengono il segno). Senza questa regola il topic non tornava mai: ogni corsa rivedeva
 lo stesso pollice giù e rimandava la scadenza di altre sei settimane.
 
-Un pollice su vale un **seguito il giorno dopo**: il digest lo segna come "da riprendere
-per forza". I topic candidati si aggiungono a mano nel file, con stato `nuovo`.
+Una voce del radar letta a fondo (articolo aperto, o approfondita) vale un **seguito il
+giorno dopo**: il digest la segna come "da riprendere per forza". Fino al 30 settembre 2026
+la pausa scattava dopo tre uscite *senza pollice*, e l'app non sapeva nemmeno se il radar
+l'avevi letto: 21 topic su 35 erano in pausa per un silenzio che non era un no. Il 1 ottobre
+sono rientrati tutti `in prova` (il campo `ripresa_segnali` segna il passaggio).
 
 **Il briefing ogni 14 giorni** non è un rapporto da archiviare, è una conversazione: si
 mostra cosa sta sparendo e perché, con due o tre titoli d'esempio di quello che è stato
