@@ -347,7 +347,14 @@ VISIVI = {
     "raggio": lambda v: isinstance(v.get("raggio_km"), (int, float)),
     "flusso": lambda v: bool(v.get("oggi")) and bool(v.get("agente")),
     "onde": lambda v: True,
+    "densita": lambda v: True,
+    "supporto": lambda v: bool(v.get("varianti")),
+    "roadmap": lambda v: bool(v.get("periodi")) and bool(v.get("linee")),
+    "catena": lambda v: len(v.get("passi") or []) >= 3,
+    "chat": lambda v: len(v.get("messaggi") or []) >= 3,
 }
+# la varieta': lo stesso tipo due volte nella stessa edizione e' quasi sempre
+# un ripiego (1 ottobre 2026: due "esploso", e su HomePad non spiegava niente)
 DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # le misure dell'approfondimento sul telefono: oltre, si scorre troppo
 # (30 settembre 2026, "scorro scorro tante sezioni")
@@ -360,6 +367,7 @@ def check_approfondimento(brief, r):
     ha le sue parti: il punto, cosa c'e' sotto, chi lo dice, almeno due
     letture vere e — se c'e' — una visualizzazione che l'app sa disegnare."""
     news = sorted(brief.get("news") or [], key=lambda n: n.get("rank") or 99)
+    tipi_usati = []
     for n in news[:DEEP_TOP]:
         if not n.get("approfondimento"):
             r.warn(f"news/{n.get('id')}", f"fra le prime {DEEP_TOP} ma senza approfondimento")
@@ -402,6 +410,7 @@ def check_approfondimento(brief, r):
         if not visivi:
             r.warn(where, "nessuna visualizzazione: un approfondimento senza e' mezzo approfondimento")
         for v in visivi:
+            tipi_usati.append(v.get("tipo"))
             check = VISIVI.get(v.get("tipo"))
             if not check:
                 r.error(where, f"visualizzazione sconosciuta all'app: {v.get('tipo')!r}")
@@ -409,6 +418,10 @@ def check_approfondimento(brief, r):
                 r.error(where, f"visualizzazione «{v.get('tipo')}» senza i dati che le servono")
             if not v.get("didascalia"):
                 r.warn(where, f"visualizzazione «{v.get('tipo')}» senza didascalia (e' anche quello che legge la voce)")
+    doppi = sorted({t for t in tipi_usati if t and tipi_usati.count(t) > 1})
+    for t in doppi:
+        r.warn("approfondimento", f"«{t}» usata {tipi_usati.count(t)} volte in questa edizione: "
+                                  "ogni notizia vuole la sua visualizzazione (vedi pipeline/visivi.py)")
 
 
 # ---------------------------------------------------------------- verifica
