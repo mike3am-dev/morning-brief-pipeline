@@ -1330,6 +1330,126 @@ function touched(k){
   save(); queueSync();
 }
 
+/* ================= segnali di lettura =================
+   Mike non preme i pollici (1 ottobre 2026: "non li uso"). La rassegna
+   impara allora da come si legge: quali voci si vedono e si saltano, quali
+   si aprono, quanto ci si resta sopra, cosa si approfondisce, cosa si ascolta,
+   quali articoli si aprono. Resta solo il pollice giu', per dire "questo
+   proprio no". pipeline/taste.py trasforma questi segnali in gusti.
+
+   Tutto in UNA riga per giorno e per lettore: chiave "segnali/AAAA-MM-GG" in
+   brief_marks, il JSON nel campo note. Niente migrazioni, niente una riga per
+   voce: la tabella non cresce di centinaia di righe al giorno. Le schede che
+   elencano i segni (Salvati, i contatori) guardano solo le chiavi delle voci,
+   quindi questa riga non la vede nessuno.
+
+   Per voce: v vista (almeno un secondo e mezzo a schermo), o aperta, t secondi
+   passati con la voce aperta e a schermo, d approfondimento aperto, a ascoltata,
+   l articolo aperto. */
+const SIG_PREFIX = "segnali/";
+const Sig = (function(){
+  const pending = {};        /* giorno -> {id -> campi} da scrivere */
+  let timer = null;
+  function parse(t){ try{ const o = JSON.parse(t || "{}"); return o && typeof o === "object" ? o : {}; }catch(e){ return {}; } }
+  /* due dispositivi scrivono la stessa riga: si tiene il massimo di ogni campo */
+  function merge(a, b){
+    const x = parse(a), y = parse(b);
+    Object.keys(y).forEach(function(id){
+      const e = x[id] || (x[id] = {});
+      Object.keys(y[id] || {}).forEach(function(f){ e[f] = Math.max(e[f] || 0, y[id][f] || 0); });
+    });
+    return JSON.stringify(x);
+  }
+  function flush(){
+    timer = null;
+    Object.keys(pending).forEach(function(day){
+      const k = SIG_PREFIX + day, m = mark(k);
+      const cur = parse(m.note), add = pending[day];
+      Object.keys(add).forEach(function(id){
+        const e = cur[id] || (cur[id] = {});
+        Object.keys(add[id]).forEach(function(f){
+          e[f] = f === "t" ? Math.min(1800, (e[f] || 0) + add[id][f]) : Math.max(e[f] || 0, add[id][f]);
+        });
+      });
+      delete pending[day];
+      m.note = JSON.stringify(cur);
+      touched(k);
+    });
+  }
+  function bump(k, f, val){
+    if(!k || k.length < 12 || k.indexOf(SIG_PREFIX) === 0) return;
+    const day = k.slice(0, 10), id = k.slice(11);
+    const d = pending[day] || (pending[day] = {}), e = d[id] || (d[id] = {});
+    e[f] = f === "t" ? (e[f] || 0) + (val || 0) : Math.max(e[f] || 0, val || 1);
+    if(!timer) timer = setTimeout(flush, 6000);
+  }
+  /* la voce a cui appartiene un elemento: quella che porta la barra dei
+     segni (stella, appunti, pollice) con la sua chiave */
+  function itemOf(node){
+    let it = node && node.closest ? node.closest("article, li") : null;
+    while(it){
+      const bar = it.querySelector(".tools[data-sig]");
+      if(bar && bar.closest("article, li") === it) return {el:it, k:bar.getAttribute("data-sig")};
+      it = it.parentElement ? it.parentElement.closest("article, li") : null;
+    }
+    return null;
+  }
+  function isOpen(el){ return el.classList.contains("is-open") || !!el.querySelector(".is-open"); }
+
+  /* vista: almeno un secondo e mezzo con buona parte della voce a schermo */
+  const seenTimers = new WeakMap(), watched = new WeakSet(), onScreen = new Set();
+  const io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      const el = e.target, big = e.intersectionRect.height > window.innerHeight * .4;
+      const vis = e.isIntersecting && (e.intersectionRatio >= .6 || big);
+      if(vis){
+        onScreen.add(el);
+        if(!seenTimers.get(el)) seenTimers.set(el, setTimeout(function(){
+          const it = itemOf(el.querySelector(".tools[data-sig]") || el);
+          if(it && document.visibilityState === "visible") bump(it.k, "v");
+        }, 1500));
+      } else {
+        onScreen.delete(el);
+        clearTimeout(seenTimers.get(el)); seenTimers.delete(el);
+      }
+    });
+  }, {threshold:[0, .6]}) : null;
+  function scan(){
+    if(!io) return;
+    Array.prototype.forEach.call(document.querySelectorAll(".tools[data-sig]"), function(bar){
+      const it = bar.closest("article, li");
+      if(it && !watched.has(it)){ watched.add(it); io.observe(it); }
+    });
+  }
+  let scanTimer = null;
+  new MutationObserver(function(){ if(!scanTimer) scanTimer = setTimeout(function(){ scanTimer = null; scan(); }, 400); })
+    .observe(document.body, {childList:true, subtree:true});
+
+  /* il tempo: ogni cinque secondi, alle voci aperte e a schermo */
+  setInterval(function(){
+    if(document.visibilityState !== "visible") return;
+    onScreen.forEach(function(el){
+      if(!el.isConnected){ onScreen.delete(el); return; }
+      if(!isOpen(el)) return;
+      const it = itemOf(el.querySelector(".tools[data-sig]") || el);
+      if(it) bump(it.k, "t", 5);
+    });
+  }, 5000);
+
+  /* i tocchi: un link apre l'articolo, il resto apre la voce */
+  document.addEventListener("click", function(ev){
+    const it = itemOf(ev.target);
+    if(!it || ev.target.closest(".tools")) return;
+    const a = ev.target.closest("a[href]");
+    if(a && /^https?:/i.test(a.getAttribute("href") || "")){ bump(it.k, "l"); return; }
+    setTimeout(function(){ if(isOpen(it.el)) bump(it.k, "o"); }, 0);
+  }, true);
+
+  document.addEventListener("visibilitychange", function(){ if(document.hidden && timer){ clearTimeout(timer); flush(); } });
+  window.addEventListener("pagehide", function(){ if(timer){ clearTimeout(timer); flush(); } });
+  return {bump:bump, merge:merge};
+})();
+
 /* ================= utilità ================= */
 const MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
 const GIORNI = ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"];
@@ -1569,6 +1689,13 @@ async function sync(){
     let changed = false;
     (await rm.json()).forEach(function(row){
       const local = S.marks[row.story];
+      if(row.story.indexOf(SIG_PREFIX) === 0){
+        /* i segnali di due dispositivi si sommano: nessuno dei due vince */
+        const merged = local ? Sig.merge(local.note, row.note) : (row.note || "{}");
+        S.marks[row.story] = Object.assign({}, local || {}, {starred_at:null, read_at:null, links:[], vote:0,
+          note:merged, updated_at:row.updated_at, dirty:merged !== (row.note || "{}") || !!(local && local.dirty)});
+        return;
+      }
       if(local && local.dirty) return;                       /* il locale non ancora spinto vince */
       if(local && local.updated_at && local.updated_at >= row.updated_at) return;
       S.marks[row.story] = {
@@ -2121,8 +2248,8 @@ function itemTools(k, opts){
   const bar = el("div", {class:"tools"});
   const star = toolBtn("t-star", "Salva", I_STAR);
   const note = toolBtn("t-note", "Appunti", I_PEN);
-  const up   = toolBtn("t-up vote", "Ci stava", I_THUMB);
-  const down = toolBtn("t-down vote", "Non ci stava", I_THUMB);
+  /* resta solo il pollice giu': il resto lo dicono i segnali di lettura */
+  const down = toolBtn("t-down vote", "Non mi interessa", I_THUMB);
   const panel = notesPanel(k, opts.ref, paintNote);
 
   function paintStar(){
@@ -2140,9 +2267,7 @@ function itemTools(k, opts){
   }
   function paintVote(){
     const v = (mk(k) && mk(k).vote) || 0;
-    up.classList.toggle("on", v > 0);
     down.classList.toggle("on", v < 0);
-    up.setAttribute("aria-pressed", v > 0 ? "true" : "false");
     down.setAttribute("aria-pressed", v < 0 ? "true" : "false");
   }
 
@@ -2165,14 +2290,13 @@ function itemTools(k, opts){
     const m = mark(k);
     m.vote = (m.vote === v) ? 0 : v;
     paintVote(); touched(k);
-    toast(m.vote > 0 ? "Segnato: ci stava"
-        : m.vote < 0 ? "Segnato: non ci stava" : "Voto tolto");
+    toast(m.vote < 0 ? "Segnato: non mi interessa" : "Tolto");
   }
-  up.addEventListener("click", function(ev){ ev.stopPropagation(); vota(1); });
   down.addEventListener("click", function(ev){ ev.stopPropagation(); vota(-1); });
 
   paintStar(); paintNote(); paintVote();
-  bar.appendChild(star); bar.appendChild(note); bar.appendChild(up); bar.appendChild(down);
+  bar.setAttribute("data-sig", k);
+  bar.appendChild(star); bar.appendChild(note); bar.appendChild(down);
   return {bar:bar, panel:panel};
 }
 
@@ -3396,6 +3520,7 @@ function storyNode(brief, n, index){
       ev.stopPropagation();
       const on = deep.hidden;
       setDeep(on);
+      if(on) Sig.bump(key(brief.date, n.id), "d");
       if(on) setTimeout(function(){ deep.scrollIntoView({behavior:"smooth", block:"start"}); }, 30);
     });
     /* la barra in fondo: Chiudi riporta al titolo, Prossima chiude questa
@@ -3425,7 +3550,7 @@ function storyNode(brief, n, index){
     el("i", {"aria-hidden":"true", text:"▶"}),
     el("span", {text:deep ? (dur && MODE !== "local" ? "Ascolta · " + dur : "Ascolta l'approfondimento") : "Ascolta"})
   ]);
-  listen.addEventListener("click", function(ev){ ev.stopPropagation(); Voice.play(brief, n); });
+  listen.addEventListener("click", function(ev){ ev.stopPropagation(); Sig.bump(key(brief.date, n.id), "a"); Voice.play(brief, n); });
   if(Voice.ok) acts.appendChild(listen);
   if(acts.childNodes.length) body.appendChild(acts);
   if(deep) body.appendChild(deep);

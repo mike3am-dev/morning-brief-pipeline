@@ -1,10 +1,23 @@
 #!/usr/bin/env python3
 """
-Il gusto: cosa dicono i pollici, e cosa farne.
+Il gusto: cosa dice il modo in cui Mike legge, e cosa farne.
 
-L'app registra un voto per notizia e per voce del radar — +1 "ci stava",
--1 "non ci stava". Il voto non giudica l'argomento, giudica la **presenza in
-rassegna**: e' il segnale con cui si tara la selezione del mattino dopo.
+Fino al 30 settembre 2026 la taratura usava due pollici, su e giu'. Mike non li
+premeva ("non li uso"): dal 1 ottobre l'app registra invece come si legge —
+quali voci si vedono e si saltano, quali si aprono, quanto ci si resta, cosa
+si approfondisce, si ascolta, si apre alla fonte — e resta solo il pollice giu',
+per dire "questo proprio no". Qui i segnali diventano voti con un peso:
+
+    pollice giu'                                   -2
+    vista e saltata (solo le edizioni dei giorni prima)  -0,5
+    aperta e chiusa subito                         +0,25
+    aperta e letta (12 secondi o piu')             +0,5
+    approfondita, ascoltata, aperta alla fonte,
+    o letta a lungo (40 secondi o piu')            +1
+    (i vecchi pollici su restano: +1)
+
+Una voce mai arrivata a schermo non dice niente: non e' un salto. Il voto non
+giudica l'argomento, giudica la **presenza in rassegna**.
 
     python3 pipeline/taste.py            il digest da leggere prima di scrivere
     python3 pipeline/taste.py report     il briefing quindicinale, da discutere
@@ -12,8 +25,9 @@ rassegna**: e' il segnale con cui si tara la selezione del mattino dopo.
 
 Due regole che tengono onesto il meccanismo:
 
-* **Il silenzio non e' un no.** Conto solo i voti espressi. Tre apparizioni
-  mute di fila mettono un topic in pausa, ma non lo bocciano.
+* **Il silenzio non e' un no.** Una voce che non si e' vista non conta. Un
+  topic del radar va in pausa solo dopo tre uscite *viste* e saltate, e lo
+  archivia solo il pollice giu', mai il salto.
 * **Si declassa, non si cancella.** Un pattern confermato sposta la notizia in
   coda o nel radar. Il nucleo Apple non si tocca mai: se Apple prende una
   multa UE quella notizia entra, quanti pollici giu' ci siano stati.
@@ -35,10 +49,11 @@ ROOT = common.ROOT
 TASTE_FILE = os.path.join(ROOT, "data", "taste.json")
 TOPICS_FILE = os.path.join(ROOT, "data", "radar_topics.json")
 
-# quanti voti concordi servono prima di dare retta a un pattern
+# quante voci con un segnale servono prima di dare retta a un pattern
 MIN_VOTES = 3
-# quota di concordia richiesta: sotto questa soglia il segnale e' rumore
-AGREEMENT = 0.75
+# quanto un gruppo deve stare sotto (o sopra) la media per diventare regola,
+# e quante voci "medie" si aggiungono a ogni gruppo prima di confrontarlo
+MARGIN, SHRINK = 0.1, 5
 # ogni quanti giorni il briefing
 REPORT_EVERY = 14
 # quanto resta in pausa un topic bocciato una volta
@@ -57,8 +72,78 @@ AI_AXIS = "ai"
 
 # ------------------------------------------------------------------ lettura
 
+# i pesi dei segnali di lettura (vedi in cima)
+W_DOWN, W_SKIP, W_GLANCE, W_READ, W_DEEP = -2, -0.5, 0.25, 0.5, 1
+READ_SECS, LONG_SECS = 12, 40
+SIG_PREFIX = "segnali/"
+
+
+def score(e):
+    """Da segnali di una voce a un peso. None se non dice niente."""
+    if e.get("d") or e.get("a") or e.get("l") or e.get("t", 0) >= LONG_SECS:
+        return W_DEEP
+    if e.get("o"):
+        return W_READ if e.get("t", 0) >= READ_SECS else W_GLANCE
+    if e.get("v"):
+        return W_SKIP
+    return None
+
+
+SIG_START = "2026-10-01"
+
+
+def to_votes(rows, today, idx=None):
+    """Le righe di brief_marks -> voti pesati, uno per voce.
+
+    Il pollice giu' comanda su tutto. I segnali valgono dal 1 ottobre 2026;
+    prima c'era solo read_at sulle notizie aperte, che si legge come
+    "aperta" (+0,25): niente tempo, niente salti, perche' non si misuravano.
+    Un salto conta solo sulle edizioni dei giorni prima: la mattina stessa
+    una voce non aperta puo' ancora esserlo.
+
+    Per l'archivio prima dei segnali si ricostruisce il salto delle sole
+    notizie: nei giorni in cui Mike ne ha aperta almeno una, i titoli li ha
+    scorsi tutti (stanno in fila, uno sotto l'altro), quindi quelle non
+    aperte sono saltate. Senza questo, quaranta giorni di letture dicevano
+    solo "si'" e ogni categoria risultava gradita."""
+    out, explicit, signals, opened = {}, {}, {}, set()
+    for r in rows:
+        k = r.get("story") or ""
+        if k.startswith(SIG_PREFIX):
+            day = k[len(SIG_PREFIX):]
+            try:
+                obj = json.loads(r.get("note") or "{}")
+            except ValueError:
+                continue
+            for item, e in obj.items():
+                signals[f"{day}/{item}"] = e
+            continue
+        if r.get("vote"):
+            explicit[k] = r["vote"]
+        if r.get("read_at") and ":" not in k.split("/", 1)[-1]:
+            opened.add(k)          # notizie aperte, anche prima dei segnali
+    if idx:
+        read_days = {k[:10] for k in opened if k[:10] < SIG_START}
+        for k, meta in idx.items():
+            if meta["kind"] == "news" and k[:10] in read_days and k not in opened:
+                signals.setdefault(k, {"v": 1})
+    for k in set(signals) | opened:
+        e = dict(signals.get(k, {}))
+        if k in opened:
+            e["o"] = 1
+        w = score(e)
+        if w is None or (w == W_SKIP and k[:10] >= today):
+            continue
+        out[k] = {"story": k, "vote": w, "seen": bool(e.get("v") or e.get("o")),
+                  "how": "lettura"}
+    for k, v in explicit.items():
+        out[k] = {"story": k, "vote": W_DOWN if v < 0 else 1, "seen": True,
+                  "how": "pollice"}
+    return sorted(out.values(), key=lambda r: r["story"])
+
+
 def pull_votes(cfg, key):
-    """I voti da Supabase. Ritorna {story: voto}.
+    """Pollici e segnali di lettura da Supabase, gia' tradotti in voti pesati.
 
     Solo quelli del proprietario: l'app la leggono anche altri, e la service
     key salta l'RLS, quindi senza il filtro i pollici di un lettore ospite
@@ -70,8 +155,9 @@ def pull_votes(cfg, key):
         sys.exit("Manca 'owner_id' in supabase/config.json: senza, i voti "
                  "degli altri lettori sporcherebbero la taratura.")
     url = (cfg["url"] + "/rest/v1/brief_marks"
-           "?select=story,vote,updated_at&vote=neq.0"
-           f"&user_id=eq.{owner}")
+           "?select=story,vote,read_at,note,updated_at"
+           "&or=(vote.neq.0,read_at.not.is.null,story.like.segnali/*)"
+           f"&user_id=eq.{owner}&limit=20000")
     out = subprocess.run(
         ["curl", "-sS", "-w", "\n%{http_code}", url,
          "-H", f"apikey: {key}", "-H", f"Authorization: Bearer {key}"],
@@ -183,7 +269,9 @@ def tally(votes, idx):
             unknown += 1
             continue
         v = row["vote"]
-        if meta["kind"] != "news":
+        # una sezione si giudica su come si legge, non sui pollici sparsi:
+        # i pollici su del radar e del banco erano pochi e tutti positivi
+        if meta["kind"] != "news" and row.get("how") == "lettura":
             axes["sezione"][meta["kind"]].append(v)
         if meta["kind"] == "banco":
             if meta.get("genere"):
@@ -209,47 +297,63 @@ def tally(votes, idx):
     return axes, unknown
 
 
-def rules_from(axes):
-    """Da conteggio a regola scritta. Solo declassamenti: niente sparizioni."""
+NEWS_AXES = ("categoria", "tag", "fonte")
+
+
+def rules_from(axes, base):
+    """Da conteggio a regola scritta. Solo declassamenti e conferme, niente
+    sparizioni.
+
+    Il metro e' relativo: Mike apre circa una notizia su tre, quindi "saltata
+    due volte su tre" e' la media, non un rifiuto. Una categoria si declassa
+    quando si legge sensibilmente MENO della media delle altre, e si tiene alta
+    quando si legge sensibilmente di piu'. La media di ogni gruppo e' tirata
+    verso quella generale (SHRINK voci finte nella media), cosi' tre salti di
+    fila su un gruppo piccolo non bastano a condannarlo."""
     out = []
     for axis, buckets in axes.items():
+        b = base.get(axis, base.get("*", 0))
         for value, vs in sorted(buckets.items()):
+            vs = [v for v in vs if v]
             n = len(vs)
             if n < MIN_VOTES:
                 continue
-            down = sum(1 for v in vs if v < 0)
-            up = n - down
-            if down / n >= AGREEMENT:
+            up, down = sum(1 for v in vs if v > 0), sum(1 for v in vs if v < 0)
+            m = (sum(vs) + SHRINK * b) / (n + SHRINK)
+            quota = f"aperta {up} {'volta' if up == 1 else 'volte'} su {n}"
+            if m <= b - MARGIN:
                 out.append({"asse": axis, "valore": value, "verso": "declassa",
-                            "su": up, "giu": down,
-                            "nota": f"{axis} «{value}»: {down} pollici giù su {n}"})
-            elif up / n >= AGREEMENT:
+                            "su": up, "giu": down, "scarto": round(m - b, 2),
+                            "nota": f"{axis} «{value}»: {quota}, sotto la media"})
+            elif m >= b + MARGIN:
                 out.append({"asse": axis, "valore": value, "verso": "promuovi",
-                            "su": up, "giu": down,
-                            "nota": f"{axis} «{value}»: {up} pollici su su {n}"})
+                            "su": up, "giu": down, "scarto": round(m - b, 2),
+                            "nota": f"{axis} «{value}»: {quota}, sopra la media"})
+    out.sort(key=lambda r: r["scarto"])
     return out
 
 
 def topic_states(votes, idx, topics):
     """La macchina a stati del radar. Il voto piu' recente comanda."""
     seen = radar_appearances()
-    tv = defaultdict(list)
+    tv = defaultdict(list)          # (giorno, peso, come) per topic
     last_up = {}
     for row in votes:
         meta = idx.get(row["story"])
         if not meta or meta["kind"] != "radar":
             continue
         t = meta["topic"]
-        tv[t].append(row["vote"])
-        if row["vote"] > 0:
+        tv[t].append((meta["date"], row["vote"], row.get("how", "pollice")))
+        if row["vote"] >= 1:
             last_up[t] = max(last_up.get(t, ""), meta["date"])
 
     today = date.today().isoformat()
     for t in set(list(seen) + list(tv) + list(topics)):
         e = topics.setdefault(t, {"state": "nuovo", "since": today,
                                   "up": 0, "down": 0, "seen": 0, "last": ""})
-        e["up"] = sum(1 for v in tv[t] if v > 0)
-        e["down"] = sum(1 for v in tv[t] if v < 0)
+        # su: ogni segno d'interesse; giu': solo il pollice, mai il salto
+        e["up"] = sum(1 for _, v, _h in tv[t] if v > 0)
+        e["down"] = sum(1 for _, v, h in tv[t] if v < 0 and h == "pollice")
         e["seen"] = seen[t]["n"] if t in seen else 0
         e["last"] = seen[t]["last"] if t in seen else e.get("last", "")
 
@@ -258,10 +362,24 @@ def topic_states(votes, idx, topics):
         # tornava vera a ogni corsa e rimandava avanti la scadenza di altre sei
         # settimane: il topic non rientrava mai. La pausa si sconta una volta,
         # poi il topic riprova — a bocciarlo davvero e' il secondo pollice giu'.
+        # 1 ottobre 2026, una volta sola: le pause decise quando l'app non
+        # vedeva se il radar si leggeva si annullano. Erano silenzi, non no.
+        if not e.get("ripresa_segnali"):
+            e["ripresa_segnali"] = today
+            if e["state"] == "in pausa" and e["down"] == 0:
+                e.update(state="in prova", since=today, pausa_finita=today,
+                         seen_a_fine_pausa=e["seen"])
+                e.pop("paused_until", None)
+
         scontata = bool(e.get("pausa_finita"))
-        # le uscite mute si contano da quando e' rientrato, non dall'inizio,
-        # se no rientrava e ripartiva subito in pausa
-        mute = e["seen"] - e.get("seen_a_fine_pausa", 0)
+        # mute = uscite viste e saltate, da quando e' rientrato. Fino al 30
+        # settembre 2026 contava le uscite senza pollice, e l'app non sapeva
+        # se il radar l'avevi letto: 22 topic su 36 erano finiti in pausa
+        # per un silenzio che non era un no.
+        ripresa = e.get("pausa_finita", "")
+        recenti = [(d, v) for d, v, _h in tv[t] if d >= ripresa]
+        mute = sum(1 for _, v in recenti if v < 0)
+        mute = 0 if any(v > 0 for _, v in recenti) else mute
 
         was = e["state"]
         if e["down"] >= 2:
@@ -270,7 +388,7 @@ def topic_states(votes, idx, topics):
             e["state"] = "confermato"
         elif e["down"] == 1 and not scontata:
             e["state"] = "in pausa"
-        elif mute >= MUTE_LIMIT and not tv[t]:
+        elif mute >= MUTE_LIMIT:
             e["state"] = "in pausa"
         elif e["seen"] > 0:
             e["state"] = "in prova"
@@ -331,24 +449,26 @@ def radar_plan(topics, last_up, archive_last_day):
 # ----------------------------------------------------------------- stampe
 
 def digest(state, topics, plan, follow, axes, rules, votes, idx):
-    print(common.rule("Il gusto — cosa dicono i pollici"))
+    print(common.rule("Il gusto — come legge Mike"))
     voted = len(votes)
     if not voted:
         print("Ancora nessun voto. Il meccanismo è pronto, serve solo che qualcuno")
         print("cominci a premere i pollici: le prime indicazioni arrivano con una")
         print(f"ventina di voti, le regole vere sopra i {MIN_VOTES} concordi per asse.\n")
     else:
-        print(f"{voted} voti espressi.\n")
+        n_down = sum(1 for v in votes if v.get("how") == "pollice" and v["vote"] < 0)
+        print(f"{voted} voci con un segnale di lettura ({n_down} pollici giù).\n")
 
     if rules:
         print("Indicazioni per la selezione di oggi:")
-        for r in rules:
+        giu = [r for r in rules if r["verso"] == "declassa"]
+        su = [r for r in rules if r["verso"] != "declassa"][::-1][:6]
+        for r in giu + su:
             verso = "declassa (in coda o nel radar)" if r["verso"] == "declassa" else "tieni alto"
             print(f"  · {r['nota']} → {verso}")
         print("  Il nucleo Apple resta fuori da queste regole.\n")
     elif voted:
-        print(f"Nessun pattern ancora solido (servono {MIN_VOTES} voti concordi "
-              f"su uno stesso asse).\n")
+        print("Nessun gruppo si stacca dalla media: la selezione resta com'è.\n")
 
     print(f"Radar di oggi — {RADAR_SLOTS} caselle:")
     for t, why in plan:
@@ -359,7 +479,7 @@ def digest(state, topics, plan, follow, axes, rules, votes, idx):
         conto = f"{e.get('up',0)}↑ {e.get('down',0)}↓ · {n_out} uscit" + ("a" if n_out == 1 else "e")
         print(f"  · {t:26} {marker:18} {conto}")
     if follow:
-        print(f"  Da riprendere per forza: {', '.join(follow)} (pollice su ieri).")
+        print(f"  Da riprendere per forza: {', '.join(follow)} (letta a fondo ieri).")
     print()
 
     parked = [t for t, e in topics.items() if e["state"] in ("in pausa", "archiviato")]
@@ -431,14 +551,24 @@ def main():
         votes = state.get("votes", [])
     else:
         cfg = load_config()
-        votes = pull_votes(cfg, service_key())
+        votes = to_votes(pull_votes(cfg, service_key()), date.today().isoformat(), index_archive())
         state["votes"] = votes
         state["pulled"] = datetime.now().isoformat(timespec="seconds")
 
     idx = index_archive()
     topics = load_state(TOPICS_FILE, {})
     axes, unknown = tally(votes, idx)
-    rules = rules_from(axes)
+    # la media di confronto: per le notizie quella delle notizie, per le
+    # altre sezioni quella di ciascun asse (il radar non si legge come le notizie)
+    def media(vs):
+        vs = [v for v in vs if v]
+        return sum(vs) / len(vs) if vs else 0
+    news_w = [v["vote"] for v in votes if (idx.get(v["story"]) or {}).get("kind") == "news"]
+    base = {a: media(news_w) for a in NEWS_AXES}
+    for a, buckets in axes.items():
+        if a not in base:
+            base[a] = media([v for vs in buckets.values() for v in vs])
+    rules = rules_from(axes, base)
     topics, last_up = topic_states(votes, idx, topics)
     days = [b.get("date", "") for _, b in common.briefs()]
     plan, follow = radar_plan(topics, last_up, max(days) if days else "")
