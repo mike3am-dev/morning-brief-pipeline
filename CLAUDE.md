@@ -734,25 +734,26 @@ python3 pipeline/images.py --prune 60 && python3 pipeline/push.py --all
 python3 pipeline/audio.py
 ```
 
-Legge ad alta voce i cinque approfondimenti e ne fa file audio veri: Piper, sintesi vocale
-open source che gira in locale, voce italiana «paola». I file vanno nel bucket pubblico
-`brief-audio` di Supabase Storage e l'indirizzo finisce nell'approfondimento (`audio`).
-Nell'app *Ascolta* suona quelli: continuano a schermo bloccato, con i comandi sulla
-schermata di blocco, e non tacciono col telefono in silenzioso — la voce del browser su
-iPhone faceva l'una e l'altra cosa (30 settembre 2026: «parte l'animazione ma non sento
-niente»). Se il file manca, l'app legge con la voce del browser; se c'è ma non arriva
-(niente rete), lo dice e passa alla voce del telefono al tocco su ▶ — fatta partire da
-sola, fuori dal tocco, iOS la lascerebbe muta.
+Legge ad alta voce i cinque approfondimenti e ne fa file audio veri. **Dal 1 ottobre 2026 la
+voce è Gemini** (Google AI Studio, modello `gemini-3.8-flash-tts`, voce «Kore»): Mike trovava
+robotica la voce open source di prima (Piper «paola») e non vuole passare da Microsoft.
+Serve la chiave `GEMINI_API_KEY`, in `.env.local` sul Mac e nell'ambiente della routine; il
+livello gratuito basta. Un approfondimento è una richiesta sola, con un'istruzione di tono
+da giornale radio (`GEMINI_STYLE`). Altre voci: `--voce aoede|leda|charon|puck`. Se la chiave
+manca o Gemini non risponde, quell'audio si fa con Piper: non manca mai.
 
-La prima volta scarica Piper e la voce (63 MB) in `.cache/`, che non si versiona. Circa un
-minuto per cinque approfondimenti, un MB ciascuno. Se il testo non cambia il file non si
-rifà. L'impronta del testo sta **nel nome del file** (`…/2026-09-30/<id>-<impronta>.m4a`):
-i file si tengono in cache per un anno, quindi un testo corretto deve avere un indirizzo
-nuovo, altrimenti l'iPhone continua a suonare la versione vecchia. La versione sostituita
-si toglie da Storage da sola. Se cambi il modo in cui il testo viene detto (`speakable`,
-le pause), alza `RESA` in `audio.py`: la corsa dopo rifà tutti i file. Se un
-approfondimento fallisce lo script esce con 1, e rilanciarlo rifà solo quello. Licenza: il dataset della voce è CC0, il modello nasce da una voce inglese con licenza
-non commerciale — per un'app personale va bene, per un prodotto a pagamento no.
+I file vanno nel bucket pubblico `brief-audio` di Supabase Storage e l'indirizzo finisce
+nell'approfondimento (`audio`). Nell'app *Ascolta* suona quelli: continuano a schermo
+bloccato, con i comandi sulla schermata di blocco, e non tacciono col telefono in silenzioso.
+Se il file manca, l'app legge con la voce del browser; se c'è ma non arriva (niente rete),
+lo dice e passa alla voce del telefono al tocco su ▶.
+
+Circa quattro minuti per cinque approfondimenti, un MB ciascuno. Se il testo non cambia il
+file non si rifà. L'impronta del testo (e della voce) sta **nel nome del file**
+(`…/2026-09-30/<id>-<impronta>.m4a`): i file si tengono in cache per un anno, quindi un testo
+corretto deve avere un indirizzo nuovo. La versione sostituita si toglie da Storage da sola.
+Se cambi il modo in cui il testo viene detto (`speakable`, le pause), alza `RESA` in
+`audio.py`. Se un approfondimento fallisce lo script esce con 1, e rilanciarlo rifà solo quello.
 
 ### 4. Pubblicazione sull'app sincronizzata
 

@@ -59,19 +59,18 @@ VOICES = {
     "paola": ("it_IT-paola-medium", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/"),
     "serena": ("it_IT-serena-high", "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/serena/high/"),
 }
-# Dal 1 ottobre 2026 la voce e' Isabella, una voce neurale di Microsoft (Azure
-# Speech): Mike ha trovato Piper robotica e incomprensibile. Serve la chiave
-# AZURE_SPEECH_KEY (e AZURE_SPEECH_REGION) in .env.local sul Mac e nell'ambiente
-# della routine. Il piano gratuito F0 copre 500.000 caratteri neurali al mese;
-# cinque approfondimenti sono circa 10.000 caratteri al giorno. Senza chiave si
-# ripiega su Piper, cosi' l'audio non manca mai.
-AZURE_VOICES = {
-    "isabella": "it-IT-IsabellaNeural",
-    "giuseppe": "it-IT-GiuseppeMultilingualNeural",
-    "diego": "it-IT-DiegoNeural",
-    "elsa": "it-IT-ElsaNeural",
-}
-DEFAULT_VOICE = "isabella"
+# Dal 1 ottobre 2026 la voce e' Gemini (Google AI Studio): Mike ha trovato
+# Piper robotica e incomprensibile, e non vuole passare da Microsoft. Serve la
+# chiave GEMINI_API_KEY in .env.local sul Mac e nell'ambiente della routine; il
+# livello gratuito basta per cinque approfondimenti al giorno. Senza chiave, o
+# se Gemini non risponde, si ripiega su Piper: l'audio non manca mai.
+# Le voci di Gemini hanno nomi propri; Kore e' chiara e calma, adatta a un
+# giornale radio. GEMINI_TTS_MODEL permette di cambiare modello senza codice.
+GEMINI_VOICES = {"kore": "Kore", "aoede": "Aoede", "leda": "Leda", "charon": "Charon", "puck": "Puck"}
+GEMINI_MODEL = "gemini-3.8-flash-tts"
+GEMINI_STYLE = ("Leggi in italiano come una conduttrice di un giornale radio del mattino: "
+                "tono calmo e chiaro, ritmo naturale, brevi pause fra i paragrafi.")
+DEFAULT_VOICE = "kore"
 # quanti giorni restano gli audio su Storage: 1 GB gratuito, condiviso con altre app
 KEEP_DAYS = 30
 BUCKET = "brief-audio"
@@ -174,25 +173,35 @@ def secret(name):
     return ""
 
 
-def azure_synth(voice, paragraphs, wav_path):
-    """La voce neurale di Azure, in un'unica richiesta: un paragrafo dopo
-    l'altro con una pausa vera fra uno e l'altro. Torna la durata in secondi."""
-    from xml.sax.saxutils import escape
-    key, region = secret("AZURE_SPEECH_KEY"), secret("AZURE_SPEECH_REGION") or "westeurope"
-    body = "".join(f"<p>{escape(_chiuso(p))}</p><break time=\"700ms\"/>" for p in paragraphs if p and p.strip())
-    ssml = ("<speak version='1.0' xml:lang='it-IT'>"
-            f"<voice name='{voice}'><prosody rate='+4%'>{body}</prosody></voice></speak>")
-    r = subprocess.run(["curl", "-sS", "-f", "--max-time", "180", "--retry", "2", "-o", wav_path, "-w", "%{http_code}",
-                        "-X", "POST", f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1",
-                        "-H", f"Ocp-Apim-Subscription-Key: {key}",
-                        "-H", "Content-Type: application/ssml+xml",
-                        "-H", "X-Microsoft-OutputFormat: riff-24khz-16bit-mono-pcm",
-                        "-H", "User-Agent: morning-brief",
-                        "--data-binary", "@-"], input=ssml.encode("utf-8"), capture_output=True)
-    if r.returncode != 0 or not os.path.exists(wav_path) or os.path.getsize(wav_path) < 10000:
-        raise RuntimeError(f"Azure: HTTP {r.stdout.decode()[-3:]} {r.stderr.decode('utf-8', 'replace')[-300:]}")
-    with wave.open(wav_path) as w:
-        return round(w.getnframes() / w.getframerate())
+def gemini_synth(voice, paragraphs, wav_path):
+    """La voce di Gemini, in un'unica richiesta. Gemini restituisce PCM a
+    24 kHz, 16 bit, mono: lo si avvolge in un WAV. Torna la durata in secondi."""
+    import base64
+    key = secret("GEMINI_API_KEY")
+    model = secret("GEMINI_TTS_MODEL") or GEMINI_MODEL
+    testo = "\n\n".join(_chiuso(p) for p in paragraphs if p and p.strip())
+    body = json.dumps({
+        "contents": [{"parts": [{"text": GEMINI_STYLE + "\n\n" + testo}]}],
+        "generationConfig": {"responseModalities": ["AUDIO"],
+                             "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}},
+    }).encode("utf-8")
+    r = subprocess.run(["curl", "-sS", "--max-time", "240", "--retry", "2", "-X", "POST",
+                        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                        "-H", f"x-goog-api-key: {key}", "-H", "Content-Type: application/json",
+                        "--data-binary", "@-"], input=body, capture_output=True)
+    try:
+        d = json.loads(r.stdout or b"{}")
+        part = d["candidates"][0]["content"]["parts"][0]["inlineData"]
+    except (ValueError, KeyError, IndexError, TypeError):
+        err = (r.stdout or b"").decode("utf-8", "replace")[:300] or r.stderr.decode("utf-8", "replace")[-300:]
+        raise RuntimeError(f"Gemini: {err}")
+    pcm = base64.b64decode(part["data"])
+    m = re.search(r"rate=(\d+)", part.get("mimeType", ""))
+    rate = int(m.group(1)) if m else 24000
+    with wave.open(wav_path, "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
+        w.writeframes(pcm)
+    return round(len(pcm) / 2 / rate)
 
 
 def ensure_piper():
@@ -418,7 +427,7 @@ def main():
     ap.add_argument("date", nargs="?")
     ap.add_argument("--dry", action="store_true", help="genera in locale, non carica")
     ap.add_argument("--force", action="store_true", help="rifa' anche i file gia' fatti")
-    ap.add_argument("--voce", choices=sorted(VOICES) + sorted(AZURE_VOICES), default=DEFAULT_VOICE)
+    ap.add_argument("--voce", choices=sorted(VOICES) + sorted(GEMINI_VOICES), default=DEFAULT_VOICE)
     ap.add_argument("--prune", type=int, metavar="GIORNI",
                     help=f"toglie gli audio oltre i giorni indicati (di solito {KEEP_DAYS})")
     args = ap.parse_args()
@@ -438,8 +447,8 @@ def main():
         return 0
 
     py = onnx = None
-    if args.voce in AZURE_VOICES and not secret("AZURE_SPEECH_KEY"):
-        print("AZURE_SPEECH_KEY mancante: ripiego su Piper (paola).", file=sys.stderr)
+    if args.voce in GEMINI_VOICES and not secret("GEMINI_API_KEY"):
+        print("GEMINI_API_KEY mancante: ripiego su Piper (paola).", file=sys.stderr)
         args.voce = "paola"
     if args.voce in VOICES:
         py = ensure_piper()
@@ -461,8 +470,15 @@ def main():
                 continue
             try:
                 wav = os.path.join(outdir, n["id"] + ".wav")
-                if args.voce in AZURE_VOICES:
-                    secs = azure_synth(AZURE_VOICES[args.voce], paragraphs, wav)
+                if args.voce in GEMINI_VOICES:
+                    try:
+                        secs = gemini_synth(GEMINI_VOICES[args.voce], paragraphs, wav)
+                    except RuntimeError as e:
+                        # Gemini giu' o quota finita: questo approfondimento con Piper
+                        print(f"  {n['id']}: {e} — ripiego su Piper", file=sys.stderr)
+                        if py is None:
+                            py, onnx = ensure_piper(), ensure_voice("paola")
+                        secs = synth(py, onnx, paragraphs, wav)
                 else:
                     secs = synth(py, onnx, paragraphs, wav)
                 local, mime = encode(wav)
