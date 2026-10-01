@@ -12,9 +12,15 @@ I dati (edizioni, appunti, diario) vivono su Supabase. L'app è un file statico 
 
 ---
 
-## Procedura della corsa giornaliera (ore 07:00)
+## Procedura della corsa giornaliera (ore 6:30)
 
 Esegui **tutti** questi passi, in ordine, da `/Users/mike/Desktop/Tech_news`.
+
+La routine è `trig_01J7324UefKViTdkDcvJeYEk` su claude.ai. Il suo orario è scritto in
+**UTC** (`30 4 * * *` = 6:30 con l'ora legale): **il 25 ottobre 2026, quando torna l'ora
+solare, va spostato a `30 5 * * *`**, e a fine marzo di nuovo a `30 4`. Alla fine di ogni
+corsa `pipeline/costo.py` dice quanto è durata e quanti token ha consumato, e lo registra
+in `data/corse.json` (`costo.py --storia` per l'andamento).
 
 ### 1. Raccolta
 
