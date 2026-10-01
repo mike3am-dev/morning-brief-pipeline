@@ -577,11 +577,27 @@ quando c'è qualcosa da far vedere. Il lint respinge un tipo che l'app non conos
 | `raggio` | una città di puntini: tocchi e il raggio avvisa chi c'è dentro | `raggio_km`, `lato_km`, `etichetta_raggio` |
 | `flusso` | dove passano i soldi, oggi contro un'ipotesi | `oggi` e `agente`: `{etichetta, centro, incassa, nota}` |
 | `onde` | la cancellazione del rumore: rumore, antirumore, quello che resta | — (pronta per la prima notizia sugli AirPods) |
+| `densita` | i pixel visti da vicino, con un cursore per avvicinarsi e l'infrarosso che passa dai vuoti | `rapporto` (0,5 = metà densità), `zona`, `compensa` |
+| `supporto` | uno schermo sul suo braccio, inclinabile, con le varianti (da banco, da parete) | `pollici`, `varianti: [{nome, base: semisfera\|piatta, nota}]`, `inclinazione` |
+| `roadmap` | linee di prodotto per periodi: chip usciti, previsti, saltati (sul telefono diventa una linea del tempo) | `periodi`, `linee: [{nome, tappe: [{quando, chip, stato, nota}]}]` |
+| `catena` | un processo passo per passo e la condizione che lo spezza (la patch, l'aggiornamento) | `passi: [{titolo, nota}]`, `rottura: {dopo, senza, etichetta, nota}`, `azione` |
+| `chat` | una conversazione d'esempio che si scrive da sola | `contatto`, `messaggi: [{da: tu\|agente, testo, carrello, pulsante}]` |
 
 Tutte vogliono `titolo` e `didascalia`, `fonte` quando i numeri vengono da qualcuno. Una
 visualizzazione **illustrativa** lo dichiara nella didascalia («schema illustrativo»,
 «puntini simulati»). I dati di `stime` si scrivono nell'edizione, non si prendono dal
 registro: l'approfondimento deve stare in piedi da solo.
+
+**Il visualista.** Le visualizzazioni non le sceglie chi scrive l'edizione: le sceglie un agente
+che fa solo questo, `.claude/agents/visualista.md`, chiamato dopo che gli approfondimenti sono
+scritti. Il 1 ottobre 2026 Mike ha visto due «esploso» nella stessa edizione, uno su HomePad
+dove non spiegava niente: «assicurati che siano sempre diverse e soprattutto adatte a
+spiegare quello che stai spiegando». Il visualista parte da `python3 pipeline/visivi.py`
+(ogni tipo con il suo **sì** e il suo **no**, cosa è uscito di recente) e segue tre regole:
+la visualizzazione risponde alla domanda che a parole si capisce male; mai lo stesso tipo due
+volte nella stessa edizione (il lint lo segnala); **se nessun tipo calza non se ne forza uno**,
+si registra una richiesta con `visivi.py richiesta` e la notizia resta senza. Le richieste
+aperte sono il lavoro per chi tocca l'app.
 
 **Quando serve una visualizzazione che non c'è**, si costruisce nell'app: una funzione
 `vis<Nome>` in `pipeline/template.html`, registrata in `VISUALS`, poi il tipo in `VISIVI`

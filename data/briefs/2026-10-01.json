@@ -65,28 +65,26 @@
     "punto": "Non è solo un nuovo HomePod con schermo: Apple riporta lo stile iMac G4 in salotto e usa l'hub per spingere Siri AI e HomeKit dove l'iPhone da solo non arriva.",
     "visivi": [
      {
-      "tipo": "esploso",
-      "titolo": "L'HomePad a strati",
-      "strati": [
+      "tipo": "supporto",
+      "titolo": "HomePad, da banco o da parete",
+      "pollici": "6″",
+      "inclinazione": [
+       -20,
+       25
+      ],
+      "varianti": [
        {
-        "nome": "Schermo da 6 pollici",
-        "nota": "Quadrato, cornice nera da un quarto di pollice: si inclina avanti e indietro a mano."
+        "nome": "Da banco (J490)",
+        "base": "semisfera",
+        "nota": "Braccio in metallo lucido su una base semisferica forata per gli altoparlanti: lo stile dell'iMac G4."
        },
        {
-        "nome": "Fotocamera FaceTime",
-        "nota": "Riconosce volti e voci per personalizzare i contenuti, ma è meno affidabile del Face ID."
-       },
-       {
-        "nome": "Braccio in metallo lucido",
-        "nota": "Collega lo schermo alla base; è il dettaglio che richiama l'iMac G4 del 2002."
-       },
-       {
-        "nome": "Base semisferica",
-        "nota": "Anelli di fori per gli altoparlanti, fondo in gomma, nessuna batteria: resta sempre collegata via USB-C."
+        "nome": "Da parete (J491)",
+        "base": "piatta",
+        "nota": "La stessa unità con una base piatta, per il montaggio a muro."
        }
       ],
-      "invito": "Un tocco per strato per vedere da cosa è fatto il design che richiama l'iMac G4.",
-      "didascalia": "Schema illustrativo basato sulla descrizione di Mark Gurman: non un disegno tecnico ufficiale.",
+      "didascalia": "Schema illustrativo dalle descrizioni di Bloomberg: schermo quadrato da 6 pollici con cornice nera da un quarto di pollice, che si inclina a mano; gli angoli sono indicativi.",
       "fonte": "Bloomberg (Mark Gurman)"
      }
     ],
@@ -154,10 +152,10 @@
     ],
     "scritto": "2026-10-01",
     "audio": {
-     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/homepad-lancio-13-ottobre-a5127a54b59e.m4a",
-     "durata": 162,
-     "voce": "kore",
-     "impronta": "a5127a54b59e"
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/homepad-lancio-13-ottobre-c16e02297e3d.m4a",
+     "durata": 141,
+     "voce": "paola",
+     "impronta": "c16e02297e3d"
     }
    },
    "verifica": {
@@ -194,29 +192,13 @@
     "punto": "Il teardown del 19 settembre aveva già notato lo spostamento della fotocamera di Face ID; oggi Apple conferma a 9to5Mac come ci è riuscita, pixel per pixel.",
     "visivi": [
      {
-      "tipo": "esploso",
-      "titolo": "Cosa c'è sotto lo schermo",
-      "strati": [
-       {
-        "nome": "Pixel dello schermo",
-        "nota": "Densità dimezzata sopra il modulo, luminosità aumentata per compensare: a occhio nudo non si vede differenza."
-       },
-       {
-        "nome": "Filtro a infrarossi",
-        "nota": "Blocca la luce visibile che passerebbe dai vuoti fra i pixel, nascondendo ulteriormente il modulo."
-       },
-       {
-        "nome": "Modulo TrueDepth (Face ID)",
-        "nota": "Emette e riceve luce infrarossa attraverso i vuoti fra i pixel per mappare il volto."
-       },
-       {
-        "nome": "Dynamic Island",
-        "nota": "Si rimpicciolisce perché il Face ID libera spazio: tre live activity invece di due."
-       }
-      ],
-      "invito": "Un tocco per strato per vedere come lo schermo nasconde il Face ID.",
-      "didascalia": "Schema illustrativo basato sulla spiegazione di Apple a 9to5Mac e sulle immagini al microscopio di iFixit.",
-      "fonte": "9to5Mac; iFixit"
+      "tipo": "densita",
+      "titolo": "Avvicinati ai pixel",
+      "rapporto": 0.5,
+      "zona": "Face ID",
+      "compensa": true,
+      "didascalia": "Schema illustrativo: sopra il modulo di Face ID Apple dimezza la densità dei pixel e alza la luminosità di quelli che restano, così a occhio nudo la zona non si vede; l'infrarosso passa dai vuoti.",
+      "fonte": "Apple, via 9to5Mac; microscopio di iFixit"
      }
     ],
     "sotto": [
@@ -266,10 +248,10 @@
     ],
     "scritto": "2026-10-01",
     "audio": {
-     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/faceid-sotto-schermo-18pro-35413e255a5b.m4a",
-     "durata": 126,
-     "voce": "kore",
-     "impronta": "35413e255a5b"
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/faceid-sotto-schermo-18pro-1ed0f001392b.m4a",
+     "durata": 121,
+     "voce": "paola",
+     "impronta": "1ed0f001392b"
     }
    },
    "verifica": {
@@ -300,7 +282,43 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "Niente phishing classico con moduli da compilare: basta aprire il link. La pagina usa un exploit già corretto da Apple a marzo, quindi il rischio reale riguarda solo chi non si è aggiornato.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Cosa succede se apri il link",
+      "azione": "Apri il link",
+      "passi": [
+       {
+        "titolo": "Apri il link",
+        "nota": "La pagina copia la grafica di un preordine Apple e promette un voucher da 500 dollari."
+       },
+       {
+        "titolo": "Parte l'exploit DarkSword",
+        "nota": "Si attiva alla sola apertura: nessun modulo, nessun download, nessun permesso."
+       },
+       {
+        "titolo": "Raccoglie i dati del telefono",
+        "nota": "Identificativo e stato del dispositivo, app installate, contenuto di Note."
+       },
+       {
+        "titolo": "Cerca wallet e password",
+        "nota": "MetaMask, Phantom, Trust Wallet, Coinbase Wallet, Exodus, Tonkeeper e le credenziali nel portachiavi."
+       },
+       {
+        "titolo": "Carica tutto sul suo server",
+        "nota": "Insieme alle miniature delle foto."
+       }
+      ],
+      "rottura": {
+       "dopo": 0,
+       "senza": "Non aggiornato",
+       "etichetta": "Aggiornato",
+       "nota": "Su un iPhone aggiornato la catena si ferma qui: Apple ha corretto DarkSword a marzo."
+      },
+      "didascalia": "La catena descritta da Malwarebytes: su un iPhone non aggiornato basta aprire la pagina; con gli aggiornamenti di marzo l'exploit non funziona.",
+      "fonte": "Malwarebytes, via 9to5Mac"
+     }
+    ],
     "sotto": [
      "La pagina replica con cura la grafica di un preordine Apple e promette uno sconto da 500 dollari come «partner autorizzato». Dietro la grafica, Malwarebytes ha trovato la catena di exploit DarkSword: funziona su alcuni iPhone non aggiornati e si attiva alla sola apertura della pagina, senza bisogno che la vittima compili moduli, scarichi file o dia permessi.",
      "Se l'attacco riesce, il payload raccoglie identificativo e stato del dispositivo, la lista delle app installate e il contenuto di Apple Notes, poi cerca wallet crypto (MetaMask, Phantom, Trust Wallet, Coinbase Wallet, Exodus, Tonkeeper) e credenziali nel portachiavi, provando a caricarli sul proprio server insieme a miniature delle foto. Prova infine ad accedere a messaggi, contatti, posta, calendario e posizione cache."
@@ -344,10 +362,10 @@
     ],
     "scritto": "2026-10-01",
     "audio": {
-     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/phishing-iphone-duo-darksword-7f644571aea8.m4a",
-     "durata": 123,
-     "voce": "kore",
-     "impronta": "7f644571aea8"
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/phishing-iphone-duo-darksword-fa823d4d4a36.m4a",
+     "durata": 109,
+     "voce": "paola",
+     "impronta": "fa823d4d4a36"
     }
    },
    "verifica": {
@@ -378,7 +396,105 @@
    "thread": "silicio-mac",
    "approfondimento": {
     "punto": "Apple salta una generazione intera di chip per la fascia alta dei laptop: dopo l'M6 nel modello base, si passa direttamente a M7 Pro e Max nel 2027, non a M6 Pro e Max.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Il calendario dei chip M6",
+      "periodi": [
+       "Settembre 2026",
+       "Autunno 2026",
+       "Primavera 2027",
+       "2027"
+      ],
+      "linee": [
+       {
+        "nome": "Mac mini e Mac Studio",
+        "tappe": [
+         {
+          "quando": "Settembre 2026",
+          "chip": "M6",
+          "stato": "uscito",
+          "nota": "In vendita dal 22 settembre, già sul chip M6 a 2 nanometri."
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro 14 base",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "Solo nella versione base."
+         }
+        ]
+       },
+       {
+        "nome": "iMac",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "Rinnovato soprattutto nei colori."
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro touch",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "previsto",
+          "nota": "Primo redesign in cinque anni, ma con i chip della generazione precedente."
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro Pro/Max",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M6 Pro/Max",
+          "stato": "saltato",
+          "nota": "Generazione saltata: niente M6 Pro e M6 Max."
+         },
+         {
+          "quando": "2027",
+          "chip": "M7 Pro/Max",
+          "stato": "previsto",
+          "nota": "Il prossimo aggiornamento della fascia alta."
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Air",
+        "tappe": [
+         {
+          "quando": "Primavera 2027",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "Probabilmente a marzo, senza altri cambi di rilievo."
+         }
+        ]
+       },
+       {
+        "nome": "iPad Pro",
+        "tappe": [
+         {
+          "quando": "Primavera 2027",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "Con una nuova camera di vapore per il raffreddamento."
+         }
+        ]
+       }
+      ],
+      "didascalia": "Le date messe in fila da 9to5Mac sul reporting di Bloomberg: la fascia alta salta M6 e passa direttamente a M7 nel 2027.",
+      "fonte": "Bloomberg, via 9to5Mac"
+     }
+    ],
     "sotto": [
      "Il Mac mini e il Mac Studio, in vendita dal 22 settembre, sono già sul chip M6 a 2 nanometri. In autunno arrivano un MacBook Pro 14 pollici — solo nella versione base — e un iMac rinnovato soprattutto nei colori. Il MacBook Pro (o Ultra) con schermo touch, primo redesign industriale in cinque anni, debutta nello stesso periodo ma con i chip M5 Pro e M5 Max della generazione precedente, non con l'M6.",
      "Per la fascia alta dei laptop, Apple salta del tutto M6 Pro e M6 Max: il prossimo aggiornamento sarà direttamente M7 Pro e M7 Max nel 2027. Nello stesso anno, probabilmente a marzo, arriva un MacBook Air con M6 senza altri cambi di rilievo, e in primavera un iPad Pro con M6 e una nuova camera di vapore per il raffreddamento, nel consueto ciclo di diciotto mesi dal modello precedente."
@@ -436,10 +552,10 @@
     ],
     "scritto": "2026-10-01",
     "audio": {
-     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/m6-mac-roadmap-autunno-10c63c45c5a7.m4a",
-     "durata": 152,
-     "voce": "kore",
-     "impronta": "10c63c45c5a7"
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/m6-mac-roadmap-autunno-04f355618ce3.m4a",
+     "durata": 135,
+     "voce": "paola",
+     "impronta": "04f355618ce3"
     }
    },
    "verifica": {
@@ -471,7 +587,45 @@
    "thread": "agenti-personali",
    "approfondimento": {
     "punto": "Apple apre Messaggi a un agente IA di terze parti proprio mentre il caso Muse ricorda quanto sia delicato lasciare che un software esterno legga e scriva nella app di messaggistica di sistema.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Ordinare scrivendo in Messaggi",
+      "contatto": "DoorDash",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Il solito del venerdì, ma stasera siamo in tre e uno non mangia carne."
+       },
+       {
+        "da": "agente",
+        "testo": "Ho cercato i locali aperti e guardato i menu. Ti propongo questo carrello:",
+        "carrello": [
+         {
+          "nome": "Il tuo solito del venerdì"
+         },
+         {
+          "nome": "Un piatto senza carne"
+         },
+         {
+          "nome": "Il piatto per il terzo"
+         }
+        ],
+        "pulsante": "Conferma e paga"
+       },
+       {
+        "da": "tu",
+        "testo": "Perfetto, conferma."
+       },
+       {
+        "da": "agente",
+        "testo": "Fatto: pagamento confermato, senza uscire da Messaggi."
+       }
+      ],
+      "didascalia": "Conversazione d'esempio costruita sulle funzioni annunciate da DoorDash: cerca i locali, legge i menu, propone un carrello con le foto dei piatti, ricorda le preferenze, gestisce gli ordini di gruppo e fa pagare nel thread.",
+      "fonte": "DoorDash, via 9to5Mac e MacRumors"
+     }
+    ],
     "sotto": [
      "Per ora solo negli Stati Uniti e su lista d'attesa, il servizio funziona scrivendo in un thread di Messaggi cosa si vuole mangiare: l'agente cerca i locali, scansiona i menu, propone un carrello con tanto di foto dei piatti, e ricorda le preferenze — «il solito» del venerdì, chi salta un ingrediente — senza doverle ripetere ogni volta. Gestisce anche ordini di gruppo con gusti diversi, e il pagamento si conferma senza uscire dal thread.",
      "La stessa settimana, Meta è sulla difensiva per Muse: un giornalista ha accusato l'agente di aver letto le sue Messaggi su Mac senza permesso esplicito. Meta insiste che servono tre passaggi — accesso completo al disco, poi il permesso specifico per Messaggi, poi la riattivazione dell'app — e che nessun bug può aggirarli. È lo sfondo su cui Apple lascia entrare DoorDash: un ecosistema sempre più aperto agli agenti di terzi."
@@ -519,10 +673,10 @@
     ],
     "scritto": "2026-10-01",
     "audio": {
-     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/doordash-agente-ai-messaggi-09d6b73ca146.m4a",
-     "durata": 130,
-     "voce": "kore",
-     "impronta": "09d6b73ca146"
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-01/doordash-agente-ai-messaggi-1fd61b926951.m4a",
+     "durata": 123,
+     "voce": "paola",
+     "impronta": "1fd61b926951"
     }
    },
    "verifica": {
