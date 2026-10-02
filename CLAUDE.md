@@ -588,6 +588,13 @@ visualizzazione **illustrativa** lo dichiara nella didascalia («schema illustra
 «puntini simulati»). I dati di `stime` si scrivono nell'edizione, non si prendono dal
 registro: l'approfondimento deve stare in piedi da solo.
 
+**Il visualista viene dopo la pubblicazione, mai prima.** Il 2 ottobre 2026 la corsa lo ha
+aspettato 23 minuti prima di pubblicare e l'edizione è uscita con un'ora di ritardo. L'ordine è:
+edizione scritta, immagini, lint, **`push.py`** (con i `visivi` vuoti) → visualista (chiamata
+normale, non in background, senza `sleep` né `ListAgents` per aspettarlo; massimo 8 minuti) →
+lint → `push.py` → audio → `push.py`. Se il visualista non risponde in tempo, l'edizione è già
+online senza grafici: meglio di un'edizione che non c'è.
+
 **Il visualista.** Le visualizzazioni non le sceglie chi scrive l'edizione: le sceglie un agente
 che fa solo questo, `.claude/agents/visualista.md`, chiamato dopo che gli approfondimenti sono
 scritti. Il 1 ottobre 2026 Mike ha visto due «esploso» nella stessa edizione, uno su HomePad

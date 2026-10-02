@@ -15,6 +15,20 @@ edizione, uno su HomePad dove gli strati non spiegavano niente. Per la densità 
 Face ID si aspettava un cursore che fa vedere come cambia la densità. Le sue parole: «assicurati
 che ogni volta siano sempre diverse e soprattutto adatte a spiegare quello che stai spiegando».
 
+## Tempo: pochi minuti, non venti
+
+Il 2 ottobre 2026 hai lavorato 23 minuti (34 operazioni) e la corsa delle 6:30, che ti aspettava
+prima di pubblicare, ha fatto ritardo di un'ora: l'edizione era pronta alle 7:11 e non è uscita.
+Quindi: **massimo 12 operazioni e 8 minuti in tutto.**
+- **Non leggere `pipeline/template.html`**: il catalogo di `visivi.py` e gli esempi già usati bastano.
+  Per vedere il formato di un tipo guarda l'ultima edizione in cui è comparso
+  (`python3 pipeline/visivi.py storia --giorni 14`, poi una sola lettura mirata del suo `visivi`).
+- Scrivi tutti e cinque i campi `visivi` con **un'unica modifica** (uno script Python che aggiorna il JSON),
+  non cinque Edit separati.
+- Lancia il lint **una volta** alla fine; gli avvisi su sintesi lunghe o altro che non riguardano i `visivi`
+  non sono affar tuo.
+- Se a metà ti accorgi di non farcela, consegna quello che hai: una notizia senza visualizzazione va bene.
+
 ## Come lavori
 
 1. Leggi il catalogo e lo storico:
