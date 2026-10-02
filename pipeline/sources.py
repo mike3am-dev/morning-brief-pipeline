@@ -48,7 +48,18 @@ BROAD = {"Ars Technica", "TechCrunch"}
 # (provati news/rss.xml, rss.xml, feed.xml, index.xml — tutti 404 il 9 agosto
 # 2026). Passa dalle testate qui sotto, che la coprono tutte.
 AI = {"OpenAI", "Google DeepMind", "The Decoder", "TechCrunch AI",
-      "Ars Technica AI", "MIT Technology Review AI"}
+      "Ars Technica AI", "MIT Technology Review AI",
+      # i robot stanno nella scheda AI (2 ottobre 2026: "lo vedo a braccetto con l'AI")
+      "The Robot Report", "IEEE Spectrum Robotica"}
+
+# Le tre schede nuove del 2 ottobre 2026 — GAMES, TECH, SPAZIO — pescano
+# ciascuna dal suo girone. Non passano dalla scrittura del mattino: le
+# compone pipeline/rubriche.py. Le fonti sono quelle provate quel giorno.
+GAMES = {"Push Square", "PlayStation Blog", "Nintendo Life", "VGC",
+         "GamesIndustry.biz", "Kotaku", "IGN", "Eurogamer", "Rock Paper Shotgun"}
+TECH = {"Engadget", "Hackaday", "Liliputing", "Gizmodo", "Hacker News", "Product Hunt",
+        "TechRadar", "Ars Technica Gadget"}
+SPAZIO = {"SpaceNews", "Universe Today", "NASA", "Media INAF", "Ars Technica Scienza", "NASA APOD"}
 
 # Fonti da banco: la concorrenza e chi la prova. Non sono materia da rassegna
 # Apple, sono materia da lavoro — un cliente che chiede del pieghevole Samsung
@@ -72,6 +83,12 @@ def _tier(name):
         return "lab"
     if name in BANCO:
         return "banco"
+    if name in GAMES:
+        return "games"
+    if name in TECH:
+        return "tech"
+    if name in SPAZIO:
+        return "spazio"
     return "larga" if name in BROAD else "redazionale"
 
 # Il seme: da qui nasce data/sources.json la prima volta. Dopo di che il file
@@ -115,6 +132,39 @@ SEED = {
     "Anthropic cookbook": "https://github.com/anthropics/anthropic-cookbook/commits/main.atom",
     "Matt Wolfe": "https://www.youtube.com/feeds/videos.xml?channel_id=UChpleBmo18P08aKCIgti38g",
     "AI Explained": "https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw",
+
+    # Robot — nella scheda AI
+    "The Robot Report": "https://www.therobotreport.com/feed/",
+    "IEEE Spectrum Robotica": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+
+    # GAMES — PlayStation in testa, poi Nintendo, le grandi case, l'industria
+    "Push Square": "https://www.pushsquare.com/feeds/latest",
+    "PlayStation Blog": "https://blog.playstation.com/feed/",
+    "Nintendo Life": "https://www.nintendolife.com/feeds/latest",
+    "VGC": "https://www.videogameschronicle.com/feed/",
+    "GamesIndustry.biz": "https://www.gamesindustry.biz/feed",
+    "Kotaku": "https://kotaku.com/rss",
+    "IGN": "https://feeds.feedburner.com/ign/all",
+    "Eurogamer": "https://www.eurogamer.net/feed",
+    "Rock Paper Shotgun": "https://www.rockpapershotgun.com/feed",
+
+    # TECH — il resto dell'hardware e di quello che affiora
+    "Engadget": "https://www.engadget.com/rss.xml",
+    "Hackaday": "https://hackaday.com/blog/feed/",
+    "Liliputing": "https://liliputing.com/feed/",
+    "Gizmodo": "https://gizmodo.com/rss",
+    "Hacker News": "https://hnrss.org/frontpage?points=150",
+    "Product Hunt": "https://www.producthunt.com/feed",
+    "TechRadar": "https://www.techradar.com/rss",
+    "Ars Technica Gadget": "https://arstechnica.com/gadgets/feed/",
+
+    # SPAZIO
+    "SpaceNews": "https://spacenews.com/feed/",
+    "Universe Today": "https://www.universetoday.com/feed",
+    "NASA": "https://www.nasa.gov/feed/",
+    "Media INAF": "https://www.media.inaf.it/feed/",
+    "Ars Technica Scienza": "https://arstechnica.com/science/feed/",
+    "NASA APOD": "https://apod.com/feed.rss",
 }
 
 

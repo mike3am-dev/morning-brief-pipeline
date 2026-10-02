@@ -80,6 +80,24 @@
   "checked": null,
   "history": []
  },
+ "Ars Technica Gadget": {
+  "url": "https://arstechnica.com/gadgets/feed/",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Ars Technica Scienza": {
+  "url": "https://arstechnica.com/science/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "BGR": {
   "url": "https://bgr.com/feed/",
   "state": "attiva",
@@ -98,11 +116,47 @@
   "checked": null,
   "history": []
  },
+ "Engadget": {
+  "url": "https://www.engadget.com/rss.xml",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Eurogamer": {
+  "url": "https://www.eurogamer.net/feed",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "GSMArena": {
   "url": "https://www.gsmarena.com/rss-news-reviews.php3",
   "state": "attiva",
   "tier": "banco",
   "since": "2026-08-09",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "GamesIndustry.biz": {
+  "url": "https://www.gamesindustry.biz/feed",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Gizmodo": {
+  "url": "https://gizmodo.com/rss",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
   "reason": "",
   "checked": null,
   "history": []
@@ -125,11 +179,65 @@
   "checked": null,
   "history": []
  },
+ "Hackaday": {
+  "url": "https://hackaday.com/blog/feed/",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Hacker News": {
+  "url": "https://hnrss.org/frontpage?points=150",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "IEEE Spectrum Robotica": {
+  "url": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "IGN": {
+  "url": "https://feeds.feedburner.com/ign/all",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Kotaku": {
+  "url": "https://kotaku.com/rss",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Latent Space": {
   "url": "https://www.latent.space/feed",
   "state": "attiva",
   "tier": "lab",
   "since": "2026-09-06",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Liliputing": {
+  "url": "https://liliputing.com/feed/",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
   "reason": "",
   "checked": null,
   "history": []
@@ -179,6 +287,42 @@
   "checked": null,
   "history": []
  },
+ "Media INAF": {
+  "url": "https://www.media.inaf.it/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "NASA": {
+  "url": "https://www.nasa.gov/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "NASA APOD": {
+  "url": "https://apod.com/feed.rss",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Nintendo Life": {
+  "url": "https://www.nintendolife.com/feeds/latest",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "One Useful Thing": {
   "url": "https://www.oneusefulthing.org/feed",
   "state": "attiva",
@@ -197,11 +341,56 @@
   "checked": null,
   "history": []
  },
+ "PlayStation Blog": {
+  "url": "https://blog.playstation.com/feed/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Product Hunt": {
+  "url": "https://www.producthunt.com/feed",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Push Square": {
+  "url": "https://www.pushsquare.com/feeds/latest",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Rock Paper Shotgun": {
+  "url": "https://www.rockpapershotgun.com/feed",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Simon Willison": {
   "url": "https://simonwillison.net/atom/everything/",
   "state": "attiva",
   "tier": "lab",
   "since": "2026-09-06",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "SpaceNews": {
+  "url": "https://spacenews.com/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
   "reason": "",
   "checked": null,
   "history": []
@@ -224,11 +413,29 @@
   "checked": null,
   "history": []
  },
+ "TechRadar": {
+  "url": "https://www.techradar.com/rss",
+  "state": "attiva",
+  "tier": "tech",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "The Decoder": {
   "url": "https://the-decoder.com/feed/",
   "state": "attiva",
   "tier": "ai",
   "since": "2026-08-09",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "The Robot Report": {
+  "url": "https://www.therobotreport.com/feed/",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-10-02",
   "reason": "",
   "checked": null,
   "history": []
@@ -247,6 +454,24 @@
   "state": "attiva",
   "tier": "redazionale",
   "since": "2026-08-09",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Universe Today": {
+  "url": "https://www.universetoday.com/feed",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "VGC": {
+  "url": "https://www.videogameschronicle.com/feed/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-10-02",
   "reason": "",
   "checked": null,
   "history": []

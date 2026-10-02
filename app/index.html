@@ -217,10 +217,14 @@ nav.tabs.more-left:not(.more-right){
   .brand-tools{gap:0}
   .icon-btn{width:29px; height:29px; font-size:.92rem}
   #syncPip{margin:0 .2rem 0 .1rem}
-  .tab{font-size:.82rem; margin-right:.95rem; letter-spacing:.03em}
   .tab:last-child{margin-right:0}
 }
-.tab.more{display:none}
+.tab.more{display:inline-block; font-size:1.25rem; line-height:1; padding:.22rem .1rem .45rem; margin-right:0; margin-left:auto}
+/* ogni scheda ha il suo colore sotto la voce attiva */
+.tab[data-view="ai"][aria-current="true"]::after{background:var(--red)}
+.tab[data-view="games"][aria-current="true"]::after{background:var(--yellow)}
+.tab[data-view="tech"][aria-current="true"]::after{background:var(--blue)}
+.tab[data-view="spazio"][aria-current="true"]::after{background:var(--ink)}
 .masthead-inner{position:relative}
 .tabmenu{
   position:absolute; right:var(--gutter); top:100%; z-index:20; min-width:11rem;
@@ -526,6 +530,41 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .aiswitch button[data-mode="lab"][aria-current="true"]::after{background:var(--yellow)}
 .subhead.lab::before{content:""; width:.7rem; height:.7rem; background:var(--yellow); border-radius:2px; align-self:center}
 .subhead.wire::before{content:""; width:.7rem; height:.7rem; background:var(--ink); border-radius:50%; align-self:center}
+
+/* ---------------- GAMES, TECH, SPAZIO ---------------- */
+.rub-head{
+  --rc:var(--yellow); --on:#17181B;
+  margin:1.1rem 0 1.2rem; padding:1.1rem 1.1rem 1rem; border-radius:10px; position:relative; overflow:hidden;
+  background:var(--rc); color:var(--on); display:flex; flex-direction:column; gap:.2rem;
+}
+.rub-head h2{font-family:var(--display); font-weight:700; font-size:2.6rem; line-height:.95; text-transform:uppercase; letter-spacing:.01em}
+.rub-head .eyebrow{color:inherit; opacity:.78}
+/* il disegno di ogni scheda: pixel per Games, griglia per Tech, stelle per Spazio */
+.rub-games .rub-head{background-image:linear-gradient(45deg, rgba(23,24,27,.1) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.1) 75%),
+  linear-gradient(45deg, rgba(23,24,27,.1) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.1) 75%);
+  background-size:22px 22px; background-position:0 0, 11px 11px}
+.rub-tech .rub-head{background-image:radial-gradient(rgba(23,24,27,.28) 1.5px, transparent 1.6px); background-size:14px 14px}
+.rub-spazio .rub-head{
+  background-image:radial-gradient(1.2px 1.2px at 12% 30%, #fff, transparent), radial-gradient(1px 1px at 38% 70%, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 62% 25%, #fff, transparent), radial-gradient(1px 1px at 84% 60%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 92% 22%, #fff, transparent), radial-gradient(1px 1px at 52% 88%, #fff, transparent);
+  box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.rub-tops{display:grid; gap:1.2rem}
+@media (min-width:760px){ .rub-tops{grid-template-columns:repeat(3, 1fr)} }
+.rub-card{background:var(--paper); border-radius:8px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
+.rub-card .shot{width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:var(--paper-2)}
+.rub-body{padding:.85rem 1rem 1rem; display:flex; flex-direction:column; gap:.45rem}
+.rub-meta{font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:.3rem .6rem; align-items:center}
+.rub-tag{background:var(--paper-2); color:var(--ink-2); padding:.12rem .4rem; border-radius:2px; letter-spacing:.08em}
+.rub-tag.hot{background:var(--orange); color:#17181B}
+.rub-card h3{font-family:var(--display); font-weight:700; font-size:1.4rem; line-height:1.1}
+.rub-card h3 a{color:inherit; text-decoration:none}
+.rub-nota{font-size:.95rem; line-height:1.45; color:var(--ink-2)}
+.rub-orig{font-size:.78rem; line-height:1.35; color:var(--ink-3); font-style:italic}
+.rub-sub{margin-top:1.6rem}
+.rub-sub.hot::before{content:""; width:.7rem; height:.7rem; background:var(--orange); border-radius:50%; align-self:center}
+.rub-rows .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
+.rub-rows .row .rowtext{display:flex; flex-direction:column; gap:.3rem}
 
 /* il dispaccio */
 .wire{list-style:none; margin:0 0 .4rem; padding:0}
@@ -1273,9 +1312,9 @@ footer.colophon .sp{flex:1}
    queste devono vincere su .tab, .hero e .section-head scritte sopra.
    Meno schede, piu' grandi: Diario e Cerca vanno sotto i tre puntini. */
 @media (max-width:600px){
-  .tab{font-size:.95rem; margin-right:1.1rem; letter-spacing:.03em; padding:.35rem 0 .5rem}
-  .tab[data-view="diario"],.tab[data-view="cerca"]{display:none}
-  .tab.more{display:inline-block; font-size:1.25rem; line-height:1; padding:.22rem .1rem .45rem; margin-right:0}
+  .tab{font-size:.88rem; margin-right:.85rem; letter-spacing:.02em; padding:.35rem 0 .5rem}
+  .tab .count{margin-left:.2rem}
+  .tab.more{margin-left:auto}
   .masthead-inner{padding-top:.4rem}
   nav.tabs{margin-top:.15rem}
   .hero{padding-top:.6rem}
@@ -1318,16 +1357,17 @@ footer.colophon .sp{flex:1}
       </span>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab" data-view="oggi" role="tab">Edizione</button>
+      <button class="tab" data-view="oggi" role="tab">Apple</button>
       <button class="tab" data-view="ai" role="tab">AI<span class="count" id="cAI"></span></button>
-      <button class="tab" data-view="archivio" role="tab">Archivio</button>
-      <button class="tab" data-view="salvati" role="tab">Salvati<span class="count" id="cStar"></span></button>
-      <button class="tab" data-view="diario" role="tab">Diario<span class="count" id="cDiary"></span></button>
-      <button class="tab" data-view="cerca" role="tab">Cerca</button>
-      <button class="tab more" type="button" id="moreTab" aria-haspopup="true" aria-expanded="false" title="Altro">⋯</button>
+      <button class="tab" data-view="games" role="tab">Games<span class="count" id="cGames"></span></button>
+      <button class="tab" data-view="tech" role="tab">Tech<span class="count" id="cTech"></span></button>
+      <button class="tab" data-view="spazio" role="tab">Spazio<span class="count" id="cSpazio"></span></button>
+      <button class="tab more" type="button" id="moreTab" aria-haspopup="true" aria-expanded="false" title="Archivio, Salvati, Diario, Cerca">⋯</button>
     </nav>
     <div class="tabmenu" id="tabmenu" hidden>
-      <button type="button" data-go="diario">Diario<span class="count" id="cDiary2"></span></button>
+      <button type="button" data-go="archivio">Archivio</button>
+      <button type="button" data-go="salvati">Salvati<span class="count" id="cStar"></span></button>
+      <button type="button" data-go="diario">Diario<span class="count" id="cDiary"></span></button>
       <button type="button" data-go="cerca">Cerca</button>
     </div>
   </div>
@@ -1336,6 +1376,9 @@ footer.colophon .sp{flex:1}
 <main id="main" hidden>
   <section class="view" id="view-oggi"></section>
   <section class="view" id="view-ai" hidden></section>
+  <section class="view" id="view-games" hidden></section>
+  <section class="view" id="view-tech" hidden></section>
+  <section class="view" id="view-spazio" hidden></section>
   <section class="view" id="view-archivio" hidden></section>
   <section class="view" id="view-salvati" hidden></section>
   <section class="view" id="view-diario" hidden></section>
@@ -1885,10 +1928,12 @@ function indexAll(){
     (b.news || []).forEach(function(n){ ALL.push({brief:b, news:n, k:key(b.date, n.id)}); });
     /* radar, banco e recap non sono notizie ma si salvano lo stesso: un video
        da guardare dopo deve ricomparire fra i salvati come tutto il resto */
-    [["radar", "Radar"], ["banco", "Sul banco"], ["recap", "Se te lo fossi perso"]]
+    [["radar", "Radar"], ["banco", "Sul banco"], ["recap", "Se te lo fossi perso"],
+     ["games", "Games"], ["tech", "Tech"], ["spazio", "Spazio"]]
       .forEach(function(sez){
         (b[sez[0]] || []).forEach(function(it){
           if(!it.id) return;
+          if(it.nota && !it.note) it = Object.assign({}, it, {note:it.nota});
           EXTRAS.push({brief:b, item:it, kind:sez[0], label:sez[1],
                        k:key(b.date, sez[0] + ":" + it.id)});
         });
@@ -4625,7 +4670,7 @@ function renderSearch(){
 
 /* ================= AI ================= */
 const AI_LAB = {uso:1, demo:1, trucco:1, sapevi:1};
-const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["altri","Altri"]];
+const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["robot","Robot"],["altri","Altri"]];
 function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })[0]; return m ? m[1] : (l || "Altri"); }
 function isLab(a){ return !!AI_LAB[String(a.kind || "").toLowerCase()]; }
 
@@ -4806,15 +4851,132 @@ function renderAI(){
   if(seen){ save(); queueSync(); refreshCounts(); }
 }
 
+
+/* ================= GAMES, TECH, SPAZIO =================
+   Tre schede alla pari con APPLE e AI (2 ottobre 2026). Le compone
+   pipeline/rubriche.py: solo quello che merita, mai riempita. Le tre voci
+   grandi hanno la foto; le altre sono righe. In fondo, se la giornata e'
+   magra, "Ti sei perso": la cosa piu' calda della settimana. */
+const RUB = {
+  games: {nome:"Games", sub:"PlayStation in testa, poi tutto il resto", count:"cGames", rc:"--yellow", on:"#17181B"},
+  tech: {nome:"Tech", sub:"Gadget, hardware e quello che affiora", count:"cTech", rc:"--blue", on:"#17181B"},
+  spazio: {nome:"Spazio", sub:"Solo quello che fa alzare lo sguardo", count:"cSpazio", rc:"#10131C", on:"#F1EEE8"}
+};
+function rubKey(date, kind, it){ return key(date, kind + ":" + it.id); }
+function rubRead(date, kind, it){ if(!it.id) return false; const m = mk(rubKey(date, kind, it)); return !!(m && m.read_at); }
+function rubMarkSeen(date, kind, it){
+  if(!NOTES || !it.id || rubRead(date, kind, it)) return false;
+  const m = mark(rubKey(date, kind, it)); m.read_at = new Date().toISOString(); m.updated_at = m.read_at; m.dirty = true;
+  return true;
+}
+function rubWhen(it){
+  const h = it.ore || 0;
+  if(it.perso) return h >= 48 ? Math.round(h / 24) + " giorni fa" : "ieri";
+  return h < 1 ? "meno di un'ora fa" : h < 24 ? h + (h === 1 ? " ora fa" : " ore fa") : Math.round(h / 24) + " giorni fa";
+}
+function rubFoot(date, kind, it, withOpen){
+  const u = safeUrl(it.link);
+  const foot = el("div", {class:"foot"});
+  if(u && withOpen) foot.appendChild(el("a", {class:"primary", href:u, target:"_blank", rel:"noopener noreferrer", text:"Apri →"}));
+  const tools = (NOTES && it.id)
+    ? itemTools(rubKey(date, kind, it), {ref:{date:date, id:kind + ":" + it.id, title:it.title}}) : null;
+  if(tools) foot.appendChild(tools.bar);
+  return {foot:foot, panel:tools ? tools.panel : null};
+}
+function rubMeta(it){
+  const parts = [it.source, rubWhen(it)];
+  if(it.testate) parts.push(it.testate + " testate");
+  return el("p", {class:"rub-meta"}, [
+    el("span", {text:parts.filter(Boolean).join(" · ")}),
+    it.continua ? el("span", {class:"rub-tag", text:"se ne parla da giorni"}) : null,
+    it.perso ? el("span", {class:"rub-tag hot", text:"ti sei perso"}) : null
+  ]);
+}
+function rubCard(date, kind, it){
+  const u = safeUrl(it.link);
+  const card = el("article", {class:"rub-card"});
+  if(it.image) card.appendChild(el("img", {class:"shot", src:it.image, alt:"", loading:"lazy", decoding:"async"}));
+  const body = el("div", {class:"rub-body"});
+  body.appendChild(rubMeta(it));
+  body.appendChild(el("h3", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:it.title}) : el("span", {text:it.title})]));
+  if(it.nota) body.appendChild(el("p", {class:"rub-nota", text:it.nota}));
+  if(it.orig) body.appendChild(el("p", {class:"rub-orig", text:it.orig}));
+  const f = rubFoot(date, kind, it, true);
+  body.appendChild(f.foot);
+  if(f.panel) body.appendChild(f.panel);
+  card.appendChild(body);
+  return card;
+}
+function rubRow(date, kind, it){
+  const li = el("li", {});
+  const row = el("div", {class:"row"}, [
+    el("div", {class:"rowtext"}, [rubMeta(it), el("h4", {text:it.title})])
+  ]);
+  const body = el("div", {class:"body", hidden:"hidden"});
+  if(it.nota) body.appendChild(el("p", {text:it.nota}));
+  if(it.orig) body.appendChild(el("p", {class:"rub-orig", text:it.orig}));
+  const f = rubFoot(date, kind, it, true);
+  body.appendChild(f.foot);
+  if(f.panel) body.appendChild(f.panel);
+  row.addEventListener("click", function(){ body.hidden = !body.hidden; li.classList.toggle("is-open", !body.hidden); });
+  li.appendChild(row); li.appendChild(body);
+  return li;
+}
+function renderRubrica(kind){
+  const cfg = RUB[kind];
+  const root = document.getElementById("view-" + kind);
+  root.innerHTML = "";
+  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
+  const items = (brief && brief[kind]) || [];
+  const col = el("div", {class:"col-main rub rub-" + kind});
+  const rc = cfg.rc.charAt(0) === "#" ? cfg.rc : "var(" + cfg.rc + ")";
+  const head = el("div", {class:"rub-head"}, [
+    el("h2", {text:cfg.nome}),
+    el("span", {class:"eyebrow", text:cfg.sub + (brief ? " · " + fmtShort(brief.date) : "")})
+  ]);
+  head.style.setProperty("--rc", rc); head.style.setProperty("--on", cfg.on);
+  col.appendChild(head);
+  if(!items.length){
+    col.appendChild(el("div", {class:"empty", html:"<b>Oggi niente che valga la tua attenzione</b>Meglio una scheda vuota che una piena di riempitivi. Le altre giornate sono nell'archivio."}));
+    root.appendChild(col); return;
+  }
+  const good = items.filter(function(it){ return !it.perso; });
+  const persi = items.filter(function(it){ return it.perso; });
+  const tops = good.filter(function(it){ return it.top; });
+  const rest = good.filter(function(it){ return !it.top; });
+  if(tops.length){
+    const g = el("div", {class:"rub-tops"});
+    tops.forEach(function(it){ g.appendChild(rubCard(brief.date, kind, it)); });
+    col.appendChild(g);
+  }
+  if(rest.length){
+    col.appendChild(el("div", {class:"subhead rub-sub"}, [el("span", {text:"Anche oggi"})]));
+    const ul = el("ul", {class:"wire rub-rows"});
+    rest.forEach(function(it){ ul.appendChild(rubRow(brief.date, kind, it)); });
+    col.appendChild(ul);
+  }
+  if(persi.length){
+    col.appendChild(el("div", {class:"subhead rub-sub hot"}, [el("span", {text:"Ti sei perso"}),
+      el("span", {class:"eyebrow", text:"la cosa più calda della settimana"})]));
+    const ul = el("ul", {class:"wire rub-rows"});
+    persi.forEach(function(it){ ul.appendChild(rubRow(brief.date, kind, it)); });
+    col.appendChild(ul);
+  }
+  root.appendChild(col);
+  let seen = 0;
+  items.forEach(function(it){ if(rubMarkSeen(brief.date, kind, it)) seen++; });
+  if(seen){ save(); queueSync(); refreshCounts(); }
+}
+
 /* ================= navigazione ================= */
-const views = ["oggi","ai","archivio","salvati","diario","cerca"];
+const views = ["oggi","ai","games","tech","spazio","archivio","salvati","diario","cerca"];
 let currentView = "oggi";
 
 function show(name){
   currentView = name;
   views.forEach(function(v){ document.getElementById("view-" + v).hidden = (v !== name); });
   Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
-    const on = t.classList.contains("more") ? (name === "diario" || name === "cerca") : t.dataset.view === name;
+    const on = t.classList.contains("more") ? ["archivio","salvati","diario","cerca"].indexOf(name) >= 0 : t.dataset.view === name;
     t.setAttribute("aria-current", on ? "true" : "false");
     /* con sei schede la barra sul telefono non ci sta: la scheda attiva si
        porta sempre dentro la finestra, cosi' non resta mezza tagliata */
@@ -4822,6 +4984,7 @@ function show(name){
   });
   tabsOverflow();
   if(name === "ai") renderAI();
+  if(RUB[name]) renderRubrica(name);
   if(name === "archivio") renderArchive();
   if(name === "salvati") renderStarred();
   if(name === "diario") renderDiary();
@@ -4845,6 +5008,7 @@ function show(name){
 function repaint(){
   if(currentView === "oggi") renderEdition();
   else if(currentView === "ai") renderAI();
+  else if(RUB[currentView]) renderRubrica(currentView);
   else if(currentView === "archivio") renderArchive();
   else if(currentView === "salvati") renderStarred();
   else if(currentView === "diario") renderDiary();
@@ -4879,10 +5043,13 @@ function refreshCounts(){
   const day = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0] || {};
   const nAI = (day.ai || []).filter(function(a){ return !aiRead(day.date, a); }).length;
   document.getElementById("cAI").textContent = nAI || "";
+  Object.keys(RUB).forEach(function(k){
+    const n = ((day[k] || []).filter(function(it){ return !rubRead(day.date, k, it); })).length;
+    const c = document.getElementById(RUB[k].count); if(c) c.textContent = n || "";
+  });
   const stars = Object.keys(S.marks).filter(function(k){ return S.marks[k].starred_at; }).length;
-  document.getElementById("cStar").textContent = stars || "";
-  document.getElementById("cDiary").textContent = liveDiary().length || "";
-  const d2 = document.getElementById("cDiary2"); if(d2) d2.textContent = liveDiary().length || "";
+  const cs = document.getElementById("cStar"); if(cs) cs.textContent = stars || "";
+  const cd = document.getElementById("cDiary"); if(cd) cd.textContent = liveDiary().length || "";
 }
 
 /* ================= tema ================= */
@@ -4973,7 +5140,7 @@ function boot(){
   document.getElementById("colophon").hidden = false;
   if(!NOTES){
     ["salvati","diario"].forEach(function(v){
-      const t = document.querySelector('.tab[data-view="' + v + '"]');
+      const t = document.querySelector('#tabmenu [data-go="' + v + '"]');
       if(t) t.hidden = true;
     });
     ["exportBtn","importBtn"].forEach(function(id){

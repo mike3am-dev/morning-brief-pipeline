@@ -57,6 +57,12 @@ che parte dell'edizione finirà:
 | `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI | sezione *AI*, strato cronaca |
 | `lab` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato LAB |
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
+| `games` | Push Square, PlayStation Blog, Nintendo Life, VGC, GamesIndustry.biz, Kotaku, IGN, Eurogamer, Rock Paper Shotgun | scheda *Games* (la compone `rubriche.py`) |
+| `tech` | Engadget, Hackaday, Liliputing, Gizmodo, Hacker News, Product Hunt, TechRadar, Ars Technica Gadget | scheda *Tech* (`rubriche.py`) |
+| `spazio` | SpaceNews, Universe Today, NASA, Media INAF, Ars Technica Scienza, NASA APOD | scheda *Spazio* (`rubriche.py`) |
+
+Il girone `ai` comprende anche **The Robot Report** e **IEEE Spectrum Robotica**: i robot stanno
+nella scheda AI (lab `robot`), non in una scheda a parte.
 
 `ai`, `lab` e `banco` pubblicano a strappi: un laboratorio annuncia quando ha finito, un canale
 quando il video è montato. Il campanello dei feed muti per loro suona dopo una settimana
@@ -82,6 +88,39 @@ r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti LAB già scaricate da
 `data/social/manual.md`. Ogni link a X viene aperto con fxtwitter: testo, autore, mi piace,
 visualizzazioni, miniatura. È la materia dello strato *LAB* della sezione AI (vedi *La
 sezione AI* e *La caccia LAB*).
+
+#### Le schede GAMES, TECH, SPAZIO
+
+Dal 2 ottobre 2026 la barra è **APPLE · AI · GAMES · TECH · SPAZIO**, con i tre puntini per
+Archivio, Salvati, Diario e Cerca (Mike non li apriva mai). Le tre schede nuove **non le scrive
+Claude**: le compone uno script, e partono in background mentre tu scrivi l'edizione.
+
+```bash
+nohup python3 pipeline/rubriche.py > /tmp/rubriche.log 2>&1 &
+```
+
+Legge i gironi `games`, `tech`, `spazio` del grezzo, toglie offerte e rumore, raggruppa lo
+stesso fatto detto da più testate, dà un punteggio e sceglie; Gemini traduce i titoli e scrive
+la riga di sintesi (solo dal sommario del feed). Scrive `data/rubriche/<giorno>.json`. Prima
+delle immagini: `python3 pipeline/rubriche.py --merge` le ricopia nell'edizione (e `push.py` lo
+rifà da solo). Le regole di Mike, che valgono per tutte:
+
+- **Mai riempire.** Se le voci buone sono tre, sono tre. Se sono due, la terza è «Ti sei perso»:
+  la cosa più calda della settimana non ancora uscita. Tetti: Games 10, Tech 8, Spazio 5. Una
+  scheda vuota («oggi niente che valga la tua attenzione») è un risultato onesto.
+- **Al massimo due storie «di cui parlano tutti da giorni».** Il resto dev'essere nuovo.
+- **Games**: PlayStation 5 in testa, poi Nintendo, Apple Arcade, le grandi case, le fiere
+  (Lucca Comics, Game Awards…). **Tech**: tutto l'hardware di consumo (il Kindle, le
+  portatili, le cuffie) e quello che *affiora* (Hacker News, Product Hunt) — non software da
+  sviluppatori. **Spazio**: solo ciò che fa alzare lo sguardo, foto che stupiscono, primi
+  assoluti; niente appalti NASA.
+- Titolo in italiano, originale in piccolo sotto. Le prime tre voci hanno la foto
+  (`images.py`), le altre sono righe.
+
+I pesi stanno in `pipeline/rubriche.py` (`RUBRICHE`): si ritoccano lì, guardando
+`rubriche.py --dry --debug`. Un redattore Claude per rubrica, dopo la pubblicazione, è
+l'evoluzione prevista: sceglie le top 3 e scrive il «perché apri». I segnali di lettura di
+Mike (vedi *Il gusto*) dicono col tempo quali fonti e quali rubriche apre davvero.
 
 ### 2. Selezione e scrittura
 
@@ -369,7 +408,8 @@ benissimo così.
  "link": "…", "source": "Reddit r/ClaudeAI"}
 ```
 
-`lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `altri`.
+`lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `robot` · `altri`
+(`robot`: umanoidi, braccia, Boston Dynamics — i robot vivono nella scheda AI).
 `kind` decide lo strato: **cronaca** = `modello` · `funzione` · `affari` · `regole` ·
 `ricerca`; `modello` è **solo per i modelli di punta**, quelli che cambiano il fronte — un
 modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **LAB** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
@@ -975,6 +1015,7 @@ pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       copertura + trazione online  ->  candidati per il ripescaggio
+pipeline/rubriche.py     le schede GAMES, TECH, SPAZIO: raccolta, punteggio, Gemini  ->  data/rubriche/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple

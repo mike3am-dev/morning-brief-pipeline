@@ -224,6 +224,15 @@ def index_archive():
                 "genere": (a.get("kind") or "").lower(),
                 "sources": [a.get("source")] if a.get("source") else [],
             }
+        # GAMES, TECH, SPAZIO: si impara sulla fonte e sulla sezione
+        for sec in ("games", "tech", "spazio"):
+            for v in b.get(sec, []):
+                if not v.get("id"):
+                    continue
+                idx[f"{day}/{sec}:{v['id']}"] = {
+                    "kind": sec, "date": day, "title": v.get("title", ""),
+                    "sources": [v.get("source")] if v.get("source") else [],
+                }
         for m in b.get("recap", []):
             if not m.get("id"):
                 continue
@@ -278,6 +287,10 @@ def tally(votes, idx):
                 axes["banco"][meta["genere"]].append(v)
             for s in meta["sources"]:
                 axes["fonte"][s].append(v)
+            continue
+        if meta["kind"] in ("games", "tech", "spazio"):
+            for s_ in meta["sources"]:
+                axes["fonte"][s_].append(v)
             continue
         if meta["kind"] == "ai":
             axes["lab"][meta.get("lab") or "altri"].append(v)

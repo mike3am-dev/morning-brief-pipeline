@@ -362,6 +362,23 @@ DEEP_MAX = {"punto": 220, "sotto_par": 2, "sotto_len": 450, "tappe": 4, "tappa_l
             "fonti": 250, "dopo": 3, "dopo_len": 90, "letture": 3, "perche_len": 70}
 
 
+RUBRICHE_MAX = {"games": 10, "tech": 8, "spazio": 5}
+
+
+def check_rubriche(brief, r):
+    """GAMES, TECH, SPAZIO (rubriche.py): mai oltre il tetto, mai voci senza
+    titolo o link. Il vuoto e' legittimo: meglio una scheda vuota che di riempitivi."""
+    for k, tetto in RUBRICHE_MAX.items():
+        voci = brief.get(k) or []
+        if len([v for v in voci if not v.get("perso")]) > tetto:
+            r.warn(k, f"{len(voci)} voci, il tetto e' {tetto}")
+        if len([v for v in voci if v.get("top")]) > 3:
+            r.warn(k, "piu' di tre voci grandi")
+        for v in voci:
+            if not (v.get("id") and v.get("title") and v.get("link")):
+                r.error(k, f"voce senza id, titolo o link: {v.get('title') or v.get('orig')}")
+
+
 def check_approfondimento(brief, r):
     """Le prime cinque notizie hanno l'approfondimento, e l'approfondimento
     ha le sue parti: il punto, cosa c'e' sotto, chi lo dice, almeno due
@@ -575,6 +592,7 @@ def lint(brief, with_links):
     check_memory(brief, r)
     check_verifica(brief, r)
     check_approfondimento(brief, r)
+    check_rubriche(brief, r)
     check_ranking(news, r)
     if with_links:
         check_links(brief, r)

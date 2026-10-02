@@ -45,7 +45,8 @@ TIERS = sources.tiers()
 # campanello suonerebbe ogni mattina e smetteremmo di guardarlo.
 QUIET = sources.PRIMARY
 QUIET_TOLERANCE_H = 24 * 21
-TIER_TOLERANCE_H = {"primaria": 24 * 21, "ai": 24 * 7, "banco": 24 * 12, "lab": 24 * 12}
+TIER_TOLERANCE_H = {"primaria": 24 * 21, "ai": 24 * 7, "banco": 24 * 12, "lab": 24 * 12,
+                    "games": 24 * 5, "tech": 24 * 5, "spazio": 24 * 5}
 DEFAULT_TOLERANCE_H = 30
 
 NS = {
@@ -219,7 +220,8 @@ def main():
     # dedup per URL normalizzato. Alcuni feed si sovrappongono (TechCrunch e
     # TechCrunch AI danno lo stesso pezzo): a parita' di data vince il girone
     # piu' specifico, cosi' l'articolo resta marcato "ai" e non "larga".
-    order = {"primaria": 0, "ai": 1, "lab": 1, "banco": 2, "redazionale": 3, "larga": 4}
+    order = {"primaria": 0, "ai": 1, "lab": 1, "banco": 2, "games": 2, "tech": 2, "spazio": 2,
+             "redazionale": 3, "larga": 4}
     all_items.sort(key=lambda x: order.get(x.get("tier"), 9))
     all_items.sort(key=lambda x: x["date"], reverse=True)
 
@@ -247,7 +249,7 @@ def main():
     print(f"Scritti {len(deduped)} articoli in {out}")
     per_tier = Counter(i.get("tier", "?") for i in deduped)
     print("Per girone: " + ", ".join(
-        f"{t} {per_tier[t]}" for t in ("primaria", "redazionale", "larga", "ai", "lab", "banco")
+        f"{t} {per_tier[t]}" for t in ("primaria", "redazionale", "larga", "ai", "lab", "banco", "games", "tech", "spazio")
         if per_tier[t]))
     print("Per fonte:", dict(Counter(i["source"] for i in deduped)))
     for name, st in status.items():

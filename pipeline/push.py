@@ -95,6 +95,17 @@ def main():
 
     cfg, key = load_config(), service_key()
 
+    # Le rubriche (GAMES, TECH, SPAZIO) le compone rubriche.py a parte: qui si
+    # ricopiano dentro l'edizione, cosi' viaggiano col resto e restano in archivio.
+    try:
+        import rubriche
+        for path in paths:
+            day = os.path.basename(path)[:-5]
+            if rubriche.merge(day):
+                print(f"  rubriche ricopiate nell'edizione del {day}")
+    except Exception as e:                      # mai fermare la pubblicazione per questo
+        print(f"  (rubriche non ricopiate: {e})", file=sys.stderr)
+
     rows = []
     for path in paths:
         with open(path, encoding="utf-8") as fh:

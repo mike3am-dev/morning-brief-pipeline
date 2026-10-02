@@ -130,6 +130,9 @@ def encode(raw, width, quality, target=16 / 9):
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
+RUBRICHE = ("games", "tech", "spazio")
+
+
 def harvest(job):
     idx, item, shape = job
     src = find_image_url(item.get("link", ""))
@@ -158,7 +161,12 @@ def enrich(path, refresh=False):
     ai_jobs = [(i, a, WIDE if (a.get("kind") or "").lower() in LAB else SQUARE)
                for i, a in enumerate(brief.get("ai", []))
                if refresh or not a.get("image")]
-    if not jobs and not ai_jobs:
+    # GAMES, TECH, SPAZIO (rubriche.py): la foto solo alle tre voci grandi di
+    # ognuna. Le righe sotto restano di testo, come in un lettore di feed.
+    rub_jobs = [(k, i, it, WIDE) for k in RUBRICHE
+                for i, it in enumerate(brief.get(k, []))
+                if it.get("top") and (refresh or not it.get("image"))]
+    if not jobs and not ai_jobs and not rub_jobs:
         print("Immagini già presenti, niente da fare.")
         return 0
 
@@ -180,11 +188,18 @@ def enrich(path, refresh=False):
                 got += 1
             print(f"  ai/{a['id']:19} {'immagine acquisita' if thumb else 'nessuna immagine'}")
 
+        for (k, i, it, _), (_, thumb, _) in zip(
+                rub_jobs, pool.map(harvest, [(2000 + n, it, shape) for n, (k, i, it, shape) in enumerate(rub_jobs)])):
+            if thumb:
+                it["image"] = thumb
+                got += 1
+            print(f"  {k}/{it['id']:17} {'immagine acquisita' if thumb else 'nessuna immagine'}")
+
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(brief, fh, ensure_ascii=False, indent=1)
 
     size = os.path.getsize(path) // 1024
-    print(f"{got} immagini su {len(jobs) + len(ai_jobs)} voci · edizione ora {size} KB")
+    print(f"{got} immagini su {len(jobs) + len(ai_jobs) + len(rub_jobs)} voci · edizione ora {size} KB")
     return 0
 
 
@@ -201,7 +216,8 @@ def prune(days):
         stripped = False
         # anche le voci AI, che dal 12 settembre 2026 hanno la loro foto: se
         # restassero, l'alleggerimento lascerebbe indietro meta' del peso
-        for item in list(brief.get("news", [])) + list(brief.get("ai", [])):
+        for item in (list(brief.get("news", [])) + list(brief.get("ai", []))
+                     + [x for k in RUBRICHE for x in brief.get(k, [])]):
             for k in ("image", "hero"):
                 if item.pop(k, None) is not None:
                     stripped = True
