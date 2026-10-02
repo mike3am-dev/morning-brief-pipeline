@@ -13,6 +13,12 @@ l'andamento giorno per giorno.
     python3 pipeline/costo.py              stampa e registra
     python3 pipeline/costo.py --dry        stampa e basta
     python3 pipeline/costo.py --storia     le ultime corse registrate
+    python3 pipeline/costo.py --fasi       quanto ha preso ogni passo della corsa di oggi
+
+Il 2 ottobre 2026 la corsa ha messo 98 minuti contro un tetto di 30, e per capire dove si
+era perso il tempo è servita una ricostruzione a mano. `--fasi` lo fa da solo: guarda quando
+compare nel registro ogni comando `pipeline/*.py` e quanto passa dall'uno al successivo, più
+la durata di ogni sottoagente (il visualista, soprattutto) preso dal suo registro separato.
 
 Il tempo va dal primo messaggio della sessione a adesso. I token sono quattro
 voci diverse, che pesano in modo diverso sui limiti dell'abbonamento:
@@ -25,6 +31,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 
@@ -52,6 +59,85 @@ def session_files(pdir):
     # gli eventuali sottoagenti scrivono accanto, in <sessione>/subagents/
     subs = glob.glob(os.path.join(pdir, sid, "**", "*.jsonl"), recursive=True)
     return sid, [main] + subs
+
+
+PASSI = re.compile(
+    r"pipeline/(fetch|social|lab|taste|missed|threads|claims|facts|verify|"
+    r"images|audio|push|lint|prune_auto|build|publish_site|costo)\.py")
+
+
+def fasi_main(main_file):
+    """I comandi pipeline/*.py lanciati nella sessione principale, con il
+    tempo passato da un comando al successivo: dove va il tempo, passo per
+    passo, senza doverlo ricostruire a mano."""
+    passi = []
+    with open(main_file, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            try:
+                d = json.loads(line)
+            except ValueError:
+                continue
+            if d.get("type") != "assistant":
+                continue
+            ts = d.get("timestamp")
+            if not ts:
+                continue
+            for block in (d.get("message") or {}).get("content") or []:
+                if block.get("type") != "tool_use" or block.get("name") != "Bash":
+                    continue
+                m = PASSI.search(block.get("input", {}).get("command") or "")
+                if m:
+                    passi.append((ts, m.group(1)))
+    passi.sort()
+    # raggruppa le chiamate consecutive allo stesso script: quello che conta
+    # e' quando inizia un passo nuovo e quanto e' durato il buco prima
+    gruppi = []
+    for ts, nome in passi:
+        if gruppi and gruppi[-1][1] == nome:
+            gruppi[-1] = (gruppi[-1][0], nome, ts)  # aggiorna l'ultima vista
+        else:
+            gruppi.append((ts, nome, ts))
+    out = []
+    for i, (inizio, nome, fine) in enumerate(gruppi):
+        t = datetime.fromisoformat(inizio.replace("Z", "+00:00"))
+        buco = ""
+        if i > 0:
+            prima = datetime.fromisoformat(gruppi[i - 1][2].replace("Z", "+00:00"))
+            gap = round((t - prima).total_seconds() / 60)
+            if gap >= 1:
+                buco = f"(buco di {gap} min prima)"
+        out.append((t.strftime("%H:%M:%S"), nome, buco))
+    return out
+
+
+def fasi_subagenti(files, main_file):
+    """Durata di ogni sottoagente (inizio-fine del suo registro separato):
+    il visualista, soprattutto, che non lascia traccia nel registro principale
+    mentre lavora."""
+    out = []
+    for f in files:
+        if f == main_file:
+            continue
+        primi, ultimi = None, None
+        with open(f, encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                try:
+                    d = json.loads(line)
+                except ValueError:
+                    continue
+                ts = d.get("timestamp")
+                if not ts:
+                    continue
+                if primi is None or ts < primi:
+                    primi = ts
+                if ultimi is None or ts > ultimi:
+                    ultimi = ts
+        if primi and ultimi:
+            dur = round((datetime.fromisoformat(ultimi.replace("Z", "+00:00")) -
+                         datetime.fromisoformat(primi.replace("Z", "+00:00"))).total_seconds() / 60)
+            nome = os.path.basename(os.path.dirname(f)) or os.path.basename(f)[:-6]
+            out.append((nome, dur))
+    return out
 
 
 def tally(files):
@@ -98,11 +184,29 @@ def main():
     ap = argparse.ArgumentParser(description="tempo e token della corsa")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--storia", action="store_true")
+    ap.add_argument("--fasi", action="store_true")
     args = ap.parse_args()
 
     if args.storia:
         for r in (C.load_json(LOG) if os.path.exists(LOG) else [])[-14:]:
             print(r["giorno"], "·", line(r))
+        return 0
+
+    if args.fasi:
+        pdir = project_dir()
+        if not pdir:
+            print("Registro di Claude Code non trovato.")
+            return 0
+        sid, files = session_files(pdir)
+        main_file = os.path.join(pdir, sid + ".jsonl")
+        print("Comandi pipeline, nell'ordine in cui sono partiti:")
+        for ora, nome, dt in fasi_main(main_file):
+            print(f"  {ora}  {nome:<14} {dt}")
+        sub = fasi_subagenti(files, main_file)
+        if sub:
+            print("\nSottoagenti (durata inizio-fine del loro registro):")
+            for nome, dur in sub:
+                print(f"  {nome}: {dur} min")
         return 0
 
     pdir = project_dir()

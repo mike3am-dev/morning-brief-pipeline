@@ -20,7 +20,19 @@ La routine è `trig_01J7324UefKViTdkDcvJeYEk` su claude.ai. Il suo orario è scr
 **UTC** (`30 4 * * *` = 6:30 con l'ora legale): **il 25 ottobre 2026, quando torna l'ora
 solare, va spostato a `30 5 * * *`**, e a fine marzo di nuovo a `30 4`. Alla fine di ogni
 corsa `pipeline/costo.py` dice quanto è durata e quanti token ha consumato, e lo registra
-in `data/corse.json` (`costo.py --storia` per l'andamento).
+in `data/corse.json` (`costo.py --storia` per l'andamento; `costo.py --fasi` scompone la
+corsa di oggi passo per passo, con i buchi di tempo fra un comando e il successivo e la
+durata di ogni sottoagente — usalo se una corsa va oltre il tetto sotto per capire dove).
+
+**Il tetto è 30 minuti, dalla raccolta alla pubblicazione su Supabase.** Il 2 ottobre 2026
+la corsa ne ha presi 98: 23 erano il visualista (risolto, vedi *Il visualista* più sotto,
+che ora viene dopo `push.py` e non blocca più la pubblicazione), il resto si è perso fra
+letture di articoli una alla volta e una prima stesura fuori misura rifatta dopo il lint.
+Quindi: scarica tutti gli articoli da leggere in un solo comando (non uno alla volta), e
+scrivi `sintesi`, `descrizione` e l'`approfondimento` già dentro le misure di `lint.py` —
+il lint è il collaudo finale, non il primo editor. Se qualcosa non torna, pubblica quello
+che c'è (anche senza audio o senza una visualizzazione) invece di far slittare l'uscita:
+un'edizione in orario e incompleta su un dettaglio batte un'edizione completa e tardiva.
 
 ### 1. Raccolta
 
@@ -96,6 +108,13 @@ scarta) o **seguito** (stesso `thread`, e nel testo si dice cosa è cambiato: «
 presentato, oggi le prime prove»). Lo stesso link già uscito il lint lo blocca comunque. L'ultimo comando propone i candidati per «Se te lo
 fossi perso» (vedi *Il ripescaggio*): quasi sempre non se ne prende nessuno, e va bene.
 
+**«STESSO LINK» non sempre vuol dire lo stesso indirizzo.** Il punteggio arriva a 1.0 anche
+quando due titoli condividono solo due nomi propri (es. «iPhone», «Duo») e nient'altro: è una
+scorciatoia del confronto fra lingue (titolo grezzo in inglese, voce già scritta in italiano),
+non un errore da andare a capire nel codice ogni volta. Se i due articoli raccontano fatti
+diversi, è un falso positivo: trattalo come tale e vai avanti, non serve ripercorrere
+`common.similarity` per confermarlo.
+
 Poi guarda cosa hanno detto i pollici, che è il modo in cui la selezione si tara:
 
 ```bash
@@ -106,10 +125,18 @@ Stampa i declassamenti attivi e le cinque caselle del radar di oggi (vedi *Il gu
 
 Leggi il file grezzo. Per le 8–12 notizie più importanti scarica l'articolo completo
 (`curl -sL` + strip dei tag) per avere dettagli e citazioni verificabili: **non scrivere
-descrizioni basandoti solo sull'abstract RSS**.
+descrizioni basandoti solo sull'abstract RSS**. **Scarica tutti gli articoli in un solo
+comando** (un ciclo bash con i `curl` lanciati in background e un `wait` finale, o `xargs -P`),
+non uno alla volta in chiamate separate: leggerli uno dopo l'altro, in sequenza, è il modo più
+lento di passare questa fase — il 2 ottobre 2026 ci sono voluti da soli una ventina di minuti.
 
 Poi scrivi `data/briefs/YYYY-MM-DD.json` seguendo esattamente lo schema di
-`data/briefs/2026-08-08.json`. Regole editoriali:
+`data/briefs/2026-08-08.json`. **Scrivi `sintesi`, `descrizione` e i campi
+dell'`approfondimento` già dentro le misure che `lint.py` controlla** (vedi le tabelle
+`SINTESI_MAX`/`DEEP_MAX` in `pipeline/lint.py`: sintesi ≤200 caratteri nelle notizie e ≤190
+nell'AI, `punto` ≤220, ogni paragrafo di `sotto` ≤450, ogni `tappa`/voce di `dopo` ≤90) —
+contare i caratteri mentre scrivi costa niente, riscrivere tutto dopo un giro di lint costa un
+passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole editoriali:
 
 - **Perimetro**: Apple al centro. Ammesso il contorno che la tocca da vicino (rivali diretti,
   AI, chip, regolamentazione UE/USA), da tenere però in coda o nel blocco `radar`. Il
