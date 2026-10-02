@@ -6,16 +6,19 @@
   "seen": 27,
   "since": "2026-08-12",
   "state": "confermato",
-  "up": 3
+  "up": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "ai-finanza": {
   "down": 0,
   "last": "2026-08-28",
-  "paused_until": "2026-10-10",
   "seen": 3,
-  "since": "2026-08-29",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "ai-regole": {
   "axis": "ai",
@@ -24,16 +27,19 @@
   "seen": 27,
   "since": "2026-08-12",
   "state": "confermato",
-  "up": 3
+  "up": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "ai-salute": {
   "down": 0,
   "last": "2026-09-05",
-  "paused_until": "2026-10-18",
   "seen": 3,
-  "since": "2026-09-06",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "anthropic": {
   "axis": "ai",
@@ -42,7 +48,8 @@
   "seen": 17,
   "since": "2026-08-12",
   "state": "in prova",
-  "up": 1
+  "up": 1,
+  "ripresa_segnali": "2026-10-02"
  },
  "apple-contorno": {
   "down": 0,
@@ -50,26 +57,30 @@
   "seen": 39,
   "since": "2026-08-09",
   "state": "in prova",
-  "up": 1
+  "up": 1,
+  "ripresa_segnali": "2026-10-02"
  },
  "auto-elettriche": {
   "down": 1,
-  "last": "2026-09-29",
-  "seen": 7,
+  "last": "2026-10-01",
+  "seen": 8,
   "since": "2026-09-24",
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-24",
-  "seen_a_fine_pausa": 1
+  "seen_a_fine_pausa": 1,
+  "ripresa_segnali": "2026-10-02"
  },
  "biotech": {
   "down": 0,
   "last": "2026-09-17",
-  "paused_until": "2026-10-04",
   "seen": 4,
-  "since": "2026-08-23",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 4
  },
  "browser-web": {
   "down": 0,
@@ -79,53 +90,63 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-30",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "capitali-ai": {
   "down": 0,
   "last": "2026-09-03",
-  "paused_until": "2026-10-16",
   "seen": 5,
-  "since": "2026-09-04",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 5
  },
  "chip-ai": {
   "down": 0,
-  "last": "2026-09-29",
-  "seen": 5,
+  "last": "2026-10-01",
+  "seen": 6,
   "since": "2026-09-28",
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-28",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "connessione-offline": {
-  "state": "in pausa",
-  "since": "2026-09-24",
+  "state": "in prova",
+  "since": "2026-10-02",
   "up": 0,
   "down": 0,
   "seen": 3,
   "last": "2026-09-23",
-  "paused_until": "2026-11-05"
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "energia": {
   "down": 0,
   "last": "2026-08-20",
-  "paused_until": "2026-10-02",
   "seen": 3,
-  "since": "2026-08-21",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "fintech-sicurezza": {
   "down": 0,
   "last": "2026-09-16",
-  "paused_until": "2026-10-30",
   "seen": 3,
-  "since": "2026-09-18",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "google-ai": {
   "axis": "ai",
@@ -136,16 +157,19 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-28",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "governance-open-source": {
   "down": 0,
   "last": "2026-09-15",
-  "paused_until": "2026-10-28",
   "seen": 3,
-  "since": "2026-09-16",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "hardware-indipendente": {
   "down": 0,
@@ -153,7 +177,8 @@
   "seen": 38,
   "since": "2026-08-09",
   "state": "in prova",
-  "up": 1
+  "up": 1,
+  "ripresa_segnali": "2026-10-02"
  },
  "modelli-ai": {
   "axis": "ai",
@@ -164,7 +189,8 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-30",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "openai": {
   "axis": "ai",
@@ -175,45 +201,52 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-10-01",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "piattaforme-social": {
   "down": 0,
   "last": "2026-08-20",
-  "paused_until": "2026-10-02",
   "seen": 3,
-  "since": "2026-08-21",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "privacy-sicurezza": {
   "down": 0,
   "last": "2026-09-25",
   "seen": 6,
-  "since": "2026-09-26",
-  "state": "in pausa",
+  "since": "2026-10-02",
+  "state": "in prova",
   "up": 0,
-  "pausa_finita": "2026-09-23",
-  "seen_a_fine_pausa": 3,
-  "paused_until": "2026-11-07"
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 6,
+  "ripresa_segnali": "2026-10-02"
  },
  "quantistica": {
   "down": 0,
   "last": "2026-09-14",
-  "paused_until": "2026-10-27",
   "seen": 3,
-  "since": "2026-09-15",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "regolamentazione-tech": {
   "down": 0,
   "last": "2026-09-17",
-  "paused_until": "2026-10-03",
   "seen": 4,
-  "since": "2026-08-22",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 4
  },
  "robotica": {
   "down": 0,
@@ -223,59 +256,70 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-30",
-  "seen_a_fine_pausa": 4
+  "seen_a_fine_pausa": 4,
+  "ripresa_segnali": "2026-10-02"
  },
  "scienza-spazio": {
   "down": 0,
   "last": "2026-09-18",
   "seen": 3,
-  "since": "2026-09-19",
-  "state": "in pausa",
+  "since": "2026-10-02",
+  "state": "in prova",
   "up": 0,
-  "paused_until": "2026-10-31"
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "sicurezza-cripto": {
   "down": 0,
   "last": "2026-09-17",
-  "paused_until": "2026-10-30",
   "seen": 4,
-  "since": "2026-09-18",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 4
  },
  "sicurezza-infrastrutture": {
-  "state": "in pausa",
-  "since": "2026-09-22",
+  "state": "in prova",
+  "since": "2026-10-02",
   "up": 0,
   "down": 0,
   "seen": 3,
   "last": "2026-09-21",
-  "paused_until": "2026-11-03"
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "sistemi-operativi": {
   "state": "in prova",
   "since": "2026-09-30",
   "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-09-29"
+  "seen": 2,
+  "last": "2026-10-01",
+  "ripresa_segnali": "2026-10-02"
  },
  "social-alternativo": {
   "down": 0,
-  "last": "2026-09-27",
-  "seen": 1,
+  "last": "2026-10-01",
+  "seen": 2,
   "since": "2026-09-27",
   "state": "in prova",
-  "up": 0
+  "up": 0,
+  "ripresa_segnali": "2026-10-02"
  },
  "sovranita-media": {
-  "state": "in pausa",
-  "since": "2026-09-23",
+  "state": "in prova",
+  "since": "2026-10-02",
   "up": 0,
   "down": 0,
   "seen": 3,
   "last": "2026-09-22",
-  "paused_until": "2026-11-04"
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "spazio": {
   "down": 1,
@@ -285,52 +329,62 @@
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-24",
-  "seen_a_fine_pausa": 1
+  "seen_a_fine_pausa": 1,
+  "ripresa_segnali": "2026-10-02"
  },
  "strumenti-sviluppo": {
   "down": 0,
-  "last": "2026-08-18",
-  "seen": 3,
+  "last": "2026-10-01",
+  "seen": 4,
   "since": "2026-10-01",
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-10-01",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "ripresa_segnali": "2026-10-02"
  },
  "trasporti-alternativi": {
-  "state": "in pausa",
-  "since": "2026-09-24",
+  "state": "in prova",
+  "since": "2026-10-02",
   "up": 0,
   "down": 0,
   "seen": 3,
   "last": "2026-09-23",
-  "paused_until": "2026-11-05"
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "veicoli-autonomi": {
-  "state": "in pausa",
+  "state": "in prova",
   "up": 0,
   "down": 0,
   "seen": 3,
   "last": "2026-09-20",
-  "since": "2026-09-21",
-  "paused_until": "2026-11-02"
+  "since": "2026-10-02",
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "videogiochi": {
   "down": 0,
   "last": "2026-08-22",
-  "paused_until": "2026-10-04",
   "seen": 3,
-  "since": "2026-08-23",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  },
  "voli-spaziali-privati": {
   "down": 0,
   "last": "2026-09-12",
-  "paused_until": "2026-10-25",
   "seen": 3,
-  "since": "2026-09-13",
-  "state": "in pausa",
-  "up": 0
+  "since": "2026-10-02",
+  "state": "in prova",
+  "up": 0,
+  "ripresa_segnali": "2026-10-02",
+  "pausa_finita": "2026-10-02",
+  "seen_a_fine_pausa": 3
  }
 }

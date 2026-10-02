@@ -1,0 +1,3513 @@
+{
+ "fetched_at": "2026-10-02T04:32:58.485946+00:00",
+ "window_hours": 26.0,
+ "feed_status": {
+  "9to5Mac": {
+   "state": "ok",
+   "items": 24,
+   "newest": "2026-10-02T01:00:20+00:00",
+   "stale_hours": 3.5
+  },
+  "AI Explained": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Andrea Galeazzi": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Android Authority": {
+   "state": "ok",
+   "items": 37,
+   "newest": "2026-10-02T04:15:05+00:00",
+   "stale_hours": 0.3
+  },
+  "Anthropic cookbook": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Apple Developer": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-01T10:00:11-07:00",
+   "stale_hours": 11.5
+  },
+  "Apple Newsroom": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-09-29T17:00:57.163000+00:00",
+   "stale_hours": 59.5
+  },
+  "Ars Technica": {
+   "state": "ok",
+   "items": 12,
+   "newest": "2026-10-01T22:27:04+00:00",
+   "stale_hours": 6.1
+  },
+  "Ars Technica AI": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-01T20:11:55+00:00",
+   "stale_hours": 8.4
+  },
+  "BGR": {
+   "state": "ok",
+   "items": 15,
+   "newest": "2026-10-01T21:17:00+00:00",
+   "stale_hours": 7.3
+  },
+  "DDay.it": {
+   "state": "ok",
+   "items": 19,
+   "newest": "2026-10-02T03:03:05+02:00",
+   "stale_hours": 3.5
+  },
+  "GSMArena": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-02T06:01:01+02:00",
+   "stale_hours": 0.5
+  },
+  "Google DeepMind": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-09-30T20:01:45+00:00",
+   "stale_hours": 32.5
+  },
+  "HDblog": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-01T20:00:59+02:00",
+   "stale_hours": 10.5
+  },
+  "Latent Space": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-02T00:28:04+00:00",
+   "stale_hours": 4.1
+  },
+  "MIT Technology Review AI": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-09-30T10:40:30+00:00",
+   "stale_hours": 41.9
+  },
+  "MKBHD": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "MacRumors": {
+   "state": "ok",
+   "items": 15,
+   "newest": "2026-10-02T03:42:44+00:00",
+   "stale_hours": 0.8
+  },
+  "Macitynet": {
+   "state": "ok",
+   "items": 18,
+   "newest": "2026-10-01T18:29:40+00:00",
+   "stale_hours": 10.1
+  },
+  "Matt Wolfe": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "One Useful Thing": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-01T10:54:12+00:00",
+   "stale_hours": 17.6
+  },
+  "OpenAI": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-01T17:00:00+00:00",
+   "stale_hours": 11.5
+  },
+  "Simon Willison": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-01T06:29:01+00:00",
+   "stale_hours": 22.1
+  },
+  "TechCrunch": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-02T00:57:57+00:00",
+   "stale_hours": 3.6
+  },
+  "TechCrunch AI": {
+   "state": "ok",
+   "items": 11,
+   "newest": "2026-10-01T21:08:11+00:00",
+   "stale_hours": 7.4
+  },
+  "The Decoder": {
+   "state": "ok",
+   "items": 6,
+   "newest": "2026-10-01T18:03:40+00:00",
+   "stale_hours": 10.5
+  },
+  "The Verge": {
+   "state": "ok",
+   "items": 10,
+   "newest": "2026-10-01T18:51:36-04:00",
+   "stale_hours": 5.7
+  },
+  "Tom's Hardware IT": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-01T23:30:00+02:00",
+   "stale_hours": 7.0
+  },
+  "iSpazio": {
+   "state": "ok",
+   "items": 6,
+   "newest": "2026-10-01T17:15:06+00:00",
+   "stale_hours": 11.3
+  }
+ },
+ "count": 250,
+ "items": [
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "OnePlus 16 confirmed to pack a much larger battery than its predecessor",
+   "link": "https://www.gsmarena.com/oneplus_16_confirmed_to_pack_a_much_larger_battery_than_its_predecessor-news-74859.php",
+   "date": "2026-10-02T06:01:01+02:00",
+   "age_hours": 0.5,
+   "summary": "Ahead of its upcoming launch, OnePlus has confirmed a major battery upgrade for the OnePlus 16, and it’s a big one. The smartphone is set to debut in China on October 12. The OnePlus 16 will pack a 9,000mAh battery, company executive Li Jie Louis revealed in a post on Weibo. OnePlus 16 in Mars Masterpiece colorway Compared to the OnePlus 15, which packs a 7,300mAh battery, the OnePlus 16 will feature a 1,700mAh larger battery. The increased capacity is expected to deliver longer battery life, especially with the more efficient Snapdragon 8 Elite Extreme Gen 6 chipset. It is also...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "ChatGPT just borrowed one of Google Shopping’s best tricks",
+   "link": "https://www.androidauthority.com/chatgpt-virtual-try-on-shopping-feature-3718219/",
+   "date": "2026-10-02T04:15:05+00:00",
+   "age_hours": 0.3,
+   "summary": "You can now virtually try-on clothes via ChatGPT.",
+   "categories": [
+    "News",
+    "ChatGPT",
+    "Google",
+    "OpenAI"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "vivo X Fold6 in for review",
+   "link": "https://www.gsmarena.com/vivo_x_fold6_in_for_review-news-74862.php",
+   "date": "2026-10-02T04:02:02+02:00",
+   "age_hours": 2.5,
+   "summary": "The vivo X Fold6 is now globally available, so let's unbox it. Our unit ships with a case, an 80W charger, and a USB-A to USB-C cable. Cases for foldables usually latch onto just the \"rear\" part of the phone, which is also the case here. The one provided in the box is pretty nice, with a textured surface that adds grip. The case is nice, ditto having a charger in the box Now that vivo finally gave us a global foldable, which phones does it compete against? One obvious choice is the Honor Magic V6, and it stacks up to the vivo surprisingly well. Both are a very similar...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "AT&T Acknowledges iPhone 18 Pro Max Issues: 'Update Immediately'",
+   "link": "https://www.macrumors.com/2026/10/01/att-acknowledges-iphone-18-pro-max-issues/",
+   "date": "2026-10-02T03:42:44+00:00",
+   "age_hours": 0.8,
+   "summary": "In a text message sent to customers today, AT&T acknowledged that some iPhone 18 Pro Max devices on its network are experiencing cellular issues . AT&T said that customers should immediately update to iOS 27.0.1 , despite the fact that many affected users have said that the update does not resolve the issues. There are now at least thousands of users that have experienced this problem, according to discussion topics across the Apple Support Community , Reddit , and MacRumors Forums . Here is what the text message says: Hi, it's AT&T. Action needed: An important Apple software update for your iPhone 18 Pro Max is available. Some phones may be unable to complete calls/text/data, including to 911. Update to iOS 27.0.1 immediately — Settings > General > Software Update. Please contact AT&T or Apple if you have questions. Apple's release notes for iOS 27.0.1 did not mention a fix for AT&T cel",
+   "categories": [
+    "Featured",
+    "iPhone 18 Pro"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Tutti gli sconti Tineco per la Festa delle Offerte Prime. Fino a oltre 200 euro di risparmio",
+   "link": "https://www.dday.it/redazione/58919/tutti-gli-sconti-tineco-per-la-festa-delle-offerte-prime-fino-a-oltre-200-euro-di-risparmio",
+   "date": "2026-10-02T03:03:05+02:00",
+   "age_hours": 3.5,
+   "summary": "Dal 6 al 7 ottobre Tineco porta su Amazon una selezione di lavapavimenti, aspirapolvere e soluzioni per tappeti con prezzi promozionali. Ecco cinque modelli da conoscere e le loro caratteristiche principali ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Price alert: Samsung raises the prices of Galaxy S26 phones, the US, Europe and India affected",
+   "link": "https://www.gsmarena.com/price_alert_samsung_raises_the_prices_of_galaxy_s26_phones_the_us_europe_and_india_affected-news-74865.php",
+   "date": "2026-10-02T02:02:02+02:00",
+   "age_hours": 4.5,
+   "summary": "We live in Opposite World – half a year after new phones launch, the manufacturer is typically expected to reduce prices. Instead, Samsung just raised the prices of Galaxy S26 series phones by at least $100 (it’s $200 in the case of the 1TB S26 Ultra). And it’s not just the US that was affected. We went through the online stores of several regional divisions of Samsung.com to check how much a new S26 costs. What we found is that the US, Canada, the UK, mainland Europe and India are all showing higher prices. We didn’t check every region, but if any haven’t raised their prices yet, they...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple TV’s acclaimed ‘The Last First: Winter K2’ documentary now streaming",
+   "link": "https://9to5mac.com/2026/10/01/apple-tvs-acclaimed-the-last-first-winter-k2-documentary-now-streaming/",
+   "date": "2026-10-02T01:00:20+00:00",
+   "age_hours": 3.5,
+   "summary": "Sporting a 100% Rotten Tomatoes score, the extreme mountain climbing documentary “ The Last First: Winter K2 ” is now available to Apple TV subscribers. Watch the trailer below. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "Robotaxi operators will face fines for blocking first responders",
+   "link": "https://techcrunch.com/2026/10/01/robotaxi-operators-will-face-fines-for-blocking-first-responders/",
+   "date": "2026-10-02T00:57:57+00:00",
+   "age_hours": 3.6,
+   "summary": "A new California law places new rules on autonomous vehicles operators",
+   "categories": [
+    "Transportation",
+    "autonomous vehicles",
+    "Tesla",
+    "Waymo"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Apple iPhone 17e vs iPhone 17",
+   "link": "https://www.gsmarena.com/apple_iphone_17e_vs_iphone_17_review_battery_camera_price_compared-news-73167.php",
+   "date": "2026-10-02T00:31:02+02:00",
+   "age_hours": 6.0,
+   "summary": "With the iPhone 18 Pro and 18 Pro Max now on the market but no vanilla iPhone 18 yet in sight, the Apple iPhone 17e and Apple iPhone 17 remain Apple's current more affordable options. And with a sizeable price gap between them - around €650 for the iPhone 17e versus €900 for the iPhone 17 - the question is whether stepping up to the regular model is really worth it. The iPhone 17e gets you into the current iPhone lineup for considerably less, while the iPhone 17 brings a number of meaningful upgrades. So how much better is it in practice, and does that justify the premium? Let's find...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Latent Space",
+   "tier": "lab",
+   "title": "Academia is for Ambition — Alex Zhang, MIT",
+   "link": "https://www.latent.space/p/rlm",
+   "date": "2026-10-02T00:28:04+00:00",
+   "age_hours": 4.1,
+   "summary": "We catch up with RLM first author Alex Zhang, MIT PhD, on Jev, PhD masxing, and the future of harnesses.",
+   "categories": []
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "The founder’s guide to TechCrunch Disrupt 2026: Everything you need to know",
+   "link": "https://techcrunch.com/2026/10/01/the-founders-guide-to-techcrunch-disrupt-2026-everything-you-need-to-know/",
+   "date": "2026-10-02T00:03:23+00:00",
+   "age_hours": 4.5,
+   "summary": "TechCrunch Disrupt 2026 is built around one question: How do you build an enduring company in the AI era? Our programming and speaker lineup reflect that.",
+   "categories": [
+    "Startups",
+    "TechCrunch Disrupt"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "I Galaxy Buds On sono ufficiali, Samsung entra nel settore degli auricolari open-ear",
+   "link": "https://www.tomshw.it/smartphone/i-galaxy-buds-on-sono-ufficiali-samsung-entra-nel-settore-degli-auricolari-open-ear",
+   "date": "2026-10-01T23:30:00+02:00",
+   "age_hours": 7.0,
+   "summary": "Samsung ha presentato il 1° ottobre, attraverso la newsroom coreana, i Galaxy Buds On: si tratta dei primi auricolari a clip del marchio e del primo modello open-ear della famiglia Galaxy Buds. La...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Gemini Live diventa gli occhi per i non vedenti tramite una nuova funzione",
+   "link": "https://www.tomshw.it/smartphone/gemini-live-diventa-gli-occhi-per-i-non-vedenti-tramite-una-nuova-funzione",
+   "date": "2026-10-01T23:20:00+02:00",
+   "age_hours": 7.2,
+   "summary": "Google ha avviato il rilascio di Guided Vision, una funzione di Gemini Live pensata per le persone cieche e ipovedenti che trasforma la fotocamera dello smartphone in uno strumento di descrizione dell...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "ChatGPT prova i vestiti per voi prima di acquistarli, ecco come",
+   "link": "https://www.tomshw.it/hardware/chatgpt-prova-i-vestiti-per-voi-prima-di-acquistarli-ecco-come",
+   "date": "2026-10-01T23:13:00+02:00",
+   "age_hours": 7.3,
+   "summary": "OpenAI ha reso disponibili a livello globale due nuove funzioni di shopping per ChatGPT, annunciate giovedì 1 ottobre: una prova virtuale dei capi d'abbigliamento e un sistema per salvare i pro...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Googlebook prepara il colpo grosso: arriva un’app che fa quasi tutto",
+   "link": "https://www.tomshw.it/hardware/googlebook-prepara-il-colpo-grosso-arriva-unapp-che-fa-quasi-tutto",
+   "date": "2026-10-01T23:03:00+02:00",
+   "age_hours": 7.5,
+   "summary": "Google ha pubblicato sul Play Store l'app Viewer, lo strumento di gestione e modifica dei contenuti multimediali pensato per i Googlebook, i primi portatili basati sulla nuova piattaforma desktop dell...",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "T-Mobile is preparing new T-Mix plans, here are the details",
+   "link": "https://www.gsmarena.com/tmobile_is_preparing_new_tmix_plans_here_are_the_details-news-74869.php",
+   "date": "2026-10-01T23:02:02+02:00",
+   "age_hours": 7.5,
+   "summary": "According to a new report, T-Mobile is going to launch a new fleet of plans under a new T-Mix brand. The T-Mix plan tiers will be Standard, More, and Loaded. T-Mix Standard will allegedly cost $65 per month for a single line, $105 for two, $130 for three, $155 for four, $180 for five, and $205 for six lines. This includes unlimited talk, text, and data, with 50GB of \"premium data\". T-Mix More will set you back $85 per month for a single line, and it brings unlimited premium data and 60GB of hotspot use. Finally, T-Mix Loaded will go for $105 for a single line, and will come with...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Google punta sui data center nello spazio, ma serve un’impresa titanica per riuscirci",
+   "link": "https://www.tomshw.it/hardware/google-punta-sui-data-center-nello-spazio-ma-serve-unimpresa-titanica-per-riuscirci",
+   "date": "2026-10-01T23:02:00+02:00",
+   "age_hours": 7.5,
+   "summary": "Google ha messo in orbita il primo prototipo del suo satellite per il calcolo spaziale, partito dalla California a bordo di un razzo SpaceX insieme a oltre cento altri carichi utili. Il veicolo, reali...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Ubuntu 26.10 è quasi pronto: la nuova beta porta Linux 7.3 e GNOME 51",
+   "link": "https://www.tomshw.it/hardware/ubuntu-2610-e-quasi-pronto-la-nuova-beta-porta-linux-73-e-gnome-51",
+   "date": "2026-10-01T23:00:00+02:00",
+   "age_hours": 7.5,
+   "summary": "Canonical ha pubblicato il 1° ottobre la beta di Ubuntu 26.10, nome in codice Stonking Stingray, rendendo disponibili le immagini per le edizioni Desktop, Server, WSL e Cloud e per tutte le deriva...",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple commissions photographers for new ‘Shot on iPhone Duo’ campaign",
+   "link": "https://9to5mac.com/2026/10/01/apple-commissions-photographers-for-new-shot-on-iphone-duo-campaign/",
+   "date": "2026-10-01T22:52:42+00:00",
+   "age_hours": 5.7,
+   "summary": "Today, Apple’s Instagram account published a carousel featuring photos commissioned from photographers Jake Michaels and Jason Nocito to highlight the new iPhone Duo ’s cameras. Here are the details. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Venus' mysterious haze is actually cosmic dust",
+   "link": "https://arstechnica.com/science/2026/10/venus-mysterious-haze-is-actually-cosmic-dust/",
+   "date": "2026-10-01T22:27:04+00:00",
+   "age_hours": 6.1,
+   "summary": "A physical model show that iron dust and sulfuric acid create the right properties.",
+   "categories": [
+    "Science",
+    "astronomy",
+    "atmospheric science",
+    "Haze",
+    "planetary science",
+    "Venus"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple among biggest corporate lobbyists in Brussels, per report",
+   "link": "https://9to5mac.com/2026/10/01/apple-among-biggest-corporate-lobbyists-in-brussels-per-report/",
+   "date": "2026-10-01T22:21:27+00:00",
+   "age_hours": 6.2,
+   "summary": "A new analysis by The Financial Times shows that Apple has met with EU policymakers 257 times since June 2024 and has spent between €8 million and €9 million per year on lobbying. Here are the details. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Philips Air Performer 3-in-1 a 512,20€, comfort e aria pulita tutto l’anno",
+   "link": "https://www.tomshw.it/altro/philips-air-performer-3-in-1-a-51220eur-comfort-e-aria-pulita-tutto-lanno",
+   "date": "2026-10-01T22:18:00+02:00",
+   "age_hours": 8.2,
+   "summary": "Philips Air Performer 3-in-1 costa 512,20€ su Amazon anziché 649,99€, con uno sconto del 20%. Purifica l’aria, riscalda rapidamente e genera un flusso rinfrescante, sostituendo tre apparecchi utilizza...",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "9to5Mac Daily: October 1, 2026 – iPhone Duo production, AirPods 5 tidbits",
+   "link": "https://9to5mac.com/2026/10/01/daily-october-1-2026/",
+   "date": "2026-10-01T22:16:36+00:00",
+   "age_hours": 6.3,
+   "summary": "Listen to a recap of the top stories of the day from 9to5Mac . 9to5Mac Daily is available on iTunes and Apple’s Podcasts app , Stitcher , TuneIn , Google Play , or through our dedicated RSS feed for Overcast and other podcast players. Sponsored by Stuff :Stuff helps you get everything out of your head and into a simple, elegant system—closing open loops and reducing mental stress. A simple to-do list for iPhone, iPad, and Mac, with powerful tools that make organizing, tracking, and checking off your tasks a whole lot more satisfying. Get Stuff done. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "New 'AirFly Drive' Accessory Turns Wired CarPlay Into Wireless CarPlay",
+   "link": "https://www.macrumors.com/2026/10/01/twelve-south-airfly-drive/",
+   "date": "2026-10-01T22:08:42+00:00",
+   "age_hours": 6.4,
+   "summary": "Twelve South, a well-known accessory maker for Apple products, has released a new AirFly Drive accessory that turns wired CarPlay into wireless CarPlay. AirFly Drive uses Wi-Fi to establish a connection between your iPhone and vehicle, eliminating the need to use a USB-C cable for CarPlay. Priced at $39.99 in the U.S., the AirFly Drive plugs into a USB data port in your vehicle. The accessory is essentially a compact aluminum cube with a USB-A port on it, with a USB-C adapter included in the box. It is designed to stay plugged in, so that you can get in your vehicle and use wireless CarPlay right away every time. You only need to pair your iPhone with the AirFly Drive once, and then it will offer fast automatic reconnection every time the vehicle starts, with no app, account, or charging required. A button on the accessory allows for one-press switching between two paired iPhones, which ",
+   "categories": [
+    "CarPlay",
+    "Twelve South"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "SpaceX describes surgical intervention before launch of latest crew mission",
+   "link": "https://arstechnica.com/space/2026/10/spacex-describes-surgical-intervention-before-launch-of-latest-crew-mission/",
+   "date": "2026-10-01T22:07:33+00:00",
+   "age_hours": 6.4,
+   "summary": "With Crew-13, Jessica Watkins became the first Black woman to lead a mission into space.",
+   "categories": [
+    "Science",
+    "Space",
+    "commercial crew",
+    "Commercial space",
+    "crew dragon",
+    "Crew-13",
+    "human spaceflight",
+    "international space station"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "Lyft is paying $272.5M to settle lawsuit over how it classified drivers",
+   "link": "https://techcrunch.com/2026/10/01/lyft-is-paying-272-5m-to-settle-lawsuit-over-how-it-classified-drivers/",
+   "date": "2026-10-01T21:57:08+00:00",
+   "age_hours": 6.6,
+   "summary": "Today, gig economy drivers are classified as contractors. This settlement clears up a lingering lawsuit from 2020 when that was still an unanswered issue.",
+   "categories": [
+    "Transportation",
+    "gig economy",
+    "Lyft"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "Kevin Mandia’s new ‘agent swarm’ security startup Armadin raises $255.5M at $2.5B valuation",
+   "link": "https://techcrunch.com/2026/10/01/kevin-mandias-new-agent-swarm-security-startup-armadin-raises-255-5m-at-2-5b-valuation/",
+   "date": "2026-10-01T21:55:22+00:00",
+   "age_hours": 6.6,
+   "summary": "Kevin Mandia, best known as the founder of Mandiant, has a new startup that is using agent swarms to test and protect enterprises.",
+   "categories": [
+    "Fundraising",
+    "Security",
+    "Startups",
+    "armadin",
+    "In Brief",
+    "Kevin Mandia",
+    "Mandiant"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Multe false con pagamento immediato: la nuova frontiera delle truffe automobilistiche",
+   "link": "https://www.dday.it/redazione/58955/multe-false-con-pagamento-immediato-la-nuova-frontiera-delle-truffe-automobilistiche",
+   "date": "2026-10-01T21:39:00+02:00",
+   "age_hours": 8.9,
+   "summary": "La Polizia Locale intercetta falsi verbali cartacei che sfruttano codici QR contraffatti per reindirizzare le vittime a siti clone e rubare denaro e dati bancari. ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "GrayKey maker can reportedly bypass the iPhone’s ‘Inactivity Reboot’ security feature",
+   "link": "https://9to5mac.com/2026/10/01/graykey-maker-can-reportedly-bypass-the-iphones-inactivity-reboot-security-feature/",
+   "date": "2026-10-01T21:36:16+00:00",
+   "age_hours": 6.9,
+   "summary": "As reported by 404 Media , Magnet Forensics says it has found a way to bypass the iPhone security feature that automatically reboots devices if they haven’t been unlocked for 72 hours. Here are the details. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Samsung alza i prezzi dei Galaxy S26: aumenti fino a 100 euro. I prezzi delle RAM fanno un’altra vittima",
+   "link": "https://www.dday.it/redazione/58956/samsung-alza-i-prezzi-dei-galaxy-s26-aumenti-fino-a-100-euro-i-prezzi-delle-ram-fanno-unaltra-vittima",
+   "date": "2026-10-01T21:34:00+02:00",
+   "age_hours": 9.0,
+   "summary": "Samsung ritocca al rialzo i listini dei Galaxy S26 nel mondo e anche in Italia. Gli aumenti vanno da circa 100 euro per S26 e S26+ fino a 200 euro per la versione più costosa dell’Ultra. Decisione sicuramente sofferta ma probabilmente inevitabile. ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Nothing Headphone (1) Pro in for review",
+   "link": "https://www.gsmarena.com/nothing_headphone_1_pro_in_for_review-news-74838.php",
+   "date": "2026-10-01T21:31:02+02:00",
+   "age_hours": 9.0,
+   "summary": "Nothing is slowly fleshing out its headphone lineup and is now adding a Pro tier. For context, we got the Headphone (1) a year ago, then the Headphone (a) this Spring. The Headphone (1) Pro comes in either Black or White, and costs €370. For context, the Headphone (1) is normally €300, but is currently €250. Let's unbox the Pro. It ships with a 3.5mm cable and a USB-C cable, while the headphone itself sits in a case that encloses the cups but leaves the band unprotected to serve as a handle. It's similar in both look and concept to the AirPods Max 2 Smart Case. It has a glossy...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "NASA And Boeing's Starliner Is Going Back To Space Soon With One Big Change",
+   "link": "https://www.bgr.com/2275190/nasa-boeing-starliner-returns-to-space/",
+   "date": "2026-10-01T21:17:00+00:00",
+   "age_hours": 7.3,
+   "summary": "Boeing's Starliner could return to space before the year is out, but NASA has a different plan in place after the problems that plagued its last mission.",
+   "categories": [
+    "Space"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Musk’s AI chatbot Grok reportedly encouraged Trump to capture Venezuela’s president",
+   "link": "https://techcrunch.com/2026/10/01/musks-ai-chatbot-grok-reportedly-encouraged-trump-to-capture-venezuelas-president/",
+   "date": "2026-10-01T21:08:11+00:00",
+   "age_hours": 7.4,
+   "summary": "President Trump reportedly asked for Grok's opinion before invading Venezuela and capturing Nicolás Maduro.",
+   "categories": [
+    "AI",
+    "Government & Policy",
+    "Elon Musk",
+    "In Brief"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple Shares Photos Shot on iPhone Duo",
+   "link": "https://www.macrumors.com/2026/10/01/apple-shares-photos-shot-on-iphone-duo/",
+   "date": "2026-10-01T20:56:29+00:00",
+   "age_hours": 7.6,
+   "summary": "Apple on Instagram today shared a curated gallery of six photos shot on the iPhone Duo . The photos were shot by American photographers Jake Michaels and Jason Nocito , as part of a project commissioned by Apple. iPhone Duo is equipped with four cameras: A rear 48-megapixel Fusion Main camera A rear 48-megapixel Ultra Wide camera A front 12-megapixel Center Stage camera in the outer display A front camera under the inner display iPhone Duo lacks a dedicated Telephoto camera, which is a dealbreaker for some customers. The main camera does have \"optical-quality 2× Telephoto\" capabilities, but this pales in comparison to the iPhone 17 Pro and iPhone 18 Pro models, which can achieve up to 8× optical zoom. Still, the photos shared by Apple prove that the iPhone Duo is still very capable for photography, at least in the hands of skilled photographers. You can pre-order the iPhone Duo starting ",
+   "categories": [
+    "iPhone Duo",
+    "Photos"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Want to be the first to try a new Nothing device? Now’s your chance",
+   "link": "https://www.androidauthority.com/nothing-community-review-program-3718169/",
+   "date": "2026-10-01T20:51:14+00:00",
+   "age_hours": 7.7,
+   "summary": "Nothing's looking for real users to try out its upcoming products.",
+   "categories": [
+    "News",
+    "Nothing"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Imou 3MP a 18,99€ su Amazon, distingue persone e animali",
+   "link": "https://www.tomshw.it/altro/imou-3mp-a-1899eur-su-amazon-distingue-persone-e-animali",
+   "date": "2026-10-01T20:48:00+02:00",
+   "age_hours": 9.7,
+   "summary": "La telecamera WiFi Imou 3MP costa 18,99€ su Amazon, anziché 19,99€, grazie allo sconto del 5%. Con video 2K, copertura panoramica e riconoscimento AI, permette di capire cosa accade in casa senza riem...",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple Arcade adds five new games, including Terraria+ and Pusheen’s Place",
+   "link": "https://9to5mac.com/2026/10/01/apple-arcade-adds-five-new-games-including-terraria-and-pusheens-place/",
+   "date": "2026-10-01T20:44:52+00:00",
+   "age_hours": 7.8,
+   "summary": "Apple Arcade subscribers got access to five new games today, as Apple had promised in early September. Here are the details. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Hacks of 2 federal agencies in a month have spilled a bonanza of sensitive data",
+   "link": "https://arstechnica.com/security/2026/10/hacks-of-2-federal-agencies-in-a-month-have-spilled-a-bonanza-of-sensitive-data/",
+   "date": "2026-10-01T20:28:45+00:00",
+   "age_hours": 8.1,
+   "summary": "It has been a bad month for federal government cybersecurity.",
+   "categories": [
+    "Biz & IT",
+    "Security",
+    "breaches",
+    "Department of Defense",
+    "fbi",
+    "hacking",
+    "national security"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Quando l'AI ti impedisce di lavorare, la risposta sono i modelli aperti",
+   "link": "https://www.tomshw.it/business/quando-lai-ti-impedisce-di-lavorare-la-risposta-sono-i-modelli-aperti",
+   "date": "2026-10-01T20:25:10+02:00",
+   "age_hours": 10.1,
+   "summary": "Al Dev Day di OpenAI del 29 settembre, mentre dal palco si parlava di velocità e risparmio, gli sviluppatori in corridoio raccontavano altro: i controlli di sicurezza di OpenAI e Anthropic segnalano c...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Samsung Galaxy S25 Edge 512GB a 599€, mai costato così poco",
+   "link": "https://www.tomshw.it/smartphone/samsung-galaxy-s25-edge-512gb-a-599eur-mai-costato-cosi-poco",
+   "date": "2026-10-01T20:18:00+02:00",
+   "age_hours": 10.2,
+   "summary": "Samsung Galaxy S25 Edge 512GB costa 599€ su Amazon, contro un listino di 632€ con il 5% di sconto: è il minimo storico. Il design sottile riunisce Galaxy AI, un ampio display e strumenti evoluti per f...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "The Oil Crisis Could Be Exactly What Tesla EV Semi-Trucks Need To Succeed",
+   "link": "https://www.bgr.com/2275093/tesla-semi-truck-launch-oil-crisis/",
+   "date": "2026-10-01T20:17:00+00:00",
+   "age_hours": 8.3,
+   "summary": "Tesla sees an opportunity in the diesel prices squeezing trucking companies, and early reservations suggest its Semi is getting more than just attention.",
+   "categories": [
+    "Electric Vehicles"
+   ]
+  },
+  {
+   "source": "Ars Technica AI",
+   "tier": "ai",
+   "title": "Judge dismisses Chegg and Penske antitrust lawsuits targeting Google AI search",
+   "link": "https://arstechnica.com/google/2026/10/antitrust-lawsuits-targeting-google-ai-search-dismissed-by-federal-judge/",
+   "date": "2026-10-01T20:11:55+00:00",
+   "age_hours": 8.4,
+   "summary": "The court acknowledges AI search comes with consequences, but it's not an antitrust issue.",
+   "categories": [
+    "AI",
+    "Google",
+    "Policy",
+    "ai search",
+    "antitrust",
+    "google"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Audible announces AI-powered character guides, interactive stories, more",
+   "link": "https://9to5mac.com/2026/10/01/audible-announces-ai-powered-character-guides-interactive-stories-more/",
+   "date": "2026-10-01T20:06:47+00:00",
+   "age_hours": 8.4,
+   "summary": "Audible today announced three features coming to “deepen customers’ connections to their favorite stories.” Here are the details. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Ice Universe: the Galaxy S27 Ultra will keep the screen design essentially the same",
+   "link": "https://www.gsmarena.com/ice_universe_the_galaxy_s27_ultra_will_keep_the_screen_design_essentially_the_same-news-74854.php",
+   "date": "2026-10-01T20:01:02+02:00",
+   "age_hours": 10.5,
+   "summary": "The Samsung Galaxy S27 Ultra will have new hardware on the front, but that will not be readily apparent. Ice Universe shared images of S27 Ultra screen protectors and says that they are nearly identical to, perhaps even interchangeable with, S26 Ultra screen protectors. Ice writes that “this may be the smallest change in front display design between two consecutive Ultra flagships in Samsung’s history.” Based on reports so far, the new Ultra (along with the S27 Pro) will feature a next-generation M16 OLED display. This tech already made its debut with the iQOO 16 – its display advertises...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Sogna una Lamborghini Miura ma non può permettersela, con il fai da te se la costruisce",
+   "link": "https://www.hdmotori.it/lamborghini-miura-replica/",
+   "date": "2026-10-01T20:00:59+02:00",
+   "age_hours": 10.5,
+   "summary": "Cosa accade quando un appassionato non può consentirsi l’auto dei sogni? Semplicemente scopriamolo nella realizzazione di una Lamborghini Miura",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Dock USB-C senza video e ricarica: ecco cosa controllare",
+   "link": "https://www.tomshw.it/hardware/dock-usb-c-senza-ricarica-video-controlli-porte-cavo",
+   "date": "2026-10-01T20:00:00+02:00",
+   "age_hours": 10.5,
+   "summary": "Se il dock USB-C non carica il notebook e non trasmette video al monitor HDMI, controlla prima che la porta del computer supporti entrambe le funzioni, poi verifica collegamento host, ingresso PD e ca...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Philips Hue Ensis illumina tavolo e soffitto, a 369,04€ ne vale ogni euro",
+   "link": "https://www.tomshw.it/altro/philips-hue-ensis-illumina-tavolo-e-soffitto-a-36904eur-ne-vale-ogni-euro",
+   "date": "2026-10-01T19:48:00+02:00",
+   "age_hours": 10.7,
+   "summary": "Philips Hue Ensis costa 369,04€ su Amazon, con uno sconto del 23% rispetto ai 479,99€ di listino. La doppia emissione illumina il piano sottostante e crea contemporaneamente una luce ambientale sul so...",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "T-Mobile’s next plans could give customers more ways to mix things up",
+   "link": "https://www.androidauthority.com/t-mobile-t-mix-plans-leak-3718145/",
+   "date": "2026-10-01T19:45:51+00:00",
+   "age_hours": 8.8,
+   "summary": "Three new tiers could arrive alongside a fresh approach to perks.",
+   "categories": [
+    "News",
+    "T-Mobile"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Primark è pronta a vendere vestiti in poliestere riciclato",
+   "link": "https://www.hdblog.it/green/articoli/n672321/primark-vestiti-poliestere-riciclato/",
+   "date": "2026-10-01T19:45:00+02:00",
+   "age_hours": 10.8,
+   "summary": "E anche in policotone di seconda generazione",
+   "categories": [
+    "Economia e Mercato"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple Says iPhone Duo Has Replaceable 'Cover Layer'",
+   "link": "https://www.macrumors.com/2026/10/01/iphone-duo-cover-layer-is-replaceable/",
+   "date": "2026-10-01T19:32:13+00:00",
+   "age_hours": 9.0,
+   "summary": "In a recent interview with content creator Angelica Siciliani Fendi , Apple's vice president of hardware engineering Kate Bergeron revealed that the iPhone Duo's nano-texture cover layer above the inner display can be removed and replaced. \"It's actually replaceable, which is a really nice thing for the customer that you can peel off that layer and get a new one,\" said Bergeron. In the U.S., customers who purchase AppleCare+ coverage for the iPhone Duo can get the cover layer replaced for $19, according to Apple's website . The cost to replace the cover layer without coverage has yet to be disclosed. The cover layer helps to hide the crease in the middle of the foldable inner display. Bergeron said Apple did a \"significant amount of engineering work\" to ensure that this layer remains in good condition for as long as possible, but customers will have the option to replace it if it wears d",
+   "categories": [
+    "Featured",
+    "iPhone Duo"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "HomePad launch nears, Apple Watch Readiness score, Ternus wants to make Apple more nimble",
+   "link": "https://9to5mac.com/2026/10/01/happy-hour-610/",
+   "date": "2026-10-01T19:30:28+00:00",
+   "age_hours": 9.0,
+   "summary": "Benjamin and Chance discuss the final Apple smart display rumors with a release for the ‘HomePad’ rumored for October 13, although the small square screen form factor remains puzzling. Also, leaked photos of the iPad mini and HomePod mini suggest those long-awaited updates are also imminent, John Ternus apparently wants to make Apple more nimble, and Chance has thoughts on the new Apple Watch Readiness feature. And in Happy Hour Plus , Benjamin argues the case for adding Touch ID to the Apple TV remote. Subscribe at 9to5mac.com/join . Sponsored by Square : Get up to $200 off Square hardware when you sign up at square.com/go/happyhour . Sponsored by Notion : Learn more about how Notion can support your business, at notion.com/happyhour . Sponsored by Framer : The only free design tool that brings your ideas to the web. Visit framer.com/happyhour for 30% off a Framer Pro annual plan. Spons",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "ChatGPT can now virtually try on clothes for you",
+   "link": "https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/",
+   "date": "2026-10-01T19:21:53+00:00",
+   "age_hours": 9.2,
+   "summary": "OpenAI is rolling out new shopping features for ChatGPT that let users virtually try on clothing and accessories using their own photos and save products they like to a Favorites library.",
+   "categories": [
+    "AI",
+    "Apps",
+    "Commerce",
+    "ChatGPT",
+    "shopping"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Stampare su oggetti amplia il business delle tipografie, arrivano le prime macchine",
+   "link": "https://www.tomshw.it/business/stampare-su-oggetti-amplia-il-business-delle-tipografie-arrivano-le-prime-macchine",
+   "date": "2026-10-01T19:20:29+02:00",
+   "age_hours": 11.2,
+   "summary": "Il volume di stampa europeo scende ogni anno. Tra il 2017 e il 2022 è calato di oltre il 21%, fino a circa 10.100 miliardi di pagine in formato A4, e per il 2027 le previsioni indicano altri 600 milia...",
+   "categories": []
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Can good design stop content creators from having sex in robotaxis?",
+   "link": "https://arstechnica.com/cars/2026/10/can-good-design-stop-content-creators-from-having-sex-in-robotaxis/",
+   "date": "2026-10-01T19:19:42+00:00",
+   "age_hours": 9.2,
+   "summary": "Autonomous vehicle designers have to worry about riders getting frisky in public.",
+   "categories": [
+    "Cars",
+    "robotaxi"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Google thinks SpaceX’s Starship has to launch 1,800 times before space data centers get off the ground",
+   "link": "https://techcrunch.com/2026/10/01/google-thinks-spacexs-starship-has-to-launch-1600-times-before-space-data-centers-get-off-the-ground/",
+   "date": "2026-10-01T19:18:03+00:00",
+   "age_hours": 9.2,
+   "summary": "Google launched its first advanced chip into orbit to pave the way for space data centers.",
+   "categories": [
+    "AI",
+    "Space",
+    "data centers",
+    "Google",
+    "Planet Labs",
+    "Project Suncatcher",
+    "SpaceX"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "La smerigliatrice Stanley a 41€ vale la spesa per lavorare con più controllo",
+   "link": "https://www.tomshw.it/altro/la-smerigliatrice-stanley-a-41eur-vale-la-spesa-per-lavorare-con-piu-controllo",
+   "date": "2026-10-01T19:18:00+02:00",
+   "age_hours": 11.2,
+   "summary": "La smerigliatrice Stanley FMEG210-QS costa 41€ su Amazon e arriva con valigetta e accessori essenziali. È pensata per affrontare tagli e rifiniture con una partenza graduale, una presa adattabile e un...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What's The Average Lifespan Of A Portable Battery Bank?",
+   "link": "https://www.bgr.com/2271854/what-is-the-average-lifespan-of-portable-battery-banks/",
+   "date": "2026-10-01T19:17:00+00:00",
+   "age_hours": 9.3,
+   "summary": "The average lifespan of a portable battery bank depends on more than age alone, with a few key factors determining how long it keeps performing well.",
+   "categories": [
+    "Accessories"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Got Google Play Points? Play Fest will let you turn them into swag, premium gear, and big prizes",
+   "link": "https://www.androidauthority.com/google-play-fest-3718139/",
+   "date": "2026-10-01T19:07:11+00:00",
+   "age_hours": 9.4,
+   "summary": "Google Play is throwing a celebration that could net you some cool prizes.",
+   "categories": [
+    "News",
+    "Google",
+    "Google Play"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Kawasaki Ninja 650 cambia passo: freni radiali e più tecnologia",
+   "link": "https://www.hdmotori.it/nuova-kawasaki-ninja-650-2027-caratteristiche/",
+   "date": "2026-10-01T19:00:36+02:00",
+   "age_hours": 11.5,
+   "summary": "Kawasaki rinnova la Ninja 650: arrivano la forcella a steli rovesciati Showa, freni radiali, display TFT con navigatore e il cambio elettronico quickshifter",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "La ISS mostra i suoi anni: problemi al sistema che sposta Canadarm2",
+   "link": "https://www.hdblog.it/tecnologia/articoli/n672256/iss-canadarm2-mobile-transporter-problema-nasa/",
+   "date": "2026-10-01T18:55:00+02:00",
+   "age_hours": 11.6,
+   "summary": "Canadarm2 funziona: NASA circoscrive il problema al Mobile Transporter della ISS.",
+   "categories": [
+    "Tecnologia"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Apple’s reportedly developing a smart home camera that doesn’t record video",
+   "link": "https://www.theverge.com/tech/1003877/apple-security-camera-no-video",
+   "date": "2026-10-01T18:51:36-04:00",
+   "age_hours": 5.7,
+   "summary": "Apple's rumored push into smart home tech could include a smart home security camera that only gives users text event descriptions instead of video footage. Mark Gurman said in the first episode of the Power On podcast that the camera will be part of \"a new Apple smart home ecosystem,\" alongside Apple's rumored smart home […]",
+   "categories": [
+    "Apple",
+    "Apple Rumors",
+    "Cameras",
+    "Gadgets",
+    "News",
+    "Smart Home",
+    "Tech"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Honor Magic9 Lite+ is on the way, here are its main specs",
+   "link": "https://www.gsmarena.com/honor_magic9_lite_is_on_the_way_here_are_its_main_specs-news-74857.php",
+   "date": "2026-10-01T18:51:02+02:00",
+   "age_hours": 11.7,
+   "summary": "Honor unveiled the Magic9, Magic9 Super, and Magic9 Pro Max in China last month, and it seems like the company is still preparing at least one more member of the Magic9 family. We're talking about the confusingly named Honor Magic9 Lite+, which will be available globally, as it's now been spotted in the Google Play Console. According to that listing, the phone has the model number BSN-NX1. It's powered by the Snapdragon 6 Gen 5 chip, paired with 8GB of RAM. The screen has 1280x2788 resolution. Those are all the details that are revealed by the listing. Interestingly, the Honor...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "AT&T, T-Mobile, and Verizon are officially teaming up to kill dead zones",
+   "link": "https://www.androidauthority.com/att-t-mobile-verizon-dead-zone-joint-venture-3718134/",
+   "date": "2026-10-01T18:49:22+00:00",
+   "age_hours": 9.7,
+   "summary": "The big three are pooling resources to improve satellite coverage.",
+   "categories": [
+    "News",
+    "AT&T",
+    "T-Mobile",
+    "Verizon"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Il nuovo MacBook Pro è più vicino del previsto: quando arriva?",
+   "link": "https://www.tomshw.it/hardware/il-nuovo-macbook-pro-e-piu-vicino-del-previsto-quando-arriva",
+   "date": "2026-10-01T18:45:00+02:00",
+   "age_hours": 11.8,
+   "summary": "Apple si prepara a chiudere il 2026 con una serie di lanci ravvicinati, e il prodotto più atteso resta il MacBook Pro ridisegnato con schermo touch. A indicarne i tempi è Mark Gurman di...",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple says iPhone Duo has ‘replaceable’ folding display layer to minimize crease",
+   "link": "https://9to5mac.com/2026/10/01/apple-says-iphone-duo-has-replaceable-folding-display-layer-to-minimize-crease/",
+   "date": "2026-10-01T18:44:27+00:00",
+   "age_hours": 9.8,
+   "summary": "Foldable displays tend to show a more visible crease over time, but Apple‘s Kate Bergeron says iPhone Duo has a replaceable cover layer on its folding screen to help mitigate that issue. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Vuoi una PS5 Pro? Sony ora ti chiede 60 ore di gioco",
+   "link": "https://www.tomshw.it/videogioco/vuoi-una-ps5-pro-sony-ora-ti-chiede-60-ore-di-gioco",
+   "date": "2026-10-01T18:40:00+02:00",
+   "age_hours": 11.9,
+   "summary": "Sony ha scelto un filtro inedito per decidere chi può comprare una PlayStation 5 Pro in Giappone: le ore di gioco effettivamente accumulate. Dal 28 settembre al 7 ottobre 2026 il Sony Store rac...",
+   "categories": []
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "World’s first enhanced geothermal power plant completed in just 23 months",
+   "link": "https://techcrunch.com/2026/10/01/worlds-first-enhanced-geothermal-power-plant-completed-in-just-23-months/",
+   "date": "2026-10-01T18:35:55+00:00",
+   "age_hours": 10.0,
+   "summary": "Fervo Energy completed its first power plant in less than two years. The next phases promise to connect to the grid even quicker.",
+   "categories": [
+    "Climate",
+    "Fervo Energy",
+    "geothermal energy"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Raspberry Pi aumenta i prezzi, ecco quali sono i modelli più cari",
+   "link": "https://www.tomshw.it/hardware/raspberry-pi-aumenta-i-prezzi-ecco-quali-sono-i-modelli-piu-cari",
+   "date": "2026-10-01T18:34:00+02:00",
+   "age_hours": 12.0,
+   "summary": "Raspberry Pi è tornata a intervenire sui propri prezzi di listino, questa volta colpendo le configurazioni da 2 GB di Raspberry Pi 4 e Raspberry Pi 5. L'aumento, comunicato dall'azienda britann...",
+   "categories": []
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Omoda X: il teaser del nuovo crossover sportivo con stile da fuoristrada",
+   "link": "https://www.hdmotori.it/omoda-x-teaser/",
+   "date": "2026-10-01T18:30:50+02:00",
+   "age_hours": 12.0,
+   "summary": "In occasione dell'International User Summit di Wuhu, il marchio Omoda & Jaecoo svelerà il nuovo modello crossover.",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "L’era degli agenti: chi entrerà davvero nella tua vita",
+   "link": "https://www.macitynet.it/lera-degli-agenti/",
+   "date": "2026-10-01T18:29:40+00:00",
+   "age_hours": 10.1,
+   "summary": "In sette giorni, tra il 23 e il 29 settembre 2026, Mark Zuckerberg e Sam Altman hanno dichiarato chiuso il capitolo del chatbot. Comincia l'era dell'agente persistente? - su macitynet.it L’era degli agenti: chi entrerà davvero nella tua vita",
+   "categories": [
+    "AI - Intelligenza Artificiale",
+    "Amazon",
+    "Intelligenza Artificiale",
+    "Meta",
+    "OpenAI"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Gemini Live’s camera just became much more useful for accessibility",
+   "link": "https://www.androidauthority.com/gemini-live-guided-vision-launch-3718122/",
+   "date": "2026-10-01T18:28:51+00:00",
+   "age_hours": 10.1,
+   "summary": "Gemini can now describe your surroundings and guide your camera with spoken cues.",
+   "categories": [
+    "News",
+    "Accessibility",
+    "AI",
+    "Google",
+    "Google Gemini"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Dexter: Resurrection S2, dal 30 ottobre su Paramount+ | Trailer",
+   "link": "https://www.hdblog.it/spettacolo/articoli/n672319/dexter-resurrection-2-trailer-data-uscita/",
+   "date": "2026-10-01T18:25:00+02:00",
+   "age_hours": 12.1,
+   "summary": "Dexter torna il 30 ottobre con nuovi killer, vecchi fantasmi e una crisi personale.",
+   "categories": [
+    "Articolo"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "World of Warcraft sta per arrivare su console? Ecco cosa sappiamo",
+   "link": "https://www.tomshw.it/videogioco/world-of-warcraft-sta-per-arrivare-su-console-ecco-cosa-sappiamo",
+   "date": "2026-10-01T18:20:00+02:00",
+   "age_hours": 12.2,
+   "summary": "Le voci su un possibile approdo di World of Warcraft sulle console casalinghe sono tornate a circolare il 29 settembre 2026, quando un utente Reddit noto come 'Rychillie' ha notato una scheda pubblica...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Tre dispositivi in carica con Belkin BoostCharge al -47%, un affare in viaggio",
+   "link": "https://www.tomshw.it/smartphone/tre-dispositivi-in-carica-con-belkin-boostcharge-al-47-un-affare-in-viaggio",
+   "date": "2026-10-01T18:18:00+02:00",
+   "age_hours": 12.2,
+   "summary": "Il Belkin BoostCharge da 10.000 mAh costa 15,99€ su Amazon, con il 47% di sconto rispetto ai 29,99€ di listino. Le tre uscite permettono di alimentare più dispositivi nello stesso momento, una comodit...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "John Carpenter's 'Lost' TV Movie Starring Lauren Hutton Is Streaming For Free",
+   "link": "https://www.bgr.com/2273327/john-carpenter-lost-tv-movie-lauren-hutton-streaming-free/",
+   "date": "2026-10-01T18:17:00+00:00",
+   "age_hours": 10.3,
+   "summary": "Lauren Hutton can't get the police to take her stalker seriously in a John Carpenter TV thriller that you can finally watch without tracking down a copy.",
+   "categories": [
+    "Movies"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "OpenClaw Enterprise è gratuito e punta sul controllo degli agenti",
+   "link": "https://www.tomshw.it/business/openclaw-enterprise-e-gratuito-e-punta-sul-controllo-degli-agenti",
+   "date": "2026-10-01T18:16:49+02:00",
+   "age_hours": 12.3,
+   "summary": "OpenClaw Enterprise, il control plane per agenti AI persistenti nato dentro OpenAI e poi donato all'OpenClaw Foundation, è ora pubblico con licenza MIT. Red Hat e NVIDIA hanno collaborato allo svilupp...",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "SpaceXAI releases a separate Grok iOS app for enterprise users",
+   "link": "https://9to5mac.com/2026/10/01/spacexai-releases-a-separate-grok-ios-app-for-enterprise-users/",
+   "date": "2026-10-01T18:16:46+00:00",
+   "age_hours": 10.3,
+   "summary": "Back in May, OpenAI released a dedicated version of their mobile app for enterprise. Now SpaceXAI is doing the same thing for Grok. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "OpenAI cuts ties with 3 safety researchers, WSJ reports",
+   "link": "https://techcrunch.com/2026/10/01/openai-cuts-ties-with-three-safety-researchers-wsj-reports/",
+   "date": "2026-10-01T18:14:42+00:00",
+   "age_hours": 10.3,
+   "summary": "OpenAI has parted ways with three safety researchers after an internal investigation found they mishandled sensitive company information, report says.",
+   "categories": [
+    "AI",
+    "Security",
+    "OpenAI"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Marvel releases one last VisionQuest trailer",
+   "link": "https://arstechnica.com/culture/2026/10/marvel-releases-one-last-visionquest-trailer/",
+   "date": "2026-10-01T18:04:48+00:00",
+   "age_hours": 10.5,
+   "summary": "\"This is a fight I likely won't win. We have said goodbye before. But remember, family is forever.\"",
+   "categories": [
+    "Culture",
+    "disney plus",
+    "entertainment",
+    "marvel studios",
+    "MCU Phase Six",
+    "Trailers",
+    "VisionQuest"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Nearly half of test subjects mistook Tavus' AI video avatar for a real person on a one-minute call",
+   "link": "https://the-decoder.com/nearly-half-of-test-subjects-mistook-tavus-ai-video-avatar-for-a-real-person-on-a-one-minute-call/",
+   "date": "2026-10-01T18:03:40+00:00",
+   "age_hours": 10.5,
+   "summary": "Tavus has introduced Griffin, what the company calls the first \"Human Interaction Model.\" The AI holds video calls in real time, processing facial expressions, tone of voice, and gestures. In a Tavus study, 48 percent of participants believed Griffin was a real person after a one-minute call. Previous systems maxed out at two percent. The article Nearly half of test subjects mistook Tavus' AI video avatar for a real person on a one-minute call appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "Avatar",
+    "Tavus"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Venduta la Ferrari 550 Maranello appartenuta a Michael Jordan, il prezzo è da record",
+   "link": "https://www.hdmotori.it/ferrari-550-maranello-michael-jordan-prezzo/",
+   "date": "2026-10-01T18:00:51+02:00",
+   "age_hours": 12.5,
+   "summary": "Personalizzata per il fuoriclasse dei Chicago Bulls Michael Jordan, la Ferrari 550 Maranello è stata venduta per una cifra impressionante",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Recensione iPhone 18 Pro Max. Altro che diaframma, è l'A20 Pro la vera star",
+   "link": "https://www.dday.it/redazione/58940/recensione-iphone-18-pro-max-altro-che-diaframma-e-la20-pro-la-vera-star",
+   "date": "2026-10-01T17:58:00+02:00",
+   "age_hours": 12.6,
+   "summary": "Abbiamo provato a fondo il nuovo iPhone 18 Pro Max, concentrandoci soprattutto sulla parte fotografica e sulle prestazioni in ambito IA. È il solito iPhone “Pro”, migliorato sotto diversi aspetti e con un prezzo più alto. Il problema più grande però riguarda non tanto lui quanto iOS: senza Siri AI, in Europa è un eccellente smartphone con il freno a mano tirato. ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Google Antigravity arriva sul Play Store: si programma da Googlebook",
+   "link": "https://www.hdblog.it/google/articoli/n672249/google-antigravity-play-store-googlebook/",
+   "date": "2026-10-01T17:55:00+02:00",
+   "age_hours": 12.6,
+   "summary": "Antigravity arriva sul Play Store e trasforma i Googlebook in postazioni di sviluppo AI.",
+   "categories": [
+    "Android",
+    "Google"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Opus 5.5 loves to tell you ‘this matters’ (and other AI writing tells)",
+   "link": "https://techcrunch.com/2026/10/01/opus-5-5-loves-to-tell-you-this-matters-and-other-ai-writing-tells/",
+   "date": "2026-10-01T17:50:19+00:00",
+   "age_hours": 10.7,
+   "summary": "Opus 5.5’s biggest tell is the word “dependable,” which pops up 23 times more often than in human samples.",
+   "categories": [
+    "AI",
+    "Anthropic",
+    "writing"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Memory executives expect RAM shortage to continue through 2028",
+   "link": "https://arstechnica.com/information-technology/2026/10/memory-supplies-are-only-getting-tighter-micron-ceo-says/",
+   "date": "2026-10-01T17:49:56+00:00",
+   "age_hours": 10.7,
+   "summary": "Prices for memory sold for 2027 \"are much higher than 2026 prices.\"",
+   "categories": [
+    "Biz & IT",
+    "Tech",
+    "Micron",
+    "RAM"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple's Smart Home Camera Will Apparently Have 'No Video Recording'",
+   "link": "https://www.macrumors.com/2026/10/01/apple-smart-home-camera-no-video-recording/",
+   "date": "2026-10-01T17:44:21+00:00",
+   "age_hours": 10.8,
+   "summary": "On his new Power On podcast , Bloomberg 's Mark Gurman said Apple's smart home camera will have \"no video recording.\" Instead, he described the rumored product as a sensor that will be capable of \"analyzing your environment in your home\" using AI. \"This is going to be the first mainstream video camera that's a home video security camera that doesn't give you any footage,\" he said. Tag: Apple Smart Home Camera This article, \" Apple's Smart Home Camera Will Apparently Have 'No Video Recording' \" first appeared on MacRumors.com Discuss this article in our forums",
+   "categories": [
+    "No Linkback",
+    "Apple Smart Home Camera"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Redmi 17C 5G lands in India, here are the prices",
+   "link": "https://www.gsmarena.com/redmi_17c_5g_lands_in_india_here_are_the_prices-news-74861.php",
+   "date": "2026-10-01T17:39:02+02:00",
+   "age_hours": 12.9,
+   "summary": "Redmi initially launched the 17C 5G in some markets in August, and today the device has finally arrived in India. It will become available on October 7 starting at INR 20,999 ($218). For that amount of cash, you get the variant with 4GB of RAM. If you want 6GB of RAM, you will have to pay INR 22,999 ($238). Both of those have 128GB of storage. The Redmi 17C 5G comes with a 6.9-inch LCD screen with 720x1600 resolution, a 120Hz refresh rate, a 50MP main camera, an 8MP selfie camera, and a 6,000 mAh battery with support for 33W charging. Redmi 17C 5G in all three colors The...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Gallagher di nuovo insieme: arriva il film Disney sul tour reunion degli Oasis | Trailer",
+   "link": "https://www.hdblog.it/curiosita/articoli/n657865/documentario-oasis-disney-plus-uscita/",
+   "date": "2026-10-01T17:35:00+02:00",
+   "age_hours": 13.0,
+   "summary": "Gli Oasis tornano con un film evento diretto dai registi di Shut Up and Play the Hits.",
+   "categories": [
+    "Curiosità"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Ideogram says its new model can edit part of an image without messing up the rest",
+   "link": "https://the-decoder.com/ideogram-says-its-new-model-can-edit-part-of-an-image-without-messing-up-the-rest/",
+   "date": "2026-10-01T17:33:03+00:00",
+   "age_hours": 11.0,
+   "summary": "Ideogram's new model Ideogram 4.5 promises to edit only the areas you want while keeping the rest of the image intact. It ships with native 2K resolution starting at 0.8 cents per image, and partners like Runway, Pika, and Leonardo AI are already on board. An open-weight release is planned. The article Ideogram says its new model can edit part of an image without messing up the rest appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "Ideogram",
+    "Image AI"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Vauxhall: il marchio gemello di Opel svela il nuovo logo",
+   "link": "https://www.hdmotori.it/vauxhall-nuovo-logo/",
+   "date": "2026-10-01T17:30:31+02:00",
+   "age_hours": 13.0,
+   "summary": "Il marchio automobilistico di Stellantis presenta la tredicesima evoluzione del suo storico stemma, pensato per la calandra illuminata dei futuri modelli a zero emissioni.",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Twelve South launches tiny new ‘Airfly Drive’ wireless CarPlay adapter",
+   "link": "https://9to5mac.com/2026/10/01/twelve-south-launches-tiny-new-airfly-drive-wireless-carplay-adapter/",
+   "date": "2026-10-01T17:20:45+00:00",
+   "age_hours": 11.2,
+   "summary": "Twelve South, the company behind a range of premium Apple accessories, has launched a notable expansion of its Airfly brand. The company today unveiled Airfly Drive, a dongle that turns wired CarPlay into wireless CarPlay. It’s available to order starting today for $39.99. Here’s how it works. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "You Can Optimize Your Home Printer's Settings For Better Quality - Here's How",
+   "link": "https://www.bgr.com/2271816/optimize-home-printer-settings/",
+   "date": "2026-10-01T17:17:00+00:00",
+   "age_hours": 11.3,
+   "summary": "Your home printer may have better print quality than you realize, and it all comes down to how well you optimize your printer's settings.",
+   "categories": [
+    "Technology"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "MacBook Pro touchscreen, Gurman indica il mese di lancio: Apple lo starebbe già testando con macOS 27.2",
+   "link": "https://www.ispazio.net/2276541/macbook-pro-touchscreen-oled-uscita-ottobre-gurman",
+   "date": "2026-10-01T17:15:06+00:00",
+   "age_hours": 11.3,
+   "summary": "MacBook Pro touchscreen, Gurman indica il mese di lancio: Apple lo starebbe già testando con macOS 27.2 Il MacBook Pro con touchscreen potrebbe essere più vicino di quanto si pensasse. A dare un’indicazione concreta sui tempi è Mark Gurman di Bloomberg, che nel primo episodio del suo nuovo podcast settimanale, Power On with Mark Gurman, ha fatto il punto sulla finestra di lancio del MacBook Pro ridisegnato, quello atteso con display OLED, […]",
+   "categories": [
+    "MacBook Pro",
+    "Rumors",
+    "Apple",
+    "macbook pro",
+    "MacBook Pro OLED",
+    "MacBook Pro touchscreen",
+    "MacBook Ultra",
+    "macOS 27.2"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Crisi dei chip, Raspberry Pi ritocca ancora i suoi listini, ecco cosa cambia",
+   "link": "https://www.hdblog.it/mercato/articoli/n672340/crisi-chip-aumenti-raspberry-pi-4-5-2-gb/",
+   "date": "2026-10-01T17:15:00+02:00",
+   "age_hours": 13.3,
+   "summary": "Colpiti i Pi 4 e 5 con tagli da 2 GB di RAM.",
+   "categories": [
+    "Economia e Mercato"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Sonnet Solo10G T5 porta la rete 10 GbE sui Mac Thunderbolt 5 e PC USB4 senza alimentatore",
+   "link": "https://www.macitynet.it/sonnet-solo10g-t5-thunderbolt-5-ethernet-10gbe/",
+   "date": "2026-10-01T17:11:32+00:00",
+   "age_hours": 11.4,
+   "summary": "Il nuovo adattatore Sonnet aggiunge una porta Ethernet 10 Gigabit a Mac, PC e iPad Pro. Consuma 7,5 watt, non ha ventola e funziona anche a 5 e 2,5 Gb/s. - su macitynet.it Sonnet Solo10G T5 porta la rete 10 GbE sui Mac Thunderbolt 5 e PC USB4 senza alimentatore",
+   "categories": [
+    "Foto, Video e Audio Digitale",
+    "Hardware e Periferiche",
+    "Ethernet",
+    "Sonnet",
+    "Thunderbolt 5"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "This startup wants to turn idle car inventory into rental revenue",
+   "link": "https://techcrunch.com/2026/10/01/this-startup-wants-to-turn-idle-car-inventory-into-rental-revenue/",
+   "date": "2026-10-01T17:09:00+00:00",
+   "age_hours": 11.4,
+   "summary": "When Igor Dobrianskyi looks at a car dealership lot, he doesn't see rows of cars — he sees millions of dollars just sitting there, depreciating. Come see MyMonthlyCar in the Startup Battlefield 200 at TechCrunch Disrupt, taking place October 13 to 15 in San Francisco.",
+   "categories": [
+    "Transportation",
+    "MyMonthlyCar",
+    "Startup Battlefield 200",
+    "TechCrunch Disrupt"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Digital Realty avvia ROM1: a Roma prende forma il nuovo campus di data center",
+   "link": "https://www.hdblog.it/business/articoli/n672338/digital-realty-presenta-rom1-roma-data-center/",
+   "date": "2026-10-01T17:05:00+02:00",
+   "age_hours": 13.5,
+   "summary": "Al via la prima fase operativa del nuovo campus di data center in costruzione a Roma",
+   "categories": [
+    "Business"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Toyota lancia una roulotte da 9 metri sulla nuova Hilux: omaggio a Top Gear",
+   "link": "https://www.hdmotori.it/toyota-nuova-hilux-test-roulotte-top-gear/",
+   "date": "2026-10-01T17:00:31+02:00",
+   "age_hours": 13.5,
+   "summary": "La Casa giapponese ha riproposto una leggendaria scena di Top Gear, facendo crollare una roulotte sul nuovo Hilux elettrico",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "OpenAI",
+   "tier": "ai",
+   "title": "The eternal complement",
+   "link": "https://openai.com/index/the-eternal-complement",
+   "date": "2026-10-01T17:00:00+00:00",
+   "age_hours": 11.5,
+   "summary": "Advanced AI may matter most for the routine work behind breakthrough ideas. Explore why execution could shape the next economy and the pace of progress.",
+   "categories": [
+    "Intelligence Age"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Basta paletta ogni giorno: la lettiera robot PETKIT scende sotto i 390 euro",
+   "link": "https://www.macitynet.it/basta-paletta-ogni-giorno-la-lettiera-robot-petkit-scende-sotto-i-390-euro/",
+   "date": "2026-10-01T16:59:13+00:00",
+   "age_hours": 11.6,
+   "summary": "PETKIT Pura Max 2 raccoglie automaticamente i bisogni del gatto e si controlla da iPhone e Android. Su Amazon scende a 389,99 euro invece di 599 euro, con 100 sacchetti in omaggio. Minimo storico - su macitynet.it Basta paletta ogni giorno: la lettiera robot PETKIT scende sotto i 390 euro",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Crew-13 pronta al lancio: segui la missione NASA in diretta",
+   "link": "https://www.hdblog.it/tecnologia/articoli/n672334/nasa-crew-13-lancio-diretta-iss/",
+   "date": "2026-10-01T16:55:00+02:00",
+   "age_hours": 13.6,
+   "summary": "Crew-13 parte alle 17:10 italiane con quattro astronauti diretti verso la ISS.",
+   "categories": [
+    "Tecnologia"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "Florida cops say they don't know who owns 11 unpermitted Flock cameras",
+   "link": "https://arstechnica.com/tech-policy/2026/10/florida-cops-say-they-dont-know-who-owns-11-unpermitted-flock-cameras/",
+   "date": "2026-10-01T16:49:33+00:00",
+   "age_hours": 11.7,
+   "summary": "Floridians alarmed by 14 mysterious Flock cameras; 11 have no clear owner.",
+   "categories": [
+    "Policy",
+    "data privacy",
+    "flock safety",
+    "Flock!",
+    "Florida",
+    "police surveillance",
+    "stalking"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Amazon releases its own Jev clone as decision models flood the web",
+   "link": "https://techcrunch.com/2026/10/01/amazon-releases-its-own-jev-clone-as-decision-models-flood-the-web/",
+   "date": "2026-10-01T16:49:22+00:00",
+   "age_hours": 11.7,
+   "summary": "Amazon Web Services' Strand Labs has released the latest Jevalike decision model, Strands Decider 2B.",
+   "categories": [
+    "AI",
+    "AWS"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "HP OmniBook 5 sfida MacBook Neo con display OLED e Intel Wildcat Lake",
+   "link": "https://www.hdblog.it/portatili/articoli/n672326/hp-omnibook-5-sfida-macbook-neo-display-oled-intel/",
+   "date": "2026-10-01T16:45:00+02:00",
+   "age_hours": 13.8,
+   "summary": "Due nuovi laptop da HP: OmniBook 5 sfida apertamente MacBook Neo, mentre ProBook 4 arriva fino a 32 GB di RAM puntando ai professionisti.",
+   "categories": [
+    "HP"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Shopify debuts Canvas, a way to build online stores by chatting with AI",
+   "link": "https://techcrunch.com/2026/10/01/shopify-debuts-canvas-a-way-to-build-online-stores-by-chatting-with-ai/",
+   "date": "2026-10-01T16:44:35+00:00",
+   "age_hours": 11.8,
+   "summary": "Shopify’s new Canvas site builder lets merchants create and customize their online stores by chatting with its AI agent Sidekick, while watching the changes happen in real time.",
+   "categories": [
+    "AI",
+    "Commerce",
+    "Shopify"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro, iPhone Duo e AirPods Pro 3 saranno tra i prodotti più richiesti delle feste 2026",
+   "link": "https://www.macitynet.it/prodotti-piu-venduti-natale-2026-iphone-18-pro-duo-airpods-pro-3/",
+   "date": "2026-10-01T16:42:56+00:00",
+   "age_hours": 11.8,
+   "summary": "Adobe prevede vendite online record negli USA durante le feste 2026. Tra i prodotti più richiesti iPhone 18 Pro, iPhone Duo, AirPods Pro 3, Switch 2, PS5 Pro e Galaxy S26. - su macitynet.it iPhone 18 Pro, iPhone Duo e AirPods Pro 3 saranno tra i prodotti più richiesti delle feste 2026",
+   "categories": [
+    "Internet",
+    "AirPods 3",
+    "e-commerce",
+    "iPhone 18 Pro",
+    "iPhone Duo"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Google’s new Android sideloading rules are live — and here are all the ways to already bypass them",
+   "link": "https://www.androidauthority.com/how-to-bypass-android-developer-verification-sideloading-rules-3718002/",
+   "date": "2026-10-01T16:42:47+00:00",
+   "age_hours": 11.8,
+   "summary": "From Advanced Flow to ADB and Shizuku, power users can continue installing unverified APKs on Android.",
+   "categories": [
+    "News",
+    "Android apps",
+    "Google",
+    "Google Play Store"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "California governor vetoes bill banning use of ‘pervert glasses’ to secretly record people",
+   "link": "https://techcrunch.com/2026/10/01/california-governor-vetoes-bill-banning-use-of-pervert-glasses-to-secretly-record-people/",
+   "date": "2026-10-01T16:35:25+00:00",
+   "age_hours": 12.0,
+   "summary": "The California state bill would have penalized people who secretly recorded people in public with wearables equipped with cameras and microphones.",
+   "categories": [
+    "Privacy",
+    "Security",
+    "california",
+    "cybersecurity",
+    "Meta",
+    "privacy",
+    "Snap"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Nuvacore vuole riscrivere le regole della progettazione delle CPU",
+   "link": "https://www.hdblog.it/hardware/articoli/n672333/nuvacore-warpcore-cpu-set-istruzioni/",
+   "date": "2026-10-01T16:35:00+02:00",
+   "age_hours": 14.0,
+   "summary": "La startup fondata da \"superstar\" della progettazione di chip sostiene che la scelta di set di istruzioni può avvenire in una fase più avanzata della progettazione.",
+   "categories": [
+    "Tecnologia"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Samsung Galaxy M08 and F08 are now official",
+   "link": "https://www.gsmarena.com/samsung_galaxy_m08_and_f08_are_now_official-news-74863.php",
+   "date": "2026-10-01T16:31:03+02:00",
+   "age_hours": 14.0,
+   "summary": "Today Samsung has quietly listed both the Galaxy M08 and F08 on its website in India. This makes the two devices official, and they are both in fact clones of the Galaxy A08 with different names. Like the A08, the M08 and F08 each have a 6.7-inch LCD screen with 720x1600 resolution and a 90Hz refresh rate, a 50MP main camera with f/1.8 aperture and autofocus, a 2MP depth sensor, an 8MP selfie camera, and a 6,000mAh battery with support for 25W charging. Samsung Galaxy M08 official images The M08 and F08 are powered by the MediaTek Helio G99+ chipset, which is probably the G99...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Un mese con Insta360 Luna Pro: vantaggi e svantaggi della videocamera compatta",
+   "link": "https://www.hdblog.it/fotografia/recensioni/n671968/recensione-insta360-luna-ultra/",
+   "date": "2026-10-01T16:31:00+02:00",
+   "age_hours": 14.0,
+   "summary": "Promossa a pieni voti?",
+   "categories": [
+    "Alta Definizione"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Carburanti, un marchio indipendente ha prezzi più bassi dei colossi con il \"price cap\"",
+   "link": "https://www.hdmotori.it/carburanti-prezzi-piu-bassi-colossi-price-cap/",
+   "date": "2026-10-01T16:30:27+02:00",
+   "age_hours": 14.0,
+   "summary": "Con il controllo dell’intera filiera e della raffineria più grande d’Italia, il marchio del Gruppo Ludoil riesce ad avere un prezzo inferiore a quello delle compagnie che applicano...",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "Ars Technica AI",
+   "tier": "ai",
+   "title": "With most information hidden, the game Stratego had stumped AI—until now",
+   "link": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+   "date": "2026-10-01T16:28:04+00:00",
+   "age_hours": 12.1,
+   "summary": "Adding in a second neural network that guesses the identity of hidden pieces was key.",
+   "categories": [
+    "AI",
+    "Science",
+    "Computer science",
+    "games",
+    "hidden information",
+    "strategy"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "WhatsApp Plus dice stop alle notifiche continue: decidi tu quando e quali ricevere",
+   "link": "https://www.hdblog.it/android/articoli/n672315/whatsapp-plus-notifiche-orari-programmati/",
+   "date": "2026-10-01T16:25:00+02:00",
+   "age_hours": 14.1,
+   "summary": "WhatsApp Plus testa gli orari programmati per silenziare o nascondere le notifiche di determinate chat.",
+   "categories": [
+    "Android"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Svelati i nuovi Kindle. C'è anche il telecomando per girare le pagine",
+   "link": "https://www.dday.it/redazione/58954/svelati-i-nuovi-kindle-ce-anche-il-telecomando-per-girare-le-pagine",
+   "date": "2026-10-01T16:18:00+02:00",
+   "age_hours": 14.2,
+   "summary": "La nuova famiglia introduce schermi a filo, design più sottile e leggero. I prezzi partono da 154,99 euro ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Affordable iPhone 18 Pro Cases You Should Check Out Instead Of Apple's",
+   "link": "https://www.bgr.com/2273003/best-affordable-iphone-18-pro-cases/",
+   "date": "2026-10-01T16:17:00+00:00",
+   "age_hours": 12.3,
+   "summary": "Apple's official iPhone cases are great, but you don't need to shell out $50 when these budget third-party iPhone 18 Pro cases offer better features for less.",
+   "categories": [
+    "Accessories",
+    "iPhone"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Gli occhiali come apparecchi acustici: l'interessante scommessa di Legato",
+   "link": "https://www.hdblog.it/indossabili/articoli/n672331/legato-occhiali-ai-smart-apparecchi-acustici/",
+   "date": "2026-10-01T16:15:00+02:00",
+   "age_hours": 14.3,
+   "summary": "L'uso di tecnologie come ANC, modalità trasparenza e così via applicato per aiutare chi ha perdite uditive tra leggera e moderata.",
+   "categories": [
+    "Tecnologia"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "All-time low deal: Logitech G515 Lightspeed TKL plunges 50% to $79.99",
+   "link": "https://www.androidauthority.com/logitech-g515-lightspeed-tkl-keyboard-3718104/",
+   "date": "2026-10-01T16:14:10+00:00",
+   "age_hours": 12.3,
+   "summary": "Logitech’s G515 Lightspeed TKL drops to a record-low $79.99 at Amazon, packing tri-mode wireless and tactile switches.",
+   "categories": [
+    "Deals",
+    "Keyboards",
+    "Logitech"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Amazon unveils this year’s colorful Kindle upgrades",
+   "link": "https://www.androidauthority.com/2026-kindle-3718066/",
+   "date": "2026-10-01T16:13:32+00:00",
+   "age_hours": 12.3,
+   "summary": "Amazon plays e-reader catch-up with its new Kindle series and the Kindle Click remote.",
+   "categories": [
+    "News",
+    "Amazon",
+    "Amazon Kindle",
+    "eReader"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple TV Just Updated Its Selection of 'Bonus' Movies",
+   "link": "https://www.macrumors.com/2026/10/01/apple-tv-new-bonus-movies/",
+   "date": "2026-10-01T16:08:01+00:00",
+   "age_hours": 12.4,
+   "summary": "Starting today, the Apple TV streaming service is offering a new selection of \"bonus\" movies in the U.S., Canada, the U.K., and some other countries. While competitors like Netflix offer an extensive catalog of movies from various studios, Apple TV primarily offers its own original films produced by Apple. Over the past few years, however, Apple has offered a \"Great Movies Now on Apple TV\" section with a limited rotation of iconic movies that subscribers can watch at no additional cost. The selection changes each month, with the following 13 movies added in the U.S. today: 28 Days Later American Gangster Black Hawk Down Blood Diamond Fallen Fury Going The Distance Good Will Hunting Insomnia Jurassic World Taxi Driver The Girl With the Dragon Tattoo Tropic Thunder In the U.S., seven more movies remain available as holdovers: A Beautiful Mind A League of Their Own Definitely Maybe I Robot ",
+   "categories": [
+    "Apple TV",
+    "Apple TV Service"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Kindle Colorsoft Kids deal knocks the 16GB color e-reader down to $209.99",
+   "link": "https://www.androidauthority.com/kindle-colorsoft-kids-deal-3718098/",
+   "date": "2026-10-01T16:05:12+00:00",
+   "age_hours": 12.5,
+   "summary": "Save $90 on the Kindle Colorsoft Kids and get a color E Ink display, 16GB storage, and up to 12 weeks of battery life.",
+   "categories": [
+    "Deals",
+    "Amazon Kindle"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "ESPN app recently got big upgrade on Apple TV 4K and iPhone",
+   "link": "https://9to5mac.com/2026/10/01/espn-app-recently-got-big-upgrade-on-apple-tv-4k-and-iphone/",
+   "date": "2026-10-01T16:04:08+00:00",
+   "age_hours": 12.5,
+   "summary": "Fall is a big season for sports fans, and ESPN recently launched a big upgrade for users of its tvOS and iOS apps: 4K HDR streaming. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Early Prime Big Deal Days: Best Discounts on Accessories, TVs, and More at Amazon",
+   "link": "https://www.macrumors.com/2026/10/01/best-early-prime-day-deals-on-accessories/",
+   "date": "2026-10-01T16:02:35+00:00",
+   "age_hours": 12.5,
+   "summary": "Amazon is hosting another Prime Day event this year, called Prime Big Deal Days and offering shoppers the first chance to save on holiday shopping from a major retailer. Similar to last year's fall Prime Day, it will last for two days (October 6-7) and you can already find a large selection of early deals across Amazon's storefront, covering savings on tech, clothing, video games, groceries, and much, much more. Note: MacRumors is an affiliate partner with Amazon. When you click a link and make a purchase, we may receive a small payment, which helps us keep the site running. For our coverage, we're focusing on Apple and Apple-related discounts that can be purchased during the lead-up to this event on Amazon. As of today, this includes deals from popular accessory makers like Anker, Belkin, JBL, Jackery, and more. EARLY SAVINGS Amazon Prime Big Deal Days As is typical for Prime Day deals,",
+   "categories": [
+    "Deals",
+    "Featured",
+    "Prime Day"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro Colors Buyer's Guide: Which Should You Choose?",
+   "link": "https://www.macrumors.com/guide/iphone-18-pro-colors/",
+   "date": "2026-10-01T16:01:16+00:00",
+   "age_hours": 12.5,
+   "summary": "Apple's iPhone 18 Pro and ‌iPhone 18 Pro‌ Max models come in four distinct color options, so which should you choose? The ‌iPhone 18 Pro‌ models come in Black, Silver, Glacier, and Burgundy. The aluminum and glass backs are more closely matched than on the iPhone 17 Pro, although the different materials remain somewhat visible. You should also consider if you plan to use a case with your device and, if so, which one. The ‌iPhone 18 Pro‌'s large, full-width camera plateau stands out on most cases, exposing more of the device's color. Choosing a complimentary color should be your first priority. Burgundy Burgundy is the most distinct and expressive ‌iPhone 18 Pro‌ finish, and it is much darker than the ‌iPhone 17‌ Pro's equivalent Cosmic Orange. It looks closer to wine or plum than a vivid red. Burgundy is the standout shade in the ‌iPhone 18 Pro‌ lineup, designed to be bold and attention-",
+   "categories": [
+    "Buyer's Guide",
+    "Featured",
+    "iPhone 18 Pro"
+   ]
+  },
+  {
+   "source": "OpenAI",
+   "tier": "ai",
+   "title": "How Albertsons Companies is reimagining retail from the inside out",
+   "link": "https://openai.com/index/albertsons-reimagining-retail",
+   "date": "2026-10-01T16:00:00+00:00",
+   "age_hours": 12.5,
+   "summary": "Albertsons Cos. is using ChatGPT Enterprise and the OpenAI API to help teams work faster and make grocery shopping easier for millions of customers.",
+   "categories": [
+    "Company"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "One year later, Tesla and Musk still don’t have a good definition of ‘abundance’",
+   "link": "https://techcrunch.com/2026/10/01/one-year-later-tesla-and-musk-are-still-dont-have-a-good-definition-of-abundance/",
+   "date": "2026-10-01T15:50:10+00:00",
+   "age_hours": 12.7,
+   "summary": "The CEO promised to get more specific about his vision. But the details are still absent.",
+   "categories": [
+    "Transportation",
+    "Elon Musk",
+    "Tesla"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Google’s new Guided Vision feature can help you read the fine print",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision",
+   "date": "2026-10-01T15:47:51-04:00",
+   "age_hours": 8.8,
+   "summary": "Guided Vision is launching in Gemini Live on compatible Android devices today to use AI to give real-time audio descriptions of anything you point your phone's camera at. By sharing your camera in Gemini Live, you can have Google's AI help with things like reading small text, describing your surroundings, finding or identifying objects around […]",
+   "categories": [
+    "AI",
+    "Android",
+    "Google",
+    "News",
+    "Tech"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Amazon Kindle a prezzo shock: l’eBook reader più amato a meno di 90 euro",
+   "link": "https://www.dday.it/redazione/54108/amazon-kindle-in-offerta-lebook-reader-piu-amato-a-meno-di-90-euro",
+   "date": "2026-10-01T15:47:00+02:00",
+   "age_hours": 14.8,
+   "summary": "Scopri l’offerta Amazon sul Kindle, l’eReader più popolare a un prezzo davvero conveniente: migliaia di libri in un dispositivo compatto, sei settimane di autonomia e schermo antiriflesso. Non puoi lasciartelo sfuggire ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Cerchi un nuovo power bank? Su Amazon ci sono diverse offerte Belkin",
+   "link": "https://www.dday.it/redazione/58953/cerchi-un-nuovo-power-bank-su-amazon-ci-sono-diverse-offerte-belkin",
+   "date": "2026-10-01T15:44:00+02:00",
+   "age_hours": 14.8,
+   "summary": "Su Amazon sono disponibili diversi prodotti Belkin a prezzo scontato, tra cui power bank, caricabatterie wireless e accessori per AirTag. Ecco alcune delle offerte da tenere d'occhio ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "The Toshiba 65-inch ArtVision QLED TV just hit its lowest price since launch",
+   "link": "https://www.androidauthority.com/toshiba-65-inch-artvision-qled-tv-deal-3718087/",
+   "date": "2026-10-01T15:42:38+00:00",
+   "age_hours": 12.8,
+   "summary": "The Toshiba 65-inch ArtVision Fire TV drops to $1,098, its best price yet with QLED, 165Hz, and art-frame styling.",
+   "categories": [
+    "Deals",
+    "Smart TV"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Google Messages is having trouble sending media files over RCS",
+   "link": "https://www.androidauthority.com/google-messages-rcs-media-issue-3718038/",
+   "date": "2026-10-01T15:40:22+00:00",
+   "age_hours": 12.9,
+   "summary": "Google Messages is refusing to send media to other Android phones.",
+   "categories": [
+    "News",
+    "Google",
+    "Google Messages"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "HP’s MacBook Neo competitor is $699 with an OLED display and plenty of catches",
+   "link": "https://9to5google.com/2026/10/01/hp-omnibook-5-macbook-neo-competitor-699-oled-display-plenty-of-catches/",
+   "date": "2026-10-01T15:40:02+00:00",
+   "age_hours": 12.9,
+   "summary": "The PC market was caught flat-footed by Apple’s MacBook Neo launch earlier this year, and while that laptop’s aggressive pricing strategy has already been forced to adapt to market conditions, it’s only months later we’re seeing Windows-based rivals announce their own respective competitors . Today, it’s HP’s turn, with a brand-new OLED-equipped laptop set to start at that same $699 price point, but not without plenty of strings attached. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Deals: AirTag 2, Studio Display up to $300 off, MacBook Pro, Belkin 25W MagSafe charger lows, more",
+   "link": "https://9to5mac.com/2026/10/01/deals-airtag-2-studio-display-macbook-magsafe-chargers/",
+   "date": "2026-10-01T15:30:56+00:00",
+   "age_hours": 13.0,
+   "summary": "Joining the ongoing early fall Prime Day sale at Amazon and the ongoing all-time low on the single AirTag 2 listing, today’s 9to5Toys Lunch Break is headlined by the most affordable 2026 Studio Display models at up to $300 off straight from Apple refurb. And while this M5 Pro MacBook Pro at $500 off might be the best early fall Prime Day deal yet, the Belkin holiday deals are now live from $13 with its latest 25W MagSafe chargers now at new all-time lows , alongside the official Eve fall Prime Day deals at up to 38% off – Matter/HomeKit switches, plugs, outlets, and more from $30 . We also have an extra 10% off already discounted official Apple USB-C, Thunderbolt, and MagSafe cables today from $7.50 each . Head below for a closer look. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "As US relations fray, Canada gets serious about its own launch industry",
+   "link": "https://arstechnica.com/space/2026/10/as-us-relations-fray-canada-gets-serious-about-its-own-launch-industry/",
+   "date": "2026-10-01T15:30:49+00:00",
+   "age_hours": 13.0,
+   "summary": "The Canada Rocket Company gets serious about medium-lift launch.",
+   "categories": [
+    "Space",
+    "Canada",
+    "canada rocket company",
+    "launch",
+    "space",
+    "united states"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple TV just added a bunch of free classic movies, here’s everything new",
+   "link": "https://9to5mac.com/2026/10/01/apple-tv-just-added-a-bunch-of-free-classic-movies-heres-everything-new/",
+   "date": "2026-10-01T15:30:46+00:00",
+   "age_hours": 13.0,
+   "summary": "Apple TV keeps adding new batches of classic movies to kick off each month, with 13 fresh films available free for subscribers today. Here’s everything new. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Polestar Charge, nuovi piani di abbonamento. Con Plus e Pro risparmio fino al 30%",
+   "link": "https://www.dmove.it/news/polestar-charge-nuovi-piani-di-abbonamento-con-plus-e-pro-risparmio-fino-al-30",
+   "date": "2026-10-01T15:28:00+02:00",
+   "age_hours": 15.1,
+   "summary": "Il servizio di ricarica pubblica di Polestar ha una copertura più estesa e ora prevede due abbonamenti con sconti fino al 30% sulle reti rapide, Ionity compresa ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Poco C95 Pro launches with a 7,500mAh battery and 6.9 inch display",
+   "link": "https://www.gsmarena.com/poco_c95_pro_launches_with_a_7500mah_battery_and_69_inch_display-news-74856.php",
+   "date": "2026-10-01T15:26:02+02:00",
+   "age_hours": 15.1,
+   "summary": "Xiaomi has launched the Poco C95 Pro in select regions globally, including the EU and Singapore. The key highlights of the Poco C95 Pro include a 7,500mAh battery with support for 45W wired charging and a large 6.9 inch display with a 120Hz refresh rate and Gorilla Glass 7i protection. The handset is powered by the MediaTek Helio G91 Ultra chipset, paired with up to 8GB of LPDDR4X RAM and 256GB of eMMC 5.1 storage. For photography, the Poco C95 Pro features a 50MP primary rear camera alongside an auxiliary lens. An 8MP front camera handles selfies and video calls. Other...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Android Central ‘will continue’ despite laying off its staff",
+   "link": "https://www.theverge.com/tech/1003735/android-central-layoffs",
+   "date": "2026-10-01T15:20:29-04:00",
+   "age_hours": 9.2,
+   "summary": "Android Central, a blog focused on the Android ecosystem, laid off its staff yesterday, but owner Future confirms to The Verge that the site will continue publishing. Yesterday, four of the six staffers on Android Central's staff page posted publicly about the layoffs, including Shruti Shekar, Derrek Lee, Harish Jonnalagadda, and Nicholas Sutrich, and former […]",
+   "categories": [
+    "Android",
+    "Google",
+    "Tech"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What Does Foam Do In Keyboards?",
+   "link": "https://www.bgr.com/2270716/what-foam-does-mechanical-keyboard/",
+   "date": "2026-10-01T15:17:00+00:00",
+   "age_hours": 13.3,
+   "summary": "Mechanical keyboards can be acoustically pleasing, but their plastic or aluminum case can act like a drum, sometimes making an expensive keyboard sound cheap.",
+   "categories": [
+    "Accessories",
+    "Computers"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Brian Chesky interview: AI agents need their own operating system",
+   "link": "https://techcrunch.com/2026/10/01/brian-chesky-interview-ai-agents-need-their-own-operating-system/",
+   "date": "2026-10-01T15:12:00+00:00",
+   "age_hours": 13.3,
+   "summary": "Brian Chesky on making Airbnb agent-friendly, the state of consumer AI, and why the world needs an AI-native operating system.",
+   "categories": [
+    "AI",
+    "Airbnb",
+    "brian chesky"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "DJI Osmo Pocket 3 in offerta su Amazon: la videocamera tascabile al prezzo più basso di sempre",
+   "link": "https://www.dday.it/redazione/58901/dji-osmo-pocket-3-in-offerta-su-amazon-la-videocamera-tascabile-ora-costa-meno",
+   "date": "2026-10-01T15:10:00+02:00",
+   "age_hours": 15.4,
+   "summary": "La compatta di DJI con sensore da 1\", registra in 4K a 120 fps e offre stabilizzazione a 3 assi: la DJI Osmo Pocket 3 è ora in offerta su Amazon ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "New MacBook Pro redesign gets exciting launch timing update",
+   "link": "https://9to5mac.com/2026/10/01/new-macbook-pro-redesign-gets-exciting-launch-timing-update/",
+   "date": "2026-10-01T15:08:29+00:00",
+   "age_hours": 13.4,
+   "summary": "Apple reportedly plans to launch new Home products on October 13. And according to Mark Gurman, it sounds like the rumored MacBook Pro redesign will arrive shortly after. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Steam Deck 2: Is AMD Gainsborough the chip Valve’s been waiting for?",
+   "link": "https://www.theverge.com/games/1003593/steam-deck-2-is-amd-gainsborough-the-chip-valves-been-waiting-for",
+   "date": "2026-10-01T14:52:58-04:00",
+   "age_hours": 9.7,
+   "summary": "The Steam Deck is four and a half years old, and handheld gamers are eagerly awaiting a Steam Deck 2 - but Valve has consistently said it needs a new chip with a \"generational leap\" in performance and efficiency before building the sequel. There's some reason to believe that chip has now broken cover: AMD […]",
+   "categories": [
+    "AMD",
+    "Gaming",
+    "News",
+    "PC Gaming",
+    "Tech"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Su ho. Mobile si possono comprare i numeri facili da ricordare. Ma costano fino a 100 euro",
+   "link": "https://www.dday.it/redazione/58951/su-ho-mobile-si-possono-comprare-i-numeri-facili-da-ricordare-ma-costano-fino-a-100-euro",
+   "date": "2026-10-01T14:48:00+02:00",
+   "age_hours": 15.7,
+   "summary": "Quanto si è disposti a spendere per riservare un numero che sia facile da ricordare? ho. Mobile ha le idee piuttosto chiare in tal senso ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "This Budget Android Phone From 2025 Is Still Among The Best Going Into 2027",
+   "link": "https://www.bgr.com/2271143/moto-g-stylus-best-budget-android-phone-going-into-2027/",
+   "date": "2026-10-01T14:47:00+00:00",
+   "age_hours": 13.8,
+   "summary": "Flagship premium phones get plenty of advertisements and attention, but not everyone can afford one. Fortunately, there are good budget options too.",
+   "categories": [
+    "Apps & Software",
+    "Security",
+    "Android"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Il garage si apre con iPhone e Android: SwitchBot a 29,99 euro",
+   "link": "https://www.macitynet.it/il-garage-si-apre-con-iphone-e-android-switchbot-a-2999-euro/",
+   "date": "2026-10-01T14:29:02+00:00",
+   "age_hours": 14.1,
+   "summary": "SwitchBot aggiunge il controllo da iPhone e Android al garage motorizzato: apertura a distanza, notifiche e accessi condivisi a 29,99 euro. Funziona senza hub aggiuntivo, ma richiede un apriporta compatibile e copertura Wi-Fi nel garage per il controllo fuori casa - su macitynet.it Il garage si apre con iPhone e Android: SwitchBot a 29,99 euro",
+   "categories": [
+    "Offerte",
+    "Offerte Hardware",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "iPadOS 27.2: Two new features coming soon to your iPad",
+   "link": "https://9to5mac.com/2026/10/01/ipados-27-2-two-new-features-coming-soon-to-your-ipad/",
+   "date": "2026-10-01T14:27:32+00:00",
+   "age_hours": 14.1,
+   "summary": "iPadOS 27.2 is coming later this month as a new iPad software update, here are two new features it will bring. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Belkin’s slim 10K magnetic battery pack gets a solid early Prime Day price drop",
+   "link": "https://www.androidauthority.com/belkin-qi2-15w-slim-magnetic-power-bank-deal-3717087/",
+   "date": "2026-10-01T14:27:05+00:00",
+   "age_hours": 14.1,
+   "summary": "Belkin's 10,000mAh Qi2 magnetic power bank drops to $59.99 on Amazon, its best price we've seen this year.",
+   "categories": [
+    "Deals",
+    "Belkin",
+    "Power bank"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Anthropic brings Claude to civilian agencies as its fight with the Pentagon drags on",
+   "link": "https://the-decoder.com/anthropic-brings-claude-to-civilian-agencies-as-its-fight-with-the-pentagon-drags-on/",
+   "date": "2026-10-01T14:26:54+00:00",
+   "age_hours": 14.1,
+   "summary": "Anthropic is now offering Claude for Government to US federal and state agencies. The platform runs in a FedRAMP High environment, the strictest US security level for cloud services. Agencies get the same features as enterprise customers, pay for what they use with fixed spending caps, and can set budgets for each department. The Pentagon won't be using it because it still classifies Anthropic as a supply chain risk. The article Anthropic brings Claude to civilian agencies as its fight with the Pentagon drags on appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "AI and safety",
+    "Claude",
+    "USA"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "MacBook Pro With OLED Touch Screen Rumored to Launch in October or November",
+   "link": "https://www.macrumors.com/2026/10/01/oled-macbook-pro-release-date/",
+   "date": "2026-10-01T14:24:07+00:00",
+   "age_hours": 14.1,
+   "summary": "On his first-ever Power On podcast today, Bloomberg 's Mark Gurman said that he believes Apple will introduce its long-rumored 14-inch and 16-inch MacBook Pro models with touch-enabled OLED displays in October or November this year. \"Apple, I believe, will introduce its first touchscreen MacBook Pro this fall, as early as October,\" he said. \"It could slip to November, but as early as October.\" Apple is testing the laptops with macOS 27.2, which is currently in beta, he added. The software update is expected to be released towards the end of October, so the touch-screen MacBook Pro models might be announced later this month. Other rumored features beyond an OLED touch screen include Apple's existing M5 Pro and M5 Max chips, a thinner design, and a Dynamic Island instead of a notch. A few years ago, Gurman reported that Apple was looking into the idea of cellular Macs that would be able to",
+   "categories": [
+    "Featured",
+    "MacBook Pro",
+    "MacBook Ultra",
+    "Mark Gurman",
+    "OLED",
+    "Power On Podcast"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "RedMagic 12 Pro+ runs Geekbench, confirms its chipset and RAM amount",
+   "link": "https://www.gsmarena.com/redmagic_12_pro_runs_geekbench_confirms_its_chipset_and_ram_amount-news-74855.php",
+   "date": "2026-10-01T14:23:03+02:00",
+   "age_hours": 16.2,
+   "summary": "RedMagic started teasing its next flagship smartphone, the 12 Pro+, last month. The device will become official on October 15. Ahead of that, someone in possession of a prototype has decided to run Geekbench on it. As always, that has resulted in a listing in the benchmark’s online database. As you can see, it managed a single-core score of 3,354 and a multi-core score of 11,448 in Geekbench 7.1.0 for Android. The phone is powered by the Snapdragon 8 Elite Extreme Gen 6 chipset, paired with 16GB of RAM in the specific prototype which ran the benchmark. Of course, more RAM configurations...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Peugeot e-208 GTi è un’elettrica per chi si vuole davvero divertire al volante",
+   "link": "https://www.dmove.it/reportage/peugeot-e-208-gti-e-unelettrica-per-chi-si-vuole-davvero-divertire-al-volante",
+   "date": "2026-10-01T14:22:00+02:00",
+   "age_hours": 16.2,
+   "summary": "Peugeot rievoca lo spirito della mitica 205 GTi con una nuova versione di e-208 con motore elettrico da 281 cavalli con elettronica motorsport e nuovo assetto sportivo, per una dinamica di guida che esalta il divertimento su strada ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Sci-Fi Anime From The '80s That Deserve A Modern Reboot",
+   "link": "https://www.bgr.com/2272406/80s-sci-fi-anime-deserve-modern-reboot/",
+   "date": "2026-10-01T14:17:00+00:00",
+   "age_hours": 14.3,
+   "summary": "The '80s were a defining decade for anime that expanded the horizons of the sci-fi genre. Here are some titles that could find a new audience if remade.",
+   "categories": [
+    "TV",
+    "Movies"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Corsair’s Harpoon v2 Wireless gaming mouse is down to $49.99 with tri-mode connectivity",
+   "link": "https://www.androidauthority.com/corsair-harpoon-v2-wireless-gaming-mouse-deal-3717130/",
+   "date": "2026-10-01T14:03:39+00:00",
+   "age_hours": 14.5,
+   "summary": "This Prime Day offer cuts 29% off the Corsair Harpoon v2 Wireless, a lightweight gaming mouse with 3 ways to connect.",
+   "categories": [
+    "Deals",
+    "Gaming"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "9 Of The Best Noise-Cancelling Headphones & Earbuds For Frequent Flyers",
+   "link": "https://www.bgr.com/2270211/best-noise-cancelling-headphones-earbuds-for-flying/",
+   "date": "2026-10-01T14:02:00+00:00",
+   "age_hours": 14.5,
+   "summary": "Planes, trains, and automobiles can be noisy, but technology can help quiet them. Here are nine of the best noise-cancelling headphones for frequent flyers.",
+   "categories": [
+    "Audio"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "6 of the best new Android apps you need to try this October",
+   "link": "https://www.androidauthority.com/best-new-android-apps-games-october-2026-3717818/",
+   "date": "2026-10-01T14:00:44+00:00",
+   "age_hours": 14.5,
+   "summary": "This month's edition includes a useful AI gallery search tool, an new internet radio streamer, and a bonus app!",
+   "categories": [
+    "Software lists",
+    "Android",
+    "Android apps"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Photon held a funeral for mobile apps. Now it has $4.5M to help replace them with agents.",
+   "link": "https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/",
+   "date": "2026-10-01T14:00:00+00:00",
+   "age_hours": 14.5,
+   "summary": "The startup helps developers build AI agents that work over iMessage, SMS/RCS, email, and other messaging platforms. It's a bet that consumers will increasingly use agents instead of downloading apps.",
+   "categories": [
+    "AI",
+    "Startups",
+    "TC",
+    "AI agents",
+    "Photon"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Arrivano in Italia POCO X8 e POCO C95 Pro",
+   "link": "https://www.macitynet.it/poco-x8-e-poco-c95-pro/",
+   "date": "2026-10-01T13:59:09+00:00",
+   "age_hours": 14.6,
+   "summary": "Arrivano nel nostro Paese POCO X8, il campione di resistenza progettato per superare le 24 ore di autonomia, e POCO C95 Pro - su macitynet.it Arrivano in Italia POCO X8 e POCO C95 Pro",
+   "categories": [
+    "Android World",
+    "Poco"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "RAM, Micron avverte: la carenza di memoria potrebbe durare oltre il 2028",
+   "link": "https://www.dday.it/redazione/58950/ram-micron-avverte-la-carenza-di-memoria-potrebbe-durare-oltre-il-2028",
+   "date": "2026-10-01T13:50:00+02:00",
+   "age_hours": 16.7,
+   "summary": "La domanda continuerà a superare l’offerta almeno per i prossimi due anni, secondo il produttore ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple's All-New Home Hub Rumored to Launch in These Four Colors",
+   "link": "https://www.macrumors.com/2026/10/01/apple-home-hub-four-colors-rumored/",
+   "date": "2026-10-01T13:48:42+00:00",
+   "age_hours": 14.7,
+   "summary": "Apple reportedly plans to unveil its long-rumored smart home hub on Tuesday, October 13 , and a proven leaker known as \"pdfu\" has revealed that the device may be available in up to four finishes: Silver, Space Gray, Starlight, and Rose Pink. MacRumors contributor Aaron Perris uncovered the same four colors within the code for the macOS 26.7 Release Candidate back in August. On the home hub, users will be able to create a Photo Face , and the leaker said Apple's preview art for this will correspond with the color of the device. Apple's Home device may come in four finishes: Silver, Space Gray, Starlight, and Rose Pink. The Photo Face setup screen picks its preview art based on the hardware color the device reports. The device's housing may also show in setup screens once device assets are available.... https://t.co/8h4iF9OEsG pic.twitter.com/oRRTijUdkO — pdfu (@itspdfu) October 1, 2026 Ea",
+   "categories": [
+    "Featured",
+    "Apple Command Center",
+    "pdfu"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Amazon slashes Belkin’s 16-in-1 triple display USB-C dock to its best price this year",
+   "link": "https://www.androidauthority.com/belkin-16-in-1-triple-display-usb-c-dock-deal-3717074/",
+   "date": "2026-10-01T13:44:13+00:00",
+   "age_hours": 14.8,
+   "summary": "Save 20% on Belkin’s 16-in-1 Triple Display USB-C Dock, a 16-port setup with triple 4K support and 2.5Gb Ethernet.",
+   "categories": [
+    "Deals",
+    "Belkin"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "AppyDeals: Ecco le migliori app e giochi scontati o diventati Gratis per poco tempo! – 1 Ottobre 2026",
+   "link": "https://www.ispazio.net/2270843/appydeals-app-giochi-gratis-scontati-oggi",
+   "date": "2026-10-01T13:30:00+00:00",
+   "age_hours": 15.0,
+   "summary": "AppyDeals: Ecco le migliori app e giochi scontati o diventati Gratis per poco tempo! – 1 Ottobre 2026 Bentrovati in un nuovo appuntamento con AppyDeals, il servizio di iSpazio in cui vi segnaliamo le migliori applicazioni dell’App Store che vengono scontate o rese gratuite per un periodo di tempo limitato. L’obiettivo è quello di farvi conoscere del software fresco, senza pubblicità e senza limitazioni sfruttando le promozioni che avvengono ogni giorno in App […]",
+   "categories": [
+    "AppyDeals",
+    "app gratis",
+    "app in offerta",
+    "app in sconto",
+    "giochi gratis",
+    "giochi in offerta",
+    "giochi in sconto",
+    "ispazio appydeals"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Come aggiungere le tue fidelity card direttamente in Wallet con iOS 27",
+   "link": "https://www.macitynet.it/come-aggiungere-le-tue-fidelity-card-direttamente-in-wallet-con-ios-27/",
+   "date": "2026-10-01T13:29:42+00:00",
+   "age_hours": 15.1,
+   "summary": "Con iOS 27 Apple permette di creare direttamente in Wallet tessere fedeltà e altri pass basati su codice a barre. La procedura è semplice, anche se i modelli disponibili sono ancora pochi e piuttosto rigidi. - su macitynet.it Come aggiungere le tue fidelity card direttamente in Wallet con iOS 27",
+   "categories": [
+    "Tutorial e FAQ",
+    "Apple Wallet",
+    "Faq e Tutorial",
+    "iOS"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Samsung unveils Galaxy Buds On, its first clip-on earphones",
+   "link": "https://www.gsmarena.com/samsung_unveils_galaxy_buds_on_its_first_clipon_earphones-news-74853.php",
+   "date": "2026-10-01T13:24:02+02:00",
+   "age_hours": 17.1,
+   "summary": "Just a day after leaked images of Samsung’s first clip-on earphones surfaced online, the company has officially unveiled the Galaxy Buds On in South Korea. The Galaxy Buds On feature a clip type design that is claimed to be comfortable for extended periods of use, including during outdoor activities such as running. The open design also allows users to remain aware of their surroundings. The earphones support touch controls for music playback and calls, with sensors positioned at the back of the buds. They are powered by Qualcomm’s Snapdragon S7 Gen 1 chipset and a Class D...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "‘HomePad’ could launch in these four colors, per leaker",
+   "link": "https://9to5mac.com/2026/10/01/homepad-could-launch-in-these-four-colors-per-leaker/",
+   "date": "2026-10-01T13:20:29+00:00",
+   "age_hours": 15.2,
+   "summary": "Apple’s new smart home hub, commonly called ‘HomePad,’ is reportedly launching October 13. And a new leak reveals the colors it might launch in. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Security startup finds more than 13,000 internal company screenshots that AI agents uploaded publicly",
+   "link": "https://the-decoder.com/security-startup-finds-more-than-13000-internal-company-screenshots-that-ai-agents-uploaded-publicly/",
+   "date": "2026-10-01T13:19:33+00:00",
+   "age_hours": 15.2,
+   "summary": "AI agents quietly posted more than 13,000 internal screenshots from 343 organizations, including Fortune 500 companies, to public GitHub repos. Because the platform didn't offer a protected way to upload them, the agents came up with a workaround on their own. The exposed images showed customer data, login credentials, and details about unreleased products. The article Security startup finds more than 13,000 internal company screenshots that AI agents uploaded publicly appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "AI and safety",
+    "Github"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "You've Probably Been Using Your iPhone's Hotspot Wrong - Here's Why",
+   "link": "https://www.bgr.com/2272041/using-iphone-hotspot-wrong-why/",
+   "date": "2026-10-01T13:17:00+00:00",
+   "age_hours": 15.3,
+   "summary": "Your iPhone's hotspot can be a lifesaver when access to an internet connection is difficult, but there are a few key tips worth knowing when using it.",
+   "categories": [
+    "iPhone"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Judge dismisses antitrust lawsuits over Google’s AI Overviews",
+   "link": "https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed",
+   "date": "2026-10-01T13:12:21-04:00",
+   "age_hours": 11.3,
+   "summary": "A federal judge has dismissed a pair of antitrust lawsuits filed by Chegg and Rolling Stone parent company Penske Media Corporation, which accused Google of driving away web traffic with its AI-powered search features, as reported earlier by Reuters. US District Judge Amit Mehta takes Google's side in a ruling on Wednesday, writing that PMC […]",
+   "categories": [
+    "AI",
+    "Antitrust",
+    "Google",
+    "Law",
+    "Policy",
+    "Tech"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Here’s everything new Apple TV has coming in October",
+   "link": "https://9to5mac.com/2026/10/01/heres-everything-new-apple-tv-has-coming-in-october-2026/",
+   "date": "2026-10-01T13:03:20+00:00",
+   "age_hours": 15.5,
+   "summary": "Apple TV has a strong current lineup headlined by hits like Slow Horses , Ted Lasso , Dark Matter , and new Matthew McConaughey comedy Brothers . But there’s a lot more coming soon. Here’s everything new Apple TV has premiering in October. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "The Galaxy S26 price increase we were dreading is here",
+   "link": "https://www.androidauthority.com/samsung-galaxy-s26-series-price-increase-3717926/",
+   "date": "2026-10-01T13:00:32+00:00",
+   "age_hours": 15.5,
+   "summary": "All models of the Galaxy S26 series are now pricier by $100, while the 1TB Galaxy S26 Ultra sees an even larger increase.",
+   "categories": [
+    "News",
+    "Samsung",
+    "Samsung Galaxy S26"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Hearing tech startup Legato launches its AI hearing glasses",
+   "link": "https://techcrunch.com/2026/10/01/hearing-tech-startup-legato-launches-its-ai-hearing-glasses/",
+   "date": "2026-10-01T13:00:00+00:00",
+   "age_hours": 15.5,
+   "summary": "The glasses stem from the startup’s goal of making hearing care more accessible by addressing the cost, comfort, and stigma associated with traditional hearing aids.",
+   "categories": [
+    "AI",
+    "Gadgets",
+    "Hardware",
+    "hearing health care",
+    "smartglasses"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "Audible’s new features let you explore book worlds — and use AI to talk to characters",
+   "link": "https://techcrunch.com/2026/10/01/audibles-new-features-let-you-explore-book-worlds-and-even-talk-to-characters/",
+   "date": "2026-10-01T13:00:00+00:00",
+   "age_hours": 15.5,
+   "summary": "Audible is rolling out new features that help listeners keep track of characters, explore places and imagery mentioned in books, and even interact with characters using generative AI.",
+   "categories": [
+    "Apps",
+    "Media & Entertainment",
+    "Audible",
+    "audiobooks"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "The new Kindle ditches the raised bezel in a push toward a smaller, lighter e-reader",
+   "link": "https://techcrunch.com/2026/10/01/the-new-kindle-ditches-the-bezel-in-a-push-toward-a-smaller-lighter-e-reader/",
+   "date": "2026-10-01T13:00:00+00:00",
+   "age_hours": 15.5,
+   "summary": "The new Kindle lineup features its lightest and thinnest designs yet, with a sleek, front-flush display that eliminates bezels for good.",
+   "categories": [
+    "Gadgets",
+    "Hardware",
+    "e-reader",
+    "Kindle"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "AI beats Stratego's greatest player, ending one of the last human strongholds in board games",
+   "link": "https://the-decoder.com/ai-beats-strategos-greatest-player-ending-one-of-the-last-human-strongholds-in-board-games/",
+   "date": "2026-10-01T12:58:02+00:00",
+   "age_hours": 15.6,
+   "summary": "The AI system Ataraxos has decisively beaten the best Stratego player of all time. The board game is a tough test for AI because both sides set up their pieces face down. Google Deepmind fell short in 2023 despite a multimillion-dollar budget. Researchers from Carnegie Mellon, NYU, Stanford, and MIT built Ataraxos for less than $8,000. The article AI beats Stratego's greatest player, ending one of the last human strongholds in board games appeared first on The Decoder .",
+   "categories": [
+    "AI research",
+    "Artificial Intelligence",
+    "AI in games",
+    "AI training",
+    "Reinforcement Learning"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Sony brings AI graphics upscaling to the regular PS5",
+   "link": "https://www.theverge.com/games/1003549/sony-ps5-quick-spectral-super-resolution-qssr",
+   "date": "2026-10-01T12:53:39-04:00",
+   "age_hours": 11.7,
+   "summary": "Sony is launching a new AI upscaling technology specifically for the regular PS5. The new tech, called Quick Spectral Super Resolution (QSSR), is a \"new performance tier of AI upscaling\" that's a result of Sony's Project Amethyst work with AMD, according to a blog post. Sony says that PlayStation Spectral Super Resolution (PSSR), which is […]",
+   "categories": [
+    "Gaming",
+    "News",
+    "PlayStation"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Xbox non è in vendita. Microsoft taglia, accorpa e prepara il futuro della divisione gaming",
+   "link": "https://www.macitynet.it/xbox-non-e-vendita/",
+   "date": "2026-10-01T12:44:12+00:00",
+   "age_hours": 15.8,
+   "summary": "Asha Sharma smentisce le ipotesi di vendita mentre Microsoft riduce gli studi, riorganizza Xbox e prepara Project Helix. - su macitynet.it Xbox non è in vendita. Microsoft taglia, accorpa e prepara il futuro della divisione gaming",
+   "categories": [
+    "Finanza e Mercato",
+    "Giochi e Console",
+    "Microsoft",
+    "XBox"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro Aperture Control Goes Fully Manual in Halide 3.2",
+   "link": "https://www.macrumors.com/2026/10/01/iphone-18-pro-aperture-control-fully-manual-halide/",
+   "date": "2026-10-01T12:39:41+00:00",
+   "age_hours": 15.9,
+   "summary": "Award-winning camera app Halide Mark III has been updated to version 3.2, bringing dedicated support for iPhone 18 Pro by broadening user control over the device's new variable aperture camera system. Apple's stock Camera app lets iPhone 18 Pro owners choose from a four-stop variable aperture ranging from ƒ/1.48 to ƒ/4.0, delivering around 50 percent better low-light performance and giving users more optical control over depth of field. Halide 3.2 does away with that four-stop limitation and instead lets you select any ƒ-stop setting within the camera's full range. There are two styles of aperture control in the app. The first is Aperture Priority mode, where you can set the ƒ-stop and the app handles the shutter speed and ISO to properly expose the shot. The other style is Manual mode, which gives users full control over all three settings. This includes ISO settings – something that Ap",
+   "categories": [
+    "iPhone 18 Pro",
+    "Halide"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Promo energia, arriva anche Fastweb + Vodafone: fino a 200 euro di risparmio all’anno sulla luce",
+   "link": "https://www.dday.it/redazione/58948/promo-energia-arriva-anche-fastweb-vodafone-fino-a-200-euro-di-risparmio-allanno-sulla-luce",
+   "date": "2026-10-01T12:35:00+02:00",
+   "age_hours": 18.0,
+   "summary": "Fastweb + Vodafone entra nella corsa alle promo energia con una nuova tariffa luce disponibile dal 10 al 31 ottobre. Il risparmio dichiarato arriva fino a 200 euro annui ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "The Huawei Mate 90 Pro brings a dual-layer OLED and Kirin 9035, Mate 90 gets upgraded tele camera",
+   "link": "https://www.gsmarena.com/the_huawei_mate_90_pro_brings_a_duallayer_oled_and_kirin_9035_mate_90_gets_upgraded_tele_camera-news-74852.php",
+   "date": "2026-10-01T12:23:02+02:00",
+   "age_hours": 18.2,
+   "summary": "Huawei is launching its next generation of slab flagships – the Mate 90 RS is king of the hill and you can read more about it here and about the Mate 90 Pro Max here. In this post, we’ll go over the new Huawei Mate 90 and Mate 90 Pro – with 6.75” displays, they are smaller than the RS and Pro Max (which have 6.9” displays), but they are not small. What all four have in common is new Huawei-developed tech. Huawei Mate 90 Pro The Huawei Mate 90 Pro features a 6.75” LTPO OLED display with 1280p+ resolution and 1-120Hz refresh rate. This sounds similar to its predecessor but the new model...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Android’s controversial new developer verification rules are officially here",
+   "link": "https://www.androidauthority.com/android-sideloading-developer-verification-first-wave-rollout-3717921/",
+   "date": "2026-10-01T12:21:24+00:00",
+   "age_hours": 16.2,
+   "summary": "Google’s developer verification rules have reached their first Android users.",
+   "categories": [
+    "News",
+    "Android",
+    "Android apps",
+    "Google"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "Are AirPods More Likely To Damage Your Hearing Than Wired Headphones?",
+   "link": "https://www.bgr.com/2270816/are-airpods-more-harmful-wired-headphones/",
+   "date": "2026-10-01T12:17:00+00:00",
+   "age_hours": 16.3,
+   "summary": "AirPods can be safe to use, but how you wear them, where you listen, and how high you set the volume can all influence your risk of hearing damage.",
+   "categories": [
+    "Audio"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "The iPhone 18 Pro is selling well in China for three reasons",
+   "link": "https://9to5mac.com/2026/10/01/the-iphone-18-pro-is-selling-well-in-china-for-three-reasons/",
+   "date": "2026-10-01T12:10:57+00:00",
+   "age_hours": 16.4,
+   "summary": "A new market intelligence report says that the iPhone 18 Pro and Pro Max are selling well in China , making Apple the best-selling brand in the country during the launch week. Counterpoint Research has said there are three reasons for the popularity of Apple’s latest iPhone … more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Can VR glasses save VR?",
+   "link": "https://www.theverge.com/tech/1003034/meta-vr-glasses-vs-augmented-reality",
+   "date": "2026-10-01T12:10:32-04:00",
+   "age_hours": 12.4,
+   "summary": "I'm pretty sure I won't be buying the $1,299 Meta VR Glasses. That's too rich for my blood in today's economy, and my feelings about Meta are… conflicted. But I want you to understand that Meta just changed the game. We've had glasses, but we've never had glasses like this. The Meta VR Glasses are […]",
+   "categories": [
+    "Column",
+    "Gaming",
+    "Report",
+    "Tech",
+    "Virtual Reality"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Android could soon let you trigger Emergency SOS without touching your phone at all",
+   "link": "https://www.androidauthority.com/android-voice-activated-emergency-sos-personal-safety-3717858/",
+   "date": "2026-10-01T12:08:21+00:00",
+   "age_hours": 16.4,
+   "summary": "Google's Personal Safety app could soon let you trigger an SOS using your voice",
+   "categories": [
+    "Authority Insights",
+    "News",
+    "Android"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "OpenAI says it stopped a campaign to steal its models' reasoning, but the trick still worked on Azure",
+   "link": "https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure/",
+   "date": "2026-10-01T12:05:49+00:00",
+   "age_hours": 16.5,
+   "summary": "OpenAI says it stopped a coordinated campaign in which more than 15,000 accounts tried to copy the hidden reasoning of its models. The company ties part of the activity to people connected to Moonshot AI. But researchers found that the same attack kept working on Microsoft Azure for weeks, even against the new GPT-6 Astra. So far, OpenAI's protections don't seem to extend to the cloud platforms that also sell its models. The article OpenAI says it stopped a campaign to steal its models' reasoning, but the trick still worked on Azure appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "AI training",
+    "China",
+    "OpenAI",
+    "USA"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Microsoft’s Office and Teams chief is leaving",
+   "link": "https://www.theverge.com/news/1003515/microsoft-ryan-roslansky-office-teams-linkedin-leaving",
+   "date": "2026-10-01T12:02:37-04:00",
+   "age_hours": 12.5,
+   "summary": "After nearly 18 years at LinkedIn and Microsoft, Ryan Roslansky is leaving the company. Roslansky, who until recently was the CEO of LinkedIn, was promoted to the head of Office last year and then took control of Microsoft Teams earlier this year. Roslansky's departure has triggered another leadership shuffle inside Microsoft. \"Ryan leaves the organization […]",
+   "categories": [
+    "Microsoft",
+    "News",
+    "Tech"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Inside Microsoft’s big Copilot rethink",
+   "link": "https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad",
+   "date": "2026-10-01T12:00:00-04:00",
+   "age_hours": 12.5,
+   "summary": "Last week, Microsoft CEO Satya Nadella hosted an intimate, invite-only event for leaders from some of its key enterprise customers. Instead of a flashy media event, Nadella outlined the future of Copilot directly to the customers Microsoft really cares about, pitching its latest rethink of the AI assistant as the \"OS for work.\" Microsoft is […]",
+   "categories": [
+    "Microsoft",
+    "Notepad",
+    "Report",
+    "Tech"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Satlyt, founded by a former Google and SpaceX product manager, raises $8M to run AI on satellites",
+   "link": "https://techcrunch.com/2026/10/01/satlyt-founded-by-a-former-google-and-spacex-product-manager-raises-8m-to-run-ai-on-satellites/",
+   "date": "2026-10-01T12:00:00+00:00",
+   "age_hours": 16.5,
+   "summary": "Satlyt wants to be the Android of orbital computing, offering open software that works on many companies' satellites, versus SpaceX's closed, all-in-one iPhone-style approach.",
+   "categories": [
+    "AI",
+    "Space",
+    "Exclusive",
+    "Satellites",
+    "satlyt",
+    "TechCrunch Disrupt"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple Stores Receive 'Do Not Open' Boxes Ahead of Smart Home Products Launch",
+   "link": "https://www.macrumors.com/2026/10/01/apple-stores-receive-do-not-open-boxes/",
+   "date": "2026-10-01T11:59:27+00:00",
+   "age_hours": 16.6,
+   "summary": "Apple Stores around the world are preparing to install new product presentations starting on Thursday, October 8. Apple retail stores received confidential boxes earlier this week featuring \"Do Not Open Until October 8\" stickers on them. They are believed to contain new visual merchandise, which enables workers to update labels, graphics, and product layouts in stores around the release of new products. MacRumors received a tip-off about the boxes earlier this week, which it has now independently verified. There is a possibility that the materials relate to the iPhone Duo , but it seems more likely given their confidentiality and timing that they relate to the rumored launch of Apple's smart home hub , alongside a new Apple TV 4K, and the HomePod mini 2. Yesterday, Bloomberg 's Mark Gurman said that Apple plans to introduce these three long-awaited new devices on Tuesday, October 13 . If",
+   "categories": [
+    "Apple TV",
+    "Featured",
+    "HomePod mini",
+    "Apple Command Center",
+    "Apple Smart Home Display",
+    "Retail"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Elon Musk al Pentagono: AI, droni e robot per le guerre del futuro",
+   "link": "https://www.macitynet.it/project-meridian/",
+   "date": "2026-10-01T11:59:05+00:00",
+   "age_hours": 16.6,
+   "summary": "Project Meridian affida a Elon Musk, Palmer Luckey e Newt Gingrich 120 giorni per individuare le tecnologie che potrebbero cambiare i conflitti, dall’intelligenza artificiale ai sistemi autonomi fino allo spazio. - su macitynet.it Elon Musk al Pentagono: AI, droni e robot per le guerre del futuro",
+   "categories": [
+    "AI - Intelligenza Artificiale",
+    "Elon Musk",
+    "Intelligenza Artificiale"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Lo “sconto del 30%” di Eni Plenitude su luce e gas? In realtà nasce da un prezzo di listino aumentato durante la notte",
+   "link": "https://www.dday.it/redazione/58944/lo-sconto-del-30-di-eniplenitude-su-luce-e-gas-in-realta-nasce-da-un-prezzo-di-listino-aumentato-durante-la-notte",
+   "date": "2026-10-01T11:46:00+02:00",
+   "age_hours": 18.8,
+   "summary": "Eni annuncia il 30% di sconto su luce e gas, ma rispetto al giorno prima il prezzo finale cala meno del 2%. A crescere davvero è il listino usato come riferimento ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "This fake Mac Zoom installer has a sneaky way to bypass Gatekeeper",
+   "link": "https://9to5mac.com/2026/10/01/this-fake-mac-zoom-installer-has-a-sneaky-way-to-bypass-gatekeeper/",
+   "date": "2026-10-01T11:39:20+00:00",
+   "age_hours": 16.9,
+   "summary": "Cybersecurity company Jamf has discovered a fake Mac installer for the videoconferencing app Zoom that uses a sneaky way to bypass Apple’s Gatekeeper protection against malware . The malware does actually install Zoom , but also an infostealer that captures data and sends it to the attacker’s server … more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro Sales Jump in China Ahead of iPhone Duo Launch",
+   "link": "https://www.macrumors.com/2026/10/01/strong-iphone-18-pro-launch-sales-china/",
+   "date": "2026-10-01T11:37:34+00:00",
+   "age_hours": 16.9,
+   "summary": "Sales of iPhone 18 Pro models in China were 12% higher in the three days after launching than sales of iPhone 17 Pro models were during their entire first week last year, according to Counterpoint Research . The strong start helped Apple claim the top spot in the country's smartphone market for the week of September 14 to 20, handing it a 33% share. But the news could get even better for Apple's China market prospects this month: The iPhone Duo goes on sale October 23, and Chinese consumers have a much stronger appetite for foldable devices compared to the rest of the world. Related Roundups: iPhone 18 Pro , iPhone Duo Tags: China , Counterpoint Buyer's Guide: iPhone 18 Pro (Buy Now) , iPhone Duo (Coming Soon) Related Forum: iPhone This article, \" iPhone 18 Pro Sales Jump in China Ahead of iPhone Duo Launch \" first appeared on MacRumors.com Discuss this article in our forums",
+   "categories": [
+    "iPhone 18 Pro",
+    "iPhone Duo",
+    "China",
+    "Counterpoint"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro parte forte in Cina, Apple conquista il 33% delle vendite settimanali",
+   "link": "https://www.macitynet.it/iphone-18-pro-vendite-cina-apple-33-percento/",
+   "date": "2026-10-01T11:34:01+00:00",
+   "age_hours": 17.0,
+   "summary": "Nei primi tre giorni di vendita iPhone 18 Pro cresce del 12% rispetto alla generazione precedente. Apple arriva al 33% del mercato settimanale cinese, aiutata anche dai rincari dei flagship Android. - su macitynet.it iPhone 18 Pro parte forte in Cina, Apple conquista il 33% delle vendite settimanali",
+   "categories": [
+    "Finanza e Mercato",
+    "Apple",
+    "Cina",
+    "iPhone 18 Pro"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Leapmotor B03X, la prova: il prezzo attira, ma è alla guida che sorprende",
+   "link": "https://www.dmove.it/prove/leapmotor-b03x-la-prova-il-prezzo-attira-ma-e-alla-guida-che-sorprende",
+   "date": "2026-10-01T11:31:00+02:00",
+   "age_hours": 19.0,
+   "summary": "Il nuovo B-SUV della casa distribuita da Stellantis parte da 19.900 euro. Nel nostro test ha consumato 13,5 kWh/100 km ed è anche piacevole da guidare ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "PS5 emulation is suddenly making big strides on PC",
+   "link": "https://arstechnica.com/gaming/2026/10/ps5-emulation-is-suddenly-making-big-strides-on-pc/",
+   "date": "2026-10-01T11:30:41+00:00",
+   "age_hours": 17.0,
+   "summary": "Games like Astro Bot and Demon’s Souls are running ably without a console.",
+   "categories": [
+    "Gaming",
+    "emulation",
+    "open source",
+    "pc",
+    "PlayStation",
+    "ps5",
+    "Sony"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "The iGarden K70 keeps your pool in shape through leaf season, and it’s now $550 off",
+   "link": "https://www.androidauthority.com/igarden-pool-cleaner-k70-3717200/",
+   "date": "2026-10-01T11:27:52+00:00",
+   "age_hours": 17.1,
+   "summary": "Automate your pool cleaning this fall with this excellent Prime Big Deals Day discount from iGarden.",
+   "categories": [
+    "Promoted"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Samsung’s first Android XR smart glasses finally have a launch window",
+   "link": "https://www.androidauthority.com/samsung-smart-glasses-launch-date-3717873/",
+   "date": "2026-10-01T11:26:02+00:00",
+   "age_hours": 17.1,
+   "summary": "The FCC appearance was a clue. Now Samsung’s first AI glasses may be weeks away.",
+   "categories": [
+    "News",
+    "Android XR",
+    "Samsung",
+    "Smart Glasses"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Huawei Mate 90 RS brings flashy design and 2TB storage trim",
+   "link": "https://www.gsmarena.com/huawei_mate_90_rs_brings_flashy_design_and_2tb_storage_trim-news-74851.php",
+   "date": "2026-10-01T11:24:02+02:00",
+   "age_hours": 19.1,
+   "summary": "The brand-new Mate 90 Pro Max is an impressive phone on its own, but Huawei has an even more special version dubbed Mate 90 RS Ultimate Design. It’s a nod to previous Ultimate Design Huawei phones and features a more premium look than the Mate 90 Pro Max while retaining its key hardware specs. Mate 90 RS gets a supercar-inspired back, which is available in Crimson, Pure White, and Jet Black colors. It features an octagon-shaped camera island with a raised center panel spanning from the edge of the island to the lower half of the device. The camera hardware is the same as on the Mate 90...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Reddit is making two changes some long-time users won’t like",
+   "link": "https://9to5mac.com/2026/10/01/reddit-is-making-two-changes-some-long-time-users-wont-like/",
+   "date": "2026-10-01T11:17:07+00:00",
+   "age_hours": 17.3,
+   "summary": "Reddit has announced two upcoming changes which are likely to prove unpopular with some long-time users. The company has already placed one restriction on Old Reddit, and it has now announced a second one. Additionally, RSS support is being discontinued … more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What Makes Tidal's Audio Quality Better Than Other Streamers?",
+   "link": "https://www.bgr.com/2271740/what-makes-tidal-audio-quality-better/",
+   "date": "2026-10-01T11:17:00+00:00",
+   "age_hours": 17.3,
+   "summary": "Tidal is able to compete with some of the biggest names in streaming media because it's known for delivering high-quality lossless audio.",
+   "categories": [
+    "Apps & Software",
+    "Audio"
+   ]
+  },
+  {
+   "source": "Ars Technica",
+   "tier": "larga",
+   "title": "NASA squeezed Treasury, vibe coded, and broke the mold in bid to save Swift",
+   "link": "https://arstechnica.com/space/2026/10/heres-why-nasa-is-celebrating-the-failed-mission-to-save-the-swift-observatory/",
+   "date": "2026-10-01T11:15:15+00:00",
+   "age_hours": 17.3,
+   "summary": "\"We did some really, really cool stuff. I'm absolutely gutted we weren't able to get further.\"",
+   "categories": [
+    "Space",
+    "astronomy",
+    "astrophysics",
+    "Commercial space",
+    "gamma rays",
+    "katalyst space",
+    "NASA",
+    "satellite servicing"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Your Pixel phone might soon know exactly when to activate its anti-motion-sickness feature",
+   "link": "https://www.androidauthority.com/google-pixel-motion-assist-transit-mode-apk-teardown-3717889/",
+   "date": "2026-10-01T11:14:19+00:00",
+   "age_hours": 17.3,
+   "summary": "Google could soon let you trigger Motion Assist with Pixel's Transit mode, making your public commutes less nauseating.",
+   "categories": [
+    "Authority Insights",
+    "News",
+    "Google",
+    "Google Pixel",
+    "Google Play Services"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "QNAP lancia gli switch QSW-M5218: 10GbE, uplink 25GbE e fino a 540 Gbps",
+   "link": "https://www.dday.it/redazione/58943/qnap-lancia-gli-switch-qsw-m5218-10gbe-uplink-25gbe-e-fino-a-540-gbps",
+   "date": "2026-10-01T11:12:00+02:00",
+   "age_hours": 19.3,
+   "summary": "La nuova serie gestita L3 Lite punta a PMI e ambienti professionali ad alta velocità, con dodici porte 10 GbE, sei uplink 25 GbE e una variante PoE++ fino a 90 W per porta ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "One Useful Thing",
+   "tier": "lab",
+   "title": "The Dot and the Swarm",
+   "link": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+   "date": "2026-10-01T10:54:12+00:00",
+   "age_hours": 17.6,
+   "summary": "Benefitting from the Bitter Lesson",
+   "categories": []
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple TV Still Down for Some Users Following Apple Services Outage",
+   "link": "https://www.macrumors.com/2026/10/01/apple-tv-still-down-for-some-users/",
+   "date": "2026-10-01T10:51:48+00:00",
+   "age_hours": 17.7,
+   "summary": "Apple TV appears to be unavailable for some users, following a recent outage of Apple Services that began on September 30. The original outage took down the App Store, Apple Fitness+, Apple Music, and several other services, but those are all now back online. Only Apple TV is still not working for an unknown number of users. Apple's System Status page indicates an ongoing issue with Apple TV that started on September 30 at 4:43 p.m. Eastern Time. \"Some users are affected,\" the page says, adding \"Apple TV may be unavailable due to scheduled maintenance.\" We'll update this article when the situation changes. Related Roundup: Apple TV Buyer's Guide: Apple TV (Don't Buy) Related Forum: Apple TV and Home Theater This article, \" Apple TV Still Down for Some Users Following Apple Services Outage \" first appeared on MacRumors.com Discuss this article in our forums",
+   "categories": [
+    "Apple TV"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "HomePad setup process seemingly revealed, sharing feature with iPhone Duo",
+   "link": "https://9to5mac.com/2026/10/01/homepad-setup-process-seemingly-revealed-sharing-feature-with-iphone-duo/",
+   "date": "2026-10-01T10:50:40+00:00",
+   "age_hours": 17.7,
+   "summary": "A leaker who previously found iPhone Duo features in Apple code has now done the same for the HomePad . The setup process for the upcoming device shares a feature with Apple’s foldable iPhone. The leaker suggests that the setup process will be carried out in the Home app, and they shared three screen grabs from the process … more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "NYC is now the first city in America that bans sketchy subscriptions",
+   "link": "https://www.theverge.com/policy/1003426/nyc-click-to-cancel-subscriptions-rule",
+   "date": "2026-10-01T10:49:25-04:00",
+   "age_hours": 13.7,
+   "summary": "New York City residents struggling to get out of recurring subscription fees can now submit complaints to the city government. As of Thursday, the city's click-to-cancel rule has taken effect, which requires businesses to make it as easy to cancel a subscription as it is to sign up. That means a gym that lets you […]",
+   "categories": [
+    "Exclusive",
+    "Policy",
+    "Politics",
+    "Report"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Svelati i nuovi occhiali acustici di EssilorLuxottica, Nuance Audio Plus: più autonomia e comandi fisici",
+   "link": "https://www.dday.it/redazione/58942/svelati-i-nuovi-occhiali-acustici-di-essilorluxottica-nuance-audio-plus-piu-autonomia-e-comandi-fisici",
+   "date": "2026-10-01T10:39:00+02:00",
+   "age_hours": 19.9,
+   "summary": "La seconda generazione migliora elettronica, chiarezza del parlato e durata della batteria, che arriva a circa 10 ore ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "This camera attaches to the back of your flagship phone, costs more than most phones",
+   "link": "https://www.androidauthority.com/huawei-z10-camera-mate-90-series-launch-3717773/",
+   "date": "2026-10-01T10:37:49+00:00",
+   "age_hours": 17.9,
+   "summary": "An add-on camera or an entire flagship phone. What to choose...",
+   "categories": [
+    "News",
+    "Camera",
+    "Huawei",
+    "Smartphones"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "vivo V80 Lite unboxing and hands-on",
+   "link": "https://www.gsmarena.com/vivo_v80_lite_unboxing_and_handson-news-74827.php",
+   "date": "2026-10-01T10:32:02+02:00",
+   "age_hours": 20.0,
+   "summary": "Today, we're unboxing the vivo V80 Lite. This vivo V80 Lite, specifically, not this vivo V80 Lite (which is for the Indian market). Confusing, we know. The global vivo V80 Lite ships in Green, Pink, and Black (ours) in a box with a 44W charger, a USB cable, and a color-matching case. The case is one of those grippy rubber ones vivo usually ships, and it fits the phone nicely. It's not particularly flashy, but it does the job of protecting the phone. Unboxing the vivo V80 Lite What's impressive about the vivo V80 Lite is its battery - a potent 10,000mAh unit, which uses...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "My 4-year-old Android phone is showing its age. Here’s how I’m keeping it running",
+   "link": "https://www.androidauthority.com/old-android-phone-how-im-keeping-it-running-tips-3715272/",
+   "date": "2026-10-01T10:30:29+00:00",
+   "age_hours": 18.0,
+   "summary": "A little bit of work goes a long way.",
+   "categories": [
+    "Features",
+    "Nothing Phone 1"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Gli Echo scendono fino al 67%: quale scegliere da 29,99 euro",
+   "link": "https://www.macitynet.it/gli-echo-scendono-fino-al-67-quale-scegliere-da-2999-euro/",
+   "date": "2026-10-01T10:29:11+00:00",
+   "age_hours": 18.1,
+   "summary": "Amazon anticipa la Festa delle Offerte Prime con gli Echo da 29,99 euro e sconti fino al 67%. Dot, Spot, Dot Max e Studio: ecco quanto si risparmia, le differenze tra i modelli e quale scegliere per le proprie esigenz - su macitynet.it Gli Echo scendono fino al 67%: quale scegliere da 29,99 euro",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "PSA: Apple Mail on Mac May Stop Syncing Microsoft 365 Accounts Today",
+   "link": "https://www.macrumors.com/2026/10/01/apple-mail-mac-stop-sync-microsoft-365/",
+   "date": "2026-10-01T10:17:27+00:00",
+   "age_hours": 18.3,
+   "summary": "Microsoft today began disabling Exchange Web Services (EWS) by default in Exchange Online, which will cut off the protocol that Apple's Mail and Calendar apps on Mac still rely on to sync Microsoft 365 work accounts. The cutoff has been on the cards for a fairly long time, as Microsoft stopped adding new features to EWS back in 2018, while in 2023 it announced that it would start disabling the protocol in Exchange Online from October 2026. As Microsoft explains in the blog post linked above, organizations that have chosen to keep EWS running aren't affected for now. As for everyone else, the cutoff may not happen all at once. In a recently updated post from June, Microsoft described the change as a \"phased rollout,\" so some Mac users could lose access sooner than others. It's still possible for IT administrators to restore access. However, Microsoft plans to shut down EWS in Exchange Onl",
+   "categories": [
+    "Featured",
+    "Apple Mail",
+    "Microsoft 365"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Things You Should Never Use AI For",
+   "link": "https://www.bgr.com/2269080/things-never-use-ai-for/",
+   "date": "2026-10-01T10:17:00+00:00",
+   "age_hours": 18.3,
+   "summary": "More and more of your devices and apps are integrating AI in some fashion, but there are some aspects of your life you should never use AI for.",
+   "categories": [
+    "Artificial Intelligence"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "A real ChatGPT page is being used to trick people into installing malware",
+   "link": "https://www.androidauthority.com/chatgpt-custom-gpt-malware-scam-3717796/",
+   "date": "2026-10-01T10:07:14+00:00",
+   "age_hours": 18.4,
+   "summary": "The dangerous part only appears after ChatGPT has already earned your trust.",
+   "categories": [
+    "News",
+    "AI",
+    "ChatGPT",
+    "OpenAI"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "T-Mobile’s latest fee increase proves the Un-Carrier is officially dead",
+   "link": "https://www.androidauthority.com/t-mobile-uncarrier-gone-junk-fees-3717413/",
+   "date": "2026-10-01T10:00:43+00:00",
+   "age_hours": 18.5,
+   "summary": "The T-Mobile of old is long, long gone.",
+   "categories": [
+    "Features",
+    "Phone Plans",
+    "T-Mobile"
+   ]
+  },
+  {
+   "source": "Apple Developer",
+   "tier": "primaria",
+   "title": "Upcoming expiration of Developer ID Certification Authority (Sub-CA)",
+   "link": "https://developer.apple.com/news/?id=w4atic4c",
+   "date": "2026-10-01T10:00:11-07:00",
+   "age_hours": 11.5,
+   "summary": "The original Developer ID Certification Authority (Sub-CA) expires on February 1, 2027. Certificates issued by this authority will stop working on that date. What to do: Check if you’re affected. In Certificates, Identifiers & Profiles , look for certificates expiring on or before February 1, 2027. See Replacing Developer ID certificates issued from the previous Sub-CA for help identifying your certificate’s authority. Create a new certificate. Generate a replacement from the current authority, Developer ID Certification Authority (G2). Note: This certificate authority is valid until 2031, but the certificates issued by the certificate authority expire annually and must be renewed each year. If you’re using Xcode 11.4 or earlier, update before creating your new certificate. When prompted for a Developer ID Certificate Intermediary, select G2 Sub-CA. Choosing another option may issue a ce",
+   "categories": []
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Robot aspirapolvere Lefant per lavare casa: sconti fino al 77%",
+   "link": "https://www.macitynet.it/robot-aspirapolvere-lefant-sconto/",
+   "date": "2026-10-01T09:59:12+00:00",
+   "age_hours": 18.6,
+   "summary": "Dai modelli compatti a quelli con rullo autopulente, acqua calda e stazioni multifunzione: cinque soluzioni Lefant con uno sconto imperdibile - su macitynet.it Robot aspirapolvere Lefant per lavare casa: sconti fino al 77%",
+   "categories": [
+    "Offerte",
+    "Offerte Hardware",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "Google torna tra le grandi con Gemini 4 Argon: un milione di token in uscita e accesso ancora blindato",
+   "link": "https://www.dday.it/redazione/58941/google-torna-tra-le-grandi-con-gemini-4-argon-un-milione-di-token-in-uscita-e-accesso-ancora-blindato",
+   "date": "2026-10-01T09:46:00+02:00",
+   "age_hours": 20.8,
+   "summary": "Dopo mesi difficili per DeepMind, Google torna con Gemini 4 Argon. Benchmark competitivi, un milione di token in output ma accesso iniziale riservato ai partner del Fairwind Program ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "This Galaxy Z Fold 8 Ultra rival is going global with a much bigger battery and an external lens",
+   "link": "https://www.androidauthority.com/vivo-x-fold-6-global-launch-2-3717783/",
+   "date": "2026-10-01T09:36:38+00:00",
+   "age_hours": 18.9,
+   "summary": "The vivo X Fold 6 packs a 6,900mAh battery with 80W fast charging.",
+   "categories": [
+    "News",
+    "Foldable Phones",
+    "Samsung Galaxy Z Fold 8",
+    "Vivo"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Specs for a new HMD Android phone leak",
+   "link": "https://www.gsmarena.com/specs_for_a_new_hmd_android_phone_leak-news-74849.php",
+   "date": "2026-10-01T09:31:02+02:00",
+   "age_hours": 21.0,
+   "summary": "According to a reliable source of HMD-related leaks and rumors, the company is working on yet another lower-end Android phone to join its portfolio. It's currently unclear what this handset will be called, but it is allegedly codenamed \"Darkhawk\". That's probably a codename way too cool for the specs of this device. It will reportedly have a flat screen with a 120Hz refresh rate, 8GB of RAM, and a 6,000 mAh battery with support for 33W wired charging. Generic HMD device image, not a leaked shot of the Darkhawk It will be powered by the MediaTek Helio G100 chipset and will run...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Your Pixel’s 80% charge limit has a hidden power user benefit. Here’s how to use it",
+   "link": "https://www.androidauthority.com/google-pixel-bypass-charging-how-to-3715574/",
+   "date": "2026-10-01T09:30:03+00:00",
+   "age_hours": 19.0,
+   "summary": "Finally, a healthy charging relationship.",
+   "categories": [
+    "Features",
+    "Battery Life",
+    "Google",
+    "Google Pixel",
+    "Wireless Charging"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Security Bite Podcast: The new era of bug hunting with OpenHack’s Ananay Arora",
+   "link": "https://9to5mac.com/2026/10/01/security-bite-podcast-the-new-era-of-bug-hunting-with-openhacks-ananay-arora/",
+   "date": "2026-10-01T09:30:00+00:00",
+   "age_hours": 19.0,
+   "summary": "9to5Mac Security Bite is exclusively brought to you by Mosyle, the only Apple Unified Platform . Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specific security solutions for fully automated Hardening & Compliance, Next Generation EDR, AI-powered Zero Trust, and exclusive Privilege Management with the most powerful and modern Apple MDM on the market. The result is a totally automated Apple Unified Platform currently trusted by over 45,000 organizations to make millions of Apple devices work-ready with no effort and at an affordable cost. Request your EXTENDED TRIAL today and understand why Mosyle is everything you need to work with Apple . This week, I sat down with Ananay Arora , founder and CEO of OpenHack , a Y Combinator startup building an “always-on AI security engineer” fo",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Google’s $500 referral program returns, making it one of the easiest ways to save on a Pixel",
+   "link": "https://www.androidauthority.com/google-pixel-11-referral-program-3717814/",
+   "date": "2026-10-01T09:14:02+00:00",
+   "age_hours": 19.3,
+   "summary": "A new Pixel and some extra cash? Google has our attention.",
+   "categories": [
+    "News",
+    "Deals",
+    "Google",
+    "Google Pixel",
+    "Google Pixel 11"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Samsung’s redesigned SmartThings app is finally rolling out on Android",
+   "link": "https://www.androidauthority.com/samsung-smartthings-redesign-android-3717799/",
+   "date": "2026-10-01T09:13:53+00:00",
+   "age_hours": 19.3,
+   "summary": "It gets compact cards, a refreshed look for the TV remote, and a floating navigation bar.",
+   "categories": [
+    "News",
+    "Android",
+    "Samsung",
+    "Samsung SmartThings"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "3 reasons Googlebooks will succeed — and 3 reasons they’ll fail",
+   "link": "https://www.androidauthority.com/googlebooks-succeed-fail-reasons-3717519/",
+   "date": "2026-10-01T09:00:50+00:00",
+   "age_hours": 19.5,
+   "summary": "It really could go either way.",
+   "categories": [
+    "Features",
+    "Google",
+    "Googlebooks"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "Offerte del giorno: Ecco i migliori sconti selezionati da iSpazio – 1 Ottobre 2026",
+   "link": "https://www.ispazio.net/2063515/offerte-ispazio-amazon",
+   "date": "2026-10-01T09:00:00+00:00",
+   "age_hours": 19.5,
+   "summary": "Offerte del giorno: Ecco i migliori sconti selezionati da iSpazio – 1 Ottobre 2026 Fare shopping online necessita di precise precauzioni perchè le variazioni di prezzo dei prodotti sono all’ordine del giorno. Lo sa bene che acquista su Amazon dove un prodotto può essere scontato o può subire un aumento del prezzo anche più volte in una sola giornata! Per questo motivo abbiamo creato un servizio chiamato “Offerte iSpazio”, […]",
+   "categories": [
+    "Offerte iSpazio",
+    "Accessori Apple",
+    "Amazon",
+    "Coupon",
+    "esclusivi",
+    "Offerte",
+    "Promozioni",
+    "risparmia"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Huawei Mate 90 Pro Max debuts with a 1-inch modular camera, 12,000-nit display and 6,800mAh battery",
+   "link": "https://www.gsmarena.com/huawei_mate_90_pro_max_debuts_with_a_1inch_modular_camera_12000nit_display_and_6800mah_battery-news-74850.php",
+   "date": "2026-10-01T08:55:02+02:00",
+   "age_hours": 21.6,
+   "summary": "Huawei has unveiled its latest Mate 90 series phones in China, with the Mate 90 Pro Max sitting at the top. The phone offers a large 6.9-inch display, a triple-rear camera setup, and supports a unique 1-inch module camera system. The triple-rear camera setup on the Mate 90 Pro Max comes with a 50MP main camera that uses a 1/1.28-inch RYYB sensor with OIS and a continuous variable f/1.4 to f/4.0 aperture. It also offers a 200MP periscope telephoto that features a 1/1.28-inch RYYB sensor with OIS, and 4x optical zoom. The phone also features a 40MP ultrawide camera and has a 3rd gen...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Google Antigravity looks like an Android app, but your phone isn’t invited",
+   "link": "https://www.androidauthority.com/google-antigravity-android-play-store-3717752/",
+   "date": "2026-10-01T08:37:57+00:00",
+   "age_hours": 19.9,
+   "summary": "We put Google Antigravity on a Pixel phone to see how far it would get.",
+   "categories": [
+    "News",
+    "Google",
+    "Googlebook OS",
+    "Googlebooks"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Apple’s rumored smart display is coming this month, and it could challenge Google’s smart home lead",
+   "link": "https://www.androidauthority.com/apple-rumored-smart-display-coming-this-month-3717765/",
+   "date": "2026-10-01T08:37:12+00:00",
+   "age_hours": 19.9,
+   "summary": "Coupled with HomePod mini 2 and Apple TV 4K, Apple's refreshed smart home lineup should give Google plenty to worry.",
+   "categories": [
+    "News",
+    "Apple",
+    "Apple HomePod",
+    "Apple TV",
+    "Google",
+    "Google Nest Hub Max",
+    "Google Pixel Tablet",
+    "Siri"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "DrivePulse trasforma iPhone e CarPlay nel computer di bordo che l’auto non ha, leggendo direttamente dalla centralina",
+   "link": "https://www.ispazio.net/2275780/drivepulse-app-iphone-carplay-obd2-diario-di-bordo",
+   "date": "2026-10-01T08:00:47+00:00",
+   "age_hours": 20.5,
+   "summary": "DrivePulse trasforma iPhone e CarPlay nel computer di bordo che l’auto non ha, leggendo direttamente dalla centralina Molte auto, anche di qualche anno fa, hanno dentro molti più dati di quanti ne mostri il cruscotto: consumi reali, tensione della batteria, temperature, stato del filtro antiparticolato, codici di errore. Stanno tutti nella centralina, e per leggerli basta la presa OBD2 che si trova sotto il volante. DrivePulse: Diario di Bordo nasce proprio per […]",
+   "categories": [
+    "Apps",
+    "Sponsorizzato",
+    "app auto",
+    "CarPlay",
+    "computer di bordo",
+    "diagnosi auto",
+    "DrivePulse",
+    "ELM327"
+   ]
+  },
+  {
+   "source": "DDay.it",
+   "tier": "banco",
+   "title": "La Festa delle Offerte Prime di Amazon parte in anticipo: ecco le prime occasioni da non perdere",
+   "link": "https://www.dday.it/redazione/58933/la-festa-delle-offerte-prime-di-amazon-parte-in-anticipo-ecco-le-prime-occasioni-da-non-perdere",
+   "date": "2026-10-01T08:00:00+02:00",
+   "age_hours": 22.5,
+   "summary": "Amazon anticipa la Festa delle Offerte Prime con una selezione di prodotti già in sconto. Abbiamo raccolto alcune delle offerte più interessanti, tra tecnologia, casa e piccoli elettrodomestici ... Leggi tutto",
+   "categories": []
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Festa delle Offerte Prime, ecco tutte le offerte imperdibili BLUETTI",
+   "link": "https://www.macitynet.it/festa-delle-offerte-prime-bluetti/",
+   "date": "2026-10-01T07:59:49+00:00",
+   "age_hours": 20.6,
+   "summary": "Dalle power station per camper e viaggi on the road ai sistemi per l'alimentazione domestica: tutte le offerte autunnali BLUETTI che non dovreste perdervi - su macitynet.it Festa delle Offerte Prime, ecco tutte le offerte imperdibili BLUETTI",
+   "categories": [
+    "Offerte",
+    "Offerte Hardware",
+    "ADV"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Brace yourselves: Another major phone brand is signaling a price hike",
+   "link": "https://www.androidauthority.com/another-phone-brand-price-hike-huawei-3717746/",
+   "date": "2026-10-01T07:57:14+00:00",
+   "age_hours": 20.6,
+   "summary": "Huawei's consumer business head indicated upcoming price hikes alongside the Mate 90 series' launch.",
+   "categories": [
+    "News",
+    "Huawei"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Come pianificare la giornata con Margin per Mac",
+   "link": "https://www.macitynet.it/margin-app-mac-bundlehunt/",
+   "date": "2026-10-01T07:29:16+00:00",
+   "age_hours": 21.1,
+   "summary": "Trasformate frasi scritte in linguaggio naturale in promemoria ed eventi, con tanto di timeline per gli impegni: per organizzare le giornate senza dover compilare software complicati - su macitynet.it Come pianificare la giornata con Margin per Mac",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "BundleHunt",
+    "Offerte Software"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Samsung is quietly killing one of its newest apps",
+   "link": "https://www.androidauthority.com/samsung-sound-app-discontinued-3717755/",
+   "date": "2026-10-01T07:26:25+00:00",
+   "age_hours": 21.1,
+   "summary": "Samsung Sound's short-lived run is coming to an end.",
+   "categories": [
+    "News",
+    "Samsung",
+    "Samsung SmartThings"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "vivo Y600 5G is coming and it will be familiar",
+   "link": "https://www.gsmarena.com/vivo_y600_5g_is_coming_and_it_will_be_familiar-news-74846.php",
+   "date": "2026-10-01T07:01:01+02:00",
+   "age_hours": 23.5,
+   "summary": "The vivo Y600 5G has just been listed in the Google Play Console, with the model number V2626. Its model number reveals the fact that it will be the same device as the Malaysian V80 Lite 5G as well as the Indian S2 FE, which is due to be launched on October 6. The Google Play Console listing reveals that the vivo Y600 5G has 1260x2800 resolution, the MediaTek MT6858 chipset, 6GB of RAM, and Android 16 on board, rather disappointingly. Like the V80 Lite and S2 FE, the Y600 5G is expected to have a 6.83-inch AMOLED screen with 120Hz refresh rate and 2,000-nit peak brightness, the...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "HomePad, ecco le prime schermate dell’hub per la casa di Apple ed il legame con iPhone Duo",
+   "link": "https://www.ispazio.net/2276264/homepad-hub-casa-apple-photo-face-standby-iphone-duo",
+   "date": "2026-10-01T07:00:58+00:00",
+   "age_hours": 21.5,
+   "summary": "HomePad, ecco le prime schermate dell’hub per la casa di Apple ed il legame con iPhone Duo Per la prima volta possiamo vedere come apparirà una delle schermate dell’hub per la casa di Apple, il dispositivo che negli ultimi mesi abbiamo imparato a conoscere come HomePad. A pubblicarle è il leaker pdfu, che ha condiviso le schermate di configurazione del Photo Face, uno dei quadranti che l’utente potrà scegliere per il display […]",
+   "categories": [
+    "HomeKit",
+    "Rumors",
+    "Apple",
+    "Foto di iCloud",
+    "HomePad",
+    "hub per la casa",
+    "iPhone Duo",
+    "pdfu"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Offerte Amazon 1 ottobre: Apple, Switchbot, Ezviz, Bticino, Marshall, Kingston, Lexar, Hisense",
+   "link": "https://www.macitynet.it/offerte-amazon-1-ottobre-2026/",
+   "date": "2026-10-01T06:48:03+00:00",
+   "age_hours": 21.7,
+   "summary": "Le migliori offerte Amazon del 1 ottobre 2026: dispositivi tech e accessori per la vita di tutti i giorni, selezionati da Macitynet. - su macitynet.it Offerte Amazon 1 ottobre: Apple, Switchbot, Ezviz, Bticino, Marshall, Kingston, Lexar, Hisense",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon",
+    "Offerte Apple su Amazon"
+   ]
+  },
+  {
+   "source": "Latent Space",
+   "tier": "lab",
+   "title": "[AINews] Gemini 4 Argon: GDM’s answer to Astra/Fable, with 1M output",
+   "link": "https://www.latent.space/p/ainews-gemini-4-argon-gdms-answer",
+   "date": "2026-10-01T06:45:05+00:00",
+   "age_hours": 21.8,
+   "summary": "... but you can’t try it yet unless you are “government users and trusted cyber defenders in the Fairwind Program”",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Google’s bizarre new Gboard keyboard is a conveyor belt that brings the keys to you",
+   "link": "https://www.androidauthority.com/google-conveyor-belt-gboard-keyboard-3717737/",
+   "date": "2026-10-01T06:33:29+00:00",
+   "age_hours": 22.0,
+   "summary": "You can actually build this thing yourself.",
+   "categories": [
+    "News",
+    "Gboard",
+    "Google"
+   ]
+  },
+  {
+   "source": "Simon Willison",
+   "tier": "lab",
+   "title": "Quoting Matthew Green",
+   "link": "https://simonwillison.net/2026/Oct/1/matthew-green/",
+   "date": "2026-10-01T06:29:01+00:00",
+   "age_hours": 22.1,
+   "summary": "[...] Put these pieces together and you have the two halves of a worm: a payload that hijacks the agent, and an agent that will carry the payload to the next agent. Agents in separately-isolated sandboxes discovered that they could leave instructions for each other in a shared package cache, and those instructions changed what the recipients did. Replace the package cache with email, Slack and shared documents or WhatsApp, and replace independently-sandboxed training runs with independently-deployed personal agents like Muse, and you have exactly the ingredients that a worm needs. — Matthew Green , Is sandboxing sufficient to contain rogue agents? Tags: accidental-cyberattacks , ai-misuse , generative-ai , ai-security-research , sandboxing , ai , llms",
+   "categories": [
+    "accidental-cyberattacks",
+    "ai-misuse",
+    "generative-ai",
+    "ai-security-research",
+    "sandboxing",
+    "ai",
+    "llms"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Gestite video e audio su Mac con SurSort Media Manager",
+   "link": "https://www.macitynet.it/sursort-media-manager-app-mac-bundlehunt/",
+   "date": "2026-10-01T06:11:03+00:00",
+   "age_hours": 22.4,
+   "summary": "Una libreria locale per organizzare video, musica, podcast e registrazioni con ricerca rapida, tag automatici, anteprime e non solo - su macitynet.it Gestite video e audio su Mac con SurSort Media Manager",
+   "categories": [
+    "Offerte",
+    "Offerte Hardware",
+    "Sconti speciali",
+    "ADV",
+    "BundleHunt",
+    "Offerte Software"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "Muse di Meta supera 5 milioni di download ed OpenAI risponde con Dots: perché gli agenti AI personali stanno funzionando",
+   "link": "https://www.ispazio.net/2276247/meta-muse-5-milioni-download-openai-dots-grok-bot-agenti-ai",
+   "date": "2026-10-01T06:00:11+00:00",
+   "age_hours": 22.5,
+   "summary": "Muse di Meta supera 5 milioni di download ed OpenAI risponde con Dots: perché gli agenti AI personali stanno funzionando Muse, l’agente AI personale di Meta, ha superato i 5 milioni di download negli Stati Uniti. La stima arriva da Sensor Tower e dice molto sulla velocità con cui questo nuovo genere di assistenti sta conquistando gli utenti: a Muse sono bastati circa 22 giorni, mentre per raggiungere lo stesso traguardo ChatGPT ne aveva impiegati […]",
+   "categories": [
+    "AI",
+    "agenti AI",
+    "chatgpt",
+    "GPT-6 Astra",
+    "Grok Bot",
+    "intelligenza artificiale",
+    "Meta Muse",
+    "Muse Charm"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "iPhone Duo, 4 su 10 non superano i controlli al primo passaggio",
+   "link": "https://www.macitynet.it/iphone-duo-4-su-10-non-supererebbero-i-controlli-al-primo-passaggio/",
+   "date": "2026-10-01T05:59:51+00:00",
+   "age_hours": 22.6,
+   "summary": "La produzione di iPhone Duo sarebbe ancora lontana dagli standard abituali di Apple: resa poco sopra il 60%, problemi su display e cerniera e un mese extra prima del debutto per migliorare le linee e accumulare scorte. - su macitynet.it iPhone Duo, 4 su 10 non superano i controlli al primo passaggio",
+   "categories": [
+    "Voci dalla Rete",
+    "iPhone Duo"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "WhatsApp, arrivano i controlli per i genitori: cosa possono vedere e cosa resta privato",
+   "link": "https://www.macitynet.it/controllo-genitori-whatsapp/",
+   "date": "2026-10-01T05:40:58+00:00",
+   "age_hours": 22.9,
+   "summary": "WhatsApp introduce nuovi controlli per gli account dei teenager: i genitori possono gestire gruppi, Stato, Canali e Meta AI, ma non leggere messaggi o ascoltare chiamate. - su macitynet.it WhatsApp, arrivano i controlli per i genitori: cosa possono vedere e cosa resta privato",
+   "categories": [
+    "Internet",
+    "Meta",
+    "WhatsApp"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Here's how the Galaxy S27 series prices will go up according to a new rumor",
+   "link": "https://www.gsmarena.com/heres_how_the_galaxy_s27_series_prices_will_go_up_according_to_a_new_rumor-news-74847.php",
+   "date": "2026-10-01T05:31:02+02:00",
+   "age_hours": 25.0,
+   "summary": "According to a new rumor from Samsung's home country of South Korea, the Galaxy S27 series devices will be at least KRW 130,000 (about $95) more expensive than their predecessors in the country - but that rate of increase will only apply to the base model. The more expensive storage tiers will get a bigger jump compared to what we've seen for the Galaxy S26 devices. So, for example, the Galaxy S26 Ultra started at $1,299 when it launched. That got you 256GB of storage, but if you wanted 512GB, you had to pay $1,499. With the S27 Ultra, the base model might start at $1,399, and the 512GB...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "Samsung quietly launches the Galaxy Buds On, its first clip-on Galaxy Buds",
+   "link": "https://www.androidauthority.com/samsung-galaxy-buds-on-3717717/",
+   "date": "2026-10-01T05:12:19+00:00",
+   "age_hours": 23.3,
+   "summary": "No US launch for these just yet.",
+   "categories": [
+    "News",
+    "Samsung",
+    "Samsung Galaxy Buds"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Waze Settings Drivers Should Enable",
+   "link": "https://www.bgr.com/2273264/waze-settings-drivers-should-enable/",
+   "date": "2026-10-01T03:17:00+00:00",
+   "age_hours": 25.3,
+   "summary": "You don't need every alert Waze can send you. A few settings can help you get the information you actually want without spending more time on your phone.",
+   "categories": [
+    "Apps & Software"
+   ]
+  }
+ ]
+}
