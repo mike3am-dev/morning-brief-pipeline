@@ -141,7 +141,28 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "Apple conferma per la prima volta, con la sua vicepresidente hardware, che lo strato che nasconde la piega di iPhone Duo è pensato per essere sostituito: non un dettaglio nascosto, ma una scelta di design dichiarata.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "iPhone Duo, lo strato che si cambia",
+      "strati": [
+       {
+        "nome": "Cover layer (nano-texture)",
+        "colore": "blue",
+        "nota": "Il rivestimento sopra il display pieghevole: attutisce la piega centrale. Si stacca e si sostituisce — 19 dollari con AppleCare+, dice Kate Bergeron."
+       },
+       {
+        "nome": "Display OLED pieghevole",
+        "colore": "ink-3",
+        "stato": "problema",
+        "nota": "Sotto il cover layer: è qui che la piega resta visibile nel tempo, da cui la necessità del ricambio."
+       }
+      ],
+      "invito": "Tocca uno strato per leggere cosa fa.",
+      "didascalia": "Schema illustrativo a due strati, dalle parole di Kate Bergeron: il cover layer protegge e si usura, sotto resta il display dove la piega si vede.",
+      "fonte": "9to5Mac, MacRumors (dichiarazioni di Kate Bergeron)"
+     }
+    ],
     "sotto": [
      "Kate Bergeron, vicepresidente hardware di Apple, ha spiegato a una content creator su TikTok che il “cover layer” sopra il display pieghevole — un rivestimento nano-texture che attenua la piega centrale — può essere staccato e sostituito quando si usura. Con AppleCare+ il ricambio costa 19 dollari negli Stati Uniti; il prezzo senza copertura non è ancora pubblico. La sostituzione sarà probabilmente riservata ad Apple Store e centri autorizzati.",
      "La dichiarazione arriva pochi giorni dopo che il vicepresidente hardware Tom Marieb aveva chiesto ai clienti di “tenere Apple responsabile” sulla visibilità della piega nel tempo: insieme, le due uscite raccontano un'azienda che affronta di petto il timore più diffuso sui pieghevoli, invece di lasciarlo alla prova del tempo."
@@ -224,7 +245,33 @@
    "thread": "silicio-mac",
    "approfondimento": {
     "punto": "Gurman usa la prima puntata del suo nuovo podcast per restringere la finestra: il MacBook Pro con touchscreen arriva “il più presto possibile in ottobre”, al massimo slitta a novembre. È già in test interno con la beta di macOS 27.2.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "L'autunno fitto di Apple",
+      "eventi": [
+       {
+        "data": "2026-10-13",
+        "etichetta": "Hub smart, Apple TV 4K, HomePod mini"
+       },
+       {
+        "data": "2026-10-23",
+        "etichetta": "iPhone Duo in vendita"
+       },
+       {
+        "data": "2026-11-01",
+        "etichetta": "Nuovi Mac, incluso il MacBook Pro touchscreen (fine ottobre-inizio novembre)"
+       }
+      ],
+      "centro": "lanci in tre settimane",
+      "centro_obiettivo": "la finestra del Pro",
+      "etichetta_oggi": "Il calendario",
+      "etichetta_obiettivo": "Il MacBook Pro touchscreen",
+      "obiettivo": "Secondo Gurman arriva “il più presto possibile in ottobre”, al massimo a novembre: l'ultimo tassello di un autunno con tre lanci in tre settimane.",
+      "didascalia": "Tre lanci Apple in tre settimane: il 13 e il 23 ottobre sono date dette da Gurman, il MacBook Pro touchscreen cade nella finestra finale, ancora senza un giorno preciso.",
+      "fonte": "Mark Gurman (Bloomberg), podcast “Power On”"
+     }
+    ],
     "sotto": [
      "Bloomberg ha lanciato oggi “Power On with Mark Gurman”, un podcast settimanale; nella puntata inaugurale Gurman dice: “Apple introdurrà il suo primo MacBook Pro touchscreen quest'autunno, il più presto possibile in ottobre. Potrebbe slittare a novembre, ma non prima.” Apple lo sta già testando internamente con macOS 27.2, beta già distribuita agli sviluppatori.",
      "Il calendario che emerge è denso: hub smart, Apple TV 4K e HomePod mini il 13 ottobre, iPhone Duo in vendita dal 23, e i nuovi Mac nella finestra di fine ottobre-inizio novembre, la stessa in cui Apple lancia tradizionalmente i Mac autunnali."
@@ -379,7 +426,33 @@
    "thread": "hub-domestico",
    "approfondimento": {
     "punto": "Gurman descrive al suo podcast una telecamera di sicurezza Apple — nome in codice J450 — che non registra mai video: solo descrizioni testuali generate da un sensore che analizza la scena con l'IA on-device.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "J450 non ti manda un video",
+      "contatto": "J450",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Cosa è successo in giardino oggi?"
+       },
+       {
+        "da": "agente",
+        "testo": "Alle 14:32 un corriere ha lasciato un pacco vicino alla porta."
+       },
+       {
+        "da": "tu",
+        "testo": "Fammi vedere il video."
+       },
+       {
+        "da": "agente",
+        "testo": "Non c'è nessun video da mostrare: J450 non registra filmati, solo descrizioni come questa."
+       }
+      ],
+      "didascalia": "Conversazione d'esempio, non uno scambio reale: J450, descritta da Gurman, analizza la scena con l'IA on-device e restituisce solo testo, mai un fotogramma da rivedere.",
+      "fonte": "Mark Gurman (Bloomberg), podcast “Power On”, via The Verge e MacRumors"
+     }
+    ],
     "sotto": [
      "Nella stessa puntata del podcast “Power On”, Gurman racconta che Apple sta costruendo “sia prodotti di sicurezza domestica proprietari che di terze parti”, e il progetto più importante si chiama J450: una telecamera a forma di cilindro, compagna dell'hub J490 (il futuro HomePad). Il sensore ha un frame rate molto basso e non produce filmati: riconosce volti e situazioni e restituisce solo descrizioni testuali, un po' come l'opzione “Rileva attività” già presente in HomeKit Secure Video, ma senza nessuna possibilità di rivedere le immagini.",
      "La tecnologia richiamerebbe quella allo studio per un paio di AirPods con fotocamera, trapelati mesi fa: un sensore d'immagine con IA integrata che elabora tutto sul dispositivo, evitando di dover archiviare e proteggere i filmati sui server. Gurman non fissa una data di lancio per la telecamera, a differenza dei tre prodotti del 13 ottobre."
