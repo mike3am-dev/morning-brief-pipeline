@@ -35,9 +35,11 @@ e li tiene in .cache/ per le volte successive.
 import argparse
 import hashlib
 import json
+import math
 import os
 import re
 import shutil
+import struct
 import subprocess
 import sys
 import tempfile
@@ -68,15 +70,23 @@ VOICES = {
 # giornale radio. GEMINI_TTS_MODEL permette di cambiare modello senza codice.
 GEMINI_VOICES = {"kore": "Kore", "aoede": "Aoede", "leda": "Leda", "charon": "Charon", "puck": "Puck"}
 GEMINI_MODEL = "gemini-3.8-flash-tts"
-GEMINI_STYLE = ("Leggi in italiano come una conduttrice di un giornale radio del mattino: "
-                "tono calmo e chiaro, ritmo naturale, brevi pause fra i paragrafi.")
+# La sintassi che Gemini TTS NON legge ad alta voce e' "Dillo così: <testo>" —
+# un'istruzione che finisce con i due punti e porta dritta al testo fra
+# virgolette, nella stessa mandata (vedi la guida ufficiale, "Say in a X:").
+# Un paragrafo separato da riga vuota, come prima del 2 ottobre 2026, viene
+# letto come se fosse il primo paragrafo dell'approfondimento: Mike si è
+# sentito leggere "voce naturale... pause tra i paragrafi" in apertura.
+GEMINI_STYLE = ("Leggi con il tono di una conduttrice di un giornale radio del mattino, calma "
+                "e chiara, con ritmo naturale e brevi pause tra i paragrafi")
 DEFAULT_VOICE = "kore"
 # quanti giorni restano gli audio su Storage: 1 GB gratuito, condiviso con altre app
 KEEP_DAYS = 30
 BUCKET = "brief-audio"
 # Entra nell'impronta: si alza quando cambia il modo di dire il testo
 # (speakable, le pause), cosi' la corsa dopo rifa' i file da sola.
-RESA = 2
+# 3 (2 ottobre 2026): corretto il prompt di stile per Gemini (non si sente
+# piu' leggere l'istruzione in apertura) e aggiunto il campanello in coda.
+RESA = 3
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
         "agosto", "settembre", "ottobre", "novembre", "dicembre"]
 
@@ -180,8 +190,9 @@ def gemini_synth(voice, paragraphs, wav_path):
     key = secret("GEMINI_API_KEY")
     model = secret("GEMINI_TTS_MODEL") or GEMINI_MODEL
     testo = "\n\n".join(_chiuso(p) for p in paragraphs if p and p.strip())
+    prompt = f'{GEMINI_STYLE}:\n"{testo}"'
     body = json.dumps({
-        "contents": [{"parts": [{"text": GEMINI_STYLE + "\n\n" + testo}]}],
+        "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"responseModalities": ["AUDIO"],
                              "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}},
     }).encode("utf-8")
@@ -294,6 +305,47 @@ def synth(py, onnx, paragraphs, wav_path):
                        input=json.dumps(paras).encode("utf-8"), capture_output=True)
     if r.returncode != 0:
         raise RuntimeError("piper: " + r.stderr.decode("utf-8", "replace")[-500:])
+    with wave.open(wav_path) as w:
+        return round(w.getnframes() / w.getframerate())
+
+
+# Il campanello di chiusura: tre note, come un notiziario alla radio. Un
+# arpeggio maggiore ascendente (Do-Mi-Sol), non la sigla a tre note di nessuna
+# radio o rete esistente — e' un suono generico, lo stesso principio di un
+# suono di notifica. Richiesta di Mike il 2 ottobre 2026: "deve sembrare
+# davvero un'edizione alla radio di news".
+JINGLE_NOTE_HZ = [523.25, 659.25, 783.99]   # Do5, Mi5, Sol5
+JINGLE_NOTE_MS = 170
+JINGLE_GAP_MS = 45
+JINGLE_LEAD_MS = 280   # silenzio dopo l'ultima parola, prima del campanello
+
+
+def _tone(freq, ms, rate, amp=0.22):
+    """Una nota pura a 16 bit, con una breve fade-in/out: senza, si sente
+    uno scatto netto all'inizio e alla fine della nota."""
+    n = max(1, int(rate * ms / 1000))
+    fade = max(1, int(rate * 0.012))
+    out = bytearray()
+    for i in range(n):
+        env = min(1.0, i / fade, (n - i) / fade)
+        out += struct.pack("<h", int(amp * env * 32767 * math.sin(2 * math.pi * freq * i / rate)))
+    return bytes(out)
+
+
+def append_jingle(wav_path):
+    """Accoda il campanello di chiusura al file appena sintetizzato (Gemini o
+    Piper, stesso trattamento) e torna la nuova durata totale in secondi."""
+    with wave.open(wav_path, "rb") as w:
+        rate, width, ch = w.getframerate(), w.getsampwidth(), w.getnchannels()
+        frames = w.readframes(w.getnframes())
+    coda = bytes(int(rate * JINGLE_LEAD_MS / 1000) * width * ch)
+    for i, hz in enumerate(JINGLE_NOTE_HZ):
+        if i:
+            coda += bytes(int(rate * JINGLE_GAP_MS / 1000) * width * ch)
+        coda += _tone(hz, JINGLE_NOTE_MS, rate)
+    with wave.open(wav_path, "wb") as w:
+        w.setnchannels(ch); w.setsampwidth(width); w.setframerate(rate)
+        w.writeframes(frames + coda)
     with wave.open(wav_path) as w:
         return round(w.getnframes() / w.getframerate())
 
@@ -481,6 +533,7 @@ def main():
                         secs = synth(py, onnx, paragraphs, wav)
                 else:
                     secs = synth(py, onnx, paragraphs, wav)
+                secs = append_jingle(wav)
                 local, mime = encode(wav)
                 size = os.path.getsize(local) // 1024
                 if args.dry:

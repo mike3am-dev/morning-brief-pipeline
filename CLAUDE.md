@@ -789,8 +789,18 @@ voce è Gemini** (Google AI Studio, modello `gemini-3.8-flash-tts`, voce «Kore�
 robotica la voce open source di prima (Piper «paola») e non vuole passare da Microsoft.
 Serve la chiave `GEMINI_API_KEY`, in `.env.local` sul Mac e nell'ambiente della routine; il
 livello gratuito basta. Un approfondimento è una richiesta sola, con un'istruzione di tono
-da giornale radio (`GEMINI_STYLE`). Altre voci: `--voce aoede|leda|charon|puck`. Se la chiave
-manca o Gemini non risponde, quell'audio si fa con Piper: non manca mai.
+da giornale radio (`GEMINI_STYLE`), scritta come un'unica frase che finisce con i due punti
+e porta dritta al testo fra virgolette (`"Leggi con tono X: \"<testo>\""`) — è la sintassi
+che Gemini TTS **non** legge ad alta voce. Scritta come paragrafo separato, Gemini la legge
+come se fosse il primo paragrafo dell'approfondimento: è successo il 2 ottobre 2026, corretto
+lo stesso giorno. Altre voci: `--voce aoede|leda|charon|puck`. Se la chiave manca o Gemini
+non risponde, quell'audio si fa con Piper: non manca mai.
+
+**Il campanello di chiusura** (dal 2 ottobre 2026): tre note in coda a ogni audio, Gemini o
+Piper che sia — la richiesta di Mike per farlo sembrare davvero un'edizione radiofonica.
+Sintetizzato in `append_jingle()`, non scaricato: tre toni puri con un filo di fade, nessuna
+sigla esistente. Se cambi le note o i tempi, alza `RESA` come per ogni altra modifica al
+modo in cui l'audio viene prodotto.
 
 I file vanno nel bucket pubblico `brief-audio` di Supabase Storage e l'indirizzo finisce
 nell'approfondimento (`audio`). Nell'app *Ascolta* suona quelli: continuano a schermo
