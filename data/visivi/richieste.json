@@ -14,5 +14,21 @@
   "interazione": "Un interruttore 'USA / resto del mondo' che cambia il modem mostrato dentro lo stesso telefono disegnato uguale fuori; un secondo controllo 'prima/dopo iOS 27.0.1' che non cambia lo stato di rete nella versione USA, per mostrare che l'update non basta.",
   "dati": "La distinzione USA/resto del mondo sul modem e il fatto che le note di rilascio di iOS 27.0.1 non menzionano un fix di rete vengono da MacRumors; nessun dato numerico su quante unità sono coinvolte, nessuna conferma che il modem sia la causa.",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-03",
+  "notizia": "iphone18promax-att-sostituzione-hardware",
+  "idea": "Confronto hardware fra le due varianti del Pro Max: modem Qualcomm Snapdragon X80 (solo USA) contro modem Apple C2 (resto del mondo e ogni altro modello 2026), per far vedere perché solo una versione ha il guasto di rete e perché l'update non la cura",
+  "interazione": "nessuna leva da attivare: qui l'aggiornamento non ferma nulla, serve un confronto statico fra due varianti hardware dello stesso telefono, non una catena con una rottura",
+  "dati": "Apple: dichiarazione odierna; sospetto tecnico sul modem (non confermato da Apple); due varianti note: Qualcomm Snapdragon X80 (USA) vs Apple C2 (resto del mondo + altri modelli)",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-03",
+  "notizia": "micron-carenza-dram-nand-2028",
+  "idea": "Linea del tempo della stima di fine carenza che si allunga: prima si pensava a un calo prezzi nel 2027, Micron dice ora che 2027 e 2028 saranno 'persino più tesi' del 2026, senza nuova data",
+  "interazione": "nessun numero a listino nell'articolo per costruire uno stime vero (solo percentuali di rincaro di altre notizie, non di Micron), e nessuna data di previsione precedente con fonte propria: serve un tipo che mostri uno slittamento di orizzonte temporale senza richiedere un valore numerico per ogni punto",
+  "dati": "Micron: ricavi trimestrali 54,23 miliardi, margine lordo oltre 86%, capacità 2026 già impegnata; CEO Sanjay Mehrotra: 2027 e 2028 'persino più tesi' del 2026, nessuna data di ritorno all'equilibrio",
+  "stato": "aperta"
  }
 ]
