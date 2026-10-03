@@ -46,7 +46,7 @@ BANCO_MIN, BANCO_MAX = 3, 5
 BANCO_KINDS = {"recensione", "video", "confronto", "curiosità", "guida"}
 RECAP_MAX = 3
 AI_MIN, AI_MAX = 6, 12
-AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "altri"}
+AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "robot", "altri"}
 # cronaca: cosa fanno i laboratori. LAB: cosa ci fa la gente.
 AI_CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
 AI_LAB = {"uso", "demo", "trucco", "sapevi"}
