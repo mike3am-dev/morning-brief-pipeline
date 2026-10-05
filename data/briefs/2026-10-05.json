@@ -49,7 +49,45 @@
    },
    "approfondimento": {
     "punto": "Gurman aggiunge un sesto elemento al redesign del MacBook Pro OLED: dopo schermo, touch e Dynamic Island, ora anche un peso ridotto «in modo significativo» grazie a componenti riprogettati.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Quanto pesano i MacBook",
+      "unita": "kg",
+      "voci": [
+       {
+        "etichetta": "MacBook Pro attuale",
+        "min": 2.13,
+        "max": 2.13,
+        "colore": "rosso",
+        "nota": "fino a 4,7 libbre"
+       },
+       {
+        "etichetta": "MacBook Air",
+        "min": 1.5,
+        "max": 1.5,
+        "colore": "nero",
+        "nota": "3,3 libbre"
+       },
+       {
+        "etichetta": "MacBook Neo",
+        "min": 1.22,
+        "max": 1.22,
+        "colore": "nero",
+        "nota": "2,7 libbre"
+       },
+       {
+        "etichetta": "Obiettivo OLED",
+        "min": 0,
+        "max": 2.0,
+        "colore": "blu",
+        "nota": "sotto i 2 kg, secondo Gurman"
+       }
+      ],
+      "didascalia": "Il MacBook Pro OLED punterebbe a scendere sotto i 2 kg: oggi arriva fino a 2,13 kg, più pesante sia di Air che di Neo.",
+      "fonte": "Mark Gurman, Bloomberg (Power On)"
+     }
+    ],
     "sotto": [
      "Nella newsletter Power On, Gurman scrive che Apple ha «re-ingegnerizzato l'interno della macchina, miniaturizzando i componenti e riorganizzandoli» per renderla piu' facile da trasportare. Il MacBook Pro attuale arriva fino a 4,7 libbre (circa 2,13 kg), contro le 3,3 libbre (1,5 kg) del MacBook Air e le 2,7 libbre (1,22 kg) del MacBook Neo: il salto che Gurman descrive non e' una limatura di pochi grammi.",
      "Macitynet nota che l'OLED, senza retroilluminazione, da' gia' un contributo da solo; per un calo davvero sensibile serve intervenire anche su batteria, dissipatori e chassis. Il modello da 16 pollici, oggi fino a circa 2,18 kg, e' il riferimento piu' citato: scendere sotto i 2 kg sarebbe un traguardo ingegneristico. I nuovi MacBook Pro sono in test con macOS 27.2, ancora in beta."
@@ -87,7 +125,13 @@
       "perche": "Il calcolo sul peso attuale e su cosa serve per scendere sotto i 2 kg."
      }
     ],
-    "scritto": "2026-10-05"
+    "scritto": "2026-10-05",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-05/macbook-pro-oled-leggero-f27e1857334b.mp3",
+     "durata": 132,
+     "voce": "kore",
+     "impronta": "f27e1857334b"
+    }
    },
    "verifica": {
     "testate": 4,
@@ -166,7 +210,13 @@
       "perche": "Come sarebbe l'hub HomePad, descritto una settimana prima."
      }
     ],
-    "scritto": "2026-10-05"
+    "scritto": "2026-10-05",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-05/apple-evento-13-ottobre-1727733d8db1.mp3",
+     "durata": 115,
+     "voce": "kore",
+     "impronta": "1727733d8db1"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -254,7 +304,13 @@
       "perche": "La sintesi di MacRumors sullo stesso report di Bloomberg."
      }
     ],
-    "scritto": "2026-10-05"
+    "scritto": "2026-10-05",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-05/ternus-design-studio-7a25065bef8b.mp3",
+     "durata": 133,
+     "voce": "kore",
+     "impronta": "7a25065bef8b"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -292,7 +348,33 @@
    "thread": "ios27",
    "approfondimento": {
     "punto": "Mentre Siri AI resta bloccata in Europa, il giornalista David Pogue la mette alla prova negli USA con 125 richieste reali: il salto, scrive, e' smettere di ricordare dove si trova un'informazione.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Come risponde Siri AI",
+      "contatto": "Siri AI",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Cosa devo fare oggi?"
+       },
+       {
+        "da": "agente",
+        "testo": "Incrocia Calendario, Promemoria e Mail per rispondere senza farti aprire nessuna app."
+       },
+       {
+        "da": "tu",
+        "testo": "Qual è il mio numero di volo per Austin?"
+       },
+       {
+        "da": "agente",
+        "testo": "Recupera il dettaglio dai biglietti passati in Mail e Foto."
+       }
+      ],
+      "didascalia": "Conversazione d'esempio, basata sulle 125 richieste testate da David Pogue: Siri AI smette di far ricordare a te dove si trova un'informazione, e va a prenderla fra Mail, Calendario, Foto e le altre app.",
+      "fonte": "David Pogue"
+     }
+    ],
     "sotto": [
      "Pogue ha usato Siri AI tutta l'estate e, dopo le versioni definitive, ha raccolto 125 richieste per capire quanto l'assistente sostituisca l'apertura manuale delle app. Ha chiesto cose come «Cosa devo fare oggi?» o «Qual e' il mio numero di volo per Austin?», e Siri ha recuperato numeri di fidelizzazione, dettagli di viaggi passati e indirizzi incrociando Mail, Messaggi, Note, File, Calendario, Contatti, Promemoria, Foto e Musica.",
      "Apple elabora le richieste semplici sul dispositivo e usa Private Cloud Compute per quelle piu' complesse, un'architettura che secondo l'azienda le impedisce di leggere i dati personali elaborati. Nell'Unione Europea, pero', questa versione di Siri resta assente da iPhone e iPad: Apple non ha mai spiegato pubblicamente il motivo di un ritardo che dura da mesi."
@@ -333,7 +415,13 @@
       "perche": "Il quadro del blocco europeo."
      }
     ],
-    "scritto": "2026-10-05"
+    "scritto": "2026-10-05",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-05/siri-ai-europa-test-pogue-cd8af0e6f82b.mp3",
+     "durata": 130,
+     "voce": "kore",
+     "impronta": "cd8af0e6f82b"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -361,7 +449,17 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "Apple rivela chi ha scattato le prime foto ufficiali di iPhone Duo: i fotografi Jake Michaels e Jason Nocito, per una campagna Shot on iPhone che in dieci anni ha vinto due Grand Prix a Cannes.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "densita",
+      "titolo": "La fotocamera nascosta sotto lo schermo",
+      "rapporto": 0.5,
+      "zona": "fotocamera FaceTime",
+      "compensa": "luce che passa dai vuoti fra i pixel",
+      "didascalia": "Schema illustrativo: la fotocamera FaceTime di iPhone Duo sta sotto il display interno, invisibile finché non serve a scattare.",
+      "fonte": "Apple"
+     }
+    ],
     "sotto": [
      "Il carosello pubblicato sull'account Instagram ufficiale Apple conta sei foto, pensate per mettere in mostra il sistema fotografico di iPhone Duo: tre fotocamere posteriori da 48 megapixel, una frontale da 12 megapixel e una FaceTime nascosta sotto il display interno. Apple descrive il sistema come «versatile, ricco di nuove funzioni sorprendenti» e lascia parlare gli scatti dei due fotografi.",
      "Shot on iPhone e' una delle campagne pubblicitarie piu' premiate nella storia di Apple: ha vinto diversi Cannes Lions, tra cui due Grand Prix, ed e' stata candidata due volte agli Emmy nella categoria Outstanding Commercial. I preordini di iPhone Duo partono il 16 ottobre, con consegne dal 23: i prezzi vanno da 2.369 euro per il modello da 256 GB fino alla versione da 2 TB, disponibile in due colori."
@@ -401,7 +499,13 @@
       "perche": "Il racconto completo della campagna e le specifiche delle fotocamere."
      }
     ],
-    "scritto": "2026-10-05"
+    "scritto": "2026-10-05",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-05/iphone-duo-shot-on-iphone-98024583d78b.mp3",
+     "durata": 134,
+     "voce": "kore",
+     "impronta": "98024583d78b"
+    }
    },
    "verifica": {
     "testate": 1,
