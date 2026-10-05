@@ -1,0 +1,3199 @@
+{
+ "fetched_at": "2026-10-05T04:45:49.169139+00:00",
+ "window_hours": 26.0,
+ "feed_status": {
+  "9to5Mac": {
+   "state": "ok",
+   "items": 5,
+   "newest": "2026-10-04T19:09:34+00:00",
+   "stale_hours": 9.6
+  },
+  "AI Explained": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Andrea Galeazzi": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Android Authority": {
+   "state": "ok",
+   "items": 5,
+   "newest": "2026-10-05T04:11:21+00:00",
+   "stale_hours": 0.6
+  },
+  "Anthropic cookbook": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Apple Developer": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T09:00:19-07:00",
+   "stale_hours": 60.8
+  },
+  "Apple Newsroom": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-09-29T17:00:57.163000+00:00",
+   "stale_hours": 131.7
+  },
+  "Ars Technica": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-04T15:34:14+00:00",
+   "stale_hours": 13.2
+  },
+  "Ars Technica AI": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T23:03:16+00:00",
+   "stale_hours": 53.7
+  },
+  "Ars Technica Gadget": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-03T11:15:33+00:00",
+   "stale_hours": 41.5
+  },
+  "Ars Technica Scienza": {
+   "state": "ok",
+   "items": 3,
+   "newest": "2026-10-05T04:00:52+00:00",
+   "stale_hours": 0.7
+  },
+  "BGR": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-05T03:47:00+00:00",
+   "stale_hours": 1.0
+  },
+  "DDay.it": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-03T08:32:00+02:00",
+   "stale_hours": 46.2
+  },
+  "Engadget": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-05T00:30:00+00:00",
+   "stale_hours": 4.3
+  },
+  "Eurogamer": {
+   "state": "ok",
+   "items": 6,
+   "newest": "2026-10-04T17:07:59+00:00",
+   "stale_hours": 11.6
+  },
+  "GSMArena": {
+   "state": "ok",
+   "items": 8,
+   "newest": "2026-10-05T04:00:02+02:00",
+   "stale_hours": 2.8
+  },
+  "GamesIndustry.biz": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T15:19:56+00:00",
+   "stale_hours": 61.4
+  },
+  "Gizmodo": {
+   "state": "ok",
+   "items": 9,
+   "newest": "2026-10-05T04:00:22+00:00",
+   "stale_hours": 0.8
+  },
+  "Google DeepMind": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "HDblog": {
+   "state": "ok",
+   "items": 11,
+   "newest": "2026-10-04T18:15:00+02:00",
+   "stale_hours": 12.5
+  },
+  "Hackaday": {
+   "state": "ok",
+   "items": 7,
+   "newest": "2026-10-05T02:00:01+00:00",
+   "stale_hours": 2.8
+  },
+  "Hacker News": {
+   "state": "ok",
+   "items": 4,
+   "newest": "2026-10-04T19:42:25+00:00",
+   "stale_hours": 9.1
+  },
+  "IEEE Spectrum Robotica": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T16:30:02+00:00",
+   "stale_hours": 60.3
+  },
+  "IGN": {
+   "state": "ok",
+   "items": 9,
+   "newest": "2026-10-05T02:00:00+00:00",
+   "stale_hours": 2.8
+  },
+  "Kotaku": {
+   "state": "ok",
+   "items": 5,
+   "newest": "2026-10-04T21:22:36+00:00",
+   "stale_hours": 7.4
+  },
+  "Latent Space": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-03T08:45:15+00:00",
+   "stale_hours": 44.0
+  },
+  "Liliputing": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-04T18:52:44+00:00",
+   "stale_hours": 9.9
+  },
+  "MIT Technology Review AI": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T15:49:04+00:00",
+   "stale_hours": 60.9
+  },
+  "MKBHD": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "MacRumors": {
+   "state": "ok",
+   "items": 6,
+   "newest": "2026-10-05T02:35:01+00:00",
+   "stale_hours": 2.2
+  },
+  "Macitynet": {
+   "state": "ok",
+   "items": 11,
+   "newest": "2026-10-04T19:09:15+00:00",
+   "stale_hours": 9.6
+  },
+  "Matt Wolfe": {
+   "state": "parse-error",
+   "items": 0,
+   "newest": null,
+   "stale_hours": null
+  },
+  "Media INAF": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T15:42:28+00:00",
+   "stale_hours": 61.1
+  },
+  "NASA": {
+   "state": "ok",
+   "items": 5,
+   "newest": "2026-10-05T04:05:00+00:00",
+   "stale_hours": 0.7
+  },
+  "NASA APOD": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-05T11:00:00+00:00",
+   "stale_hours": -6.2
+  },
+  "Nintendo Life": {
+   "state": "ok",
+   "items": 8,
+   "newest": "2026-10-04T22:00:00+00:00",
+   "stale_hours": 6.8
+  },
+  "One Useful Thing": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-01T10:54:12+00:00",
+   "stale_hours": 89.9
+  },
+  "OpenAI": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T16:15:00+00:00",
+   "stale_hours": 60.5
+  },
+  "PlayStation Blog": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-02T17:58:44+00:00",
+   "stale_hours": 58.8
+  },
+  "Product Hunt": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-03T21:39:18-07:00",
+   "stale_hours": 24.1
+  },
+  "Push Square": {
+   "state": "ok",
+   "items": 2,
+   "newest": "2026-10-04T18:30:00+00:00",
+   "stale_hours": 10.3
+  },
+  "Rock Paper Shotgun": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-04T09:00:00+00:00",
+   "stale_hours": 19.8
+  },
+  "Simon Willison": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-03T23:34:02+00:00",
+   "stale_hours": 29.2
+  },
+  "SpaceNews": {
+   "state": "ok",
+   "items": 0,
+   "newest": "2026-10-01T15:06:43+00:00",
+   "stale_hours": 85.7
+  },
+  "TechCrunch": {
+   "state": "ok",
+   "items": 4,
+   "newest": "2026-10-04T20:31:07+00:00",
+   "stale_hours": 8.2
+  },
+  "TechCrunch AI": {
+   "state": "ok",
+   "items": 3,
+   "newest": "2026-10-04T20:31:07+00:00",
+   "stale_hours": 8.2
+  },
+  "TechRadar": {
+   "state": "ok",
+   "items": 25,
+   "newest": "2026-10-05T00:10:00+00:00",
+   "stale_hours": 4.6
+  },
+  "The Decoder": {
+   "state": "ok",
+   "items": 5,
+   "newest": "2026-10-04T17:41:58+00:00",
+   "stale_hours": 11.1
+  },
+  "The Robot Report": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-04T12:52:11+00:00",
+   "stale_hours": 15.9
+  },
+  "The Verge": {
+   "state": "ok",
+   "items": 10,
+   "newest": "2026-10-04T17:02:09-04:00",
+   "stale_hours": 7.7
+  },
+  "Tom's Hardware IT": {
+   "state": "ok",
+   "items": 20,
+   "newest": "2026-10-05T00:58:00+02:00",
+   "stale_hours": 5.8
+  },
+  "Universe Today": {
+   "state": "ok",
+   "items": 1,
+   "newest": "2026-10-04T21:54:36+00:00",
+   "stale_hours": 6.9
+  },
+  "VGC": {
+   "state": "ok",
+   "items": 4,
+   "newest": "2026-10-04T11:24:34+00:00",
+   "stale_hours": 17.4
+  },
+  "iSpazio": {
+   "state": "ok",
+   "items": 3,
+   "newest": "2026-10-04T13:30:00+00:00",
+   "stale_hours": 15.3
+  }
+ },
+ "count": 220,
+ "items": [
+  {
+   "source": "NASA APOD",
+   "tier": "spazio",
+   "title": "M104: The Sombrero Galaxy's Tidal Streams",
+   "link": "https://science.nasa.gov/image-article/apod-2026-october-5-m104-the-sombrero-galaxys-tidal-streams/",
+   "date": "2026-10-05T11:00:00+00:00",
+   "age_hours": -6.2,
+   "summary": "A deep image of the Sombrero galaxy reveals surprises",
+   "categories": []
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "This is the Fitbit Edge: Google’s next fitness tracker finally spills its secrets",
+   "link": "https://www.androidauthority.com/google-fitbit-edge-leak-3718856/",
+   "date": "2026-10-05T04:11:21+00:00",
+   "age_hours": 0.6,
+   "summary": "The perfect middle ground between Fitbit Air and Pixel Watch 5?",
+   "categories": [
+    "News",
+    "Fitbit",
+    "Google Fitbit Air"
+   ]
+  },
+  {
+   "source": "NASA",
+   "tier": "spazio",
+   "title": "Moon-Like Madagascar",
+   "link": "https://science.nasa.gov/earth/earth-observatory/moon-like-madagascar/",
+   "date": "2026-10-05T04:01:00+00:00",
+   "age_hours": 0.7,
+   "summary": "A bright lens of anorthosite, a rock type prevalent on the lunar surface, is cradled within sheared rocks in the country’s south.",
+   "categories": [
+    "Earth Observatory",
+    "Earth Surface & Interior",
+    "International Space Station (ISS)"
+   ]
+  },
+  {
+   "source": "Ars Technica Scienza",
+   "tier": "spazio",
+   "title": "New forensic evidence supports Egyptian \"retainer sacrifice\"",
+   "link": "https://arstechnica.com/science/2026/10/new-forensice-evidence-supports-egyptian-retainer-sacrifice/",
+   "date": "2026-10-05T04:00:52+00:00",
+   "age_hours": 0.7,
+   "summary": "Fresh analysis of First Dynasty mass burials finds signs of fatal blunt force trauma on 39 percent of skulls",
+   "categories": [
+    "Science",
+    "ancient egypt",
+    "Archaeology",
+    "bioarchaeology",
+    "burial practices",
+    "forensic archaeology"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Skulls Reveal Evidence of Human Sacrifice in Egypt 5,000 Years Ago",
+   "link": "https://gizmodo.com/skulls-reveal-evidence-of-human-sacrifice-in-egypt-5000-years-ago-2000820833",
+   "date": "2026-10-05T04:00:22+00:00",
+   "age_hours": 0.8,
+   "summary": "Royal tombs at Abydos were surrounded by numerous other burials. In the 1920s, an Egyptologist questioned whether all those people could have died naturally at the same time.",
+   "categories": [
+    "Human History"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Beats 360 review",
+   "link": "https://www.gsmarena.com/beats_360_review-news-74894.php",
+   "date": "2026-10-05T04:00:02+02:00",
+   "age_hours": 2.8,
+   "summary": "The Beats 360 are the newest pair of headphones from Apple-owned Beats by Dre, and are aimed specifically at those looking for a pair of headphones to use during workouts. They have a lightweight, durable design as well as IPX4 water and sweat resistance. The mesh fabric ear cups and headband are also removable and easy to replace, with multiple color and material options. The Beats 360 could also be seen as a more affordable alternative to the Apple AirPods Max 2, with many of the same Apple-exclusive features, plus Android compatibility, thrown in for good measure. At the $350...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "Is Your Xbox Series X Worth Using As A Blu-Ray Player?",
+   "link": "https://www.bgr.com/2271918/xbox-series-x-worth-using-blu-ray-player/",
+   "date": "2026-10-05T03:47:00+00:00",
+   "age_hours": 1.0,
+   "summary": "The Xbox Series X is a capable video game console, but is the Microsoft device worth using as a way to play Blu-Ray discs? The answer is nuanced.",
+   "categories": [
+    "Home Entertainment"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "Your Old Google Home Device Is The Perfect YouTube TV Machine For The Kitchen",
+   "link": "https://www.bgr.com/2272742/how-watch-youtube-tv-google-home-display-kitchen/",
+   "date": "2026-10-05T03:17:00+00:00",
+   "age_hours": 1.5,
+   "summary": "You don't have to miss the game just because dinner needs your attention. A Nest Hub can put YouTube TV on the kitchen counter without taking up much space.",
+   "categories": [
+    "Accessories",
+    "Home Entertainment"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Tech Finds Worth Adding To Your DIY PC Kit",
+   "link": "https://www.bgr.com/2272377/tech-finds-worth-adding-to-your-diy-pc-kit/",
+   "date": "2026-10-05T02:47:00+00:00",
+   "age_hours": 2.0,
+   "summary": "If you regularly update, fix, or clean your PC hardware, it's important to have the right tools on hand. Here are five finds worth adding to your DIY PC kit.",
+   "categories": [
+    "Computers"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple's New CEO John Ternus is Making Product Design a 'Major Priority'",
+   "link": "https://www.macrumors.com/2026/10/04/john-ternus-making-design-a-major-priority/",
+   "date": "2026-10-05T02:35:01+00:00",
+   "age_hours": 2.2,
+   "summary": "Since becoming Apple's CEO last month, John Ternus has made product design a \"major priority,\" according to Bloomberg 's Mark Gurman. \"Ternus already had some involvement with the design studio as Apple's head of hardware engineering, given the close coordination required between the two functions,\" he said, in his Power On newsletter today . \"Since becoming CEO, however, he has immersed himself in the industrial design and human interface teams.\" Ternus goes \"hands-on\" in Apple's design studio \"several times a week, sometimes visiting multiple times in a single day,\" whereas Apple's former CEO Tim Cook typically visited the studio for \"about an hour once a month, at most,\" according to Gurman. Unlike Cook, who is better known as a supply chain expert, Ternus comes from an engineering background. As such, Gurman said that Ternus is largely leaving Apple's finances to financial chief Keva",
+   "categories": [
+    "John Ternus",
+    "Mark Gurman"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "Do Electric Vehicles Use Liquid Cooling For Their Batteries?",
+   "link": "https://www.bgr.com/2272165/liquid-cooled-electric-vehicle-batteries-explained/",
+   "date": "2026-10-05T02:17:00+00:00",
+   "age_hours": 2.5,
+   "summary": "Chances are you may have heard of liquid cooling in regards to other electronic devices, but do electric vehicles also utilize the technology?",
+   "categories": [
+    "Electric Vehicles"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple Hiring 'iCup' Specialist",
+   "link": "https://www.macrumors.com/2026/10/04/apple-icup-job-listing/",
+   "date": "2026-10-05T02:11:42+00:00",
+   "age_hours": 2.6,
+   "summary": "Apple recently posted a job listing for an \"iCup Supply Specialist\" who would be responsible for ensuring that \"all Apple employees have access to freshly brewed coffee in their break room.\" MacRumors contributor Aaron Perris highlighted the job listing this weekend, but it turns out that Apple has been using the \"iCup\" name since at least 2014 . The individual hired will be required to drive between locations and \"sanitize, clean, restock, and manage up to 90 bean-to-cup coffee machines.\" Tag: Apple Job Listings This article, \" Apple Hiring 'iCup' Specialist \" first appeared on MacRumors.com Discuss this article in our forums",
+   "categories": [
+    "No Linkback",
+    "Apple Job Listings"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "Upgrading a Benchtop Laser for Megawatt Power",
+   "link": "https://hackaday.com/2026/10/04/upgrading-a-benchtop-laser-for-megawatt-power/",
+   "date": "2026-10-05T02:00:01+00:00",
+   "age_hours": 2.8,
+   "summary": "One fascinating thing about a pulsed laser is that, though the average power may be measured in watts or milliwatts, the peak power can easily reach millions of times that. …read more",
+   "categories": [
+    "Laser Hacks",
+    "Cr:YAG",
+    "laser power meter",
+    "Nd:Ce:YAG",
+    "nd:yag laser",
+    "pulse laser",
+    "q-switch"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Lanterns Season 1 Finale Review & Recap",
+   "link": "https://www.ign.com/articles/lanterns-season-1-finale-review-recap",
+   "date": "2026-10-05T02:00:00+00:00",
+   "age_hours": 2.8,
+   "summary": "Though most of the twists can be seen coming well in advance, Lanterns Episode 8 manages to wrap up the season on an emotionally satisfying note.",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "4 Of The Most Popular Tech Products You Can Lease",
+   "link": "https://www.bgr.com/2272655/most-popular-tech-products-lease/",
+   "date": "2026-10-05T01:47:00+00:00",
+   "age_hours": 3.0,
+   "summary": "If you're looking to get the latest and greatest tech, leasing is always an option, but is every new tech item worth opening up a lease for?",
+   "categories": [
+    "Technology"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "MacBook Pro With OLED Display Rumored to Be 'Significantly Lighter'",
+   "link": "https://www.macrumors.com/2026/10/04/oled-macbook-pro-significantly-lighter-rumor/",
+   "date": "2026-10-05T01:22:06+00:00",
+   "age_hours": 3.4,
+   "summary": "Bloomberg 's Mark Gurman today said the new MacBook Pro models with OLED displays will be \"significantly lighter\" than the existing MacBook Pro models. \"Apple has reengineered the machine's interior, miniaturizing parts and rearranging components to make the computer much easier to carry,\" he said, in his Power On newsletter . Currently, the MacBook Pro weighs up to 4.7 pounds, while the MacBook Air weighs up to 3.3 pounds and the MacBook Neo weighs 2.7 pounds. With this newly-reported detail, the new models are now rumored to have six new features: OLED display Touch-screen capabilities Dynamic Island instead of a notch M5 Pro and M5 Max chips Thinner design \"Significantly lighter\" design Thinner and lighter go hand in hand. Apple plans to release the MacBook Pro models with OLED displays in October or November this year, according to Gurman. In his newsletter, he reiterated that Apple ",
+   "categories": [
+    "MacBook Pro",
+    "Mark Gurman",
+    "OLED"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "Alexa Comes With A Clever Feature That Can Find Something You Lost",
+   "link": "https://www.bgr.com/2272656/alexa-comes-with-clever-feautre-find-lost-items/",
+   "date": "2026-10-05T01:17:00+00:00",
+   "age_hours": 3.5,
+   "summary": "Living in a digital world has its benefits, such as when you want to find a household item, like keys and phones, when you inevitably misplace them.",
+   "categories": [
+    "Apps & Software"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Google starebbe creando il Fitbit che tutti stavano aspettando",
+   "link": "https://www.tomshw.it/smartphone/google-starebbe-creando-il-fitbit-che-tutti-stavano-aspettando",
+   "date": "2026-10-05T00:58:00+02:00",
+   "age_hours": 5.8,
+   "summary": "Google sarebbe pronta a riempire il vuoto più evidente del suo catalogo indossabile con un nuovo tracker chiamato Fitbit Edge, apparso in una serie di immagini promozionali scovate da Android H...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "John Ternus come Steve Jobs: la svolta di Apple è già iniziata?",
+   "link": "https://www.tomshw.it/business/john-ternus-vuole-essere-come-steve-jobs-la-svolta-di-apple-e-gia-iniziata",
+   "date": "2026-10-05T00:50:00+02:00",
+   "age_hours": 5.9,
+   "summary": "Apple non ha un responsabile unico del design dal 2019, ma secondo Mark Gurman quella casella oggi è occupata di fatto dall'amministratore delegato. Nella newsletter Power On del 4 ottobre, il...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Digital Wallets To Try Instead Of Google Wallet",
+   "link": "https://www.bgr.com/2271746/digital-wallets-to-try-instead-of-google-wallet/",
+   "date": "2026-10-05T00:47:00+00:00",
+   "age_hours": 4.0,
+   "summary": "While Google Wallet mostly gets the job done, here are some alternative digital wallets that offer different features and access to new financial tools.",
+   "categories": [
+    "Apps & Software"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "L'IA fa paura? Trump ha trovato la soluzione: cambiarle nome",
+   "link": "https://www.tomshw.it/hardware/lia-fa-paura-trump-ha-trovato-la-soluzione-cambiarle-nome",
+   "date": "2026-10-05T00:30:00+02:00",
+   "age_hours": 6.3,
+   "summary": "Il presidente degli Stati Uniti Donald Trump ha riunito il 29 settembre alla Casa Bianca i vertici delle maggiori aziende dell'intelligenza artificiale e, al termine del pranzo, ha firmato un ordine e...",
+   "categories": []
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "What are the benefits of having a second monitor?",
+   "link": "https://www.engadget.com/2274822/benefits-of-second-monitor-explained/",
+   "date": "2026-10-05T00:30:00+00:00",
+   "age_hours": 4.3,
+   "summary": "Adding a second monitor is a huge upgrade, even if you aren't doing intensive work like editing video or accounting. More screen space is always helpful.",
+   "categories": [
+    "Accessories"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Siri AI in Europa non arriverà ancora per molto, Apple sta gettando la spugna?",
+   "link": "https://www.tomshw.it/smartphone/siri-ai-in-europa-non-arrivera-ancora-per-molto-apple-sta-gettando-la-spugna",
+   "date": "2026-10-05T00:27:00+02:00",
+   "age_hours": 6.3,
+   "summary": "Gli utenti europei di iPhone e iPad continuano a non avere accesso al nuovo Siri AI, l'assistente riprogettato che Apple ha presentato alla WWDC del giugno 2026 e distribuito altrove con le ultime ver...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Il nuovo MacBook Pro potrebbe rubare al MacBook Air il suo più grande pregio",
+   "link": "https://www.tomshw.it/hardware/il-nuovo-macbook-pro-potrebbe-rubare-al-macbook-air-il-suo-piu-grande-pregio",
+   "date": "2026-10-05T00:19:00+02:00",
+   "age_hours": 6.4,
+   "summary": "Apple si prepara ad alleggerire in modo sensibile il suo portatile di punta: secondo Mark Gurman, il cronista di Bloomberg che segue l'azienda di Cupertino, il prossimo MacBook Pro con pannello OLED e...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "The CPU Is Not Your Laptop's Biggest Battery Problem - Here's Why",
+   "link": "https://www.bgr.com/2272359/cpu-is-not-biggest-battery-drainer/",
+   "date": "2026-10-05T00:17:00+00:00",
+   "age_hours": 4.5,
+   "summary": "You might think that powerful CPU is what's draining your laptop's battery the fastest, but the real culprit is actually right in front of your face.",
+   "categories": [
+    "Computers"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "iPhone 18 Pro nella bufera, continuano a spuntare problemi",
+   "link": "https://www.tomshw.it/smartphone/iphone-18-pro-nella-bufera-continuano-a-spuntare-problemi",
+   "date": "2026-10-05T00:12:00+02:00",
+   "age_hours": 6.6,
+   "summary": "Il lancio di iPhone 18 Pro si sta rivelando uno dei più preoccupanti degli ultimi anni per Apple. A poche settimane dall'arrivo sul mercato, i forum di assistenza, Reddit e i social raccolgono...",
+   "categories": []
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "‘You probably have one election cycle’: Quiet warning about data centers sparked a grassroots movement that is ousting Oregon politicians and threatening tech giants",
+   "link": "https://www.techradar.com/pro/you-probably-have-one-election-cycle-quiet-warning-about-data-centers-sparked-a-grassroots-movement-that-is-ousting-oregon-politicians-and-threatening-tech-giants",
+   "date": "2026-10-05T00:10:00+00:00",
+   "age_hours": 4.6,
+   "summary": "Oregon’s data center expansion faces organized opposition after tax incentives trigger lawsuits, political consequences and demands for statewide policy changes.",
+   "categories": [
+    "Pro"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Apple Event Reportedly Planned for October 13",
+   "link": "https://www.macrumors.com/2026/10/04/apple-event-reportedly-planned-for-october-13/",
+   "date": "2026-10-05T00:07:38+00:00",
+   "age_hours": 4.6,
+   "summary": "Last week, Bloomberg 's Mark Gurman reported that Apple plans to unveil an all-new smart home hub, a new HomePod mini, and a new Apple TV 4K on Tuesday, October 13 . In his Power On newsletter today , Gurman specified that \"Apple is planning to hold an event\" that day. Tags: Apple Event , Mark Gurman This article, \" Apple Event Reportedly Planned for October 13 \" first appeared on MacRumors.com Discuss this article in our forums",
+   "categories": [
+    "Featured",
+    "No Linkback",
+    "Apple Event",
+    "Mark Gurman"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "How did retro consoles handle graphics before modern GPUs?",
+   "link": "https://www.engadget.com/2274743/how-retro-consoles-handled-graphics-before-modern-gpu/",
+   "date": "2026-10-05T00:00:00+00:00",
+   "age_hours": 4.8,
+   "summary": "Graphics chips could draw but not compute, until the Xbox arrived.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Google è costretta a sospendere il bug bounty a causa dell'IA, cosa è successo?",
+   "link": "https://www.tomshw.it/hardware/google-e-costretta-a-sospendere-il-bug-bounty-a-causa-dellia-cosa-e-successo",
+   "date": "2026-10-04T23:56:00+02:00",
+   "age_hours": 6.8,
+   "summary": "Google ha congelato dal 1° ottobre 2026 l'accettazione di nuove segnalazioni di vulnerabilità di prodotto all'interno dell'OSS VRP, il programma di ricompense dedicato alle falle nel softwa...",
+   "categories": []
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Mighty Mike Plays Dad Says He Owns 'Like 12 Companies,' Promises Refunds for AI Shirts",
+   "link": "https://www.ign.com/articles/mighty-mike-plays-dad-says-he-owns-like-12-companies-promises-refunds-for-ai-shirts",
+   "date": "2026-10-04T23:48:07+00:00",
+   "age_hours": 5.0,
+   "summary": "Mighty Mike Plays dad Dave has promised refunds and issued a lengthy explanation after the internet demanded more information about the YouTube ads allegedly purchased by his son and the drama that followed.",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Samsung Gallery dice addio a OneDrive e passa a Google Foto, cosa cambia per i vostri Galaxy",
+   "link": "https://www.tomshw.it/smartphone/samsung-gallery-dice-addio-a-onedrive-e-passa-a-google-foto-cosa-cambia-per-i-vostri-galaxy",
+   "date": "2026-10-04T23:48:00+02:00",
+   "age_hours": 7.0,
+   "summary": "Samsung ha riscritto le regole del backup fotografico sui suoi smartphone: dal 30 settembre 2026 l'integrazione tra l'app Galleria e OneDrive è stata ufficialmente dismessa, sostituita da una s...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "There's A Big Problem With Building Data Centers Underground",
+   "link": "https://www.bgr.com/2272313/big-problem-building-data-center-underground/",
+   "date": "2026-10-04T23:47:00+00:00",
+   "age_hours": 5.0,
+   "summary": "AI data centers are loud and use a lot of resources, so it makes sense to want to bury them underground. Unfortunately, it's probably not a viable solution.",
+   "categories": [
+    "Artificial Intelligence"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "The reason the Mac mini is cheaper than a MacBook",
+   "link": "https://www.engadget.com/2274707/mac-mini-cheaper-than-macbook-reason/",
+   "date": "2026-10-04T23:45:00+00:00",
+   "age_hours": 5.0,
+   "summary": "If you're trying to decide between a MacBook and a Mac mini, you might be interested to know why there's a price difference.",
+   "categories": [
+    "Laptops",
+    "Apple"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Weekly poll: are you interested in the vivo X Fold6?",
+   "link": "https://www.gsmarena.com/weekly_poll_are_you_interested_in_the_vivo_x_fold6-news-74860.php",
+   "date": "2026-10-04T23:31:02+02:00",
+   "age_hours": 7.2,
+   "summary": "The vivo X Fold6 launched on July 1 in China and is now starting its worldwide tour – it’s already available in Europe and is expected to launch in India next week. So, now the question is this – are you planning on buying one? First, we have to look at the price and we immediately run into issues. vivo left the UK a while ago, the German site hasn’t been updated in ages. The company’s coverage in Europe is pretty spotty. We did find the phone in Spain where it costs €1,980 (down from an MSRP of €2,200) and comes with a 100W charger. While vivo Germany doesn’t have it, vivo Austria does,...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "You should avoid using a screen protector on your MacBook — here's why",
+   "link": "https://www.engadget.com/2274706/why-avoid-using-macbook-screen-protector/",
+   "date": "2026-10-04T23:30:00+00:00",
+   "age_hours": 5.3,
+   "summary": "Screen protectors can do more harm than good.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Compra una CPU usata e viene bannato da Valorant, com'è possibile?",
+   "link": "https://www.tomshw.it/videogioco/compra-una-cpu-usata-e-viene-bannato-da-valorant-come-possibile",
+   "date": "2026-10-04T23:18:00+02:00",
+   "age_hours": 7.5,
+   "summary": "Un utente del subreddit tedesco r/PCBaumeister, identificato come After-Cartoonist-196, sostiene di aver acquistato un Ryzen 7 5800X3D di seconda mano il 21 settembre e di non riuscire più ad a...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "George Orwell's 1984 Was Adapted Into A Movie That's Streaming For Free",
+   "link": "https://www.bgr.com/2275247/george-orwell-1984-movie-streaming-free/",
+   "date": "2026-10-04T23:17:00+00:00",
+   "age_hours": 5.5,
+   "summary": "The 1949 novel, 1984, painted a cautionary picture of a hypervigilant, totalitarian society and a distant future reflective of real-world political regimes.",
+   "categories": [
+    "Movies"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Every Starlink Dish Available: How To Know Which Setup May Be Right For You",
+   "link": "https://www.engadget.com/2276417/every-starlink-dish-available-which-setup-right/",
+   "date": "2026-10-04T23:15:00+00:00",
+   "age_hours": 5.5,
+   "summary": "Everyone has different needs when it comes to internet connectivity, and Starlink's dish selection caters to a many applications, from stationary to mobile.",
+   "categories": [
+    "Big Tech",
+    "Tomorrow"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Blindfolded Tekken 8 Player Achieves One of the Game’s Top Ranks from Beginner",
+   "link": "https://www.ign.com/articles/blindfolded-tekken-8-player-achieves-one-of-the-games-top-ranks-from-beginner",
+   "date": "2026-10-04T23:04:35+00:00",
+   "age_hours": 5.7,
+   "summary": "Professional Tekken 8 player SuperBrine is going viral after reaching God of Destruction using Alisa while completely blindfolded with a sleep mask.",
+   "categories": []
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "Hackaday Links: October 3, 2026",
+   "link": "https://hackaday.com/2026/10/04/hackaday-links-october-3-2026/",
+   "date": "2026-10-04T23:00:26+00:00",
+   "age_hours": 5.8,
+   "summary": "If you’re interested in aerospace, there’s an excellent chance you’ve heard the rumor that NASA is trying to get its SR-71 flying again. Or at the very least, they are …read more",
+   "categories": [
+    "Hackaday Columns",
+    "Hackaday links",
+    "auction",
+    "blacklisting",
+    "Crew Dragon",
+    "hackaday links",
+    "nasa",
+    "orbital rendezvous"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "When is it worth getting a sound card for your PC?",
+   "link": "https://www.engadget.com/2274701/when-worth-getting-sound-card-for-pc/",
+   "date": "2026-10-04T23:00:00+00:00",
+   "age_hours": 5.8,
+   "summary": "Whether or not adding a sound card makes sense really depends on how you're regularly using your PC.",
+   "categories": [
+    "Entertainment",
+    "Computing",
+    "PC Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "NYT Connections hints and answers for Monday, October 5 (game #1212)",
+   "link": "https://www.techradar.com/gaming/nyt-connections-today-answers-hints-5-october-2026",
+   "date": "2026-10-04T23:00:00+00:00",
+   "age_hours": 5.8,
+   "summary": "Looking for NYT Connections answers and hints? Here's all you need to know to solve today's game, plus my commentary on the puzzles.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Quordle hints and answers for Monday, October 5 (game #1715)",
+   "link": "https://www.techradar.com/computing/websites-apps/quordle-today-answers-clues-5-october-2026",
+   "date": "2026-10-04T23:00:00+00:00",
+   "age_hours": 5.8,
+   "summary": "Looking for Quordle clues? We can help. Plus get the answers to Quordle today and past solutions.",
+   "categories": [
+    "Websites & Apps",
+    "Computing",
+    "Internet"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "NYT Strands hints and answers for Monday, October 5 (game #946)",
+   "link": "https://www.techradar.com/computing/websites-apps/nyt-strands-today-answers-hints-5-october-2026",
+   "date": "2026-10-04T23:00:00+00:00",
+   "age_hours": 5.8,
+   "summary": "Looking for NYT Strands answers and hints? Here's all you need to know to solve today's game, including the spangram.",
+   "categories": [
+    "Websites & Apps",
+    "Computing",
+    "Internet"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "L'IA crea il suo GTA e conquista milioni di giocatori in soli 3 giorni",
+   "link": "https://www.tomshw.it/videogioco/lia-crea-il-suo-gta-e-conquista-milioni-di-giocatori-in-soli-3-giorni",
+   "date": "2026-10-04T22:59:00+02:00",
+   "age_hours": 7.8,
+   "summary": "Uno sviluppatore taiwanese che si firma aicodewithme ha pubblicato a fine settembre un gioco open world giocabile direttamente dal browser e ambientato nelle strade di Taipei, battezzato senza troppi...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What Does 'PHEV' Mean On Your Electric Car?",
+   "link": "https://www.bgr.com/2272126/what-phev-means-explained/",
+   "date": "2026-10-04T22:47:00+00:00",
+   "age_hours": 6.0,
+   "summary": "PHEV is a common term in the electric car world, but what does it actually tell you about the vehicle, and why could it matter when you're buying one?",
+   "categories": [
+    "Cars"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "The popular Apple features you won't be getting with the iPhone Duo",
+   "link": "https://www.engadget.com/2274700/iphone-duo-apple-popular-features-wont-come-with/",
+   "date": "2026-10-04T22:45:00+00:00",
+   "age_hours": 6.0,
+   "summary": "The iPhone Duo lacks a few features we're used to seeing on other iPhones.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Google stravolge la tastiera, ora sono i tasti a venire da noi",
+   "link": "https://www.tomshw.it/hardware/google-stravolge-la-tastiera-ora-sono-i-tasti-a-venire-da-noi",
+   "date": "2026-10-04T22:44:00+02:00",
+   "age_hours": 8.0,
+   "summary": "Il team giapponese di Gboard ha presentato la Gboard Conveyor Belt Version, una tastiera sperimentale in cui i tasti non restano fermi ad attendere le dita ma scorrono su quattro nastri trasportatori...",
+   "categories": []
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "How the iPhone Duo will improve your group selfies",
+   "link": "https://www.engadget.com/2274699/iphone-duo-smart-take-ai-photo-capturing-feature-improve-group-selfies/",
+   "date": "2026-10-04T22:30:00+00:00",
+   "age_hours": 6.3,
+   "summary": "The iPhone Duo's foldable form factor allows for more placement options, but there are also new camera features you should know about.",
+   "categories": [
+    "Smartphones",
+    "Apple"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Trump Names National Intelligence Director as New ‘Super Intelligence’ Czar",
+   "link": "https://gizmodo.com/trump-names-national-intelligence-director-as-new-super-intelligence-czar-2000821343",
+   "date": "2026-10-04T22:27:39+00:00",
+   "age_hours": 6.3,
+   "summary": "National intelligence director Jay Clayton will lead Trump's AI task force.",
+   "categories": [
+    "Artificial Intelligence"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Windows XP non è morto e ora supporta le NVIDIA GTX 10, ecco come",
+   "link": "https://www.tomshw.it/hardware/windows-xp-non-e-morto-e-ora-supporta-le-nvidia-gtx-10-ecco-come",
+   "date": "2026-10-04T22:18:00+02:00",
+   "age_hours": 8.5,
+   "summary": "Windows XP continua a vivere nelle mani della comunità retrocomputing e ora può contare su schede video che NVIDIA non ha mai supportato ufficialmente su quel sistema operativo. Lo svilu...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "How Long Will Your Old Digital Photo Frames Last?",
+   "link": "https://www.bgr.com/2272251/how-long-do-digital-photo-frames-last-lifespan/",
+   "date": "2026-10-04T22:17:00+00:00",
+   "age_hours": 6.5,
+   "summary": "Your digital photo frame is a screen just like your computer monitor or big screen TV, so how long can you expect your photo frame's screen to last?",
+   "categories": [
+    "Technology"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "GPT-6 Astra perde su StarCraft contro gli umani e fa una cosa impensabile",
+   "link": "https://www.tomshw.it/hardware/gpt-6-astra-perde-su-starcraft-contro-gli-umani-e-fa-una-cosa-impensabile",
+   "date": "2026-10-04T22:10:00+02:00",
+   "age_hours": 8.6,
+   "summary": "Lo scorso 2 ottobre, durante una partita a tre di StarSkirmish, il modello GPT-6 Astra di OpenAI ha smesso di giocare con il bot che aveva scritto e ha iniziato a usare quello di qualcun altro. L'epis...",
+   "categories": []
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Halo 2 arriva su PS5 grazie all'emulazione, e il risultato è sorprendente",
+   "link": "https://www.tomshw.it/videogioco/halo-2-arriva-su-ps5-grazie-allemulazione-e-il-risultato-e-sorprendente",
+   "date": "2026-10-04T22:08:00+02:00",
+   "age_hours": 8.6,
+   "summary": "Una PlayStation 5 con jailbreak può ora eseguire i giochi della prima Xbox, in uno dei paradossi più curiosi della scena homebrew. Lo sviluppatore ZiZc3 ha infatti pubblicato su GitHub X...",
+   "categories": []
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "‘A meaningful risk’: Oracle’s massive 1.3 GW Wisconsin AI campus faces severe power delays as grid review restarts — pushing customer delivery past 2027",
+   "link": "https://www.techradar.com/pro/a-meaningful-risk-oracles-massive-1-3-gw-wisconsin-ai-campus-faces-severe-power-delays-as-grid-review-restarts-pushing-customer-delivery-past-2027",
+   "date": "2026-10-04T22:05:00+00:00",
+   "age_hours": 6.7,
+   "summary": "Regulators withdrew their completeness finding on ATC's application after 564 changes were filed, delaying grid power to Oracle's Wisconsin AI campus.",
+   "categories": [
+    "Pro"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "How to improve your iPhone's call quality",
+   "link": "https://www.engadget.com/2274693/how-to-improve-iphone-call-quality-voice-isolation/",
+   "date": "2026-10-04T22:00:00+00:00",
+   "age_hours": 6.8,
+   "summary": "Your iPhone should handle calls reliably, but if you can't hear the other person or calls aren't stable, it's time to run through a few fixes.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "\"Let The Heroic Games Begin\" - Fire Emblem: Fortune's Weave Brings The Battle To Tetris 99",
+   "link": "https://www.nintendolife.com/news/2026/10/let-the-heroic-games-begin-fire-emblem-fortunes-weave-brings-the-battle-to-tetris-99",
+   "date": "2026-10-04T22:00:00+00:00",
+   "age_hours": 6.8,
+   "summary": "Reminder: The 57th cup has arrived. : Fire Emblem: Fortune's Weave recently arrived exclusively on the Switch 2, and to celebrate, Nintendo's battle royale Tetris 99 will be hosting a special in-game event. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "Universe Today",
+   "tier": "spazio",
+   "title": "XRISM Makes First-Ever Detection of a Pulsar Feeding from a Companion's Stellar \"Wind\"",
+   "link": "https://www.universetoday.com/articles/xrism-makes-first-ever-detection-of-a-pulsar-feeding-from-a-companions-stellar-wind",
+   "date": "2026-10-04T21:54:36+00:00",
+   "age_hours": 6.9,
+   "summary": "Using data from the Japan-led XRISM observatory, astronomers have directly observed a giant star’s stellar wind captured by its compact companion (triggering X-ray flares) for the first time.",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "The Data, Storage, And Hardware Costs Of Lossless Music",
+   "link": "https://www.bgr.com/2272242/lossless-music-data-storage-hardware-costs/",
+   "date": "2026-10-04T21:47:00+00:00",
+   "age_hours": 7.0,
+   "summary": "Lossless audio makes your music sound its best, but there are downsides. Here's what to know about the data, storage, and hardware costs of lossless music.",
+   "categories": [
+    "Audio"
+   ]
+  },
+  {
+   "source": "Kotaku",
+   "tier": "games",
+   "title": "Warner Bros. And Paramount Unveil New Name As Both Studios Restructure",
+   "link": "https://kotaku.com/warner-bros-and-paramount-unveil-new-name-as-both-studios-restructure-2000739662",
+   "date": "2026-10-04T21:22:36+00:00",
+   "age_hours": 7.4,
+   "summary": "James Gunn gets a boost as top Warner Bros. brass are booted in the proposed merged company, unceremoniously known as Skydance",
+   "categories": [
+    "Culture",
+    "David Ellison",
+    "HBO Max",
+    "James Gunn",
+    "NetherRealm",
+    "Paramount",
+    "Warner Bros"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Trapano brushless 21V a 63,99€, due batterie per lavorare senza pause",
+   "link": "https://www.tomshw.it/altro/trapano-brushless-21v-a-6399eur-due-batterie-per-lavorare-senza-pause",
+   "date": "2026-10-04T21:18:00+02:00",
+   "age_hours": 9.5,
+   "summary": "Il trapano avvitatore brushless 21V costa 63,99€ su Amazon, anziché 89,99€, con uno sconto del 29%. Due batterie intercambiabili da 2Ah permettono di continuare il lavoro sostituendo quella scarica, s...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What Does The Blue Light On Your Alexa Speaker Mean?",
+   "link": "https://www.bgr.com/2272192/what-does-blue-light-on-alexa-speaker-mean/",
+   "date": "2026-10-04T21:17:00+00:00",
+   "age_hours": 7.5,
+   "summary": "Amazon's Echo speakers actually use a few different blue light patterns as indicators, and they're easy to get confused unless you're paying close attention.",
+   "categories": [
+    "Accessories"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "The Best Deals Today: Star Wars Zero Company, AirPods Pro 3, Trails in the Sky 1st Chapter, and More",
+   "link": "https://www.ign.com/articles/best-deals-for-october-4-2026",
+   "date": "2026-10-04T21:13:34+00:00",
+   "age_hours": 7.5,
+   "summary": "A new weekend has arrived, and today, you can save big on Star Wars Zero Company, Trails in the Sky 1st Chapter, Shuten Order, MLB The Show 26, and more. Check out our top picks for Sunday, October 4, below. Star Wars Zero Company for $47.97 Star Wars Zero Company is one of the biggest sleeper hits of the year, and you can save $12 off a physical copy today at Amazon. In our 9/10 review , we wrote, \"Star Wars Zero Company is an excellent tactical game that does a fantastic job of slathering on the same cinematic look and feel we saw in Respawn's Star Wars Jedi games, incorporating strong characters and a storyline that's refreshingly centered on non-Force users and a non-traditional villain.\" Trails in the Sky 1st Chapter for $39.99 Trails in the Sky 1st Chapter is the first entry in the beloved Trails series, and last year's remake brought new life to the original game. With 2nd Chapter",
+   "categories": []
+  },
+  {
+   "source": "NASA",
+   "tier": "spazio",
+   "title": "Curiosity Blog, Sols 5022-5028: Cashing in at Cache Creek",
+   "link": "https://science.nasa.gov/blog/curiosity-blog-sols-5022-5028-cashing-in-at-cache-creek/",
+   "date": "2026-10-04T21:13:07+00:00",
+   "age_hours": 7.5,
+   "summary": "Written by Lucy Thompson, Senior Research Scientist, University of New Brunswick, Canada Earth planning date: Friday, Sept. 25, 2026 Before we landed, the area of Gale crater that we planned to explore was divided up into rectangular parcels with designated names. The names were chosen after small towns associated with significant geological features. Our selected […]",
+   "categories": [
+    "Blogs"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Blade Director Defends 'Good Dude' Kevin Feige After Marvel Scrapped Mahershala Ali's 1920s Vampire Movie",
+   "link": "https://www.ign.com/articles/blade-director-defends-good-dude-kevin-feige-after-marvel-scrapped-mahershala-alis-1920s-vampire-movie",
+   "date": "2026-10-04T21:11:39+00:00",
+   "age_hours": 7.6,
+   "summary": "Blade director Bassam Tariq said he felt like a \"failure\" after exiting the Mahershala Ali-led Marvel movie, but he doesn't blame MCU mastermind Kevin Feige for how things went down.",
+   "categories": []
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Ted Lasso season 4 episode 10 release date and launch time on Apple TV: when will it air?",
+   "link": "https://www.techradar.com/streaming/apple-tv-plus/what-is-the-release-date-for-ted-lasso-season-4-episode-10-on-apple-tv",
+   "date": "2026-10-04T21:00:00+00:00",
+   "age_hours": 7.8,
+   "summary": "Ted Lasso season 4's final episode will be here in a few days — here's when you can stream it.",
+   "categories": [
+    "Apple TV",
+    "Streaming"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "HUAWEI Pura 80 Pro a 749€, foto notturne e macro da vero top di gamma",
+   "link": "https://www.tomshw.it/smartphone/huawei-pura-80-pro-a-749eur-foto-notturne-e-macro-da-vero-top-di-gamma",
+   "date": "2026-10-04T20:48:00+02:00",
+   "age_hours": 10.0,
+   "summary": "HUAWEI Pura 80 Pro costa 749€ su Amazon, con un listino di 808,83€ e uno sconto del 7%. Il sensore da 1 pollice e il teleobiettivo macro lo rendono interessante soprattutto per chi vuole usare lo smar...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Major Projector Brands You Might Not Realize Are Owned By Chinese Companies",
+   "link": "https://www.bgr.com/2272057/projector-brands-owned-by-china/",
+   "date": "2026-10-04T20:47:00+00:00",
+   "age_hours": 8.0,
+   "summary": "Buying a projector used to mean mounting a giant, noisy gray box to your ceiling, but major brands have improved the technology, so it's far more exciting.",
+   "categories": [
+    "Home Entertainment"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Trump Posts Not-So-Subtle Boast About ‘Super Intelligence’ Victory Over Elon Musk",
+   "link": "https://gizmodo.com/trump-posts-not-so-subtle-boast-about-super-intelligence-victory-over-elon-musk-2000821347",
+   "date": "2026-10-04T20:46:52+00:00",
+   "age_hours": 8.0,
+   "summary": "Are we all going to be saying \"Super Intelligence\" soon?",
+   "categories": [
+    "Artificial Intelligence"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Google froze its open source bug bounty program due to a ‘significant rise’ in AI submissions",
+   "link": "https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/",
+   "date": "2026-10-04T20:31:07+00:00",
+   "age_hours": 8.2,
+   "summary": "AI slop seems to be overwhelming bug bounty programs.",
+   "categories": [
+    "AI",
+    "Security"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Deals: here's how to avoid the Galaxy S26 series price hike",
+   "link": "https://www.gsmarena.com/deals_heres_how_to_avoid_the_galaxy_s26_series_price_hike-news-74871.php",
+   "date": "2026-10-04T20:31:01+02:00",
+   "age_hours": 10.2,
+   "summary": "In case you missed it, Samsung increased the Galaxy S26 prices globally – in the US, they are $100 higher than they were at launch seven months ago. And even back then, most configurations cost more than the equivalent S25 models did last year. However, it’s not too late to pick up a Galaxy S26, S26+ or S26 Ultra at a good price. Your best bet at the moment is probably Walmart – not only has the retailer not applied the new prices, but it is even selling the phones at a discount compared to the old prices. In the case of the S26 Ultra, that is up to $500 off. Samsung’s revised price for...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Hurry, Amazon Prime Big Deal Days ends tonight — last chance to check out these 100+ expert-approved offers on headphones, air fryers, vacuums & more",
+   "link": "https://www.techradar.com/live/news/amazon-au-prime-big-deal-days-2026-last-chance",
+   "date": "2026-10-04T20:25:18+00:00",
+   "age_hours": 8.3,
+   "summary": "Record-low prices on hundreds of top-rated tech are still available, along with great discounts from brands like Garmin, Samsung, Dyson, Breville, Bose, Philips, SharkNinja and plenty more.",
+   "categories": [
+    "Seasonal Sales"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Great Movies Where An Evil AI Successfully Destroys The World",
+   "link": "https://www.bgr.com/2274899/great-movies-evil-ai-nearly-destroys-world/",
+   "date": "2026-10-04T20:17:00+00:00",
+   "age_hours": 8.5,
+   "summary": "Artificial Intelligence is a looming concern in the real world now, but for years it was a lingering threat in a number of classic films.",
+   "categories": [
+    "Movies"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "‘Twilight Of the Dead’ Gets a Bit More Real After Wrapping Filming",
+   "link": "https://gizmodo.com/twilight-of-the-dead-gets-a-bit-more-real-after-wrapping-filming-2000821219",
+   "date": "2026-10-04T20:15:47+00:00",
+   "age_hours": 8.5,
+   "summary": "George A. Romero's long-awaited 'Twilight of the Dead' has been completed, now it's just a matter of time.",
+   "categories": [
+    "Movies"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Can ‘super intelligence’ and a non-binding safety pact solve AI’s image problem?",
+   "link": "https://techcrunch.com/2026/10/04/can-super-intelligence-and-a-non-binding-safety-pact-solve-ais-image-problem/",
+   "date": "2026-10-04T20:08:34+00:00",
+   "age_hours": 8.6,
+   "summary": "On Equity, we discussed the Trump administration's attempts to rebrand AI.",
+   "categories": [
+    "AI",
+    "Government & Policy",
+    "dario amodei",
+    "Donald Trump",
+    "Equity podcast",
+    "jeff bezos",
+    "Mark Zuckerberg"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "10 Sam's Club Tech Essentials For Travel",
+   "link": "https://www.bgr.com/2272990/sams-club-tech-essentials-for-travel/",
+   "date": "2026-10-04T20:02:00+00:00",
+   "age_hours": 8.7,
+   "summary": "Traveling is a lot of fun, but just about every trip comes with some problems. Luckily, these 10 Sam's Club tech essentials for travel can help solve them.",
+   "categories": [
+    "Technology"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "Tearing Down a Heavy Oscilloscope",
+   "link": "https://hackaday.com/2026/10/04/tearing-down-a-heavy-oscilloscope/",
+   "date": "2026-10-04T20:00:49+00:00",
+   "age_hours": 8.8,
+   "summary": "When [Thomas] showed his 1960s-era Tektronix 545A oscilloscope in a recent video, it made us both nostalgic and happy. Nostalgic because we miss the days when our oscilloscopes were “mainframes” …read more",
+   "categories": [
+    "Repair Hacks",
+    "Teardown",
+    "oscilloscope",
+    "tektronix"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Audio HDMI del monitor sparito: cose vedere dopo un upgrade della GPU",
+   "link": "https://www.tomshw.it/hardware/audio-hdmi-monitor-sparito-aggiornamento-driver-gpu",
+   "date": "2026-10-04T20:00:00+02:00",
+   "age_hours": 10.8,
+   "summary": "Se l’audio HDMI del monitor è sparito dalle uscite di Windows 11 dopo un aggiornamento del driver GPU, controlla prima i dispositivi disabilitati, poi il componente audio della scheda grafica e infine...",
+   "categories": []
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "James Gunn Shuts Down Jensen Ackles Batman Casting Rumors",
+   "link": "https://www.ign.com/articles/james-gunn-shuts-down-jensen-ackles-batman-casting-rumors",
+   "date": "2026-10-04T19:50:26+00:00",
+   "age_hours": 8.9,
+   "summary": "DC Studios co-CEO James Gunn has shut down rumors that Supernatural star Jensen Ackles has been cast as the DCU's Batman.",
+   "categories": []
+  },
+  {
+   "source": "Kotaku",
+   "tier": "games",
+   "title": "Players Who Registered Rare Japanese PC Game Invited To Secret Party Over 25 Years Later",
+   "link": "https://kotaku.com/players-who-registered-rare-japanese-pc-game-invited-to-secret-party-over-25-years-later-2000739658",
+   "date": "2026-10-04T19:49:54+00:00",
+   "age_hours": 8.9,
+   "summary": "After being freed from a patent troll earlier this year, the infamous '90s adventure game Cookie's Bustle is renewing the enigma that is itself",
+   "categories": [
+    "Culture",
+    "Classic PC Games",
+    "Cookie's Bustle",
+    "Japan",
+    "Point-And-Click"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Anker SOLIX C300X sotto 280€ porta 600W lontano dalle prese",
+   "link": "https://www.tomshw.it/altro/anker-solix-c300x-sotto-280eur-porta-600w-lontano-dalle-prese",
+   "date": "2026-10-04T19:49:00+02:00",
+   "age_hours": 10.9,
+   "summary": "Anker SOLIX C300X costa 279.99€ su Amazon e riunisce una capacità di 288 Wh e una potenza di 600 W in una power station portatile. È una riserva energetica pensata per seguire il lavoro, i viaggi e le...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "What Do K And F Mean On Intel CPUs?",
+   "link": "https://www.bgr.com/2272209/what-do-k-f-mean-intel-cpus/",
+   "date": "2026-10-04T19:47:00+00:00",
+   "age_hours": 9.0,
+   "summary": "Intel likes to label its processors with enough different letters that it looks like spilled Alphabet Soup, like the Ultra 7 270K or Core i5 12400F.",
+   "categories": [
+    "Computers"
+   ]
+  },
+  {
+   "source": "Hacker News",
+   "tier": "tech",
+   "title": "Turn off Apple Intelligence on macOS 27 and get its disk space back",
+   "link": "https://github.com/omlahore/RemoveMacAI",
+   "date": "2026-10-04T19:42:25+00:00",
+   "age_hours": 9.1,
+   "summary": "Article URL: https://github.com/omlahore/RemoveMacAI Comments URL: https://news.ycombinator.com/item?id=49957116 Points: 448 # Comments: 280",
+   "categories": []
+  },
+  {
+   "source": "Hacker News",
+   "tier": "tech",
+   "title": "Improper redaction reveals Google Data Center water and electricity usage",
+   "link": "https://www.1011now.com/2026/09/30/more-questions-than-answers-about-lincolns-google-data-center-water-electricity-usage/",
+   "date": "2026-10-04T19:37:05+00:00",
+   "age_hours": 9.1,
+   "summary": "Article URL: https://www.1011now.com/2026/09/30/more-questions-than-answers-about-lincolns-google-data-center-water-electricity-usage/ Comments URL: https://news.ycombinator.com/item?id=49957068 Points: 300 # Comments: 415",
+   "categories": []
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "The upcoming touchscreen OLED MacBook Pro is reportedly 'significantly lighter'",
+   "link": "https://www.engadget.com/2276786/the-upcoming-touchscreen-oled-macbook-pro-is-reportedly-significantly-lighter/",
+   "date": "2026-10-04T19:27:15+00:00",
+   "age_hours": 9.3,
+   "summary": "The high-end laptop is still expected to make its debut by next month.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Bosch MUMS6EW22 sotto 473€, prepara fino a 3 kg d’impasto",
+   "link": "https://www.tomshw.it/altro/bosch-mums6ew22-sotto-473eur-prepara-fino-a-3-kg-dimpasto",
+   "date": "2026-10-04T19:18:00+02:00",
+   "age_hours": 11.5,
+   "summary": "Bosch MUMS6EW22 costa 472,99€ su Amazon, con uno sconto del 14% sul listino di 549€. La ciotola XXL e il motore da 1.600 W puntano alle ricette che richiedono quantità generose e lavorazioni impegnati...",
+   "categories": []
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "SpaceX's Starship Needs To Be Fully Operational By 2028 — Here's Why",
+   "link": "https://www.bgr.com/2272135/why-spacex-starship-needs-to-be-operational-2028/",
+   "date": "2026-10-04T19:17:00+00:00",
+   "age_hours": 9.5,
+   "summary": "SpaceX has plenty left to test on Starship, from refueling to docking in orbit, and NASA is counting on it to finish in time for a much bigger assignment.",
+   "categories": [
+    "Space"
+   ]
+  },
+  {
+   "source": "NASA",
+   "tier": "spazio",
+   "title": "Mapping the Gaps in NASA’s Return to the Moon, featuring Richard Spolzino",
+   "link": "https://www.nasa.gov/general/mapping-the-gaps-in-nasas-return-to-the-moon-featuring-richard-spolzino/",
+   "date": "2026-10-04T19:10:59+00:00",
+   "age_hours": 9.6,
+   "summary": "“I want to be able to look at a rocket launch and say, ‘I touched a piece of this.’” That’s how Richard Spolzino describes the thing he’s chasing. Not a title, not a specific mission, not even NASA itself, just the ability to point at something real and know his work made it possible. At […]",
+   "categories": [
+    "General",
+    "Moon Base"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "This is my biggest AirPods complaint, and it’s not necessarily about the hardware",
+   "link": "https://9to5mac.com/2026/10/04/this-is-my-biggest-airpods-complaint/",
+   "date": "2026-10-04T19:09:34+00:00",
+   "age_hours": 9.6,
+   "summary": "AirPods are one of Apple’s most interesting products. The demand for them was largely invented by the fact that the company removed the headphone jack 10 years ago, and now most of us carry this almost magical pair of earbuds that do so much more than just play audio. AirPods offer best-in-class noise cancellation, and also serve as a hearing aid. They get better and better almost every year. Despite everything that AirPods do so well, I have one annoyance with them, and it’s particularly annoying because it could be such an easy software fix. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "MacBook Pro OLED, la vera sorpresa sarà il peso",
+   "link": "https://www.macitynet.it/macbook-pro-oled-la-vera-sorpresa-sara-il-peso/",
+   "date": "2026-10-04T19:09:15+00:00",
+   "age_hours": 9.6,
+   "summary": "Il nuovo MacBook Pro OLED sarà significativamente più leggero grazie a una profonda riprogettazione interna. Apple avrebbe miniaturizzato e ridisposto diversi componenti. In arrivo anche touchscreen, Dynamic Island e chassis più sottile, mentre il debutto entro novembre diventa sempre più probabile - su macitynet.it MacBook Pro OLED, la vera sorpresa sarà il peso",
+   "categories": [
+    "Futuroscopio",
+    "MacBook Pro"
+   ]
+  },
+  {
+   "source": "Liliputing",
+   "tier": "tech",
+   "title": "Banana Pi BPI-CM7, a modern iPoad, and a DIY Mini Laptop with an ATmega2560 Microcontroller: Liliputing News Roundup",
+   "link": "https://liliputing.com/banana-pi-bpi-cm7-a-modern-ipoad-and-a-diy-mini-laptop-with-an-atmega2560-microcontroller-liliputing-news-roundup/",
+   "date": "2026-10-04T18:52:44+00:00",
+   "age_hours": 9.9,
+   "summary": "Smartphones have largely replaced iPods and other dedicated music players for most folks • The Banana Pi BPI-CM7 is a compute module with a 1.5 GHz Allwinner H618 quad-core Arm Cortex-A53 CPU, Mali-G31 graphics, LPDDR4 memory, eMMC storage, WiFi 5 and BT 5.0, USB 2.0, HDMI, and 10/100 Ethernet support • The rising costs of RAM and other components are even driving up prices of older consumer electronics devices The post Banana Pi BPI-CM7, a modern iPoad, and a DIY Mini Laptop with an ATmega2560 Microcontroller: Liliputing News Roundup appeared first on Liliputing .",
+   "categories": [
+    "News",
+    "Roundup",
+    "A Modern I Pod",
+    "At Mega 2560",
+    "banana pi",
+    "Banana Pi BPI-CM 7",
+    "compute module",
+    "Diy Mini Laptop With A Tmega 2560 Microcontroller"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Prepare for ‘VisionQuest’ With Three Key ‘WandaVision’ Episodes",
+   "link": "https://gizmodo.com/prepare-for-visionquest-with-three-key-wandavision-episodes-2000821311",
+   "date": "2026-10-04T18:50:56+00:00",
+   "age_hours": 9.9,
+   "summary": "Before we all partake on the 'VisionQuest,' Marvel wants everyone to remember just how he got here.",
+   "categories": [
+    "Television"
+   ]
+  },
+  {
+   "source": "Tom's Hardware IT",
+   "tier": "redazionale",
+   "title": "Philips Sonicare 6100 al -47%, pulizia su misura anche per gengive sensibili",
+   "link": "https://www.tomshw.it/smartphone/philips-sonicare-6100-al-47-pulizia-su-misura-anche-per-gengive-sensibili",
+   "date": "2026-10-04T18:48:00+02:00",
+   "age_hours": 12.0,
+   "summary": "Philips Sonicare 6100 costa 89,99€ su Amazon, con il 47% di sconto sul listino di 169,99€ e un risparmio di 80€. Sei impostazioni e il controllo della pressione permettono di adattare la pulizia anche...",
+   "categories": []
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Tom Cruise's Digger Bombs Hard With $20 Million Global Opening in Theaters",
+   "link": "https://www.ign.com/articles/tom-cruises-digger-bombs-hard-with-20-million-global-opening-in-theaters",
+   "date": "2026-10-04T18:46:57+00:00",
+   "age_hours": 10.0,
+   "summary": "Tom Cruise's Digger bombed hard in theaters, pulling in an estimated $20 million in its opening weekend at the global box office.",
+   "categories": []
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Five iPhone 18 Pro features you'll want to try the second you unbox it",
+   "link": "https://www.engadget.com/2274578/iphone-18-pro-feature-try-when-unboxed/",
+   "date": "2026-10-04T18:45:00+00:00",
+   "age_hours": 10.0,
+   "summary": "The iPhone 18 Pro doesn't have a super long list of improvements, but these upgrades are still worth a try.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "What does V-Sync actually do to your PC's frames per second?",
+   "link": "https://www.engadget.com/2273753/what-v-sync-does-pc-frames-per-second/",
+   "date": "2026-10-04T18:30:00+00:00",
+   "age_hours": 10.3,
+   "summary": "It can fix some problems, but create others.",
+   "categories": [
+    "Computing"
+   ]
+  },
+  {
+   "source": "Push Square",
+   "tier": "games",
+   "title": "Feature: Let's Flick Through Sammy's Photos from Gamescom and Tokyo Game Show",
+   "link": "https://www.pushsquare.com/features/lets-flick-through-sammys-photos-from-gamescom-and-tokyo-game-show",
+   "date": "2026-10-04T18:30:00+00:00",
+   "age_hours": 10.3,
+   "summary": "Nothing too unsavoury, I promise. I’ve been wanting to share some of my adventures from Gamescom and Tokyo Game Show for weeks now, but I wasn’t really sure how best to package it. Then, earlier this week while I was out running, I realised I didn’t really need a big overarching theme or some inspirational message – what if I just posted the best bits in a big fat gallery-style article, with anecdotes? Read the full article on pushsquare.com",
+   "categories": []
+  },
+  {
+   "source": "Kotaku",
+   "tier": "games",
+   "title": "Love And Deepspace Warns Players Not To Drink Poison After Sharing Hallucinogenic Recipes",
+   "link": "https://kotaku.com/love-and-deepspace-warns-players-not-to-drink-poison-after-sharing-hallucinogenic-recipes-2000739653",
+   "date": "2026-10-04T18:21:43+00:00",
+   "age_hours": 10.4,
+   "summary": "The brown Fiendyblobbu that is circulating around us is not too good, it's suggested that you do stay away from that, of course it's your own trip so be my guest",
+   "categories": [
+    "Culture",
+    "Food",
+    "gacha",
+    "Love and Deepspace",
+    "mobile games",
+    "Visual Novels"
+   ]
+  },
+  {
+   "source": "BGR",
+   "tier": "redazionale",
+   "title": "5 Essential Smart Home Gadgets For Parents",
+   "link": "https://www.bgr.com/2271689/essential-smart-home-gadgets-parents/",
+   "date": "2026-10-04T18:17:00+00:00",
+   "age_hours": 10.5,
+   "summary": "If you're a new parent, juggling work, life, and caring for a baby can be daunting, but these smart home gadgets should make parenting slightly easier.",
+   "categories": [
+    "Technology"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Pixel 10a, Google aumenta il prezzo ma Amazon lo taglia: la versione da 256 GB è in sconto",
+   "link": "https://www.hdblog.it/smartphone/offerte/n672538/google-pixel-10a-offerta-amazon-ottobre-2026/",
+   "date": "2026-10-04T18:15:00+02:00",
+   "age_hours": 12.5,
+   "summary": "Il Google Pixel 10a è in offerta su Amazon, nonostante il recente incremento del prezzo di listino del mid-range.",
+   "categories": [
+    "Google"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "A fourth RuneScape game is under development using Unreal Engine",
+   "link": "https://www.engadget.com/2276772/a-fourth-runescape-game-is-under-development-using-unreal-engine/",
+   "date": "2026-10-04T18:05:53+00:00",
+   "age_hours": 10.7,
+   "summary": "Jagex says it will reveal more details about the game, tentatively named RS4, next year.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Generate $6 trillion in annual revenue or face a major collapse — AI data center costs are doubling every 12 months",
+   "link": "https://www.techradar.com/pro/generate-usd6-trillion-in-annual-revenue-or-face-a-major-collapse-ai-data-center-costs-are-doubling-every-12-months",
+   "date": "2026-10-04T18:05:00+00:00",
+   "age_hours": 10.7,
+   "summary": "Regulators withdrew their completeness finding on ATC's application after 564 changes were filed, delaying grid power to Oracle's Wisconsin AI campus.",
+   "categories": [
+    "Pro"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "What causes screen tearing and how can you fix it?",
+   "link": "https://www.engadget.com/2274514/screen-tear-causes-how-to-fix/",
+   "date": "2026-10-04T18:00:00+00:00",
+   "age_hours": 10.8,
+   "summary": "Screen tearing is a distracting and ugly problem, but you have several ways to combat it to keep your games running smoothly.",
+   "categories": [
+    "PC Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Chronicles: Medieval promised me Tom Hardy, but gave me something much more: a nerdy historical epic with Crusader Kings diplomacy and Mount & Blade combat where you can do 'whatever you want in the world'",
+   "link": "https://www.techradar.com/gaming/chronicles-medieval-promised-me-tom-hardy-but-it-gave-me-something-much-more",
+   "date": "2026-10-04T18:00:00+00:00",
+   "age_hours": 10.8,
+   "summary": "Part intricately detailed historical battle simulator, part choice-driven RPG, Chronicles: Medieval punches far above its weight.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Elon Musk Fully Surrenders to Trump on ‘Super Intelligence’",
+   "link": "https://gizmodo.com/elon-musk-fully-surrenders-to-trump-on-super-intelligence-2000821314",
+   "date": "2026-10-04T17:58:01+00:00",
+   "age_hours": 10.8,
+   "summary": "He says he'll rename one of his companies accordingly.",
+   "categories": [
+    "Artificial Intelligence"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Trump launches \"Super Intelligence Force\" that has nothing to do with actual superintelligence",
+   "link": "https://the-decoder.com/trump-launches-super-intelligence-force-that-has-nothing-to-do-with-actual-superintelligence/",
+   "date": "2026-10-04T17:41:58+00:00",
+   "age_hours": 11.1,
+   "summary": "Donald Trump has established a \"Super Intelligence Force.\" \"Superintelligence\" is his term for artificial intelligence. The unit is led by Director of National Intelligence Jay Clayton and other government officials, coordinates with AI companies, critical infrastructure operators, and interest groups. The group reports directly to the president. The article Trump launches \"Super Intelligence Force\" that has nothing to do with actual superintelligence appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "USA"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "Avengers: Endgame Beats Avatar to Become the Highest-Grossing Movie of All Time (Again)",
+   "link": "https://www.ign.com/articles/avengers-endgame-beats-avatar-to-become-the-highest-grossing-movie-of-all-time-again",
+   "date": "2026-10-04T17:34:34+00:00",
+   "age_hours": 11.2,
+   "summary": "Marvel Studios' Encore re-release has helped Avengers: Endgame beat Avatar to become the highest-grossing movie at the box office of all time…again.",
+   "categories": []
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Weekly poll results: pricing will decide the fate of the Xiaomi 18 Pro and Xiaomi 18 Pro Max",
+   "link": "https://www.gsmarena.com/weekly_poll_results_pricing_will_decide_the_fate_of_the_xiaomi_18_pro_and_xiaomi_18_pro_max-news-74864.php",
+   "date": "2026-10-04T17:31:02+02:00",
+   "age_hours": 13.2,
+   "summary": "Last week, we asked you for your thoughts on Xiaomi’s 18 Pro series in light of the news that the series is going global. Xiaomi is still mum on the details, but one thing is clear – the price will determine how popular these two phones become. The Xiaomi 18 Pro Max has the upper hand – while a lot of people are price sensitive, quite a few have already committed to getting one based on what they’ve seen so far. Around 5% of voters plan to hold out for an Ultra model down the line, but they are in the minority. Besides the Ultra, the vivo X500 Pro Max emerged as a competitor in the...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch Portugal vs Norway on Virgin Media Play — it's *FREE*",
+   "link": "https://www.techradar.com/how-to-watch/football/how-to-watch-portugal-vs-norway-on-virgin-media-play-its-free",
+   "date": "2026-10-04T17:30:00+00:00",
+   "age_hours": 11.3,
+   "summary": "Here's how you can watch Portugal vs Norway for free from anywhere in the 2026/27 Nations League.",
+   "categories": [
+    "How to Watch Football",
+    "How to Watch",
+    "How to Watch Sport"
+   ]
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "Dynasty Warriors producer would rather make new games than more remasters",
+   "link": "https://www.eurogamer.net/dynasty-warriors-tomohiko-sho-sequels-not-remasters",
+   "date": "2026-10-04T17:07:59+00:00",
+   "age_hours": 11.6,
+   "summary": "Dynasty Warriors producer Tomohiko Sho says he'd rather spend what's left of his career making new games than more remasters of his old ones. Read more",
+   "categories": [
+    "RPG",
+    "PC",
+    "PS5",
+    "Hack & Slash",
+    "Multiplayer Competitive",
+    "Nintendo Switch",
+    "Omega Force",
+    "Dynasty Warriors 3: Complete Edition Remastered"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The new Fitbit Edge leaks",
+   "link": "https://www.theverge.com/gadgets/1004616/the-new-fitbit-edge-leaks",
+   "date": "2026-10-04T17:02:09-04:00",
+   "age_hours": 7.7,
+   "summary": "We don't know a ton about the Fitbit Edge, but it appears to be a successor to the midrange Charge line. It had leaked previously, but we can clearly see in these images posted by Android Headlines, you can see that Google's rumored fitness tracker sort of splits the difference between the Pixel Watch and […]",
+   "categories": [
+    "Fitness",
+    "Gadgets",
+    "Google",
+    "News",
+    "Tech",
+    "Wearable"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "The Soulog Sense is an AI voice recorder with a personal context system that never misses a word",
+   "link": "https://www.androidauthority.com/soulog-sense-ai-voice-recorder-3716740/",
+   "date": "2026-10-04T17:00:58+00:00",
+   "age_hours": 11.7,
+   "summary": "It not only records your conversations, but it also helps you understand and organize them.",
+   "categories": [
+    "Promoted"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "AVR Laptop Pushes the Limits of 8-Bit",
+   "link": "https://hackaday.com/2026/10/04/avr-laptop-pushes-the-limits-of-8-bit/",
+   "date": "2026-10-04T17:00:31+00:00",
+   "age_hours": 11.8,
+   "summary": "If you saw a device that had a laptop form factor playing sound and video, alt-tabbing over to play a game or take some notes, then back to the video …read more",
+   "categories": [
+    "handhelds hacks",
+    "Microcontrollers",
+    "atmega2650",
+    "AVR",
+    "diy laptop",
+    "FreeRTOS"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "Review: Minecraft Dungeons II (Switch 2) - A Fun But Flawed Dungeon-Crawling Sequel With Great Co-Op",
+   "link": "https://www.nintendolife.com/reviews/nintendo-switch-2/minecraft-dungeons-ii",
+   "date": "2026-10-04T17:00:00+00:00",
+   "age_hours": 11.8,
+   "summary": "Creepers, Skellies, oh my. A traditional adventure format seems an ill fit for something as freeform as Minecraft . The Markus 'Notch' Persson-created global phenomenon is an experience built on creativity with endless scope for experimentation, so constricting it within the boundaries of genre seems misguided. That said, the franchise has enough cultural pull that it drove audiences to brandish wild animals in movie theatres, so there is clear versatility in this IP. Minecraft Dungeons spun off from the main game in 2020 as a Diablo -like dungeon crawler brimming with character-building potential and co-operative fun for all ages. It boasts the polygonal art style and iconography beloved by fans, presenting a simple yet satisfying loot-based RPG experience. The sequel expands on this formula further by moving from episodic progression to open-world exploration and adding more depth to t",
+   "categories": []
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Earfun Pro X review: highly capable headphones that seriously undercut rivals such as Bose on price",
+   "link": "https://www.techradar.com/audio/wireless-headphones/after-two-weeks-of-testing-the-earfun-pro-x-headphones-reminded-me-of-the-new-bose-quietcomfort-2nd-gen-except-they-cost-half-the-price",
+   "date": "2026-10-04T17:00:00+00:00",
+   "age_hours": 11.8,
+   "summary": "The Wave Pro X are Earfun's best cans so far, and the margin is wide.",
+   "categories": [
+    "Wireless Headphones",
+    "Audio",
+    "Headphones"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Sony digital camera model numbers explained: Bigger isn't always better",
+   "link": "https://www.engadget.com/2274354/sony-digital-camera-model-numbers-explained/",
+   "date": "2026-10-04T16:45:00+00:00",
+   "age_hours": 12.0,
+   "summary": "Everything you need to know about Sony's alphanumeric naming schemes.",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "Modders are furious as Claude-powered mashup mods flood social media",
+   "link": "https://www.eurogamer.net/claude-opus-vibe-coded-mashup-mods-x-twitter-modding-backlash",
+   "date": "2026-10-04T16:38:22+00:00",
+   "age_hours": 12.1,
+   "summary": "Long-time mod makers are not happy about the latest trend to take over their corner of the internet - the \"bullshit 'trend'\" of AI-generated, or \"vibe-coded\", mods. Read more",
+   "categories": [
+    "PS5",
+    "PS3",
+    "Bethesda Game Studios",
+    "Third person",
+    "Nintendo Switch 2",
+    "X (formerly Twitter)",
+    "Battlestate Games",
+    "Nintendo Switch"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Trump announces an AI czar for his newly created 'Super Intelligence Force'",
+   "link": "https://www.engadget.com/2276762/trump-announces-an-ai-czar-for-his-newly-created-super-intelligence-force/",
+   "date": "2026-10-04T16:29:26+00:00",
+   "age_hours": 12.3,
+   "summary": "That's really what it's called and there's actually someone in charge of it.",
+   "categories": [
+    "AI"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "The ‘Digger’ Defense Squad Is Out in Force",
+   "link": "https://gizmodo.com/the-digger-defense-squad-is-out-in-force-2000821224",
+   "date": "2026-10-04T16:25:14+00:00",
+   "age_hours": 12.3,
+   "summary": "Alejandro G. Iñárritu and Tom Cruise's latest film has become more significant and divisive than anyone could've expected.",
+   "categories": [
+    "Movies"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "Amazon Launches Early Prime Day Discounts on AirPods, iPad, MacBook Air, and More",
+   "link": "https://www.macrumors.com/2026/10/04/amazon-early-prime-day-apple/",
+   "date": "2026-10-04T16:15:23+00:00",
+   "age_hours": 12.5,
+   "summary": "Earlier this week, we began tracking early Prime Day deals on Apple-related accessories , and today Amazon has introduced major early deals on Apple products as well. This includes AirPods, iPads, MacBooks, and more, all available at some of the lowest prices of the year so far. Note: MacRumors is an affiliate partner with Amazon. When you click a link and make a purchase, we may receive a small payment, which helps us keep the site running. As is typical for Prime Day deals, these markdowns are very time sensitive, so sales listed below may disappear fast, and new ones may appear even faster. With this in mind, we'll keep this article updated throughout the event, and keep an eye on the MacRumors front page as we'll be posting particularly great deals in separate articles this week. EARLY SAVINGS Amazon Prime Big Deal Days Lastly, and perhaps most importantly, Amazon Prime Day requires ",
+   "categories": [
+    "Deals",
+    "Featured",
+    "Prime Day"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "How to disable or restrict your iPhone's Apple Intelligence features",
+   "link": "https://www.engadget.com/2274326/how-to-disable-restrict-iphone-apple-intelligence-features/",
+   "date": "2026-10-04T16:15:00+00:00",
+   "age_hours": 12.5,
+   "summary": "You have a lot of control over AI on your iPhone.",
+   "categories": [
+    "AI",
+    "Apple"
+   ]
+  },
+  {
+   "source": "TechCrunch",
+   "tier": "larga",
+   "title": "TechCrunch Mobility: Reining in robotaxis",
+   "link": "https://techcrunch.com/2026/10/04/techcrunch-mobility-reining-in-robotaxis/",
+   "date": "2026-10-04T16:05:00+00:00",
+   "age_hours": 12.7,
+   "summary": "Welcome back to TechCrunch Mobility, your hub for the future of transportation and now, more than ever, the role AI is playing in it.",
+   "categories": [
+    "Startups",
+    "Transportation",
+    "Tesla",
+    "zoox",
+    "Waymo",
+    "robotaxis",
+    "techcrunch mobility"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "Prick’s theatrical industrial punk is perfect for spooky season",
+   "link": "https://www.theverge.com/entertainment/1004595/prick-industrial-glam-punk-album-review",
+   "date": "2026-10-04T16:00:00-04:00",
+   "age_hours": 8.8,
+   "summary": "While deep in the recording process for The Downward Spiral, Trent Reznor lent some of his production talents to old friend Kevin McMahon, from the new wave band Lucky Pierre (which Reznor was briefly a member of). While Reznor is only credited as the producer on four tracks off Prick's self-titled debut record, his fingerprints […]",
+   "categories": [
+    "Column",
+    "Entertainment",
+    "Music",
+    "Music Review"
+   ]
+  },
+  {
+   "source": "Kotaku",
+   "tier": "games",
+   "title": "Jagex Announce A Fourth RuneScape And Cartoon With MoistCr1tikal",
+   "link": "https://kotaku.com/jagex-announce-a-fourth-runescape-and-cartoon-with-moistcr1tikal-2000739648",
+   "date": "2026-10-04T15:56:18+00:00",
+   "age_hours": 12.8,
+   "summary": "The long running fantasy MMO will receive a major new installment in the future, the first in the mainline series to take advantage of Unreal Engine",
+   "categories": [
+    "Culture",
+    "Jagex",
+    "MoistCr1tikal",
+    "Old School RuneScape",
+    "Runescape",
+    "Runescape Dragonwilds"
+   ]
+  },
+  {
+   "source": "IGN",
+   "tier": "games",
+   "title": "SNL Weighs in on GTA 6 vs. The Legend of Zelda With Skit Featuring Jason and Link",
+   "link": "https://www.ign.com/articles/snl-weighs-in-on-gta-6-vs-the-legend-of-zelda-with-skit-featuring-jason-and-link",
+   "date": "2026-10-04T15:55:14+00:00",
+   "age_hours": 12.8,
+   "summary": "SNL weighed in on GTA 6 vs. The Legend of Zelda: Ocarina of Time remake with a new Weekend Update skit featuring video game protagonists Jason Duval and Link.",
+   "categories": []
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Here's what you should do if only one of your AirPods is working",
+   "link": "https://www.engadget.com/2274084/what-should-do-only-one-airpod-working/",
+   "date": "2026-10-04T15:45:00+00:00",
+   "age_hours": 13.0,
+   "summary": "If only one AirPod isn't working, you have several options for troubleshooting and getting your audio back.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch Greece vs Germany: FREE streams, TV channels for Nations League 2026/27, team news",
+   "link": "https://www.techradar.com/how-to-watch/football/hgreece-vs-germany-free-nations-league-2026-27",
+   "date": "2026-10-04T15:45:00+00:00",
+   "age_hours": 13.0,
+   "summary": "Here's how you can watch Greece vs Germany in the Nations League with free streams, kick-off times and TV channels as home side seek unlikely double.",
+   "categories": [
+    "How to Watch Football",
+    "How to Watch",
+    "How to Watch Sport"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch Portugal vs Norway: FREE streams, TV channels for Nations League 2026/27, team news",
+   "link": "https://www.techradar.com/how-to-watch/football/portugal-vs-norway-free-nations-league-2026-27",
+   "date": "2026-10-04T15:45:00+00:00",
+   "age_hours": 13.0,
+   "summary": "Here's how you can watch Portugal vs Norway in the Nations League with free streams, kick-off times and TV channels as the champions target quarter-final spot.",
+   "categories": [
+    "How to Watch Football",
+    "How to Watch",
+    "How to Watch Sport"
+   ]
+  },
+  {
+   "source": "Ars Technica Scienza",
+   "tier": "spazio",
+   "title": "Lions and cheetahs and chimps, oh my: a spotlight on Africa's diverse wildlife",
+   "link": "https://arstechnica.com/science/2026/10/lions-and-cheetahs-and-chimps-oh-my-a-spotlight-on-africas-diverse-wildlife/",
+   "date": "2026-10-04T15:34:14+00:00",
+   "age_hours": 13.2,
+   "summary": "Wunmi Mosaku ( Sinners, Loki ) narrates NatGeo's new documentary Africa: Earth's Wild Home",
+   "categories": [
+    "Culture",
+    "Science",
+    "disney plus",
+    "documentaries",
+    "Hulu",
+    "National Geographic",
+    "science documentaries"
+   ]
+  },
+  {
+   "source": "MacRumors",
+   "tier": "redazionale",
+   "title": "AirPods Pro 3 Hit Record Low $179 Price During Early Prime Day Sale",
+   "link": "https://www.macrumors.com/2026/10/04/airpods-pro-3-179-prime-day/",
+   "date": "2026-10-04T15:33:10+00:00",
+   "age_hours": 13.2,
+   "summary": "Amazon has the AirPods Pro 3 available for $179.00 this week, down from $249.00. This is a match of the all-time low price on the AirPods Pro 3, which we haven't tracked since around June. Note: MacRumors is an affiliate partner with some of these vendors. When you click a link and make a purchase, we may receive a small payment, which helps us keep the site running. This model of the AirPods Pro launched in September 2025 and has 2x better Active Noise Cancellation than the previous generation, better audio quality, a revised fit that's meant to improve comfort and stability, Live Translation for in-person conversations, and heart rate sensing for workouts. $70 OFF AirPods Pro 3 for $179.00 Head to our full Deals Roundup to get caught up with all of the latest deals and discounts that we've been tracking over the past week. Deals Newsletter Interested in hearing more about the best deal",
+   "categories": [
+    "Deals",
+    "Featured",
+    "Prime Day"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Apple weekend deals: AirPods Pro 3 $179, MacBook Air $200 off, AirTag 2, Prime Day HomeKit discounts, more",
+   "link": "https://9to5mac.com/2026/10/04/apple-weekend-deals-macbook-discounts/",
+   "date": "2026-10-04T15:26:14+00:00",
+   "age_hours": 13.3,
+   "summary": "Update 10/4: Amazon just dropped AirPods Pro 3 down to $179, delivering one of the lowest prices ever. Amazon is also now delivering almost all M5 MacBook Air models at $200 off the list price. You’ll find the very first cash discounts a wide range of Apple’s brand new TechWoven, Silicone, and Clear cases for iPhone 18 Pro and Pro Max from $41.50 . We’re also tracking the first discount on the latest refresh of Apple’s Magic Keyboard, down to $79.99 shipped. Over at Best Buy, Powerbeats Pro 2 have dropped to match their all-time low at $179.99 . While we are still awaiting some of the big fall Prime Day deals on some Apple products, there are already notable discounts up for grabs right now like the $500 price drop on this 2TB M5 Pro MacBook Pro, the new Beats 360 with 80% off the Cushion Kits, and Amazon low pricing on AirTag 2. We are also already tracking the official fall Prime Day p",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "John Ternus is taking a more ‘hands-on’ role in Apple’s design teams as CEO: report",
+   "link": "https://9to5mac.com/2026/10/04/john-ternus-is-taking-a-more-hands-on-role-in-apples-design-teams-as-ceo-report/",
+   "date": "2026-10-04T15:15:15+00:00",
+   "age_hours": 13.5,
+   "summary": "Since Jony Ive’s departure from Apple in 2019, the company hasn’t had much of a true design lead. For a while, former COO Jeff Williams was in charge of design , until his departure last year. Since then, CEO John Ternus has taken a significant interest in both of Apple’s design teams: industrial design and human interface, according to Bloomberg’s Mark Gurman . more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "TechCrunch AI",
+   "tier": "ai",
+   "title": "Trump unveils his new Super Intelligence Force",
+   "link": "https://techcrunch.com/2026/10/04/trump-unveils-his-new-super-intelligence-force/",
+   "date": "2026-10-04T15:15:10+00:00",
+   "age_hours": 13.5,
+   "summary": "This new task force is Trump's latest response to the debate over AI safety.",
+   "categories": [
+    "AI",
+    "Government & Policy",
+    "Donald Trump"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "Do gaming routers really make a difference?",
+   "link": "https://www.engadget.com/2274051/do-gaming-routers-make-difference/",
+   "date": "2026-10-04T15:15:00+00:00",
+   "age_hours": 13.5,
+   "summary": "Gaming routers have fancy designs and a few special features, but they can't fix every problem with your network setup.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "'The agent itself has become its own entity to secure': Bitdefender's new free Mac tool goes after flaws that let attackers fool AI models",
+   "link": "https://www.techradar.com/pro/phone-communications/the-agent-itself-has-become-its-own-entity-to-secure-bitdefenders-new-free-mac-tool-goes-after-flaws-that-let-attackers-fool-ai-models",
+   "date": "2026-10-04T15:05:00+00:00",
+   "age_hours": 13.7,
+   "summary": "Bitdefender launches AI Guardian for AI agents with real-time control over tools, files, and credentials.",
+   "categories": [
+    "Security",
+    "Pro"
+   ]
+  },
+  {
+   "source": "Kotaku",
+   "tier": "games",
+   "title": "GTA VI’s Jason Duval And Link Make Their Final Pitch On Saturday Night Live",
+   "link": "https://kotaku.com/gta-vis-jason-duval-and-link-make-their-final-pitch-on-saturday-night-live-2000739644",
+   "date": "2026-10-04T14:51:07+00:00",
+   "age_hours": 13.9,
+   "summary": "Wait Colin Jost is seriously still at the Weekend Update desk? Does he not have anywhere else to go?",
+   "categories": [
+    "Culture",
+    "Grand Theft Auto 6",
+    "Grand Theft Auto VI",
+    "Saturday Night Live",
+    "The Legend of Zelda",
+    "The Legend of Zelda: Ocarina Of Time"
+   ]
+  },
+  {
+   "source": "Engadget",
+   "tier": "tech",
+   "title": "The pros and cons of enabling Wi-Fi calling",
+   "link": "https://www.engadget.com/2273956/wifi-calling-pros-cons/",
+   "date": "2026-10-04T14:45:00+00:00",
+   "age_hours": 14.0,
+   "summary": "Wi-Fi calling can help a lot if you're in an area with a weak cellular connection, but you should know the drawbacks before jumping in.",
+   "categories": [
+    "Mobile"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Come scegliere un robot aspirapolvere MOVA nel 2026: guida alla gamma V, Z, S, P ed E",
+   "link": "https://www.macitynet.it/come-scegliere-robot-aspirapolvere-mova-2026-2/",
+   "date": "2026-10-04T14:44:21+00:00",
+   "age_hours": 14.0,
+   "summary": "La gamma MOVA 2026 si divide tra modelli economici, robot con doppio mocio, versioni ultrasottili con rullo lavapavimenti e top di gamma per bordi e angoli: ecco come orientarsi tra serie E, P, S, Z e V. - su macitynet.it Come scegliere un robot aspirapolvere MOVA nel 2026: guida alla gamma V, Z, S, P ed E",
+   "categories": [
+    "CasaVerdeSmart",
+    "iGuida",
+    "Aspirapolvere",
+    "MOVA",
+    "Robot"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Our Redmi Note 17 4G battery life and charging tests are ready",
+   "link": "https://www.gsmarena.com/our_redmi_note_17_4g_battery_life_and_charging_tests_are_ready-news-74823.php",
+   "date": "2026-10-04T14:31:01+02:00",
+   "age_hours": 16.2,
+   "summary": "Does a market for 4G phones still exist? Xiaomi thinks so, so it released the Redmi Note 17 4G. We’ve already looked at the battery life and charging tests of its 5G sibling and promised to compare the two in a separate article – this is that article. We will, of course, compare it with other models too, but which ones? We tried to pick out mostly 4G phones for this comparison, however, we just don’t review that many 4G phones – so, we had no choice but to put the Redmi Note 17 4G against a group of mostly 5G phones. Redmi Note 17 4G retail package As promised, we start with the...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "Now ‘RuneScape’ Is Getting a Series, Too",
+   "link": "https://gizmodo.com/now-runescape-is-getting-a-series-too-2000821221",
+   "date": "2026-10-04T14:30:11+00:00",
+   "age_hours": 14.3,
+   "summary": "YouTuber MoistCr1TiKaL will help Jagex bring its 25-year-old MMO RuneScape to animated life.",
+   "categories": [
+    "Television"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "La metà degli smartphone più venduti a settembre sono iPhone | VIDEO",
+   "link": "https://www.hdblog.it/smartphone/speciali/n672395/la-meta-degli-smartphone-piu-venduti-di-settembre-sono-iphone/",
+   "date": "2026-10-04T14:30:00+02:00",
+   "age_hours": 16.3,
+   "summary": "Abbiamo analizzato gli smartphone più acquistati a Settembre 2026 da chi ci legge: il 50% sono iPhone di generazioni passate.",
+   "categories": [
+    "Android",
+    "Samsung"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "Sonic Is Getting An Extremely Expensive And Rare Porcelain Statue",
+   "link": "https://www.nintendolife.com/news/2026/10/sonic-is-getting-an-extremely-expensive-and-rare-porcelain-statue",
+   "date": "2026-10-04T14:25:00+00:00",
+   "age_hours": 14.3,
+   "summary": "Only 50 will be available worldwide. We've seen plenty of Sonic the Hedgehog statues over the years, but this one is a little bit different...and a lot more expensive. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "Redesigned MacBook Pro with OLED to feature ‘significantly lighter’ design: report",
+   "link": "https://9to5mac.com/2026/10/04/apple-macbook-pro-redesign-to-be-much-lighter-report/",
+   "date": "2026-10-04T14:11:01+00:00",
+   "age_hours": 14.6,
+   "summary": "Apple’s major MacBook Pro overhaul is just around the corner, and should debut within a month or so. It’ll be the first touchscreen MacBook, as well as the first with Tandem OLED. Beyond that, though, the new MacBooks should be ‘significantly’ lighter than their predecessors, according to the latest issue of the Power On newsletter . more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "Motion Control via Belt",
+   "link": "https://hackaday.com/2026/10/04/motion-control-via-belt/",
+   "date": "2026-10-04T14:00:45+00:00",
+   "age_hours": 14.8,
+   "summary": "[Tolko] wanted to encourage kids to have some physical activity, but noted that they only wanted to play games. That led to BlobJump, a Raspberry Pi-based game sort of like …read more",
+   "categories": [
+    "Games",
+    "Microcontrollers",
+    "dinosaur game",
+    "ESP32 C3-mini",
+    "mpu6050"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "1666: Amsterdam is the long-lost sequel to Assassin’s Creed: Brotherhood, 15 years in the making — 'It's been a long journey'",
+   "link": "https://www.techradar.com/gaming/1666-amsterdam-is-the-long-lost-sequel-to-assassins-creed-brotherhood-15-years-in-the-making-its-been-a-long-journey",
+   "date": "2026-10-04T14:00:00+00:00",
+   "age_hours": 14.8,
+   "summary": "From bankruptcy to buyouts, Assassin’s Creed director Patrice Désilets details the 15-year journey to bring his dark new epic to life.",
+   "categories": [
+    "Gaming"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch Patriots vs Bills for FREE: Live streams",
+   "link": "https://www.techradar.com/how-to-watch/american-football/patriots-vs-bills-free-2026-nfl-week-4",
+   "date": "2026-10-04T14:00:00+00:00",
+   "age_hours": 14.8,
+   "summary": "All the ways to watch Patriots vs Bills for free online, with Drake Maye and Josh Allen set to star in the 2026 NFL Week 4 game at Highmark Stadium.",
+   "categories": [
+    "How to Watch American Football",
+    "How to Watch",
+    "How to Watch Sport"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "iOS 27: come usare i widget XXL su iPhone",
+   "link": "https://www.macitynet.it/widget-xxl-iphone/",
+   "date": "2026-10-04T13:59:18+00:00",
+   "age_hours": 14.8,
+   "summary": "L'ultimo aggiornamento aggiungere il formato Extra Large per i widget: cosa sono, quali app li supportano e come aggiungerli - su macitynet.it iOS 27: come usare i widget XXL su iPhone",
+   "categories": [
+    "Tutorial e FAQ",
+    "Apple",
+    "iOS 27",
+    "Tutorial iPhone e iPad"
+   ]
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "PlatinumGames boss hints he wants to expand Bayonetta as Stellar Blade director calls the series \"indispensable\"",
+   "link": "https://www.eurogamer.net/platinumgames-bayonetta-expand-atsushi-inaba-stellar-blade",
+   "date": "2026-10-04T13:37:29+00:00",
+   "age_hours": 15.1,
+   "summary": "PlatinumGames president Atsushi Inaba has hinted he'd like to expand the character of Bayonetta and broaden her world. Read more",
+   "categories": [
+    "PS5",
+    "SEGA",
+    "PS3",
+    "Third person",
+    "Shift Up Corporation",
+    "Nintendo",
+    "Nintendo Switch 2",
+    "Hack & Slash"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Free and Plus Google AI users are losing access to some Gemini models",
+   "link": "https://www.techradar.com/ai-platforms-assistants/gemini/if-youre-on-the-free-or-plus-tiers-for-google-ai-youre-about-to-lose-access-to-some-gemini-models-heres-whats-changing",
+   "date": "2026-10-04T13:30:00+00:00",
+   "age_hours": 15.3,
+   "summary": "If you want access to the best models inside Gemini, you're going to have to start paying for them.",
+   "categories": [
+    "Gemini",
+    "AI Platforms & Assistants"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "AppyDeals: Ecco le migliori app e giochi scontati o diventati Gratis per poco tempo! – 4 Ottobre 2026",
+   "link": "https://www.ispazio.net/2270843/appydeals-app-giochi-gratis-scontati-oggi",
+   "date": "2026-10-04T13:30:00+00:00",
+   "age_hours": 15.3,
+   "summary": "AppyDeals: Ecco le migliori app e giochi scontati o diventati Gratis per poco tempo! – 4 Ottobre 2026 Bentrovati in un nuovo appuntamento con AppyDeals, il servizio di iSpazio in cui vi segnaliamo le migliori applicazioni dell’App Store che vengono scontate o rese gratuite per un periodo di tempo limitato. L’obiettivo è quello di farvi conoscere del software fresco, senza pubblicità e senza limitazioni sfruttando le promozioni che avvengono ogni giorno in App […]",
+   "categories": [
+    "AppyDeals",
+    "app gratis",
+    "app in offerta",
+    "app in sconto",
+    "giochi gratis",
+    "giochi in offerta",
+    "giochi in sconto",
+    "ispazio appydeals"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Come creare collage di foto su Mac con ShowcasePro",
+   "link": "https://www.macitynet.it/showcasepro-app-mac-bundlehunt/",
+   "date": "2026-10-04T13:29:08+00:00",
+   "age_hours": 15.3,
+   "summary": "Combinate più foto sfruttando 30 layout, con tanto di regolazioni per immagini e sfondi, modifica in blocco ed esportazione a diverse risoluzioni - su macitynet.it Come creare collage di foto su Mac con ShowcasePro",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "BundleHunt",
+    "Offerte Software"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The best early October Prime Day deals happening now",
+   "link": "https://www.theverge.com/gadgets/999447/best-early-amazon-prime-day-big-deals-sale-october",
+   "date": "2026-10-04T13:18:00-04:00",
+   "age_hours": 11.5,
+   "summary": "It’s not even October yet and Amazon is already offering some Prime Big Deal Day discounts on its own hardware, along with plenty of other popular products. It’s all to hype up October Prime Day, which starts October 6th at 3AM ET and lasts through 3AM ET on the 8th if you’re on the East […]",
+   "categories": [
+    "Deals",
+    "Gadgets",
+    "Prime Day",
+    "Verge Shopping"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "MobLand season 2 episode 4 release date and time on Paramount+",
+   "link": "https://www.techradar.com/streaming/paramount-plus/mobland-season-2-episode-4-release-date-time",
+   "date": "2026-10-04T13:00:00+00:00",
+   "age_hours": 15.8,
+   "summary": "Turns out, kidnapping Bella and holding her ransom wasn't quite enough for Frankie. But when does MobLand season 2 episode 4 arrive on Paramount+?",
+   "categories": [
+    "Paramount Plus",
+    "Streaming"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Hai un vecchio laptop? Può diventare un secondo monitor | Ecco come",
+   "link": "https://www.hdblog.it/hardware/articoli/n672425/come-trasformare-vecchio-portatile-secondo-monitor/",
+   "date": "2026-10-04T12:55:00+02:00",
+   "age_hours": 17.8,
+   "summary": "Spacedesk permette di riutilizzare gratuitamente un vecchio laptop come secondo monitor.",
+   "categories": [
+    "Windows"
+   ]
+  },
+  {
+   "source": "The Robot Report",
+   "tier": "ai",
+   "title": "How robotics and physical AI can responsibly tackle key physical security challenges",
+   "link": "https://www.therobotreport.com/how-robotics-physical-ai-can-responsibly-tackle-key-physical-security-challenges/",
+   "date": "2026-10-04T12:52:11+00:00",
+   "age_hours": 15.9,
+   "summary": "Cyber and physical security threats are rapidly evolving, but robotics and AI can evolve to meet them, writes a columnist. The post How robotics and physical AI can responsibly tackle key physical security challenges appeared first on The Robot Report .",
+   "categories": [
+    "Artificial Intelligence",
+    "Artificial Intelligence / Cognition",
+    "Automotive",
+    "Autonomous Mobile Robots (AMRs)",
+    "Cameras / Imaging / Vision",
+    "Manufacturing",
+    "News",
+    "Opinion"
+   ]
+  },
+  {
+   "source": "Hacker News",
+   "tier": "tech",
+   "title": "Run Qwen 3.8 Flash Next (125B) on consumer hardware (RTX 4090) at 100T/s",
+   "link": "https://github.com/Niko1221/Strata",
+   "date": "2026-10-04T12:51:53+00:00",
+   "age_hours": 15.9,
+   "summary": "Article URL: https://github.com/Niko1221/Strata Comments URL: https://news.ycombinator.com/item?id=49953495 Points: 659 # Comments: 307",
+   "categories": []
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Google researchers find a way to keep self-improving AI agents from memorizing their tests",
+   "link": "https://the-decoder.com/google-researchers-find-a-way-to-keep-self-improving-ai-agents-from-memorizing-their-tests/",
+   "date": "2026-10-04T12:40:37+00:00",
+   "age_hours": 16.1,
+   "summary": "Self-improving AI agents tend to memorize their test tasks, so their gains shrink or disappear on new ones. RRSI, a new method from Google researchers, reins in this effect and lifts scores on unseen benchmarks by up to 4.7 points while using about 30 percent fewer tokens than an unregularized version. The article Google researchers find a way to keep self-improving AI agents from memorizing their tests appeared first on The Decoder .",
+   "categories": [
+    "AI research",
+    "Artificial Intelligence",
+    "Google",
+    "Research"
+   ]
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "RuneScape Reignited launches 2 December",
+   "link": "https://www.eurogamer.net/runescape-reignited-launch-date-2-december-economy-reset",
+   "date": "2026-10-04T12:40:21+00:00",
+   "age_hours": 16.1,
+   "summary": "Jagex is offering long-time, lapsed, and new RuneScape players a clean slate with RuneScape Reignited. Read more",
+   "categories": [
+    "Bird view / Isometric",
+    "Android",
+    "Jagex Games Studio",
+    "MMO",
+    "MMORPG",
+    "RPG",
+    "Mac",
+    "Multiplayer Competitive"
+   ]
+  },
+  {
+   "source": "Gizmodo",
+   "tier": "tech",
+   "title": "TP-Link Tapo Doorbell Pro D260 Review: Everything You Need at No Extra Cost",
+   "link": "https://gizmodo.com/tp-link-tapo-doorbell-pro-d260-review-2000816843",
+   "date": "2026-10-04T12:30:21+00:00",
+   "age_hours": 16.3,
+   "summary": "TP-Link’s smart home video doorbell has everything you need—no subscription necessary.",
+   "categories": [
+    "Home Entertainment & Smart Home"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Motorola Moto G67 in offerta: a 185 è lo smartphone low cost da scegliere oggi",
+   "link": "https://www.hdblog.it/smartphone/offerte/n672535/motorola-moto-g67-offerta-ottobre-2026/",
+   "date": "2026-10-04T12:20:00+02:00",
+   "age_hours": 18.4,
+   "summary": "Il Motorola Moto G67 è in offerta e rappresenta oggi il best buy del momento per chi è alla ricerca di un nuovo smartphone sotto i 200 euro.",
+   "categories": [
+    "Motorola"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "NJ’s former Lt Gov is using AI to say he’s innocent of sexual harassment",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1004549/well-if-ai-said-it-it-must-be-true",
+   "date": "2026-10-04T12:16:04-04:00",
+   "age_hours": 12.5,
+   "summary": "New Jersey's lieutenant governor Dale Caldwell was forced to resign on September 25th after an investigation found he had sexually harassed a staffer and repeatedly violated ethics rules. The now-former Lt. governor has been making the media rounds trying to clear his name. But he took a particularly odd tactic during an interview on NJ […]",
+   "categories": [
+    "AI",
+    "News",
+    "Policy",
+    "Politics"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "PlatinumGames Comments On The Future Of Bayonetta",
+   "link": "https://www.nintendolife.com/news/2026/10/platinumgames-comments-on-the-future-of-bayonetta",
+   "date": "2026-10-04T12:00:00+00:00",
+   "age_hours": 16.8,
+   "summary": "Will our favourite Umbra Witch return? PlatinumGames has offered a brief yet tantalising comment on the future of Bayonetta during an interview with Famitsu (thanks, Nintendo Everything ). The company's CEO Atsushi Inaba was speaking alongside Shift Up’s Kim Hyung Tae, with the pair having recently collaborated on a Bayonetta costume for Stellar Blade . Inaba was asked if he could comment on what PlatinumGames' next move will be in relation to Bayonetta, to which he said: Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "Push Square",
+   "tier": "games",
+   "title": "Rumour: Sony 'Accepting Game Pitches' on Fan Fave Franchises, First Wave Due Around PS6 Launch",
+   "link": "https://www.pushsquare.com/news/2026/10/rumour-sony-accepting-game-pitches-on-fan-fave-franchises-first-wave-due-around-ps6-launch",
+   "date": "2026-10-04T12:00:00+00:00",
+   "age_hours": 16.8,
+   "summary": "Killzone! Ape Escape! Sly Cooper! A recognised leaker who previously outed the existence of Metroidvania spin-off God of War: Sons of Sparta says Sony is “accepting multiple game pitches” for projects inspired by fan favourite franchises. Recently there’s been an uptick in rumours related to legacy series, like Killzone , which is purportedly in production at People Can Fly under the supervision of series creator Guerrilla. (The leaker here says they contributed to MP1st’s original report on that.) Read the full article on pushsquare.com",
+   "categories": []
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Google Maps su CarPlay, le impostazioni per usarlo al meglio",
+   "link": "https://www.hdblog.it/apple/articoli/n672447/google-maps-predefinito-su-carplay/",
+   "date": "2026-10-04T11:55:00+02:00",
+   "age_hours": 18.8,
+   "summary": "Come sfruttare la piattaforma Google sul sistema di infotainment.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Xiaomi 17T Pro al minimo su Amazon: a 649 è un flagship killer",
+   "link": "https://www.hdblog.it/smartphone/offerte/n672337/xiaomi-17t-pro-offerta-amazon-ottobre-2026/",
+   "date": "2026-10-04T11:40:00+02:00",
+   "age_hours": 19.1,
+   "summary": "Lo Xiaomi 17T Pro è in offerta su Amazon e tocca oggi il suo prezzo minimo storico sullo store.",
+   "categories": [
+    "Smartphone",
+    "Xiaomi"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "Deals: Amazon's early Prime Deals slash the prices of foldables and flagships",
+   "link": "https://www.gsmarena.com/deals_amazons_early_prime_deals_slash_the_prices_of_foldables_and_flagships-news-74876.php",
+   "date": "2026-10-04T11:31:02+02:00",
+   "age_hours": 19.2,
+   "summary": "Amazon will kick off Prime Deal Days on October 6 (Tuesday next week). The sales event will run for two days, but you don’t have to wait for it to start as the retailer is already offering some great early Prime Day deals. For example, the Galaxy Z Fold8 is nearly €600 off and the Z Fold8 Ultra is nearly €700 off. Most but not all of the deals below require an active Prime subscription (if you haven’t activated the free trial, now is the time). We’ve marked all the ones that require Prime. Okay, let’s go by category starting with foldables. The Samsung Galaxy Z Fold8 is shaping up to be...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "VGC",
+   "tier": "games",
+   "title": "Platinum suggests more Bayonetta is coming, despite exodus of lead developers",
+   "link": "https://www.videogameschronicle.com/news/platinum-suggests-more-bayonetta-is-coming-despite-exodus-of-lead-developers/",
+   "date": "2026-10-04T11:24:34+00:00",
+   "age_hours": 17.4,
+   "summary": "Platinum boss Inaba wants to \"further develop the character of Bayonetta and expand her world\"",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "Shot on iPhone Duo: Apple affida a due fotografi le prime foto ufficiali scattate col pieghevole",
+   "link": "https://www.ispazio.net/2277226/shot-on-iphone-duo-foto-apple-instagram",
+   "date": "2026-10-04T11:24:24+00:00",
+   "age_hours": 17.4,
+   "summary": "Shot on iPhone Duo: Apple affida a due fotografi le prime foto ufficiali scattate col pieghevole Apple ha dato il via alla campagna Shot on iPhone dedicata ad iPhone Duo, e per farlo ha scelto di affidarsi a due fotografi professionisti: Jake Michaels e Jason Nocito. Il risultato è un carosello di sei foto pubblicato sull’account Instagram ufficiale di Apple, pensato per mettere in mostra le fotocamere del primo iPhone pieghevole. […]",
+   "categories": [
+    "iPhone Duo",
+    "Apple",
+    "fotocamera iPhone Duo",
+    "fotografia",
+    "Instagram",
+    "iphone pieghevole",
+    "shot on iphone"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "An AI couldn’t beat humans at StarCraft, so it decided to cheat",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1004543/openai-gpt-cheat-starcraft",
+   "date": "2026-10-04T11:21:59-04:00",
+   "age_hours": 13.4,
+   "summary": "StarSkirmish pits AI-made StarCraft-playing bots against one another, as well as against human-made bots. OpenAI's GPT-6 Astra and Claude Opus 5.5 were essentially tied as the best-performing AI-made bots, but they couldn't top Stardust, the top-rated human-made bot. On Friday, GPT was facing off against Claude and the human-created bot Pluto, but according to Kotaku, […]",
+   "categories": [
+    "AI",
+    "Gaming",
+    "News",
+    "OpenAI"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "Capcom Is Looking To Evolve Its RE Engine Into An 'AI-Era Game Engine'",
+   "link": "https://www.nintendolife.com/news/2026/10/capcom-is-looking-to-evolve-its-re-engine-into-an-ai-era-game-engine",
+   "date": "2026-10-04T11:15:00+00:00",
+   "age_hours": 17.5,
+   "summary": "It wants to \"create games together with AI\". Capcom programmer Satoshi Ishida has detailed upcoming improvements to the company's proprietary RE Engine during the Capcom Open Conference RE: 2026. As reported by GameBiz (thanks, VGC ), Capcom's 'REX' initiative is designed to overcome modern development challenges that make the process so lengthy, including improvements to tools, QA, efficiency, and more. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "Fourth RuneScape officially revealed",
+   "link": "https://www.eurogamer.net/jagex-runescape-4-mmo-unreal-engine-animated-series-moistcr1tikal",
+   "date": "2026-10-04T11:12:52+00:00",
+   "age_hours": 17.5,
+   "summary": "Jagex has announced a fourth MMO in the RuneScape series. Read more",
+   "categories": [
+    "MMO",
+    "Jagex Games Studio",
+    "Announcement",
+    "Runescape 4"
+   ]
+  },
+  {
+   "source": "VGC",
+   "tier": "games",
+   "title": "Hamaguchi: It ‘wasn’t easy’ to keep the FF7 Remake trilogy plot intact and not turn it into his ‘own personal fan project’",
+   "link": "https://www.videogameschronicle.com/news/hamaguchi-it-wasnt-easy-to-keep-the-ff7-remake-trilogy-plot-intact-and-not-turn-it-into-his-own-personal-fan-project/",
+   "date": "2026-10-04T11:06:23+00:00",
+   "age_hours": 17.7,
+   "summary": "The director says the real challenge was making sure any changes didn't affect the game's identity",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "Ars Technica Scienza",
+   "tier": "spazio",
+   "title": "All hail electrification. But let’s talk about the hard part.",
+   "link": "https://arstechnica.com/science/2026/10/all-hail-electrification-but-lets-talk-about-the-hard-part/",
+   "date": "2026-10-04T11:05:53+00:00",
+   "age_hours": 17.7,
+   "summary": "The IEA and climate negotiators want to set a target for shifting the economy to run on electricity.",
+   "categories": [
+    "Science",
+    "electrification",
+    "International Energy Agency",
+    "syndication"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "AI on Your Gaming PC",
+   "link": "https://hackaday.com/2026/10/04/ai-on-your-gaming-pc/",
+   "date": "2026-10-04T11:00:40+00:00",
+   "age_hours": 17.8,
+   "summary": "If you want to experiment with LLMs, you typically have a choice of sending your requests to someone else’s computer or fielding a very large GPU and CPU setup to …read more",
+   "categories": [
+    "Artificial Intelligence",
+    "chatbot",
+    "LLM",
+    "local LLM"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "This toolless modular lever-action wallet is the coolest I’ve stuck to my phone",
+   "link": "https://www.theverge.com/gadgets/1004360/this-toolless-modular-lever-action-wallet-is-the-coolest-ive-stuck-to-my-phone",
+   "date": "2026-10-04T11:00:00-04:00",
+   "age_hours": 13.8,
+   "summary": "This toolless modular lever-action wallet is the coolest I've stuck to my phone. Remember when I tested the ultra-thin and convenient OhSnap Snap Grip Stand and liked it so much I bought my own? Now, OhSnap has a magnetic lever-action card wallet that can stack with that stand. It's the coolest wallet I've ever stuck […]",
+   "categories": [
+    "Gadgets",
+    "Hands-on",
+    "Reviews",
+    "Tech"
+   ]
+  },
+  {
+   "source": "NASA APOD",
+   "tier": "spazio",
+   "title": "Supernumerary Rainbows over New Jersey",
+   "link": "https://science.nasa.gov/image-article/apod-2026-october-4-supernumerary-rainbows-over-new-jersey/",
+   "date": "2026-10-04T11:00:00+00:00",
+   "age_hours": 17.8,
+   "summary": "Yes, but can your rainbow do this? After the remnants of Hurricane Florence passed over the Jersey Shore, New Jersey, USA in 2018, the Sun came out in one direction but something quite unusual appeared in the opposite direction: a hall of rainbows",
+   "categories": []
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Ecobonus: ENEA aggiorna il vademecum. Ecco tutte le novità",
+   "link": "https://www.hdblog.it/home/articoli/n672457/ecobonus-vademecum-enea-cosa-sapere/",
+   "date": "2026-10-04T10:55:00+02:00",
+   "age_hours": 19.8,
+   "summary": "Spese ammissibili, chi le può sostenere e ammontare delle detrazioni.",
+   "categories": [
+    "Home"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "\"A Colossal Upgrade\" - Digital Foundry Delivers Its Tech Verdict For The Witcher 3 Remastered On Switch 2",
+   "link": "https://www.nintendolife.com/news/2026/10/a-colossal-upgrade-digital-foundry-delivers-its-tech-verdict-for-the-witcher-3-remastered-on-switch-2",
+   "date": "2026-10-04T10:30:00+00:00",
+   "age_hours": 18.3,
+   "summary": "\"easy to recommend\". Digital Foundry has delivered its tech verdict for The Witcher 3 Remastered ; a game that, for many, will be a completely free upgrade if you owned the original Switch release. Obviously, the difference in quality between Switch 1 and 2 is staggering, despite DF calling the original release one of the \"most impressive feats\" on Nintendo's hardware. Image quality is the highlight, with docked mode featuring dynamic resolution between 540p and 1080p, with DLSS outputting to a 1080p target. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "9to5Mac",
+   "tier": "redazionale",
+   "title": "AirPods Pro 3 hit low $179 price just weeks after adding new features",
+   "link": "https://9to5mac.com/2026/10/04/airpods-pro-3-prime-day-deal/",
+   "date": "2026-10-04T10:24:01+00:00",
+   "age_hours": 18.4,
+   "summary": "We are touching down to let folks know the Amazon fall Prime Day sale is getting a head start today – AirPods Pro 3 have now dropped down to one of the lowest prices to date at $179 shipped. more…",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "VGC",
+   "tier": "games",
+   "title": "‘I did my best’: Final Fantasy 7 Revelation director says he argued for physical version",
+   "link": "https://www.videogameschronicle.com/news/i-did-my-best-final-fantasy-7-revelation-director-says-he-argued-for-physical-version/",
+   "date": "2026-10-04T10:14:58+00:00",
+   "age_hours": 18.5,
+   "summary": "FF7 Remake series director says he understands why some fans are disappointed",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "NASA and IBM's open source lunar model turns 17 years of orbiter data into a foundation for lunar science",
+   "link": "https://the-decoder.com/nasa-and-ibms-open-source-lunar-model-turns-17-years-of-orbiter-data-into-a-foundation-for-lunar-science/",
+   "date": "2026-10-04T10:10:12+00:00",
+   "age_hours": 18.6,
+   "summary": "NASA and IBM have released the Lunar Foundation Model, one of the first open-source AI models for lunar science. Trained on nearly 2 million tile bundles, mostly from 17 years of Lunar Reconnaissance Orbiter data, it cuts the error in predicting polar ice deposits. The article NASA and IBM's open source lunar model turns 17 years of orbiter data into a foundation for lunar science appeared first on The Decoder .",
+   "categories": [
+    "AI research",
+    "Artificial Intelligence",
+    "IBM",
+    "NASA",
+    "Research"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "This 2025 Motorola phone is quietly becoming one of my favorite Android devices",
+   "link": "https://www.androidauthority.com/motorola-edge-70-becoming-favorite-android-phone-3715468/",
+   "date": "2026-10-04T10:00:34+00:00",
+   "age_hours": 18.8,
+   "summary": "The Motorola Edge 70 flew under the radar, but I love it.",
+   "categories": [
+    "Features",
+    "Motorola",
+    "Motorola Edge"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How I think Microsoft's campaign to fix Windows 11 is going after 6 months",
+   "link": "https://www.techradar.com/computing/windows/were-6-months-into-microsofts-campaign-to-fix-windows-11-here-are-5-things-it-got-right-and-3-glaring-oversights",
+   "date": "2026-10-04T10:00:00+00:00",
+   "age_hours": 18.8,
+   "summary": "There have been commendable performance, search, and interface tweaks — but those bugs remain problematic.",
+   "categories": [
+    "Windows",
+    "Computing",
+    "Software"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Come trasformare un MacBook inutilizzato in un NAS domestico",
+   "link": "https://www.hdblog.it/portatili/articoli/n672361/macbook-inutilizzato-nas-domestico-passaggi/",
+   "date": "2026-10-04T09:55:00+02:00",
+   "age_hours": 20.8,
+   "summary": "Lunità può essere utilizzata per archiviazione e backup.",
+   "categories": [
+    "Apple"
+   ]
+  },
+  {
+   "source": "VGC",
+   "tier": "games",
+   "title": "Jagex has officially announced RuneScape 4",
+   "link": "https://www.videogameschronicle.com/news/jagex-has-officially-announced-runescape-4/",
+   "date": "2026-10-04T09:36:48+00:00",
+   "age_hours": 19.2,
+   "summary": "Jagex confirms its next RuneScape will be powered by Unreal Engine",
+   "categories": [
+    "News"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Benzina dall'aria? Il sistema di questa startup ne produce 3,8 litri al giorno",
+   "link": "https://www.hdmotori.it/benzina-aria-startup/",
+   "date": "2026-10-04T09:30:54+02:00",
+   "age_hours": 21.2,
+   "summary": "Una startup newyorkese ha presentato un dispositivo in grado di trasformare anidride carbonica e acqua in carburante sintetico per i motori tradizionali.",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "I tried Duolingo for the first time in a year, and it’s worse than I thought",
+   "link": "https://www.androidauthority.com/using-duolingo-after-one-year-bad-alternatives-3717701/",
+   "date": "2026-10-04T09:30:50+00:00",
+   "age_hours": 19.2,
+   "summary": "This isn't the Duolingo I remember.",
+   "categories": [
+    "Features",
+    "Duolingo",
+    "Google Gemini"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Per scrivere meglio su Mac provate Cue",
+   "link": "https://www.macitynet.it/cue-app-mac-bundlehunt/",
+   "date": "2026-10-04T09:29:31+00:00",
+   "age_hours": 19.3,
+   "summary": "Suggerimenti, correzione testi, strumenti per le email, promemoria e funzioni IA direttamente nei campi di testo del Mac: come funziona - su macitynet.it Per scrivere meglio su Mac provate Cue",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "BundleHunt",
+    "Offerte Software"
+   ]
+  },
+  {
+   "source": "Eurogamer",
+   "tier": "games",
+   "title": "Nivalis Nights dares to ask what if Cyberpunk 2077 met Dave the Diver and Stardew Valley? And for now at least I'm loving the answer",
+   "link": "https://www.eurogamer.net/nivalis-nights-now-playing",
+   "date": "2026-10-04T09:01:54+00:00",
+   "age_hours": 19.7,
+   "summary": "As I throw open the windows on my first day in Nivalis, breathing in the city's neon-streaked air and watching the smog roil across the blackened sky, my government-mandated AI automata informs me the district is in lockdown and a serial killer's on the loose. Five hours later, I've become embroiled in a child trafficking plot (the good kind, apparently, seeing as I'm helping them get out ); I've stumbled across an oil rig and befriended its city separatists; I've inadvertently struck up a romance with a CorpSec agent who's trying to shut down my noodle bar; and I've met a woman who writes new childhoods for condemned criminals, in the city's hope that implanting them will make 'em behave. All this and I've only grown a single onion. Nivalis Nights, it's fair to say, is not your average farm-life sim. Read more",
+   "categories": [
+    "RPG",
+    "Indie",
+    "Xbox One",
+    "PS5",
+    "Nintendo Switch",
+    "Nivalis Nights",
+    "Merge Games",
+    "Third person"
+   ]
+  },
+  {
+   "source": "Android Authority",
+   "tier": "banco",
+   "title": "After a month with the Galaxy Z Fold 8, every other Android phone feels wrong",
+   "link": "https://www.androidauthority.com/samsung-galaxy-z-fold-8-one-monther-later-3710165/",
+   "date": "2026-10-04T09:00:27+00:00",
+   "age_hours": 19.8,
+   "summary": "A month with the Galaxy Z Fold 8 has quietly ruined every other phone for me.",
+   "categories": [
+    "Features",
+    "Foldable Phones",
+    "Samsung",
+    "Samsung Galaxy",
+    "Samsung Galaxy Z Fold 8"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The AirPods Pro 3 are a fantastic deal at $179",
+   "link": "https://www.theverge.com/gadgets/1004242/airpods-pro-3-amazon-october-prime-day-deal-sale",
+   "date": "2026-10-04T09:00:00-04:00",
+   "age_hours": 15.8,
+   "summary": "It’s been a while since we’ve seen a good discount on the Apple AirPods Pro 3, but like the latest iPad Mini and the M5 MacBook Airs, a great one is happening now for October Prime Day. You can snag a pair of the noise-canceling earbuds that include five ear tip sizes, live translation, and […]",
+   "categories": [
+    "Apple",
+    "Deals",
+    "Gadgets",
+    "Prime Day",
+    "Tech",
+    "Verge Shopping"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "Feature: Box Art Brawl - Zone Of The Enders: The Fist Of Mars (GBA)",
+   "link": "https://www.nintendolife.com/features/box-art-brawl-zone-of-the-enders-the-fist-of-mars-gba",
+   "date": "2026-10-04T09:00:00+00:00",
+   "age_hours": 19.8,
+   "summary": "In the zone. Hello everyone, and welcome to another edition of Box Art Brawl ! Last week, we looked at a curious little game for the NES called Dragon Warrior II – not sure if you've heard of it. Regardless, while both contenders for this are excellent in their own right, it was Japan that nabbed the win with 66% of the vote – jolly good, indeed. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "Rock Paper Shotgun",
+   "tier": "games",
+   "title": "The Sunday Papers",
+   "link": "https://www.rockpapershotgun.com/the-sunday-papers-830",
+   "date": "2026-10-04T09:00:00+00:00",
+   "age_hours": 19.8,
+   "summary": "Sundays are for having the first lie-in in a month. No trips to visit family, no waking in unfamiliar beds, and, best of all, no having to wait until the hosts are up before you can get started on breakfast. I will be snoozing deeply in my own particular mattress before having a plate of toast and scrambled eggs at a time that I deem appropriate. Once that's all polished away, I will return to bed with a fresh cup of coffee and peruse the week's best writing at my own leisure. What's that? You want me to share? Fine. You can have a read of them when I'm done. Read more",
+   "categories": [
+    "The Sunday Papers"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch NFL London Games 2026: FREE live streams and schedule, Colts vs Commanders",
+   "link": "https://www.techradar.com/how-to-watch/american-football/nfl-london-games-2026-free",
+   "date": "2026-10-04T09:00:00+00:00",
+   "age_hours": 19.8,
+   "summary": "The Colts and Commanders kick off 2026's NFL London Games in the UK at the Tottenham Hotspur Stadium – see how to watch all three for free and from anywhere.",
+   "categories": [
+    "How to Watch American Football",
+    "How to Watch",
+    "How to Watch Sport"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Which Hogwarts house does your tech say you belong in?",
+   "link": "https://www.techradar.com/streaming/entertainment/which-hogwarts-house-do-you-belong-in-tell-us-about-your-tech-and-this-harry-potter-quiz-will-do-the-rest",
+   "date": "2026-10-04T09:00:00+00:00",
+   "age_hours": 19.8,
+   "summary": "Love tech? A big fan of Harry Potter? This 31-question quiz will work out which Hogwarts house you'd be sorted into based on your gadgets.",
+   "categories": [
+    "Entertainment",
+    "Streaming"
+   ]
+  },
+  {
+   "source": "iSpazio",
+   "tier": "redazionale",
+   "title": "Offerte del giorno: Ecco i migliori sconti selezionati da iSpazio – 4 Ottobre 2026",
+   "link": "https://www.ispazio.net/2063515/offerte-ispazio-amazon",
+   "date": "2026-10-04T09:00:00+00:00",
+   "age_hours": 19.8,
+   "summary": "Offerte del giorno: Ecco i migliori sconti selezionati da iSpazio – 4 Ottobre 2026 Fare shopping online necessita di precise precauzioni perchè le variazioni di prezzo dei prodotti sono all’ordine del giorno. Lo sa bene che acquista su Amazon dove un prodotto può essere scontato o può subire un aumento del prezzo anche più volte in una sola giornata! Per questo motivo abbiamo creato un servizio chiamato “Offerte iSpazio”, […]",
+   "categories": [
+    "Offerte iSpazio",
+    "Accessori Apple",
+    "Amazon",
+    "Coupon",
+    "esclusivi",
+    "Offerte",
+    "Promozioni",
+    "risparmia"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Casa e giardino sotto controllo con 24,99 euro: Amazon sconta il kit Blink di 100 euro",
+   "link": "https://www.macitynet.it/casa-e-giardino-sotto-controllo-con-2499-euro-amazon-sconta-il-kit-blink-di-100-euro/",
+   "date": "2026-10-04T08:55:50+00:00",
+   "age_hours": 19.8,
+   "summary": "Outdoor 4 a batteria per l’esterno e Mini 2K+ per gli interni: Amazon propone il kit Blink a 24,99 euro invece di 124,98 euro, con circa 100 euro di sconto nell’offerta anticipata Prime. - su macitynet.it Casa e giardino sotto controllo con 24,99 euro: Amazon sconta il kit Blink di 100 euro",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "Offerte Amazon",
+    "Prime Day"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Trump cambia AI in SI e la Slovenia si ritrova con un tesoro digitale",
+   "link": "https://www.hdblog.it/tecnologia/articoli/n672528/trump-super-intelligence-domini-si-slovenia/",
+   "date": "2026-10-04T08:55:00+02:00",
+   "age_hours": 21.8,
+   "summary": "Lordine di Trump sulla Super Intelligence scatena la corsa ai domini sloveni .si",
+   "categories": [
+    "Tecnologia"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Chinese AI models parrot state doctrine or refuse to answer on sensitive topics",
+   "link": "https://the-decoder.com/chinese-ai-models-parrot-state-doctrine-or-refuse-to-answer-on-sensitive-topics/",
+   "date": "2026-10-04T08:47:52+00:00",
+   "age_hours": 20.0,
+   "summary": "Chinese AI models often follow the party line on politically sensitive questions, according to an Aleph Alpha study that rated only 17 to 41 percent of answers as balanced. Aleph Alpha sells \"sovereign AI\" to governments, giving it a commercial interest in distinguishing its models from Chinese competitors. The article Chinese AI models parrot state doctrine or refuse to answer on sensitive topics appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "Aleph Alpha",
+    "Deepseek",
+    "Kimi",
+    "Nvidia",
+    "Qwen"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The MacBook Air M5 is $200 off for the first time in months",
+   "link": "https://www.theverge.com/gadgets/1000832/macbook-air-m5-amazon-prime-big-deal-sale",
+   "date": "2026-10-04T08:34:01-04:00",
+   "age_hours": 16.2,
+   "summary": "Amazon’s October Prime Day has effectively chopped off Apple’s June price increases. Usually $1,299, the 13-inch MacBook Air with the M5 chip and 512GB of storage is on sale for $1,099 at Amazon. That’s a more palatable price for a machine that’s significantly faster than Apple’s $699 MacBook Neo. The 15-inch version, also with 512GB […]",
+   "categories": [
+    "Apple",
+    "Deals",
+    "Gadgets",
+    "Prime Day",
+    "Tech",
+    "Verge Shopping"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The iPad Mini is slightly cheaper again during Prime Day",
+   "link": "https://www.theverge.com/gadgets/1000323/apple-ipad-mini-amazon-prime-big-deal-days-sale",
+   "date": "2026-10-04T08:31:50-04:00",
+   "age_hours": 16.2,
+   "summary": "Apple bumped up prices on several of its devices in June, and we haven’t seen a good discount on the iPad Mini since. Just ahead of Amazon’s October Prime Big Deals Days, however, both Wi-Fi only and cellular-connected models are $100 off. The Wi-Fi version with 128GB of storage is currently $499, the 256GB model […]",
+   "categories": [
+    "Apple",
+    "Deals",
+    "Gadgets",
+    "Prime Day",
+    "Tech",
+    "Verge Shopping"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "This is when the Honor Magic9 series is landing in Europe",
+   "link": "https://www.gsmarena.com/this_is_when_the_honor_magic9_series_is_landing_in_europe-news-74887.php",
+   "date": "2026-10-04T08:31:02+02:00",
+   "age_hours": 22.2,
+   "summary": "Honor launched the Magic9, Magic9 Super, and Magic9 Pro Max in China a few days ago. If the devices interest you, you may want to know when to expect them to arrive in Europe. Today we have the answer for the UK and France, officially revealed by Honor's website. Obviously, the rest of Europe is likely to get them at the same time. Over in the UK and France, Honor says the Magic9 series is landing in January. That's quite the wait, no doubt. The company is showing the Magic9 Pro Max in Shadow Black, Moss Green, and Glacier Silver on its official website. The device will be offered...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "HDblog",
+   "tier": "banco",
+   "title": "Price cap carburanti in oltre 10.000 distributori, Urso: «Un esempio in Europa»",
+   "link": "https://www.hdmotori.it/price-cap-carburantie-10000-distributori-urso/",
+   "date": "2026-10-04T08:30:40+02:00",
+   "age_hours": 22.3,
+   "summary": "Oltre la metà della rete carburanti italiana aderisce al calmiere dei prezzi dei carburanti. Per il ministro Adolfo Urso il risultato dell’iniziativa è superiore alle aspettative.",
+   "categories": [
+    "Auto"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "I migliori libri di Fantascienza con l’AI – Terza Parte",
+   "link": "https://www.macitynet.it/libri-fantascianza-ia-parte-3/",
+   "date": "2026-10-04T08:29:33+00:00",
+   "age_hours": 20.3,
+   "summary": "‌In questa terza e ultima parte della nostra selezione dei migliori libri di fantascienza che hanno immaginato l'intelligenza artificiale, torniamo alle origini per arrivare poi fino alle visioni più recenti - su macitynet.it I migliori libri di Fantascienza con l’AI – Terza Parte",
+   "categories": [
+    "iGuida",
+    "ebook",
+    "Libri"
+   ]
+  },
+  {
+   "source": "Hackaday",
+   "tier": "tech",
+   "title": "The Big Moon Plot",
+   "link": "https://hackaday.com/2026/10/04/bringing-the-moon-home-with-plotting/",
+   "date": "2026-10-04T08:00:48+00:00",
+   "age_hours": 20.8,
+   "summary": "When you look into the night sky, you can’t help but wish to bring the outer worlds to your doorstep. One of the best ways to do that is to …read more",
+   "categories": [
+    "Art",
+    "Space",
+    "arduino",
+    "contourprinting",
+    "moon",
+    "pen plotter",
+    "plotter robot"
+   ]
+  },
+  {
+   "source": "The Verge",
+   "tier": "redazionale",
+   "title": "The forgotten Chromebook that started it all",
+   "link": "https://www.theverge.com/podcast/1001215/the-forgotten-chromebook-that-started-it-all",
+   "date": "2026-10-04T08:00:00-04:00",
+   "age_hours": 16.8,
+   "summary": "Google didn't even call the first Chromebook a \"Chromebook.\" The Cr-48 had no interesting design and no bright logos - it wasn't even designed to be a product you could buy. Instead, it was a portal to a big new idea about computers. In this week's episode of Version History, The Verge's Nilay Patel and […]",
+   "categories": [
+    "Gadgets",
+    "Laptops",
+    "Podcasts",
+    "Tech",
+    "Version History"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Siri AI, 125 test dimostrano tutto quello che può fare",
+   "link": "https://www.macitynet.it/cosa-puo-fare-siri-ai/",
+   "date": "2026-10-04T07:59:00+00:00",
+   "age_hours": 20.8,
+   "summary": "Un filmato di David Pogue mostra l'enorme potenziale di Siri AI, ma l'arrivo in Europa e i limiti attuali frenano l'entusiasmo. - su macitynet.it Siri AI, 125 test dimostrano tutto quello che può fare",
+   "categories": [
+    "il mio iPhone",
+    "Apple",
+    "Siri"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Anker anticipa la Festa Prime: cuffie, ricarica e casa smart scontate fino al 42%",
+   "link": "https://www.macitynet.it/offerte-anker-festa-prime-ottobre-2026/",
+   "date": "2026-10-04T07:29:42+00:00",
+   "age_hours": 21.3,
+   "summary": "Le offerte Anker partono prima della Festa delle Offerte Prime: Liberty 5 Pro a 139,99 euro, Space One Pro a 109,99 euro e sconti su ricarica, videocamere e robot eufy. - su macitynet.it Anker anticipa la Festa Prime: cuffie, ricarica e casa smart scontate fino al 42%",
+   "categories": [
+    "Offerte",
+    "Sconti speciali",
+    "ADV",
+    "Anker",
+    "Festa delle offerte Prime",
+    "Offerte Amazon"
+   ]
+  },
+  {
+   "source": "The Decoder",
+   "tier": "ai",
+   "title": "Google's new Gemini tiers cut free users to its weakest model and lock $5/month subscribers out of Pro",
+   "link": "https://the-decoder.com/googles-new-gemini-tiers-cut-free-users-to-its-weakest-model-and-lock-5-month-subscribers-out-of-pro/",
+   "date": "2026-10-04T07:28:54+00:00",
+   "age_hours": 21.3,
+   "summary": "Starting in October 2026, Google will cut free access to its Gemini models. Users without a subscription will only get the smallest model, Flash-Lite, while Flash and Pro will be reserved for paying customers. The move could also set the stage for the more resource-hungry Gemini 4 Argon. The article Google's new Gemini tiers cut free users to its weakest model and lock $5/month subscribers out of Pro appeared first on The Decoder .",
+   "categories": [
+    "AI in practice",
+    "Artificial Intelligence",
+    "Short News",
+    "Google"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "iOS 27: come impedire alle foto di ingrandirsi automaticamente su iPhone",
+   "link": "https://www.macitynet.it/foto-ingrandimento-auto-ios-27/",
+   "date": "2026-10-04T07:04:23+00:00",
+   "age_hours": 21.7,
+   "summary": "Una nuova opzione forza la visualizzazione delle foto a tutto schermo: chi preferisce vedere sempre e comunque l'originale dovrebbe disattivare questo interruttore - su macitynet.it iOS 27: come impedire alle foto di ingrandirsi automaticamente su iPhone",
+   "categories": [
+    "Tutorial e FAQ",
+    "Apple",
+    "iOS 27",
+    "Tutorial iPhone e iPad"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to stream Pet Shop Boys album A Man from the Future for free online from anywhere",
+   "link": "https://www.techradar.com/how-to-watch/how-to-watch-pet-shop-boys-a-man-from-the-future",
+   "date": "2026-10-04T07:00:00+00:00",
+   "age_hours": 21.8,
+   "summary": "Here's how to stream Pet Shop Boys concept album A Man from the Future online from anywhere in the world, completely FREE with exclusive access on BBC Sounds.",
+   "categories": [
+    "How to Watch"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Belkin Travel Bag for Nintendo Switch 2 review: A superb sling for your Switch 2 setup",
+   "link": "https://www.techradar.com/gaming/gaming-accessories/belkin-travel-bag-for-nintendo-switch-2-review",
+   "date": "2026-10-04T07:00:00+00:00",
+   "age_hours": 21.8,
+   "summary": "Belkin’s travel bag is a simple and effective shoulder-carrying solution for the Switch 2.",
+   "categories": [
+    "Gaming Accessories",
+    "Nintendo Switch",
+    "Gaming",
+    "Consoles & PC",
+    "Nintendo"
+   ]
+  },
+  {
+   "source": "Nintendo Life",
+   "tier": "games",
+   "title": "RuneScape: Dragonwilds Reveals Multi-Year Roadmap",
+   "link": "https://www.nintendolife.com/news/2026/10/runescape-dragonwilds-reveals-multi-year-roadmap",
+   "date": "2026-10-04T06:05:00+00:00",
+   "age_hours": 22.7,
+   "summary": "Monthly & quarterly updates throughout 2027. RuneScape: Dragonwilds developer Jagex has officially unveiled its new \"multi-year\" roadmap, covering the remainder of 2026 and the plans for 2027. Read the full article on nintendolife.com",
+   "categories": []
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "Beware the smartphone security threat — new report claims most banking scam attempts now take place on mobile devices",
+   "link": "https://www.techradar.com/pro/security/beware-the-smartphone-security-threat-new-report-claims-most-banking-scam-attempts-now-take-place-on-mobile-devices",
+   "date": "2026-10-04T06:00:00+00:00",
+   "age_hours": 22.8,
+   "summary": "90% of scams are taking place via mobile phone, with banking scams increasing of 35% over the previous year",
+   "categories": [
+    "Security",
+    "Cyber Security",
+    "Cyber Crime",
+    "Pro",
+    "Computing",
+    "Computing Security"
+   ]
+  },
+  {
+   "source": "Macitynet",
+   "tier": "redazionale",
+   "title": "Un filmato di Apple evidenzia le novità di Tempo di utilizzo per gestire iPhone e iPad dei figli",
+   "link": "https://www.macitynet.it/limitare-uso-iphone-e-ipad-ai-figli/",
+   "date": "2026-10-04T05:46:59+00:00",
+   "age_hours": 23.0,
+   "summary": "Con l'ultimo aggiornamento dei sistemi operativi Apple “Tempo di utilizzo” prevede nuovi controlli parentali per aiutare i genitori a gestire i contenuti a cui i bambini hanno accesso, i momenti in cui utilizzano i dispositivi e la sicurezza durante la comunicazione con gli altre person - su macitynet.it Un filmato di Apple evidenzia le novità di Tempo di utilizzo per gestire iPhone e iPad dei figli",
+   "categories": [
+    "il mio iPhone",
+    "iPad",
+    "Apple",
+    "Sicurezza"
+   ]
+  },
+  {
+   "source": "GSMArena",
+   "tier": "banco",
+   "title": "iQOO 16 is headed to India, but at what price?",
+   "link": "https://www.gsmarena.com/iqoo_16_is_headed_to_india_but_at_what_price-news-74888.php",
+   "date": "2026-10-04T05:31:02+02:00",
+   "age_hours": 25.2,
+   "summary": "The iQOO 16 became official in China earlier this week. Now if you've been wondering whether it will be available in India, a tipster over on X today tells us that it's a real possibility, as the phone has allegedly started some testing procedures in the country. So it's pretty likely that it will launch in India in the coming weeks. However, the big question is how much it will end up costing. Over in China, it starts at CNY 5,999, which is about INR 86,000 or $894. The aforementioned tipster claims it could actually be priced closer to INR 100,000 ($1,039), which would definitely...",
+   "categories": [
+    "news"
+   ]
+  },
+  {
+   "source": "TechRadar",
+   "tier": "tech",
+   "title": "How to watch NRL Grand Final 2026 for FREE: Live streams",
+   "link": "https://www.techradar.com/how-to-watch/sport/nrl-grand-final-2026-free-roosters-vs-knights",
+   "date": "2026-10-04T05:30:00+00:00",
+   "age_hours": 23.3,
+   "summary": "All the ways to watch NRL Grand Final 2026 for free from anywhere, as Tyson Frizell and Mark Nawaqanitawase star in Roosters vs Knights at Accor Stadium.",
+   "categories": [
+    "How to Watch Sport",
+    "How to Watch"
+   ]
+  },
+  {
+   "source": "Hacker News",
+   "tier": "tech",
+   "title": "Why don't more developers “use the platform”?",
+   "link": "https://nolanlawson.com/2026/10/03/why-dont-more-developers-use-the-platform/",
+   "date": "2026-10-04T04:10:47+00:00",
+   "age_hours": 24.6,
+   "summary": "Article URL: https://nolanlawson.com/2026/10/03/why-dont-more-developers-use-the-platform/ Comments URL: https://news.ycombinator.com/item?id=49950554 Points: 286 # Comments: 298",
+   "categories": []
+  },
+  {
+   "source": "Product Hunt",
+   "tier": "tech",
+   "title": "Poddle",
+   "link": "https://www.producthunt.com/products/poddle-3",
+   "date": "2026-10-03T21:39:18-07:00",
+   "age_hours": 24.1,
+   "summary": "Swing your phone, play pickleball on any computer! Discussion | Link",
+   "categories": []
+  }
+ ]
+}
