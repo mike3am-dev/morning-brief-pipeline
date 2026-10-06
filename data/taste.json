@@ -4451,9 +4451,117 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/airpods-reclamo-notifica-carica",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/apple-evento-13-ottobre",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/apple-icup-specialist",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/banco:banco-fold8-un-mese",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/hdblog-sondaggio-iphone-settembre",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/ios27-widget-xxl-foto-zoom",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/iphone-duo-shot-on-iphone",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/iphone18-pro-problemi-continuano",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/macbook-pro-oled-leggero",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/prime-day-sconti-apple-ottobre",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/radar:banking-scam-mobile-techradar",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/radar:bitdefender-ai-guardian-mac",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/radar:google-datacenter-redazione-lincoln",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/radar:oregon-datacenter-elezioni",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/radar:techcrunch-mobility-robotaxi",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/siri-ai-europa-test-pogue",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/tempo-utilizzo-controlli-parentali",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-05/ternus-design-studio",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-05T04:49:50",
+ "pulled": "2026-10-06T04:49:53",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -4471,7 +4579,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 7,
-   "scarto": -0.14,
+   "scarto": -0.15,
    "nota": "categoria «apple tv»: aperta 0 volte su 7, sotto la media"
   },
   {
@@ -4480,7 +4588,7 @@
    "verso": "declassa",
    "su": 1,
    "giu": 12,
-   "scarto": -0.13,
+   "scarto": -0.14,
    "nota": "categoria «accessori»: aperta 1 volta su 13, sotto la media"
   },
   {
@@ -4488,27 +4596,54 @@
    "valore": "airpods",
    "verso": "declassa",
    "su": 1,
-   "giu": 12,
-   "scarto": -0.13,
-   "nota": "categoria «airpods»: aperta 1 volta su 13, sotto la media"
-  },
-  {
-   "asse": "tag",
-   "valore": "CONTESTO",
-   "verso": "declassa",
-   "su": 5,
-   "giu": 39,
-   "scarto": -0.13,
-   "nota": "tag «CONTESTO»: aperta 5 volte su 44, sotto la media"
+   "giu": 13,
+   "scarto": -0.14,
+   "nota": "categoria «airpods»: aperta 1 volta su 14, sotto la media"
   },
   {
    "asse": "categoria",
    "valore": "azienda",
    "verso": "declassa",
    "su": 1,
-   "giu": 10,
+   "giu": 11,
+   "scarto": -0.13,
+   "nota": "categoria «azienda»: aperta 1 volta su 12, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "audio",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 9,
    "scarto": -0.12,
-   "nota": "categoria «azienda»: aperta 1 volta su 11, sotto la media"
+   "nota": "categoria «audio»: aperta 1 volta su 10, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "ios",
+   "verso": "declassa",
+   "su": 3,
+   "giu": 19,
+   "scarto": -0.12,
+   "nota": "categoria «ios»: aperta 3 volte su 22, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "ipad",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 9,
+   "scarto": -0.12,
+   "nota": "categoria «ipad»: aperta 1 volta su 10, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "offerte",
+   "verso": "declassa",
+   "su": 2,
+   "giu": 15,
+   "scarto": -0.12,
+   "nota": "categoria «offerte»: aperta 2 volte su 17, sotto la media"
   },
   {
    "asse": "categoria",
@@ -4520,40 +4655,22 @@
    "nota": "categoria «regolamentazione»: aperta 2 volte su 17, sotto la media"
   },
   {
-   "asse": "categoria",
-   "valore": "audio",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 9,
-   "scarto": -0.11,
-   "nota": "categoria «audio»: aperta 1 volta su 10, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "ipad",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 9,
-   "scarto": -0.11,
-   "nota": "categoria «ipad»: aperta 1 volta su 10, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "offerte",
-   "verso": "declassa",
-   "su": 2,
-   "giu": 14,
-   "scarto": -0.11,
-   "nota": "categoria «offerte»: aperta 2 volte su 16, sotto la media"
-  },
-  {
    "asse": "fonte",
    "valore": "BGR",
    "verso": "declassa",
    "su": 2,
    "giu": 14,
-   "scarto": -0.11,
+   "scarto": -0.12,
    "nota": "fonte «BGR»: aperta 2 volte su 16, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "DDay.it",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 8,
+   "scarto": -0.11,
+   "nota": "fonte «DDay.it»: aperta 1 volta su 9, sotto la media"
   },
   {
    "asse": "fonte",
@@ -4583,31 +4700,13 @@
    "nota": "lab «altri»: aperta 0 volte su 6, sotto la media"
   },
   {
-   "asse": "categoria",
-   "valore": "ios",
+   "asse": "tag",
+   "valore": "SERVIZIO",
    "verso": "declassa",
-   "su": 3,
-   "giu": 17,
+   "su": 12,
+   "giu": 65,
    "scarto": -0.1,
-   "nota": "categoria «ios»: aperta 3 volte su 20, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "DDay.it",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 8,
-   "scarto": -0.1,
-   "nota": "fonte «DDay.it»: aperta 1 volta su 9, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "apple",
-   "verso": "promuovi",
-   "su": 8,
-   "giu": 10,
-   "scarto": 0.1,
-   "nota": "categoria «apple»: aperta 8 volte su 18, sopra la media"
+   "nota": "tag «SERVIZIO»: aperta 12 volte su 77, sotto la media"
   },
   {
    "asse": "categoria",
@@ -4622,10 +4721,19 @@
    "asse": "categoria",
    "valore": "iphone",
    "verso": "promuovi",
-   "su": 37,
+   "su": 38,
    "giu": 52,
    "scarto": 0.11,
-   "nota": "categoria «iphone»: aperta 37 volte su 89, sopra la media"
+   "nota": "categoria «iphone»: aperta 38 volte su 90, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "TechCrunch",
+   "verso": "promuovi",
+   "su": 6,
+   "giu": 7,
+   "scarto": 0.11,
+   "nota": "fonte «TechCrunch»: aperta 6 volte su 13, sopra la media"
   },
   {
    "asse": "ai",
@@ -4637,15 +4745,6 @@
    "nota": "ai «uso»: aperta 1 volta su 3, sopra la media"
   },
   {
-   "asse": "fonte",
-   "valore": "TechCrunch",
-   "verso": "promuovi",
-   "su": 6,
-   "giu": 7,
-   "scarto": 0.12,
-   "nota": "fonte «TechCrunch»: aperta 6 volte su 13, sopra la media"
-  },
-  {
    "asse": "tag",
    "valore": "ANALISI",
    "verso": "promuovi",
@@ -4653,6 +4752,15 @@
    "giu": 18,
    "scarto": 0.13,
    "nota": "tag «ANALISI»: aperta 20 volte su 38, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Bloomberg",
+   "verso": "promuovi",
+   "su": 6,
+   "giu": 8,
+   "scarto": 0.13,
+   "nota": "fonte «Bloomberg»: aperta 6 volte su 14, sopra la media"
   },
   {
    "asse": "lab",
@@ -4665,30 +4773,39 @@
   },
   {
    "asse": "fonte",
-   "valore": "Bloomberg",
-   "verso": "promuovi",
-   "su": 6,
-   "giu": 8,
-   "scarto": 0.14,
-   "nota": "fonte «Bloomberg»: aperta 6 volte su 14, sopra la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "Apple Newsroom",
    "verso": "promuovi",
    "su": 8,
    "giu": 5,
-   "scarto": 0.16,
+   "scarto": 0.15,
    "nota": "fonte «Apple Newsroom»: aperta 8 volte su 13, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Tom's Hardware IT",
+   "verso": "promuovi",
+   "su": 5,
+   "giu": 4,
+   "scarto": 0.16,
+   "nota": "fonte «Tom's Hardware IT»: aperta 5 volte su 9, sopra la media"
   },
   {
    "asse": "categoria",
    "valore": "iphone duo",
    "verso": "promuovi",
-   "su": 10,
+   "su": 11,
    "giu": 6,
-   "scarto": 0.21,
-   "nota": "categoria «iphone duo»: aperta 10 volte su 16, sopra la media"
+   "scarto": 0.25,
+   "nota": "categoria «iphone duo»: aperta 11 volte su 17, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Android Authority",
+   "verso": "promuovi",
+   "su": 6,
+   "giu": 5,
+   "scarto": 0.39,
+   "nota": "fonte «Android Authority»: aperta 6 volte su 11, sopra la media"
   },
   {
    "asse": "categoria",
@@ -4698,15 +4815,6 @@
    "giu": 2,
    "scarto": 0.41,
    "nota": "categoria «casa intelligente»: aperta 4 volte su 6, sopra la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Android Authority",
-   "verso": "promuovi",
-   "su": 6,
-   "giu": 4,
-   "scarto": 0.44,
-   "nota": "fonte «Android Authority»: aperta 6 volte su 10, sopra la media"
   }
  ]
 }

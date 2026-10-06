@@ -1,0 +1,2529 @@
+{
+ "generated_at": "2026-10-06T04:51:13",
+ "window": {
+  "from": "2026-09-22",
+  "to": "2026-10-03"
+ },
+ "gruppi": 2192,
+ "candidati": [
+  {
+   "id": "introducing-gpt-6-sol-and-luna",
+   "genere": "notizia",
+   "title": "Introducing GPT-6 Sol and Luna",
+   "link": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+   "source": "OpenAI",
+   "sources": [
+    "Android Authority",
+    "DDay.it",
+    "OpenAI",
+    "Simon Willison",
+    "TechCrunch AI",
+    "The Decoder"
+   ],
+   "when": "2026-09-22",
+   "signal": "6 testate in 8 giorni, 1779 punti e 855 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49805509",
+   "punti": 15.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "disney-and-hulu-just-increased-prices-he",
+   "genere": "notizia",
+   "title": "Disney+ and Hulu just increased prices, here’s how much",
+   "link": "https://9to5mac.com/2026/09/23/disney-and-hulu-just-increased-prices-heres-how-much/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "Android Authority",
+    "Ars Technica",
+    "GSMArena",
+    "HDblog",
+    "TechCrunch"
+   ],
+   "when": "2026-09-23",
+   "signal": "6 testate in 2 giorni",
+   "discussione": null,
+   "punti": 12.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "parallel-cut-research-time-and-cost-in-h",
+   "genere": "notizia",
+   "title": "Parallel cut research time and cost in half with GPT‑6 Astra",
+   "link": "https://openai.com/index/parallel-cuts-time-and-cost-with-astra",
+   "source": "OpenAI",
+   "sources": [
+    "Android Authority",
+    "HDblog",
+    "OpenAI",
+    "The Decoder"
+   ],
+   "when": "2026-09-22",
+   "signal": "4 testate in 8 giorni, 1066 punti e 954 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49896586",
+   "punti": 11.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "meta-ditches-the-camera-on-its-newest-sm",
+   "genere": "notizia",
+   "title": "Meta ditches the camera on its newest smart glasses",
+   "link": "https://www.theverge.com/tech/999281/ray-ban-meta-audio-glasses-meta-connect-2026",
+   "source": "The Verge",
+   "sources": [
+    "Android Authority",
+    "TechCrunch AI",
+    "The Verge"
+   ],
+   "when": "2026-09-23",
+   "signal": "3 testate in 2 giorni, 496 punti e 481 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49824268",
+   "punti": 9.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "microsoft-refreshes-its-smaller-surface",
+   "genere": "notizia",
+   "title": "Microsoft refreshes its smaller Surface Pro and Laptop with Qualcomm’s X2 Plus",
+   "link": "https://www.theverge.com/news/999195/microsoft-surface-pro-12-inch-surface-laptop-13-inch-qualcomm-x2-plus",
+   "source": "The Verge",
+   "sources": [
+    "DDay.it",
+    "GSMArena",
+    "HDblog",
+    "The Verge"
+   ],
+   "when": "2026-09-23",
+   "signal": "4 testate in 2 giorni",
+   "discussione": null,
+   "punti": 8.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "trump-orders-us-government-to-call-ai-su",
+   "genere": "notizia",
+   "title": "Trump orders US government to call AI ‘Super Intelligence’",
+   "link": "https://www.theverge.com/policy/1002468/trump-ai-superintelligence-executive-order-ai",
+   "source": "The Verge",
+   "sources": [
+    "TechCrunch",
+    "TechCrunch AI",
+    "TechRadar",
+    "The Verge"
+   ],
+   "when": "2026-09-29",
+   "signal": "4 testate in 5 giorni",
+   "discussione": null,
+   "punti": 8.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "youtube-privilegera-gli-shorts-originali",
+   "genere": "notizia",
+   "title": "YouTube privilegerà gli Shorts originali: chi rischia meno visibilità?",
+   "link": "https://www.tomshw.it/hardware/youtube-privilegera-gli-shorts-originali-chi-rischia-meno-visibilita",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "Android Authority",
+    "Engadget",
+    "HDblog",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-10-02",
+   "signal": "4 testate in 2 giorni",
+   "discussione": null,
+   "punti": 8.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "capcom-is-preparing-for-a-future-where-w",
+   "genere": "notizia",
+   "title": "Capcom is preparing for a ‘future where we create games together with AI’",
+   "link": "https://www.theverge.com/games/1004418/capcom-ai-game-development",
+   "source": "The Verge",
+   "sources": [
+    "Eurogamer",
+    "IGN",
+    "The Verge",
+    "VGC"
+   ],
+   "when": "2026-10-03",
+   "signal": "4 testate",
+   "discussione": null,
+   "punti": 8.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "claude-opus-5-5-matches-fable-5-1-perfor",
+   "genere": "notizia",
+   "title": "Claude Opus 5.5 matches Fable 5.1 performance at lower cost and promises less \"Claudish\" writing",
+   "link": "https://the-decoder.com/claude-opus-5-5-matches-fable-5-1-at-40-percent-lower-cost-as-anthropic-promises-to-fix-claudish-writing/",
+   "source": "The Decoder",
+   "sources": [
+    "The Decoder",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate, 1806 punti e 1134 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49803892",
+   "punti": 7.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "microfono-usb-non-riconosciuto-cosa-cont",
+   "genere": "notizia",
+   "title": "Microfono USB non riconosciuto: cosa controllare in Windows 11?",
+   "link": "https://www.tomshw.it/hardware/microfono-usb-non-riconosciuto-windows-11-controlli",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "HDblog",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 11 giorni, 545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 7.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "three-new-apple-smart-home-products-comi",
+   "genere": "notizia",
+   "title": "Three New Apple Smart Home Products Coming on October 13",
+   "link": "https://www.macrumors.com/2026/09/30/apple-home-products-coming-on-october-13/",
+   "source": "MacRumors",
+   "sources": [
+    "BGR",
+    "MacRumors"
+   ],
+   "when": "2026-09-30",
+   "signal": "2 testate in 4 giorni, 836 punti e 738 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49891295",
+   "punti": 7.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "facebook-chiesti-a-meta-40-miliardi-per",
+   "genere": "notizia",
+   "title": "Facebook, chiesti a Meta 40 miliardi per lo scandalo Cambridge Analytica",
+   "link": "https://www.macitynet.it/meta-nuovo-messico-40-miliardi-dollari/",
+   "source": "Macitynet",
+   "sources": [
+    "Engadget",
+    "Macitynet"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate in 2 giorni, 423 punti e 107 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49852302",
+   "punti": 7.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-safety-employee-resigns-claiming",
+   "genere": "notizia",
+   "title": "OpenAI safety employee resigns, claiming the company’s ‘culture is broken’",
+   "link": "https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "Hacker News",
+    "TechCrunch AI"
+   ],
+   "when": "2026-10-03",
+   "signal": "2 testate, 487 punti e 809 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49944227",
+   "punti": 7.0,
+   "origine": "copertura"
+  },
+  {
+   "genere": "commento",
+   "id": "when-did-google-get-so-weird",
+   "title": "When did Google get so weird?",
+   "link": "https://sancho.bearblog.dev/google-weird/",
+   "source": "sancho.bearblog.dev",
+   "sources": [],
+   "when": "2026-09-27",
+   "signal": "2014 punti e 1123 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49870367",
+   "punti": 7.0,
+   "origine": "solo online"
+  },
+  {
+   "genere": "notizia",
+   "id": "gpt-6-1-sol-near-astra-intelligence-for",
+   "title": "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price",
+   "link": "https://openai.com/index/introducing-gpt-6-1-sol/",
+   "source": "openai.com",
+   "sources": [],
+   "when": "2026-09-29",
+   "signal": "1066 punti e 954 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49896586",
+   "punti": 6.1,
+   "origine": "solo online"
+  },
+  {
+   "id": "one-of-the-most-powerful-weather-apps-fo",
+   "genere": "notizia",
+   "title": "One of the most powerful weather apps for iPhone just came to CarPlay",
+   "link": "https://9to5mac.com/2026/09/22/one-of-the-most-powerful-weather-apps-for-iphone-just-came-to-carplay/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "MacRumors",
+    "iSpazio"
+   ],
+   "when": "2026-09-22",
+   "signal": "3 testate in 10 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "nothing-expands-android-17-beta-to-three",
+   "genere": "notizia",
+   "title": "Nothing expands Android 17 beta to three more phones, but you’ll have to act fast",
+   "link": "https://www.androidauthority.com/nothing-os-5-android-17-beta-phone-4a-3a-pro-3a-3714025/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "GSMArena",
+    "HDblog"
+   ],
+   "when": "2026-09-22",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "review-beats-360-are-the-closest-apple-h",
+   "genere": "notizia",
+   "title": "Review: Beats 360 are the closest Apple headphones to AirPods Max, with one caveat",
+   "link": "https://9to5mac.com/2026/09/22/apple-beats-360-review-close-to-airpods-max/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "MacRumors",
+    "iSpazio"
+   ],
+   "when": "2026-09-22",
+   "signal": "3 testate in 3 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "amazfit-t-rex-dual-solar-ha-due-pannelli",
+   "genere": "notizia",
+   "title": "Amazfit T-Rex Dual Solar ha due pannelli solari. La modalità estrema arriva a 180 giorni di autonomia",
+   "link": "https://www.dday.it/redazione/58823/amazfit-t-rex-dual-solar-ha-due-pannelli-solari-la-modalita-estrema-arriva-a-180-giorni-di-autonomia",
+   "source": "DDay.it",
+   "sources": [
+    "DDay.it",
+    "GSMArena",
+    "HDblog"
+   ],
+   "when": "2026-09-22",
+   "signal": "3 testate in 3 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "quando-esce-control-resonant-data-e-cosa",
+   "genere": "notizia",
+   "title": "Quando esce Control Resonant? Data e cosa sappiamo",
+   "link": "https://www.tomshw.it/videogioco/quando-esce-control-resonant-data-e-cosa-sappiamo",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "TechRadar",
+    "The Verge",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-22",
+   "signal": "3 testate in 12 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "apple-watch-ultra-3-drops-to-record-low",
+   "genere": "notizia",
+   "title": "Apple Watch Ultra 3 Drops to Record Low $599.97 on Amazon [Updated]",
+   "link": "https://www.macrumors.com/2026/09/23/apple-watch-ultra-3-599/",
+   "source": "MacRumors",
+   "sources": [
+    "9to5Mac",
+    "Android Authority",
+    "MacRumors"
+   ],
+   "when": "2026-09-23",
+   "signal": "3 testate in 3 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "introducing-gemini-3-8-live-with-live-av",
+   "genere": "notizia",
+   "title": "Introducing Gemini 3.8 Live with Live Avatar",
+   "link": "https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/",
+   "source": "Google DeepMind",
+   "sources": [
+    "Google DeepMind",
+    "Simon Willison",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-23",
+   "signal": "3 testate in 3 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "final-fantasy-vii-revelation-dovra-esser",
+   "genere": "notizia",
+   "title": "Final Fantasy VII Revelation dovrà essere rigiocato più volte per scoprire tutto",
+   "link": "https://www.hdblog.it/windows/articoli/n671378/final-fantasy-vii-revelation-playthrough-multipli/",
+   "source": "HDblog",
+   "sources": [
+    "Eurogamer",
+    "HDblog",
+    "Kotaku"
+   ],
+   "when": "2026-09-23",
+   "signal": "3 testate in 11 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ray-ban-meta-audio-i-primi-occhiali-meta",
+   "genere": "notizia",
+   "title": "Ray-Ban Meta Audio, i primi occhiali Meta senza fotocamera: 43 grammi, 12 ore di autonomia e Muse a bordo",
+   "link": "https://www.ispazio.net/2273839/ray-ban-meta-audio-gen-3-occhiali-senza-fotocamera",
+   "source": "iSpazio",
+   "sources": [
+    "DDay.it",
+    "GSMArena",
+    "iSpazio"
+   ],
+   "when": "2026-09-24",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "350-in-meno-sul-google-pixel-10-pro-128g",
+   "genere": "notizia",
+   "title": "350€ in meno sul Google Pixel 10 Pro, 128GB a prezzo da fascia media",
+   "link": "https://www.tomshw.it/smartphone/350eur-in-meno-sul-google-pixel-10-pro-128gb-a-prezzo-da-fascia-media",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "Android Authority",
+    "GSMArena",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-24",
+   "signal": "3 testate in 10 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "the-new-4k-amazon-fire-tv-stick-still-ha",
+   "genere": "notizia",
+   "title": "The New 4K Amazon Fire TV Stick Still Has This Disappointing Feature",
+   "link": "https://www.bgr.com/2273951/new-4k-amazon-fire-tv-stick-still-runs-vega-os-disappointing/",
+   "source": "BGR",
+   "sources": [
+    "Android Authority",
+    "BGR",
+    "GSMArena"
+   ],
+   "when": "2026-09-28",
+   "signal": "3 testate in 3 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-launches-dots-its-bubbly-agentic",
+   "genere": "notizia",
+   "title": "OpenAI launches Dots, its bubbly agentic avatar",
+   "link": "https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "DDay.it",
+    "HDblog",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-29",
+   "signal": "3 testate in 2 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "festa-delle-offerte-prime-ecco-tutte-le",
+   "genere": "notizia",
+   "title": "Festa delle Offerte Prime, ecco tutte le offerte imperdibili BLUETTI",
+   "link": "https://www.macitynet.it/festa-delle-offerte-prime-bluetti/",
+   "source": "Macitynet",
+   "sources": [
+    "DDay.it",
+    "Macitynet",
+    "iSpazio"
+   ],
+   "when": "2026-09-30",
+   "signal": "3 testate in 4 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "judge-dismisses-antitrust-lawsuits-over",
+   "genere": "notizia",
+   "title": "Judge dismisses antitrust lawsuits over Google’s AI Overviews",
+   "link": "https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed",
+   "source": "The Verge",
+   "sources": [
+    "Android Authority",
+    "Ars Technica AI",
+    "The Verge"
+   ],
+   "when": "2026-10-01",
+   "signal": "3 testate in 2 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "at-t-t-mobile-and-verizon-are-officially",
+   "genere": "notizia",
+   "title": "AT&T, T-Mobile, and Verizon are officially teaming up to kill dead zones",
+   "link": "https://www.androidauthority.com/att-t-mobile-verizon-dead-zone-joint-venture-3718134/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "Engadget",
+    "GSMArena"
+   ],
+   "when": "2026-10-01",
+   "signal": "3 testate in 2 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "not-even-the-nvidia-shield-tv-pro-is-saf",
+   "genere": "notizia",
+   "title": "Not even the NVIDIA Shield TV Pro is safe from a huge price hike",
+   "link": "https://www.androidauthority.com/nvidia-shield-tv-pro-big-price-increase-3718275/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "HDblog",
+    "TechRadar"
+   ],
+   "when": "2026-10-02",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "upscaling-con-ia-anche-su-ps5-base-debut",
+   "genere": "notizia",
+   "title": "Upscaling con IA anche su PS5 base: debutta QSSR. Già pronto per Wolverine e Ghost of Yotei",
+   "link": "https://www.dday.it/redazione/58958/upscaling-con-ia-anche-su-ps5-base-debutta-qssr-gia-pronto-per-wolverine-e-ghost-of-yotei",
+   "source": "DDay.it",
+   "sources": [
+    "DDay.it",
+    "Eurogamer",
+    "TechRadar"
+   ],
+   "when": "2026-10-02",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "review-star-wars-galactic-racer-ps5-this",
+   "genere": "notizia",
+   "title": "Review: Star Wars: Galactic Racer (PS5) - This Ridiculously Good Racer Is in a Galactic League of Its Own",
+   "link": "https://www.pushsquare.com/reviews/ps5/star-wars-galactic-racer",
+   "source": "Push Square",
+   "sources": [
+    "Eurogamer",
+    "Push Square",
+    "TechRadar"
+   ],
+   "when": "2026-10-02",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "apple-will-limit-mac-disk-access-as-ai-a",
+   "genere": "notizia",
+   "title": "Apple will limit Mac disk access as AI agents ‘substantially’ increase risk",
+   "link": "https://www.theverge.com/tech/1004295/apple-limit-mac-disk-access-ai-agents",
+   "source": "The Verge",
+   "sources": [
+    "Engadget",
+    "TechCrunch AI",
+    "The Verge"
+   ],
+   "when": "2026-10-02",
+   "signal": "3 testate",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "talking-point-what-are-you-playing-this",
+   "genere": "notizia",
+   "title": "Talking Point: What Are You Playing This Weekend? - Issue 652",
+   "link": "https://www.pushsquare.com/news/2026/10/talking-point-what-are-you-playing-this-weekend-issue-652",
+   "source": "Push Square",
+   "sources": [
+    "Nintendo Life",
+    "Push Square",
+    "Rock Paper Shotgun"
+   ],
+   "when": "2026-10-02",
+   "signal": "3 testate in 2 giorni",
+   "discussione": null,
+   "punti": 6.0,
+   "origine": "copertura"
+  },
+  {
+   "genere": "notizia",
+   "id": "sonnet-5-5",
+   "title": "Sonnet 5.5",
+   "link": "https://www.anthropic.com/claude-sonnet-5-5",
+   "source": "anthropic.com",
+   "sources": [],
+   "when": "2026-09-28",
+   "signal": "884 punti e 613 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881850",
+   "punti": 5.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "notizia",
+   "id": "claude-discovers-a-novel-enzyme-system-w",
+   "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+   "link": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+   "source": "anthropic.com",
+   "sources": [],
+   "when": "2026-09-23",
+   "signal": "780 punti e 805 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49820134",
+   "punti": 5.6,
+   "origine": "solo online"
+  },
+  {
+   "genere": "notizia",
+   "id": "dots-always-on-agents",
+   "title": "Dots: Always-on agents",
+   "link": "https://openai.com/index/introducing-dots/",
+   "source": "openai.com",
+   "sources": [],
+   "when": "2026-09-29",
+   "signal": "768 punti e 647 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49896604",
+   "punti": 5.5,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "owed-a-billion-dollars-in-nvidia-stock",
+   "title": "Owed a billion dollars in Nvidia stock",
+   "link": "https://colo.to/nvidia-stock-narrative.html",
+   "source": "colo.to",
+   "sources": [],
+   "when": "2026-09-28",
+   "signal": "1091 punti e 458 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49872723",
+   "punti": 5.2,
+   "origine": "solo online"
+  },
+  {
+   "id": "ainews-xiaomi-mimo-v2-6-pro-1t-a42b-the",
+   "genere": "notizia",
+   "title": "[AINews] Xiaomi MiMo-V2.6-Pro 1T-A42B: the new top Open Weights model, trained for $3M",
+   "link": "https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b",
+   "source": "Latent Space",
+   "sources": [
+    "Latent Space"
+   ],
+   "when": "2026-09-22",
+   "signal": "695 punti e 335 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49942706",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "llm-typesafe-0-1a0",
+   "genere": "notizia",
+   "title": "llm-typesafe 0.1a0",
+   "link": "https://simonwillison.net/2026/Sep/22/llm-typesafe/",
+   "source": "Simon Willison",
+   "sources": [
+    "Simon Willison"
+   ],
+   "when": "2026-09-22",
+   "signal": "1684 punti e 603 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49926069",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-s-new-gpt-6-sol-and-luna-models-b",
+   "genere": "notizia",
+   "title": "OpenAI's New GPT-6 Sol and Luna Models Bring Astra Improvements to Cheaper Tiers",
+   "link": "https://www.macrumors.com/2026/09/22/openai-gpt-6-sol-luna/",
+   "source": "MacRumors",
+   "sources": [
+    "MacRumors"
+   ],
+   "when": "2026-09-22",
+   "signal": "1779 punti e 855 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49805509",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ainews-claude-opus-5-5-the-new-default-m",
+   "genere": "notizia",
+   "title": "[AINews] Claude Opus 5.5, the new default model for AINews — and everybody cuts prices 40-50%",
+   "link": "https://www.latent.space/p/ainews-claude-opus-55-the-new-default",
+   "source": "Latent Space",
+   "sources": [
+    "Latent Space"
+   ],
+   "when": "2026-09-23",
+   "signal": "1806 punti e 1134 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49803892",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "facing-trouble-with-the-home-up-good-loc",
+   "genere": "notizia",
+   "title": "Facing trouble with the Home Up Good Lock module? You’re not alone, and a fix is coming",
+   "link": "https://www.androidauthority.com/good-lock-home-up-backup-issues-3714410/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority"
+   ],
+   "when": "2026-09-23",
+   "signal": "836 punti e 738 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49891295",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "meta-s-next-vr-device-isn-t-a-headset-it",
+   "genere": "notizia",
+   "title": "Meta’s next VR device isn’t a headset — it’s glasses",
+   "link": "https://www.theverge.com/tech/999517/meta-vr-glasses-connect-2026-hands-on",
+   "source": "The Verge",
+   "sources": [
+    "The Verge"
+   ],
+   "when": "2026-09-23",
+   "signal": "496 punti e 481 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49824268",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "meta-is-trying-vr-glasses-again-this-tim",
+   "genere": "notizia",
+   "title": "Meta is trying VR glasses (again), this time with more IMAX",
+   "link": "https://techcrunch.com/2026/09/23/meta-is-trying-vr-glasses-again-this-time-with-more-imax/",
+   "source": "TechCrunch",
+   "sources": [
+    "TechCrunch"
+   ],
+   "when": "2026-09-23",
+   "signal": "496 punti e 481 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49824268",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "deepmind-was-built-to-chase-agi-but-its",
+   "genere": "notizia",
+   "title": "Deepmind was built to chase AGI, but its new chief just wants Gemini 4 out the door",
+   "link": "https://the-decoder.com/deepmind-was-built-to-chase-agi-but-its-new-chief-just-wants-gemini-4-out-the-door/",
+   "source": "The Decoder",
+   "sources": [
+    "The Decoder"
+   ],
+   "when": "2026-09-24",
+   "signal": "1699 punti e 1188 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49913571",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "formula-1-looks-at-3-0-l-v8-turbos-and-s",
+   "genere": "notizia",
+   "title": "Formula 1 looks at 3.0 L V8 turbos and smaller hybrids for 2030",
+   "link": "https://arstechnica.com/cars/2026/09/formula-1-looks-at-3-0-l-v8-turbos-and-smaller-hybrids-for-2030/",
+   "source": "Ars Technica",
+   "sources": [
+    "Ars Technica"
+   ],
+   "when": "2026-09-24",
+   "signal": "1684 punti e 603 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49926069",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "meta-releases-new-audio-only-glasses-to",
+   "genere": "notizia",
+   "title": "Meta Releases New 'Audio-Only' Glasses To Combat Privacy Concerns",
+   "link": "https://www.bgr.com/2267868/meta-smart-glasses-audio-only-no-camera/",
+   "source": "BGR",
+   "sources": [
+    "BGR"
+   ],
+   "when": "2026-09-24",
+   "signal": "496 punti e 481 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49824268",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "black-forest-labs-launches-flux-3-action",
+   "genere": "notizia",
+   "title": "Black Forest Labs launches FLUX 3 Action, an open robotics AI model",
+   "link": "https://the-decoder.com/black-forest-labs-launches-flux-3-action-an-open-robotics-ai-model/",
+   "source": "The Decoder",
+   "sources": [
+    "The Decoder"
+   ],
+   "when": "2026-09-24",
+   "signal": "438 punti e 96 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49925974",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "datasette-1-0a41",
+   "genere": "notizia",
+   "title": "datasette 1.0a41",
+   "link": "https://simonwillison.net/2026/Sep/24/datasette/",
+   "source": "Simon Willison",
+   "sources": [
+    "Simon Willison"
+   ],
+   "when": "2026-09-24",
+   "signal": "1684 punti e 603 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49926069",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "commit-rewriter-0-2",
+   "genere": "notizia",
+   "title": "commit-rewriter 0.2",
+   "link": "https://simonwillison.net/2026/Sep/24/commit-rewriter/",
+   "source": "Simon Willison",
+   "sources": [
+    "Simon Willison"
+   ],
+   "when": "2026-09-24",
+   "signal": "1465 punti e 420 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49831968",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "some-pixel-users-are-locked-out-after-th",
+   "genere": "notizia",
+   "title": "Some Pixel users are locked out after the September 2026 update",
+   "link": "https://www.androidauthority.com/google-pixel-september-2026-pattern-pin-unlock-bug-3715425/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority"
+   ],
+   "when": "2026-09-25",
+   "signal": "522 punti e 391 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49905487",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "pentagon-was-right-to-slap-anthropic-wit",
+   "genere": "notizia",
+   "title": "Pentagon was right to slap Anthropic with a security supply chain risk label, federal court says",
+   "link": "https://the-decoder.com/pentagon-was-right-to-slap-anthropic-with-a-security-supply-chain-risk-label-federal-court-says/",
+   "source": "The Decoder",
+   "sources": [
+    "The Decoder"
+   ],
+   "when": "2026-09-25",
+   "signal": "499 punti e 900 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49845977",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "windows-11-c-e-un-trucco-per-rendere-esp",
+   "genere": "notizia",
+   "title": "Windows 11, c'è un trucco per rendere Esplora File molto più reattivo",
+   "link": "https://www.hdblog.it/microsoft/articoli/n671670/windows-11-trucco-esplora-file-dos-sfn/",
+   "source": "HDblog",
+   "sources": [
+    "HDblog"
+   ],
+   "when": "2026-09-25",
+   "signal": "545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "at-meta-connect-the-company-s-smart-glas",
+   "genere": "notizia",
+   "title": "At Meta Connect, the company’s smart glasses were everywhere",
+   "link": "https://techcrunch.com/2026/09/25/at-meta-connect-the-companys-smart-glasses-were-everywhere/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-26",
+   "signal": "496 punti e 481 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49824268",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "kids-turned-the-comment-section-of-an-np",
+   "genere": "notizia",
+   "title": "Kids turned the comment section of an NPR podcast into a group chat",
+   "link": "https://www.theverge.com/entertainment/1001056/this-american-life-npr-kids-group-chat-comment-section",
+   "source": "The Verge",
+   "sources": [
+    "The Verge"
+   ],
+   "when": "2026-09-26",
+   "signal": "484 punti e 257 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49879697",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ssd-nvme-assente-nel-setup-di-windows-11",
+   "genere": "notizia",
+   "title": "SSD NVMe assente nel setup di Windows 11: controlli su BIOS e driver",
+   "link": "https://www.tomshw.it/hardware/ssd-nvme-assente-installazione-windows-11-bios-driver",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-26",
+   "signal": "545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "the-5-biggest-problems-users-have-with-b",
+   "genere": "notizia",
+   "title": "The 5 Biggest Problems Users Have With Bluetooth On Windows 11",
+   "link": "https://www.bgr.com/2266021/bluetooth-common-problems-windows-11/",
+   "source": "BGR",
+   "sources": [
+    "BGR"
+   ],
+   "when": "2026-09-28",
+   "signal": "545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ainews-opus-5-5-is-good-at-explainer-vid",
+   "genere": "notizia",
+   "title": "[AINews] Opus 5.5 is good at explainer videos",
+   "link": "https://www.latent.space/p/ainews-opus-55-is-good-at-explainer",
+   "source": "Latent Space",
+   "sources": [
+    "Latent Space"
+   ],
+   "when": "2026-09-29",
+   "signal": "1806 punti e 1134 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49803892",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "5-essential-tips-and-tricks-to-make-your",
+   "genere": "notizia",
+   "title": "5 Essential Tips And Tricks To Make Your Windows 11 Computer Run Faster",
+   "link": "https://www.bgr.com/2260570/windows-11-tips-tricks-better-performance/",
+   "source": "BGR",
+   "sources": [
+    "BGR"
+   ],
+   "when": "2026-09-29",
+   "signal": "545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "gemini-4-argon-our-next-era-of-frontier",
+   "genere": "notizia",
+   "title": "Gemini 4 Argon: our next era of frontier intelligence",
+   "link": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+   "source": "Google DeepMind",
+   "sources": [
+    "Google DeepMind"
+   ],
+   "when": "2026-09-30",
+   "signal": "1699 punti e 1188 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49913571",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "returning-from-vacation-the-government-c",
+   "genere": "notizia",
+   "title": "Returning from vacation? The government can search your phone without a warrant.",
+   "link": "https://arstechnica.com/tech-policy/2026/09/immigration-advocate-sues-border-agents-for-demanding-his-cell-phone/",
+   "source": "Ars Technica",
+   "sources": [
+    "Ars Technica"
+   ],
+   "when": "2026-09-30",
+   "signal": "414 punti e 377 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49920234",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ainews-gemini-4-argon-gdm-s-answer-to-as",
+   "genere": "notizia",
+   "title": "[AINews] Gemini 4 Argon: GDM’s answer to Astra/Fable, with 1M output",
+   "link": "https://www.latent.space/p/ainews-gemini-4-argon-gdms-answer",
+   "source": "Latent Space",
+   "sources": [
+    "Latent Space"
+   ],
+   "when": "2026-10-01",
+   "signal": "1699 punti e 1188 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49913571",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "opus-5-5-loves-to-tell-you-this-matters",
+   "genere": "notizia",
+   "title": "Opus 5.5 loves to tell you ‘this matters’ (and other AI writing tells)",
+   "link": "https://techcrunch.com/2026/10/01/opus-5-5-loves-to-tell-you-this-matters-and-other-ai-writing-tells/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "TechCrunch AI"
+   ],
+   "when": "2026-10-01",
+   "signal": "1806 punti e 1134 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49803892",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ainews-pi-1-0-pi-durable-and-aie-nyc",
+   "genere": "notizia",
+   "title": "[AINews] Pi 1.0, Pi Durable, and AIE NYC",
+   "link": "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc",
+   "source": "Latent Space",
+   "sources": [
+    "Latent Space"
+   ],
+   "when": "2026-10-02",
+   "signal": "1684 punti e 603 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49926069",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "a-12-year-sequence-of-telescope-images-o",
+   "genere": "notizia",
+   "title": "A 12-year sequence of telescope images of a star and four planets orbiting",
+   "link": "https://bsky.app/profile/theplanetaryguy.com/post/3mwucf5ert22f",
+   "source": "Hacker News",
+   "sources": [
+    "Hacker News"
+   ],
+   "when": "2026-10-02",
+   "signal": "406 punti e 84 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49932147",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "the-internet-is-losing-its-mind-over-ret",
+   "genere": "notizia",
+   "title": "The Internet Is Losing Its Mind Over Retired NFL Coach Mike Tomlin Spending 12 Years Making A Very Intricate Minecraft City",
+   "link": "https://kotaku.com/mike-tomlin-minecraft-city-nfl-coach-steelers-mojang-youtube-2000739307",
+   "source": "Kotaku",
+   "sources": [
+    "Kotaku"
+   ],
+   "when": "2026-10-02",
+   "signal": "673 punti e 176 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49925184",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "former-nfl-coach-mike-tomlin-is-a-hardco",
+   "genere": "notizia",
+   "title": "Former NFL Coach Mike Tomlin Is a Hardcore Minecraft Player, Reveals City He Took 12 Years to Build",
+   "link": "https://www.ign.com/articles/former-nfl-coach-mike-tomlin-is-a-hardcore-minecraft-player-reveals-city-he-took-12-years-to-build",
+   "source": "IGN",
+   "sources": [
+    "IGN"
+   ],
+   "when": "2026-10-02",
+   "signal": "673 punti e 176 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49925184",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "kolibri-a-sovereign-open-weight-model",
+   "genere": "notizia",
+   "title": "Kolibri: A Sovereign Open-Weight Model",
+   "link": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+   "source": "Hacker News",
+   "sources": [
+    "Hacker News"
+   ],
+   "when": "2026-10-03",
+   "signal": "695 punti e 335 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49942706",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "why-windows-11-is-always-using-so-much-r",
+   "genere": "notizia",
+   "title": "Why Windows 11 is always using so much RAM",
+   "link": "https://www.engadget.com/2273348/why-windows-11-using-so-much-ram/",
+   "source": "Engadget",
+   "sources": [
+    "Engadget"
+   ],
+   "when": "2026-10-03",
+   "signal": "545 punti e 184 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49881747",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "10-new-4k-blu-rays-from-september-2026-t",
+   "genere": "notizia",
+   "title": "10 new 4K Blu-rays from September 2026 to add to your collection",
+   "link": "https://www.techradar.com/televisions/blu-ray/10-new-4k-blu-rays-from-september-2026-to-add-to-your-collection",
+   "source": "TechRadar",
+   "sources": [
+    "TechRadar"
+   ],
+   "when": "2026-10-03",
+   "signal": "522 punti e 391 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49905487",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "the-work-by-valve-s-timur-kristof-on-imp",
+   "genere": "notizia",
+   "title": "The work by Valve's Timur Kristóf on improving old AMD GPUs on Linux",
+   "link": "https://www.phoronix.com/news/XDC-2026-Valve-Timur-AMDGPU",
+   "source": "Hacker News",
+   "sources": [
+    "Hacker News"
+   ],
+   "when": "2026-10-03",
+   "signal": "491 punti e 106 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49946895",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "federal-judge-calls-flock-indiscriminate",
+   "genere": "notizia",
+   "title": "Federal judge calls Flock 'indiscriminate mass surveillance'",
+   "link": "https://techcrunch.com/2026/10/03/federal-judge-calls-flock-indiscriminate-mass-surveillance/",
+   "source": "Hacker News",
+   "sources": [
+    "Hacker News"
+   ],
+   "when": "2026-10-03",
+   "signal": "495 punti e 272 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49948254",
+   "punti": 5.0,
+   "origine": "copertura"
+  },
+  {
+   "genere": "commento",
+   "id": "dutch-governments-builds-alternative-for",
+   "title": "Dutch governments builds alternative for Microsoft based on NixOS",
+   "link": "https://www.dawo.community/en/",
+   "source": "dawo.community",
+   "sources": [],
+   "when": "2026-09-25",
+   "signal": "1021 punti e 583 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49841563",
+   "punti": 5.0,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "pentagon-says-overreliance-on-ai-contrib",
+   "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
+   "link": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
+   "source": "bloomberg.com",
+   "sources": [],
+   "when": "2026-09-22",
+   "signal": "974 punti e 553 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49806430",
+   "punti": 4.9,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "i-said-no-and-apple-said-yes",
+   "title": "I said no and Apple said yes",
+   "link": "https://dbushell.com/2026/09/22/apple-intelligence/",
+   "source": "dbushell.com",
+   "sources": [],
+   "when": "2026-09-22",
+   "signal": "886 punti e 701 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49797982",
+   "punti": 4.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "apple-has-added-persistent-ads-to-ios-an",
+   "title": "Apple has added persistent 'ads' to iOS, and it's driving users crazy",
+   "link": "https://www.techradar.com/phones/iphone/i-wish-apple-would-just-stop-that-crap-apple-has-added-persistent-ads-to-ios-and-its-driving-users-crazy",
+   "source": "techradar.com",
+   "sources": [],
+   "when": "2026-09-22",
+   "signal": "822 punti e 601 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49801939",
+   "punti": 4.6,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "court-agrees-with-eff-utah-s-vpn-law-dem",
+   "title": "Court agrees with EFF: Utah's VPN law demands a technical impossibility",
+   "link": "https://www.eff.org/deeplinks/2026/10/court-agrees-eff-utahs-vpn-law-demands-technical-impossibility",
+   "source": "eff.org",
+   "sources": [],
+   "when": "2026-10-01",
+   "signal": "805 punti e 415 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49927754",
+   "punti": 4.6,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "revealing-the-details-of-how-openai-agen",
+   "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
+   "link": "https://swarmtraces.org/",
+   "source": "swarmtraces.org",
+   "sources": [],
+   "when": "2026-09-25",
+   "signal": "755 punti e 472 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49849985",
+   "punti": 4.5,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "breaking-up-with-google-play-why-convers",
+   "title": "Breaking Up with Google Play: Why Conversations Is Now Free",
+   "link": "https://gultsch.de/posts/breaking-up-with-google-play/",
+   "source": "gultsch.de",
+   "sources": [],
+   "when": "2026-09-26",
+   "signal": "708 punti e 296 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49855315",
+   "punti": 4.4,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "clef-open-weight-decision-models-and-new",
+   "title": "Clef: Open-weight decision models, and new RL fine-tuning platform",
+   "link": "https://blog.cloudflare.com/clef-decision-models/",
+   "source": "blog.cloudflare.com",
+   "sources": [],
+   "when": "2026-10-01",
+   "signal": "640 punti e 217 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49923692",
+   "punti": 4.3,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "unsealed-briefs-in-authors-case-v-micros",
+   "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
+   "link": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
+   "source": "authorsguild.org",
+   "sources": [],
+   "when": "2026-09-27",
+   "signal": "631 punti e 623 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49863864",
+   "punti": 4.3,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "streetcomplete-on-ios-is-now-in-public-b",
+   "title": "StreetComplete on iOS is now in public beta",
+   "link": "https://github.com/streetcomplete/StreetComplete/issues/5421",
+   "source": "github.com",
+   "sources": [],
+   "when": "2026-10-01",
+   "signal": "630 punti e 178 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49920160",
+   "punti": 4.3,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "it-s-time-to-investigate-the-ai-labs",
+   "title": "It's Time to Investigate the AI Labs",
+   "link": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
+   "source": "calnewport.com",
+   "sources": [],
+   "when": "2026-09-28",
+   "signal": "629 punti e 277 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49883471",
+   "punti": 4.3,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "ollaya-ollama-for-open-source-jev-style",
+   "title": "Ollaya – Ollama for open-source, Jev-style decision models",
+   "link": "https://ollaya.dev/",
+   "source": "ollaya.dev",
+   "sources": [],
+   "when": "2026-09-25",
+   "signal": "618 punti e 145 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49848269",
+   "punti": 4.2,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "several-vulnerabilities-have-been-discov",
+   "title": "Several vulnerabilities have been discovered in the Linux kernel",
+   "link": "https://lwn.net/Articles/1097401/",
+   "source": "lwn.net",
+   "sources": [],
+   "when": "2026-10-01",
+   "signal": "578 punti e 410 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49928121",
+   "punti": 4.2,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "draftkings-is-using-ai-to-behaviorally-t",
+   "title": "DraftKings is using AI to behaviorally target chronic gamblers",
+   "link": "https://www.eff.org/deeplinks/2026/09/draftkings-using-ai-supercharge-harms-online-behavioral-advertising",
+   "source": "eff.org",
+   "sources": [],
+   "when": "2026-09-29",
+   "signal": "570 punti e 432 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49896050",
+   "punti": 4.1,
+   "origine": "solo online"
+  },
+  {
+   "id": "nscale-s-ipo-will-test-wall-street-s-app",
+   "genere": "notizia",
+   "title": "Nscale’s IPO will test Wall Street’s appetite for concentrated AI bets once again",
+   "link": "https://techcrunch.com/2026/09/22/nscales-ipo-will-test-wall-streets-appetite-for-concentrated-ai-bets-once-again/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "TechCrunch AI",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 7 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "pin-dimenticato-android-17-prepara-lo-sb",
+   "genere": "notizia",
+   "title": "PIN dimenticato, Android 17 prepara lo sblocco con l’account Google",
+   "link": "https://www.macitynet.it/android-17-pin-dimenticato-sblocco-account-google/",
+   "source": "Macitynet",
+   "sources": [
+    "Android Authority",
+    "Macitynet"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 11 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "4-days-to-save-up-to-200-reason-2-of-5-t",
+   "genere": "notizia",
+   "title": "4 days to save up to $200: Reason 2 of 5 to be at TechCrunch Disrupt 2026",
+   "link": "https://techcrunch.com/2026/09/22/4-days-to-save-up-to-200-reason-2-of-5-to-be-at-techcrunch-disrupt-2026/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "TechCrunch",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 11 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ninja-theory-non-ha-trovato-compratori-c",
+   "genere": "notizia",
+   "title": "Ninja Theory non ha trovato compratori, cosa accadrà?",
+   "link": "https://www.tomshw.it/videogioco/ninja-theory-non-ha-trovato-compratori-cosa-accadra",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "DDay.it",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "coros-launches-the-pace-4-pro-with-a-big",
+   "genere": "notizia",
+   "title": "COROS launches the Pace 4 Pro with a bigger battery, more RAM, and supersized screen",
+   "link": "https://www.androidauthority.com/coros-pace-4-pro-launch-3714134/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "DDay.it"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "macos-27-gives-you-more-control-over-liq",
+   "genere": "notizia",
+   "title": "macOS 27 gives you more control over Liquid Glass",
+   "link": "https://9to5mac.com/2026/09/22/macos-27-gives-you-more-control-over-liquid-glass/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "Macitynet"
+   ],
+   "when": "2026-09-22",
+   "signal": "2 testate in 3 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "insta360-luna-pro-vs-luna-ultra-cosa-cam",
+   "genere": "notizia",
+   "title": "Insta360 Luna Pro vs Luna Ultra, cosa cambia con 200 euro e una seconda ottica – aggiornato",
+   "link": "https://www.macitynet.it/insta360-luna-pro-vs-luna-ultra-differenze-confronto/",
+   "source": "Macitynet",
+   "sources": [
+    "HDblog",
+    "Macitynet"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate in 9 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "apple-intelligence-taking-up-30gb-on-som",
+   "genere": "notizia",
+   "title": "Apple Intelligence Taking Up 30GB+ on Some Macs Running macOS 27",
+   "link": "https://www.macrumors.com/2026/09/23/apple-intelligence-30gb-some-macs-macos-27/",
+   "source": "MacRumors",
+   "sources": [
+    "MacRumors",
+    "Macitynet"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "nissan-pixo-la-piccola-elettrica-da-citt",
+   "genere": "notizia",
+   "title": "Nissan PIXO, la piccola elettrica da città nasce con Renault: 259 km di autonomia",
+   "link": "https://www.macitynet.it/nissan-pixo-la-piccola-elettrica-da-citta-nasce-con-renault-259-km-di-autonomia/",
+   "source": "Macitynet",
+   "sources": [
+    "DDay.it",
+    "Macitynet"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "youtube-releases-new-ai-features-for-cre",
+   "genere": "notizia",
+   "title": "YouTube releases new AI features for creators within its Studio app",
+   "link": "https://techcrunch.com/2026/09/23/youtube-releases-new-ai-features-for-creators-within-its-studio-app/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "TechCrunch AI",
+    "The Decoder"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "youtube-music-gets-more-conversational-w",
+   "genere": "notizia",
+   "title": "YouTube Music gets more conversational with new AI features",
+   "link": "https://techcrunch.com/2026/09/23/youtube-music-gets-more-conversational-with-new-ai-features/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "Android Authority",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "elon-musk-vive-in-un-airstream-tra-narra",
+   "genere": "notizia",
+   "title": "Elon Musk vive in un’Airstream? Tra narrazione e realtà",
+   "link": "https://www.hdmotori.it/elon-musk-vive-airstream/",
+   "source": "HDblog",
+   "sources": [
+    "Ars Technica",
+    "HDblog"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "oneplus-16-s-antutu-score-surfaces",
+   "genere": "notizia",
+   "title": "OnePlus 16's AnTuTu score surfaces",
+   "link": "https://www.gsmarena.com/heres_the_oneplus_16s_antutu_score-news-74728.php",
+   "source": "GSMArena",
+   "sources": [
+    "Android Authority",
+    "GSMArena"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate in 10 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "xiaomi-pad-9-e-pad-9-pro-ufficiali-tanta",
+   "genere": "notizia",
+   "title": "Xiaomi Pad 9 e Pad 9 Pro ufficiali: tanta potenza a prezzi abbordabili",
+   "link": "https://www.hdblog.it/tablet/articoli/n671384/xiaomi-pad-9-pro-specifiche-prezzi-tablet/",
+   "source": "HDblog",
+   "sources": [
+    "GSMArena",
+    "HDblog"
+   ],
+   "when": "2026-09-23",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "hisense-apre-la-bottega-da-mediaworld-ce",
+   "genere": "notizia",
+   "title": "Hisense apre la Bottega da MediaWorld Certosa, vediamo i dettagli",
+   "link": "https://www.tomshw.it/altro/hisense-apre-la-bottega-da-mediaworld-certosa-2026-09-28",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "DDay.it",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 5 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "australia-to-investigate-if-openai-hack",
+   "genere": "notizia",
+   "title": "Australia to investigate if OpenAI hack of government health website broke the law",
+   "link": "https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "DDay.it",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 6 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "nikon-z5iic-la-full-frame-pensata-per-ch",
+   "genere": "notizia",
+   "title": "Nikon Z5IIC, la full frame pensata per chi fotografa con lo smartphone",
+   "link": "https://www.macitynet.it/nikon-z5iic-la-full-frame-pensata-per-chi-fotografa-con-lo-smartphone/",
+   "source": "Macitynet",
+   "sources": [
+    "DDay.it",
+    "Macitynet"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "netatmo-completa-original-nuove-valvole",
+   "genere": "notizia",
+   "title": "Netatmo completa ORIGINAL: nuove valvole smart, Matter e controllo stanza per stanza",
+   "link": "https://www.macitynet.it/valvole-termostatiche-e-accessori-netatmo-original-per-la-regolazione-termica/",
+   "source": "Macitynet",
+   "sources": [
+    "DDay.it",
+    "Macitynet"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "the-best-early-october-prime-day-deals-h",
+   "genere": "notizia",
+   "title": "The best early October Prime Day deals happening now",
+   "link": "https://www.theverge.com/gadgets/999447/best-early-amazon-prime-day-big-deals-sale-october",
+   "source": "The Verge",
+   "sources": [
+    "Android Authority",
+    "The Verge"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 10 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "here-s-when-apple-tv-is-airing-free-pean",
+   "genere": "notizia",
+   "title": "Here's When Apple TV is Airing Free 'Peanuts' Holiday Specials This Year",
+   "link": "https://www.macrumors.com/2026/09/24/apple-tv-free-peanuts-specials/",
+   "source": "MacRumors",
+   "sources": [
+    "9to5Mac",
+    "MacRumors"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "google-s-first-suncatcher-orbital-data-c",
+   "genere": "notizia",
+   "title": "Google's first Suncatcher orbital data center test launches October 1",
+   "link": "https://arstechnica.com/google/2026/09/googles-first-suncatcher-orbital-data-center-test-launches-october-1/",
+   "source": "Ars Technica AI",
+   "sources": [
+    "Ars Technica AI",
+    "The Decoder"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "google-photos-clueless-inspired-virtual",
+   "genere": "notizia",
+   "title": "Google Photos ‘Clueless’-inspired virtual closet is now available on Android and iOS",
+   "link": "https://techcrunch.com/2026/09/24/google-photos-clueless-inspired-virtual-closet-is-now-available-on-android-and-ios/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "Android Authority",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 7 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "robots-make-combat-airdrops-clear-mines",
+   "genere": "notizia",
+   "title": "Robots make combat airdrops, clear mines as Ukraine defeats Russian pincer",
+   "link": "https://arstechnica.com/gadgets/2026/09/robots-make-combat-airdrops-clear-mines-as-ukraine-defeats-russian-pincer/",
+   "source": "Ars Technica",
+   "sources": [
+    "Ars Technica",
+    "TechRadar"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 9 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "f-droid-gets-its-biggest-update-in-a-dec",
+   "genere": "notizia",
+   "title": "F-Droid gets its biggest update in a decade with new UI and smoother app installs",
+   "link": "https://arstechnica.com/gadgets/2026/09/f-droid-gets-its-biggest-update-in-a-decade-with-new-ui-and-smoother-app-installs/",
+   "source": "Ars Technica",
+   "sources": [
+    "Android Authority",
+    "Ars Technica"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "google-photos-wardrobe-feature-comes-to",
+   "genere": "notizia",
+   "title": "Google Photos Wardrobe Feature Comes to iOS",
+   "link": "https://www.macrumors.com/2026/09/24/google-photos-wardrobe-ios/",
+   "source": "MacRumors",
+   "sources": [
+    "Android Authority",
+    "MacRumors"
+   ],
+   "when": "2026-09-24",
+   "signal": "2 testate in 7 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "hmd-aura-2-pro-specs-and-renders-leak",
+   "genere": "notizia",
+   "title": "HMD Aura 2 Pro specs and renders leak",
+   "link": "https://www.gsmarena.com/hmd_aura_2_pro_specs_and_renders_leak-news-74761.php",
+   "source": "GSMArena",
+   "sources": [
+    "GSMArena",
+    "HDblog"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "la-batteria-chery-passa-24-ore-in-acqua",
+   "genere": "notizia",
+   "title": "La batteria Chery passa 24 ore in acqua salata, poi torna sull’auto per un secondo test",
+   "link": "https://www.macitynet.it/chery-tiggo-9-csh-batteria-acqua-salata-test/",
+   "source": "Macitynet",
+   "sources": [
+    "HDblog",
+    "Macitynet"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "anthropic-signs-11-6-billion-cloud-deal",
+   "genere": "notizia",
+   "title": "Anthropic signs $11.6 billion cloud deal with Akamai, pushing its compute spending past $500 billion in under a year",
+   "link": "https://the-decoder.com/anthropic-signs-11-6-billion-cloud-deal-with-akamai-pushing-its-compute-spending-past-500-billion-in-under-a-year/",
+   "source": "The Decoder",
+   "sources": [
+    "TechCrunch AI",
+    "The Decoder"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "gta-6-arrivera-mai-su-switch-2-un-ex-di",
+   "genere": "notizia",
+   "title": "GTA 6 arriverà mai su Switch 2? Un ex di Rockstar rompe il silenzio",
+   "link": "https://www.tomshw.it/videogioco/arrivera-mai-gta6-su-switch-2-rockstar-rompe-il-silenzio",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "DDay.it",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "sony-and-umg-are-suing-suno-again",
+   "genere": "notizia",
+   "title": "Sony and UMG are suing Suno again",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1000758/suno-sony-umg-lawsuit-ai-music",
+   "source": "The Verge",
+   "sources": [
+    "The Verge",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 3 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "musk-s-ai-chatbot-grok-reportedly-encour",
+   "genere": "notizia",
+   "title": "Musk’s AI chatbot Grok reportedly encouraged Trump to capture Venezuela’s president",
+   "link": "https://techcrunch.com/2026/10/01/musks-ai-chatbot-grok-reportedly-encouraged-trump-to-capture-venezuelas-president/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "Ars Technica",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 7 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "deal-samsung-galaxy-a57-5g-gets-a-100-am",
+   "genere": "notizia",
+   "title": "Deal: Samsung Galaxy A57 5G gets a $100 Amazon price drop",
+   "link": "https://www.androidauthority.com/samsung-galaxy-a57-5g-deal-3715684/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "HDblog"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 9 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "launch-week-deals-hit-latest-macs-apple",
+   "genere": "notizia",
+   "title": "Launch Week Deals Hit Latest Macs, Apple Watch Ultra 4, and Apple Accessories",
+   "link": "https://www.macrumors.com/2026/09/25/best-apple-deals-of-the-week-9-25-26/",
+   "source": "MacRumors",
+   "sources": [
+    "9to5Mac",
+    "MacRumors"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 6 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "unsecured-openai-agents-posted-53-user-i",
+   "genere": "notizia",
+   "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab’s knowledge",
+   "link": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "DDay.it",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-25",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "abbiamo-provato-i-googlebook-l-erede-del",
+   "genere": "notizia",
+   "title": "Abbiamo provato i Googlebook. L'erede del Chromebook in chiave AI è ancora un work in progress",
+   "link": "https://www.dday.it/redazione/58869/abbiamo-provato-i-googlebook-lerede-del-chromebook-in-chiave-ai-e-ancora-un-work-in-progress",
+   "source": "DDay.it",
+   "sources": [
+    "Android Authority",
+    "DDay.it"
+   ],
+   "when": "2026-09-26",
+   "signal": "2 testate in 3 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-pauses-its-most-capable-models-af",
+   "genere": "notizia",
+   "title": "OpenAI pauses its \"most capable models\" after agents exploit loopholes and leak data",
+   "link": "https://the-decoder.com/openai-pauses-its-most-capable-models-after-agents-exploit-loopholes-and-leak-data/",
+   "source": "The Decoder",
+   "sources": [
+    "The Decoder",
+    "The Verge"
+   ],
+   "when": "2026-09-26",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "nvidia-drops-a-free-100m-parameter-model",
+   "genere": "notizia",
+   "title": "Nvidia drops a free 100M-parameter model that identifies up to eight speakers in real time",
+   "link": "https://the-decoder.com/nvidia-drops-a-free-100m-parameter-model-that-identifies-up-to-eight-speakers-in-real-time/",
+   "source": "The Decoder",
+   "sources": [
+    "Ars Technica AI",
+    "The Decoder"
+   ],
+   "when": "2026-09-27",
+   "signal": "2 testate in 6 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-agents-tried-to-bruteforce-a-un-w",
+   "genere": "notizia",
+   "title": "OpenAI agents tried to ‘bruteforce’ a UN website",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1001178/openai-agents-bruteforce-un-website",
+   "source": "The Verge",
+   "sources": [
+    "TechRadar",
+    "The Verge"
+   ],
+   "when": "2026-09-27",
+   "signal": "2 testate in 6 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ps5-emulation-is-already-making-major-pr",
+   "genere": "notizia",
+   "title": "PS5 emulation is already making major progress",
+   "link": "https://www.androidauthority.com/ps5-emulation-pc-kytyps5-3715979/",
+   "source": "Android Authority",
+   "sources": [
+    "Android Authority",
+    "Ars Technica"
+   ],
+   "when": "2026-09-28",
+   "signal": "2 testate in 4 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "florida-seeks-a-ban-on-chatgpt-acting-li",
+   "genere": "notizia",
+   "title": "Florida seeks a ban on ChatGPT acting like a person",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1001527/chatgpt-florida-ban-first-person-human-attributes-kids",
+   "source": "The Verge",
+   "sources": [
+    "The Decoder",
+    "The Verge"
+   ],
+   "when": "2026-09-28",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "ios-26-7-1-available-now-for-iphone-with",
+   "genere": "notizia",
+   "title": "iOS 26.7.1 available now for iPhone with security fixes",
+   "link": "https://9to5mac.com/2026/09/28/ios-26-7-1-available-now-for-iphone-with-security-fixes/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "MacRumors"
+   ],
+   "when": "2026-09-28",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "bose-rispolvera-gli-auricolari-con-filo",
+   "genere": "notizia",
+   "title": "Bose rispolvera gli auricolari con filo: USB-C, ANC e niente batteria",
+   "link": "https://www.macitynet.it/bose-rispolvera-gli-auricolari-con-filo-usb-c-anc-e-niente-batteria/",
+   "source": "Macitynet",
+   "sources": [
+    "HDblog",
+    "Macitynet"
+   ],
+   "when": "2026-09-28",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "openai-reportedly-ditches-model-over-saf",
+   "genere": "notizia",
+   "title": "OpenAI reportedly ditches model over safety concerns",
+   "link": "https://techcrunch.com/2026/09/28/openai-reportedly-ditches-model-over-safety-concerns/",
+   "source": "TechCrunch AI",
+   "sources": [
+    "Ars Technica AI",
+    "TechCrunch AI"
+   ],
+   "when": "2026-09-28",
+   "signal": "2 testate in 3 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "devday-2026-recap",
+   "genere": "notizia",
+   "title": "DevDay 2026 Recap",
+   "link": "https://openai.com/index/devday-2026-recap",
+   "source": "OpenAI",
+   "sources": [
+    "OpenAI",
+    "Simon Willison"
+   ],
+   "when": "2026-09-29",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "protesters-gather-at-openai-s-devday",
+   "genere": "notizia",
+   "title": "Protesters gather at OpenAI’s DevDay",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1002201/openai-sam-altman-openai-devday-protests-ice-data-centers",
+   "source": "The Verge",
+   "sources": [
+    "9to5Mac",
+    "The Verge"
+   ],
+   "when": "2026-09-29",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "elon-musk-s-ai-powered-grokipedia-is-upd",
+   "genere": "notizia",
+   "title": "Elon Musk’s AI-powered Grokipedia is updating again",
+   "link": "https://www.theverge.com/tech/1002448/elon-musk-grokipedia-ai-updating-again",
+   "source": "The Verge",
+   "sources": [
+    "Macitynet",
+    "The Verge"
+   ],
+   "when": "2026-09-29",
+   "signal": "2 testate in 4 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "logitech-zone-vibe-pro-le-cuffie-da-uffi",
+   "genere": "notizia",
+   "title": "Logitech Zone Vibe Pro, le cuffie da ufficio senza microfono ad asta e pronte per viaggiare",
+   "link": "https://www.macitynet.it/logitech-zone-vibe-pro-cuffie-anc-lavoro-musica/",
+   "source": "Macitynet",
+   "sources": [
+    "DDay.it",
+    "Macitynet"
+   ],
+   "when": "2026-09-30",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "reddit-says-it-has-to-cut-back-access-to",
+   "genere": "notizia",
+   "title": "Reddit says it has to cut back access to ‘Old Reddit’ because of AI bots",
+   "link": "https://www.theverge.com/tech/1002788/old-reddit-ai-scraping",
+   "source": "The Verge",
+   "sources": [
+    "TechCrunch AI",
+    "The Verge"
+   ],
+   "when": "2026-09-30",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "whatsapp-arrivano-i-controlli-per-i-geni",
+   "genere": "notizia",
+   "title": "WhatsApp, arrivano i controlli per i genitori: cosa possono vedere e cosa resta privato",
+   "link": "https://www.macitynet.it/controllo-genitori-whatsapp/",
+   "source": "Macitynet",
+   "sources": [
+    "Macitynet",
+    "iSpazio"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "microsoft-s-office-and-teams-chief-is-le",
+   "genere": "notizia",
+   "title": "Microsoft’s Office and Teams chief is leaving",
+   "link": "https://www.theverge.com/news/1003515/microsoft-ryan-roslansky-office-teams-linkedin-leaving",
+   "source": "The Verge",
+   "sources": [
+    "TechRadar",
+    "The Verge"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "homepad-could-launch-in-these-four-color",
+   "genere": "notizia",
+   "title": "‘HomePad’ could launch in these four colors, per leaker",
+   "link": "https://9to5mac.com/2026/10/01/homepad-could-launch-in-these-four-colors-per-leaker/",
+   "source": "9to5Mac",
+   "sources": [
+    "9to5Mac",
+    "MacRumors"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "peugeot-e-208-gti-e-un-elettrica-per-chi",
+   "genere": "notizia",
+   "title": "Peugeot e-208 GTi è un’elettrica per chi si vuole davvero divertire al volante",
+   "link": "https://www.dmove.it/reportage/peugeot-e-208-gti-e-unelettrica-per-chi-si-vuole-davvero-divertire-al-volante",
+   "source": "DDay.it",
+   "sources": [
+    "DDay.it",
+    "TechRadar"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 3 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "with-most-information-hidden-the-game-st",
+   "genere": "notizia",
+   "title": "With most information hidden, the game Stratego had stumped AI—until now",
+   "link": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+   "source": "Ars Technica AI",
+   "sources": [
+    "Ars Technica AI",
+    "Hacker News"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "florida-cops-say-they-don-t-know-who-own",
+   "genere": "notizia",
+   "title": "Florida cops say they don't know who owns 11 unpermitted Flock cameras",
+   "link": "https://arstechnica.com/tech-policy/2026/10/florida-cops-say-they-dont-know-who-owns-11-unpermitted-flock-cameras/",
+   "source": "Ars Technica",
+   "sources": [
+    "Ars Technica",
+    "TechRadar"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "t-mobile-is-preparing-new-t-mix-plans-he",
+   "genere": "notizia",
+   "title": "T-Mobile is preparing new T-Mix plans, here are the details",
+   "link": "https://www.gsmarena.com/tmobile_is_preparing_new_tmix_plans_here_are_the_details-news-74869.php",
+   "source": "GSMArena",
+   "sources": [
+    "Android Authority",
+    "GSMArena"
+   ],
+   "when": "2026-10-01",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "krafton-shuts-down-pubg-spin-off-black-b",
+   "genere": "notizia",
+   "title": "Krafton shuts down PUBG spin-off Black Budget nine months after closed alpha test",
+   "link": "https://www.gamesindustry.biz/krafton-shuts-down-pubg-spin-off-black-budget-nine-months-after-closed-alpha-test",
+   "source": "GamesIndustry.biz",
+   "sources": [
+    "GamesIndustry.biz",
+    "Rock Paper Shotgun"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "memory-maker-warns-shortages-will-get-wo",
+   "genere": "notizia",
+   "title": "Memory maker warns shortages will get worse in 2027, as CEO celebrates ‘much higher prices’",
+   "link": "https://www.videogameschronicle.com/news/memory-maker-warns-shortages-will-get-worse-in-2027-as-ceo-celebrates-much-higher-prices/",
+   "source": "VGC",
+   "sources": [
+    "Nintendo Life",
+    "VGC"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "nacon-s-new-ps5-controller-can-mix-audio",
+   "genere": "notizia",
+   "title": "Nacon’s new PS5 controller can mix audio from your phone and console",
+   "link": "https://www.theverge.com/tech/1004053/nacon-sony-playstation-licensed-revolution-5-unlimited-wireless-controller",
+   "source": "The Verge",
+   "sources": [
+    "TechRadar",
+    "The Verge"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "rivian-s-sales-pop-as-the-company-s-big",
+   "genere": "notizia",
+   "title": "Rivian’s sales pop as the company’s big R2 bet starts to pay off",
+   "link": "https://www.theverge.com/transportation/1004127/rivian-q3-2026-production-delivery-r2",
+   "source": "The Verge",
+   "sources": [
+    "TechCrunch",
+    "The Verge"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "gta-6-marketing-ramps-up-as-miami-heat-a",
+   "genere": "notizia",
+   "title": "GTA 6 Marketing Ramps Up As Miami Heat Announce Vice City Night That Sounds Very Expensive",
+   "link": "https://kotaku.com/gta-6-marketing-ramps-up-as-miami-heat-announce-vice-city-night-that-sounds-very-expensive-2000739310",
+   "source": "Kotaku",
+   "sources": [
+    "Kotaku",
+    "VGC"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "tesla-oltre-le-attese-record-di-consegne",
+   "genere": "notizia",
+   "title": "Tesla oltre le attese: record di consegne nel Q3",
+   "link": "https://www.tomshw.it/automotive/tesla-batte-le-stime-486-532-consegne-nel-3-trimestre",
+   "source": "Tom's Hardware IT",
+   "sources": [
+    "Ars Technica",
+    "Tom's Hardware IT"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "rockstar-co-founder-dan-houser-says-he-s",
+   "genere": "notizia",
+   "title": "Rockstar Co-Founder Dan Houser Says He Still Hasn’t Watched The Big GTA 6 Netflix Reveal",
+   "link": "https://kotaku.com/rockstar-cofounder-dan-houser-says-he-still-hasnt-watched-the-big-gta-6-netflix-reveal-2000739350",
+   "source": "Kotaku",
+   "sources": [
+    "Kotaku",
+    "VGC"
+   ],
+   "when": "2026-10-02",
+   "signal": "2 testate in 2 giorni",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "mercato-auto-italia-settembre-2026-ibrid",
+   "genere": "notizia",
+   "title": "Mercato auto Italia settembre 2026: ibride oltre il 50%, diesel sotto il 5%",
+   "link": "https://www.macitynet.it/mercato-auto-italia-settembre-2026/",
+   "source": "Macitynet",
+   "sources": [
+    "HDblog",
+    "Macitynet"
+   ],
+   "when": "2026-10-03",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "id": "thrustmaster-enters-a-new-era-with-its-o",
+   "genere": "notizia",
+   "title": "Thrustmaster 'enters a new era' with its officially licensed Gran Turismo 7 T-GT III steering wheel for PS4 and PS5",
+   "link": "https://www.techradar.com/gaming/thrustmaster-enters-a-new-era-with-its-officially-licensed-gran-turismo-7-t-gt-iii-steering-wheel-for-ps4-and-ps5",
+   "source": "TechRadar",
+   "sources": [
+    "Push Square",
+    "TechRadar"
+   ],
+   "when": "2026-10-03",
+   "signal": "2 testate",
+   "discussione": null,
+   "punti": 4.0,
+   "origine": "copertura"
+  },
+  {
+   "genere": "commento",
+   "id": "i-quit-openai-because-its-culture-is-bro",
+   "title": "I quit OpenAI because its culture is broken",
+   "link": "https://www.theatlantic.com/technology/2026/10/openai-safety-team-resignation/688881/?gift=v5U_UzUTothfWXsPxtvNVAh7esWToMRD6XnbXmc5WgA",
+   "source": "theatlantic.com",
+   "sources": [],
+   "when": "2026-10-03",
+   "signal": "487 punti e 809 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49944227",
+   "punti": 4.0,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "microsoft-killed-foxpro-in-2007-anyway-h",
+   "title": "Microsoft killed FoxPro in 2007. Anyway, here's FoxPro revived",
+   "link": "https://foxscript.org/",
+   "source": "foxscript.org",
+   "sources": [],
+   "when": "2026-09-22",
+   "signal": "487 punti e 270 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49808023",
+   "punti": 4.0,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "meta-blocks-president-lula-s-facebook-pa",
+   "title": "Meta Blocks President Lula's Facebook Page, Campaign Ads 2 Weeks from Election",
+   "link": "https://www.reddit.com/r/worldnews/comments/1wr3id3/meta_blocks_president_lulas_facebook_page_and/",
+   "source": "reddit.com",
+   "sources": [],
+   "when": "2026-09-27",
+   "signal": "471 punti e 303 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49864642",
+   "punti": 3.9,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "ai-companies-in-race-to-demonstrate-thei",
+   "title": "AI companies in race to demonstrate their model most threatening to humanity",
+   "link": "https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/",
+   "source": "thecivilian.co.nz",
+   "sources": [],
+   "when": "2026-09-28",
+   "signal": "441 punti e 399 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49875148",
+   "punti": 3.9,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "fifteen-years-later-the-apple-cards-orig",
+   "title": "Fifteen years later, the Apple Cards origin story",
+   "link": "https://lexontech.org/fifteen-years-later-the-apple-cards-origin-story",
+   "source": "lexontech.org",
+   "sources": [],
+   "when": "2026-09-26",
+   "signal": "437 punti e 120 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49854693",
+   "punti": 3.9,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "a-privacy-analysis-of-web-and-mobile-con",
+   "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
+   "link": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf",
+   "source": "jorgegarciaherrero.com",
+   "sources": [],
+   "when": "2026-09-29",
+   "signal": "425 punti e 141 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49890226",
+   "punti": 3.9,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "aleph-alpha-kolibri-how-the-sovereign-ge",
+   "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+   "link": "https://tej.as/blog/aleph-alpha-kolibri",
+   "source": "tej.as",
+   "sources": [],
+   "when": "2026-10-03",
+   "signal": "420 punti e 12 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49943034",
+   "punti": 3.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "deepseek-harness-desktop-for-macos-and-w",
+   "title": "DeepSeek Harness Desktop for macOS and Windows",
+   "link": "https://www.deepseek.com/en/harness/",
+   "source": "deepseek.com",
+   "sources": [],
+   "when": "2026-10-02",
+   "signal": "415 punti e 226 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49929489",
+   "punti": 3.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "the-ai-race-just-got-awkward",
+   "title": "The AI Race Just Got Awkward",
+   "link": "https://insufferable.dev/posts/the-ai-race-just-got-awkward/",
+   "source": "insufferable.dev",
+   "sources": [],
+   "when": "2026-09-30",
+   "signal": "412 punti e 463 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49910553",
+   "punti": 3.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "lecun-has-zero-concerns-about-ai-wiping",
+   "title": "LeCun has \"zero concerns\" about AI wiping out humanity, recent \"rogue\" incidents",
+   "link": "https://fortune.com/2026/10/01/ai-godfather-yann-lecun-has-zero-concerns-about-human-extinction-says-anthropic-ceo-dario-amodei-is-deuded/",
+   "source": "fortune.com",
+   "sources": [],
+   "when": "2026-10-03",
+   "signal": "411 punti e 829 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49946228",
+   "punti": 3.8,
+   "origine": "solo online"
+  },
+  {
+   "genere": "commento",
+   "id": "ideas-on-modernizing-the-open-source-des",
+   "title": "Ideas on modernizing the open-source desktop",
+   "link": "https://lwn.net/SubscriberLink/1095425/2d9f411252325784/",
+   "source": "lwn.net",
+   "sources": [],
+   "when": "2026-09-24",
+   "signal": "407 punti e 545 commenti su Hacker News",
+   "discussione": "https://news.ycombinator.com/item?id=49825642",
+   "punti": 3.8,
+   "origine": "solo online"
+  }
+ ]
+}
