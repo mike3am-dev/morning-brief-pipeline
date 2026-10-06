@@ -49,7 +49,26 @@
    },
    "approfondimento": {
     "punto": "Non e' piu' solo la data del 13: Apple apre un vero evento per l'ingresso nella smart home, e prepara in silenzio una seconda ondata di lanci per fine ottobre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "Ottobre Apple: due round di lancio",
+      "eventi": [
+       {
+        "data": "2026-10-13",
+        "etichetta": "Evento vero: hub smart, HomePod mini, Apple TV 4K"
+       },
+       {
+        "data": "2026-10",
+        "etichetta": "Seconda ondata: nuovi Mac e iPad mini OLED (fine mese)"
+       }
+      ],
+      "centro": "round di lancio in ottobre",
+      "obiettivo": "Gurman: dopo il 13, un'altra tornata di annunci entro fine ottobre, probabilmente nuovi Mac e l'iPad mini OLED — il mese più intenso dell'anno per Apple.",
+      "didascalia": "Il 13 ottobre non è più solo una data di comunicati: Gurman confirma un evento vero, e aggiunge una seconda ondata di lanci entro fine mese.",
+      "fonte": "Mark Gurman (Bloomberg)"
+     }
+    ],
     "sotto": [
      "Fino a pochi giorni fa non era chiaro se il 13 ottobre sarebbe stato un evento vero o una sequenza di comunicati, come altre volte per prodotti minori. Gurman lo scrive ora senza ambiguita'. I tre protagonisti sono legati a Siri AI: l'hub con schermo (debutto assoluto, nome di lavoro HomePad), il HomePod mini (fermo dal 2020) e l'Apple TV 4K (ferma dal 2022, su chip A15 del 2021).",
      "Le scatole \"Do Not Open\" negli Apple Store non contengono i prodotti ma il materiale per riallestire i tavoli: etichette, grafiche, indicazioni di layout. L'anticipo e la data di apertura (giovedi' 8) segnalano un lancio retail vero. Gurman aggiunge un elemento nuovo: una seconda tornata di annunci a fine ottobre, probabilmente nuovi Mac e l'iPad mini OLED, nel mese piu' intenso dell'anno per Apple."
@@ -97,7 +116,13 @@
       "perche": "I dettagli sulle scatole riservate negli Apple Store, utili al banco."
      }
     ],
-    "scritto": "2026-10-06"
+    "scritto": "2026-10-06",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-06/evento-13-ottobre-seconda-ondata-a3e8b83adfa7.mp3",
+     "durata": 144,
+     "voce": "kore",
+     "impronta": "a3e8b83adfa7"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -142,7 +167,49 @@
    },
    "approfondimento": {
     "punto": "La nuova Apple TV 4K non e' solo un refresh di chip: e' l'ultimo pezzo che manca a Siri AI per essere davvero ovunque in casa.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Il chip dell'Apple TV: fermo, poi il salto",
+      "periodi": [
+       "2021",
+       "2022-2025",
+       "2026"
+      ],
+      "linee": [
+       {
+        "nome": "Apple TV 4K",
+        "tappe": [
+         {
+          "quando": "2021",
+          "chip": "A15 Bionic",
+          "stato": "uscito",
+          "nota": "Lancio dell'attuale modello: il chip non è più cambiato da allora."
+         },
+         {
+          "quando": "2026",
+          "chip": "A19 o A19 Pro",
+          "stato": "previsto",
+          "nota": "Riferimento di codice 'AppleTV18,1' scoperto da Aaron Perris; la variante Pro è la più probabile, l'unica con personalizzazione vocale di Siri AI."
+         }
+        ]
+       },
+       {
+        "nome": "Generazioni saltate",
+        "tappe": [
+         {
+          "quando": "2022-2025",
+          "chip": "A16, A17, A18",
+          "stato": "saltato",
+          "nota": "Quattro anni senza un aggiornamento di chip sull'Apple TV 4K."
+         }
+        ]
+       }
+      ],
+      "didascalia": "Da A15 (2021) a A19 o A19 Pro (2026): un salto di quattro generazioni, saltando A16, A17 e A18, per far girare Siri AI anche in salotto.",
+      "fonte": "9to5Mac, incrociando il riferimento di codice scoperto da Aaron Perris con la roadmap di Mark Gurman (Bloomberg)"
+     }
+    ],
     "sotto": [
      "L'attuale Apple TV 4K monta un A15 Bionic del 2021, invariato dal 2022: il device Apple rimasto piu' indietro sul silicio. Il riferimento di codice 'AppleTV18,1' scoperto da Aaron Perris usa lo stesso schema della famiglia iPhone 17 (che includeva chip A19), e 9to5Mac ritiene piu' probabile la variante Pro perche' solo quella supporta la personalizzazione vocale di Siri AI vista su iPhone e Mac.",
      "Il salto di chip serve soprattutto a sostenere Siri AI on-device: finora era l'unica piattaforma Apple rimasta fuori dall'aggiornamento di iOS 27, nonostante il lancio cross-platform annunciato in giugno. Nei commenti al pezzo di 9to5Mac c'e' anche attesa per il Wi-Fi 7 e il ruolo di hub Matter/Thread per la casa: funzioni che, se confermate, affiancherebbero bene il nuovo hub HomePad annunciato per lo stesso evento."
@@ -174,7 +241,13 @@
       "perche": "Il ragionamento sul chip A19 o A19 Pro e il codice scoperto da Perris."
      }
     ],
-    "scritto": "2026-10-06"
+    "scritto": "2026-10-06",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-06/apple-tv-4k-siri-a19-d18bcc049b54.mp3",
+     "durata": 130,
+     "voce": "kore",
+     "impronta": "d18bcc049b54"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -248,7 +321,13 @@
       "perche": "La dichiarazione Apple per intero e il contesto sul modem."
      }
     ],
-    "scritto": "2026-10-06"
+    "scritto": "2026-10-06",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-06/att-iphone18-promax-sostituzione-d9dae51d0714.mp3",
+     "durata": 113,
+     "voce": "kore",
+     "impronta": "d9dae51d0714"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -334,7 +413,13 @@
       "perche": "Il dettaglio sui modelli da 14/16 pollici e sull'iPad mini OLED."
      }
     ],
-    "scritto": "2026-10-06"
+    "scritto": "2026-10-06",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-06/macbook-pro-touch-gesti-macos272-db42be2c093f.mp3",
+     "durata": 123,
+     "voce": "kore",
+     "impronta": "db42be2c093f"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -368,7 +453,35 @@
    "thread": "apple-openai-causa",
    "approfondimento": {
     "punto": "A nove giorni dall'udienza sull'ingiunzione preliminare, Apple e OpenAI si accusano a vicenda di aver sforato le regole procedurali, non solo il merito della causa.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "La causa Apple-OpenAI, passo per passo",
+      "azione": "Segui l'udienza del 14 ottobre sull'ingiunzione preliminare.",
+      "passi": [
+       {
+        "titolo": "Apple fa causa",
+        "nota": "20 agosto: due ex dipendenti, OpenAI e io Products accusati di aver usato segreti industriali Apple."
+       },
+       {
+        "titolo": "OpenAI ammette criticità",
+        "nota": "26 settembre: in tribunale OpenAI riconosce problemi sull'integrazione ChatGPT-Siri."
+       },
+       {
+        "titolo": "Botta e risposta sulle prove",
+        "nota": "5 ottobre: Apple accusa i convenuti di aver sforato le regole procedurali, non solo il merito della causa."
+       }
+      ],
+      "rottura": {
+       "dopo": "l'udienza del 14 ottobre",
+       "senza": "nessuna ingiunzione",
+       "etichetta": "Ingiunzione preliminare",
+       "nota": "Se il giudice la concede, OpenAI non potrà più usare i segreti Apple nello sviluppo del suo hardware, in attesa del processo."
+      },
+      "didascalia": "Prima del merito, Apple e OpenAI si contendono le regole stesse del processo: l'udienza del 14 ottobre decide se Apple ottiene l'ingiunzione preliminare.",
+      "fonte": "Atti del tribunale, via 9to5Mac"
+     }
+    ],
     "sotto": [
      "La disputa verte su una regola tecnica (la 7-3(d)(1) del tribunale), che permette di obiettare a prove nuove ma non di argomentare nuovamente nel merito. Apple sostiene che i convenuti l'abbiano violata su piu' punti: se il dottor Runge, uno dei suoi esperti, abbia basi per la sua analisi, se le informazioni di Apple siano davvero riservate, e con una nuova dichiarazione di Liu sul perche' ha cancellato i dati dal suo iMac prima di restituirlo.",
      "Apple chiede ora al giudice di considerare l'intero fascicolo, comprese le proprie prove contestate, visto che i convenuti hanno risposto nel merito invece di limitarsi a un'obiezione procedurale. La partita conta perche' si gioca a pochi giorni dall'udienza del 14 sull'ingiunzione preliminare: il cuore della causa, con cui Apple vuole bloccare l'uso dei suoi segreti nello sviluppo hardware di OpenAI."
@@ -404,7 +517,13 @@
       "perche": "La memoria di Apple, con le citazioni dirette dal deposito."
      }
     ],
-    "scritto": "2026-10-06"
+    "scritto": "2026-10-06",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-06/apple-openai-udienza-14-ottobre-cf700ecd5493.mp3",
+     "durata": 127,
+     "voce": "kore",
+     "impronta": "cf700ecd5493"
+    }
    },
    "verifica": {
     "testate": 1,
