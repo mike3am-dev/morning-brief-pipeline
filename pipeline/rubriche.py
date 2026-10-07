@@ -425,7 +425,14 @@ def run(raw_path, day, dry=False, debug=False):
 
 
 def merge(day):
-    """Ricopia le liste dentro l'edizione del giorno. Idempotente."""
+    """Ricopia le liste dentro l'edizione del giorno. Idempotente.
+
+    Le immagini (images.py) vivono solo nella copia dentro l'edizione, mai nel
+    file sorgente di rubriche.py: un merge che si limitasse a sovrascrivere
+    cancellerebbe quelle immagini a ogni push.py successivo (il 7 ottobre 2026
+    e' successo cosi': tre push.py di seguito hanno ripulito le foto di GAMES,
+    TECH e SPAZIO una dopo l'altra). Si riapplicano per id dopo la copia.
+    """
     src = os.path.join(DIR, f"{day}.json")
     dst = os.path.join(C.BRIEFS_DIR, f"{day}.json")
     if not (os.path.exists(src) and os.path.exists(dst)):
@@ -433,8 +440,16 @@ def merge(day):
     d, b = C.load_json(src), C.load_json(dst)
     changed = False
     for k in KEYS:
-        if k in d and b.get(k) != d[k]:
-            b[k] = d[k]
+        if k not in d:
+            continue
+        images = {it["id"]: it["image"] for it in b.get(k) or [] if it.get("image")}
+        new_list = d[k]
+        for it in new_list:
+            img = images.get(it.get("id"))
+            if img and not it.get("image"):
+                it["image"] = img
+        if b.get(k) != new_list:
+            b[k] = new_list
             changed = True
     if changed:
         C.save_json(dst, b)
