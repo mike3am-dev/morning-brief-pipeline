@@ -54,5 +54,29 @@
   "interazione": "tocco per gesto: scegli un gesto e vedi quale azione compie nell'app",
   "dati": "4 gesti con le app in cui compaiono, dalla beta 3 di macOS 27.2 (Aaron Perris/MacRumors); nessun dato numerico, solo l'elenco gesto-app-azione",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-07",
+  "notizia": "lg-accessori-casa-smart",
+  "idea": "Lo sblocco automatico della serratura LG via Ultra Wideband: quanto sei vicino alla porta e quando scatta l'apertura",
+  "interazione": "Un cursore della distanza dalla porta (metri) che fa scattare l'icona di sblocco sotto una certa soglia, come il portafoglio digitale con UWB",
+  "dati": "Bloomberg via 9to5Mac: la serratura usa Ultra Wideband per capire la distanza e aprirsi da sola; nessuna soglia in metri indicata",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-07",
+  "notizia": "masimo-interessi-184m",
+  "idea": "Il conto che cresce con gli interessi: 634 milioni di base, 184 milioni di interessi aggiunti, 818 milioni di totale",
+  "interazione": "Nessun cursore: un tocco che scompone il totale in principale + interessi, mostrando il tasso applicato da Selna contro il 7% chiesto da Masimo",
+  "dati": "MacRumors: conto base 634 milioni; oggi il giudice Selna aggiunge 184 milioni di interessi; totale circa 818 milioni. Non c'è il valore che darebbe il tasso al 7% chiesto da Masimo",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-07",
+  "notizia": "atv4k-surround-dynamic-island",
+  "idea": "Da 2 a 4 HomePod: come cambia l'impianto home theater dell'Apple TV, e i controlli smart home che appaiono nella Dynamic Island quando ti avvicini",
+  "interazione": "Un interruttore stereo/surround che passa da 2 a 4 HomePod disposti nella stanza; separatamente, un tocco che simula l'avvicinamento e fa apparire i controlli nella Dynamic Island",
+  "dati": "Beta iOS 27.2/audioOS 27.2 (Aaron Perris, pdfu, via 9to5Mac): oggi Apple TV 4K supporta solo 2 HomePod in stereo; i simboli trovati raffigurano 4 altoparlanti; non è confermato se serva hardware nuovo",
+  "stato": "aperta"
  }
 ]
