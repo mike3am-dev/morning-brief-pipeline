@@ -34,6 +34,33 @@ il lint è il collaudo finale, non il primo editor. Se qualcosa non torna, pubbl
 che c'è (anche senza audio o senza una visualizzazione) invece di far slittare l'uscita:
 un'edizione in orario e incompleta su un dettaglio batte un'edizione completa e tardiva.
 
+**Il 7 ottobre 2026** la corsa ha preso 41 minuti e riletto 31,5 milioni di token dalla
+cache. La raccolta degli articoli era già in un comando solo, ma tutta la fase di ricerca
+— scaricare e leggere ~20 articoli, interrogare `lab.py` e `missed.py`, controllare a mano
+i doppioni col grezzo — è girata dentro la sessione principale invece che in un
+sottoagente: ogni comando successivo si è portato dietro tutta la conversazione
+precedente, e la conversazione cresceva a ogni lettura. Quindi, oltre a quanto sopra:
+
+- **Delega raccolta e lettura a un sottoagente** (strumento Agent, tipo `Explore` o
+  `general-purpose`): scarica gli articoli, legge i grezzi, torna con un riassunto delle
+  notizie candidate e i dati verificati. La sessione che scrive l'edizione resta piccola
+  per tutta la corsa, invece di accumulare decine di estratti d'articolo.
+- **Mai stampare un file con immagini o audio incorporati senza filtrare i campi prima**:
+  un `grep` o un `cat` su `data/briefs/*.json` rischia di riversare un base64 intero nella
+  conversazione, dove resta e si ripaga a ogni passo successivo. Sempre python con
+  un elenco esplicito dei campi da mostrare (mai `image`, `audio`).
+- **Estrai il testo di tutti gli articoli scaricati con un solo script**, non uno alla
+  volta: un ciclo che apre tutti gli HTML scaricati e stampa solo gli estratti utili.
+- **Fidati dei verdetti di `threads.py recall` e di `verify.py`**: non ripetere a mano un
+  controllo doppioni che lo script ha già fatto (vedi *«STESSO LINK» non sempre vuol dire
+  lo stesso indirizzo* più sotto).
+- **Non lanciare `audio.py` mentre il visualista non ha ancora salvato**: leggono e
+  riscrivono la stessa edizione, e chi finisce dopo sovrascrive chi ha finito prima senza
+  i suoi cambiamenti (successo il 7 ottobre: il visualista aveva scritto due `visivi`,
+  `audio.py` li ha cancellati riscrivendo il file da una copia precedente). Aspetta la
+  notifica di completamento di un passo prima di lanciare il successivo che tocca lo
+  stesso file, invece di lanciarli in sequenza stretta.
+
 ### 1. Raccolta
 
 ```bash

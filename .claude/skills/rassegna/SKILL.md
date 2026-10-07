@@ -12,6 +12,12 @@ asciutto, niente hype, non inventare nulla. Scrivi in italiano.
 Le regole editoriali complete, lo schema dati e la procedura stanno in
 `CLAUDE.md` nella radice del progetto: **leggilo prima di iniziare.**
 
+**Lavora in modo economico** (vedi il paragrafo datato 7 ottobre 2026 in `CLAUDE.md`,
+subito dopo *Il tetto è 30 minuti*): delega la raccolta e la lettura degli articoli a un
+sottoagente invece di farla nella sessione che scrive l'edizione, non stampare mai un
+file con immagini o audio incorporati senza filtrare prima quei campi, ed estrai il testo
+di tutti gli articoli scaricati con un solo script.
+
 ## Controllo di uscita anticipata
 
 ```bash
@@ -60,7 +66,6 @@ python3 pipeline/verify.py
 python3 pipeline/threads.py sync && python3 pipeline/facts.py sync
 python3 pipeline/lint.py
 python3 pipeline/images.py
-python3 pipeline/audio.py
 python3 pipeline/push.py
 ```
 
@@ -71,6 +76,17 @@ stessa fonte **non** sono conferme.
 
 `lint.py` esce con 1 se trova errori: sistemali prima di pubblicare. Fra gli
 errori ora c'è anche il link già uscito in una vecchia edizione.
+
+**Poi, e solo dopo questo `push.py`**, il visualista (sottoagente `visualista`, con i
+`visivi` ancora vuoti nell'edizione pubblicata) e l'audio — **mai i due insieme**: leggono
+e riscrivono lo stesso file, e chi finisce dopo sovrascrive chi ha finito prima (vedi
+CLAUDE.md, *Il visualista*, e il paragrafo del 7 ottobre 2026). Aspetta che uno abbia
+salvato prima di lanciare l'altro:
+
+```bash
+python3 pipeline/lint.py && python3 pipeline/push.py      # dopo il visualista
+python3 pipeline/audio.py && python3 pipeline/push.py     # dopo, in un passo separato
+```
 
 **Non serve toccare l'app**: le edizioni viaggiano sul database, e la copia
 Artifact non si aggiorna più da agosto 2026 (vedi `CLAUDE.md`). `build.py` e
