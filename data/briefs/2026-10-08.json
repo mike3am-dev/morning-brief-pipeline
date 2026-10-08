@@ -90,7 +90,13 @@
       "perche": "Perché la videocamera Apple non è legata al 13 ottobre."
      }
     ],
-    "scritto": "2026-10-08"
+    "scritto": "2026-10-08",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-08/casa-schneider-second-party-983cf185063c.mp3",
+     "durata": 146,
+     "voce": "kore",
+     "impronta": "983cf185063c"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -170,7 +176,13 @@
       "perche": "Il testo originale di Gurman sul redesign interno."
      }
     ],
-    "scritto": "2026-10-08"
+    "scritto": "2026-10-08",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-08/macbook-pro-oled-leggero-m5-632aeefc1b27.mp3",
+     "durata": 145,
+     "voce": "kore",
+     "impronta": "632aeefc1b27"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -199,7 +211,37 @@
    "extra_links": [],
    "approfondimento": {
     "punto": "Alcuni utenti segnalano bruciore e arrossamento sotto il sensore di Apple Watch Series 12 e Ultra 4, che misurano la frequenza cardiaca ogni 5 secondi invece che ogni 5 minuti. Apple parla di cinturino, sudore o sapone.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "Apple Watch, dove la pelle tocca il sensore",
+      "strati": [
+       {
+        "nome": "Cinturino",
+        "colore": "ink-3",
+        "stato": "problema",
+        "nota": "Apple la indica come causa possibile: troppo stretto o troppo largo, residui di sapone o sudore."
+       },
+       {
+        "nome": "Retro della cassa, sensore",
+        "colore": "blue",
+        "stato": "problema",
+        "nota": "Nuovo Health Sensing System: misura la frequenza cardiaca ogni 5 secondi (prima ogni 5 minuti), elettrodo ECG piu' grande. Non confermato se sia la causa."
+       },
+       {
+        "nome": "Adesivi (acrilati, metacrilati)",
+        "nota": "Secondo Apple restano, per costruzione, lontani dal punto di contatto con la pelle."
+       },
+       {
+        "nome": "Materiali della cassa (tracce di nichel)",
+        "nota": "Apple dichiara le tracce di nichel entro i limiti UE."
+       }
+      ],
+      "invito": "Tocca uno strato per leggere cosa dice la fonte.",
+      "didascalia": "Schema illustrativo dei materiali a contatto con la pelle, dalle spiegazioni di Apple e dalle segnalazioni su MacRumors e Reddit: non e' un disegno tecnico del cinturino.",
+      "fonte": "Apple; segnalazioni utenti su MacRumors e Reddit"
+     }
+    ],
     "sotto": [
      "Le segnalazioni, raccolte sui forum di MacRumors e su Reddit, descrivono bruciore sotto il sensore sul retro della cassa. I due modelli hanno un nuovo Health Sensing System che misura la frequenza cardiaca ogni 5 secondi, molto più spesso dei 5 minuti precedenti, con un elettrodo ECG più grande: non è confermato se la causa sia questa o un campione più numeroso di utenti.",
      "Apple attribuisce le reazioni a fattori comuni: cinturino troppo stretto o largo, sudore e residui di sapone. Il nichel in tracce nei materiali resta entro i limiti UE, e acrilati e metacrilati usati negli adesivi sono, per costruzione, lontani dal punto di contatto. Il consiglio ufficiale è pulizia regolare, un periodo di adattamento con un orologio nuovo, e un consulto medico se l'irritazione persiste."
@@ -266,7 +308,26 @@
    "extra_links": [],
    "approfondimento": {
     "punto": "Bruxelles starebbe rivedendo la tassa digitale: non più solo sui servizi digitali, ma un forfait annuo per ogni grande multinazionale con ricavi UE sopra 100 milioni di euro.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "flusso",
+      "titolo": "La tassa digitale, oggi e nell'ipotesi del forfait",
+      "oggi": {
+       "etichetta": "Oggi: tassa sui servizi digitali",
+       "centro": "Commissione UE",
+       "incassa": "Solo le aziende di servizi digitali: Apple, Google, Meta e Amazon in testa",
+       "nota": "La proposta «Core» originale colpisce solo i servizi digitali, e aveva fatto arrabbiare Washington, pronta a ritorsioni commerciali."
+      },
+      "agente": {
+       "etichetta": "Ipotesi: forfait annuo per tutti i settori",
+       "centro": "Commissione UE",
+       "incassa": "Ogni grande multinazionale con ricavi UE oltre 100 milioni di euro, a prescindere dal settore",
+       "nota": "Risponde alle proteste delle PMI europee, escluse dal meccanismo originale pur restando esposte alla concorrenza delle big tech. L'importo non e' ancora deciso."
+      },
+      "didascalia": "Lo schema della revisione raccontata dal Financial Times: tocca per confrontare chi paga oggi e chi pagherebbe con il forfait.",
+      "fonte": "Financial Times"
+     }
+    ],
     "sotto": [
      "Secondo il Financial Times, la Commissione Europea sta rivedendo la proposta fiscale «Core». L'impianto originale avrebbe colpito solo le aziende di servizi digitali — Apple, Google, Meta e Amazon in testa — e aveva fatto arrabbiare Washington, pronta a ritorsioni commerciali. La nuova versione introdurrebbe un forfait annuo per tutte le grandi multinazionali con ricavi UE oltre 100 milioni di euro, a prescindere dal settore.",
      "Il cambio risponde anche alle proteste delle piccole e medie imprese europee, escluse dal meccanismo originale pur restando esposte alla concorrenza delle big tech. L'importo del forfait non è stato ancora deciso: prima la Commissione cerca un accordo di principio tra i 27 Stati membri, un passaggio che in passato ha richiesto mesi su proposte fiscali comunitarie simili."
@@ -318,7 +379,39 @@
    "extra_links": [],
    "approfondimento": {
     "punto": "Un tool indie libera fino a 14GB disattivando Apple Intelligence sui Mac. John Gruber: alcune aziende vietano l'IA sul lavoro e per questo non comprano hardware Apple, che non offre un interruttore unico.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Spegnere Apple Intelligence sul Mac, oggi",
+      "azione": "Apple offre controlli granulari solo via MDM, il sistema pensato per i reparti IT.",
+      "passi": [
+       {
+        "titolo": "Installi RemoveMacAI",
+        "nota": "Tool indie di Om Lahore: non ufficiale, non supportato da Apple."
+       },
+       {
+        "titolo": "Individua i modelli scaricati",
+        "nota": "Cerca sul disco i modelli di Apple Intelligence."
+       },
+       {
+        "titolo": "Li elimina",
+        "nota": "Libera fino a 14GB: un peso rilevante su un Mac con 256GB, la configurazione piu' venduta."
+       },
+       {
+        "titolo": "L'IA e' disattivata, senza garanzie",
+        "nota": "Nessun supporto Apple: un aggiornamento di macOS puo' romperlo o far tornare i modelli."
+       }
+      ],
+      "rottura": {
+       "dopo": "un interruttore ufficiale",
+       "senza": "resta solo il controllo granulare via MDM, pensato per l'IT aziendale",
+       "etichetta": "Disattivazione ufficiale",
+       "nota": "John Gruber: alcune aziende vietano l'IA sul lavoro e per questo non comprano Mac, finche' non arriva un interruttore unico."
+      },
+      "didascalia": "La procedura descritta dallo sviluppatore di RemoveMacAI e il punto che manca secondo John Gruber (Daring Fireball): un interruttore ufficiale, non un tool indie.",
+      "fonte": "Daring Fireball; RemoveMacAI (Om Lahore)"
+     }
+    ],
     "sotto": [
      "RemoveMacAI, costruito dallo sviluppatore indie Om Lahore, disattiva Apple Intelligence sui Mac per liberare fino a 14GB di modelli scaricati: un peso rilevante su un Mac con 256GB di storage base, la configurazione più venduta. Il tool non è ufficiale e non è supportato da Apple, che offre oggi controlli granulari sull'IA solo via MDM, il sistema di gestione pensato per i reparti IT aziendali.",
      "John Gruber, su Daring Fireball, segnala che alcune organizzazioni vietano per policy l'installazione di strumenti IA sui computer di lavoro, e per questo rinunciano all'acquisto di hardware Apple finché non sarà possibile disattivare l'IA con un interruttore unico. Lo stesso tema è discusso su Hacker News in un post con 34 punti e 27 commenti: la richiesta non riguarda solo le aziende."
