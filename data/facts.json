@@ -335,6 +335,12 @@
   "note": "",
   "opened": "2026-09-23"
  },
+ "mac-spedizioni-trimestrali": {
+  "label": "Spedizioni Mac trimestrali (IDC)",
+  "unit": "milioni",
+  "note": "Unità di Mac spedite nel trimestre secondo IDC.",
+  "opened": "2026-10-09"
+ },
  "mac-studio-m5ultra-256gb-prezzo": {
   "label": "Prezzo, Mac Studio M5 Ultra 256GB RAM/1TB",
   "unit": "USD",
@@ -383,11 +389,23 @@
   "opened": "2026-08-23",
   "unit": "%"
  },
+ "pc-mercato-globale-variazione": {
+  "label": "Variazione annua del mercato PC globale",
+  "unit": "%",
+  "note": "Variazione percentuale anno su anno delle spedizioni PC a livello mondiale secondo IDC.",
+  "opened": "2026-10-09"
+ },
  "pc-prezzi-aumento-2026-stima-acer": {
   "label": "Aumento stimato prezzi PC entro fine 2026 (Acer)",
   "unit": "%",
   "note": "",
   "opened": "2026-09-24"
+ },
+ "quota-oled-notebook-avanzati-2026": {
+  "label": "Quota OLED sui notebook con display avanzati",
+  "unit": "%",
+  "note": "Quota di schermi OLED sul mercato dei display notebook avanzati (vs MiniLED), stima Counterpoint per il 2026.",
+  "opened": "2026-10-09"
  },
  "samsung-spedizioni-2026": {
   "label": "Spedizioni Samsung, variazione 2026",
