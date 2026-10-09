@@ -87,7 +87,13 @@
       "perche": "La versione più dettagliata sul formato ’Apple Experience’ a Tribeca."
      }
     ],
-    "scritto": "2026-10-09"
+    "scritto": "2026-10-09",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-09/welcome-home-13-ottobre-conferma-cb653d7c1366.mp3",
+     "durata": 130,
+     "voce": "kore",
+     "impronta": "cb653d7c1366"
+    }
    },
    "verifica": {
     "testate": 4,
@@ -183,7 +189,13 @@
       "perche": "La correzione più recente, utile per non sopravvalutare il redesign."
      }
     ],
-    "scritto": "2026-10-09"
+    "scritto": "2026-10-09",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-09/macbook-pro-ipad-mini-27-ottobre-1561133b68c2.mp3",
+     "durata": 133,
+     "voce": "kore",
+     "impronta": "1561133b68c2"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -299,7 +311,34 @@
    ],
    "approfondimento": {
     "punto": "Cook spiega per la prima volta perché ha scelto di lasciare proprio otto giorni prima della presentazione di iPhone Duo: voleva che Ternus partisse con il ciclo di prodotto più forte possibile dietro di sé.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "Otto giorni, non un caso",
+      "didascalia": "Cook ha lasciato la guida l'1 settembre, otto giorni prima della presentazione di iPhone Duo: dice di averlo scelto apposta, per dare a Ternus il vento in poppa del lancio piu' importante dell'anno.",
+      "fonte": "David Phelan, The Independent",
+      "centro": "Il conto alla rovescia di Cook verso il Duo",
+      "obiettivo": "Cook: ho scelto quel momento per dare a Ternus vento in poppa prima del lancio piu' importante dell'anno.",
+      "eventi": [
+       {
+        "data": "2026-08-25",
+        "etichetta": "Festa d'addio a Cook, Apple Park"
+       },
+       {
+        "data": "2026-09-01",
+        "etichetta": "Ternus CEO, Cook presidente esecutivo"
+       },
+       {
+        "data": "2026-09-09",
+        "etichetta": "iPhone Duo presentato, 8 giorni dopo"
+       },
+       {
+        "data": "2026-10-09",
+        "etichetta": "Cook: l'ho fatto apposta, per Ternus"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "L'intervista, raccolta da David Phelan per The Independent alla Battersea Power Station, è la prima in cui Cook racconta il perché del momento scelto: non un caso, ma una decisione per dare a Ternus « vento in poppa » proprio mentre l'azienda si avvicinava al lancio più importante dell'anno. Sul rapporto col successore, Cook ribadisce di non essersi mai intromesso nelle sue decisioni da quando ha lasciato la carica il 1° settembre.",
      "Cook racconta anche il consiglio dato a Ternus: costruirsi un proprio stile invece di imitare il predecessore, così come lui stesso non ha imitato Steve Jobs. L'occasione dell'intervista era il lancio di Creative Labs, il programma Apple con The King's Trust di Re Carlo III per i giovani creativi, presentato all'Apple Music Hall di Battersea."
@@ -393,7 +432,52 @@
    ],
    "approfondimento": {
     "punto": "Il Mac perde terreno in valore assoluto (-11,3%), ma guadagna quota perché il resto del mercato PC frana ancora più in fretta (-20,1%): il caro-componenti colpisce tutti, Apple compresa, ma colpisce di più i rivali.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Mac in calo, ma meno degli altri",
+      "didascalia": "Spedizioni Mac del terzo trimestre 2026 contro l'anno prima (-11,3%) e contro i rivali per volumi; il mercato PC nel complesso e' sceso del 20,1%.",
+      "fonte": "IDC",
+      "unita": "milioni di unita’",
+      "voci": [
+       {
+        "etichetta": "Apple, Q3 2025",
+        "min": 6.7,
+        "max": 6.7,
+        "colore": "giallo",
+        "nota": ""
+       },
+       {
+        "etichetta": "Apple, Q3 2026",
+        "min": 5.9,
+        "max": 5.9,
+        "colore": "giallo",
+        "nota": "-11,3%"
+       },
+       {
+        "etichetta": "Lenovo, Q3 2026",
+        "min": 14.9,
+        "max": 14.9,
+        "colore": "nero",
+        "nota": ""
+       },
+       {
+        "etichetta": "HP, Q3 2026",
+        "min": 10.3,
+        "max": 10.3,
+        "colore": "nero",
+        "nota": "-30,9%"
+       },
+       {
+        "etichetta": "Dell, Q3 2026",
+        "min": 7.6,
+        "max": 7.6,
+        "colore": "nero",
+        "nota": ""
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Apple ha spedito 5,9 milioni di Mac nel terzo trimestre, contro 6,7 milioni dell'anno precedente. Il dato va letto insieme al mercato PC complessivo, sceso a 62,7 milioni di unità (-20,1%): Apple resta quarta per volumi, dietro Lenovo (14,9 milioni), HP (10,3 milioni, il calo peggiore a -30,9%) e Dell (7,6 milioni), ma il suo calo è meno della metà di quello del mercato.",
      "IDC attribuisce il crollo generale agli acquisti anticipati dei canali in vista dei rincari dei componenti, più vincoli di offerta sulla memoria: gli stessi fattori che oggi spingono Samsung a tagliare la produzione di smartphone (vedi la notizia sui margini telefonici). Solo ASUS, al -8,6%, ha retto meglio di Apple in proporzione; i prezzi medi resteranno sopra i livelli dell'anno scorso."
