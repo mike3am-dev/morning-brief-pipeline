@@ -5015,9 +5015,117 @@
    "vote": 1,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/apple-prosser-ramacciotti-ritardi",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/apple-spinge-ios27-aggiornamento",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/apple-wallet-stati-usa-no",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/cook-non-mi-intrometto-intervista",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/idc-mac-spedizioni-q3-2026",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/ifixit-apple-watch-riparabilita",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/ipad-mini-8-oled-60hz",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/iphone-air-2-spessore-duo",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/macbook-pro-ipad-mini-27-ottobre",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/macbook-pro-oled-non-piu-sottile",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/radar:amazon-leo-1000-satelliti",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/radar:fotoni-reti-quantistiche",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/radar:icann-domini-chatgpt-claude",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/radar:surface-laptop-ultra-vs-macbook",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/radar:windows-12-rimandato",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/retinarelay-imac-schermo-esterno",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/samsung-memorie-margini-telefoni",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-09/ternus-rimescola-ma-app-store",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-09T04:49:08",
+ "pulled": "2026-10-10T04:47:32",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -5121,15 +5229,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "BGR",
-   "verso": "declassa",
-   "su": 2,
-   "giu": 14,
-   "scarto": -0.13,
-   "nota": "fonte «BGR»: aperta 2 volte su 16, sotto la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "Engadget",
    "verso": "declassa",
    "su": 0,
@@ -5187,27 +5286,27 @@
    "valore": "SERVIZIO",
    "verso": "declassa",
    "su": 12,
-   "giu": 69,
+   "giu": 71,
    "scarto": -0.12,
-   "nota": "tag «SERVIZIO»: aperta 12 volte su 81, sotto la media"
+   "nota": "tag «SERVIZIO»: aperta 12 volte su 83, sotto la media"
   },
   {
-   "asse": "tag",
-   "valore": "CONTESTO",
+   "asse": "fonte",
+   "valore": "BGR",
    "verso": "declassa",
-   "su": 7,
-   "giu": 39,
-   "scarto": -0.11,
-   "nota": "tag «CONTESTO»: aperta 7 volte su 46, sotto la media"
+   "su": 2,
+   "giu": 14,
+   "scarto": -0.12,
+   "nota": "fonte «BGR»: aperta 2 volte su 16, sotto la media"
   },
   {
    "asse": "fonte",
    "valore": "DDay.it",
    "verso": "declassa",
    "su": 1,
-   "giu": 8,
-   "scarto": -0.11,
-   "nota": "fonte «DDay.it»: aperta 1 volta su 9, sotto la media"
+   "giu": 9,
+   "scarto": -0.12,
+   "nota": "fonte «DDay.it»: aperta 1 volta su 10, sotto la media"
   },
   {
    "asse": "fonte",
@@ -5237,12 +5336,21 @@
    "nota": "lab «altri»: aperta 0 volte su 7, sotto la media"
   },
   {
+   "asse": "tag",
+   "valore": "CONTESTO",
+   "verso": "declassa",
+   "su": 7,
+   "giu": 39,
+   "scarto": -0.1,
+   "nota": "tag «CONTESTO»: aperta 7 volte su 46, sotto la media"
+  },
+  {
    "asse": "categoria",
    "valore": "iphone",
    "verso": "promuovi",
    "su": 38,
    "giu": 53,
-   "scarto": 0.1,
+   "scarto": 0.11,
    "nota": "categoria «iphone»: aperta 38 volte su 91, sopra la media"
   },
   {
@@ -5255,13 +5363,22 @@
    "nota": "fonte «TechCrunch»: aperta 6 volte su 13, sopra la media"
   },
   {
+   "asse": "fonte",
+   "valore": "The Verge",
+   "verso": "promuovi",
+   "su": 9,
+   "giu": 15,
+   "scarto": 0.11,
+   "nota": "fonte «The Verge»: aperta 9 volte su 24, sopra la media"
+  },
+  {
    "asse": "tag",
    "valore": "ANALISI",
    "verso": "promuovi",
    "su": 20,
-   "giu": 18,
+   "giu": 19,
    "scarto": 0.12,
-   "nota": "tag «ANALISI»: aperta 20 volte su 38, sopra la media"
+   "nota": "tag «ANALISI»: aperta 20 volte su 39, sopra la media"
   },
   {
    "asse": "fonte",
@@ -5323,7 +5440,7 @@
    "verso": "promuovi",
    "su": 11,
    "giu": 6,
-   "scarto": 0.24,
+   "scarto": 0.25,
    "nota": "categoria «iphone duo»: aperta 11 volte su 17, sopra la media"
   },
   {
