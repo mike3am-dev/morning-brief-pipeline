@@ -46,7 +46,31 @@
    ],
    "approfondimento": {
     "punto": "Apple ha alzato il prezzo di iPhone 18 Pro per il rincaro della memoria; ora Nikkei Asia scrive che gli ordini di ottobre sono già scesi del 15-20%. Il prezzo più alto sembra aver frenato la domanda.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Da +12% a un taglio ordini",
+      "didascalia": "In tre settimane il segnale sulla domanda si e' rovesciato: dalle vendite cinesi di lancio piu' alte del 17 Pro al taglio degli ordini di produzione per ottobre.",
+      "fonte": "Counterpoint; Nikkei Asia",
+      "unita": "%",
+      "voci": [
+       {
+        "etichetta": "Vendite Cina al lancio (Counterpoint)",
+        "min": 12,
+        "max": 12,
+        "colore": "blu",
+        "nota": "iPhone 18 Pro vs 17 Pro, inizio ottobre"
+       },
+       {
+        "etichetta": "Taglio ordini ottobre (Nikkei)",
+        "min": 15,
+        "max": 20,
+        "colore": "rosso",
+        "nota": "domanda debole dopo il rincaro prezzo"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il taglio riguarda solo iPhone 18 Pro e Pro Max: l'iPhone 18 base arriva in primavera 2027, quindi il confronto con un lancio «tutto insieme» non è diretto. Apple aveva alzato il prezzo di 100 dollari sul modello Pro proprio per il rincaro della DRAM concordato con Samsung, passato dal 30% al 33% nelle ultime settimane secondo le stime seguite da questa rassegna.",
      "Nikkei Asia cita un dirigente anonimo della catena di fornitura, non un portavoce Apple: è lo stesso tipo di fonte — catena di fornitura anonima — che la tabella delle affidabilità di questa rassegna classifica come media, non alta. Il titolo Apple ha reagito scendendo del 2,5% in apertura a Wall Street, segno che il mercato la considera una notizia concreta, non solo un rumor di filiera."
@@ -99,7 +123,13 @@
       "perche": "Una terza testata che riprende lo stesso dato di filiera."
      }
     ],
-    "scritto": "2026-10-10"
+    "scritto": "2026-10-10",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-10/iphone18pro-tagli-ordini-nikkei-f918be042d13.mp3",
+     "durata": 150,
+     "voce": "kore",
+     "impronta": "f918be042d13"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -143,7 +173,63 @@
    },
    "approfondimento": {
     "punto": "Il 13 ottobre è la casa, il 27 ottobre è il resto: Gurman aggiunge ora un iMac M6 al MacBook Pro OLED e all'iPad mini, con nomi in codice e la conferma che lo schermo dell'iPad resterà a 60Hz fisso.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Quattro prodotti, un giorno",
+      "didascalia": "Quattro linee diverse convergono sulla stessa finestra non ufficiale: il 27 ottobre arriverebbero insieme due MacBook Pro, un iMac e un iPad mini, ciascuno con il proprio chip.",
+      "fonte": "Mark Gurman (Bloomberg); Macitynet",
+      "periodi": [
+       "27 ottobre 2026 (non ufficiale)"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro OLED touch (K114/K116)",
+        "tappe": [
+         {
+          "quando": "27 ott 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "previsto",
+          "nota": "schermo OLED touch, piu' leggero"
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro 14\" entry (J804)",
+        "tappe": [
+         {
+          "quando": "27 ott 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "chip M6 base, non Pro"
+         }
+        ]
+       },
+       {
+        "nome": "iMac (J833)",
+        "tappe": [
+         {
+          "quando": "27 ott 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "stesso chip del MacBook entry"
+         }
+        ]
+       },
+       {
+        "nome": "iPad mini OLED (J510)",
+        "tappe": [
+         {
+          "quando": "27 ott 2026",
+          "chip": "-",
+          "stato": "previsto",
+          "nota": "schermo OLED a 60Hz fisso, no ProMotion"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "I nomi in codice aiutano a distinguere i progetti: K114 e K116 sono il MacBook Pro 14 e 16 pollici OLED touch, quello con lo schermo che si tocca; J804 e J833 sono invece un MacBook Pro 14 pollici entry-level e un iMac, entrambi con il chip M6 «normale», non Pro. Sono due famiglie diverse che escono insieme.",
      "L'iPad mini (nome in codice J510) guadagna una fotocamera frontale spostata sul lato lungo, utile per le videochiamate tenendolo orizzontale, e altoparlanti riprogettati. Ma lo schermo OLED resta a refresh fisso 60Hz: niente ProMotion a 120Hz, la tecnologia che rende più fluido lo scorrimento su iPad Pro."
@@ -196,7 +282,13 @@
       "perche": "Il calendario completo di tutti i lanci Apple di questo mese."
      }
     ],
-    "scritto": "2026-10-10"
+    "scritto": "2026-10-10",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-10/macbook-imac-ipadmini-27-ottobre-nomi-df3d9151d213.mp3",
+     "durata": 137,
+     "voce": "kore",
+     "impronta": "df3d9151d213"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -273,7 +365,13 @@
       "perche": "Il retroscena sulla riorganizzazione avviata da Ternus da CEO."
      }
     ],
-    "scritto": "2026-10-10"
+    "scritto": "2026-10-10",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-10/tim-cook-ternus-intervista-6f8cbc8e1f86.mp3",
+     "durata": 109,
+     "voce": "kore",
+     "impronta": "6f8cbc8e1f86"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -345,7 +443,13 @@
       "perche": "Inquadra l'accordo come il quarto di una serie di accordi AI di Apple."
      }
     ],
-    "scritto": "2026-10-10"
+    "scritto": "2026-10-10",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-10/apple-huxe-acquihire-eaca88c31820.mp3",
+     "durata": 108,
+     "voce": "kore",
+     "impronta": "eaca88c31820"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -384,7 +488,33 @@
    },
    "approfondimento": {
     "punto": "Tre giorni prima dell'evento, il quadro dell'HomePad si completa con dettagli software: foto di famiglia come screensaver, testi delle canzoni a schermo, e Siri AI che risponde anche con la vista.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Risponde, e fa vedere",
+      "didascalia": "Conversazione d'esempio, illustrativa: una delle tre funzioni attese sull'HomePad e' Siri AI che risponde anche a schermo, non solo a voce.",
+      "fonte": "9to5Mac",
+      "contatto": "Siri AI (HomePad)",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Che tempo fa stasera a Milano?"
+       },
+       {
+        "da": "agente",
+        "testo": "Sereno, 14 gradi. Ecco le previsioni delle prossime ore sullo schermo."
+       },
+       {
+        "da": "tu",
+        "testo": "Metti i testi di questa canzone"
+       },
+       {
+        "da": "agente",
+        "testo": "Testi a schermo, sincronizzati con Apple Music."
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Le tre funzioni nascono da incroci diversi: «Photos face» e i testi di Apple Music sono rumor più deduzione dal comportamento di prodotti simili, mentre le risposte visive di Siri AI emergono dal codice delle beta di iOS 27.2 e tvOS, già citate per i controlli smart home nella Dynamic Island.",
      "Il filo conduttore con il resto dell'hub è lo schermo: l'HomePad è il primo altoparlante Apple con un display proprio, e ogni funzione annunciata finora — dalle foto alla musica a Siri — sfrutta quello schermo per fare qualcosa che un HomePod normale, solo audio, non può."
@@ -419,7 +549,13 @@
      }
     ],
     "approfondire": [],
-    "scritto": "2026-10-10"
+    "scritto": "2026-10-10",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-10/homepad-tre-funzioni-5620c83a5cf3.mp3",
+     "durata": 121,
+     "voce": "kore",
+     "impronta": "5620c83a5cf3"
+    }
    },
    "verifica": {
     "testate": 1,
