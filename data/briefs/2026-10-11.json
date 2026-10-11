@@ -88,7 +88,13 @@
       "perche": "Spiega l'indizio dei marchi depositati e il precedente di visionOS."
      }
     ],
-    "scritto": "2026-10-11"
+    "scritto": "2026-10-11",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-11/welcome-home-13-ottobre-d62acd04cced.mp3",
+     "durata": 137,
+     "voce": "kore",
+     "impronta": "d62acd04cced"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -159,7 +165,13 @@
       "perche": "Spiega cos'è un \"reverse acqui-hire\" e perché piace alle aziende."
      }
     ],
-    "scritto": "2026-10-11"
+    "scritto": "2026-10-11",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-11/apple-huxe-filing-pubblico-2d3428cec802.mp3",
+     "durata": 120,
+     "voce": "kore",
+     "impronta": "2d3428cec802"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -190,7 +202,55 @@
    ],
    "approfondimento": {
     "punto": "Apple rompe un'abitudine di oltre un decennio — il redesign impiegava anni a scendere ai modelli base — per schiacciare i tempi del silicio: tutto, ora, corre verso l'M7.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Il redesign salta la fila: sei mesi, non anni",
+      "didascalia": "Per la prima volta il nuovo design del MacBook Pro arriva all'entry-level a sei mesi dai modelli alti, non in anni: la generazione M6 Pro/Max viene saltata del tutto. Schema basato sulle anticipazioni di Bloomberg.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "periodi": [
+       "Autunno 2026",
+       "Primavera 2027",
+       "Autunno 2027"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro entry-level (K104)",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "design vecchio, invariato"
+         },
+         {
+          "quando": "Primavera 2027",
+          "chip": "M7",
+          "stato": "previsto",
+          "nota": "eredita il nuovo design"
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro fascia alta",
+        "tappe": [
+         {
+          "quando": "Autunno 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "previsto",
+          "nota": "nuovo design, oltre 2.500$"
+         },
+         {
+          "quando": "Autunno 2027",
+          "chip": "M7 Pro/Max",
+          "stato": "previsto",
+          "nota": "aggiornamento successivo"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il calendario che emerge da Bloomberg ha tre tappe: autunno 2026, entry-level col vecchio design e chip M6 mentre i modelli alti si ridisegnano con M5 Pro/Max; primavera 2027, l'entry-level K104 eredita il nuovo design con M7; autunno 2027, i modelli alti si aggiornano a M7 Pro/Max. È la prima volta che il salto dura solo sei mesi invece di anni.",
      "Il motivo dichiarato è l'intelligenza artificiale: Apple avrebbe deciso che i miglioramenti al motore neurale pianificati per l'M7 erano troppo importanti per aspettare, e ha rinunciato a completare la linea M6 di fascia alta. Per chi cerca un MacBook Pro ridisegnato spendendo meno, la finestra giusta diventa la primavera 2027 — non l'autunno 2026, quando il redesign costerà probabilmente oltre 2.500 dollari con l'M5 Pro."
@@ -230,7 +290,13 @@
       "perche": "Ricostruisce il calendario chip-per-chip dal 2016 a oggi."
      }
     ],
-    "scritto": "2026-10-11"
+    "scritto": "2026-10-11",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-11/macbook-pro-entry-level-redesign-2027-51caefd36835.mp3",
+     "durata": 145,
+     "voce": "kore",
+     "impronta": "51caefd36835"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -312,7 +378,13 @@
       "perche": "Ricostruisce tutti gli indizi raccolti, uno per uno."
      }
     ],
-    "scritto": "2026-10-11"
+    "scritto": "2026-10-11",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-11/apple-adt-partnership-rumor-c8105eb1d8ac.mp3",
+     "durata": 104,
+     "voce": "kore",
+     "impronta": "c8105eb1d8ac"
+    }
    },
    "image": "data:image/jpeg;base64,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"
   },
@@ -350,7 +422,45 @@
    ],
    "approfondimento": {
     "punto": "Due società serie, stesso trimestre, numeri che distano quasi un milione di Mac: non è un errore, è la prova che \"quota di mercato\" è una stima, non una misura esatta.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Stesso trimestre, numeri diversi",
+      "didascalia": "IDC e Omdia misurano le spedizioni Mac del terzo trimestre 2026 con metodi propri e arrivano a cifre diverse, sia per Apple sia per il mercato PC totale.",
+      "fonte": "IDC; Omdia",
+      "unita": "milioni di unità",
+      "voci": [
+       {
+        "etichetta": "Apple (IDC)",
+        "min": 5.9,
+        "max": 5.9,
+        "colore": "giallo",
+        "nota": "quota 9,5%"
+       },
+       {
+        "etichetta": "Apple (Omdia)",
+        "min": 6.8,
+        "max": 6.8,
+        "colore": "giallo",
+        "nota": "quota 11,7%"
+       },
+       {
+        "etichetta": "PC totale (IDC)",
+        "min": 62.7,
+        "max": 62.7,
+        "colore": "nero",
+        "nota": ""
+       },
+       {
+        "etichetta": "PC totale (Omdia)",
+        "min": 58.1,
+        "max": 58.1,
+        "colore": "nero",
+        "nota": ""
+       }
+      ]
+     }
+    ],
     "sotto": [
      "IDC e Omdia raccolgono i dati con metodi propri — perimetro di mercato, fonti, classificazione dei prodotti e dei canali — che restano proprietari. Non è quindi possibile dire con certezza da dove venga lo scarto di 900.000 Mac, ma il divario fra i due conteggi del mercato PC totale (62,7 contro 58,1 milioni) suggerisce che gran parte della differenza sia nel perimetro, non in Apple.",
      "Il punto su cui le due società concordano è più interessante del numero esatto: Apple perde meno volume degli altri produttori di PC, quindi guadagna quota pur spedendo meno Mac che un anno fa. Con prezzi di memoria e SSD in salita e componenti scarsi, il mercato PC nel suo insieme si restringe più in fretta di quanto si restringa Apple."
@@ -381,7 +491,13 @@
       "perche": "Spiega perché le due stime divergono tanto sullo stesso trimestre."
      }
     ],
-    "scritto": "2026-10-11"
+    "scritto": "2026-10-11",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-11/mac-spedizioni-q3-2026-idc-omdia-d87f9fe6047c.mp3",
+     "durata": 127,
+     "voce": "kore",
+     "impronta": "d87f9fe6047c"
+    }
    },
    "verifica": {
     "testate": 1,
