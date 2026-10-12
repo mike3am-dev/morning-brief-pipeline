@@ -51,7 +51,30 @@
    ],
    "approfondimento": {
     "punto": "Apple svela il suo primo vero hub per la casa il 13 ottobre, ma lo fa arrivare in negozio un mese dopo, a metà novembre: dopo HomeKit e HomePod, è la scommessa più seria di sempre sulla smart home.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "Annuncio il 13, scaffale a novembre",
+      "didascalia": "L'hub per la casa si rivela il 13 ottobre, ma arriva in negozio solo a meta' novembre: un mese dopo Apple TV 4K e HomePod mini, pronti gia' dal 30 ottobre.",
+      "fonte": "Mark Gurman (Bloomberg) via 9to5Mac",
+      "centro": "Stesso evento, due calendari",
+      "obiettivo": "Apple separa l'annuncio dalla vendita per guadagnare tempo di produzione sull'hub.",
+      "eventi": [
+       {
+        "data": "2026-10-13",
+        "etichetta": "Rivelazione: hub, Apple TV 4K, HomePod mini"
+       },
+       {
+        "data": "2026-10-30",
+        "etichetta": "In vendita: Apple TV 4K e HomePod mini"
+       },
+       {
+        "data": "2026-11",
+        "etichetta": "In vendita: l'hub, un mese dopo"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "L'hub — in rumor «HomeView» — arriva in due formati: da appoggio, in quattro colori, e da parete, in due. Monta un chip A18 e homeOS, un sistema costruito intorno a Siri AI, con una schermata iniziale fotografica in stile StandBy. Non avrà un App Store apribile a sviluppatori esterni: solo app Apple selezionate, con i widget di terze parti proiettati da un iPhone vicino, non installati sul dispositivo stesso.",
      "La scelta di separare l'annuncio dalla vendita — presentazione il 13, scaffale a metà novembre — lascia più tempo di produzione mentre Apple TV 4K e HomePod mini, aggiornamenti più contenuti, restano sul calendario originale del 30 ottobre. Per Apple, che non ha mai davvero sfondato con HomeKit né con il HomePod originale, questo hub è il tentativo più diretto di diventare il centro fisso della casa invece che un accessorio dell'iPhone."
@@ -105,7 +128,13 @@
       "perche": "Ricostruisce l'annuncio ufficiale e i partner LG e Schneider Electric."
      }
     ],
-    "scritto": "2026-10-12"
+    "scritto": "2026-10-12",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-12/homeview-rivelazione-vendita-novembre-1e3841f895c5.mp3",
+     "durata": 163,
+     "voce": "kore",
+     "impronta": "1e3841f895c5"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -159,7 +188,31 @@
    ],
    "approfondimento": {
     "punto": "Il nuovo iPad mini con schermo OLED costerà 200 dollari in più dell'attuale, vicino ai 799 dollari: più della base dell'iPad Air da 11 pollici, per il primo tablet piccolo Apple con questo schermo.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "iPad mini, il salto di prezzo",
+      "didascalia": "Il nuovo iPad mini OLED arriva a quasi 799 dollari, 200 in piu' del modello attuale: il primo tablet piccolo Apple con questo schermo, e il chip A20 Pro.",
+      "fonte": "Mark Gurman (Bloomberg) via 9to5Mac",
+      "unita": "USD",
+      "voci": [
+       {
+        "etichetta": "iPad mini attuale",
+        "min": 599,
+        "max": 599,
+        "colore": "nero",
+        "nota": "ricavato per differenza: 799 meno i 200 di rincaro indicati da Gurman"
+       },
+       {
+        "etichetta": "iPad mini OLED (stima)",
+        "min": 799,
+        "max": 799,
+        "colore": "giallo",
+        "nota": "chip A20 Pro, primo schermo OLED"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Gurman scrive che il salto di prezzo accompagna un salto tecnico: primo schermo OLED su un iPad mini, bordi più sottili, altoparlanti migliorati e il chip A20 Pro, lo stesso dell'iPhone 18 Pro. Resta da capire se lo schermo sarà OLED tandem, come sull'iPad Pro, e se arriverà il ProMotion a 120Hz: i report divergono, e un leak coreano di inizio ottobre parlava invece di un pannello a 60Hz fisso.",
      "Il nuovo iPad mini non sarà nell'evento del 13 ottobre, dedicato alla casa intelligente: Apple lo riserva a un evento media successivo, insieme al MacBook Pro OLED touch — lo schema già visto a fine settembre, più annunci distribuiti su più eventi nell'arco di ottobre e novembre."
@@ -203,7 +256,13 @@
       "perche": "Il calendario completo dei tablet Apple fino al 2027."
      }
     ],
-    "scritto": "2026-10-12"
+    "scritto": "2026-10-12",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-12/ipad-mini-oled-prezzo-799-addb983c1489.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "addb983c1489"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -303,7 +362,13 @@
       "perche": "Il contesto su perché la memoria pesa sul costo, non solo la domanda."
      }
     ],
-    "scritto": "2026-10-12"
+    "scritto": "2026-10-12",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-12/iphone18pro-tagli-ordini-nikkei-9ef8032c0ce4.mp3",
+     "durata": 134,
+     "voce": "kore",
+     "impronta": "9ef8032c0ce4"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -334,7 +399,22 @@
    ],
    "approfondimento": {
     "punto": "Apple allestisce vetrine dedicate a iPhone Duo nei negozi di punta, con tavoli che mostrano apertura e chiusura del telefono, ma le scorte restano limitate anche se sufficienti per il lancio del 23 ottobre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "piega",
+      "titolo": "iPhone Duo, la piega in vetrina",
+      "interno": "7,6″",
+      "esterno": "5,4″",
+      "colori": [
+       {
+        "nome": "Titanio",
+        "hex": "#8A8A86"
+       }
+      ],
+      "didascalia": "Trascina per aprirlo e chiuderlo: e' lo stesso meccanismo che Apple mostra sui tavoli demo dei negozi di punta, oltre 150 unita' solo al flagship della Fifth Avenue. Scocca in titanio grado 5; colore reso a scopo illustrativo, Apple non ha annunciato varianti aggiuntive.",
+      "fonte": "Mark Gurman (Bloomberg); specifiche Apple Newsroom"
+     }
+    ],
     "sotto": [
      "Gurman descrive l'allestimento: una sezione dedicata e un tavolo extra con un meccanismo che apre e chiude il telefono da solo, per mostrarne la piega. Oltre 150 unità demo al flagship della Fifth Avenue a New York, un centinaio all'Apple Park Visitor Center, 20-40 unità nei negozi non-flagship come Chicago, Los Angeles e Manhattan. Accanto, uno stand con Duo chiuso in StandBy e due iPhone normali, per il confronto diretto.",
      "Due mesi fa Apple temeva un ritardo delle scorte a fine novembre; oggi ne ha abbastanza per il lancio del 23 ottobre, ma resteranno limitate. Resta confermato anche un dettaglio già noto da inizio ottobre: negli Apple Store USA, le macchine «Presto» scriveranno il nome dell'acquirente nella schermata di saluto al primo avvio, solo in inglese e spagnolo."
@@ -380,7 +460,13 @@
       "perche": "Spiega come funziona la personalizzazione delle macchine «Presto»."
      }
     ],
-    "scritto": "2026-10-12"
+    "scritto": "2026-10-12",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-12/iphone-duo-vetrine-retail-saluto-nome-f8688f92638c.mp3",
+     "durata": 141,
+     "voce": "kore",
+     "impronta": "f8688f92638c"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -428,7 +514,33 @@
    },
    "approfondimento": {
     "punto": "Apple testa un microfono integrato sul nuovo Apple TV 4K per parlare con Siri senza telecomando, e un Siri Remote con altoparlante per ritrovarlo: minori dell'hub, ma in vendita prima, dal 30 ottobre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Hey Siri, senza telecomando",
+      "didascalia": "Conversazione d'esempio, illustrativa: con il microfono integrato in test, Apple TV 4K potrebbe ascoltare Siri senza passare dal telecomando o da un HomePod vicino; il nuovo Siri Remote risponde con un suono per farsi ritrovare.",
+      "fonte": "Mark Gurman (Bloomberg) via 9to5Mac",
+      "contatto": "Siri (Apple TV 4K)",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Hey Siri, metti in pausa"
+       },
+       {
+        "da": "agente",
+        "testo": "Fatto, detto al microfono della TV, non al telecomando."
+       },
+       {
+        "da": "tu",
+        "testo": "Dov'e' il telecomando?"
+       },
+       {
+        "da": "agente",
+        "testo": "Lo faccio suonare dall'altoparlante interno."
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Oggi gli utenti Apple TV devono parlare nel telecomando o in un HomePod vicino per usare Siri: i microfoni integrati, se confermati il 13 ottobre, eliminerebbero questo passaggio. Il nuovo Siri Remote testato aggiunge un altoparlante che suona su richiesta per ritrovarlo tra i cuscini del divano, oltre alla funzione «Trova» già esistente. Il chip sale ad A19.",
      "La differenza di calendario rispetto all'hub con display è il punto chiave: Apple TV 4K e HomePod mini restano fissati al 30 ottobre, con i preordini aperti questa settimana, mentre l'hub arriva solo a metà novembre. Sono aggiornamenti più contenuti — stesso design esterno, nuovi chip — pensati per tenere il passo con l'hub più che per essere la notizia principale dell'evento."
@@ -474,7 +586,13 @@
       "perche": "Un secondo punto di vista sulle stesse funzioni testate."
      }
     ],
-    "scritto": "2026-10-12"
+    "scritto": "2026-10-12",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-12/apple-tv-4k-homepod-mini-microfono-telecomando-2e7b4527e976.mp3",
+     "durata": 134,
+     "voce": "kore",
+     "impronta": "2e7b4527e976"
+    }
    },
    "verifica": {
     "testate": 3,
