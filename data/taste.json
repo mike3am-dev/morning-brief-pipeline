@@ -5327,9 +5327,21 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-11/apple-huxe-filing-pubblico",
+   "vote": 0.25,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-11/welcome-home-13-ottobre",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-11T04:51:54",
+ "pulled": "2026-10-12T04:47:13",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -5536,17 +5548,8 @@
    "verso": "declassa",
    "su": 7,
    "giu": 40,
-   "scarto": -0.1,
+   "scarto": -0.11,
    "nota": "tag «CONTESTO»: aperta 7 volte su 47, sotto la media"
-  },
-  {
-   "asse": "tag",
-   "valore": "ANALISI",
-   "verso": "promuovi",
-   "su": 20,
-   "giu": 21,
-   "scarto": 0.1,
-   "nota": "tag «ANALISI»: aperta 20 volte su 41, sopra la media"
   },
   {
    "asse": "categoria",
@@ -5554,8 +5557,17 @@
    "verso": "promuovi",
    "su": 38,
    "giu": 53,
-   "scarto": 0.11,
+   "scarto": 0.1,
    "nota": "categoria «iphone»: aperta 38 volte su 91, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "TechCrunch",
+   "verso": "promuovi",
+   "su": 7,
+   "giu": 8,
+   "scarto": 0.11,
+   "nota": "fonte «TechCrunch»: aperta 7 volte su 15, sopra la media"
   },
   {
    "asse": "fonte",
