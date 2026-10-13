@@ -1,458 +1,488 @@
 {
-  "a20-pro-efficienza": {
-    "label": "Efficienza energetica, A20 Pro vs A19 Pro",
-    "note": "Guadagno dichiarato dalle fonti della catena di fornitura. Primo chip Apple a 2 nm.",
-    "opened": "2026-08-18",
-    "unit": "%"
-  },
-  "ai-glasses-spedizioni-crescita": {
-    "label": "Crescita spedizioni occhiali AI (anno su anno)",
-    "unit": "%",
-    "note": "Counterpoint Research, primo semestre 2026 su base annua.",
-    "opened": "2026-09-23"
-  },
-  "airpods-repairability-score": {
-    "label": "Punteggio di riparabilità iFixit, AirPods",
-    "unit": "/10",
-    "note": "Sale o scende a ogni nuova generazione con il teardown iFixit; tutte le generazioni precedenti alle AirPods 5 avevano preso 0/10.",
-    "opened": "2026-09-30"
-  },
-  "app-store-ricavi-usa": {
-    "label": "Ricavi da commissioni App Store USA, variazione annua",
-    "note": "Primo semestre 2026. Stima di analisti, non un dato di bilancio Apple dedicato a questa voce.",
-    "opened": "2026-08-19",
-    "unit": "%"
-  },
-  "apple-azione-record-intraday": {
-    "label": "Record intraday, azione Apple",
-    "unit": "USD",
-    "note": "",
-    "opened": "2026-09-23"
-  },
-  "apple-card-savings-apy": {
-    "label": "Tasso annuo, conto di risparmio Apple Card",
-    "unit": "%",
-    "note": "",
-    "opened": "2026-09-23"
-  },
-  "apple-intelligence-spazio-minimo-avanzato": {
-    "label": "Spazio libero richiesto da Apple Intelligence sui modelli con funzioni avanzate",
-    "unit": "GB",
-    "note": "",
-    "opened": "2026-09-20"
-  },
-  "apple-pay-commissioni-annue-stima": {
-    "label": "Commissioni Apple Pay incassate ogni anno (stima accusa)",
-    "unit": "USD",
-    "note": "Cifra allegata dalla class action contro Apple, non un dato verificato.",
-    "opened": "2026-09-26"
-  },
-  "apple-quota-europa": {
-    "label": "Quota Apple, mercato smartphone Europa",
-    "note": "Rilevazione trimestrale Counterpoint Research su spedizioni; era al 25% un anno prima di questa lettura.",
-    "opened": "2026-08-21",
-    "unit": "%"
-  },
-  "apple-quota-europa-operatori": {
-    "label": "Quota Apple, canale operatore Europa",
-    "unit": "%",
-    "note": "Rilevazione trimestrale Counterpoint Research sulle vendite tramite operatore telefonico, distinta dal mercato libero.",
-    "opened": "2026-10-07"
-  },
-  "apple-quota-pieghevoli-2026": {
-    "label": "Quota Apple, mercato pieghevoli 2026",
-    "note": "Stima Counterpoint Research su spedizioni pieghevoli nell'anno del debutto dell'iPhone pieghevole.",
-    "opened": "2026-08-27",
-    "unit": "%"
-  },
-  "apple-quota-pieghevoli-2027": {
-    "label": "Quota Apple, mercato pieghevoli 2027",
-    "note": "Stima IDC (Nabila Popal) via Bloomberg su spedizioni pieghevoli mondiali nel 2027, secondo anno di presenza Apple sul mercato.",
-    "opened": "2026-08-31",
-    "unit": "%"
-  },
-  "apple-quota-pieghevoli-2030": {
-    "label": "Quota Apple, mercato pieghevoli 2030",
-    "note": "Stima Counterpoint Research su spedizioni pieghevoli, crescita cumulata dalla base 2026 al 2030.",
-    "opened": "2026-09-12",
-    "unit": "%"
-  },
-  "apple-quota-premium": {
-    "label": "Quota Apple nella fascia premium",
-    "note": "Telefoni sopra i 600$ all'ingrosso, rilevazione Counterpoint. Era il 74% nel 2022.",
-    "opened": null,
-    "unit": "%"
-  },
-  "apple-quota-tws": {
-    "label": "Quota Apple, mercato cuffie true wireless (TWS)",
-    "note": "Rilevazione trimestrale Omdia su spedizioni, via MacMagazine.",
-    "opened": "2026-09-18",
-    "unit": "%"
-  },
-  "apple-tasse-irlanda": {
-    "label": "Tasse Apple pagate all'Irlanda, annue",
-    "note": "Include le tasse arretrate della disputa UE conclusa nel 2024; nuove disclosure imposte dalle regole UE per le grandi aziende.",
-    "opened": "2026-08-22",
-    "unit": "miliardi USD"
-  },
-  "apple-watch-quota-mercato-mondiale": {
-    "label": "Quota Apple, mercato smartwatch mondiale",
-    "unit": "%",
-    "note": "",
-    "opened": "2026-09-20"
-  },
-  "apple-watch-ultra4-autonomia": {
-    "label": "Autonomia in allenamento, Apple Watch Ultra",
-    "note": "",
-    "opened": "2026-09-10",
-    "unit": "ore"
-  },
-  "appstore-linkout-commissione": {
-    "label": "Commissione Apple sui link esterni al App Store",
-    "note": "La cifra che Apple ha proposto al tribunale distrettuale per le app standard; resta da vedere cosa fissera' la corte.",
-    "opened": "2026-08-14",
-    "unit": "%"
-  },
-  "beats-360-prezzo": {
-    "label": "Prezzo di lancio, Beats 360",
-    "unit": "USD",
-    "note": "",
-    "opened": "2026-09-23"
-  },
-  "ipad-base-ram": {
-    "label": "RAM, iPad base (2027)",
-    "unit": "GB",
-    "note": "",
-    "opened": "2026-09-27"
-  },
-  "ipad-mini-prezzo": {
-    "label": "Prezzo di partenza, iPad mini",
-    "note": "",
-    "opened": "2026-09-01",
-    "unit": "USD"
-  },
-  "iphone-duo-display-costo": {
-    "label": "Costo stimato per pannello, display pieghevole iPhone Duo",
-    "note": "Stima di un leaker Weibo (Instant Digital) senza track record consolidato; non confermata da fonti ufficiali.",
-    "opened": "2026-09-12",
-    "unit": "USD"
-  },
-  "iphone-duo-scorte-2026": {
-    "label": "Scorte globali target, iPhone Duo (2026)",
-    "unit": "unità",
-    "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News; forchetta originale 6-8 milioni, registrato l'estremo basso. Confronto: 20-30 milioni tipici per un iPhone Pro/Pro Max sull'intero ciclo.",
-    "opened": "2026-09-30"
-  },
-  "iphone-duo-spedizioni-2026": {
-    "label": "Spedizioni stimate, iPhone Duo (2026)",
-    "note": "Stima di unità spedite entro fine 2026, non il totale del primo anno di vendita (che si estende oltre dicembre).",
-    "opened": "2026-09-16",
-    "unit": "milioni"
-  },
-  "iphone-duo-yield-assemblaggio": {
-    "label": "Resa di assemblaggio finale, iPhone Duo",
-    "unit": "%",
-    "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News, non confermata da Apple.",
-    "opened": "2026-09-30"
-  },
-  "iphone-fatturato-trimestre-giugno": {
-    "label": "Fatturato iPhone, trimestre di giugno",
-    "note": "Rilevazione trimestrale Counterpoint Research sui ricavi iPhone.",
-    "opened": "2026-09-04",
-    "unit": "USD miliardi"
-  },
-  "iphone-handoff-tmobile-costo": {
-    "label": "Costo mensile iPhone Handoff, T-Mobile",
-    "unit": "USD/mese",
-    "note": "",
-    "opened": "2026-09-24"
-  },
-  "iphone-pieghevole-display": {
-    "label": "Display interno, iPhone pieghevole",
-    "note": "",
-    "opened": null,
-    "unit": "pollici"
-  },
-  "iphone-pieghevole-display-esterno": {
-    "label": "Display esterno, iPhone pieghevole",
-    "note": "",
-    "opened": "2026-09-03",
-    "unit": "pollici"
-  },
-  "iphone-pieghevole-prezzo": {
-    "label": "Prezzo stimato, iPhone pieghevole",
-    "note": "La forchetta di stima parte da qui e arriva a 2.499.",
-    "opened": null,
-    "unit": "USD"
-  },
-  "iphone-pieghevole-spedizioni-anno1": {
-    "label": "Spedizioni stimate, iPhone pieghevole (primo anno)",
-    "note": "Stima IDC via Bloomberg, spedizioni nel primo anno di disponibilita' del prodotto (non anno solare).",
-    "opened": "2026-08-27",
-    "unit": "milioni"
-  },
-  "iphone-pro-indice-riparabilita": {
-    "label": "Indice di riparabilità, iPhone Pro (etichetta UE)",
-    "note": "Autovalutazione Apple per l'etichettatura energetica UE: smontaggio, fissaggi, attrezzi, ricambi, aggiornamenti software.",
-    "opened": "2026-09-12",
-    "unit": "indice su 5"
-  },
-  "iphone-spedizioni-2026": {
-    "label": "Spedizioni iPhone, variazione 2026",
-    "note": "Stima Counterpoint Research; il mercato globale smartphone e' atteso in calo del 14,3%.",
-    "opened": "2026-08-23",
-    "unit": "%"
-  },
-  "iphone-ultra-riparazione-schermo": {
-    "label": "Costo stimato riparazione schermo, iPhone Ultra",
-    "note": "",
-    "opened": "2026-09-01",
-    "unit": "USD"
-  },
-  "iphone17-pro-prezzo": {
-    "label": "Prezzo di partenza, iPhone 17 Pro",
-    "note": "Listino americano in corso, il termine di paragone per il rincaro atteso.",
-    "opened": null,
-    "unit": "USD"
-  },
-  "iphone17-promax-batteria": {
-    "label": "Batteria, iPhone 17 Pro Max",
-    "note": "",
-    "opened": null,
-    "unit": "mAh"
-  },
-  "iphone17-quota-mondiale": {
-    "label": "Quota vendite mondiali, iPhone 17",
-    "note": "Rilevazione trimestrale Counterpoint Research sulle vendite unitarie globali di smartphone.",
-    "opened": "2026-08-27",
-    "unit": "%"
-  },
-  "iphone18-pro-batteria": {
-    "label": "Batteria, iPhone 18 Pro (eSIM)",
-    "note": "Modello americano senza carrellino SIM. L'iPhone 17 Pro equivalente e' 4.252 mAh.",
-    "opened": "2026-08-11",
-    "unit": "mAh"
-  },
-  "iphone18-pro-camera-plateau-spessore": {
-    "label": "Aumento spessore plateau fotocamera, iPhone 18 Pro",
-    "note": "Stima di un leaker Weibo sull'aumento dello spessore del pannello posteriore per il modulo fotocamera principale ingrandito.",
-    "opened": "2026-08-22",
-    "unit": "mm"
-  },
-  "iphone18-pro-prezzo": {
-    "label": "Prezzo di partenza, iPhone 18 Pro",
-    "note": "Stime degli analisti sul listino americano. L'iPhone 17 Pro parte da 1.099.",
-    "opened": null,
-    "unit": "USD"
-  },
-  "iphone18-promax-batteria": {
-    "label": "Batteria, iPhone 18 Pro Max (eSIM)",
-    "note": "Dai leak della catena di fornitura: la versione senza carrellino SIM guadagna spazio.",
-    "opened": null,
-    "unit": "mAh"
-  },
-  "iphone18-promax-prezzo": {
-    "label": "Prezzo di partenza, iPhone 18 Pro Max",
-    "note": "Stime sul listino americano. L'iPhone 17 Pro Max parte da 1.199.",
-    "opened": "2026-08-12",
-    "unit": "USD"
-  },
-  "iphone18-ram": {
-    "label": "RAM, iPhone 18 base",
-    "note": "Le stime degli analisti sono in disaccordo: Pu e Nystedt dicono 12, Kuo dice 9.",
-    "opened": "2026-08-14",
-    "unit": "GB"
-  },
-  "iphone18pro-memoria-costo-aumento": {
-    "label": "Costo memoria iPhone 18 Pro, aumento annuo",
-    "note": "Stima TrendForce sul costo della memoria per la configurazione da 256GB, terzo trimestre 2026 su base annua.",
-    "opened": "2026-09-04",
-    "unit": "%"
-  },
-  "iphone18pro-quota-cina": {
-    "label": "Quota settimanale, iPhone 18 Pro in Cina",
-    "unit": "%",
-    "note": "Quota del mercato smartphone cinese nella settimana di riferimento, da stime Counterpoint Research.",
-    "opened": "2026-10-02"
-  },
-  "iphone18pro-tagli-ordini-ottobre": {
-    "label": "Taglio ordini componenti, iPhone 18 Pro (ottobre)",
-    "unit": "%",
-    "note": "Percentuale di riduzione degli ordini ai fornitori rispetto al piano originale, variazione negativa.",
-    "opened": "2026-10-12"
-  },
-  "iphone20-pro-display": {
-    "label": "Display, iPhone 20 Pro",
-    "unit": "pollici",
-    "note": "",
-    "opened": "2026-09-22"
-  },
-  "iphone20-promax-display": {
-    "label": "Display, iPhone 20 Pro Max",
-    "unit": "pollici",
-    "note": "",
-    "opened": "2026-09-22"
-  },
-  "m5-ultra-geekbench-multicore": {
-    "label": "Punteggio multi-core Geekbench 7, M5 Ultra",
-    "note": "Benchmark pubblico sul database Geekbench, non un dato Apple.",
-    "opened": "2026-09-17",
-    "unit": "punti Geekbench 7"
-  },
-  "m5-ultra-metal-score": {
-    "label": "Punteggio Metal Geekbench 7, M5 Ultra",
-    "unit": "punti Geekbench 7 (Metal)",
-    "note": "Benchmark grafico (Metal), non il punteggio CPU multi-core.",
-    "opened": "2026-09-19"
-  },
-  "m6-metal-score": {
-    "label": "Punteggio Metal Geekbench 7, M6",
-    "unit": "punti Geekbench 7 (Metal)",
-    "note": "Benchmark grafico (Metal), non il punteggio CPU multi-core.",
-    "opened": "2026-09-19"
-  },
-  "mac-cina-crescita-annua": {
-    "label": "Crescita spedizioni Mac in Cina (anno su anno)",
-    "unit": "%",
-    "note": "",
-    "opened": "2026-09-24"
-  },
-  "mac-cina-quota": {
-    "label": "Quota Apple, mercato Mac in Cina",
-    "unit": "%",
-    "note": "",
-    "opened": "2026-09-24"
-  },
-  "mac-fatturato-trimestre-giugno": {
-    "label": "Fatturato Mac, trimestre di giugno",
-    "note": "",
-    "opened": "2026-09-01",
-    "unit": "USD miliardi"
-  },
-  "mac-mini-m6-prezzo-minimo-italia": {
-    "label": "Mac mini m6 prezzo minimo italia",
-    "unit": "EUR",
-    "note": "",
-    "opened": "2026-10-11"
-  },
-  "mac-mini-prezzo-iniziale": {
-    "label": "Prezzo di partenza, Mac mini M6",
-    "unit": "USD",
-    "note": "",
-    "opened": "2026-09-22"
-  },
-  "mac-mini-upgrade-1tb-prezzo": {
-    "label": "Costo upgrade 256GB→1TB, Mac mini M6",
-    "unit": "USD",
-    "note": "",
-    "opened": "2026-09-23"
-  },
-  "mac-spedizioni-q3-2026-idc": {
-    "label": "Mac spedizioni q3 2026 idc",
-    "unit": "milioni",
-    "note": "",
-    "opened": "2026-10-11"
-  },
-  "mac-spedizioni-q3-2026-omdia": {
-    "label": "Mac spedizioni q3 2026 omdia",
-    "unit": "milioni",
-    "note": "",
-    "opened": "2026-10-11"
-  },
-  "mac-spedizioni-trimestrali": {
-    "label": "Spedizioni Mac trimestrali (IDC)",
-    "unit": "milioni",
-    "note": "Unità di Mac spedite nel trimestre secondo IDC.",
-    "opened": "2026-10-09"
-  },
-  "mac-studio-m5ultra-256gb-prezzo": {
-    "label": "Prezzo, Mac Studio M5 Ultra 256GB RAM/1TB",
-    "unit": "USD",
-    "note": "",
-    "opened": "2026-09-25"
-  },
-  "macbookpro14-touch-prezzo": {
-    "label": "Prezzo stimato, MacBook Pro 14\" touch",
-    "note": "Prima stima editoriale (9to5Mac) per il redesign con schermo touch atteso a ottobre 2026.",
-    "opened": "2026-08-23",
-    "unit": "USD"
-  },
-  "macbookpro16-touch-prezzo": {
-    "label": "Prezzo stimato, MacBook Pro 16\" touch",
-    "note": "Prima stima editoriale (9to5Mac) per il redesign con schermo touch atteso a ottobre 2026.",
-    "opened": "2026-08-23",
-    "unit": "USD"
-  },
-  "masimo-risarcimento-totale": {
-    "label": "Risarcimento totale, causa Masimo-Apple",
-    "unit": "USD",
-    "note": "Royalty piu' interessi composti ordinati dal tribunale federale per la violazione del brevetto sulla misurazione dell'ossigeno nel sangue.",
-    "opened": "2026-10-07"
-  },
-  "memoria-dram-nand-rincaro-2026": {
-    "label": "Rincaro DRAM/NAND richiesto da Samsung ai produttori (2026)",
-    "note": "Forchetta 7-10%; si registra l'estremo basso.",
-    "opened": "2026-09-16",
-    "unit": "%"
-  },
-  "memoria-dram-nand-rincaro-2027": {
-    "label": "Rincaro DRAM/NAND concordato da Apple per il 2027",
-    "note": "Forchetta 30-40% su base annua rispetto al terzo trimestre 2026; si registra l'estremo basso. Report DigiTimes che cita Jiemian News.",
-    "opened": "2026-09-18",
-    "unit": "%"
-  },
-  "mercato-pc-spedizioni": {
-    "label": "Spedizioni PC, variazione annua",
-    "note": "Dati IDC sul trimestre. Apple e' l'unica grande in crescita.",
-    "opened": null,
-    "unit": "%"
-  },
-  "mercato-smartphone-spedizioni-2026": {
-    "label": "Spedizioni globali smartphone, variazione 2026",
-    "note": "Stima Counterpoint Research, caro-componenti (memorie e chipset).",
-    "opened": "2026-08-23",
-    "unit": "%"
-  },
-  "pc-mercato-globale-variazione": {
-    "label": "Variazione annua del mercato PC globale",
-    "unit": "%",
-    "note": "Variazione percentuale anno su anno delle spedizioni PC a livello mondiale secondo IDC.",
-    "opened": "2026-10-09"
-  },
-  "pc-prezzi-aumento-2026-stima-acer": {
-    "label": "Aumento stimato prezzi PC entro fine 2026 (Acer)",
-    "unit": "%",
-    "note": "",
-    "opened": "2026-09-24"
-  },
-  "quota-oled-notebook-avanzati-2026": {
-    "label": "Quota OLED sui notebook con display avanzati",
-    "unit": "%",
-    "note": "Quota di schermi OLED sul mercato dei display notebook avanzati (vs MiniLED), stima Counterpoint per il 2026.",
-    "opened": "2026-10-09"
-  },
-  "samsung-spedizioni-2026": {
-    "label": "Spedizioni Samsung, variazione 2026",
-    "note": "Stima Counterpoint Research; Samsung tornerebbe primo produttore mondiale.",
-    "opened": "2026-08-23",
-    "unit": "%"
-  },
-  "siri-settlement-payout-base": {
-    "label": "Rimborso base per iPhone, settlement Siri AI",
-    "unit": "USD",
-    "note": "Base 25$/iPhone idoneo, puo salire fino a 95$ se le richieste sono meno del previsto (class action lancio Siri AI).",
-    "opened": "2026-09-21"
-  },
-  "smartphone-prezzo-medio-2026": {
-    "label": "Prezzo medio di vendita, smartphone globale",
-    "note": "Stima IDC (Worldwide Quarterly Mobile Phone Tracker); la stima di tre mesi prima si fermava a 550 dollari.",
-    "opened": "2026-08-28",
-    "unit": "USD"
-  },
-  "taptic-engine-risarcimento": {
-    "label": "Risarcimento Taction vs Apple (Taptic Engine)",
-    "unit": "USD",
-    "note": "Verdetto della giuria federale del 25 settembre 2026; Apple ha annunciato ricorso.",
-    "opened": "2026-09-29"
-  }
+ "a20-pro-efficienza": {
+  "label": "Efficienza energetica, A20 Pro vs A19 Pro",
+  "note": "Guadagno dichiarato dalle fonti della catena di fornitura. Primo chip Apple a 2 nm.",
+  "opened": "2026-08-18",
+  "unit": "%"
+ },
+ "ai-glasses-spedizioni-crescita": {
+  "label": "Crescita spedizioni occhiali AI (anno su anno)",
+  "unit": "%",
+  "note": "Counterpoint Research, primo semestre 2026 su base annua.",
+  "opened": "2026-09-23"
+ },
+ "airpods-repairability-score": {
+  "label": "Punteggio di riparabilità iFixit, AirPods",
+  "unit": "/10",
+  "note": "Sale o scende a ogni nuova generazione con il teardown iFixit; tutte le generazioni precedenti alle AirPods 5 avevano preso 0/10.",
+  "opened": "2026-09-30"
+ },
+ "app-store-ricavi-usa": {
+  "label": "Ricavi da commissioni App Store USA, variazione annua",
+  "note": "Primo semestre 2026. Stima di analisti, non un dato di bilancio Apple dedicato a questa voce.",
+  "opened": "2026-08-19",
+  "unit": "%"
+ },
+ "apple-azione-record-intraday": {
+  "label": "Record intraday, azione Apple",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-09-23"
+ },
+ "apple-card-savings-apy": {
+  "label": "Tasso annuo, conto di risparmio Apple Card",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-09-23"
+ },
+ "apple-intelligence-spazio-minimo-avanzato": {
+  "label": "Spazio libero richiesto da Apple Intelligence sui modelli con funzioni avanzate",
+  "unit": "GB",
+  "note": "",
+  "opened": "2026-09-20"
+ },
+ "apple-pay-commissioni-annue-stima": {
+  "label": "Commissioni Apple Pay incassate ogni anno (stima accusa)",
+  "unit": "USD",
+  "note": "Cifra allegata dalla class action contro Apple, non un dato verificato.",
+  "opened": "2026-09-26"
+ },
+ "apple-quota-europa": {
+  "label": "Quota Apple, mercato smartphone Europa",
+  "note": "Rilevazione trimestrale Counterpoint Research su spedizioni; era al 25% un anno prima di questa lettura.",
+  "opened": "2026-08-21",
+  "unit": "%"
+ },
+ "apple-quota-europa-operatori": {
+  "label": "Quota Apple, canale operatore Europa",
+  "unit": "%",
+  "note": "Rilevazione trimestrale Counterpoint Research sulle vendite tramite operatore telefonico, distinta dal mercato libero.",
+  "opened": "2026-10-07"
+ },
+ "apple-quota-pieghevoli-2026": {
+  "label": "Quota Apple, mercato pieghevoli 2026",
+  "note": "Stima Counterpoint Research su spedizioni pieghevoli nell'anno del debutto dell'iPhone pieghevole.",
+  "opened": "2026-08-27",
+  "unit": "%"
+ },
+ "apple-quota-pieghevoli-2027": {
+  "label": "Quota Apple, mercato pieghevoli 2027",
+  "note": "Stima IDC (Nabila Popal) via Bloomberg su spedizioni pieghevoli mondiali nel 2027, secondo anno di presenza Apple sul mercato.",
+  "opened": "2026-08-31",
+  "unit": "%"
+ },
+ "apple-quota-pieghevoli-2030": {
+  "label": "Quota Apple, mercato pieghevoli 2030",
+  "note": "Stima Counterpoint Research su spedizioni pieghevoli, crescita cumulata dalla base 2026 al 2030.",
+  "opened": "2026-09-12",
+  "unit": "%"
+ },
+ "apple-quota-premium": {
+  "label": "Quota Apple nella fascia premium",
+  "note": "Telefoni sopra i 600$ all'ingrosso, rilevazione Counterpoint. Era il 74% nel 2022.",
+  "opened": null,
+  "unit": "%"
+ },
+ "apple-quota-smartphone-mondiale": {
+  "label": "Quota Apple, mercato smartphone mondiale",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-10-13"
+ },
+ "apple-quota-tws": {
+  "label": "Quota Apple, mercato cuffie true wireless (TWS)",
+  "note": "Rilevazione trimestrale Omdia su spedizioni, via MacMagazine.",
+  "opened": "2026-09-18",
+  "unit": "%"
+ },
+ "apple-tasse-irlanda": {
+  "label": "Tasse Apple pagate all'Irlanda, annue",
+  "note": "Include le tasse arretrate della disputa UE conclusa nel 2024; nuove disclosure imposte dalle regole UE per le grandi aziende.",
+  "opened": "2026-08-22",
+  "unit": "miliardi USD"
+ },
+ "apple-watch-quota-mercato-mondiale": {
+  "label": "Quota Apple, mercato smartwatch mondiale",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-09-20"
+ },
+ "apple-watch-ultra4-autonomia": {
+  "label": "Autonomia in allenamento, Apple Watch Ultra",
+  "note": "",
+  "opened": "2026-09-10",
+  "unit": "ore"
+ },
+ "appstore-linkout-commissione": {
+  "label": "Commissione Apple sui link esterni al App Store",
+  "note": "La cifra che Apple ha proposto al tribunale distrettuale per le app standard; resta da vedere cosa fissera' la corte.",
+  "opened": "2026-08-14",
+  "unit": "%"
+ },
+ "beats-360-prezzo": {
+  "label": "Prezzo di lancio, Beats 360",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-09-23"
+ },
+ "homeview-prezzo-stimato": {
+  "label": "Prezzo stimato, HomeView",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-10-13"
+ },
+ "ipad-base-ram": {
+  "label": "RAM, iPad base (2027)",
+  "unit": "GB",
+  "note": "",
+  "opened": "2026-09-27"
+ },
+ "ipad-mini-prezzo": {
+  "label": "Prezzo di partenza, iPad mini",
+  "note": "",
+  "opened": "2026-09-01",
+  "unit": "USD"
+ },
+ "iphone-duo-display-costo": {
+  "label": "Costo stimato per pannello, display pieghevole iPhone Duo",
+  "note": "Stima di un leaker Weibo (Instant Digital) senza track record consolidato; non confermata da fonti ufficiali.",
+  "opened": "2026-09-12",
+  "unit": "USD"
+ },
+ "iphone-duo-scorte-2026": {
+  "label": "Scorte globali target, iPhone Duo (2026)",
+  "unit": "unità",
+  "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News; forchetta originale 6-8 milioni, registrato l'estremo basso. Confronto: 20-30 milioni tipici per un iPhone Pro/Pro Max sull'intero ciclo.",
+  "opened": "2026-09-30"
+ },
+ "iphone-duo-spedizioni-2026": {
+  "label": "Spedizioni stimate, iPhone Duo (2026)",
+  "note": "Stima di unità spedite entro fine 2026, non il totale del primo anno di vendita (che si estende oltre dicembre).",
+  "opened": "2026-09-16",
+  "unit": "milioni"
+ },
+ "iphone-duo-yield-assemblaggio": {
+  "label": "Resa di assemblaggio finale, iPhone Duo",
+  "unit": "%",
+  "note": "Stima da fonte anonima della filiera Foxconn/Jiemian News, non confermata da Apple.",
+  "opened": "2026-09-30"
+ },
+ "iphone-fatturato-trimestre-giugno": {
+  "label": "Fatturato iPhone, trimestre di giugno",
+  "note": "Rilevazione trimestrale Counterpoint Research sui ricavi iPhone.",
+  "opened": "2026-09-04",
+  "unit": "USD miliardi"
+ },
+ "iphone-handoff-tmobile-costo": {
+  "label": "Costo mensile iPhone Handoff, T-Mobile",
+  "unit": "USD/mese",
+  "note": "",
+  "opened": "2026-09-24"
+ },
+ "iphone-pieghevole-display": {
+  "label": "Display interno, iPhone pieghevole",
+  "note": "",
+  "opened": null,
+  "unit": "pollici"
+ },
+ "iphone-pieghevole-display-esterno": {
+  "label": "Display esterno, iPhone pieghevole",
+  "note": "",
+  "opened": "2026-09-03",
+  "unit": "pollici"
+ },
+ "iphone-pieghevole-prezzo": {
+  "label": "Prezzo stimato, iPhone pieghevole",
+  "note": "La forchetta di stima parte da qui e arriva a 2.499.",
+  "opened": null,
+  "unit": "USD"
+ },
+ "iphone-pieghevole-spedizioni-anno1": {
+  "label": "Spedizioni stimate, iPhone pieghevole (primo anno)",
+  "note": "Stima IDC via Bloomberg, spedizioni nel primo anno di disponibilita' del prodotto (non anno solare).",
+  "opened": "2026-08-27",
+  "unit": "milioni"
+ },
+ "iphone-pro-indice-riparabilita": {
+  "label": "Indice di riparabilità, iPhone Pro (etichetta UE)",
+  "note": "Autovalutazione Apple per l'etichettatura energetica UE: smontaggio, fissaggi, attrezzi, ricambi, aggiornamenti software.",
+  "opened": "2026-09-12",
+  "unit": "indice su 5"
+ },
+ "iphone-spedizioni-2026": {
+  "label": "Spedizioni iPhone, variazione 2026",
+  "note": "Stima Counterpoint Research; il mercato globale smartphone e' atteso in calo del 14,3%.",
+  "opened": "2026-08-23",
+  "unit": "%"
+ },
+ "iphone-ultra-riparazione-schermo": {
+  "label": "Costo stimato riparazione schermo, iPhone Ultra",
+  "note": "",
+  "opened": "2026-09-01",
+  "unit": "USD"
+ },
+ "iphone17-pro-prezzo": {
+  "label": "Prezzo di partenza, iPhone 17 Pro",
+  "note": "Listino americano in corso, il termine di paragone per il rincaro atteso.",
+  "opened": null,
+  "unit": "USD"
+ },
+ "iphone17-promax-batteria": {
+  "label": "Batteria, iPhone 17 Pro Max",
+  "note": "",
+  "opened": null,
+  "unit": "mAh"
+ },
+ "iphone17-quota-mondiale": {
+  "label": "Quota vendite mondiali, iPhone 17",
+  "note": "Rilevazione trimestrale Counterpoint Research sulle vendite unitarie globali di smartphone.",
+  "opened": "2026-08-27",
+  "unit": "%"
+ },
+ "iphone18-pro-batteria": {
+  "label": "Batteria, iPhone 18 Pro (eSIM)",
+  "note": "Modello americano senza carrellino SIM. L'iPhone 17 Pro equivalente e' 4.252 mAh.",
+  "opened": "2026-08-11",
+  "unit": "mAh"
+ },
+ "iphone18-pro-camera-plateau-spessore": {
+  "label": "Aumento spessore plateau fotocamera, iPhone 18 Pro",
+  "note": "Stima di un leaker Weibo sull'aumento dello spessore del pannello posteriore per il modulo fotocamera principale ingrandito.",
+  "opened": "2026-08-22",
+  "unit": "mm"
+ },
+ "iphone18-pro-prezzo": {
+  "label": "Prezzo di partenza, iPhone 18 Pro",
+  "note": "Stime degli analisti sul listino americano. L'iPhone 17 Pro parte da 1.099.",
+  "opened": null,
+  "unit": "USD"
+ },
+ "iphone18-promax-batteria": {
+  "label": "Batteria, iPhone 18 Pro Max (eSIM)",
+  "note": "Dai leak della catena di fornitura: la versione senza carrellino SIM guadagna spazio.",
+  "opened": null,
+  "unit": "mAh"
+ },
+ "iphone18-promax-prezzo": {
+  "label": "Prezzo di partenza, iPhone 18 Pro Max",
+  "note": "Stime sul listino americano. L'iPhone 17 Pro Max parte da 1.199.",
+  "opened": "2026-08-12",
+  "unit": "USD"
+ },
+ "iphone18-ram": {
+  "label": "RAM, iPhone 18 base",
+  "note": "Le stime degli analisti sono in disaccordo: Pu e Nystedt dicono 12, Kuo dice 9.",
+  "opened": "2026-08-14",
+  "unit": "GB"
+ },
+ "iphone18pro-memoria-costo-aumento": {
+  "label": "Costo memoria iPhone 18 Pro, aumento annuo",
+  "note": "Stima TrendForce sul costo della memoria per la configurazione da 256GB, terzo trimestre 2026 su base annua.",
+  "opened": "2026-09-04",
+  "unit": "%"
+ },
+ "iphone18pro-quota-cina": {
+  "label": "Quota settimanale, iPhone 18 Pro in Cina",
+  "unit": "%",
+  "note": "Quota del mercato smartphone cinese nella settimana di riferimento, da stime Counterpoint Research.",
+  "opened": "2026-10-02"
+ },
+ "iphone18pro-tagli-ordini-ottobre": {
+  "label": "Taglio ordini componenti, iPhone 18 Pro (ottobre)",
+  "unit": "%",
+  "note": "Percentuale di riduzione degli ordini ai fornitori rispetto al piano originale, variazione negativa.",
+  "opened": "2026-10-12"
+ },
+ "iphone20-pro-display": {
+  "label": "Display, iPhone 20 Pro",
+  "unit": "pollici",
+  "note": "",
+  "opened": "2026-09-22"
+ },
+ "iphone20-promax-display": {
+  "label": "Display, iPhone 20 Pro Max",
+  "unit": "pollici",
+  "note": "",
+  "opened": "2026-09-22"
+ },
+ "m5-ultra-geekbench-multicore": {
+  "label": "Punteggio multi-core Geekbench 7, M5 Ultra",
+  "note": "Benchmark pubblico sul database Geekbench, non un dato Apple.",
+  "opened": "2026-09-17",
+  "unit": "punti Geekbench 7"
+ },
+ "m5-ultra-metal-score": {
+  "label": "Punteggio Metal Geekbench 7, M5 Ultra",
+  "unit": "punti Geekbench 7 (Metal)",
+  "note": "Benchmark grafico (Metal), non il punteggio CPU multi-core.",
+  "opened": "2026-09-19"
+ },
+ "m6-chip-cpu-core": {
+  "label": "Core CPU, chip M6",
+  "unit": "core",
+  "note": "",
+  "opened": "2026-10-13"
+ },
+ "m6-chip-gpu-core": {
+  "label": "Core GPU, chip M6",
+  "unit": "core",
+  "note": "",
+  "opened": "2026-10-13"
+ },
+ "m6-metal-score": {
+  "label": "Punteggio Metal Geekbench 7, M6",
+  "unit": "punti Geekbench 7 (Metal)",
+  "note": "Benchmark grafico (Metal), non il punteggio CPU multi-core.",
+  "opened": "2026-09-19"
+ },
+ "mac-cina-crescita-annua": {
+  "label": "Crescita spedizioni Mac in Cina (anno su anno)",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-09-24"
+ },
+ "mac-cina-quota": {
+  "label": "Quota Apple, mercato Mac in Cina",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-09-24"
+ },
+ "mac-fatturato-trimestre-giugno": {
+  "label": "Fatturato Mac, trimestre di giugno",
+  "note": "",
+  "opened": "2026-09-01",
+  "unit": "USD miliardi"
+ },
+ "mac-mini-m6-prezzo-minimo-italia": {
+  "label": "Mac mini m6 prezzo minimo italia",
+  "unit": "EUR",
+  "note": "",
+  "opened": "2026-10-11"
+ },
+ "mac-mini-prezzo-iniziale": {
+  "label": "Prezzo di partenza, Mac mini M6",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-09-22"
+ },
+ "mac-mini-upgrade-1tb-prezzo": {
+  "label": "Costo upgrade 256GB→1TB, Mac mini M6",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-09-23"
+ },
+ "mac-spedizioni-q3-2026-idc": {
+  "label": "Mac spedizioni q3 2026 idc",
+  "unit": "milioni",
+  "note": "",
+  "opened": "2026-10-11"
+ },
+ "mac-spedizioni-q3-2026-omdia": {
+  "label": "Mac spedizioni q3 2026 omdia",
+  "unit": "milioni",
+  "note": "",
+  "opened": "2026-10-11"
+ },
+ "mac-spedizioni-trimestrali": {
+  "label": "Spedizioni Mac trimestrali (IDC)",
+  "unit": "milioni",
+  "note": "Unità di Mac spedite nel trimestre secondo IDC.",
+  "opened": "2026-10-09"
+ },
+ "mac-studio-m5ultra-256gb-prezzo": {
+  "label": "Prezzo, Mac Studio M5 Ultra 256GB RAM/1TB",
+  "unit": "USD",
+  "note": "",
+  "opened": "2026-09-25"
+ },
+ "macbookpro14-touch-prezzo": {
+  "label": "Prezzo stimato, MacBook Pro 14\" touch",
+  "note": "Prima stima editoriale (9to5Mac) per il redesign con schermo touch atteso a ottobre 2026.",
+  "opened": "2026-08-23",
+  "unit": "USD"
+ },
+ "macbookpro16-touch-prezzo": {
+  "label": "Prezzo stimato, MacBook Pro 16\" touch",
+  "note": "Prima stima editoriale (9to5Mac) per il redesign con schermo touch atteso a ottobre 2026.",
+  "opened": "2026-08-23",
+  "unit": "USD"
+ },
+ "masimo-risarcimento-totale": {
+  "label": "Risarcimento totale, causa Masimo-Apple",
+  "unit": "USD",
+  "note": "Royalty piu' interessi composti ordinati dal tribunale federale per la violazione del brevetto sulla misurazione dell'ossigeno nel sangue.",
+  "opened": "2026-10-07"
+ },
+ "memoria-dram-nand-rincaro-2026": {
+  "label": "Rincaro DRAM/NAND richiesto da Samsung ai produttori (2026)",
+  "note": "Forchetta 7-10%; si registra l'estremo basso.",
+  "opened": "2026-09-16",
+  "unit": "%"
+ },
+ "memoria-dram-nand-rincaro-2027": {
+  "label": "Rincaro DRAM/NAND concordato da Apple per il 2027",
+  "note": "Forchetta 30-40% su base annua rispetto al terzo trimestre 2026; si registra l'estremo basso. Report DigiTimes che cita Jiemian News.",
+  "opened": "2026-09-18",
+  "unit": "%"
+ },
+ "mercato-pc-spedizioni": {
+  "label": "Spedizioni PC, variazione annua",
+  "note": "Dati IDC sul trimestre. Apple e' l'unica grande in crescita.",
+  "opened": null,
+  "unit": "%"
+ },
+ "mercato-smartphone-calo-q3-2026": {
+  "label": "Mercato smartphone mondiale, variazione Q3 2026",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-10-13"
+ },
+ "mercato-smartphone-spedizioni-2026": {
+  "label": "Spedizioni globali smartphone, variazione 2026",
+  "note": "Stima Counterpoint Research, caro-componenti (memorie e chipset).",
+  "opened": "2026-08-23",
+  "unit": "%"
+ },
+ "pc-mercato-globale-variazione": {
+  "label": "Variazione annua del mercato PC globale",
+  "unit": "%",
+  "note": "Variazione percentuale anno su anno delle spedizioni PC a livello mondiale secondo IDC.",
+  "opened": "2026-10-09"
+ },
+ "pc-prezzi-aumento-2026-stima-acer": {
+  "label": "Aumento stimato prezzi PC entro fine 2026 (Acer)",
+  "unit": "%",
+  "note": "",
+  "opened": "2026-09-24"
+ },
+ "quota-oled-notebook-avanzati-2026": {
+  "label": "Quota OLED sui notebook con display avanzati",
+  "unit": "%",
+  "note": "Quota di schermi OLED sul mercato dei display notebook avanzati (vs MiniLED), stima Counterpoint per il 2026.",
+  "opened": "2026-10-09"
+ },
+ "samsung-spedizioni-2026": {
+  "label": "Spedizioni Samsung, variazione 2026",
+  "note": "Stima Counterpoint Research; Samsung tornerebbe primo produttore mondiale.",
+  "opened": "2026-08-23",
+  "unit": "%"
+ },
+ "siri-settlement-payout-base": {
+  "label": "Rimborso base per iPhone, settlement Siri AI",
+  "unit": "USD",
+  "note": "Base 25$/iPhone idoneo, puo salire fino a 95$ se le richieste sono meno del previsto (class action lancio Siri AI).",
+  "opened": "2026-09-21"
+ },
+ "smartphone-prezzo-medio-2026": {
+  "label": "Prezzo medio di vendita, smartphone globale",
+  "note": "Stima IDC (Worldwide Quarterly Mobile Phone Tracker); la stima di tre mesi prima si fermava a 550 dollari.",
+  "opened": "2026-08-28",
+  "unit": "USD"
+ },
+ "taptic-engine-risarcimento": {
+  "label": "Risarcimento Taction vs Apple (Taptic Engine)",
+  "unit": "USD",
+  "note": "Verdetto della giuria federale del 25 settembre 2026; Apple ha annunciato ricorso.",
+  "opened": "2026-09-29"
+ }
 }
