@@ -52,7 +52,34 @@
    "link": "https://www.macrumors.com/guide/apple-welcome-home-product-recap/",
    "approfondimento": {
     "punto": "Apple apre oggi l'autunno dei prodotti per la casa: HomeView, Apple TV 4K e HomePod mini insieme sul palco, ma non sullo stesso scaffale — il debutto si allunga fino a metà novembre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "Il calendario dell'autunno della casa",
+      "didascalia": "Oggi la rivelazione, il 27-28 ottobre il palco di Los Angeles, il 30 ottobre lo scaffale per Apple TV 4K e HomePod mini: HomeView arriva solo a meta' novembre.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "centro": "Quattro passaggi, non uno",
+      "obiettivo": "HomeView in vendita",
+      "eventi": [
+       {
+        "data": "2026-10-13",
+        "etichetta": "Rivelazione (oggi)"
+       },
+       {
+        "data": "2026-10-27",
+        "etichetta": "Evento Los Angeles"
+       },
+       {
+        "data": "2026-10-30",
+        "etichetta": "Apple TV 4K e HomePod mini in vendita"
+       },
+       {
+        "data": "2026-11",
+        "etichetta": "HomeView in vendita"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Secondo Gurman, HomeView arriva in due versioni — da appoggio, con base-altoparlante orientabile, in quattro colori, e da parete, in due — con chip A18, 8GB di RAM, display touch quadrato da 6 pollici, sensore di presenza e Face ID per riconoscere chi è vicino. Non avrà un App Store apribile a sviluppatori: solo app Apple selezionate, con i widget di terze parti proiettati da un iPhone vicino. Prezzo stimato intorno ai 350 dollari.",
      "Il nuovo Apple TV 4K porta il chip A19, il chip N1 (Wi-Fi 7, Bluetooth 6, Thread), un nuovo Siri Remote con altoparlante incorporato e un microfono nel box per Siri AI. HomePod mini passa al chip S10, UWB di seconda generazione, lo stesso N1, e nuovi colori a 129 dollari, prezzo invariato. Apple TV 4K e HomePod mini arrivano il 30 ottobre; HomeView solo a metà novembre. Gli accessori «Apple Home Collection» con LG completano la linea."
@@ -105,7 +132,13 @@
       "perche": "I quattro colori e il design «stile iMac G4» dell'hub."
      }
     ],
-    "scritto": "2026-10-13"
+    "scritto": "2026-10-13",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-13/welcome-home-oggi-evento-d988c20caf46.mp3",
+     "durata": 159,
+     "voce": "kore",
+     "impronta": "d988c20caf46"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -153,7 +186,63 @@
    "link": "https://www.macrumors.com/2026/10/12/new-macs-and-ipad-mini-in-los-angeles/",
    "approfondimento": {
     "punto": "Il prossimo salto hardware di Apple non è un keynote: due giorni a porte quasi chiuse a Los Angeles per mostrare a dei creator MacBook Pro OLED, iMac M6 e iPad mini.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Stessa data, chip diversi",
+      "didascalia": "Il 27-28 ottobre arrivano insieme quattro prodotti, ma non tutti sullo stesso chip: i MacBook Pro OLED restano su M5 Pro/Max, gli altri tre salgono a M6 o A20 Pro.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "periodi": [
+       "27-28 ottobre 2026"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro OLED 14\"/16\"",
+        "tappe": [
+         {
+          "quando": "27-28 ott",
+          "chip": "M5 Pro / M5 Max",
+          "stato": "previsto",
+          "nota": "non M6 Pro come si pensava"
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro 14\" base",
+        "tappe": [
+         {
+          "quando": "27-28 ott",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "design attuale, non OLED"
+         }
+        ]
+       },
+       {
+        "nome": "iMac 24\"",
+        "tappe": [
+         {
+          "quando": "27-28 ott",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "nuovi colori"
+         }
+        ]
+       },
+       {
+        "nome": "iPad mini 8",
+        "tappe": [
+         {
+          "quando": "27-28 ott",
+          "chip": "A20 Pro",
+          "stato": "previsto",
+          "nota": "schermo OLED, circa 799 dollari"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Gurman descrive un evento per creator, non in streaming, il 27 e 28 ottobre a Los Angeles. Il pezzo forte è il MacBook Pro OLED touchscreen da 14 e 16 pollici: chip M5 Pro e M5 Max (non M6 Pro, come ipotizzato in passato), Dynamic Island, un design «significativamente più leggero» e un possibile modem C1X o C2. È il primo MacBook Pro con schermo touch e il redesign più ampio della linea da anni.",
      "Accanto, un iMac da 24 pollici con chip M6 e nuovi colori, un MacBook Pro 14 pollici base con M6 e il design attuale (non OLED), e l'iPad mini 8 con schermo OLED, chip A20 Pro, fotocamera frontale orizzontale, nuovo sistema audio e resistenza all'acqua — Gurman lo stima vicino ai 799 dollari, 200 in più dell'attuale. Nello stesso periodo arriva anche un Mac Studio con 512GB di RAM. Per Gurman è «l'ultimo grande lancio Apple del 2026»."
@@ -194,7 +283,13 @@
       "perche": "Perché Apple sceglie i creator invece di una diretta streaming."
      }
     ],
-    "scritto": "2026-10-13"
+    "scritto": "2026-10-13",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-13/evento-27-28-ottobre-los-angeles-e594180aa5bc.mp3",
+     "durata": 143,
+     "voce": "kore",
+     "impronta": "e594180aa5bc"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -242,7 +337,45 @@
    "link": "https://9to5mac.com/2026/10/12/apple-has-reportedly-increased-its-iphone-duo-orders-by-30/",
    "approfondimento": {
     "punto": "Tre fonti, tre numeri diversi sulla domanda iPhone 18: Securities Times vede gli ordini Duo in crescita del 30%, Nikkei parlava di tagli, JPMorgan di una domanda più forte del 17 Pro.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Tre fonti, tre letture della domanda",
+      "didascalia": "Securities Times vede il Duo in forte crescita e i Pro Max in rialzo; Nikkei e JPMorgan raccontano una domanda piu' debole o piu' forte sugli stessi iPhone 18. Nessuna fonte e' Apple.",
+      "fonte": "Securities Times, Nikkei Asia, JPMorgan",
+      "unita": "% variazione stimata",
+      "voci": [
+       {
+        "etichetta": "iPhone Duo (target fornitura)",
+        "min": 30,
+        "max": 30,
+        "colore": "giallo",
+        "nota": "Securities Times: verso 10 milioni di unita', da 6-7 milioni"
+       },
+       {
+        "etichetta": "iPhone 18 Pro Max (ordini)",
+        "min": 10,
+        "max": 15,
+        "colore": "blu",
+        "nota": "Securities Times"
+       },
+       {
+        "etichetta": "iPhone 18 Pro (ordini)",
+        "min": -15,
+        "max": -10,
+        "colore": "nero",
+        "nota": "Securities Times"
+       },
+       {
+        "etichetta": "Componenti ottobre, intera linea (Nikkei)",
+        "min": -15,
+        "max": -15,
+        "colore": "nero",
+        "nota": "Nikkei Asia: taglio di almeno il 15%, domanda piu debole del previsto"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Securities Times (Cina) scrive che Apple ha alzato del 30% il target di fornitura 2026 per iPhone Duo, vicino ai 10 milioni di unità contro una stima precedente di 6-7 milioni. Nello stesso report, gli ordini di iPhone 18 Pro Max salgono del 10-15%, quelli di iPhone 18 Pro scendono del 10-15%: il totale della linea Pro resta invariato. Preordine Duo dal 16 ottobre, lancio il 23.",
      "Il quadro contrasta con Nikkei Asia, che due giorni fa scriveva di un taglio di almeno il 15% degli ordini di componenti di ottobre per domanda più debole del previsto, e con JPMorgan, che vede la domanda per iPhone 18 Pro più forte di quella per il 17 Pro un anno fa e mantiene un target di prezzo di 360 dollari sul titolo. Tre fonti, tre letture diverse della stessa domanda."
@@ -287,7 +420,13 @@
       "perche": "Il report di due giorni fa che questa notizia contraddice in parte."
      }
     ],
-    "scritto": "2026-10-13"
+    "scritto": "2026-10-13",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-13/iphone-duo-ordini-vs-18pro-domanda-4ab1837d434f.mp3",
+     "durata": 149,
+     "voce": "kore",
+     "impronta": "4ab1837d434f"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -365,7 +504,13 @@
       "perche": "Il dato Counterpoint nel dettaglio, con il confronto fra produttori."
      }
     ],
-    "scritto": "2026-10-13"
+    "scritto": "2026-10-13",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-13/iphone-quota-record-mercato-crollo-31eb83843220.mp3",
+     "durata": 113,
+     "voce": "kore",
+     "impronta": "31eb83843220"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -413,7 +558,37 @@
    "link": "https://9to5mac.com/2026/10/12/m6-macbook-pro-three-new-upgrades-launching-this-fall/",
    "approfondimento": {
     "punto": "Il primo chip Apple a 2 nanometri raddoppia il Neural Engine e porta per la prima volta i super core fuori dalla fascia Pro: è già nel Mac mini, arriva su MacBook Pro e iMac entro fine mese.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "M6, strato per strato",
+      "strati": [
+       {
+        "nome": "Neural Engine, 16 core doppio",
+        "colore": "giallo",
+        "nota": "Fino al doppio del compute di picco delle generazioni precedenti."
+       },
+       {
+        "nome": "CPU, 12 core",
+        "colore": "blu",
+        "nota": "2 super core, 4 performance, 6 efficiency: prima volta che i super core arrivano su un chip base, non Pro o Max."
+       },
+       {
+        "nome": "GPU, 12 core",
+        "colore": "ink-3",
+        "nota": "Contro i 10 core della generazione precedente."
+       },
+       {
+        "nome": "Processo produttivo, 2 nanometri",
+        "colore": "nero",
+        "nota": "Primo chip Apple su questo processo: un passo avanti nell'efficienza energetica."
+       }
+      ],
+      "invito": "Tocca uno strato per leggere il dettaglio.",
+      "didascalia": "Specifiche ufficiali Apple per il nuovo Mac mini: il primo chip base con i super core, finora riservati a Pro e Max.",
+      "fonte": "Apple (specifiche ufficiali del Mac mini)"
+     }
+    ],
     "sotto": [
      "Le specifiche ufficiali, pubblicate da Apple per il nuovo Mac mini, descrivono un Neural Engine doppio da 16 core, fino al doppio del compute di picco delle generazioni precedenti, una CPU a 12 core (2 super core, 4 performance, 6 efficiency — la prima volta che i super core arrivano su un chip «base», non Pro o Max) e una GPU a 12 core, contro i 10 della generazione precedente.",
      "È anche il primo chip Apple costruito su processo a 2 nanometri, un passo avanti importante nell'efficienza energetica. Il M6 è già nel Mac mini, senza batteria da gestire; su MacBook Pro e MacBook Air potrebbe tradursi in autonomia maggiore. Il lancio sugli altri Mac è atteso entro fine mese, legato all'evento del 27 ottobre."
@@ -444,7 +619,13 @@
       "perche": "Le specifiche complete del chip M6 spiegate da Apple."
      }
     ],
-    "scritto": "2026-10-13"
+    "scritto": "2026-10-13",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-13/chip-m6-specifiche-neural-engine-1a466c032891.mp3",
+     "durata": 115,
+     "voce": "kore",
+     "impronta": "1a466c032891"
+    }
    },
    "verifica": {
     "testate": 1,
