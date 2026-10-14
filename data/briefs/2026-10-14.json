@@ -109,7 +109,29 @@
    ],
    "approfondimento": {
     "punto": "Apple abbandona il nome in codice «HomePad» e lancia HomeView a 299 dollari, con Apple TV 4K e HomePod mini 2: la sua scommessa più seria sulla casa intelligente dopo gli anni modesti di HomeKit.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "Quanto doveva costare HomeView, e quanto costa",
+      "didascalia": "Le stime circolate a inizio ottobre parlavano di un prezzo più alto; il comunicato Apple del 13 ottobre lo fissa a 299 dollari.",
+      "fonte": "Stime riprese da 9to5Mac a inizio ottobre; prezzo ufficiale da Apple Newsroom",
+      "unita": "USD",
+      "punti": [
+       {
+        "data": "2026-10",
+        "valore": 350,
+        "tipo": "stima",
+        "fonte": "stime circolate a inizio ottobre"
+       },
+       {
+        "data": "2026-10-14",
+        "valore": 299,
+        "tipo": "dato",
+        "fonte": "Apple Newsroom"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il prezzo di HomeView (299 dollari) è più basso della stima di 350 dollari circolata a inizio ottobre, ma la data di uscita — 13 novembre — arriva un mese dopo Apple TV 4K e HomePod mini 2, in vendita dal 30 ottobre. Apple TV 4K porta il chip A19, Wi-Fi 7 e tre microfoni per usare Siri senza telecomando; il Siri Remote, venduto a parte a 59 dollari, ora si localizza con un altoparlante e supporta il Precision Finding.",
      "Il HomePod mini 2 ha il chip S10, cinque colori e il pannello superiore «Sound Glow», che cambia colore seguendo la copertina dell'album e pulsa a tempo di musica. È il primo dei tre a uscire, il 30 ottobre, ma è anche il solo senza Siri AI al debutto: scrive Apple che arriverà «in un futuro aggiornamento software»."
@@ -169,7 +191,13 @@
       "perche": "Quanto costa rompere HomeView, con e senza AppleCare+."
      }
     ],
-    "scritto": "2026-10-14"
+    "scritto": "2026-10-14",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-14/homeview-appletv4k-homepodmini2-ufficiali-2ae533a0e46a.mp3",
+     "durata": 154,
+     "voce": "kore",
+     "impronta": "2ae533a0e46a"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -229,7 +257,39 @@
    ],
    "approfondimento": {
     "punto": "HomeView non ha Face ID: riconosce chi hai in casa solo tramite un iPhone o iPad abbinato, sulla stessa rete Wi-Fi e sbloccato di recente. E non ha un App Store proprio: le app arrivano dall'iPhone, come con CarPlay.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Come HomeView riconosce chi hai in casa",
+      "didascalia": "Niente Face ID: il riconoscimento passa da un iPhone o iPad abbinato, vicino e sbloccato di recente. Senza, anche con l'Apple Watch al polso, HomeView non riconosce nessuno.",
+      "fonte": "9to5Mac e MacRumors, dal comunicato Apple",
+      "passi": [
+       {
+        "titolo": "iPhone o iPad abbinato nelle vicinanze",
+        "nota": "Fino a sei persone registrate per casa"
+       },
+       {
+        "titolo": "Stessa rete Wi-Fi",
+        "nota": "Il dispositivo deve stare sulla stessa rete di HomeView"
+       },
+       {
+        "titolo": "Sbloccato di recente, Apple Intelligence attivo",
+        "nota": "È la condizione che fa scattare il riconoscimento"
+       },
+       {
+        "titolo": "Voce e volto riconosciuti",
+        "nota": "Ciascuno associato al proprio iPhone o iPad"
+       }
+      ],
+      "rottura": {
+       "dopo": "solo un Apple Watch al polso, senza iPhone o iPad vicino",
+       "senza": "nessun iPhone o iPad abbinato nelle vicinanze",
+       "etichetta": "Nessun riconoscimento",
+       "nota": "HomeView non riconosce nessuno, nemmeno chi porta l'Apple Watch"
+      },
+      "azione": "Le app arrivano allo stesso modo: proiettate dall'iPhone o iPad collegato, come CarPlay — niente App Store proprio."
+     }
+    ],
     "sotto": [
      "Il meccanismo spiega anche un limite pratico: senza un iPhone o iPad nelle vicinanze — sbloccato di recente, sulla stessa rete Wi-Fi, con Apple Intelligence attivo — HomeView non riconosce nessuno, nemmeno chi ha un Apple Watch al polso. Fino a sei persone registrate per casa, ciascuna con la propria voce e il proprio volto associati al proprio iPhone.",
      "Sul fronte software, Apple ha scelto di non costruire un App Store dedicato: le app di terze parti — a partire da Spotify e Audible, già compatibili perché pensate per CarPlay — vengono proiettate dall'iPhone o iPad collegato quando è nelle vicinanze. Gli sviluppatori possono «estendere» il supporto video, ma la base resta audio."
@@ -276,7 +336,13 @@
       "perche": "Perché il nome rumoreggiato per un anno non esiste più."
      }
     ],
-    "scritto": "2026-10-14"
+    "scritto": "2026-10-14",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-14/homeview-riconoscimento-no-app-store-58d8b261df94.mp3",
+     "durata": 137,
+     "voce": "kore",
+     "impronta": "58d8b261df94"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -369,7 +435,13 @@
       "perche": "Il profilo di Tang Yew Tan e il contesto del progetto hardware OpenAI."
      }
     ],
-    "scritto": "2026-10-14"
+    "scritto": "2026-10-14",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-14/apple-openai-discovery-accelerata-bf86c8c96f20.mp3",
+     "durata": 129,
+     "voce": "kore",
+     "impronta": "bf86c8c96f20"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -399,7 +471,26 @@
    ],
    "approfondimento": {
     "punto": "Apple non contesta solo l'importo: dice che la giuria ha dovuto indovinare, perché Taction non ha mai messo un numero sul valore reale della sua tecnologia.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "flusso",
+      "titolo": "Il verdetto da 5,7 miliardi, se venisse pagato per intero",
+      "didascalia": "Oltre ad Apple e Taction, nel verdetto c'è un terzo soggetto: Burford Capital, il finanziatore della causa, che incasserebbe una quota se la cifra fosse confermata. Apple ha fatto ricorso: lo schema resta un'ipotesi.",
+      "fonte": "9to5Mac; dichiarazioni di Burford Capital di fine settembre 2026",
+      "oggi": {
+       "etichetta": "Oggi: verdetto sotto ricorso",
+       "centro": "Tribunale",
+       "incassa": "Nessuno: Apple ha fatto ricorso, i 5,7 miliardi non sono stati pagati",
+       "nota": "Apple: la giuria ha dovuto indovinare, senza un numero sul valore reale della tecnologia Taction."
+      },
+      "agente": {
+       "etichetta": "Ipotesi: verdetto confermato e pagato per intero",
+       "centro": "Taction",
+       "incassa": "Burford Capital incassa 1,4 miliardi di dollari",
+       "nota": "Le azioni di Burford sono salite del 9,4% a fine settembre quando ha rivelato questo diritto."
+      }
+     }
+    ],
     "sotto": [
      "Il verdetto di settembre riguarda due brevetti di Taction sui trasduttori tattili — la tecnologia dietro la vibrazione del Taptic Engine. Apple ha già annunciato ricorso il 28 settembre; la mozione di oggi è il primo documento che spiega nel dettaglio gli argomenti: l'esperto sui danni di Taction escluso dal processo, poi bandito dalla testimonianza, e un perito tecnico accusato di un test taroccato.",
      "Sul mercato, il verdetto ha già mosso altri attori: le azioni di Burford Capital, il finanziatore della causa, sono salite del 9,4% a fine settembre quando l'azienda ha rivelato di avere diritto a 1,4 miliardi di dollari se il verdetto da 5,7 miliardi verrà pagato per intero — un indizio di quanto, al di là del ricorso di Apple, ci sia in gioco anche per chi ha finanziato la causa."
@@ -436,7 +527,13 @@
       "perche": "Le citazioni complete della mozione legale di Apple."
      }
     ],
-    "scritto": "2026-10-14"
+    "scritto": "2026-10-14",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-14/apple-taction-ricorso-verdetto-212f583cd801.mp3",
+     "durata": 142,
+     "voce": "kore",
+     "impronta": "212f583cd801"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -483,7 +580,45 @@
    ],
    "approfondimento": {
     "punto": "La foto globale di ieri (Apple al 22%, record) e quella cinese di oggi raccontano due storie diverse: fuori dalla Cina Apple vince il trimestre peggiore in 14 anni, dentro la Cina è Huawei a vincerlo.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Cina: la quota di Apple e di Huawei, un anno dopo",
+      "didascalia": "In un mercato cinese che si restringe (-15,4% annuo), Huawei cresce di quota più di Apple: dal 15,2% al 21,1%, contro il 15,8%-17,8% di Apple.",
+      "fonte": "IDC, via 9to5Mac",
+      "unita": "% quota di mercato",
+      "voci": [
+       {
+        "etichetta": "Apple, un anno fa",
+        "min": 15.8,
+        "max": 15.8,
+        "colore": "nero",
+        "nota": "Q3 2025"
+       },
+       {
+        "etichetta": "Apple, oggi",
+        "min": 17.8,
+        "max": 17.8,
+        "colore": "blu",
+        "nota": "Q3 2026"
+       },
+       {
+        "etichetta": "Huawei, un anno fa",
+        "min": 15.2,
+        "max": 15.2,
+        "colore": "nero",
+        "nota": "Q3 2025"
+       },
+       {
+        "etichetta": "Huawei, oggi",
+        "min": 21.1,
+        "max": 21.1,
+        "colore": "giallo",
+        "nota": "Q3 2026, +17,3% annuo"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il mercato cinese degli smartphone è sceso del 15,4% anno su anno nel terzo trimestre. Apple cresce comunque di quota (17,8%, dal 15,8%) ma le sue spedizioni scendono — segno che la crescita di quota viene da un mercato che si restringe più in fretta per gli altri, non da una domanda in aumento per iPhone.",
      "Huawei è l'anomalia: +17,3% annuo e 21,1% di quota, il massimo da quando è tornata a vendere chip propri dopo le sanzioni USA. Il dato trimestrale va letto con cautela — Huawei perde il 17,6% rispetto al trimestre precedente — ma anno su anno è lei, non Apple, a guidare la classifica cinese."
@@ -517,7 +652,13 @@
       "perche": "Tutti i numeri IDC, marchio per marchio."
      }
     ],
-    "scritto": "2026-10-14"
+    "scritto": "2026-10-14",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-14/apple-cina-huawei-trimestre-277e6b04cdbb.mp3",
+     "durata": 132,
+     "voce": "kore",
+     "impronta": "277e6b04cdbb"
+    }
    },
    "verifica": {
     "testate": 1,
