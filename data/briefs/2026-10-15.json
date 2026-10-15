@@ -36,7 +36,31 @@
    ],
    "approfondimento": {
     "punto": "Non è solo un numero tondo: arriva un mese dopo l'inizio di Ternus come CEO, mentre molte altre big tech perdevano valore nella stessa seduta.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Chi vale più di 5.000 miliardi",
+      "didascalia": "Apple è la seconda azienda a chiudere le contrattazioni sopra i 5.000 miliardi di dollari di capitalizzazione, dopo Nvidia.",
+      "fonte": "Wall Street Journal; MacRumors; 9to5Mac",
+      "unita": "miliardi di $",
+      "voci": [
+       {
+        "etichetta": "Apple",
+        "min": 5005,
+        "max": 5010,
+        "colore": "nero",
+        "nota": "342,96$/azione: 5.005 mld secondo MacRumors, 5,01 secondo 9to5Mac"
+       },
+       {
+        "etichetta": "Nvidia",
+        "min": 5330,
+        "max": 5330,
+        "colore": "arancio",
+        "nota": "Prima a sfondare i 5.000 miliardi, resta avanti"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Apple ha toccato i 5.000 miliardi di capitalizzazione altre sei volte solo durante la seduta nelle settimane scorse, ma ieri è la prima volta che chiude le contrattazioni sopra quella soglia: 342,96 dollari per azione, 5,005 miliardi di dollari secondo MacRumors (5,01 secondo 9to5Mac). È la seconda azienda a riuscirci dopo Nvidia, che resta avanti a 5,33 miliardi.",
      "La giornata racconta anche un mercato nervoso: Oracle ha perso l'8,8%, Meta il 3,3%, Nvidia il 3,2%. Apple ha retto meglio, in una settimana dominata da iPhone Duo (i preordini aprono il 16 ottobre) e dalla causa con OpenAI, che si fa più dura proprio oggi."
@@ -67,7 +91,13 @@
       "perche": "Il prezzo esatto per azione e le sei volte toccate intraday."
      }
     ],
-    "scritto": "2026-10-15"
+    "scritto": "2026-10-15",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-15/apple-chiude-sopra-5000-miliardi-264c57d82fec.mp3",
+     "durata": 105,
+     "voce": "kore",
+     "impronta": "264c57d82fec"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -135,7 +165,13 @@
       "perche": "Il pezzo con i dettagli dell'accusa e la citazione del giudice Davila."
      }
     ],
-    "scritto": "2026-10-15"
+    "scritto": "2026-10-15",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-15/apple-openai-ex-dipendente-dispositivo-segreto-b116d1a801e9.mp3",
+     "durata": 117,
+     "voce": "kore",
+     "impronta": "b116d1a801e9"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -180,7 +216,49 @@
    },
    "approfondimento": {
     "punto": "Due anni dopo il primo rinvio, Apple Intelligence arriva in Cina — ma con Siri AI ancora fuori, proprio come nella UE.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Apple Intelligence, due blocchi regolatori",
+      "didascalia": "Cina e Unione Europea tengono Apple Intelligence fuori, con tempi e motivi diversi.",
+      "fonte": "Bloomberg; South China Morning Post",
+      "periodi": [
+       "Set 2026",
+       "Dic 2026",
+       "2026, senza data"
+      ],
+      "linee": [
+       {
+        "nome": "Cina",
+        "tappe": [
+         {
+          "quando": "2026-09",
+          "chip": "Permesso modelli Alibaba",
+          "stato": "dato",
+          "nota": "Il regolatore cinese autorizza Apple a usare modelli locali al posto dei propri"
+         },
+         {
+          "quando": "2026-12",
+          "chip": "iOS 27.3 - Apple Intelligence",
+          "stato": "previsto",
+          "nota": "Senza Siri AI né Image Playground; su Genmoji le fonti si contraddicono"
+         }
+        ]
+       },
+       {
+        "nome": "Unione Europea",
+        "tappe": [
+         {
+          "quando": "2026",
+          "chip": "Siri AI",
+          "stato": "saltato",
+          "nota": "Apple dice di lavorare \"costruttivamente\" con la UE, ancora senza una data"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Secondo Bloomberg, Apple lancerà Apple Intelligence in Cina a dicembre con iOS 27.3, dopo due anni di ritardo regolatorio. Mancheranno Siri AI e Image Playground; su Genmoji le fonti si contraddicono (assente per MacRumors, incluso per 9to5Mac). Il 29 settembre Apple ha ottenuto il permesso di usare i modelli cinesi Alibaba al posto dei propri; il South China Morning Post conferma il via libera regolatorio.",
      "iPhone Duo arriva in Cina la settimana prossima, prima ancora di Apple Intelligence. Lo stesso giorno, nelle note su HomeView, Apple ha detto di lavorare «costruttivamente» con la UE per Siri AI: Cina ed Europa sono oggi gli stessi due blocchi regolatori che la tengono fuori da Apple Intelligence."
@@ -221,7 +299,13 @@
       "perche": "La fonte originaria Bloomberg e il contesto regolatorio cinese."
      }
     ],
-    "scritto": "2026-10-15"
+    "scritto": "2026-10-15",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-15/apple-intelligence-cina-dicembre-ios27-3-eb541b36a5bb.mp3",
+     "durata": 114,
+     "voce": "kore",
+     "impronta": "eb541b36a5bb"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -262,7 +346,35 @@
    ],
    "approfondimento": {
     "punto": "Le tariffe di riparazione raccontano quanto sia delicato — e caro da rompere — iPhone Duo: fino a 1.499 dollari senza assicurazione.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Quanto costa rompere iPhone Duo",
+      "didascalia": "Le tariffe di riparazione fuori garanzia, e quanto si risparmia con AppleCare+ attivo.",
+      "fonte": "Pagina di supporto Apple",
+      "passi": [
+       {
+        "titolo": "Vetro posteriore o batteria",
+        "nota": "199$ il vetro posteriore, 229$ la batteria, senza AppleCare+"
+       },
+       {
+        "titolo": "\"Altri danni\"",
+        "nota": "Fino a 1.499$ senza AppleCare+"
+       },
+       {
+        "titolo": "Nano-texture sul display interno",
+        "nota": "Il nuovo strato anti-riflesso, rivelato da Kate Bergeron (VP hardware engineering Apple)"
+       }
+      ],
+      "rottura": {
+       "dopo": "Con AppleCare+ attivo (19,99$/mese, 199,99$/anno o 399$ in anticipo)",
+       "senza": "Senza AppleCare+",
+       "etichetta": "Nano-texture: 49$ invece di 19$",
+       "nota": "Con l'abbonamento: furto o perdita 149$, batteria gratis, display esterno 29$, interno 99$"
+      },
+      "azione": "Attiva AppleCare+"
+     }
+    ],
     "sotto": [
      "Apple ha pubblicato le tariffe di riparazione fuori garanzia di iPhone Duo: fino a 1.499 dollari per «altri danni» senza AppleCare+, 199 per il vetro posteriore, 229 per la batteria. Debutta un nuovo strato nano-texture sopra il display interno — rivelato da Kate Bergeron, VP hardware engineering di Apple — che costa 49 dollari da riparare senza AppleCare+ e 19 con l'abbonamento.",
      "AppleCare+ per iPhone Duo costa 19,99 dollari al mese, 199,99 all'anno o 399 in anticipo, e abbassa sensibilmente i costi: furto o perdita a 149 dollari, batteria gratis, display esterno a 29, interno a 99. iPhone Duo parte da 1.999 dollari, fino a 3.199 per il modello 2TB; preordini venerdì 16 ottobre, lancio il 23."
@@ -295,7 +407,13 @@
       "perche": "Il confronto diretto fra i costi con e senza AppleCare+."
      }
     ],
-    "scritto": "2026-10-15"
+    "scritto": "2026-10-15",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-15/iphone-duo-costi-riparazione-3360ce477d36.mp3",
+     "durata": 113,
+     "voce": "kore",
+     "impronta": "3360ce477d36"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -323,7 +441,41 @@
    ],
    "approfondimento": {
     "punto": "Apple mette ordine su chi ha davvero Siri AI in casa: serve un iPhone con Apple Intelligence, resta in inglese, e non arriva nella UE.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Dove funziona Siri AI, e dove no",
+      "didascalia": "Conversazione d'esempio: Siri AI richiede un iPhone o iPad con Apple Intelligence nelle vicinanze, resta in beta e solo in inglese, e non arriva nella Unione Europea.",
+      "fonte": "Pagina di supporto Apple",
+      "contatto": "Siri AI",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Hey Siri, [una richiesta con contesto personale]"
+       },
+       {
+        "da": "agente",
+        "testo": "Serve un iPhone o iPad con Apple Intelligence attivo, vicino a HomeView, Apple TV 4K o HomePod mini 2"
+       },
+       {
+        "da": "tu",
+        "testo": "Lo chiedo dal Regno Unito, in inglese"
+       },
+       {
+        "da": "agente",
+        "testo": "Disponibile (beta): al lancio solo in inglese, in USA, Regno Unito, Australia, Canada, India, Nuova Zelanda, Singapore e Sudafrica"
+       },
+       {
+        "da": "tu",
+        "testo": "E se sono nella Unione Europea?"
+       },
+       {
+        "da": "agente",
+        "testo": "Non disponibile: Siri AI non arriva nella UE, e nemmeno HomeView ci si lancia"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Apple ha chiarito, smentendo un report di CNET sul HomePod mini di prima generazione, quali device hanno Siri AI e quando. Per abilitarla su HomeView, Apple TV 4K o HomePod mini 2 serve un iPhone o iPad con Apple Intelligence attivo nell'app Casa; HomeView da solo non lo richiede, tranne per le richieste con contesto personale.",
      "Siri AI resta solo in inglese, disponibile al lancio solo in Stati Uniti, Australia, Canada, India, Nuova Zelanda, Singapore, Sudafrica e Regno Unito, e resta in beta. Nella Unione Europea non arriva — e nemmeno HomeView ci lancia: lo stesso vincolo regolatorio che tiene Siri AI fuori dalla Cina (vedi notizia sopra)."
@@ -353,7 +505,13 @@
       "perche": "Il chiarimento device per device, con la smentita del report CNET."
      }
     ],
-    "scritto": "2026-10-15"
+    "scritto": "2026-10-15",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-15/siri-ai-quali-device-quando-a16be3f9f976.mp3",
+     "durata": 109,
+     "voce": "kore",
+     "impronta": "a16be3f9f976"
+    }
    },
    "verifica": {
     "testate": 1,
