@@ -5651,9 +5651,93 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/apple-chiude-sopra-5000-miliardi",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/apple-invites-gestione-ospiti",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/apple-maps-austin-detailed-city-f1",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/apple-openai-ex-dipendente-dispositivo-segreto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/homepod-2-altoparlante-default-mac",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/homeview-supporto-app-video-carplay",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/ios27-2-beta-4-sviluppatori",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/ios27-nuovi-widget-home-screen",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/iphone-duo-costi-riparazione",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/iphone18-base-produzione-novembre",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/macbook-12-pollici-obsoleto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/macbook-brevetto-rifiniture-antiurto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/otto-stati-usa-causa-openai-minori",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-15/siri-ai-quali-device-quando",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-15T04:48:36",
+ "pulled": "2026-10-16T04:54:49",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -5730,15 +5814,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "BGR",
-   "verso": "declassa",
-   "su": 2,
-   "giu": 16,
-   "scarto": -0.14,
-   "nota": "fonte «BGR»: aperta 2 volte su 18, sotto la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "Engadget",
    "verso": "declassa",
    "su": 0,
@@ -5796,9 +5871,18 @@
    "valore": "SERVIZIO",
    "verso": "declassa",
    "su": 12,
-   "giu": 75,
+   "giu": 79,
    "scarto": -0.13,
-   "nota": "tag «SERVIZIO»: aperta 12 volte su 87, sotto la media"
+   "nota": "tag «SERVIZIO»: aperta 12 volte su 91, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "BGR",
+   "verso": "declassa",
+   "su": 2,
+   "giu": 16,
+   "scarto": -0.13,
+   "nota": "fonte «BGR»: aperta 2 volte su 18, sotto la media"
   },
   {
    "asse": "fonte",
@@ -5891,13 +5975,13 @@
    "nota": "fonte «Kotaku»: aperta 0 volte su 4, sotto la media"
   },
   {
-   "asse": "categoria",
-   "valore": "iphone",
+   "asse": "tag",
+   "valore": "ANALISI",
    "verso": "promuovi",
-   "su": 38,
-   "giu": 53,
+   "su": 20,
+   "giu": 21,
    "scarto": 0.1,
-   "nota": "categoria «iphone»: aperta 38 volte su 91, sopra la media"
+   "nota": "tag «ANALISI»: aperta 20 volte su 41, sopra la media"
   },
   {
    "asse": "banco",
@@ -5907,6 +5991,15 @@
    "giu": 6,
    "scarto": 0.1,
    "nota": "banco «confronto»: aperta 5 volte su 11, sopra la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "iphone",
+   "verso": "promuovi",
+   "su": 38,
+   "giu": 53,
+   "scarto": 0.11,
+   "nota": "categoria «iphone»: aperta 38 volte su 91, sopra la media"
   },
   {
    "asse": "fonte",
@@ -5922,9 +6015,9 @@
    "valore": "iSpazio",
    "verso": "promuovi",
    "su": 28,
-   "giu": 38,
+   "giu": 39,
    "scarto": 0.11,
-   "nota": "fonte «iSpazio»: aperta 28 volte su 66, sopra la media"
+   "nota": "fonte «iSpazio»: aperta 28 volte su 67, sopra la media"
   },
   {
    "asse": "fonte",
@@ -5968,7 +6061,7 @@
    "verso": "promuovi",
    "su": 9,
    "giu": 5,
-   "scarto": 0.2,
+   "scarto": 0.21,
    "nota": "fonte «Apple Newsroom»: aperta 9 volte su 14, sopra la media"
   },
   {
@@ -5977,7 +6070,7 @@
    "verso": "promuovi",
    "su": 11,
    "giu": 6,
-   "scarto": 0.24,
+   "scarto": 0.25,
    "nota": "categoria «iphone duo»: aperta 11 volte su 17, sopra la media"
   },
   {
@@ -5986,7 +6079,7 @@
    "verso": "promuovi",
    "su": 7,
    "giu": 8,
-   "scarto": 0.33,
+   "scarto": 0.34,
    "nota": "fonte «Android Authority»: aperta 7 volte su 15, sopra la media"
   },
   {
