@@ -58,7 +58,55 @@
    ],
    "approfondimento": {
     "punto": "L'invito conferma quanto Gurman riportava: un evento di due giorni. Resta aperto se gli annunci arrivino il 27 o il 28, e se il MacBook Pro touch arrivi in negozio lo stesso giorno o solo il 6 novembre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Il salto di chip che manca",
+      "didascalia": "Il nuovo MacBook Pro OLED touch arriva ancora con M5 Pro/Max: Apple salta la generazione M6 Pro/Max su questo modello e passa direttamente a M7, previsto solo a fine 2027.",
+      "fonte": "Mark Gurman (Bloomberg), via MacRumors e 9to5Mac",
+      "periodi": [
+       "M5 Pro/Max",
+       "M6",
+       "M7 Pro/Max"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro touch 14\"",
+        "tappe": [
+         {
+          "quando": "oggi",
+          "chip": "M5 Pro/Max",
+          "stato": "attuale",
+          "nota": "Il MacBook Pro OLED touch monta ancora questo chip"
+         },
+         {
+          "quando": "28 ott 2026",
+          "chip": "M6 Pro/Max",
+          "stato": "saltato",
+          "nota": "Apple salta questa generazione sul modello touch"
+         },
+         {
+          "quando": "fine 2027",
+          "chip": "M7 Pro/Max",
+          "stato": "previsto",
+          "nota": "Prossimo salto di chip previsto"
+         }
+        ]
+       },
+       {
+        "nome": "iMac e MacBook Pro 14\" entry-level",
+        "tappe": [
+         {
+          "quando": "28 ott 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "Annuncio il 28 ottobre a Los Angeles"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Gli inviti ufficiali confermano quanto Gurman riportava da giorni: un evento a Los Angeles dedicato a MacBook Pro OLED touchscreen, iPad mini OLED e Mac con chip M6 (un MacBook Pro 14\" entry-level e un iMac). Il MacBook Pro OLED touch, pero', non porta i nuovi chip M6 Pro o Max: Apple li avrebbe saltati del tutto su questo modello, passando dagli M5 Pro/Max attuali direttamente agli M7 Pro/Max, previsti solo a fine 2027.",
      "MacRumors riporta un'indicazione separata di Gurman, al podcast: il MacBook Pro touchscreen potrebbe arrivare in vendita solo il 6 novembre, non il 28 ottobre — un \"floor reset\" negli Apple Store fra il 5 e il 6 novembre ne sarebbe l'indizio. Il copione e' lo stesso visto con HomeView: annuncio e disponibilita' commerciale non coincidono quasi mai."
@@ -111,7 +159,13 @@
       "perche": "Perche' questo MacBook Pro resta sugli M5 Pro/Max."
      }
     ],
-    "scritto": "2026-10-16"
+    "scritto": "2026-10-16",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-16/apple-evento-28-ottobre-los-angeles-3b18ab69add3.mp3",
+     "durata": 157,
+     "voce": "kore",
+     "impronta": "3b18ab69add3"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -192,7 +246,13 @@
       "perche": "Il riepilogo audio della giornata sulla causa, in contesto."
      }
     ],
-    "scritto": "2026-10-16"
+    "scritto": "2026-10-16",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-16/apple-risposta-openai-dipendente-rientrato-28775729a58f.mp3",
+     "durata": 141,
+     "voce": "kore",
+     "impronta": "28775729a58f"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -233,7 +293,35 @@
    ],
    "approfondimento": {
     "punto": "Il preordine si gioca su minuti: la finestra «Get Ready» chiude la notte prima negli USA, e in Italia conviene avere pronta anche l'alternativa Amazon.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "La corsa ai minuti del preordine",
+      "didascalia": "Il preordine di iPhone Duo si gioca su minuti: chi non completa «Get Ready» entro mezzanotte (ora della costa est USA) rischia scorte finite, mentre in Italia conviene avere pronta anche Amazon.",
+      "fonte": "iSpazio (Italia), 9to5Mac (USA)",
+      "passi": [
+       {
+        "titolo": "Get Ready (USA)",
+        "nota": "Pre-compila il checkout entro le 21:00 PT di giovedì (mezzanotte ET)"
+       },
+       {
+        "titolo": "Preordine apre",
+        "nota": "8:00 ET / 5:00 PT negli USA venerdì; 14:00 in Italia"
+       },
+       {
+        "titolo": "Vendita in negozio",
+        "nota": "23 ottobre in Italia, una settimana dopo"
+       }
+      ],
+      "rottura": {
+       "dopo": "la finestra Get Ready si chiude",
+       "senza": "il checkout pre-compilato",
+       "etichetta": "scorte finite",
+       "nota": "Entrambe le fonti segnalano scorte limitate: chi non prepara il checkout rischia di restare senza"
+      },
+      "azione": "Completa Get Ready prima di mezzanotte ET"
+     }
+    ],
     "sotto": [
      "In Italia i preordini apriranno oggi alle 14:00, con la vendita nei negozi fisici che comincia una settimana dopo, il 23 ottobre. Prezzi: 2.369 euro per 256GB, 2.619 per 512GB, 3.119 per 1TB, 3.869 per 2TB, nei due colori Bianco stellare e Cielo notturno. iSpazio consiglia di avere pronta anche Amazon come canale alternativo, con pagamento a 12 rate senza interessi, anche se le consegne lì seguono tempi propri.",
      "Negli USA il preordine apre alle 8:00 ET (5:00 PT) di venerdì; chi vuole la spedizione più rapida completa entro le 21:00 PT di giovedì (mezzanotte ET) la funzione «Get Ready», che pre-compila il checkout. Entrambe le fonti segnalano scorte limitate. I modelli in vendita avranno iOS 27.1 build 24A94232, ma Apple ha già pubblicato la 24A94425 — probabile un aggiornamento ad attenderli il giorno stesso."
@@ -282,7 +370,13 @@
       "perche": "La finestra «Get Ready» per non perdere la consegna più rapida."
      }
     ],
-    "scritto": "2026-10-16"
+    "scritto": "2026-10-16",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-16/iphone-duo-preordini-oggi-481ddfbd789e.mp3",
+     "durata": 147,
+     "voce": "kore",
+     "impronta": "481ddfbd789e"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -378,7 +472,13 @@
       "perche": "Cosa intende Apple per un'AI pensata per la gente comune."
      }
     ],
-    "scritto": "2026-10-16"
+    "scritto": "2026-10-16",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-16/ternus-time-cover-new-era-a011b87b6978.mp3",
+     "durata": 124,
+     "voce": "kore",
+     "impronta": "a011b87b6978"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -425,7 +525,31 @@
    ],
    "approfondimento": {
     "punto": "Samsung resta primo per appena 500mila unità su 57 milioni: un divario quasi nullo, nel trimestre in cui il mercato smartphone mondiale ha avuto il calo più forte di sempre.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Il distacco minimo di un trimestre da record",
+      "didascalia": "Samsung resta primo per appena 500 mila unità su 57 milioni spedite: il margine più stretto degli ultimi trimestri, in un mercato che crolla del 22% per il caro-memoria (+350%).",
+      "fonte": "IDC (Nabila Popal), via 9to5Mac",
+      "unita": "milioni di unità",
+      "voci": [
+       {
+        "etichetta": "Samsung",
+        "min": 57.8,
+        "max": 57.8,
+        "colore": "blu",
+        "nota": "Quota 22,6%, -5,8% annuo"
+       },
+       {
+        "etichetta": "Apple",
+        "min": 57.3,
+        "max": 57.3,
+        "colore": "nero",
+        "nota": "Il calo più piccolo dei primi cinque produttori, -4% annuo"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "IDC fotografa un terzo trimestre durissimo: il mercato smartphone mondiale è calato del 22% su base annua, il calo più forte mai registrato. Samsung resta primo con 57,8 milioni di unità spedite (quota 22,6%, in calo del 5,8% sull'anno prima); Apple segue a 57,3 milioni, un distacco di sole 500mila unità. Apple ha il calo più piccolo fra i primi cinque produttori (-4% annuo sulle spedizioni iPhone); Oppo il peggiore, -34,5%.",
      "La causa, dice Nabila Popal di IDC, e' la carenza di memoria: \"Memory costs have surged approximately 350% since last year and are still rising\", anche se il ritmo sequenziale rallenta rispetto al 50-100% dei trimestri scorsi. Il suo avvertimento: \"the market has not yet reached the bottom\". In Cina, dove IDC aveva riferito pochi giorni fa, Apple e' salita dal 15,8% al 17,8% di quota pur con un calo del 4,3% nelle spedizioni di iPhone."
@@ -473,7 +597,13 @@
       "perche": "Il dato Counterpoint di tre giorni prima, per confronto."
      }
     ],
-    "scritto": "2026-10-16"
+    "scritto": "2026-10-16",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-16/idc-q3-samsung-apple-500mila-unita-ded0284b35c5.mp3",
+     "durata": 165,
+     "voce": "kore",
+     "impronta": "ded0284b35c5"
+    }
    },
    "verifica": {
     "testate": 1,
