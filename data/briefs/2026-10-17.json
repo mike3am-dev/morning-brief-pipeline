@@ -46,7 +46,29 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "La domanda per iPhone Duo supera quello che Apple si aspettava: bastano poche ore di preordine per esaurire le scorte fino a fine gennaio 2027, con un mercato di rivendita che paga già 1.800 dollari sopra listino.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Il prezzo del bagarinaggio",
+      "voci": [
+       {
+        "etichetta": "Night Sky 2TB",
+        "min": 3199,
+        "max": 5000,
+        "nota": "Listino 3.199$, rivenduta a 5.000$ su eBay"
+       },
+       {
+        "etichetta": "Night Sky 1TB",
+        "min": 2599,
+        "max": 4400,
+        "nota": "Listino 2.599$, rivenduta a 4.400$ su eBay"
+       }
+      ],
+      "unita": "USD",
+      "didascalia": "Su eBay le due configurazioni Night Sky di iPhone Duo si rivendono già molto sopra il prezzo di listino Apple.",
+      "fonte": "Max Tech (inserzioni eBay); listino Apple"
+     }
+    ],
     "sotto": [
      "Apple aveva già rivisto al rialzo l'obiettivo di produzione: a metà ottobre Securities Times parlava di un aumento del 30%, verso quota 10 milioni di unità per il 2026 — oltre le 6-7 milioni stimate da Jeff Pu a inizio mese. Le scorte restano concentrate nei primi giorni: ai preordini apertisi ieri, il sito Apple mostra consegne che slittano al 22-25 gennaio 2027 in tutti i mercati controllati, qualunque sia colore o taglio di memoria scelto.",
      "Il segnale più chiaro arriva dal mercato secondario: su eBay la configurazione Night Sky da 2TB, listino 3.199 dollari, è già rivenduta a 5.000; quella da 1TB sale da 2.599 a 4.400. Apple, interpellata da CNBC, parla di domanda “nothing short of extraordinary” e promette di continuare ad accettare ordini online — ma non dice quando la produzione raggiungerà la domanda."
@@ -95,7 +117,13 @@
       "perche": "I numeri del mercato di rivendita, configurazione per configurazione."
      }
     ],
-    "scritto": "2026-10-17"
+    "scritto": "2026-10-17",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-17/iphone-duo-domanda-extraordinaria-acbcf969aa05.mp3",
+     "durata": 157,
+     "voce": "kore",
+     "impronta": "acbcf969aa05"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -137,7 +165,35 @@
    ],
    "approfondimento": {
     "punto": "Apple aggiorna per la prima volta in modo esplicito le regole dell'App Store contro le immagini intime generate con l'AI senza consenso, dopo mesi di polemiche su Grok e su servizi “nudify” mascherati.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Come funzionava il bait-and-switch",
+      "passi": [
+       {
+        "titolo": "L'app si presenta pulita",
+        "nota": "Supera la revisione con funzioni dichiarate e codice leggibile."
+       },
+       {
+        "titolo": "Apple la approva",
+        "nota": "L'app entra nello store con le funzioni mostrate in revisione."
+       },
+       {
+        "titolo": "Dopo il via libera cambia",
+        "nota": "Sblocca comportamenti diversi, a volte con codice offuscato per non farsi notare."
+       }
+      ],
+      "rottura": {
+       "dopo": "lo sblocco nascosto",
+       "senza": "la sezione 2.5.19",
+       "etichetta": "La nuova regola",
+       "nota": "Da oggi il bait-and-switch è motivo esplicito di rifiuto o rimozione."
+      },
+      "azione": "Apple aggiorna le App Review Guidelines",
+      "didascalia": "La sezione 2.5.19 vieta esplicitamente alle app di cambiare comportamento dopo l'approvazione.",
+      "fonte": "Apple Developer (App Review Guidelines)"
+     }
+    ],
     "sotto": [
      "La sezione 1.2 delle App Review Guidelines cita ora esplicitamente le immagini intime non consensuali generate con l'intelligenza artificiale come motivo di rifiuto o rimozione. La nuova sezione 2.5.19 proibisce invece funzioni nascoste o non documentate — il bait-and-switch: un'app che si presenta in un modo e poi sblocca comportamenti diversi dopo l'approvazione, anche tramite codice offuscato per evitare i controlli automatici di Apple.",
      "Il contesto è denso: Apple avrebbe avvertito privatamente xAI durante la polemica su Grok, un caso a San Francisco ha portato alla rimozione di otto app “nudify” camuffate a luglio, e 9to5Mac aveva già documentato app di gambling mascherate da altro genere. Apple scrive di aver bloccato oltre 150.000 app con problemi di sicurezza nell'ultimo anno e chiuso più di 193.000 account sviluppatore per frode e abuso."
@@ -170,7 +226,13 @@
       "perche": "Il testo originale, nel linguaggio diretto di Apple."
      }
     ],
-    "scritto": "2026-10-17"
+    "scritto": "2026-10-17",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-17/app-store-regole-nudify-bait-switch-aedaeeb64213.mp3",
+     "durata": 120,
+     "voce": "kore",
+     "impronta": "aedaeeb64213"
+    }
    },
    "verifica": {
     "testate": 4,
@@ -199,7 +261,29 @@
    "thread": "quote-mercato",
    "approfondimento": {
     "punto": "Apple guadagna terreno nel complesso — pieghevoli compresi — ma il quadro si sgrana prodotto per prodotto: iPhone 18 Pro divide gli analisti, iPhone Duo fatica a tenere il passo della domanda.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "La quota Apple nei pieghevoli sale",
+      "punti": [
+       {
+        "data": "2026-09",
+        "valore": 25,
+        "tipo": "stima",
+        "fonte": "Counterpoint"
+       },
+       {
+        "data": "2026-10-17",
+        "valore": 27,
+        "tipo": "stima",
+        "fonte": "Counterpoint"
+       }
+      ],
+      "unita": "%",
+      "didascalia": "Counterpoint ha rivisto al rialzo, in un mese, la quota attesa di Apple nei pannelli pieghevoli per il 2026.",
+      "fonte": "Counterpoint"
+     }
+    ],
     "sotto": [
      "La quota di Apple nel mercato dei pannelli pieghevoli sale al 27% nel 2026, in crescita rispetto al 25% stimato da Counterpoint a settembre, mentre il mercato smartphone globale resta il più debole di sempre: -22% nel terzo trimestre secondo IDC, dopo un già pesante -20% nel trimestre precedente. È lo sfondo su cui si gioca il lancio di iPhone Duo.",
      "Sui singoli prodotti le stime divergono: Nikkei vede tagli alla produzione di iPhone 18 Pro, mentre JPMorgan stima una domanda più forte del modello 17 Pro dello scorso anno. Su iPhone Duo, la domanda definita “straordinaria” da Apple si scontra con scorte che si esauriscono in poche ore — un problema di produzione, non di interesse dei clienti."
@@ -244,7 +328,13 @@
       "perche": "Il dato IDC del giorno prima, base di questo report."
      }
     ],
-    "scritto": "2026-10-17"
+    "scritto": "2026-10-17",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-17/apple-quota-pieghevoli-mercato-sfide-4019fd5b6665.mp3",
+     "durata": 142,
+     "voce": "kore",
+     "impronta": "4019fd5b6665"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -308,7 +398,13 @@
       "perche": "Uno dei fascicoli che la squadra di Tucker si trova in eredità."
      }
     ],
-    "scritto": "2026-10-17"
+    "scritto": "2026-10-17",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-17/apple-scott-tucker-contenzioso-globale-96dea92875c8.mp3",
+     "durata": 94,
+     "voce": "kore",
+     "impronta": "96dea92875c8"
+    }
    },
    "verifica": {
     "testate": 1,
