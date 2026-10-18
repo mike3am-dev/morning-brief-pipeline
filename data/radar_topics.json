@@ -62,8 +62,8 @@
  },
  "auto-elettriche": {
   "down": 1,
-  "last": "2026-10-14",
-  "seen": 10,
+  "last": "2026-10-17",
+  "seen": 11,
   "since": "2026-09-24",
   "state": "in prova",
   "up": 0,
@@ -95,8 +95,8 @@
  },
  "capitali-ai": {
   "down": 0,
-  "last": "2026-10-10",
-  "seen": 7,
+  "last": "2026-10-17",
+  "seen": 8,
   "since": "2026-10-02",
   "state": "in prova",
   "up": 0,
@@ -240,14 +240,15 @@
  },
  "regolamentazione-tech": {
   "down": 0,
-  "last": "2026-10-15",
-  "seen": 8,
-  "since": "2026-10-02",
-  "state": "in prova",
+  "last": "2026-10-17",
+  "seen": 9,
+  "since": "2026-10-18",
+  "state": "in pausa",
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 4
+  "seen_a_fine_pausa": 4,
+  "paused_until": "2026-11-29"
  },
  "robotica": {
   "down": 0,
@@ -378,8 +379,8 @@
   "state": "in prova",
   "up": 0,
   "down": 0,
-  "seen": 5,
-  "last": "2026-10-13",
+  "seen": 6,
+  "last": "2026-10-17",
   "since": "2026-10-02",
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
@@ -398,13 +399,14 @@
  },
  "voli-spaziali-privati": {
   "down": 0,
-  "last": "2026-10-12",
-  "seen": 5,
-  "since": "2026-10-02",
-  "state": "in prova",
+  "last": "2026-10-17",
+  "seen": 6,
+  "since": "2026-10-18",
+  "state": "in pausa",
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "paused_until": "2026-11-29"
  }
 }
