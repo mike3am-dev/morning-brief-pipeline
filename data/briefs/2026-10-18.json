@@ -38,7 +38,17 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "Gurman: Apple sapeva di non avere scorte sufficienti e ha lanciato comunque iPhone Duo in anticipo. I negozi avvisano chi arriva il 23 ottobre senza preordine; in fabbrica 4 unità su 10 falliscono i controlli.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "resa",
+      "titolo": "Il tasso di scarto in fabbrica",
+      "didascalia": "A inizio ottobre, secondo una fonte della filiera cinese citata da Macitynet, 4 iPhone Duo su 10 non superavano i controlli di produzione: una resa del 60%, molto più bassa del normale per un prodotto già in vendita. Il traguardo del 100% è un riferimento illustrativo, non un dato Apple.",
+      "fonte": "Macitynet, fonte della filiera cinese",
+      "resa": 0.6,
+      "obiettivo": 1.0,
+      "etichetta_obiettivo": "resa piena"
+     }
+    ],
     "sotto": [
      "Secondo Gurman, Apple «ha lanciato molto chiaramente l'iPhone Duo in anticipo rispetto alle scorte disponibili, solo per arrivare prima sul mercato»: pensava di non avere scorte ragionevoli prima di novembre. Una fonte della filiera cinese riferisce che a inizio ottobre quattro Duo su dieci non superavano i controlli di produzione — uno scarto molto più alto del normale per un prodotto già in vendita.",
      "Gli Apple Store hanno istruzioni di scoraggiare chi arriva il 23 ottobre senza preordine: il sito USA invita a controllare la disponibilità per il ritiro solo dal 24, senza garanzie. La Fifth Avenue a New York avrà oltre 150 unità dimostrative, contro appena una ventina nei negozi ordinari. Cook aveva lasciato la guida otto giorni prima del lancio per dare «vento in poppa» a Ternus: non rinviarlo ha un peso simbolico."
@@ -91,7 +101,13 @@
       "perche": "La citazione completa di Gurman e il contesto Ternus."
      }
     ],
-    "scritto": "2026-10-18"
+    "scritto": "2026-10-18",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-18/iphone-duo-scorte-gurman-premature-ade3673cb722.mp3",
+     "durata": 165,
+     "voce": "kore",
+     "impronta": "ade3673cb722"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -172,7 +188,13 @@
       "perche": "Il precedente più vicino: collegare più Mac per l'AI in locale."
      }
     ],
-    "scritto": "2026-10-18"
+    "scritto": "2026-10-18",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-18/apple-minions-gpu-cloud-ai-1bcb1ab8c206.mp3",
+     "durata": 132,
+     "voce": "kore",
+     "impronta": "1bcb1ab8c206"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -203,7 +225,26 @@
    "thread": "hub-domestico",
    "approfondimento": {
     "punto": "HomeView riduce le ricette online a ingredienti, istruzioni e timer navigabili a voce con Siri AI: un cambiamento che rischia di tagliare il traffico — e gli annunci — da cui vivono i food blogger.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "flusso",
+      "titolo": "Dove va il traffico della ricetta",
+      "didascalia": "Oggi lo scroll ripetuto sul blog paga gli annunci del food writer. Con HomeView, secondo The Verge, è garantita solo la prima apertura della pagina: la ricetta si naviga poi a voce con Siri AI, senza altre visite che facciano guadagnare il blog.",
+      "fonte": "The Verge",
+      "oggi": {
+       "etichetta": "Sito del blog",
+       "centro": "Il food blogger",
+       "incassa": "Pubblicità e link di affiliazione a ogni visita e scroll ripetuto",
+       "nota": "È il traffico ripetuto, non la prima visita, a pagare gli annunci."
+      },
+      "agente": {
+       "etichetta": "HomeView",
+       "centro": "Apple",
+       "incassa": "Solo la prima apertura della pagina è garantita",
+       "nota": "Ricetta letta a voce con Siri AI: niente scroll, niente visite ripetute per il blog."
+      }
+     }
+    ],
     "sotto": [
      "The Verge nota che HomeView garantisce almeno una visita alla pagina originale della ricetta, perché va aperta prima su iPhone o Safari, ma non il traffico ripetuto dello scroll da cui vivono gli annunci e i link di affiliazione dei food blog. Il casting usa la stessa tecnologia di CarPlay, senza un App Store dedicato: solo grandi editori come Allrecipes o NYT Cooking potranno personalizzare la presentazione.",
      "Non è la prima volta: Amazon aveva fatto qualcosa di simile con Echo Show, e Google col vecchio Nest Hub, in una funzione poi rimossa; Recipeasly aveva chiuso nel 2021 dopo le proteste. Jaya Saxena (Ravenous) difende i blogger: «Se ancora vi lamentate di questi saggi, siete solo persone sgradevoli». Makalintal valuta il rischio di HomeView più basso di quello dei riassunti AI, «perché la loro provenienza opaca erode davvero il lavoro»."
@@ -252,7 +293,13 @@
       "perche": "Il contesto: perché Apple lancia solo ora hardware per la casa."
      }
     ],
-    "scritto": "2026-10-18"
+    "scritto": "2026-10-18",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-18/homeview-minaccia-food-writer-6ffad2991f0e.mp3",
+     "durata": 141,
+     "voce": "kore",
+     "impronta": "6ffad2991f0e"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -281,7 +328,35 @@
    "thread": "ios27",
    "approfondimento": {
     "punto": "macOS 27 rimuove da sé Rosetta, il traduttore che da cinque anni permette ai Mac Apple Silicon di eseguire app compilate per Intel: con macOS 28 non sarà più disponibile in alcuna forma.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "La fine di Rosetta, passo per passo",
+      "didascalia": "macOS 27 disinstalla Rosetta da sé: le app ancora compilate per Intel si fermano dopo l'aggiornamento, e con macOS 28, nel 2027, il traduttore non sarà più disponibile in nessuna forma.",
+      "fonte": "9to5Mac (Apple @ Work)",
+      "passi": [
+       {
+        "titolo": "App compilata per Intel",
+        "nota": "Gira grazie a Rosetta, introdotto nel 2020 con i primi Mac Apple Silicon."
+       },
+       {
+        "titolo": "Il Mac si aggiorna a macOS 27",
+        "nota": "L'update disinstalla Rosetta in automatico, senza bisogno di un'azione dell'utente."
+       },
+       {
+        "titolo": "Arriva macOS 28, nel 2027",
+        "nota": "Rosetta non sarà installabile in nessuna forma, nemmeno da riga di comando."
+       }
+      ],
+      "rottura": {
+       "dopo": "l'aggiornamento a macOS 27",
+       "senza": "Rosetta",
+       "etichetta": "App compilate per Intel",
+       "nota": "Non si avviano più."
+      },
+      "azione": "Verifica quali app della tua flotta dipendono ancora da Rosetta prima di aggiornare."
+     }
+    ],
     "sotto": [
      "Rosetta era stata introdotta nel 2020 con la transizione ai Mac Apple Silicon, per far girare senza modifiche le app ancora compilate per processori Intel. La rubrica Apple @ Work di 9to5Mac segnala che gli aggiornamenti a macOS 27 la disinstallano automaticamente dai Mac, senza bisogno di un'azione dell'utente.",
      "Per chi gestisce flotte aziendali di Mac, il consiglio è verificare prima dell'aggiornamento quali app dipendono ancora da Rosetta: con macOS 28, atteso nel 2027, il traduttore non sarà più installabile in nessuna forma, nemmeno manualmente da riga di comando."
@@ -330,7 +405,13 @@
       "perche": "Il contesto sul chip M6 e la transizione Apple Silicon in corso."
      }
     ],
-    "scritto": "2026-10-18"
+    "scritto": "2026-10-18",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-18/macos27-rimuove-rosetta-5ee58ca060a7.mp3",
+     "durata": 134,
+     "voce": "kore",
+     "impronta": "5ee58ca060a7"
+    }
    },
    "verifica": {
     "testate": 1,

@@ -190,5 +190,21 @@
   "interazione": "Un interruttore 'accordo leggero / accordo pieno' che mostra cosa cambia sui due fronti",
   "dati": "I due fronti citati da The Information (smartwatch senza accesso, NFC parzialmente aperto dal 2018 con iOS 18.1), nessun dato numerico di impatto",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-18",
+  "notizia": "apple-minions-gpu-cloud-ai",
+  "idea": "architettura della cloud di GPU inattive dei Mac: server che fa la coda, Executor su ogni Mac (Ollama/Hugging Face), storage condiviso S3, Watchdog che rimette in coda se un Mac si disconnette; il salto è nel tempo di attesa, non nella velocita'",
+  "interazione": "un interruttore 'coda centralizzata' contro 'pool Minions' che fa vedere il tempo di attesa crollare da oltre 10 ore a pochi minuti, o un pulsante che simula un Mac che si disconnette e il Watchdog che rimette in coda il job",
+  "dati": "architettura (server, Executor, storage S3, Watchdog); attesa prima oltre 10 ore, dopo pochi minuti; e' un progetto di ricerca, non ancora una funzione di macOS",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-18",
+  "notizia": "iphone-duo-custodia-adesivo",
+  "idea": "il meccanismo di fissaggio della custodia ufficiale: adesivo (si stacca ma non si riattacca con la stessa tenuta) contro i magneti usati su iPhone e Apple Watch (si cambiano senza pensieri)",
+  "interazione": "tocca per staccare la cover: con l'adesivo si stacca ma non torna come prima, con i magneti si stacca e si riattacca sempre",
+  "dati": "prezzo custodia silicone con adesivo (79-89 euro), Folio TechWoven con supporto integrato (129-149 euro), alternative terze parti con supporto proprio: Spigen Ultra Hybrid Pro, ESR Classic Hybrid",
+  "stato": "aperta"
  }
 ]
