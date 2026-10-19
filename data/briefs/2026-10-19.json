@@ -32,7 +32,35 @@
    "thread": "iphone-pieghevole",
    "approfondimento": {
     "punto": "Gurman non usa mezzi termini: Apple sapeva delle scorte insufficienti e ha lanciato comunque iPhone Duo in oltre 70 paesi insieme, pur di arrivare presto sul mercato.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "70 paesi, 30 minuti, sold out",
+      "didascalia": "Apple ha aperto i preordini di iPhone Duo in oltre 70 paesi insieme, sapendo di non avere scorte: in meno di 30 minuti le spedizioni sono slittate a circa il 25 gennaio 2027 nella maggior parte dei mercati.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "passi": [
+       {
+        "titolo": "Piano iniziale",
+        "nota": "Preordini previsti solo in Stati Uniti e Cina."
+       },
+       {
+        "titolo": "Apple apre tutto insieme",
+        "nota": "Preordini in oltre 70 paesi nello stesso istante, pur di lanciare presto."
+       },
+       {
+        "titolo": "La domanda esplode",
+        "nota": "Le scorte non bastano: erano già scarse prima del lancio."
+       }
+      ],
+      "rottura": {
+       "dopo": "meno di 30 minuti",
+       "senza": "scorte sufficienti",
+       "etichetta": "Le spedizioni slittano",
+       "nota": "Le date scivolano a circa il 25 gennaio 2027 nella maggior parte dei mercati."
+      },
+      "azione": "Apple punta a recuperare il ritardo entro novembre, ma per molti ordini restano fissate a gennaio 2027."
+     }
+    ],
     "sotto": [
      "La scelta contestata è l'apertura simultanea dei preordini in più di 70 paesi, quando il piano iniziale prevedeva solo Stati Uniti e Cina. Il risultato: in meno di 30 minuti le date di spedizione sono scivolate a circa il 25 gennaio 2027 nella maggior parte dei mercati, mentre Apple punta a recuperare terreno entro novembre.",
      "Gurman lega la scelta al calendario fiscale: lanciare nel primo trimestre fiscale (che chiude a fine dicembre) pesa più della soddisfazione della domanda immediata. Una fonte della filiera cinese aveva già riferito a inizio ottobre che circa quattro Duo su dieci non superavano i controlli di produzione."
@@ -74,7 +102,13 @@
       "perche": "Il retroscena di ieri sulle istruzioni al personale dei negozi."
      }
     ],
-    "scritto": "2026-10-19"
+    "scritto": "2026-10-19",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-19/iphone-duo-gurman-errore-madornale-9864e618c27b.mp3",
+     "durata": 116,
+     "voce": "kore",
+     "impronta": "9864e618c27b"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -174,7 +208,13 @@
       "perche": "I dettagli tecnici del braccio robotico e la finestra di lancio."
      }
     ],
-    "scritto": "2026-10-19"
+    "scritto": "2026-10-19",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-19/homeview-max-braccio-robotico-e-anno-in-magazzino-5e1af765b61d.mp3",
+     "durata": 129,
+     "voce": "kore",
+     "impronta": "5e1af765b61d"
+    }
    },
    "verifica": {
     "testate": 4,
@@ -223,7 +263,44 @@
    },
    "approfondimento": {
     "punto": "Il primo MacBook Pro touchscreen arriva il 6 novembre con schermo OLED e un'interfaccia ridisegnata per il dito, ma monta ancora il chip M5, non il nuovo M6.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Il chip che manca al nuovo MacBook",
+      "didascalia": "Il primo MacBook Pro OLED touchscreen debutta il 6 novembre con il chip M5 Pro/Max: Apple salta l'M6 su questo modello e accelera direttamente a M7, previsto in primavera su una versione base.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "periodi": [
+       "M5 Pro/Max",
+       "M6 (saltato)",
+       "M7"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro touch OLED 14\"",
+        "tappe": [
+         {
+          "quando": "6 nov 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "attuale",
+          "nota": "Debutta con schermo OLED touch, ma con il chip già uscito."
+         },
+         {
+          "quando": "dopo",
+          "chip": "M6 Pro/Max",
+          "stato": "saltato",
+          "nota": "Apple salta questa generazione su questo modello."
+         },
+         {
+          "quando": "primavera 2027",
+          "chip": "M7",
+          "stato": "previsto",
+          "nota": "Accelerazione diretta a M7, su una versione base."
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Lo schermo è un Tandem OLED come quello dell'iPad Pro, con un Dynamic Island più piccolo di quello dell'iPhone e senza Face ID. Gurman cita le ottimizzazioni software: toccare un controllo fa apparire un menu attorno al dito, e toccare una voce della barra dei menu allarga i controlli per renderli selezionabili più facilmente.",
      "Sul chip, Apple ha scelto di saltare l'M6 Pro/Max su questo modello e di accelerare direttamente a M7, previsto in primavera su una versione base. Un indizio indipendente arriva da una beta di Safari su macOS, che Tom's Hardware IT segnala già adattata a interazioni touch."
@@ -266,7 +343,13 @@
       "perche": "L'indizio software trovato indipendentemente da Gurman."
      }
     ],
-    "scritto": "2026-10-19"
+    "scritto": "2026-10-19",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-19/macbook-pro-touch-oled-6-novembre-m5-f3269c6d21ab.mp3",
+     "durata": 114,
+     "voce": "kore",
+     "impronta": "f3269c6d21ab"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -308,7 +391,34 @@
    ],
    "approfondimento": {
     "punto": "Un mese dopo il lancio, l'iPhone 18 Pro conferma benchmark in forte crescita sul 17 Pro, ma con due riserve: una stabilità termica leggermente inferiore e una memoria da 1TB che rallenta parecchio una volta piena.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "Dove crolla la velocità dell'iPhone 18 Pro",
+      "didascalia": "Nel modello da 1TB la memoria scrive a circa 3.000 MB/s solo finché c'è cache veloce libera: esaurita quella, cade a 578 MB/s, e con lo storage pieno al 60% scende fino a 45 MB/s medi.",
+      "fonte": "Macitynet (test diretti)",
+      "strati": [
+       {
+        "nome": "Cache SLC",
+        "colore": "blu",
+        "nota": "Scrittura a circa 3.000 MB/s, finché la cache veloce non si esaurisce."
+       },
+       {
+        "nome": "Memoria QLC",
+        "colore": "giallo",
+        "stato": "problema",
+        "nota": "Esaurita la cache, la velocità crolla a 578 MB/s."
+       },
+       {
+        "nome": "Storage pieno al 60%",
+        "colore": "nero",
+        "stato": "problema",
+        "nota": "Nei trasferimenti grandi o nei video ProRes lunghi, la media scende fino a 45 MB/s."
+       }
+      ],
+      "invito": "Tocca uno strato per vedere a che velocità scrive, misurata da Macitynet."
+     }
+    ],
     "sotto": [
      "Sui numeri puri il salto è netto: +27% single-core e +29,4% multi-core su Geekbench, +46,5% in grafica, e il 3DMark Wild Life Extreme nel ciclo peggiore (5.627 punti) vale già il migliore del 17 Pro (5.594). L'autonomia da etichetta UE sale a 52 ore per ciclo contro 47.",
      "Due riserve concrete: la stabilità termica nel tempo scende al 62,2% (dal 64,5% del 17 Pro), e su un esemplare da 1TB la memoria QLC crolla da circa 3.000 MB/s a 578 MB/s una volta esaurita la cache SLC, fino a 45 MB/s medi con il telefono pieno al 60% — rilevante solo per trasferimenti grandi o video ProRes lunghi. iOS 27.0.1 ha già corretto un difetto di Face ID che bloccava alcuni esemplari."
@@ -352,7 +462,13 @@
       "perche": "Il punteggio di riparabilità e i componenti sostituibili."
      }
     ],
-    "scritto": "2026-10-19"
+    "scritto": "2026-10-19",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-19/iphone18-pro-recensione-un-mese-dopo-7a7b003f895d.mp3",
+     "durata": 142,
+     "voce": "kore",
+     "impronta": "7a7b003f895d"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -400,7 +516,38 @@
    ],
    "approfondimento": {
     "punto": "Il mercato smartphone cinese tocca il minimo trimestrale dal 2013, ma Apple va in controtendenza: +15% e secondo posto con il 20% di quota, dietro solo Huawei.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Chi guadagna quota in un mercato che si restringe",
+      "didascalia": "Il mercato smartphone cinese è ai minimi dal 2013 (-12%, 59,3 milioni di unità), ma Huawei e Apple guadagnano quota: Huawei primo al 21%, Apple secondo al 20% con il 15% di crescita sull'anno.",
+      "fonte": "Omdia (terzo trimestre 2026)",
+      "unita": "%",
+      "voci": [
+       {
+        "etichetta": "Huawei",
+        "min": 21,
+        "max": 21,
+        "colore": "giallo",
+        "nota": "12,4 milioni di unità, +18% sull'anno"
+       },
+       {
+        "etichetta": "Apple",
+        "min": 20,
+        "max": 20,
+        "colore": "blu",
+        "nota": "11,6 milioni di unità, +15% sull'anno"
+       },
+       {
+        "etichetta": "Resto del mercato",
+        "min": 59,
+        "max": 59,
+        "colore": "nero",
+        "nota": "Mercato totale sceso al minimo dal 2013"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Omdia misura 59,3 milioni di smartphone spediti in Cina continentale nel terzo trimestre, il 12% in meno sull'anno — il dato più basso per questo periodo dal 2013, dopo un calo già del 2% nel trimestre precedente. La causa indicata è il rincaro delle memorie DRAM/NAND insieme alla prudenza dei consumatori.",
      "In questo scenario Huawei resta primo con 12,4 milioni di unità (+18%, quota 21%), e Apple sale al secondo posto con 11,6 milioni (+15%, quota 20%). Omdia nota che la crescita Apple riflette anche un riassortimento anticipato dei canali di vendita, non solo la domanda finale, e che l'azienda ha concentrato a settembre l'uscita dei modelli Pro, spostando al 2027 gli aggiornamenti della gamma standard."
@@ -434,7 +581,13 @@
       "perche": "Il contesto sulla strategia Apple in Cina nelle settimane recenti."
      }
     ],
-    "scritto": "2026-10-19"
+    "scritto": "2026-10-19",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-19/cina-mercato-smartphone-minimi-2013-apple-cresce-380566b6f7dd.mp3",
+     "durata": 115,
+     "voce": "kore",
+     "impronta": "380566b6f7dd"
+    }
    },
    "verifica": {
     "testate": 1,
