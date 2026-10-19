@@ -83,6 +83,12 @@
   "opened": null,
   "unit": "%"
  },
+ "apple-quota-smartphone-cina-q3": {
+  "label": "Quota Apple, mercato smartphone Cina (Q3)",
+  "unit": "%",
+  "note": "Quota Apple sulle spedizioni di smartphone in Cina continentale, per trimestre (Omdia)",
+  "opened": "2026-10-19"
+ },
  "apple-quota-smartphone-mondiale": {
   "label": "Quota Apple, mercato smartphone mondiale",
   "unit": "%",
@@ -167,6 +173,12 @@
   "opened": "2026-09-01",
   "unit": "USD"
  },
+ "iphone-duo-batteria-mah": {
+  "label": "Batteria, iPhone Duo",
+  "unit": "mAh",
+  "note": "Capacità totale della batteria di iPhone Duo, da etichetta energetica UE",
+  "opened": "2026-10-19"
+ },
  "iphone-duo-display-costo": {
   "label": "Costo stimato per pannello, display pieghevole iPhone Duo",
   "note": "Stima di un leaker Weibo (Instant Digital) senza track record consolidato; non confermata da fonti ufficiali.",
@@ -239,6 +251,12 @@
   "opened": "2026-08-23",
   "unit": "%"
  },
+ "iphone-spedizioni-cina-q3": {
+  "label": "Spedizioni iPhone in Cina (Q3)",
+  "unit": "milioni",
+  "note": "Unità di iPhone spedite in Cina continentale nel trimestre (Omdia)",
+  "opened": "2026-10-19"
+ },
  "iphone-ultra-riparazione-schermo": {
   "label": "Costo stimato riparazione schermo, iPhone Ultra",
   "note": "",
@@ -310,6 +328,12 @@
   "unit": "%",
   "note": "Quota del mercato smartphone cinese nella settimana di riferimento, da stime Counterpoint Research.",
   "opened": "2026-10-02"
+ },
+ "iphone18pro-riparabilita-ifixit": {
+  "label": "Riparabilità iPhone 18 Pro (iFixit)",
+  "unit": "/10",
+  "note": "Punteggio di riparabilità assegnato da iFixit, provvisorio",
+  "opened": "2026-10-19"
  },
  "iphone18pro-tagli-ordini-ottobre": {
   "label": "Taglio ordini componenti, iPhone 18 Pro (ottobre)",
