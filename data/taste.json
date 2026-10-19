@@ -6008,7 +6008,7 @@
   },
   {
    "story": "2026-10-17/games:3c31e68b",
-   "vote": -0.5,
+   "vote": 1,
    "seen": true,
    "how": "lettura"
   },
@@ -6125,9 +6125,93 @@
    "vote": 0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/banco:duo-preorder-fold8-sconto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/banco:homeview-vs-pixel-tablet",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/banco:nothing-headphone-1-pro-recensione",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/banco:nvidia-rtx-spark-notebook-arm",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/banco:qualcomm-nega-surriscaldamento-snapdragon",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/ee-iphone-handoff-prezzo-uk",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/homeview-minaccia-food-writer",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/iphone-duo-custodia-adesivo",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/iphone-duo-scorte-gurman-premature",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/macos27-rimuove-rosetta",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/radar:digicert-firma-software-nuove-regole",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/radar:neverwinter-nights-community-attiva",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/radar:tiktok-ban-musk-documentario",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-18/radar:windows-malware-ruba-dati-spaventa",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-18T04:54:19",
+ "pulled": "2026-10-19T04:48:04",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -6135,9 +6219,9 @@
    "valore": "curiosità",
    "verso": "declassa",
    "su": 0,
-   "giu": 10,
-   "scarto": -0.29,
-   "nota": "banco «curiosità»: aperta 0 volte su 10, sotto la media"
+   "giu": 11,
+   "scarto": -0.26,
+   "nota": "banco «curiosità»: aperta 0 volte su 11, sotto la media"
   },
   {
    "asse": "fonte",
@@ -6145,7 +6229,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 21,
-   "scarto": -0.22,
+   "scarto": -0.21,
    "nota": "fonte «Push Square»: aperta 0 volte su 21, sotto la media"
   },
   {
@@ -6156,6 +6240,15 @@
    "giu": 9,
    "scarto": -0.17,
    "nota": "fonte «VGC»: aperta 0 volte su 9, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "accessori",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 13,
+   "scarto": -0.16,
+   "nota": "categoria «accessori»: aperta 1 volta su 14, sotto la media"
   },
   {
    "asse": "categoria",
@@ -6192,24 +6285,6 @@
    "giu": 8,
    "scarto": -0.16,
    "nota": "fonte «Eurogamer»: aperta 0 volte su 8, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Nintendo Life",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 7,
-   "scarto": -0.16,
-   "nota": "fonte «Nintendo Life»: aperta 0 volte su 7, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "accessori",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 12,
-   "scarto": -0.15,
-   "nota": "categoria «accessori»: aperta 1 volta su 13, sotto la media"
   },
   {
    "asse": "fonte",
@@ -6257,6 +6332,15 @@
    "nota": "fonte «BGR»: aperta 2 volte su 18, sotto la media"
   },
   {
+   "asse": "fonte",
+   "valore": "DDay.it",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 10,
+   "scarto": -0.14,
+   "nota": "fonte «DDay.it»: aperta 1 volta su 11, sotto la media"
+  },
+  {
    "asse": "categoria",
    "valore": "audio",
    "verso": "declassa",
@@ -6273,15 +6357,6 @@
    "giu": 9,
    "scarto": -0.13,
    "nota": "categoria «ipad»: aperta 1 volta su 10, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "DDay.it",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 9,
-   "scarto": -0.13,
-   "nota": "fonte «DDay.it»: aperta 1 volta su 10, sotto la media"
   },
   {
    "asse": "fonte",
@@ -6309,15 +6384,6 @@
    "giu": 4,
    "scarto": -0.12,
    "nota": "fonte «Kotaku»: aperta 0 volte su 4, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "carplay",
-   "verso": "declassa",
-   "su": 2,
-   "giu": 12,
-   "scarto": -0.11,
-   "nota": "categoria «carplay»: aperta 2 volte su 14, sotto la media"
   },
   {
    "asse": "categoria",
@@ -6351,81 +6417,27 @@
    "valore": "SERVIZIO",
    "verso": "declassa",
    "su": 16,
-   "giu": 80,
+   "giu": 81,
    "scarto": -0.11,
-   "nota": "tag «SERVIZIO»: aperta 16 volte su 96, sotto la media"
+   "nota": "tag «SERVIZIO»: aperta 16 volte su 97, sotto la media"
   },
   {
    "asse": "categoria",
-   "valore": "contorno",
+   "valore": "carplay",
    "verso": "declassa",
-   "su": 0,
-   "giu": 3,
+   "su": 2,
+   "giu": 12,
    "scarto": -0.1,
-   "nota": "categoria «contorno»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "eventi",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "categoria «eventi»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "privacy",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "categoria «privacy»: aperta 0 volte su 3, sotto la media"
+   "nota": "categoria «carplay»: aperta 2 volte su 14, sotto la media"
   },
   {
    "asse": "fonte",
-   "valore": "9to5Google",
+   "valore": "GSMArena",
    "verso": "declassa",
-   "su": 0,
-   "giu": 3,
+   "su": 6,
+   "giu": 29,
    "scarto": -0.1,
-   "nota": "fonte «9to5Google»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Gizmodo",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "fonte «Gizmodo»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "PlayStation Blog",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "fonte «PlayStation Blog»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Universe Today",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "fonte «Universe Today»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "X (via awesome-gpt-6-astra)",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.1,
-   "nota": "fonte «X (via awesome-gpt-6-astra)»: aperta 0 volte su 3, sotto la media"
+   "nota": "fonte «GSMArena»: aperta 6 volte su 35, sotto la media"
   },
   {
    "asse": "categoria",
@@ -6450,9 +6462,27 @@
    "valore": "iphone",
    "verso": "promuovi",
    "su": 41,
-   "giu": 54,
+   "giu": 55,
    "scarto": 0.11,
-   "nota": "categoria «iphone»: aperta 41 volte su 95, sopra la media"
+   "nota": "categoria «iphone»: aperta 41 volte su 96, sopra la media"
+  },
+  {
+   "asse": "banco",
+   "valore": "confronto",
+   "verso": "promuovi",
+   "su": 5,
+   "giu": 9,
+   "scarto": 0.11,
+   "nota": "banco «confronto»: aperta 5 volte su 14, sopra la media"
+  },
+  {
+   "asse": "banco",
+   "valore": "video",
+   "verso": "promuovi",
+   "su": 2,
+   "giu": 3,
+   "scarto": 0.11,
+   "nota": "banco «video»: aperta 2 volte su 5, sopra la media"
   },
   {
    "asse": "fonte",
@@ -6462,15 +6492,6 @@
    "giu": 5,
    "scarto": 0.12,
    "nota": "fonte «Tom's Hardware IT»: aperta 5 volte su 10, sopra la media"
-  },
-  {
-   "asse": "banco",
-   "valore": "confronto",
-   "verso": "promuovi",
-   "su": 5,
-   "giu": 7,
-   "scarto": 0.13,
-   "nota": "banco «confronto»: aperta 5 volte su 12, sopra la media"
   },
   {
    "asse": "fonte",
@@ -6504,9 +6525,9 @@
    "valore": "Android Authority",
    "verso": "promuovi",
    "su": 7,
-   "giu": 12,
-   "scarto": 0.23,
-   "nota": "fonte «Android Authority»: aperta 7 volte su 19, sopra la media"
+   "giu": 13,
+   "scarto": 0.21,
+   "nota": "fonte «Android Authority»: aperta 7 volte su 20, sopra la media"
   },
   {
    "asse": "categoria",
