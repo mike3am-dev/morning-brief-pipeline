@@ -173,6 +173,12 @@
   "opened": "2026-09-01",
   "unit": "USD"
  },
+ "iphone-duo-autonomia-ue": {
+  "label": "Autonomia nel test UE, iPhone Duo",
+  "unit": "ore",
+  "note": "Dalla scheda EPREL ufficiale dell'Unione Europea.",
+  "opened": "2026-10-20"
+ },
  "iphone-duo-batteria-mah": {
   "label": "Batteria, iPhone Duo",
   "unit": "mAh",
@@ -184,6 +190,12 @@
   "note": "Stima di un leaker Weibo (Instant Digital) senza track record consolidato; non confermata da fonti ufficiali.",
   "opened": "2026-09-12",
   "unit": "USD"
+ },
+ "iphone-duo-riparabilita-indice": {
+  "label": "Indice di riparabilità, iPhone Duo",
+  "unit": "/5",
+  "note": "Dalla scheda EPREL ufficiale UE, classe C.",
+  "opened": "2026-10-20"
  },
  "iphone-duo-scorte-2026": {
   "label": "Scorte globali target, iPhone Duo (2026)",
@@ -544,6 +556,12 @@
   "note": "Stima IDC (Worldwide Quarterly Mobile Phone Tracker); la stima di tre mesi prima si fermava a 550 dollari.",
   "opened": "2026-08-28",
   "unit": "USD"
+ },
+ "taction-risarcimento-usd": {
+  "label": "Risarcimento, verdetto Taction-Apple sul Taptic Engine",
+  "unit": "USD",
+  "note": "Verdetto della giuria USA di fine settembre 2026, via Reuters/9to5Mac.",
+  "opened": "2026-10-20"
  },
  "taptic-engine-risarcimento": {
   "label": "Risarcimento Taction vs Apple (Taptic Engine)",
