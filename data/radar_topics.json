@@ -11,8 +11,8 @@
  },
  "ai-finanza": {
   "down": 0,
-  "last": "2026-10-10",
-  "seen": 5,
+  "last": "2026-10-19",
+  "seen": 6,
   "since": "2026-10-02",
   "state": "in prova",
   "up": 0,
@@ -73,14 +73,15 @@
  },
  "biotech": {
   "down": 0,
-  "last": "2026-10-12",
-  "seen": 7,
-  "since": "2026-10-02",
-  "state": "in prova",
+  "last": "2026-10-19",
+  "seen": 8,
+  "since": "2026-10-20",
+  "state": "in pausa",
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 4
+  "seen_a_fine_pausa": 4,
+  "paused_until": "2026-12-01"
  },
  "browser-web": {
   "down": 0,
@@ -106,14 +107,15 @@
  },
  "chip-ai": {
   "down": 0,
-  "last": "2026-10-12",
-  "seen": 8,
-  "since": "2026-09-28",
-  "state": "in prova",
+  "last": "2026-10-19",
+  "seen": 9,
+  "since": "2026-10-20",
+  "state": "in pausa",
   "up": 0,
   "pausa_finita": "2026-09-28",
   "seen_a_fine_pausa": 3,
-  "ripresa_segnali": "2026-10-02"
+  "ripresa_segnali": "2026-10-02",
+  "paused_until": "2026-12-01"
  },
  "connessione-offline": {
   "state": "in prova",
@@ -163,14 +165,15 @@
  },
  "governance-open-source": {
   "down": 0,
-  "last": "2026-10-12",
-  "seen": 5,
-  "since": "2026-10-02",
-  "state": "in prova",
+  "last": "2026-10-19",
+  "seen": 6,
+  "since": "2026-10-20",
+  "state": "in pausa",
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "paused_until": "2026-12-01"
  },
  "hardware-indipendente": {
   "down": 0,
@@ -360,8 +363,8 @@
   "since": "2026-10-12",
   "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-10-11",
+  "seen": 2,
+  "last": "2026-10-19",
   "ripresa_segnali": "2026-10-12"
  },
  "trasporti-alternativi": {

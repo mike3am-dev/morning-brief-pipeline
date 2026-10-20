@@ -6209,9 +6209,105 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/banco:apertura-variabile-iphone18pro-spiegata",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/banco:motorola-razr-plus-pieghevole-economico",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/banco:oneplus16-batteria-9000mah-cina",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/banco:pixel11pro-zoom-120x-riserve",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/cina-mercato-smartphone-minimi-2013-apple-cresce",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/homeview-max-braccio-robotico-e-anno-in-magazzino",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/iphone-duo-batteria-4883-mah",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/iphone-duo-gurman-errore-madornale",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/iphone-duo-zero-scorte-23-ottobre-italia",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/iphone18-pro-recensione-un-mese-dopo",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/macbook-pro-touch-oled-6-novembre-m5",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/radar:ai-proteine-taglia-proteine-alzheimer",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/radar:arm-agi-cpu-doppia-prestazioni-amd",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/radar:benchmark-partner-investire-mercato-frenetico",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/radar:karri-saarinen-qualcuno-dietro-software",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-19/radar:meta-cavo-petal-un-petabit",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-19T04:48:04",
+ "pulled": "2026-10-20T04:48:05",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -6219,9 +6315,9 @@
    "valore": "curiosità",
    "verso": "declassa",
    "su": 0,
-   "giu": 11,
-   "scarto": -0.26,
-   "nota": "banco «curiosità»: aperta 0 volte su 11, sotto la media"
+   "giu": 13,
+   "scarto": -0.28,
+   "nota": "banco «curiosità»: aperta 0 volte su 13, sotto la media"
   },
   {
    "asse": "fonte",
@@ -6261,15 +6357,6 @@
   },
   {
    "asse": "categoria",
-   "valore": "apple tv",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 7,
-   "scarto": -0.16,
-   "nota": "categoria «apple tv»: aperta 0 volte su 7, sotto la media"
-  },
-  {
-   "asse": "categoria",
    "valore": "azienda",
    "verso": "declassa",
    "su": 1,
@@ -6287,31 +6374,13 @@
    "nota": "fonte «Eurogamer»: aperta 0 volte su 8, sotto la media"
   },
   {
-   "asse": "fonte",
-   "valore": "Engadget",
+   "asse": "categoria",
+   "valore": "apple tv",
    "verso": "declassa",
    "su": 0,
-   "giu": 6,
+   "giu": 7,
    "scarto": -0.15,
-   "nota": "fonte «Engadget»: aperta 0 volte su 6, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "IGN",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 6,
-   "scarto": -0.15,
-   "nota": "fonte «IGN»: aperta 0 volte su 6, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "NASA APOD",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 6,
-   "scarto": -0.15,
-   "nota": "fonte «NASA APOD»: aperta 0 volte su 6, sotto la media"
+   "nota": "categoria «apple tv»: aperta 0 volte su 7, sotto la media"
   },
   {
    "asse": "categoria",
@@ -6339,6 +6408,33 @@
    "giu": 10,
    "scarto": -0.14,
    "nota": "fonte «DDay.it»: aperta 1 volta su 11, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Engadget",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 6,
+   "scarto": -0.14,
+   "nota": "fonte «Engadget»: aperta 0 volte su 6, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "IGN",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 6,
+   "scarto": -0.14,
+   "nota": "fonte «IGN»: aperta 0 volte su 6, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "NASA APOD",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 6,
+   "scarto": -0.14,
+   "nota": "fonte «NASA APOD»: aperta 0 volte su 6, sotto la media"
   },
   {
    "asse": "categoria",
@@ -6375,6 +6471,15 @@
    "giu": 5,
    "scarto": -0.13,
    "nota": "fonte «NASA»: aperta 0 volte su 5, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Gizmodo",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 4,
+   "scarto": -0.12,
+   "nota": "fonte «Gizmodo»: aperta 0 volte su 4, sotto la media"
   },
   {
    "asse": "fonte",
@@ -6432,24 +6537,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "GSMArena",
-   "verso": "declassa",
-   "su": 6,
-   "giu": 29,
-   "scarto": -0.1,
-   "nota": "fonte «GSMArena»: aperta 6 volte su 35, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "smart home",
-   "verso": "promuovi",
-   "su": 3,
-   "giu": 3,
-   "scarto": 0.1,
-   "nota": "categoria «smart home»: aperta 3 volte su 6, sopra la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "iSpazio",
    "verso": "promuovi",
    "su": 29,
@@ -6461,10 +6548,19 @@
    "asse": "categoria",
    "valore": "iphone",
    "verso": "promuovi",
-   "su": 41,
-   "giu": 55,
+   "su": 42,
+   "giu": 58,
    "scarto": 0.11,
-   "nota": "categoria «iphone»: aperta 41 volte su 96, sopra la media"
+   "nota": "categoria «iphone»: aperta 42 volte su 100, sopra la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "smart home",
+   "verso": "promuovi",
+   "su": 3,
+   "giu": 3,
+   "scarto": 0.11,
+   "nota": "categoria «smart home»: aperta 3 volte su 6, sopra la media"
   },
   {
    "asse": "banco",
@@ -6474,15 +6570,6 @@
    "giu": 9,
    "scarto": 0.11,
    "nota": "banco «confronto»: aperta 5 volte su 14, sopra la media"
-  },
-  {
-   "asse": "banco",
-   "valore": "video",
-   "verso": "promuovi",
-   "su": 2,
-   "giu": 3,
-   "scarto": 0.11,
-   "nota": "banco «video»: aperta 2 volte su 5, sopra la media"
   },
   {
    "asse": "fonte",
@@ -6504,6 +6591,15 @@
   },
   {
    "asse": "fonte",
+   "valore": "Android Authority",
+   "verso": "promuovi",
+   "su": 7,
+   "giu": 15,
+   "scarto": 0.17,
+   "nota": "fonte «Android Authority»: aperta 7 volte su 22, sopra la media"
+  },
+  {
+   "asse": "fonte",
    "valore": "Apple Newsroom",
    "verso": "promuovi",
    "su": 9,
@@ -6521,15 +6617,6 @@
    "nota": "ai «modello»: aperta 3 volte su 4, sopra la media"
   },
   {
-   "asse": "fonte",
-   "valore": "Android Authority",
-   "verso": "promuovi",
-   "su": 7,
-   "giu": 13,
-   "scarto": 0.21,
-   "nota": "fonte «Android Authority»: aperta 7 volte su 20, sopra la media"
-  },
-  {
    "asse": "categoria",
    "valore": "iphone duo",
    "verso": "promuovi",
@@ -6543,9 +6630,18 @@
    "valore": "casa intelligente",
    "verso": "promuovi",
    "su": 5,
-   "giu": 4,
-   "scarto": 0.36,
-   "nota": "categoria «casa intelligente»: aperta 5 volte su 9, sopra la media"
+   "giu": 5,
+   "scarto": 0.32,
+   "nota": "categoria «casa intelligente»: aperta 5 volte su 10, sopra la media"
+  },
+  {
+   "asse": "banco",
+   "valore": "guida",
+   "verso": "promuovi",
+   "su": 3,
+   "giu": 0,
+   "scarto": 0.42,
+   "nota": "banco «guida»: aperta 3 volte su 3, sopra la media"
   }
  ]
 }
