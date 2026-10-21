@@ -238,5 +238,29 @@
   "interazione": "Toccare uno strumento nel mix: con Stem Splitter si isola la traccia, con la tecnica Samplab si corregge anche la singola nota",
   "dati": "Nessun numero nel filing UE ('alcuni asset', 'alcuni dipendenti'); solo la descrizione tecnica della funzione, servirebbe un tipo a strati audio/note, non esistente",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-21",
+  "notizia": "apple-manufacturing-program-perryman-qnity",
+  "idea": "Mappa dei fornitori del Manufacturing Program USA dentro il piano da 600 miliardi: chi fa cosa (titanio Perryman, pellicole fotocamera Qnity, vetro Corning, chip TSMC, laser Coherent per Face ID)",
+  "interazione": "toccare un fornitore mostra cosa produce e, quando c'è, l'investimento assegnato",
+  "dati": "comunicato Apple con cifre solo per alcuni fornitori (Perryman: fino a 100 milioni in 3 anni), non per tutti: manca un dato comune per un confronto a barre, è una filiera non un flusso di denaro con un'alternativa",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-21",
+  "notizia": "apple-evento-28-ottobre-ipad-mini-8",
+  "idea": "Il salto di specifiche dell'iPad mini 8 (CPU 1,5x, GPU 2,5x, Neural Engine 16->32 core, RAM 8->12GB, nuovo modem) rispetto al modello attuale",
+  "interazione": "toccare ogni specifica mostra il prima/dopo e il salto in percentuale",
+  "dati": "numeri eterogenei (multipli, core, GB, generazione di modem): nessuna unità comune per un grafico a barre, servirebbe un confronto multi-metrica che il kit non ha",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-21",
+  "notizia": "iphone-duo-spedizioni-anticipate",
+  "idea": "Più casi di date di spedizione riviste nel tempo, per cliente",
+  "interazione": "tocchi un cliente e vedi come la sua data è cambiata",
+  "dati": "il kit 'stime' richiede valori numerici: non regge più serie di date-stimate per cliente diverso",
+  "stato": "aperta"
  }
 ]

@@ -42,7 +42,22 @@
    ],
    "approfondimento": {
     "punto": "Apple apre per la prima volta la “scatola nera” del display di iPhone Duo: pannello Samsung ma specifiche Apple strato per strato, mentre un video amatoriale mostra che la zona sopra la cerniera resta morbida al tatto.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "piega",
+      "titolo": "iPhone Duo, strato per strato",
+      "didascalia": "Trascina per aprirlo e chiuderlo: lo stesso pannello che Apple spiega aver personalizzato “fino al nanometro” per nascondere la piega. Proporzioni da scheda tecnica, colore indicativo.",
+      "interno": "7,6″",
+      "esterno": "5,4″",
+      "colori": [
+       {
+        "nome": "Titanio",
+        "hex": "#8A8A86"
+       }
+      ],
+      "fonte": "Apple (intervista a Guillou); zona morbida da un video Weibo ripreso da Ice Universe, non confermato da Apple"
+     }
+    ],
     "sotto": [
      "Guillou racconta che ogni componente del pannello è “fatto su misura, fino al nanometro”: una finitura nano-texture con microlenti disperde i riflessi dove la piega potrebbe essere più visibile, con un rivestimento antiriflesso custom. Il polimero sotto il vetro è il 40% più rigido dello standard, per sostenere la zona flessibile senza perdere la sensazione premium. La scocca unisce titanio e ceramica, già vista su iPhone Air.",
      "Apple non ha commentato un punto: un video del 20 ottobre su Weibo (utente “Kang”, ripreso da Ice Universe) mostra la zona sopra la cerniera deformarsi sotto la pressione di un dito e tornare liscia, testato su più unità. Ice Universe lo collega al vetro a spessore variabile di Corning, più sottile al centro per la flessibilità: un'ipotesi plausibile, non confermata da Apple o da Corning."
@@ -91,7 +106,13 @@
       "perche": "Il video Weibo e l'ipotesi sul vetro a spessore variabile di Corning."
      }
     ],
-    "scritto": "2026-10-21"
+    "scritto": "2026-10-21",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-21/iphone-duo-schermo-samsung-piega-e51e3af1e27d.mp3",
+     "durata": 145,
+     "voce": "kore",
+     "impronta": "e51e3af1e27d"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -180,7 +201,13 @@
       "perche": "Il quadro completo dei quattro prodotti attesi, non solo l'iPad mini."
      }
     ],
-    "scritto": "2026-10-21"
+    "scritto": "2026-10-21",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-21/apple-evento-28-ottobre-ipad-mini-8-2ec09c29c2bb.mp3",
+     "durata": 151,
+     "voce": "kore",
+     "impronta": "2ec09c29c2bb"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -257,7 +284,13 @@
       "perche": "Il contesto: quanti Duo sono già stati allocati e a chi."
      }
     ],
-    "scritto": "2026-10-21"
+    "scritto": "2026-10-21",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-21/iphone-duo-spedizioni-anticipate-e31babb05948.mp3",
+     "durata": 117,
+     "voce": "kore",
+     "impronta": "e31babb05948"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -373,7 +406,35 @@
    ],
    "approfondimento": {
     "punto": "HomeView era pronto da anni, dice Gurman: due vicepresidenti Apple spiegano ora a The Verge che mancava Siri AI, l'unica cosa che rendeva sensato un hub per la casa che capisce il linguaggio naturale.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Perché HomeView è arrivato solo ora",
+      "didascalia": "Pronto da anni, HomeView aspettava Siri AI: senza, sarebbe stato solo un altro schermo da parete. È lo stesso motivo per cui in Europa non è ancora arrivato.",
+      "passi": [
+       {
+        "titolo": "Hardware pronto",
+        "nota": "Le unità restano in magazzino circa un anno, pronte ma senza un motivo per uscire."
+       },
+       {
+        "titolo": "Serve Siri AI",
+        "nota": "Il “contesto personale” di Siri AI è ciò che rende l'hub capace di capire il linguaggio naturale."
+       },
+       {
+        "titolo": "Siri AI arriva",
+        "nota": "Con Siri AI pronta, Apple lancia HomeView: si regola il termostato parlando, non navigando menu."
+       }
+      ],
+      "rottura": {
+       "dopo": "con Siri AI",
+       "senza": "senza Siri AI",
+       "etichetta": "Cosa cambia Siri AI",
+       "nota": "Senza Siri AI, HomeView è solo un altro schermo da parete; con Siri AI diventa un hub che capisce il linguaggio naturale — e il motivo per cui l'Europa, senza la nuova Siri su iOS, resta ancora senza HomeView."
+      },
+      "azione": "Il lancio europeo resta fermo finché la nuova Siri non arriva su iOS lì.",
+      "fonte": "The Verge, intervista a Kaiann Drance e Lilian Rincon, vicepresidenti Apple"
+     }
+    ],
     "sotto": [
      "Kaiann Drance, VP marketing Home, lega il ritardo al “contesto personale” che Siri AI porta in casa: senza, HomeView sarebbe stato solo un altro schermo da parete. Lilian Rincon, VP marketing AI, aggiunge che la capacità conversazionale è il cuore del prodotto: regolare il termostato “in a very natural way”, invece di navigare menu.",
      "Rincon spiega anche il target: dalla suocera alla nipote universitaria, “both of them can use this in the way that they naturally speak”. La stessa dipendenza da Siri AI spiega perché HomeView non arriva ancora in Europa, dove la nuova Siri non è disponibile su iOS: il ritardo europeo non è un problema hardware, ma software."
