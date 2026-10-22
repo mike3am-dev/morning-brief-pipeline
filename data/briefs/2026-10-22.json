@@ -61,7 +61,43 @@
    ],
    "approfondimento": {
     "punto": "Le prime recensioni vere di iPhone Duo, dopo settimane di rumor: specifiche finali, giudizio condiviso sulla qualità costruttiva e un verdetto comune — è il futuro, ma non ancora per la maggioranza.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "Dentro iPhone Duo, secondo le recensioni",
+      "didascalia": "Le prime recensioni misurano cosa cambia rispetto a un iPhone normale: più schermo, lo stesso peso contenuto, ma un teleobiettivo che resta fuori.",
+      "fonte": "9to5Mac, iSpazio (recensioni)",
+      "strati": [
+       {
+        "nome": "Scocca: titanio e ceramica",
+        "nota": "254 grammi, nonostante le dimensioni",
+        "colore": "nero"
+       },
+       {
+        "nome": "Display interno 7,6\"",
+        "nota": "+50% di area sul 18 Pro Max",
+        "colore": "blu"
+       },
+       {
+        "nome": "Center Stage",
+        "nota": "Fotocamera per le videochiamate nascosta sotto il display interno",
+        "colore": "giallo"
+       },
+       {
+        "nome": "Batteria doppia",
+        "nota": "44h video su schermo esterno, 31h su interno, 24h in uso misto",
+        "colore": "verde"
+       },
+       {
+        "nome": "Fotocamera 48MP",
+        "nota": "Manca il teleobiettivo",
+        "colore": "rosso",
+        "stato": "problema"
+       }
+      ],
+      "invito": "Tocca ogni strato per il dettaglio delle recensioni"
+     }
+    ],
     "sotto": [
      "Il pannello interno da 7,6\" guadagna il 50% di area sul 18 Pro Max restando a 254 grammi, con una scocca che unisce titanio e ceramica. La batteria, divisa in due pacchi, regge 44 ore di video a schermo esterno, 31 interno, 24 in uso misto. Manca il teleobiettivo sulla fotocamera da 48MP, ma la Center Stage sotto il display interno e Duo Preview, che trasforma lo schermo esterno in mirino, sono le scelte più originali.",
      "Il giudizio dei tre recensori converge su un punto: la costruzione ha un livello che nessun pieghevole Android ha ancora raggiunto, ma resta un prodotto per chi vuole il massimo, non il più pratico. 9to5Mac lo scrive chiaro: per la maggior parte delle persone un iPhone tradizionale resta la scelta giusta oggi."
@@ -110,7 +146,13 @@
       "perche": "Il punto di vista italiano sulla stessa unità di prova."
      }
     ],
-    "scritto": "2026-10-22"
+    "scritto": "2026-10-22",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-22/iphone-duo-prime-recensioni-7082a1859a7f.mp3",
+     "durata": 143,
+     "voce": "kore",
+     "impronta": "7082a1859a7f"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -156,7 +198,26 @@
    },
    "approfondimento": {
     "punto": "Una corte federale australiana dà ragione a Epic su tutta la linea: Apple dovrà aprire l'iPhone a store alternativi e sideloading dal 2027, in una delle sentenze più dure mai ricevute sull'App Store.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "flusso",
+      "titolo": "Chi incassa, prima e dopo la sentenza",
+      "didascalia": "Dal 1° marzo 2027 l'iPhone australiano si apre a store alternativi e sideloading: la sentenza cambia chi intasca la commissione su ogni acquisto, non solo il destino di Fortnite.",
+      "fonte": "Sentenza del giudice Jonathan Beach, Corte federale australiana",
+      "oggi": {
+       "etichetta": "Oggi: solo App Store",
+       "centro": "Apple",
+       "incassa": "La commissione su ogni acquisto e abbonamento in-app",
+       "nota": "Fortnite resta fuori dall'App Store australiano."
+      },
+      "agente": {
+       "etichetta": "Dal 1° marzo 2027: store alternativi",
+       "centro": "Store terzi e sideloading",
+       "incassa": "Gli sviluppatori vendono fuori dall'App Store, bypassando la commissione Apple",
+       "nota": "Apple fa appello: può slittare la data, non la direzione della sentenza."
+      }
+     }
+    ],
     "sotto": [
      "La sentenza di 235 pagine del giudice Jonathan Beach ordina ad Apple tre cose: aprire l'iPhone a store alternativi e al sideloading dal 1° marzo 2027 (proroga possibile al 3 maggio se richiesta entro il 15 febbraio), riammettere subito Fortnite nell'App Store australiano, e pagare l'85% delle spese legali di Epic. È un verdetto più netto di quello ottenuto da Epic negli Stati Uniti.",
      "Apple farà appello, sostenendo che le sue regole “proteggono l'esperienza sicura” degli utenti e tutelano la sua proprietà intellettuale: la battaglia legale, quindi, non si chiude qui. Epic ha già annunciato il ritorno di Fortnite in Australia “da domani”, segno di quanto consideri la sentenza definitiva nella sostanza."
@@ -212,7 +273,13 @@
       "perche": "Come la community tecnica legge la portata della sentenza."
      }
     ],
-    "scritto": "2026-10-22"
+    "scritto": "2026-10-22",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-22/epic-apple-australia-store-alternativi-b14624cf30ff.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "b14624cf30ff"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -250,7 +317,31 @@
    ],
    "approfondimento": {
     "punto": "Le recensioni confermano che la cerniera di iPhone Duo tiene oltre le aspettative dopo decine di migliaia di pieghe, ma la scelta di Touch ID invece di Face ID è la critica che torna in ogni recensione.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Quante pieghe regge la cerniera",
+      "didascalia": "Joanna Stern ha piegato il suo Duo oltre 32.000 volte in quattro notti con una macchina costruita apposta. Samsung certifica il suo Fold7 fino a 500.000 pieghe: un numero ufficiale che Apple non ha ancora reso pubblico per Duo.",
+      "fonte": "Joanna Stern (WSJ); Samsung (specifiche Galaxy Z Fold7)",
+      "unita": "pieghe",
+      "voci": [
+       {
+        "etichetta": "iPhone Duo (test WSJ)",
+        "min": 32000,
+        "max": 32000,
+        "colore": "giallo",
+        "nota": "Test non ufficiale, quattro notti con sensore di pressione"
+       },
+       {
+        "etichetta": "Galaxy Z Fold7 (Samsung)",
+        "min": 500000,
+        "max": 500000,
+        "colore": "nero",
+        "nota": "Numero certificato, non comparabile 1:1 col test di Stern"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Joanna Stern (WSJ) ha piegato la sua unità oltre 32.000 volte in quattro notti con una macchina costruita apposta, misurando la rigidità della cerniera con un sensore di pressione calibrato: il risultato è una cerniera più rigida di prima, non più lasca. Il paragone d'obbligo è con Samsung, che certifica il display del Galaxy Z Fold7 per 500.000 pieghe — un numero che Apple non ha ancora reso pubblico per Duo.",
      "Sul resto, il coro dei recensori converge su un solo punto debole: l'assenza di Face ID. Marques Brownlee nota un ritardo intenzionale su “every single” sblocco Touch ID e prevede che sarà “il numero uno” dei rimpianti; Joanna Stern scrive di rimpiangere Face ID “deeply”. 9to5Mac dissente, giudicando il Touch ID “veloce e affidabile”: resta comunque disponibile lo sblocco da Apple Watch come alternativa."
@@ -299,7 +390,13 @@
       "perche": "Il resoconto del test di Joanna Stern sulla resistenza della cerniera."
      }
     ],
-    "scritto": "2026-10-22"
+    "scritto": "2026-10-22",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-22/iphone-duo-cerniera-touchid-critiche-e19b79fd7755.mp3",
+     "durata": 143,
+     "voce": "kore",
+     "impronta": "e19b79fd7755"
+    }
    },
    "verifica": {
     "testate": 1,

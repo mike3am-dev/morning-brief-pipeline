@@ -262,5 +262,21 @@
   "interazione": "tocchi un cliente e vedi come la sua data è cambiata",
   "dati": "il kit 'stime' richiede valori numerici: non regge più serie di date-stimate per cliente diverso",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-22",
+  "notizia": "apple-doj-stallo-documenti-antitrust",
+  "idea": "Un confronto fra chi dice di essere più in ritardo: la finestra di discovery slittata (taglio concordato al 20 giugno 2025, richiesta DOJ di arrivare a 30 giorni dalla chiusura ormai a fine maggio 2027) contro i tempi già spesi da entrambe le parti (12 mesi e centinaia di contractor per Apple, 15 mesi di attesa per il governo)",
+  "interazione": "nessuna, è un confronto statico fra due accuse incrociate",
+  "dati": "date del taglio concordato, data di chiusura discovery, mesi già impiegati da ciascuna parte, numero di custodi (54)",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-22",
+  "notizia": "loop-capital-taglia-rating-apple",
+  "idea": "Due segnali opposti sulla stessa notizia: la stima di Loop Capital che scende (rating, target price, spedizioni Q4, prezzo medio) mentre la quota di mercato Apple tocca un record (22%, Counterpoint) in un mercato che cala del 20%",
+  "interazione": "un cursore o un'altalena che mostra la tensione fra il taglio delle stime e il record di quota, senza fonderli in un'unica barra",
+  "dati": "rating e target price prima/dopo, spedizioni Q4 85->79 milioni, prezzo medio 1.239->1.123 dollari, quota Apple 22% (Counterpoint), calo mercato -20%",
+  "stato": "aperta"
  }
 ]
