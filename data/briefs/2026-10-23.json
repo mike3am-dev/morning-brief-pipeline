@@ -67,7 +67,38 @@
    },
    "approfondimento": {
     "punto": "L'obiettivo di spedizioni di iPhone Duo sale del 44% in pochi giorni, da 9,7 a 14 milioni di unità: cosa dice questo numero sulla domanda, e quanto è solida la fonte che lo riporta.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "14 milioni, in prospettiva",
+      "didascalia": "Il nuovo obiettivo di DigiTimes è il 44% in più del precedente, ma resta lontano dai 20-30 milioni che un iPhone Pro Max vende sull'intero ciclo di vita.",
+      "voci": [
+       {
+        "etichetta": "Obiettivo precedente",
+        "min": 9.7,
+        "max": 9.7,
+        "colore": "grigio",
+        "nota": "Prima dell'aumento"
+       },
+       {
+        "etichetta": "Nuovo obiettivo",
+        "min": 14,
+        "max": 14,
+        "colore": "giallo",
+        "nota": "DigiTimes, 23 ottobre (+44%)"
+       },
+       {
+        "etichetta": "iPhone Pro Max",
+        "min": 20,
+        "max": 30,
+        "colore": "nero",
+        "nota": "Tipico, intero ciclo di vita"
+       }
+      ],
+      "unita": "milioni di unità",
+      "fonte": "DigiTimes (fonti di filiera Foxconn)"
+     }
+    ],
     "sotto": [
      "Il dato arriva da DigiTimes, che cita fonti della filiera Foxconn e dei fornitori di componenti: un outlet con contatti diretti nella produzione asiatica, ma qui nessuna fonte indipendente conferma la cifra. Il 12 ottobre, prima dei preordini, il quotidiano cinese Securities Times aveva già parlato di un aumento del 30% per il 2026 — stessa direzione, periodo e cifra diversi, da non confondere con la stima di oggi.",
      "Il numero certifica comunque quanto si vedeva già nei giorni scorsi: le prime unità esaurite entro un minuto dall'apertura dei preordini del 16 ottobre, le consegne USA slittate a fine gennaio, il limite di due unità per cliente contro il bagarinaggio. Per un primo pieghevole, 14 milioni di unità in 12 mesi restano comunque lontani dai 20-30 milioni tipici di un iPhone Pro Max sull'intero ciclo di vita."
@@ -116,7 +147,13 @@
       "perche": "Perché la domanda resta alta nonostante i compromessi."
      }
     ],
-    "scritto": "2026-10-23"
+    "scritto": "2026-10-23",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-23/iphone-duo-ordini-44-cf836534018e.mp3",
+     "durata": 159,
+     "voce": "kore",
+     "impronta": "cf836534018e"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -166,7 +203,17 @@
    },
    "approfondimento": {
     "punto": "Gurman guarda già oltre il primo iPhone Duo: Face ID sotto lo schermo per il prossimo modello, e uno schermo solo di poco più grande per quello dopo, non il salto a 9 pollici che si vociferava.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "densita",
+      "titolo": "Come si nasconde il Face ID",
+      "didascalia": "Schema illustrativo: sotto il sensore i pixel si aprono per lasciar passare l'infrarosso, come già nella fotocamera IR sotto lo schermo di iPhone 18 Pro.",
+      "rapporto": 0.5,
+      "zona": "Area Face ID, schermo esterno del Duo 2",
+      "compensa": "Il software ricostruisce i pixel mancanti nella zona del sensore",
+      "fonte": "Mark Gurman (Bloomberg, Power On)"
+     }
+    ],
     "sotto": [
      "Sul podcast Power On, Gurman racconta che Apple testa prototipi di iPhone Duo 2 con Face ID sotto il display esterno, al posto del Touch ID che ha diviso i recensori del primo modello: Chance Miller di 9to5Mac lo aveva definito \"la cosa più difficile da accettare\". I dipendenti esplorano anche un tasto Action dedicato, con minore certezza. La miniaturizzazione richiama quella della fotocamera IR sotto schermo di iPhone 18 Pro.",
      "Per il Duo di terza generazione, atteso nel 2028, Gurman corregge le attese sui social: \"non stiamo parlando di uno schermo interno da 8,5 o 9 pollici, stiamo parlando di qualcosa fra i 7,6 e poco più di 8\". Un teleobiettivo resta un obiettivo dichiarato — \"è nella loro lista\" — ma Gurman lo definisce \"un problema di fisica\" legato alla profondità disponibile, non di costo: non sa dire quando arriverà."
@@ -210,7 +257,13 @@
       "perche": "Il contesto sul tasto Action in esplorazione per il Duo 2."
      }
     ],
-    "scritto": "2026-10-23"
+    "scritto": "2026-10-23",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-23/iphone-duo2-faceid-duo3-schermo-bf67eafa9b9a.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "bf67eafa9b9a"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -294,7 +347,13 @@
       "perche": "I limiti alle commissioni Apple imposti dalla sentenza."
      }
     ],
-    "scritto": "2026-10-23"
+    "scritto": "2026-10-23",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-23/epic-fortnite-australia-68005bf7c9b2.mp3",
+     "durata": 121,
+     "voce": "kore",
+     "impronta": "68005bf7c9b2"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -329,7 +388,34 @@
    "facts": [],
    "approfondimento": {
     "punto": "Il giorno del lancio in Italia raccontato da dentro la fila: poche unità senza preordine, e nel mondo un trattamento da lancio storico, con riproduzioni gigantesche fuori da quattro Apple Store.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "anno",
+      "titolo": "Il lancio di iPhone Duo, passo per passo",
+      "didascalia": "Quattro tappe in meno di due settimane: dalle vetrine ai preordini esauriti in un minuto, fino all'arrivo oggi in Italia e alle vetrine gigantesche nel mondo. Le consegne dei primi preordini arrivano fino al 25 gennaio 2027.",
+      "eventi": [
+       {
+        "data": "2026-10-12",
+        "etichetta": "Vetrine pronte nei negozi"
+       },
+       {
+        "data": "2026-10-16",
+        "etichetta": "Aprono i preordini"
+       },
+       {
+        "data": "2026-10-22",
+        "etichetta": "Scorte limitate, Giappone in vendita"
+       },
+       {
+        "data": "2026-10-23",
+        "etichetta": "Arriva in Italia, vetrine gigantesche nel mondo"
+       }
+      ],
+      "obiettivo": "2027-01-25",
+      "centro": "iPhone Duo",
+      "fonte": "iSpazio"
+     }
+    ],
     "sotto": [
      "iSpazio racconta l'apertura anticipata degli Apple Store italiani e la fila all'ingresso per le poche unità disponibili senza preordine: Apple non ha reso noto né il numero di pezzi né quali negozi li abbiano ricevuti, lasciando ai singoli store la gestione dell'afflusso. iPhone Duo era già in vendita in Giappone da ieri.",
      "Accanto a quattro Apple Store nel mondo, incluso quello di Fifth Avenue a New York vicino al celebre cubo di vetro, sono apparse riproduzioni gigantesche di iPhone Duo: un'installazione promozionale che richiama il trattamento riservato ai lanci più importanti della storia recente di Apple. Il conteggio dei quattro negozi è attribuito a Joe Rossignol di MacRumors."
@@ -409,7 +495,33 @@
    "facts": [],
    "approfondimento": {
     "punto": "Nella sua intervista più ampia da CEO, Ternus spiega la sua filosofia sull'AI invisibile, difende la privacy di Siri AI e racconta il passaggio di consegne con Cook.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "L'AI che non si fa notare",
+      "didascalia": "Conversazione d'esempio: Siri AI usa il tuo contesto personale per rispondere, ma — dice Ternus — nessun altro può accedervi, nemmeno Apple.",
+      "contatto": "Siri",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "A che ora atterro venerdì?"
+       },
+       {
+        "da": "agente",
+        "testo": "Il tuo volo atterra a New York alle 18:40, orario locale."
+       },
+       {
+        "da": "tu",
+        "testo": "Avvisa Marco quando sono arrivata."
+       },
+       {
+        "da": "agente",
+        "testo": "Fatto. Nessun altro, nemmeno Apple, può leggere queste informazioni."
+       }
+      ],
+      "fonte": "John Ternus a TIME, ripreso da Macitynet"
+     }
+    ],
     "sotto": [
      "A TIME, che lo ha messo in copertina, Ternus spiega così il suo approccio all'AI: \"se facciamo bene il nostro lavoro, le persone non devono nemmeno sapere che dietro una funzione c'è l'intelligenza artificiale. Devono semplicemente scoprire di poter fare qualcosa che prima non riuscivano a fare\". Sulla privacy di Siri AI: \"puoi usare il tuo contesto personale, ma nessun altro può accedervi. Nemmeno Apple può vedere queste informazioni\".",
      "Ternus racconta anche Kid Cue, la funzione che mostra Snoopy sullo schermo esterno di iPhone Duo per attirare l'attenzione dei bambini durante le foto, e l'animazione di apertura del telefono: \"non è una funzione pratica, ma è qualcosa che ti fa stare bene ogni volta che la vedi\". Sul passaggio di consegne con Tim Cook, lo scorso settembre: \"abbiamo parlato soprattutto del futuro... il design è sempre stato al centro di questa azienda\"."
