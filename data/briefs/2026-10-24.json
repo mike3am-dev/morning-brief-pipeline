@@ -94,7 +94,13 @@
      }
     ],
     "scritto": "2026-10-24",
-    "visivi": []
+    "visivi": [],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-24/duo-cerniera-crepe-52665f2f5011.mp3",
+     "durata": 128,
+     "voce": "kore",
+     "impronta": "52665f2f5011"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -170,7 +176,13 @@
      }
     ],
     "scritto": "2026-10-24",
-    "visivi": []
+    "visivi": [],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-24/apple-supera-nvidia-7b963305d6e7.mp3",
+     "durata": 97,
+     "voce": "kore",
+     "impronta": "7b963305d6e7"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -255,7 +267,44 @@
      }
     ],
     "scritto": "2026-10-24",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Secondo posto, mercato in calo",
+      "didascalia": "In un mercato cinese ai minimi da 14 anni (-10%), Huawei resta davanti con il 21,3% di quota; Apple sale al 19,5% secondo Counterpoint, mentre IDC una settimana prima la dava ancora al 17,8%.",
+      "fonte": "Counterpoint Research, IDC",
+      "unita": "% di quota di mercato",
+      "voci": [
+       {
+        "etichetta": "Huawei",
+        "min": 21.3,
+        "max": 21.3,
+        "colore": "giallo",
+        "nota": "+5,3 punti sull'anno, prima in classifica (Counterpoint)"
+       },
+       {
+        "etichetta": "Apple (Counterpoint, 23 ott)",
+        "min": 19.5,
+        "max": 19.5,
+        "colore": "nero",
+        "nota": "+4,8 punti, seconda in classifica, dal sesto posto"
+       },
+       {
+        "etichetta": "Apple (IDC, 14 ott)",
+        "min": 17.8,
+        "max": 17.8,
+        "colore": "nero",
+        "nota": "Stima di una settimana prima, stesso trend di crescita"
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-24/apple-cina-quota-mercato-602b15706bbc.mp3",
+     "durata": 124,
+     "voce": "kore",
+     "impronta": "602b15706bbc"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -328,7 +377,41 @@
      }
     ],
     "scritto": "2026-10-24",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "La causa Apple-DOJ, passo per passo",
+      "didascalia": "Dall'apertura della causa nel 2024 al taglio dei documenti fissato nel 2025: il DOJ chiede di allargare ancora la raccolta prove fino al 2027, Apple si opone dopo aver già consegnato oltre 2 milioni di documenti su 11 milioni revisionati.",
+      "fonte": "Atti giudiziari depositati in tribunale",
+      "passi": [
+       {
+        "titolo": "Marzo 2024",
+        "nota": "Il DOJ apre la causa antitrust contro Apple per monopolio sullo smartphone."
+       },
+       {
+        "titolo": "Giugno 2025",
+        "nota": "Le parti fissano al 20 giugno 2025 il taglio dei documenti rilevanti per la discovery."
+       },
+       {
+        "titolo": "Revisione",
+        "nota": "Apple ha già revisionato oltre 11 milioni di documenti su 18 anni d'archivio, consegnandone oltre 2 milioni."
+       }
+      ],
+      "rottura": {
+       "dopo": "la richiesta del DOJ di estendere la discovery fino a 30 giorni dalla chiusura",
+       "senza": "un accordo fra le parti",
+       "etichetta": "La discovery si allarga a fine maggio 2027",
+       "nota": "Apple si oppone: allargare la richiesta allungherebbe la causa di mesi."
+      },
+      "azione": "Decide ora il giudice se accogliere la richiesta del DOJ o il no di Apple sui tempi."
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-24/doj-apple-prove-94fa8f285001.mp3",
+     "durata": 123,
+     "voce": "kore",
+     "impronta": "94fa8f285001"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -404,7 +487,50 @@
      }
     ],
     "scritto": "2026-10-24",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Stesso chip, nuovo design",
+      "didascalia": "Il MacBook Pro OLED touch del 28 ottobre avrebbe schermo e design più recenti, ma lo stesso chip M5 Pro/Max di circa otto mesi fa: Apple salterebbe l'M6 Pro/Max per arrivare dritta all'M7 nel 2027.",
+      "fonte": "Mark Gurman (Bloomberg), ripreso da 9to5Mac",
+      "periodi": [
+       "M5 Pro/Max",
+       "M6 Pro/Max (saltato)",
+       "M7 Pro/Max"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro",
+        "tappe": [
+         {
+          "quando": "inizio 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "uscito",
+          "nota": "Chip attuale, in vendita da circa otto mesi"
+         },
+         {
+          "quando": "28 ottobre 2026",
+          "chip": "M5 Pro/Max (stesso)",
+          "stato": "previsto",
+          "nota": "Redesign OLED touch e Dynamic Island, ma nessun nuovo chip"
+         },
+         {
+          "quando": "2026",
+          "chip": "M6 Pro/Max",
+          "stato": "saltato",
+          "nota": "Secondo Gurman, Apple salta questa generazione sul MacBook Pro"
+         },
+         {
+          "quando": "2027",
+          "chip": "M7 Pro/Max",
+          "stato": "previsto",
+          "nota": "Prossimo salto di prestazioni atteso"
+         }
+        ]
+       }
+      ]
+     }
+    ]
    },
    "verifica": {
     "testate": 1,
