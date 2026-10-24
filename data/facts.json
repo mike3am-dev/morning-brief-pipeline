@@ -29,6 +29,12 @@
   "note": "",
   "opened": "2026-09-23"
  },
+ "apple-capitalizzazione-mercato": {
+  "label": "Capitalizzazione di mercato di Apple",
+  "unit": "trilioni $",
+  "note": "Capitalizzazione di borsa di Apple, dato pubblico di mercato.",
+  "opened": "2026-10-24"
+ },
  "apple-card-savings-apy": {
   "label": "Tasso annuo, conto di risparmio Apple Card",
   "unit": "%",
@@ -47,6 +53,12 @@
   "note": "Cifra allegata dalla class action contro Apple, non un dato verificato.",
   "opened": "2026-09-26"
  },
+ "apple-quota-cina-counterpoint": {
+  "label": "Quota Apple, mercato smartphone Cina (Counterpoint)",
+  "unit": "%",
+  "note": "Rilevazione trimestrale Counterpoint Research, distinta dalle serie IDC e Omdia sullo stesso mercato.",
+  "opened": "2026-10-24"
+ },
  "apple-quota-europa": {
   "label": "Quota Apple, mercato smartphone Europa",
   "note": "Rilevazione trimestrale Counterpoint Research su spedizioni; era al 25% un anno prima di questa lettura.",
@@ -58,6 +70,12 @@
   "unit": "%",
   "note": "Rilevazione trimestrale Counterpoint Research sulle vendite tramite operatore telefonico, distinta dal mercato libero.",
   "opened": "2026-10-07"
+ },
+ "apple-quota-pc-mondiale": {
+  "label": "Quota Apple, mercato PC mondiale",
+  "unit": "%",
+  "note": "Rilevazione trimestrale Counterpoint Research su spedizioni PC mondiali.",
+  "opened": "2026-10-24"
  },
  "apple-quota-pieghevoli-2026": {
   "label": "Quota Apple, mercato pieghevoli 2026",
@@ -160,6 +178,12 @@
   "unit": "USD",
   "note": "",
   "opened": "2026-10-13"
+ },
+ "huawei-quota-cina-counterpoint": {
+  "label": "Quota Huawei, mercato smartphone Cina (Counterpoint)",
+  "unit": "%",
+  "note": "Rilevazione trimestrale Counterpoint Research, distinta dalla serie IDC sullo stesso mercato.",
+  "opened": "2026-10-24"
  },
  "ipad-base-ram": {
   "label": "RAM, iPad base (2027)",
@@ -532,6 +556,12 @@
   "unit": "%",
   "note": "Variazione percentuale anno su anno delle spedizioni PC a livello mondiale secondo IDC.",
   "opened": "2026-10-09"
+ },
+ "pc-mercato-globale-variazione-counterpoint": {
+  "label": "Variazione annua del mercato PC globale (Counterpoint)",
+  "unit": "%",
+  "note": "Variazione percentuale annua delle spedizioni PC mondiali secondo Counterpoint Research, distinta dalla serie IDC.",
+  "opened": "2026-10-24"
  },
  "pc-prezzi-aumento-2026-stima-acer": {
   "label": "Aumento stimato prezzi PC entro fine 2026 (Acer)",
