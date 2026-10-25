@@ -81,7 +81,52 @@
       "perche": "Cosa c'è davvero dentro la cerniera e intorno allo schermo interno."
      }
     ],
-    "scritto": "2026-10-25"
+    "scritto": "2026-10-25",
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Cicli senza crepe, contro i casi reali",
+      "didascalia": "Nei test di laboratorio il Duo ha superato decine di migliaia di aperture senza cedere; nelle segnalazioni reali le crepe sono comparse dopo pochissimi utilizzi.",
+      "fonte": "Joanna Stern (Wall Street Journal); laboratorio cinese; segnalazioni da Dallas e Australia",
+      "unita": "aperture (cicli)",
+      "voci": [
+       {
+        "etichetta": "Test Joanna Stern (WSJ)",
+        "min": 32000,
+        "max": 32000,
+        "colore": "blu",
+        "nota": "nessuna crepa"
+       },
+       {
+        "etichetta": "Laboratorio cinese",
+        "min": 11000,
+        "max": 11000,
+        "colore": "blu",
+        "nota": "oltre 11.000, anche a basse temperature"
+       },
+       {
+        "etichetta": "Caso Australia",
+        "min": 1,
+        "max": 20,
+        "colore": "rosso",
+        "nota": "crepa in meno di 20 aperture, circa sei ore d'uso"
+       },
+       {
+        "etichetta": "Caso Dallas",
+        "min": 4,
+        "max": 4,
+        "colore": "rosso",
+        "nota": "crepa già al setup iniziale"
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-25/duo-crepe-display-interno-21b69bdabbea.mp3",
+     "durata": 126,
+     "voce": "kore",
+     "impronta": "21b69bdabbea"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -161,7 +206,42 @@
       "perche": "Cosa c'è fisicamente dentro la cerniera che si è rivelata fragile."
      }
     ],
-    "scritto": "2026-10-25"
+    "scritto": "2026-10-25",
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Il test che il Duo non supera",
+      "didascalia": "JerryRigEverything segue lo stesso percorso con ogni pieghevole: la polvere entra nella cerniera, sovraccarica i magneti, poi arriva la flessione forzata. Sul Duo lo schermo interno non ha retto.",
+      "fonte": "JerryRigEverything (Zack Nelson)",
+      "passi": [
+       {
+        "titolo": "Polvere nella cerniera",
+        "nota": "Nonostante la certificazione IP68, la polvere entra da più punti"
+       },
+       {
+        "titolo": "Magneti sovraccaricati",
+        "nota": "La polvere accumulata sovraccarica i magneti che tengono chiuso il telefono"
+       },
+       {
+        "titolo": "Flessione forzata",
+        "nota": "Il test mette sotto stress lo schermo interno, già più fragile (Mohs 2 contro 7 dell'esterno)"
+       }
+      ],
+      "rottura": {
+       "dopo": "il test di flessione forzata",
+       "senza": "una cerniera che tenga fuori la polvere",
+       "etichetta": "Schermo compromesso",
+       "nota": "Riga verde permanente, poi lo schermo diventa non responsivo"
+      },
+      "azione": "Guarda dove si rompe"
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-25/duo-jerryrig-fallito-8083dbd3358f.mp3",
+     "durata": 126,
+     "voce": "kore",
+     "impronta": "8083dbd3358f"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -241,7 +321,13 @@
       "perche": "La prima fonte ad anticipare la rinuncia ai chip M6 Pro/Max."
      }
     ],
-    "scritto": "2026-10-25"
+    "scritto": "2026-10-25",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-25/pro-and-tell-evento-28-ottobre-e9ecb18fd033.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "e9ecb18fd033"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -315,7 +401,45 @@
       "perche": "Le stesse componenti, viste dal lato di chi dovrà ripararle."
      }
     ],
-    "scritto": "2026-10-25"
+    "scritto": "2026-10-25",
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "iPhone Duo aperto: cosa c'è dentro",
+      "didascalia": "I teardown mostrano due batterie separate per restare sottile da aperto: insieme superano la singola cella del rivale Galaxy Z Fold8 (4.800 mAh).",
+      "fonte": "REWA Technology; Phone Repair Guru",
+      "strati": [
+       {
+        "nome": "Batteria superiore",
+        "nota": "2.962 mAh, 11,56 Wh"
+       },
+       {
+        "nome": "Batteria inferiore",
+        "nota": "1.921 mAh, 7,5 Wh — totale 4.883 mAh"
+       },
+       {
+        "nome": "Scheda logica",
+        "nota": "Chip A20 Pro e modem cellulare C2"
+       },
+       {
+        "nome": "Touch ID",
+        "nota": "Rimovibile, ma la riparazione è complessa",
+        "stato": "problema"
+       },
+       {
+        "nome": "Porta USB-C",
+        "nota": "Completamente modulare"
+       }
+      ],
+      "invito": "Tocca ogni strato per vedere cosa c'è dentro"
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-25/duo-teardown-doppia-batteria-047fac567129.mp3",
+     "durata": 125,
+     "voce": "kore",
+     "impronta": "047fac567129"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -366,7 +490,13 @@
      }
     ],
     "approfondire": [],
-    "scritto": "2026-10-25"
+    "scritto": "2026-10-25",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-25/apple-negozi-francia-proteste-bb7e8d75e712.mp3",
+     "durata": 98,
+     "voce": "kore",
+     "impronta": "bb7e8d75e712"
+    }
    },
    "verifica": {
     "testate": 1,
