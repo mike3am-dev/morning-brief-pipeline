@@ -107,7 +107,45 @@
      }
     ],
     "scritto": "2026-10-26",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "Dove si concentra la pressione",
+      "didascalia": "Schema basato sul modello 3D che iFixit ha costruito da scansioni CT e brevetti: nella cerniera un componente che forse non si ritira bene concentra la pressione vicino al cavo a fisarmonica, nella zona dove si segnalano le crepe.",
+      "fonte": "iFixit",
+      "invito": "Tocca uno strato",
+      "strati": [
+       {
+        "nome": "Porta USB-C",
+        "nota": "Polvere fluorescente visibile all'interno, nei test iFixit.",
+        "colore": "neutro"
+       },
+       {
+        "nome": "Griglia speaker",
+        "nota": "Polvere presente ma meno che su Galaxy Z Fold8 e Pixel 11 Pro Fold.",
+        "colore": "neutro"
+       },
+       {
+        "nome": "Link della cerniera",
+        "nota": "Diventa 'crunchy': forse non si ritira bene come gli altri link.",
+        "colore": "critico",
+        "stato": "problema"
+       },
+       {
+        "nome": "Cavo a fisarmonica",
+        "nota": "La pressione si concentra qui vicino, dove iFixit individua le crepe.",
+        "colore": "critico",
+        "stato": "problema"
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-26/duo-cerniera-ifixit-e666c7c2ba11.mp3",
+     "durata": 150,
+     "voce": "kore",
+     "impronta": "e666c7c2ba11"
+    }
    },
    "verifica": {
     "testate": 5,
@@ -220,7 +258,35 @@
      }
     ],
     "scritto": "2026-10-26",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "Quanto costera' in piu'",
+      "didascalia": "La stima sul prezzo del MacBook Pro 14\" con schermo touch e' salita da 2.499 a 2.999 dollari fra agosto e ottobre: Gurman parla ora di un rincaro fino a 500 dollari sopra il listino attuale.",
+      "fonte": "Mark Gurman (Bloomberg), via 9to5Mac",
+      "unita": "USD",
+      "punti": [
+       {
+        "data": "2026-08-23",
+        "valore": 2499,
+        "tipo": "stima",
+        "fonte": "9to5Mac"
+       },
+       {
+        "data": "2026-10-26",
+        "valore": 2999,
+        "tipo": "stima",
+        "fonte": "Mark Gurman (Bloomberg)"
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-26/macbook-pro-oled-touch-preview-afdc1884675d.mp3",
+     "durata": 147,
+     "voce": "kore",
+     "impronta": "afdc1884675d"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -313,7 +379,37 @@
      }
     ],
     "scritto": "2026-10-26",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Quanto e' piu' veloce",
+      "didascalia": "Le stime sul salto di prestazioni del chip A20 Pro rispetto all'A17 Pro attuale: CPU piu' rapida del 60%, GPU fino al 166% in piu'.",
+      "fonte": "9to5Mac",
+      "unita": "% in piu'",
+      "voci": [
+       {
+        "etichetta": "CPU",
+        "min": 60,
+        "max": 60,
+        "colore": "blu",
+        "nota": "A20 Pro vs A17 Pro"
+       },
+       {
+        "etichetta": "GPU",
+        "min": 166,
+        "max": 166,
+        "colore": "blu",
+        "nota": "A20 Pro vs A17 Pro"
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-26/ipadmini8-oled-preview-58d76e50801b.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "58d76e50801b"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -401,7 +497,54 @@
      }
     ],
     "scritto": "2026-10-26",
-    "visivi": []
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Chi ha l'OLED, e quando",
+      "didascalia": "Il MacBook Pro di punta passa a schermo OLED touch il 28 ottobre. iMac e MacBook Pro 14' d'ingresso prendono lo stesso chip M6 ma restano a schermo LCD: l'OLED per loro e' atteso solo in primavera 2027, un gap di sei mesi.",
+      "fonte": "Mark Gurman (Bloomberg), via MacRumors",
+      "periodi": [
+       "28 ott 2026",
+       "Primavera 2027"
+      ],
+      "linee": [
+       {
+        "nome": "MacBook Pro di punta",
+        "tappe": [
+         {
+          "quando": "28 ott 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "uscito",
+          "nota": "redesign OLED touch"
+         }
+        ]
+       },
+       {
+        "nome": "iMac e MacBook Pro 14' entry",
+        "tappe": [
+         {
+          "quando": "28 ott 2026",
+          "chip": "M6",
+          "stato": "uscito",
+          "nota": "schermo LCD, non OLED"
+         },
+         {
+          "quando": "Primavera 2027",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "redesign OLED, nessuna data certa"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-26/imac-m6-mbp14-lcd-5003d7ce4f18.mp3",
+     "durata": 140,
+     "voce": "kore",
+     "impronta": "5003d7ce4f18"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -471,7 +614,13 @@
      }
     ],
     "scritto": "2026-10-26",
-    "visivi": []
+    "visivi": [],
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-26/apple-vertici-display-55af4a5847fa.mp3",
+     "durata": 111,
+     "voce": "kore",
+     "impronta": "55af4a5847fa"
+    }
    },
    "verifica": {
     "testate": 1,
