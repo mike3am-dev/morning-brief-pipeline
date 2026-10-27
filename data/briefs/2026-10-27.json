@@ -80,7 +80,35 @@
    ],
    "approfondimento": {
     "punto": "Apple salta l'attesa di mercoledì e lancia già oggi l'iPad mini più cambiato di sempre — ma il chip pieno, con doppio Neural Engine, costa 300 dollari in più del modello base.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "Quanto costera', alla fine",
+      "didascalia": "La stima sul prezzo dell'iPad mini OLED era salita a 799 dollari, confermata ancora il giorno prima del lancio da MacRumors. Apple lo ha presentato a 699 dollari, 100 in meno di quanto previsto da tutti.",
+      "fonte": "Mark Gurman (Bloomberg); MacRumors; Apple",
+      "unita": "USD",
+      "punti": [
+       {
+        "data": "2026-10-12",
+        "valore": 799,
+        "tipo": "stima",
+        "fonte": "Mark Gurman (Bloomberg)"
+       },
+       {
+        "data": "2026-10-26",
+        "valore": 799,
+        "tipo": "stima",
+        "fonte": "MacRumors"
+       },
+       {
+        "data": "2026-10-26",
+        "valore": 699,
+        "tipo": "dato",
+        "fonte": "Apple"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il salto è nel display e nel corpo: 8,5'' OLED (erano 8,3'' LCD), 1200 nit di picco contro 600, bezel il 24% più sottili, 5,4mm di spessore (erano 6,3) e il primo IP67 della linea, con un sistema audio «Acoustic Display» sigillato nello stesso corpo che tiene fuori acqua e polvere. La fotocamera frontale si sposta sul lato lungo, per le videochiamate in orizzontale.",
      "Il chip A20 Pro non è uguale su tutti i modelli: solo il 512GB (999 dollari) ha la CPU a 6 core e il doppio Neural Engine da 16 core; i modelli da 128 e 256GB — la maggioranza che si venderà — hanno un chip tagliato, a 5 core e un solo Neural Engine. E non c'è ProMotion: lo schermo resta a 60Hz, come anticipato da mesi dal leaker yeux1122."
@@ -130,7 +158,13 @@
       "perche": "Spiega bene il chip tagliato sui modelli da 128 e 256GB."
      }
     ],
-    "scritto": "2026-10-27"
+    "scritto": "2026-10-27",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-27/ipad-mini-oled-lancio-fa002fa9a797.mp3",
+     "durata": 153,
+     "voce": "kore",
+     "impronta": "fa002fa9a797"
+    }
    },
    "verifica": {
     "testate": 4,
@@ -180,7 +214,54 @@
    },
    "approfondimento": {
     "punto": "Joswiak promette una «settimana entusiasmante»: secondo lo schema di Gurman, un prodotto al giorno fino al MacBook Pro OLED touchscreen di mercoledì, il primo con Dynamic Island su un Mac.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "roadmap",
+      "titolo": "Chi arriva quando, con quale chip",
+      "didascalia": "Tre prodotti in tre giorni: l'iPad mini lunedi', iMac e MacBook Pro 14\" martedi' con lo stesso chip M6, il MacBook Pro OLED touchscreen mercoledi' con l'M5 Pro/Max gia' visto in primavera, non un nuovo M6 Pro.",
+      "fonte": "Mark Gurman (Bloomberg)",
+      "periodi": [
+       "26 ott 2026",
+       "27 ott 2026",
+       "28 ott 2026"
+      ],
+      "linee": [
+       {
+        "nome": "iPad mini",
+        "tappe": [
+         {
+          "quando": "26 ott 2026",
+          "chip": "A20 Pro",
+          "stato": "uscito",
+          "nota": "chip pieno solo sul modello 512GB"
+         }
+        ]
+       },
+       {
+        "nome": "iMac e MacBook Pro 14\"",
+        "tappe": [
+         {
+          "quando": "27 ott 2026",
+          "chip": "M6",
+          "stato": "previsto",
+          "nota": "stesso silicio del Mac mini di agosto"
+         }
+        ]
+       },
+       {
+        "nome": "MacBook Pro OLED touch",
+        "tappe": [
+         {
+          "quando": "28 ott 2026",
+          "chip": "M5 Pro/Max",
+          "stato": "previsto",
+          "nota": "non un nuovo M6 Pro: la svolta e' lo schermo"
+         }
+        ]
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Oggi l'iPad mini. Martedì, secondo Gurman, un iMac e un MacBook Pro 14'' con chip M6 — lo stesso silicio del Mac mini di agosto, senza cambi di design. Mercoledì l'evento vero, «Pro and tell», alle 10 del mattino a Los Angeles: un video di una decina di minuti sul MacBook Pro OLED touchscreen, poi i preordini aperti alle 10:10 — da cui l'orario insolito visto oggi per l'iPad mini.",
      "Il MacBook Pro touchscreen porta Dynamic Island su macOS e uno schermo OLED pensato per Final Cut e Logic prima che per toccare le icone: secondo Gurman dentro c'è ancora il chip M5 Pro/Max presentato in primavera, non un nuovo M6 Pro — la svolta è lo schermo, non il silicio, e si paga fino a 500 dollari in più."
@@ -226,7 +307,13 @@
       "perche": "I dettagli su iMac e MacBook Pro 14'' attesi per martedì."
      }
     ],
-    "scritto": "2026-10-27"
+    "scritto": "2026-10-27",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-27/settimana-prodotto-al-giorno-9dba3dddd8ca.mp3",
+     "durata": 146,
+     "voce": "kore",
+     "impronta": "9dba3dddd8ca"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -270,7 +357,45 @@
    ],
    "approfondimento": {
     "punto": "iOS 27.2 arriva su tutta la linea con più memoria per Siri AI e un tappo a oltre 160 falle di sicurezza — comprese sei usate dal jailbreak di iPhone Duo.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Quante falle chiude",
+      "didascalia": "iOS 27.2 corregge oltre 160 vulnerabilita': circa 30 in WebKit, circa 15 nel kernel, e sei di quelle usate dal jailbreak con cui il team Calif aveva aperto iPhone Duo al lancio.",
+      "fonte": "Apple; Stefan Esser",
+      "unita": "falle corrette",
+      "voci": [
+       {
+        "etichetta": "Totale",
+        "min": 160,
+        "max": 160,
+        "colore": "blu",
+        "nota": "oltre 160, in tutta la linea"
+       },
+       {
+        "etichetta": "WebKit",
+        "min": 30,
+        "max": 30,
+        "colore": "giallo",
+        "nota": "piu' di 30"
+       },
+       {
+        "etichetta": "Kernel",
+        "min": 15,
+        "max": 15,
+        "colore": "arancio",
+        "nota": "circa 15"
+       },
+       {
+        "etichetta": "Jailbreak Duo",
+        "min": 6,
+        "max": 6,
+        "colore": "rosso",
+        "nota": "team Calif, usate al lancio"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Siri AI ora ricorda le conversazioni passate e pesca da fonti nuove — foto di Messaggi, eventi di Calendario, segreteria, Safari — con un'opzione «Excluded Apps» per escludere app specifiche. Le nuove lingue sono francese, giapponese, coreano, portoghese e spagnolo: l'italiano, l'Unione Europea e la Cina continentale restano fuori.",
      "Oltre 160 vulnerabilità corrette, più di 30 in WebKit e circa 15 nel kernel, comprese sei usate dal jailbreak untethered con cui il team Calif aveva aperto iPhone Duo al lancio: il ricercatore Stefan Esser conferma che «la maggior parte» sono state chiuse. Nessuna falla risulta sfruttata attivamente."
@@ -315,7 +440,13 @@
       "perche": "La lista completa delle novità su tutte le piattaforme, in italiano."
      }
     ],
-    "scritto": "2026-10-27"
+    "scritto": "2026-10-27",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-27/ios-27-2-rilascio-32ce3fe49654.mp3",
+     "durata": 147,
+     "voce": "kore",
+     "impronta": "32ce3fe49654"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -397,7 +528,13 @@
       "perche": "Il modello 3D della cerniera e l'ipotesi di iFixit, in italiano."
      }
     ],
-    "scritto": "2026-10-27"
+    "scritto": "2026-10-27",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-27/duo-apple-conferma-difetto-e858333222ad.mp3",
+     "durata": 116,
+     "voce": "kore",
+     "impronta": "e858333222ad"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -429,7 +566,35 @@
    "extra_links": [],
    "approfondimento": {
     "punto": "Apple porta negli Apple Store americani un'evoluzione di Presto per scoprire i resi truffaldini prima di rimetterli in vendita, senza aprire la scatola.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "La truffa che il negozio non vedeva",
+      "didascalia": "Comprare, svuotare la scatola, chiedere il rimborso: funzionava perche' una confezione apparentemente sigillata andava riaperta e rimessa in magazzino per il riallestimento. Presto lo intercetta via MagSafe, senza aprire la scatola.",
+      "fonte": "Apple",
+      "passi": [
+       {
+        "titolo": "Si compra un iPhone",
+        "nota": "la confezione resta apparentemente sigillata"
+       },
+       {
+        "titolo": "Si sottraggono telefono o componenti",
+        "nota": "rivenduti sul mercato parallelo dei ricambi"
+       },
+       {
+        "titolo": "Si restituisce la scatola vuota o semivuota",
+        "nota": "chiedendo il rimborso pieno"
+       }
+      ],
+      "rottura": {
+       "dopo": "Presto via MagSafe",
+       "senza": "il reso tornava comunque in magazzino per il riallestimento, lento e costoso",
+       "etichetta": "Scansione prima dello scaffale",
+       "nota": "se il dispositivo e' integro, torna in vendita subito"
+      },
+      "azione": "Scansiona l'integrita' del dispositivo via MagSafe senza aprire la scatola, e lo rimette sullo scaffale se supera i controlli"
+     }
+    ],
     "sotto": [
      "Il problema è uno specifico tipo di truffa: comprare un iPhone, sottrarre telefono o componenti per rivenderli sul mercato parallelo dei ricambi, e restituire la scatola vuota o semivuota chiedendo il rimborso. Finora i commessi erano istruiti ad aprire anche i resi apparentemente sigillati, ma una volta aperta la confezione non può tornare subito in vendita: serve il riallestimento in magazzino, un processo lento e costoso.",
      "La soluzione deriva da Presto, che da anni aggiorna via MagSafe il software degli iPhone ancora imballati — la stessa tecnologia con cui Apple fa comparire il nome dell'acquirente alla prima accensione. Arrivato nei negozi USA a inizio ottobre 2026 e già adattato a iPhone Duo, scansiona l'integrità del dispositivo e lo rimette sullo scaffale subito se supera i controlli."
@@ -457,7 +622,13 @@
       "perche": "Spiega come funziona Presto, la base del nuovo sistema anti-truffe."
      }
     ],
-    "scritto": "2026-10-27"
+    "scritto": "2026-10-27",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-27/apple-store-sorvegliante-elettronico-b2fbd0a878d9.mp3",
+     "durata": 112,
+     "voce": "kore",
+     "impronta": "b2fbd0a878d9"
+    }
    },
    "verifica": {
     "testate": 1,
