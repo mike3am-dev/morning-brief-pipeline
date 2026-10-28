@@ -68,7 +68,29 @@
    ],
    "approfondimento": {
     "punto": "Apple ha tenuto il prezzo fermo aumentando lo storage incluso, ma ha diviso in due la banda di memoria: chi compra il modello base da 16GB ha la stessa velocità di RAM di un anno fa.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "La banda di memoria si divide",
+      "didascalia": "Solo chi sceglie 24 o 32GB di RAM arriva a 170GB/s, il massimo mai visto su un chip base Apple. Chi si ferma ai 16GB di base resta a 153GB/s, la stessa velocità di M5.",
+      "fonte": "MacRumors, iSpazio",
+      "unita": "GB/s",
+      "voci": [
+       {
+        "etichetta": "16GB (base)",
+        "min": 153,
+        "max": 153,
+        "nota": "come su M5, nessun progresso"
+       },
+       {
+        "etichetta": "24/32GB",
+        "min": 170,
+        "max": 170,
+        "nota": "nuovo massimo su un chip base"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "La banda di memoria — quanto velocemente CPU e GPU leggono dati — è la differenza più concreta. Chi sceglie 24 o 32GB ottiene 170GB/s, il massimo mai visto su un chip base Apple. Chi si ferma a 16GB — la configurazione più venduta — resta a 153GB/s: identica a M5, nessun progresso. MacRumors e iSpazio lo hanno trovato sulle pagine tecniche, non nel comunicato.",
      "Sul prezzo Apple ha scelto la strada opposta a quella temuta: nessun terzo rincaro dopo le due ondate di giugno e settembre. Il MacBook Pro 14′′ M6 parte da 1.999 dollari, come il modello M5 di giugno, ma con 1TB al posto di 512GB. Bene per chi compra oggi, ma il contrasto con il MacBook Pro OLED touch — fino a 400 dollari in più, secondo Gurman — si fa più netto."
@@ -111,7 +133,13 @@
       "perche": "Il contesto sui due rincari del 2026 e perché l'M6 li evita."
      }
     ],
-    "scritto": "2026-10-28"
+    "scritto": "2026-10-28",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-28/macbook-pro-14-m6-85568e97321e.mp3",
+     "durata": 142,
+     "voce": "kore",
+     "impronta": "85568e97321e"
+    }
    },
    "verifica": {
     "testate": 5,
@@ -211,7 +239,13 @@
       "perche": "Il confronto completo per chi ha già un iMac M4."
      }
     ],
-    "scritto": "2026-10-28"
+    "scritto": "2026-10-28",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-28/imac-m6-3ba5f9e7bf9d.mp3",
+     "durata": 105,
+     "voce": "kore",
+     "impronta": "3ba5f9e7bf9d"
+    }
    },
    "verifica": {
     "testate": 5,
@@ -302,7 +336,13 @@
       "perche": "Il testo integrale della dichiarazione ufficiale Apple."
      }
     ],
-    "scritto": "2026-10-28"
+    "scritto": "2026-10-28",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-28/iphone-duo-cerniera-crepe-c29804b7bfa4.mp3",
+     "durata": 128,
+     "voce": "kore",
+     "impronta": "c29804b7bfa4"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -358,7 +398,35 @@
    },
    "approfondimento": {
     "punto": "La stima di Gurman scende rispetto a due giorni fa (da 2.999 a 2.899 dollari) ma resta il prezzo di partenza più alto mai visto su un MacBook Pro.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "La stima sul prezzo, rivista tre volte",
+      "didascalia": "Fra agosto e oggi la stima sul prezzo del MacBook Pro 14'' OLED touch è salita a 2.999 dollari e poi scesa a 2.899: resterebbe comunque il prezzo di partenza più alto mai visto su un MacBook Pro.",
+      "fonte": "Mark Gurman (Bloomberg), via 9to5Mac e MacRumors",
+      "unita": "USD",
+      "punti": [
+       {
+        "data": "2026-08-23",
+        "valore": 2499,
+        "tipo": "stima",
+        "fonte": "9to5Mac"
+       },
+       {
+        "data": "2026-10-26",
+        "valore": 2999,
+        "tipo": "stima",
+        "fonte": "Mark Gurman (Bloomberg)"
+       },
+       {
+        "data": "2026-10-28",
+        "valore": 2899,
+        "tipo": "stima",
+        "fonte": "Mark Gurman (Bloomberg)"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il premio touch sarebbe di 400 dollari sul 14'': da 2.499 a 2.899. Se lo stesso scarto si applica al 16'' (oggi 2.999), si arriverebbe ad almeno 3.399 dollari, forse più. 9to5Mac calcola che rispetto ai prezzi precedenti i rincari di giugno ($2.199 per il 14'' M5 Pro), l'aumento totale sfiorerebbe i 700 dollari in quattro mesi. Il chip resta lo stesso M5 Pro/Max: a pagare è solo lo schermo touch e il nuovo design.",
      "Apple terrà in vendita anche i modelli mini-LED non-touch, secondo Gurman: una scelta che lascia ai clienti più attenti al prezzo un'alternativa, e permette ad Apple di testare la domanda per il touch senza ritirare l'offerta attuale."
@@ -403,7 +471,13 @@
       "perche": "La storia del progetto touchscreen, da Cook a Ternus."
      }
     ],
-    "scritto": "2026-10-28"
+    "scritto": "2026-10-28",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-28/macbook-pro-oled-touch-evento-e88da16f6de5.mp3",
+     "durata": 136,
+     "voce": "kore",
+     "impronta": "e88da16f6de5"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -444,7 +518,28 @@
    ],
    "approfondimento": {
     "punto": "Il dettaglio che conta non è l'assistente dentro le app Apple, ma l'MCP: la porta che permette a strumenti esterni di leggere e modificare quei documenti da soli.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "chat",
+      "titolo": "Cosa cambia con MCP",
+      "didascalia": "Conversazione d'esempio: con il supporto MCP un agente esterno può leggere e aggiornare da solo un documento Keynote, Pages o Numbers, senza che l'utente copi e incolli nulla a mano.",
+      "contatto": "Agente AI (via MCP)",
+      "messaggi": [
+       {
+        "da": "tu",
+        "testo": "Aggiorna la tabella vendite in Numbers e metti il grafico in una slide Keynote"
+       },
+       {
+        "da": "agente",
+        "testo": "Fatto: tabella aggiornata in Numbers, grafico inserito in una nuova slide Keynote"
+       },
+       {
+        "da": "tu",
+        "testo": "Perfetto, esportala anche come file .keyx"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Con MCP, un agente esterno può recuperare dati, aggiornare una tabella in Numbers, creare un grafico e trasferirlo in una presentazione Keynote, senza che l'utente copi e incolli nulla a mano. Macitynet la definisce potenzialmente «una delle novità più importanti» perché crea un collegamento standardizzato fra documento e strumenti esterni — ma quanto funzioni dipende dal supporto reale di app e agenti di terze parti, ancora da vedere.",
      "Sull'assistente interno, Apple ammette per la prima volta in modo esplicito di usare modelli OpenAI oltre ai propri: una scelta che segue quella già vista su ChatGPT dentro Siri, ma qui per la produttività invece che per le domande generiche. Nuovo anche il formato Keynote Interchange (.keyx), un bundle JSON apribile da strumenti esterni e agenti AI."
