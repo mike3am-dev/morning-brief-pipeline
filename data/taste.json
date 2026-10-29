@@ -7097,9 +7097,27 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-10-28/imac-m6",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-28/iphone-duo-cerniera-crepe",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-10-28/macbook-pro-14-m6",
+   "vote": 0.25,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-10-28T04:46:50",
+ "pulled": "2026-10-29T04:46:37",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -7419,21 +7437,21 @@
   },
   {
    "asse": "categoria",
+   "valore": "iphone",
+   "verso": "promuovi",
+   "su": 42,
+   "giu": 59,
+   "scarto": 0.1,
+   "nota": "categoria «iphone»: aperta 42 volte su 101, sopra la media"
+  },
+  {
+   "asse": "categoria",
    "valore": "smart home",
    "verso": "promuovi",
    "su": 3,
    "giu": 3,
    "scarto": 0.1,
    "nota": "categoria «smart home»: aperta 3 volte su 6, sopra la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "iphone",
-   "verso": "promuovi",
-   "su": 42,
-   "giu": 58,
-   "scarto": 0.11,
-   "nota": "categoria «iphone»: aperta 42 volte su 100, sopra la media"
   },
   {
    "asse": "fonte",
@@ -7472,6 +7490,15 @@
    "nota": "categoria «retail»: aperta 4 volte su 7, sopra la media"
   },
   {
+   "asse": "fonte",
+   "valore": "Apple Newsroom",
+   "verso": "promuovi",
+   "su": 11,
+   "giu": 9,
+   "scarto": 0.17,
+   "nota": "fonte «Apple Newsroom»: aperta 11 volte su 20, sopra la media"
+  },
+  {
    "asse": "categoria",
    "valore": "hardware",
    "verso": "promuovi",
@@ -7488,15 +7515,6 @@
    "giu": 1,
    "scarto": 0.18,
    "nota": "categoria «manifattura»: aperta 2 volte su 3, sopra la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Apple Newsroom",
-   "verso": "promuovi",
-   "su": 10,
-   "giu": 8,
-   "scarto": 0.18,
-   "nota": "fonte «Apple Newsroom»: aperta 10 volte su 18, sopra la media"
   },
   {
    "asse": "ai",
