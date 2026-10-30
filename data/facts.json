@@ -47,6 +47,12 @@
   "note": "",
   "opened": "2026-09-20"
  },
+ "apple-nand-costo-per-gb": {
+  "label": "Costo flash NAND per GB (acquisti Apple)",
+  "unit": "USD/GB",
+  "note": "Stima TechInsights via inchiesta Wall Street Journal; non una serie di prezzo di listino.",
+  "opened": "2026-10-30"
+ },
  "apple-pay-commissioni-annue-stima": {
   "label": "Commissioni Apple Pay incassate ogni anno (stima accusa)",
   "unit": "USD",
@@ -137,6 +143,12 @@
   "opened": "2026-09-10",
   "unit": "ore"
  },
+ "appletv4k-2026-ram": {
+  "label": "RAM, Apple TV 4K (2026)",
+  "unit": "GB",
+  "note": "Dato emerso da Xcode 27.2, non elencato nelle specifiche ufficiali Apple.",
+  "opened": "2026-10-30"
+ },
  "appletv4k-prezzo": {
   "label": "Prezzo, Apple TV 4K (4a generazione)",
   "unit": "USD",
@@ -208,6 +220,12 @@
   "note": "",
   "opened": "2026-09-01",
   "unit": "USD"
+ },
+ "ipadmini8-ram": {
+  "label": "RAM, iPad mini 8",
+  "unit": "GB",
+  "note": "Dato emerso da Xcode 27.2, non elencato nelle specifiche ufficiali Apple.",
+  "opened": "2026-10-30"
  },
  "iphone-duo-autonomia-ue": {
   "label": "Autonomia nel test UE, iPhone Duo",
@@ -502,6 +520,18 @@
   "unit": "USD",
   "note": "",
   "opened": "2026-09-25"
+ },
+ "macbookneo-prezzo-education-usa": {
+  "label": "Prezzo Education, MacBook Neo 256GB (USA)",
+  "unit": "USD",
+  "note": "Prezzo scontato per studenti e scuole sullo store Education Apple (USA).",
+  "opened": "2026-10-30"
+ },
+ "macbookpro-oled-spedizioni-2027": {
+  "label": "Spedizioni stimate, MacBook Pro OLED touch (2027)",
+  "unit": "milioni",
+  "note": "Stima TrendForce; si registra l'estremo basso di una forchetta 1,2-1,5 milioni.",
+  "opened": "2026-10-30"
  },
  "macbookpro14-touch-prezzo": {
   "label": "Prezzo stimato, MacBook Pro 14\" touch",
