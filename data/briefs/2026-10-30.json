@@ -116,7 +116,13 @@
       "perche": "Il punto di vista di chi lo ha ordinato dopo averlo provato."
      }
     ],
-    "scritto": "2026-10-30"
+    "scritto": "2026-10-30",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-30/macbook-pro-oled-touch-bilancio-737e150454d3.mp3",
+     "durata": 143,
+     "voce": "kore",
+     "impronta": "737e150454d3"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -176,7 +182,35 @@
    ],
    "approfondimento": {
     "punto": "Il Wall Street Journal racconta perché da acquirente che dettava i prezzi della memoria, Apple è diventata un cliente come gli altri — e il rincaro arriva fino agli studenti che comprano il MacBook Neo.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "Il filo del prezzo della memoria flash",
+      "didascalia": "Dal 2005 a oggi, quanto costa ad Apple un gigabyte di memoria NAND: il crollo fino al 2023, poi la risalita che arriva al MacBook Neo.",
+      "fonte": "TechInsights via Wall Street Journal (DDay.it, 30 ottobre 2026)",
+      "unita": "USD per GB",
+      "punti": [
+       {
+        "data": "2005",
+        "valore": 68,
+        "tipo": "dato",
+        "fonte": "TechInsights via WSJ"
+       },
+       {
+        "data": "2023",
+        "valore": 0.05,
+        "tipo": "dato",
+        "fonte": "TechInsights via WSJ"
+       },
+       {
+        "data": "2026-10-30",
+        "valore": 0.3,
+        "tipo": "dato",
+        "fonte": "TechInsights via WSJ"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il crollo è nei numeri: la flash NAND costava ad Apple oltre 68 dollari per GB nel 2005, è scesa a circa 5 centesimi nel 2023 — il punto più basso, con l'industria in perdita per 19 miliardi di dollari mentre Apple incassava margini sopra l'80% sugli upgrade di storage — ed è tornata sopra i 30 centesimi oggi, più che quintuplicata in un anno secondo TechInsights.",
      "Il riequilibrio è anche di potere: due anni fa Apple comprava quasi il doppio della flash di Microsoft, Amazon, Meta e Google messe insieme; oggi sono gli hyperscaler a comprare il doppio di Apple, con contratti pluriennali a prezzi più alti firmati quest'anno. Il MacBook Neo, il laptop con chip da iPhone lanciato a marzo per studenti e scuole, è già al secondo rincaro Education: +23% sul prezzo scontato in sette mesi."
@@ -228,7 +262,13 @@
       "perche": "Il dettaglio del secondo rincaro Education in sette mesi."
      }
     ],
-    "scritto": "2026-10-30"
+    "scritto": "2026-10-30",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-30/memoria-prezzi-wsj-macbookneo-bbd0c26c89e1.mp3",
+     "durata": 142,
+     "voce": "kore",
+     "impronta": "bbd0c26c89e1"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -295,7 +335,33 @@
    ],
    "approfondimento": {
     "punto": "Il perché tecnico dietro due scelte che sembravano un downgrade — niente 120Hz, speaker invisibili — raccontato da chi l'ha progettato e da chi l'ha già provato in mano.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "esploso",
+      "titolo": "Lo schermo che è anche altoparlante",
+      "didascalia": "L'Acoustic Display nasconde i diffusori sotto il pannello: il vetro vibra come un woofer per i bassi, tweeter laterali fanno le alte. Risultato: cornice libera e certificazione IP67.",
+      "fonte": "Dave Pakula (Apple) a Christopher Lawley; hands-on DDay.it",
+      "strati": [
+       {
+        "nome": "Pannello OLED",
+        "nota": "Fa da woofer: vibra per riprodurre le basse frequenze."
+       },
+       {
+        "nome": "Driver nascosti sotto il vetro",
+        "nota": "Sfruttano la frequenza di risonanza del pannello, prima solo un problema da eliminare."
+       },
+       {
+        "nome": "Tweeter laterali",
+        "nota": "Nascosti ai lati, riproducono le frequenze alte."
+       },
+       {
+        "nome": "Cornice liberata",
+        "nota": "Senza griglie per gli speaker, l'iPad mini diventa il primo della linea con IP67."
+       }
+      ],
+      "invito": "Tocca ogni strato per capire come lo schermo fa anche da altoparlante"
+     }
+    ],
     "sotto": [
      "Dave Pakula, a capo dell'hardware engineering Apple, spiega che il tempo di risposta dei pixel OLED è «più di un ordine di grandezza più veloce» di un LCD, riducendo da solo il motion blur che il ProMotion risolve altrove: per questo l'iPad mini resta a 60Hz invece dei 120Hz dell'iPad Pro, non per un taglio di budget.",
      "L'Acoustic Display nasce da una scoperta: le dimensioni del pannello hanno una frequenza di risonanza udibile, e Apple ha costruito driver che fanno vibrare lo schermo come un woofer per le frequenze basse, con tweeter nascosti ai lati per le alte. Liberando la cornice dagli speaker, l'iPad mini diventa anche il primo della linea con certificazione IP67."
@@ -345,7 +411,13 @@
       "perche": "Un dirigente Apple spiega le scelte di design dietro lo schermo."
      }
     ],
-    "scritto": "2026-10-30"
+    "scritto": "2026-10-30",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-30/ipad-mini-hands-on-acoustic-display-357b57b39cea.mp3",
+     "durata": 141,
+     "voce": "kore",
+     "impronta": "357b57b39cea"
+    }
    },
    "verifica": {
     "testate": 3,
@@ -436,7 +508,13 @@
       "perche": "La fonte della filiera Foxconn/Jiemian, con la precisazione sulla QA."
      }
     ],
-    "scritto": "2026-10-30"
+    "scritto": "2026-10-30",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-30/iphone-duo-crepe-apple-conferma-29543f88af82.mp3",
+     "durata": 123,
+     "voce": "kore",
+     "impronta": "29543f88af82"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -473,7 +551,47 @@
    "extra_links": [],
    "approfondimento": {
     "punto": "Un giorno dopo la multa sudcoreana, Taiwan ottiene un taglio più piccolo delle commissioni: lo stesso copione regolatorio, in scala diversa, si ripete in tutto il mondo.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Le commissioni App Store, paese per paese",
+      "didascalia": "Taiwan scende dal 30 al 26%, raggiungendo lo stesso livello già adottato in Giappone e Unione Europea; la Cina resta poco più in basso.",
+      "fonte": "Apple Developer; 9to5Mac, 30 ottobre 2026",
+      "unita": "% di commissione App Store",
+      "voci": [
+       {
+        "etichetta": "Taiwan (prima)",
+        "min": 30,
+        "max": 30,
+        "nota": "Commissione fino al 30 ottobre 2026"
+       },
+       {
+        "etichetta": "Taiwan (ora)",
+        "min": 26,
+        "max": 26,
+        "nota": "Dal 31 ottobre 2026, dopo le discussioni con l'antitrust locale"
+       },
+       {
+        "etichetta": "Giappone",
+        "min": 26,
+        "max": 26,
+        "nota": "Stesso livello già adottato"
+       },
+       {
+        "etichetta": "Unione Europea",
+        "min": 26,
+        "max": 26,
+        "nota": "Stesso livello già adottato"
+       },
+       {
+        "etichetta": "Cina",
+        "min": 25,
+        "max": 25,
+        "nota": "Negoziato, vicino al nuovo livello"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il taglio di Taiwan, dal 30 al 26%, arriva «dopo discussioni costruttive» con l'antitrust locale: lo stesso 26% già adottato in Giappone e nell'Unione Europea, vicino al 25% negoziato in Cina. Non serve firmare nuovi termini per ottenere lo sconto dal 31 ottobre.",
      "9to5Mac nota che il cambiamento è «considerevolmente più ristretto» di quanto imposto ieri in Corea del Sud, dove Apple deve anche correggere commissioni diverse per sviluppatori locali e stranieri. Stessa pressione, fronti diversi: marketplace alternativi in Giappone e Brasile, revisione del DMA nell'Unione Europea, pagamenti alternativi imposti in Australia dopo la causa Epic."
@@ -512,7 +630,13 @@
       "perche": "Il contesto regolatorio più ampio, Giappone/Brasile/UE/Australia/Cina."
      }
     ],
-    "scritto": "2026-10-30"
+    "scritto": "2026-10-30",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-30/appstore-taiwan-commissioni-9b1c460f023d.mp3",
+     "durata": 112,
+     "voce": "kore",
+     "impronta": "9b1c460f023d"
+    }
    },
    "verifica": {
     "testate": 1,
