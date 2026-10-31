@@ -40,11 +40,11 @@ RELIABILITY = {"alta", "media", "bassa"}
 
 # le misure dichiarate in CLAUDE.md
 NEWS_MIN, NEWS_MAX = 15, 20
-RADAR_MIN, RADAR_MAX = 5, 5
+RADAR_MIN, RADAR_MAX = 0, 5
 SOCIAL_MAX = 5
 BANCO_MIN, BANCO_MAX = 3, 5
 BANCO_KINDS = {"recensione", "video", "confronto", "curiosità", "guida"}
-RECAP_MAX = 3
+RECAP_MAX = 2
 AI_MIN, AI_MAX = 6, 12
 AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "robot", "altri"}
 # cronaca: cosa fanno i laboratori. LAB: cosa ci fa la gente.
@@ -52,7 +52,7 @@ AI_CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
 AI_LAB = {"uso", "demo", "trucco", "sapevi"}
 # "Se te lo fossi perso" guarda indietro: sotto i due giorni e' la rassegna di
 # ieri, oltre il mese non se l'e' perso, l'ha dimenticato
-RECAP_MIN_AGE, RECAP_MAX_AGE = 2, 30
+RECAP_MIN_AGE, RECAP_MAX_AGE = 2, 10
 SINTESI_MAX = 200
 DESCR_MIN, DESCR_MAX = 200, 950
 INTRO_MIN, INTRO_MAX = 180, 700
@@ -124,6 +124,7 @@ def check_shape(brief, r):
     radar = brief.get("radar") or []
     if radar and not (RADAR_MIN <= len(radar) <= RADAR_MAX):
         r.warn("radar", f"{len(radar)} voci, attese {RADAR_MIN}-{RADAR_MAX}")
+    check_radar_home(brief, radar, r)
     # senza id la voce non e' votabile, senza topic il radar non impara
     for v in radar:
         titolo = (v.get("title") or "")[:46]
@@ -236,6 +237,39 @@ def archivio():
     return _ARCHIVIO
 
 
+# Le schede che hanno una casa per il loro materiale: quello che spetta a
+# loro non va nel radar, altrimenti la stessa cosa esce due volte.
+OTHER_HOMES = {"ai": "AI", "games": "GAMES", "tech": "TECH", "spazio": "SPAZIO"}
+
+
+def check_radar_home(brief, radar, r):
+    """Il radar e' per quello che non ha un'altra scheda (31 ottobre 2026).
+
+    Due prove. Il tema: se in data/radar_topics.json ha una "axis" di AI,
+    GAMES, TECH o SPAZIO, la voce spetta a quella scheda — errore. Il link:
+    se la stessa pagina sta gia' fra le voci AI o nelle rubriche della stessa
+    edizione, e' un doppione dentro il giorno — errore."""
+    if not radar:
+        return
+    topics = {}
+    path = os.path.join(C.ROOT, "data", "radar_topics.json")
+    if os.path.exists(path):
+        topics = C.load_json(path)
+    altrove = {}
+    for sec, nome in OTHER_HOMES.items():
+        for v in brief.get(sec) or []:
+            if isinstance(v, dict) and v.get("link"):
+                altrove[C.norm_url(v["link"])] = nome
+    for v in radar:
+        titolo = (v.get("title") or "")[:46]
+        casa = OTHER_HOMES.get((topics.get(v.get("topic") or "") or {}).get("axis") or "")
+        if casa:
+            r.error("radar", f"{titolo}: il tema «{v.get('topic')}» spetta alla scheda {casa}")
+        doppio = altrove.get(C.norm_url(v["link"])) if v.get("link") else None
+        if doppio:
+            r.error("radar", f"{titolo}: c'e' gia' nella scheda {doppio} di oggi")
+
+
 def check_recap(brief, r):
     """"Se te lo fossi perso" ha una sola regola vera: che tu non l'abbia
     gia' avuto. Una voce gia' passata in edizione svuota la sezione del suo
@@ -244,11 +278,18 @@ def check_recap(brief, r):
     if not recap:
         return
     if len(recap) > RECAP_MAX:
-        r.warn("recap", f"{len(recap)} voci, il massimo dichiarato e' {RECAP_MAX}")
+        r.error("recap", f"{len(recap)} voci, il massimo e' {RECAP_MAX}: "
+                         "oltre diventa un doppione della rassegna")
 
     oggi = brief.get("date") or C.today()
     vecchi = [t for day, t, _ in archivio() if day != oggi and t]
     urls = {u for day, _, u in archivio() if day != oggi and u}
+
+    # le notizie dell'archivio per id, per controllare le voci "perse da te"
+    per_id = {}
+    for _, b in C.briefs():
+        for n in b.get("news", []):
+            per_id[(b.get("date", ""), n.get("id"))] = n
 
     for v in recap:
         titolo = (v.get("title") or "")[:46]
@@ -269,6 +310,18 @@ def check_recap(brief, r):
             elif eta > RECAP_MAX_AGE:
                 r.warn("recap", f"{titolo}: ha {eta} giorni, oltre il mese non se "
                                 "l'e' perso, l'ha dimenticato")
+        # Una voce "persa da te" (dal 31 ottobre 2026) e' per definizione gia'
+        # uscita: rimanda alla notizia originale con ref {date, id}, che deve
+        # esistere davvero. Le regole contro i doppioni valgono per le altre.
+        ref = v.get("ref")
+        if ref:
+            orig = per_id.get((ref.get("date"), ref.get("id"))) if isinstance(ref, dict) else None
+            if not orig:
+                r.error("recap", f"{titolo}: ref non trova la notizia originale ({ref!r})")
+            elif when and ref.get("date") != when:
+                r.warn("recap", f"{titolo}: when ({when}) diverso dalla data dell'originale "
+                                f"({ref.get('date')})")
+            continue
         if v.get("link") and C.norm_url(v["link"]) in urls:
             r.error("recap", f"gia' pubblicata in una vecchia edizione: {titolo}")
             continue

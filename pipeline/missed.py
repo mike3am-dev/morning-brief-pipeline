@@ -15,9 +15,19 @@ massa** insieme:
   trazione     quanto ne hanno parlato le persone: punti e commenti su Hacker
                News, posizione nel "top della settimana" di Reddit.
 
-Poi toglie tutto quello che e' gia' passato in edizione — e' il senso del
-nome: se te l'ho gia' dato non te lo sei perso — e stampa quel che resta,
-ordinato. La scelta finale resta editoriale: qui escono candidati, non voci.
+Poi toglie tutto quello che e' gia' passato in edizione e stampa quel che
+resta, ordinato. La scelta finale resta editoriale: qui escono candidati, non voci.
+
+Dal 31 ottobre 2026 "perso" ha anche il suo senso letterale — "se *te* lo
+fossi perso". Quasi tutto quello che fa rumore lo abbiamo gia' dato, e la
+sezione restava vuota 28 giorni su 30. Il secondo mucchio sono le **perse da
+te**: notizie uscite in edizione negli ultimi 10 giorni, che hanno fatto
+rumore, e che Mike non ha aperto. Lo dicono i segnali di lettura dell'app
+(gli stessi della taratura, vedi taste.py). Il rumore si misura su tre cose:
+quante testate le hanno raccontate (verify.py), quanti seguiti ha avuto il
+filo, quante discussioni le hanno riprese (social.py, il mucchio "eco").
+
+In edizione al massimo **2** voci, con precedenza alle non date.
 
     python3 pipeline/missed.py                 i candidati di oggi
     python3 pipeline/missed.py --from 2 --to 21
@@ -353,6 +363,151 @@ def orphan_candidates(hn, reddit, urls, titles, first, last):
     return out
 
 
+# ------------------------------------------------------------ perse da te
+
+PERSE_FROM, PERSE_TO = 2, 10
+PERSE_FLOOR = 30        # sotto questo rumore non vale la pena ripescarla
+PERSE_SHOW = 6
+
+
+def letture():
+    """Le chiavi "giorno/id" che Mike ha aperto e quelle che ha solo visto.
+
+    Aperta vuol dire toccata, approfondita, ascoltata o aperta alla fonte;
+    in piu' read_at, che c'era anche prima dei segnali. Solo i segni del
+    proprietario: e' pull_votes di taste.py, con lo stesso filtro."""
+    import taste
+    from push import load_config, service_key
+    rows = taste.pull_votes(load_config(), service_key())
+    aperte, viste = set(), set()
+    for row in rows:
+        k = row.get("story") or ""
+        if k.startswith(taste.SIG_PREFIX):
+            day = k[len(taste.SIG_PREFIX):]
+            try:
+                obj = json.loads(row.get("note") or "{}")
+            except ValueError:
+                continue
+            for item, e in obj.items():
+                key = f"{day}/{item}"
+                if e.get("o") or e.get("d") or e.get("a") or e.get("l"):
+                    aperte.add(key)
+                elif e.get("v"):
+                    viste.add(key)
+        elif row.get("read_at"):
+            aperte.add(k)
+    return aperte, viste - aperte
+
+
+def eco_per_link(first, last):
+    """Quante discussioni hanno ripreso ogni articolo, per link.
+
+    social.py segna l'eco con il titolo grezzo dell'articolo (eco_di), non con
+    la nostra notizia: lo si ricollega al link passando dai file grezzi. Il
+    confronto di titoli fra inglese e italiano darebbe falsi positivi."""
+    per_titolo = {}
+    for item in raw_window(first, last):
+        if item.get("title") and item.get("link"):
+            per_titolo.setdefault(item["title"].strip(), C.norm_url(item["link"]))
+    conta = {}
+    d0 = date.fromisoformat(first)
+    giorni = (date.fromisoformat(last) - d0).days + 1
+    for i in range(giorni):
+        path = os.path.join(C.ROOT, "data", "social", (d0 + timedelta(days=i)).isoformat() + ".json")
+        if not os.path.exists(path):
+            continue
+        for it in (C.load_json(path).get("items") or []):
+            if it.get("origine") != "eco":
+                continue
+            u = per_titolo.get((it.get("eco_di") or "").strip())
+            if u:
+                conta[u] = conta.get(u, 0) + 1
+    return conta
+
+
+def perse_da_te(oggi):
+    """Le notizie degli ultimi giorni che hanno fatto rumore e Mike non ha aperto."""
+    first = (oggi - timedelta(days=PERSE_TO)).isoformat()
+    last = (oggi - timedelta(days=PERSE_FROM)).isoformat()
+    try:
+        aperte, viste = letture()
+    except SystemExit as e:
+        print(f"(Perse da te saltate: {e})")
+        return []
+
+    briefs = [b for _, b in C.briefs()]
+    gia = set()           # gia' ripescate una volta: non si ripropongono
+    for b in briefs:
+        for v in b.get("recap") or []:
+            ref = v.get("ref") or {}
+            if ref.get("date") and ref.get("id"):
+                gia.add(f"{ref['date']}/{ref['id']}")
+
+    # i seguiti: quante puntate dello stesso filo sono uscite dopo
+    puntate = {}
+    for b in briefs:
+        for sec in ("news", "ai"):
+            for n in b.get(sec) or []:
+                if n.get("thread"):
+                    puntate.setdefault(n["thread"], []).append(b.get("date", ""))
+
+    # i fili gia' nell'edizione di oggi: quella storia te la sta gia' portando
+    # avanti la rassegna, ripescarne una puntata vecchia sarebbe un doppione
+    oggi_fili = set()
+    for b in briefs:
+        if b.get("date") == oggi.isoformat():
+            for sec in ("news", "ai"):
+                oggi_fili |= {n.get("thread") for n in b.get(sec) or [] if n.get("thread")}
+
+    eco = eco_per_link(first, oggi.isoformat())
+    out = []
+    for b in briefs:
+        day = b.get("date", "")
+        if not (first <= day <= last):
+            continue
+        for n in b.get("news") or []:
+            k = f"{day}/{n.get('id')}"
+            if k in aperte or k in gia or (n.get("thread") and n.get("thread") in oggi_fili):
+                continue
+            testate = (n.get("verifica") or {}).get("testate") or len(n.get("sources") or [])
+            # i seguiti contano solo a ridosso e fino a tre: un filo enorme come
+            # iphone-duo darebbe a ogni sua notizia decine di "seguiti", e la
+            # misura direbbe quanto e' grande la storia, non quanto ha girato
+            # quella notizia
+            fine = (date.fromisoformat(day) + timedelta(days=3)).isoformat()
+            seguiti = min(3, len([d for d in puntate.get(n.get("thread"), []) if day < d <= fine]))
+            links = [n.get("link")] + [x.get("url") for x in n.get("extra_links") or []
+                                       if isinstance(x, dict)]
+            discussioni = sum(eco.get(C.norm_url(u), 0) for u in links if u)
+            punti = testate * 10 + seguiti * 8 + discussioni * 15
+            if punti < PERSE_FLOOR:
+                continue
+            motivi = []
+            if testate:
+                motivi.append(f"{testate} testat" + ("a" if testate == 1 else "e"))
+            if seguiti:
+                motivi.append(f"{seguiti} seguit" + ("o" if seguiti == 1 else "i") + " nei giorni dopo")
+            if discussioni:
+                motivi.append(f"{discussioni} discussion" + ("e" if discussioni == 1 else "i"))
+            out.append({
+                "punti": punti, "when": day, "ref": {"date": day, "id": n.get("id")},
+                "title": n.get("title", ""), "sintesi": n.get("sintesi", ""),
+                "signal": ", ".join(motivi), "link": n.get("link", ""),
+                "source": (n.get("sources") or [""])[0],
+                "vista": k in viste, "thread": n.get("thread"),
+            })
+    # una voce per filo: con due caselle, due notizie della stessa storia
+    # sarebbero un doppione dentro la sezione
+    scelte, fili = [], set()
+    for c in sorted(out, key=lambda c: -c["punti"]):
+        if c["thread"] and c["thread"] in fili:
+            continue
+        if c["thread"]:
+            fili.add(c["thread"])
+        scelte.append(c)
+    return scelte
+
+
 # ------------------------------------------------------------------- stampa
 
 def report(cands, first, last, coperti):
@@ -376,8 +531,24 @@ def report(cands, first, last, coperti):
     resto = max(0, len(cands) - SHOW)
     print(f"\n{len(cands)} candidati su {coperti} gruppi"
           + (f" (ne vedi {SHOW}, gli altri {resto} nel file)" if resto else "")
-          + ". Da 0 a 3 in edizione,\ne solo se reggono da soli: la sezione "
-            "puo' benissimo non uscire.")
+          + ". In edizione al massimo 2 voci in tutto,\ncon precedenza a "
+            "queste, e solo se reggono da sole.")
+
+
+def report_perse(perse):
+    print(C.rule(f"Perse da te — notizie uscite fra {PERSE_TO} e {PERSE_FROM} giorni fa, "
+                 "non aperte"))
+    if not perse:
+        print("Niente: le notizie che hanno fatto rumore le hai aperte tutte.")
+        return
+    for c in perse[:PERSE_SHOW]:
+        eta = C.days_between(C.today(), c["when"])
+        vista = "vista e saltata" if c["vista"] else "mai arrivata a schermo"
+        print(f"\n  [PERSA DA TE] {c['punti']:>4}  {c['title'][:84]}")
+        print(f"    {c['when']} ({eta} giorni fa) · {c['signal']} · {vista}")
+        print(f"    ref: {{\"date\": \"{c['ref']['date']}\", \"id\": \"{c['ref']['id']}\"}}")
+    print("\nLa voce rimanda all'originale con ref, e non riscrive la notizia: "
+          "nella nota\ndi' cos'era e, se c'e', cosa e' successo dopo.")
 
 
 def main():
@@ -422,14 +593,21 @@ def main():
         visti.append(c["title"])
         unici.append(c)
 
+    perse = [] if args.offline else perse_da_te(oggi)
+
     os.makedirs(MISSED_DIR, exist_ok=True)
     C.save_json(os.path.join(MISSED_DIR, f"{oggi.isoformat()}.json"), {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "window": {"from": first, "to": last},
         "gruppi": len(groups),
         "candidati": unici,
+        "perse": perse[:PERSE_SHOW * 2],
     })
     report(unici, first, last, len(groups))
+    if args.offline:
+        print("\n(Perse da te saltate: servono i segnali di lettura, che stanno online.)")
+    else:
+        report_perse(perse)
     return 0
 
 

@@ -60,14 +60,19 @@ REPORT_EVERY = 14
 PAUSE_DAYS = 42
 # quante apparizioni mute prima di liberare lo slot
 MUTE_LIMIT = 3
-# quante voci ha il radar, e quante di queste sono sonde
+# quante voci ha il radar al massimo, e quante di queste sono sonde. E' un
+# tetto, non una quota: se oggi non c'e' materiale che spetti al radar, le
+# voci sono meno, e a zero la sezione non esce (Mike, 31 ottobre 2026).
 RADAR_SLOTS, RADAR_PROBES = 5, 2
 
-# L'AI non passa piu' dal radar: dal 6 settembre 2026 ha una sezione sua, con
-# i suoi pollici. I topic marcati "axis": "ai" in data/radar_topics.json
-# restano scritti per storia ma stanno fuori dalla rotazione — altrimenti la
-# stessa cosa uscirebbe due volte nella stessa edizione.
+# Il radar non fa da doppione alle schede. L'AI ha la sua dal 6 settembre
+# 2026, GAMES, TECH e SPAZIO dal 2 ottobre: un topic marcato con una di queste
+# "axis" in data/radar_topics.json resta scritto per storia ma sta fuori dalla
+# rotazione — la robotica e' nella scheda AI, Hubble in SPAZIO, il visore
+# Xreal in TECH. Al radar resta quello che non ha un'altra casa: regole,
+# sicurezza, sorveglianza, piattaforme, telecomunicazioni, energia, auto.
 AI_AXIS = "ai"
+OTHER_HOMES = {"ai", "games", "tech", "spazio"}
 
 
 # ------------------------------------------------------------------ lettura
@@ -426,7 +431,7 @@ def topic_states(votes, idx, topics):
 def radar_plan(topics, last_up, archive_last_day):
     """Le cinque caselle di oggi: le confermate a rotazione, piu' le sonde.
     Un pollice su ieri vale un seguito oggi — e' la reazione che si sente."""
-    topics = {t: e for t, e in topics.items() if e.get("axis") != AI_AXIS}
+    topics = {t: e for t, e in topics.items() if e.get("axis") not in OTHER_HOMES}
     follow = [t for t, day in last_up.items() if day == archive_last_day and t in topics]
     confirmed = sorted([t for t, e in topics.items() if e["state"] == "confermato"],
                        key=lambda t: topics[t].get("last", ""))
@@ -483,7 +488,8 @@ def digest(state, topics, plan, follow, axes, rules, votes, idx):
     elif voted:
         print("Nessun gruppo si stacca dalla media: la selezione resta com'è.\n")
 
-    print(f"Radar di oggi — {RADAR_SLOTS} caselle:")
+    print(f"Radar di oggi — fino a {RADAR_SLOTS} caselle, solo temi senza un'altra scheda")
+    print("(AI, GAMES, TECH e SPAZIO no: se non c'e' altro, meno voci o nessuna):")
     for t, why in plan:
         e = topics.get(t, {})
         marker = {"seguito": "↑ seguito di ieri", "confermato": "confermato",

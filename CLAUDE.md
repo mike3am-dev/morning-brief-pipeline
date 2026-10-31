@@ -172,7 +172,8 @@ Per ogni articolo che somiglia a una voce uscita nei 14 giorni prima (notizie **
 sezione AI) stampa le due righe affiancate. Per ognuna si sceglie: **doppione** (si
 scarta) o **seguito** (stesso `thread`, e nel testo si dice cosa è cambiato: «ieri
 presentato, oggi le prime prove»). Lo stesso link già uscito il lint lo blocca comunque. L'ultimo comando propone i candidati per «Se te lo
-fossi perso» (vedi *Il ripescaggio*): quasi sempre non se ne prende nessuno, e va bene.
+fossi perso» (vedi *Il ripescaggio*): le non date e le perse da te, al massimo due in
+edizione.
 
 **«STESSO LINK» non sempre vuol dire lo stesso indirizzo.** Il punteggio arriva a 1.0 anche
 quando due titoli condividono solo due nomi propri (es. «iPhone», «Duo») e nient'altro: è una
@@ -234,11 +235,19 @@ Campo `reliability`: `alta` | `media` | `bassa`, con `reliability_note` che spie
 
 Rumor e gossip **si includono**, ma sempre marcati con `tag: "RUMOR"` e una nota sulla fonte.
 
-`radar`: **5 voci** brevi di contorno tech non-Apple, ognuna con `id` (slug stabile, serve
-al voto) e `topic` (l'unità su cui il radar impara). Tre vengono da temi già graditi, due
-sono **sonde** su temi da provare: la composizione la propone `taste.py` (vedi *Il gusto*).
-**L'AI non passa dal radar**: ha la sua sezione (sotto), e i topic marcati `"axis": "ai"`
-in `data/radar_topics.json` stanno fuori dalla rotazione.
+`radar`: **da 0 a 5 voci** brevi, ognuna con `id` (slug stabile, serve al voto) e
+`topic` (l'unità su cui il radar impara). **Il radar è per quello che non ha una scheda
+sua** (31 ottobre 2026, Mike: «se no è un mega doppione»): niente che spetti ad AI, GAMES,
+TECH o SPAZIO. La robotica e i capitali dell'AI vanno nella scheda AI, Hubble in SPAZIO, i
+visori e gli e-reader in TECH, i videogiochi in GAMES. Al radar restano regole e antitrust,
+sicurezza e sorveglianza, piattaforme e social, telecomunicazioni, energia, auto: il
+contorno che tocca Apple e non ha altra casa. In `data/radar_topics.json` i temi delle
+altre schede hanno `"axis"` (`ai`, `games`, `tech`, `spazio`) e stanno fuori dalla
+rotazione; il lint dà errore su una voce con uno di quei temi, o con un link già presente
+fra le voci AI o nelle rubriche dello stesso giorno. **Cinque è un tetto, non una quota**:
+se oggi c'è materiale per due voci, sono due; se non ce n'è, il radar non esce. Mai
+riempire. La composizione la propone `taste.py` (vedi *Il gusto*), e nell'app il radar
+sta **in fondo**, dopo le discussioni.
 
 ```json
 {"id": "pebble-ritorno", "topic": "hardware-indipendente",
@@ -529,20 +538,29 @@ I video si riconoscono dal link `youtube.com/watch`.
 
 #### Il ripescaggio — `recap`
 
-«Se te lo fossi perso»: **0–3 voci**, e lo zero è un risultato onesto. La rassegna guarda
-26 ore e il perimetro Apple, ed è il suo buco: una cosa che esplode di martedì fuori
-perimetro non entra mai più, perché ogni giorno guarda solo il proprio. Questa sezione
-guarda indietro da 3 a 14 giorni e ripesca quello che ha girato e che noi non abbiamo dato.
+«Se te lo fossi perso»: **al massimo 2 voci** (31 ottobre 2026: Mike ha chiesto le
+notizie che hanno fatto clamore negli ultimi 10 giorni, e due invece di tre «così meno
+ridondante»). «Perso» ha due sensi, e si sceglie in quest'ordine:
+
+1. **Le non date** — il senso di sempre. La rassegna guarda 26 ore e il perimetro Apple, ed
+   è il suo buco: una cosa che esplode di martedì fuori perimetro non entra mai più. Questi
+   candidati vengono prima, ma sono rari: fino a fine ottobre la sezione è rimasta vuota 28
+   giorni su 30, perché quasi tutto quello che fa rumore lo abbiamo già dato.
+2. **Le perse da te** — il senso letterale, «se *te* lo fossi perso». Notizie uscite in
+   edizione fra 2 e 10 giorni fa, che hanno fatto rumore, e che Mike **non ha aperto**: lo
+   dicono i segnali di lettura dell'app (gli stessi della taratura). Il rumore si misura su
+   tre cose: testate che l'hanno raccontata (`verifica.testate`), seguiti sullo stesso filo
+   nei giorni dopo, discussioni che l'hanno ripresa (il mucchio «eco» di `social.py`).
 
 ```bash
 python3 pipeline/missed.py
 ```
 
-Incrocia due segnali: la **copertura** (quante testate diverse fra le nostre hanno
-raccontato lo stesso fatto) e la **trazione** (punti e commenti su Hacker News, posizione
-nel top della settimana di Reddit). Toglie tutto quello che è già passato in edizione — è
-il senso del nome — e stampa i candidati ordinati, marcati `COPERTURA`, `SOLO ONLINE` o
-`COMMENTO`. La scelta resta editoriale: escono candidati, non voci.
+Stampa i due mucchi: i candidati `COPERTURA` / `SOLO ONLINE` / `COMMENTO` (le non date) e
+i `PERSA DA TE`, ciascuno con il suo `ref`. La scelta resta editoriale, e zero voci resta un
+risultato onesto: se Mike ha aperto tutto quello che contava, non si riempie.
+
+Una non data si scrive come sempre:
 
 ```json
 {"id": "anthropic-open-weights", "when": "2026-07-27",
@@ -551,13 +569,25 @@ il senso del nome — e stampa i candidati ordinati, marcati `COPERTURA`, `SOLO 
  "link": "…", "source": "Anthropic"}
 ```
 
-`when` è la data d'origine, non quella di oggi: l'app la mostra come «2 settimane fa».
-Sotto i due giorni non è un ripescaggio, è la rassegna di ieri, e il lint dà errore. Stessa
-cosa se la voce è già uscita in una vecchia edizione: quello svuota la sezione del suo
-senso, e il collaudo la blocca.
+Una persa da te **rimanda all'originale** con `ref`, e `when` è la data di quell'edizione:
 
-`signal` è obbligatorio ed è la misura, non il giudizio: quanti punti, quante testate,
-quale posizione. È il motivo per cui la voce sta lì.
+```json
+{"id": "persa-iphone-duo-crepe", "when": "2026-10-24",
+ "ref": {"date": "2026-10-24", "id": "iphone-duo-crepe-memo"},
+ "title": "il titolo dell'originale", "note": "2-3 righe: cos'era e, se c'è, cosa è successo dopo",
+ "signal": "7 testate, 2 seguiti nei giorni dopo", "link": "…", "source": "9to5Mac"}
+```
+
+Nell'app la voce con `ref` porta la riga «uscita qui il 24 ott» e il titolo **riapre la
+notizia originale** al suo posto nell'archivio, invece di mandare fuori all'articolo. La nota
+non riscrive la notizia: dice cos'era, e se il filo è andato avanti, cosa è successo dopo.
+
+Il lint: più di 2 voci è un errore; sotto i 2 giorni non è un ripescaggio ma la rassegna di
+ieri (errore); oltre i 10 giorni è un avviso. Per le non date un link già uscito resta un
+errore — svuoterebbe la sezione del suo senso. Per le perse da te il `ref` deve trovare la
+notizia originale nell'archivio.
+
+`signal` è obbligatorio ed è la misura, non il giudizio.
 
 #### La verifica — `verifica`
 
@@ -1041,7 +1071,7 @@ pipeline/threads.py      i fili delle storie: registro, sync, proposte, cronolog
 pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
-pipeline/missed.py       copertura + trazione online  ->  candidati per il ripescaggio
+pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le perse da te (segnali)
 pipeline/rubriche.py     le schede GAMES, TECH, SPAZIO: raccolta, punteggio, Gemini  ->  data/rubriche/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
@@ -1123,6 +1153,16 @@ in maiuscoletto con il pallino del colore del tag — niente scatole, niente «a
 con la barra arancione di quattro punti in verticale e il titolo in grassetto: **niente fondo
 campito**, Mike l'ha bocciato come estraneo allo stile. Nel pannello l'occhiello ripete il
 pallino colorato della voce, per legare a colpo d'occhio lista e notizia.
+
+**Le sezioni sotto le notizie** prendono sul Duo una forma ciascuna, dal materiale che
+portano (Mike: «così proprio scarne», 31 ottobre 2026): il **radar** è una griglia di
+segnali a due colonne sotto barre blu, con il tema come occhiello (e la prima voce larga
+quando sono in numero dispari); **sul banco** affianca alla cosa il foglietto giallo «Al
+banco» con il campo `perche`; **se te lo fossi perso** mette il «quando» in grande sulla
+barra arancione, come una linea del tempo; **nelle discussioni** sono fumetti campiti su due
+colonne. Nel pannello non c'è la barra «Chiudi / Prossima notizia» dell'approfondimento: la prossima
+si sceglie a sinistra, e Mike ha scartato anche una «Prossima» in fondo al pannello. Il margine della pagina sul Duo è 20 punti (`--gutter`), non il 4,5% pensato per
+il Mac. Telefono e Mac restano a colonna di righe.
 
 Per provarlo nel browser del Mac: l'emulatore di larghezza non manda alla pagina l'evento
 di ridimensionamento, quindi dopo aver cambiato misura serve

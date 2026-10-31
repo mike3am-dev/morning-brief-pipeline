@@ -409,6 +409,13 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 .workspace{padding:.75rem 0 0 3.25rem; display:flex; flex-direction:column; gap:.6rem}
 .workspace[hidden]{display:none}
 
+/* Sul Duo aperto ogni punto conta: il margine della pagina cresce con la
+   larghezza (4,5%), pensato per il Mac, e qui faceva 44 punti per lato — con
+   il rientro della lista, un centimetro buono di schermo vuoto. Si stringe il
+   margine e non la lista, cosi' testata, schede, lista e pannello restano
+   tutti sulla stessa linea verticale. */
+@media (min-width:601px) and (max-width:1039px){ :root{--gutter:1.25rem} }
+
 /* ---------------- Duo aperto ----------------
    Fra il telefono (sotto i 600 punti) e il Mac (dai 1.040) cade lo schermo
    interno di iPhone Duo, in verticale e in orizzontale. Li' la scheda APPLE
@@ -430,7 +437,7 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
    perche' e' quello che si scorre; il tag scende a testo con il suo pallino
    di colore, invece di una scatola ripetuta quindici volte. Sintesi,
    miniatura e pulsanti stanno nel pannello, dove c'e' spazio per leggerli. */
-#view-oggi.duo .newslist .story{padding:.95rem .25rem .9rem 1rem; cursor:pointer; position:relative}
+#view-oggi.duo .newslist .story{padding:.95rem .25rem .9rem .85rem; cursor:pointer; position:relative}
 #view-oggi.duo .newslist .story-head,
 #view-oggi.duo .newslist .story-head.with-thumb{
   grid-template-columns:24px minmax(0,1fr);
@@ -500,6 +507,11 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 .reader .story-body{padding:1rem 0 0}
 .reader .workspace{padding-left:0}
 .reader .tools{padding-left:0}
+/* La barra "Chiudi / Prossima notizia" in fondo all'approfondimento e' fatta
+   per il telefono, dove la lista non si vede. Nel pannello galleggiava sopra
+   il testo, e la prossima notizia si sceglie gia' a sinistra (Mike, 31 ottobre
+   2026). Per chiudere resta il pulsante in cima, "Chiudi approfondimento". */
+.reader .deep-bar{display:none}
 @media (max-width:600px){
   /* Sul telefono la notizia ha un solo bordo a sinistra: numero e metadati in
      cima, poi titolo, sintesi e azioni tutti allineati a filo di colonna. Il
@@ -594,6 +606,86 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
   font-size:.68rem; font-weight:700; letter-spacing:.12em;
   text-transform:uppercase; color:var(--ink-3);
 }
+
+/* ---------------- Duo aperto: le sezioni sotto le notizie ----------------
+   Sotto la lista c'e' tutta la larghezza dello schermo, e quattro sezioni che
+   portano materiali diversi. Ognuna prende la forma di quello che porta:
+     radar        una griglia di segnali, ognuno sotto la sua barra blu
+     sul banco    una scheda da lavoro, con la domanda del cliente su un
+                  foglietto giallo accanto — e' la riga che fa la sezione
+     ripescaggio  una linea del tempo: "quando" in grande, a sinistra
+     discussioni  un muro di fumetti: sono voci, non fatti, e devono sembrarlo
+   Il colore e' sempre quello del pallino della sezione. Sul telefono e sul
+   Mac non cambia niente: li' sono colonne di righe, ed e' giusto cosi'. */
+.radar .topic{display:none}
+
+/* nelle schede il titolo e' un titolo, non un link arancione sottolineato */
+#view-oggi.duo :is(.radar, .banco, .recap, .talk) h4 a{color:var(--ink); text-decoration:none}
+#view-oggi.duo :is(.radar, .banco, .recap, .talk) h4 a:hover{text-decoration:underline;
+  text-decoration-thickness:1.5px; text-underline-offset:3px}
+
+/* radar: due colonne di segnali; con un numero dispari il primo sta largo */
+#view-oggi.duo .radar{display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:1.7rem 1.6rem; padding-top:.5rem}
+#view-oggi.duo .radar li{border-top:4px solid var(--blue); padding:.7rem 0 0;
+  display:flex; flex-direction:column; gap:.4rem}
+#view-oggi.duo .radar li:first-child:nth-last-child(odd){grid-column:1 / -1}
+#view-oggi.duo .radar li:first-child:nth-last-child(odd) h4{font-size:1.55rem; line-height:1.08}
+#view-oggi.duo .radar .topic{display:block; font-size:.6rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--blue-ink)}
+#view-oggi.duo .radar h4{font-size:1.22rem; line-height:1.13}
+#view-oggi.duo .radar p{font-size:.92rem}
+/* i pulsanti in fondo alla scheda, allineati fra le schede della stessa riga */
+#view-oggi.duo .radar .radar-foot{margin-top:auto; padding-top:.2rem}
+/* nei piedi delle schede i pulsanti stanno sulla riga della fonte: il
+   margine sopra serve solo quando la barra sta da sola sotto una notizia */
+#view-oggi.duo :is(.radar-foot, .banco .foot, .recap .foot) .tools{padding-top:0}
+
+/* sul banco: a sinistra la cosa, a destra il foglietto giallo "al banco" */
+#view-oggi.duo .banco li{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);
+  grid-template-areas:"kind why" "title why" "note why" "foot why" "panel panel";
+  column-gap:1.6rem; row-gap:.4rem; align-items:start; padding:1.25rem 0 1.1rem}
+#view-oggi.duo .banco .kind{grid-area:kind}
+#view-oggi.duo .banco h4{grid-area:title; font-size:1.32rem; line-height:1.1}
+#view-oggi.duo .banco li > p:not(.why){grid-area:note}
+#view-oggi.duo .banco .foot{grid-area:foot; margin-top:.2rem}
+#view-oggi.duo .banco .workspace{grid-area:panel}
+#view-oggi.duo .banco .why{grid-area:why; align-self:start; margin:0;
+  background:var(--yellow); color:#17181B; box-shadow:none; border-radius:3px;
+  padding:.85rem 1rem 1rem; font-size:.95rem; line-height:1.45}
+#view-oggi.duo .banco .why::before{content:"Al banco"; display:block; margin-bottom:.45rem;
+  font-family:var(--display); font-weight:700; font-size:.82rem; letter-spacing:.06em;
+  text-transform:uppercase}
+
+/* se te lo fossi perso: il "quando" in grande, come su una linea del tempo */
+#view-oggi.duo .recap li{grid-template-columns:8.5rem minmax(0,1fr);
+  grid-template-areas:"when title" "when note" "when signal" "when foot" "panel panel";
+  column-gap:1.6rem; row-gap:.4rem; align-items:start; padding:1.25rem 0 1.1rem}
+#view-oggi.duo .recap .head{display:contents}
+#view-oggi.duo .recap .when{grid-area:when; align-self:stretch; background:none; padding:0 0 0 .75rem;
+  border-radius:0; box-shadow:inset 4px 0 0 var(--orange); color:var(--orange-ink);
+  font-family:var(--display); font-weight:700; font-size:1.55rem; line-height:1.02;
+  letter-spacing:-.005em}
+#view-oggi.duo .recap h4{grid-area:title; font-size:1.3rem; line-height:1.1}
+#view-oggi.duo .recap li > p{grid-area:note}
+#view-oggi.duo .recap .signal{grid-area:signal; font-size:.72rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-2)}
+#view-oggi.duo .recap .foot{grid-area:foot}
+/* "uscita qui il…" delle perse da te: sotto il quando, in fondo alla colonna */
+#view-oggi.duo .recap .signal.origin{grid-area:when; align-self:end; padding-left:.75rem;
+  font-size:.6rem; letter-spacing:.12em; color:var(--ink-3); position:relative; z-index:1}
+#view-oggi.duo .recap .workspace{grid-area:panel}
+
+/* nelle discussioni: fumetti su due colonne, campiti e con l'angolo della battuta */
+#view-oggi.duo .talk{display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:1rem; padding-top:.3rem}
+#view-oggi.duo .talk li{border-top:0; background:var(--paper); border-radius:18px 18px 18px 4px;
+  padding:1rem 1.15rem 1.15rem; gap:.45rem; align-content:start}
+#view-oggi.duo .talk li:first-child:nth-last-child(odd){grid-column:1 / -1}
+#view-oggi.duo .talk h4{font-size:1.14rem}
+#view-oggi.duo .talk p{font-size:.9rem}
+#view-oggi.duo .talk .where{background:var(--paper-2)}
+#view-oggi.duo .talk .where.new{background:var(--red); color:#FFF}
 
 /* ---------------- AI ----------------
    Due blocchi, due forme. "Cosa e' successo" e' un dispaccio: righe fitte,
@@ -4511,34 +4603,6 @@ function drawEdition(root){
   /* le voci AI non stanno nell'edizione: hanno la loro scheda accanto, con
      Notizie e LAB. Qui sarebbero un doppione, e allungherebbero la pagina. */
 
-  if(brief.radar && brief.radar.length){
-    const pipB = el("span", {class:"pip"}); pipB.style.background = "var(--blue)";
-    col.appendChild(el("div", {class:"section-head"}, [
-      pipB, el("h2", {text:"Radar"}),
-      el("span", {class:"eyebrow hint", text:"fuori perimetro, ma vicino"})
-    ]));
-    const ul = el("ul", {class:"radar"});
-    brief.radar.forEach(function(r){
-      const u = safeUrl(r.link);
-      /* le voci vecchie non hanno id: senza chiave stabile non si salvano */
-      const tools = (NOTES && r.id)
-        ? itemTools(key(brief.date, "radar:" + r.id),
-                    {ref:{date:brief.date, id:"radar:" + r.id, title:r.title}})
-        : null;
-      const foot = el("div", {class:"radar-foot"}, [
-        el("span", {class:"src", text:r.source || ""}),
-        tools ? tools.bar : null
-      ]);
-      ul.appendChild(el("li", {}, [
-        el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:r.title}) : el("span", {text:r.title})]),
-        el("p", {text:r.note || ""}),
-        foot,
-        tools ? tools.panel : null
-      ]));
-    });
-    col.appendChild(ul);
-  }
-
   if(brief.banco && brief.banco.length){
     const pipY = el("span", {class:"pip"}); pipY.style.background = "var(--yellow)";
     col.appendChild(el("div", {class:"section-head"}, [
@@ -4591,10 +4655,18 @@ function drawEdition(root){
         el("span", {class:"src", text:m.source || ""}),
         tools ? tools.bar : null
       ]);
-      ul.appendChild(el("li", {}, [
+      /* Una voce "persa da te" e' una notizia gia' uscita che non avevi
+         aperto: il titolo la riapre al suo posto nell'archivio, invece di
+         mandarti fuori all'articolo. */
+      const ref = m.ref && m.ref.date && m.ref.id ? m.ref : null;
+      if(ref) head.appendChild(el("span", {class:"signal origin", text:"uscita qui il " + fmtShort(ref.date)}));
+      const titleNode = ref
+        ? el("a", {href:"#", text:m.title, onclick:function(ev){ ev.preventDefault(); jumpTo(ref.date, ref.id); }})
+        : (u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:m.title})
+             : el("span", {text:m.title}));
+      ul.appendChild(el("li", {class:ref ? "persa" : ""}, [
         head,
-        el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:m.title})
-                        : el("span", {text:m.title})]),
+        el("h4", {}, [titleNode]),
         m.note ? el("p", {text:m.note}) : null,
         foot,
         tools ? tools.panel : null
@@ -4625,6 +4697,39 @@ function drawEdition(root){
         el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:s.title})
                         : el("span", {text:s.title})]),
         s.note ? el("p", {text:s.note}) : null
+      ]));
+    });
+    col.appendChild(ul);
+  }
+
+  /* Il radar sta in fondo (31 ottobre 2026): e' il contorno del contorno.
+     Porta solo quello che non spetta ad AI, GAMES, TECH o SPAZIO, e nei
+     giorni in cui non c'e' niente del genere non esce. */
+  if(brief.radar && brief.radar.length){
+    const pipB = el("span", {class:"pip"}); pipB.style.background = "var(--blue)";
+    col.appendChild(el("div", {class:"section-head"}, [
+      pipB, el("h2", {text:"Radar"}),
+      el("span", {class:"eyebrow hint", text:"quello che non ha una scheda sua"})
+    ]));
+    const ul = el("ul", {class:"radar"});
+    brief.radar.forEach(function(r){
+      const u = safeUrl(r.link);
+      /* le voci vecchie non hanno id: senza chiave stabile non si salvano */
+      const tools = (NOTES && r.id)
+        ? itemTools(key(brief.date, "radar:" + r.id),
+                    {ref:{date:brief.date, id:"radar:" + r.id, title:r.title}})
+        : null;
+      const foot = el("div", {class:"radar-foot"}, [
+        el("span", {class:"src", text:r.source || ""}),
+        tools ? tools.bar : null
+      ]);
+      ul.appendChild(el("li", {}, [
+        /* il tema della sonda: sul telefono non si vede, sul Duo fa da occhiello */
+        r.topic ? el("span", {class:"topic", text:String(r.topic).replace(/-/g, " ")}) : null,
+        el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:r.title}) : el("span", {text:r.title})]),
+        el("p", {text:r.note || ""}),
+        foot,
+        tools ? tools.panel : null
       ]));
     });
     col.appendChild(ul);

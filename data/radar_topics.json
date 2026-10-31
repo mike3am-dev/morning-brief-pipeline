@@ -19,7 +19,9 @@
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
   "seen_a_fine_pausa": 3,
-  "paused_until": "2026-12-09"
+  "paused_until": "2026-12-09",
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "ai-regole": {
   "axis": "ai",
@@ -40,7 +42,9 @@
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "anthropic": {
   "axis": "ai",
@@ -99,15 +103,17 @@
  },
  "capitali-ai": {
   "down": 0,
-  "last": "2026-10-23",
-  "seen": 9,
+  "last": "2026-10-31",
+  "seen": 10,
   "since": "2026-10-24",
   "state": "in pausa",
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
   "seen_a_fine_pausa": 5,
-  "paused_until": "2026-12-05"
+  "paused_until": "2026-12-05",
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "chip-ai": {
   "down": 0,
@@ -119,7 +125,9 @@
   "pausa_finita": "2026-09-28",
   "seen_a_fine_pausa": 3,
   "ripresa_segnali": "2026-10-02",
-  "paused_until": "2026-12-01"
+  "paused_until": "2026-12-01",
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "connessione-offline": {
   "state": "in pausa",
@@ -187,7 +195,9 @@
   "since": "2026-08-09",
   "state": "in prova",
   "up": 1,
-  "ripresa_segnali": "2026-10-02"
+  "ripresa_segnali": "2026-10-02",
+  "axis": "tech",
+  "casa_dal": "2026-10-31"
  },
  "modelli-ai": {
   "axis": "ai",
@@ -250,8 +260,8 @@
  },
  "regolamentazione-tech": {
   "down": 0,
-  "last": "2026-10-17",
-  "seen": 9,
+  "last": "2026-10-31",
+  "seen": 10,
   "since": "2026-10-18",
   "state": "in pausa",
   "up": 0,
@@ -262,14 +272,16 @@
  },
  "robotica": {
   "down": 0,
-  "last": "2026-10-26",
-  "seen": 9,
+  "last": "2026-10-31",
+  "seen": 10,
   "since": "2026-09-30",
   "state": "in prova",
   "up": 0,
   "pausa_finita": "2026-09-30",
   "seen_a_fine_pausa": 4,
-  "ripresa_segnali": "2026-10-02"
+  "ripresa_segnali": "2026-10-02",
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "scienza-spazio": {
   "down": 0,
@@ -280,7 +292,9 @@
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "axis": "spazio",
+  "casa_dal": "2026-10-31"
  },
  "sicurezza-cripto": {
   "down": 0,
@@ -299,8 +313,8 @@
   "since": "2026-10-29",
   "up": 0,
   "down": 0,
-  "seen": 1,
-  "last": "2026-10-28",
+  "seen": 2,
+  "last": "2026-10-31",
   "ripresa_segnali": "2026-10-29"
  },
  "sicurezza-infrastrutture": {
@@ -367,15 +381,17 @@
  },
  "spazio": {
   "down": 1,
-  "last": "2026-10-21",
-  "seen": 10,
+  "last": "2026-10-31",
+  "seen": 11,
   "since": "2026-10-22",
   "state": "in pausa",
   "up": 0,
   "pausa_finita": "2026-09-24",
   "seen_a_fine_pausa": 1,
   "ripresa_segnali": "2026-10-02",
-  "paused_until": "2026-12-03"
+  "paused_until": "2026-12-03",
+  "axis": "spazio",
+  "casa_dal": "2026-10-31"
  },
  "spazio-privato": {
   "state": "in prova",
@@ -384,7 +400,9 @@
   "down": 0,
   "seen": 1,
   "last": "2026-10-30",
-  "ripresa_segnali": "2026-10-31"
+  "ripresa_segnali": "2026-10-31",
+  "axis": "spazio",
+  "casa_dal": "2026-10-31"
  },
  "spionaggio-chip": {
   "state": "in prova",
@@ -437,7 +455,9 @@
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
   "seen_a_fine_pausa": 3,
-  "paused_until": "2026-12-05"
+  "paused_until": "2026-12-05",
+  "axis": "ai",
+  "casa_dal": "2026-10-31"
  },
  "videogiochi": {
   "down": 0,
@@ -448,7 +468,9 @@
   "up": 0,
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
-  "seen_a_fine_pausa": 3
+  "seen_a_fine_pausa": 3,
+  "axis": "games",
+  "casa_dal": "2026-10-31"
  },
  "voli-spaziali-privati": {
   "down": 0,
@@ -460,6 +482,8 @@
   "ripresa_segnali": "2026-10-02",
   "pausa_finita": "2026-10-02",
   "seen_a_fine_pausa": 3,
-  "paused_until": "2026-11-29"
+  "paused_until": "2026-11-29",
+  "axis": "spazio",
+  "casa_dal": "2026-10-31"
  }
 }
