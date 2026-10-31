@@ -59,6 +59,12 @@
   "note": "Cifra allegata dalla class action contro Apple, non un dato verificato.",
   "opened": "2026-09-26"
  },
+ "apple-prodotti-ultimi-2-mesi": {
+  "label": "Nuovi prodotti Apple, ultimi due mesi",
+  "unit": "prodotti",
+  "note": "Conteggio di dispositivi e accessori lanciati da fine agosto 2026, compilato da MacRumors.",
+  "opened": "2026-10-31"
+ },
  "apple-quota-cina-counterpoint": {
   "label": "Quota Apple, mercato smartphone Cina (Counterpoint)",
   "unit": "%",
@@ -155,6 +161,12 @@
   "note": "",
   "opened": "2026-10-14"
  },
+ "appletv4k-ram": {
+  "label": "RAM, Apple TV 4K (4ª gen.)",
+  "unit": "GB",
+  "note": "Svelata dai file pubblici di Xcode 27.2.",
+  "opened": "2026-10-31"
+ },
  "appstore-linkout-commissione": {
   "label": "Commissione Apple sui link esterni al App Store",
   "note": "La cifra che Apple ha proposto al tribunale distrettuale per le app standard; resta da vedere cosa fissera' la corte.",
@@ -209,6 +221,12 @@
   "note": "Comunicato Apple Newsroom, 28 ottobre 2026.",
   "opened": "2026-10-28"
  },
+ "ios272-vulnerabilita-corrette": {
+  "label": "Vulnerabilità corrette, iOS 27.2",
+  "unit": "vulnerabilità",
+  "note": "Numero totale di CVE risolte nell'aggiornamento, dalle note di sicurezza Apple.",
+  "opened": "2026-10-31"
+ },
  "ipad-base-ram": {
   "label": "RAM, iPad base (2027)",
   "unit": "GB",
@@ -220,6 +238,12 @@
   "note": "",
   "opened": "2026-09-01",
   "unit": "USD"
+ },
+ "ipadmini-ram": {
+  "label": "RAM, iPad mini OLED (2026)",
+  "unit": "GB",
+  "note": "Svelata dai file pubblici di Xcode 27.2.",
+  "opened": "2026-10-31"
  },
  "ipadmini8-ram": {
   "label": "RAM, iPad mini 8",
@@ -430,6 +454,18 @@
   "unit": "pollici",
   "note": "",
   "opened": "2026-09-22"
+ },
+ "iphoneduo-quota-scorte-negozi": {
+  "label": "Quota scorte iniziali iPhone Duo nei negozi",
+  "unit": "%",
+  "note": "Stima di Mark Gurman (Bloomberg) sulla distribuzione delle prime scorte fra Apple Store e ordini online.",
+  "opened": "2026-10-31"
+ },
+ "iphoneduo-ram": {
+  "label": "RAM, iPhone Duo",
+  "unit": "GB",
+  "note": "Svelata dai file pubblici di Xcode 27.2.",
+  "opened": "2026-10-31"
  },
  "m5-ultra-geekbench-multicore": {
   "label": "Punteggio multi-core Geekbench 7, M5 Ultra",
