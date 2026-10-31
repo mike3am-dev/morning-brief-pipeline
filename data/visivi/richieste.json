@@ -358,5 +358,29 @@
   "interazione": "Tocco su ogni ipotesi/posizione per leggere chi la sostiene",
   "dati": "Le tre ipotesi di iFixit e le tre posizioni (Apple, iFixit, fornitore) sono nel testo; nessun numero comparabile per barre, nessuno strato confermato per esploso",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-10-31",
+  "notizia": "iphone-duo-crepe-memo-samsung",
+  "idea": "Confrontare iPhone Duo e Galaxy Z Fold8 non sul meccanismo della cerniera (già mostrato con esploso/catena nei giorni scorsi) ma sulla rivalità pubblicitaria: prezzo (1.999$ contro 1.899$), i 3 mesi di vantaggio di mercato di Samsung, l'assenza di problemi di scorte per il rivale, e la procedura vaga del memo interno Apple ai tecnici (nessuna soglia, nessun richiamo, via AppleCare caso per caso).",
+  "interazione": "Un interruttore 'Duo / Fold8' che confronta le due schede fianco a fianco, o un tocco che rivela la riga del memo dietro ogni voce.",
+  "dati": "Prezzo Duo 1.999$ vs Fold8 1.899$; Fold8 uscito 3 mesi prima, nessun problema di scorte; memo Apple: 'un piccolo numero di unità', nessuna percentuale, nessun richiamo.",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-31",
+  "notizia": "macbook-pro-touch-gesti-cmf",
+  "idea": "I 15 gesti touch (swipe dal basso per il Dock, dall'alto per Spotlight, pressione prolungata per il clic destro, multi-touch a dieci dita) mappati sull'azione che scatenano in macOS; separatamente il salto dal vecchio standard colore CIE 1931 (quasi centenario) al nuovo CMF, il cui meccanismo fisico è già stato mostrato con esploso due giorni fa sullo Studio Display XDR: qui serve il confronto percettivo del colore, non un altro schema dei componenti.",
+  "interazione": "Un tocco su ogni gesto che mostra l'azione corrispondente in macOS, o un cursore che confronta la resa colore CIE 1931 contro CMF sullo stesso campione.",
+  "dati": "Gesti: swipe dal basso (Dock), swipe dall'alto (Spotlight), pressione prolungata (clic destro), multi-touch a 10 dita; stabilizzazione fotocamera nelle videochiamate; CMF debuttata in primavera su Studio Display XDR; CIE 1931 quasi centenario; Apple partecipa ai lavori della Commissione Internazionale per l'Illuminazione.",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-10-31",
+  "notizia": "ipad-mini-60hz-apple-spiega",
+  "idea": "Perché l'iPad mini resta a 60Hz: il tempo di risposta dei pixel OLED (più di dieci volte più rapido di un LCD) spiega perché il movimento appare netto senza ProMotion, riservato all'iPad Pro come leva di gamma. L'Acoustic Display (pannello come woofer, due tweeter nel telaio) è già stato mostrato con esploso ieri: qui serve solo il confronto del tempo di risposta, non un altro schema dei componenti.",
+  "interazione": "Un cursore 'velocità di risposta' che confronta OLED e LCD a parità di frequenza, mostrando perché a 60Hz il movimento resta netto.",
+  "dati": "OLED risponde più di 10 volte più in fretta di un LCD (Dave Pakula, Apple); ProMotion riservato all'iPad Pro; nessun valore assoluto in millisecondi nella fonte.",
+  "stato": "aperta"
  }
 ]

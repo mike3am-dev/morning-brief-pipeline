@@ -82,7 +82,13 @@
       "perche": "Perché le scorte in negozio sono scarse quanto quelle online."
      }
     ],
-    "scritto": "2026-10-31"
+    "scritto": "2026-10-31",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-31/iphone-duo-crepe-memo-samsung-d8e32d09da4b.mp3",
+     "durata": 130,
+     "voce": "kore",
+     "impronta": "d8e32d09da4b"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -125,7 +131,35 @@
    ],
    "approfondimento": {
     "punto": "Apple aggiunge un altro mattoncino di agenti AI per i dati aziendali, ma lo fa in silenzio: lo scopriamo da un modulo di trasparenza europeo, non da un comunicato.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Il modo silenzioso di Apple di comprare l'AI",
+      "didascalia": "Apple integra piccoli team di agenti AI senza annunci: stavolta un obbligo di trasparenza europeo ha rivelato il passo, non un comunicato.",
+      "passi": [
+       {
+        "titolo": "Scouting",
+        "nota": "Apple individua piccoli team con competenze specifiche in agenti AI, come Ascend.io."
+       },
+       {
+        "titolo": "Acquisizione silenziosa",
+        "nota": "Nessun comunicato: lo stile Apple per le operazioni minori."
+       },
+       {
+        "titolo": "Integrazione",
+        "nota": "Il team confluisce negli strumenti interni o in futuri prodotti."
+       }
+      ],
+      "rottura": {
+       "dopo": "Il Digital Markets Act europeo",
+       "senza": "l'obbligo di comunicare ogni acquisizione alla Commissione UE",
+       "etichetta": "Nessuna notizia pubblica",
+       "nota": "Senza quel modulo di trasparenza, probabilmente non ne avremmo saputo nulla."
+      },
+      "azione": "Il modulo UE rende pubblica un'acquisizione che Apple non ha annunciato.",
+      "fonte": "Documento di trasparenza della Commissione Europea, letto da MacRumors e 9to5Mac"
+     }
+    ],
     "sotto": [
      "Ascend.io si descriveva come «la prima piattaforma di Agentic Data Engineering»: agenti che si occupano da soli di raccogliere, trasformare e instradare i dati di un'azienda, un lavoro che oggi richiede team di ingegneri dedicati. Per Apple è un pattern già visto più volte quest'anno: comprare piccoli team con competenze specifiche in agenti AI, invece di costruire tutto in casa, e integrarli nei propri strumenti interni o in futuri prodotti.",
      "La scelta di non annunciarla è coerente con lo stile Apple per le acquisizioni minori, ma stavolta a renderla pubblica è un obbligo esterno: il Digital Markets Act europeo impone alle «gatekeeper» come Apple di comunicare ogni acquisizione alla Commissione. Senza quel modulo, probabilmente non ne avremmo saputo nulla fino a tracce indirette nel codice o nelle assunzioni su LinkedIn."
@@ -162,7 +196,13 @@
       "perche": "La lettura in italiano del documento UE che ha svelato l'acquisizione."
      }
     ],
-    "scritto": "2026-10-31"
+    "scritto": "2026-10-31",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-31/apple-ascend-io-acquisizione-f50023bef2e4.mp3",
+     "durata": 115,
+     "voce": "kore",
+     "impronta": "f50023bef2e4"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -237,7 +277,13 @@
       "perche": "Le stesse scelte di display su un altro prodotto della settimana."
      }
     ],
-    "scritto": "2026-10-31"
+    "scritto": "2026-10-31",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-31/macbook-pro-touch-gesti-cmf-7501791ffbb1.mp3",
+     "durata": 120,
+     "voce": "kore",
+     "impronta": "7501791ffbb1"
+    }
    },
    "verifica": {
     "testate": 2,
@@ -285,7 +331,31 @@
    ],
    "approfondimento": {
     "punto": "Apple ha scelto di riempire i propri negozi prima degli ordini online: una decisione che spiega code e attese diverse più di qualsiasi problema di produzione.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Dove sono finite le prime scorte di iPhone Duo",
+      "didascalia": "L'80% delle scorte iniziali è andato ai negozi Apple: 50 unità nei punti vendita standard, circa 250 nei flagship. Il 20% restante, gli ordini online, aspetta fino a fine gennaio.",
+      "unita": "% delle scorte iniziali",
+      "voci": [
+       {
+        "etichetta": "Negozi Apple",
+        "min": 80,
+        "max": 80,
+        "colore": "blu",
+        "nota": "50 unità nei negozi standard, circa 250 nei flagship"
+       },
+       {
+        "etichetta": "Ordini online",
+        "min": 20,
+        "max": 20,
+        "colore": "giallo",
+        "nota": "consegne rimandate a fine gennaio"
+       }
+      ],
+      "fonte": "Mark Gurman, Bloomberg (podcast Power On)"
+     }
+    ],
     "sotto": [
      "La scelta di destinare l'80% delle scorte iniziali ai negozi non è casuale: chi si presenta di persona il giorno del lancio diventa un cliente visibile, in fila — un effetto vetrina che un ordine online spedito a gennaio non produce. Il rovescio è la disparità fra negozi: 50 unità in alcuni punti vendita, circa 250 nei flagship, con la Fifth Avenue di New York rifornita oltre la norma per i dirigenti Apple presenti al lancio.",
      "Per chi lavora al banco, il dato utile è operativo: chi ha prenotato online a metà ottobre aspetta fino a fine gennaio, chi si è messo in fila il 23 ottobre davanti al negozio è quasi sempre tornato a casa col telefono. Due percorsi diversi per lo stesso prodotto, con tempi d'attesa che non hanno nulla a che fare con la produzione complessiva."
@@ -326,7 +396,13 @@
       "perche": "Il problema che in parte spiega le code e le scorte scarse."
      }
     ],
-    "scritto": "2026-10-31"
+    "scritto": "2026-10-31",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-10-31/iphone-duo-80-percento-negozi-8a925d4228d1.mp3",
+     "durata": 120,
+     "voce": "kore",
+     "impronta": "8a925d4228d1"
+    }
    },
    "verifica": {
     "testate": 2,
