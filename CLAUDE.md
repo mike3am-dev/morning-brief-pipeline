@@ -1094,6 +1094,40 @@ Offline l'app funziona lo stesso — legge dalla cache e accumula le modifiche, 
 appena torna la rete. Il pallino nella testata dice lo stato: verde sincronizzato, blu in corso,
 grigio offline, rosso errore.
 
+## L'impaginato del Duo
+
+Fra 601 e 1.039 punti di larghezza — lo schermo interno di iPhone Duo, in verticale e in
+orizzontale, e per giunta l'iPad mini in verticale — la scheda **APPLE** è lista a sinistra
+e notizia a destra, come Mail su iPad (31 ottobre 2026, chiesto da Mike, che il Duo ce
+l'ha). Sotto i 600 resta il telefono, dai 1.040 le colonne del Mac: lì non cambia niente.
+Solo la scheda APPLE, per scelta: AI e le rubriche restano a colonna unica.
+
+Il codice è il modulo `Reader` in `pipeline/template.html`. Tre cose da sapere prima di
+toccarlo:
+
+- **La notizia si sposta, non si copia.** Corpo e pulsanti passano nel pannello e tornano
+  nell'`<article>` quando ne scegli un'altra. Così approfondimento, Ascolta e appunti sono
+  gli stessi oggetti, e i segnali di lettura — che si agganciano all'`<article>` con i
+  pulsanti — contano una volta sola: il pannello è anch'esso un `<article>`.
+- **Aprire e chiudere il telefono non perde il punto.** La notizia aperta a telefono
+  chiuso finisce nel pannello quando lo apri; quella nel pannello resta aperta nella lista
+  quando lo chiudi.
+- **All'apertura il pannello mostra la notizia d'apertura come anteprima**: non conta come
+  aperta né come tempo di lettura finché Mike non la tocca. Altrimenti la taratura
+  crederebbe che la prima notizia la legge sempre.
+
+**Lo stile della lista** (rivisto con Mike sul Duo vero lo stesso giorno): è un indice, non
+una pila di schede. Pallino in colonna, titolo accanto a filo in Medium, sotto una riga di meta
+in maiuscoletto con il pallino del colore del tag — niente scatole, niente «approfondita»
+(sono sempre le prime cinque). La voce aperta si segna come la scheda attiva in testata,
+con la barra arancione di quattro punti in verticale e il titolo in grassetto: **niente fondo
+campito**, Mike l'ha bocciato come estraneo allo stile. Nel pannello l'occhiello ripete il
+pallino colorato della voce, per legare a colpo d'occhio lista e notizia.
+
+Per provarlo nel browser del Mac: l'emulatore di larghezza non manda alla pagina l'evento
+di ridimensionamento, quindi dopo aver cambiato misura serve
+`window.dispatchEvent(new Event('resize'))`. Un telefono vero lo manda da solo.
+
 ## Note di stile
 
 Riferimento dichiarato alla sigla di *The Morning Show* (Elastic, art direction Hazel Baird):

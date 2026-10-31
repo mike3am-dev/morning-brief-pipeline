@@ -392,6 +392,98 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 
 .workspace{padding:.75rem 0 0 3.25rem; display:flex; flex-direction:column; gap:.6rem}
 .workspace[hidden]{display:none}
+
+/* ---------------- Duo aperto ----------------
+   Fra il telefono (sotto i 600 punti) e il Mac (dai 1.040) cade lo schermo
+   interno di iPhone Duo, in verticale e in orizzontale. Li' la scheda APPLE
+   diventa lista a sinistra e notizia a destra, come Mail su iPad: la lista
+   resta ferma, la notizia si apre accanto invece di spingere giu' il resto.
+   La classe "duo" la mette e la toglie Reader, insieme al comportamento:
+   stile e logica cambiano nello stesso istante, mai uno senza l'altro. */
+.newslist{min-width:0}
+.reader{display:none}
+#view-oggi.duo .col-main{max-width:none}
+/* la foto d'apertura si sposta nel pannello, con la notizia a cui appartiene */
+#view-oggi.duo .hero-shot{display:none}
+#view-oggi.duo .newsbox{
+  display:grid; grid-template-columns:minmax(220px, 36%) minmax(0,1fr);
+  column-gap:1.5rem; align-items:start;
+}
+/* La lista e' un indice, non una pila di schede: pallino in colonna, titolo
+   accanto a filo, e sotto una riga di meta silenziosa. Il titolo viene prima
+   perche' e' quello che si scorre; il tag scende a testo con il suo pallino
+   di colore, invece di una scatola ripetuta quindici volte. Sintesi,
+   miniatura e pulsanti stanno nel pannello, dove c'e' spazio per leggerli. */
+#view-oggi.duo .newslist .story{padding:.95rem .25rem .9rem 1rem; cursor:pointer; position:relative}
+#view-oggi.duo .newslist .story-head,
+#view-oggi.duo .newslist .story-head.with-thumb{
+  grid-template-columns:24px minmax(0,1fr);
+  grid-template-areas:"bead title" ". chips";
+  column-gap:.7rem; row-gap:.4rem;
+}
+#view-oggi.duo .newslist .story-head .bead{align-self:start}
+#view-oggi.duo .newslist .bead{width:24px; height:24px; font-size:.74rem; margin-top:.02rem}
+#view-oggi.duo .newslist .story-head .lede,
+#view-oggi.duo .newslist .story-head .thumb,
+#view-oggi.duo .newslist .tools,
+#view-oggi.duo .newslist .workspace{display:none}
+/* il titolo: Medium, non Demi. Il grassetto resta a quella che stai leggendo */
+/* text-wrap:pretty e non balance: in un indice stretto il bilanciamento
+   accorcia le righe e lascia il margine destro frastagliato */
+#view-oggi.duo .newslist .story h3{font-weight:500; font-size:1.07rem; line-height:1.24;
+  letter-spacing:0; margin:0; color:var(--ink); transition:color .15s; text-wrap:pretty}
+#view-oggi.duo .newslist .story.is-read:not(.is-reading) h3{color:var(--ink-2)}
+#view-oggi.duo .newslist .story:hover h3{color:var(--ink)}
+/* la riga di meta: maiuscoletto, pallino del colore del tag, niente scatole */
+#view-oggi.duo .newslist .chips{margin:0; gap:.2rem .7rem}
+#view-oggi.duo .newslist .chip{background:none; box-shadow:none; padding:0; color:var(--ink-3);
+  font-size:.56rem; letter-spacing:.13em; display:inline-flex; align-items:center; gap:.38rem}
+#view-oggi.duo .newslist .chip[class*="t-"]::before{content:""; width:7px; height:7px;
+  border-radius:50%; background:var(--tagc, var(--ink-3)); flex:none}
+#view-oggi.duo .newslist .chip.t-rumor{--tagc:var(--yellow)}
+#view-oggi.duo .newslist .chip.t-confermato{--tagc:var(--blue)}
+#view-oggi.duo .newslist .chip.t-dati{--tagc:var(--orange)}
+#view-oggi.duo .newslist .chip.t-analisi,
+#view-oggi.duo .newslist .chip.t-opinione{--tagc:var(--red)}
+#view-oggi.duo .newslist .chip.t-contorno,
+#view-oggi.duo .newslist .chip.t-contesto,
+#view-oggi.duo .newslist .chip.t-servizio{--tagc:var(--ink)}
+/* "approfondita" nella lista e' ridondante — per regola sono le prime cinque —
+   e nella colonna stretta del Duo in verticale mandava la meta su due righe
+   solo per quelle. Nel pannello la pastiglia c'e'. */
+#view-oggi.duo .newslist .chip.deep-mark{display:none}
+#view-oggi.duo .newslist .meter{padding:0}
+/* Quella che stai leggendo si segna come la scheda attiva in testata: la
+   barra arancione di quattro punti, qui in verticale. Niente fondo: in TMB
+   le campiture hanno un ruolo, e "selezionato" non e' fra questi. */
+#view-oggi.duo .newslist .story::before{content:""; position:absolute; left:0; top:.85rem; bottom:.8rem;
+  width:4px; background:var(--orange); transform:scaleY(0); transform-origin:top;
+  transition:transform .18s ease}
+#view-oggi.duo .newslist .story.is-reading::before{transform:scaleY(1)}
+#view-oggi.duo .newslist .story.is-reading h3{font-weight:700; color:var(--ink)}
+#view-oggi.duo .newslist .story.is-reading .bead{transform:none; opacity:1}
+
+/* il pannello: resta agganciato sotto la testata e scorre per conto suo */
+#view-oggi.duo .reader{
+  display:block; position:sticky; top:calc(var(--mast, 7rem) + .5rem);
+  max-height:calc(100vh - var(--mast, 7rem) - 1rem);
+  max-height:calc(100dvh - var(--mast, 7rem) - 1rem);
+  overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  padding:.9rem 0 2.5rem 1.5rem; border-left:1px solid var(--rule);
+}
+.reader-head{display:flex; flex-direction:column; gap:.6rem; padding-bottom:.2rem}
+.reader-kicker{display:flex; align-items:center; gap:.6rem}
+.reader-kicker .bead{width:26px; height:26px; font-size:.78rem; margin:0}
+.reader-kicker .eyebrow{margin:0}
+.reader-head .chips{margin:0}
+.reader-head h2{font-family:var(--display); font-weight:600; font-size:clamp(1.55rem, 3.4vw, 2.05rem);
+  line-height:1.08; letter-spacing:-.008em; margin:0}
+.reader-shot{display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
+  border-radius:3px; background:var(--paper-2)}
+.reader-head .lede{font-size:1.04rem; line-height:1.5; color:var(--ink-2); margin:0}
+.reader .story-body{padding:1rem 0 0}
+.reader .workspace{padding-left:0}
+.reader .tools{padding-left:0}
 @media (max-width:600px){
   /* Sul telefono la notizia ha un solo bordo a sinistra: numero e metadati in
      cima, poi titolo, sintesi e azioni tutti allineati a filo di colonna. Il
@@ -3970,13 +4062,17 @@ function storyNode(brief, n, index){
       const on = deep.hidden;
       setDeep(on);
       if(on) Sig.bump(key(brief.date, n.id), "d");
-      if(on) setTimeout(function(){ deep.scrollIntoView({behavior:"smooth", block:"start"}); }, 30);
+      if(on) setTimeout(function(){
+        /* nel pannello del Duo scorre solo il pannello: la lista resta dov'e' */
+        if(Reader.holds(wrap)) Reader.reveal(deep);
+        else deep.scrollIntoView({behavior:"smooth", block:"start"});
+      }, 30);
     });
     /* la barra in fondo: Chiudi riporta al titolo, Prossima chiude questa
        notizia e apre la successiva — il "va bene, basta" che mancava */
     deep.querySelector('[data-act="close"]').addEventListener("click", function(ev){
       ev.stopPropagation(); setDeep(false);
-      wrap.scrollIntoView({block:"start"});
+      if(Reader.holds(wrap)) Reader.top(); else wrap.scrollIntoView({block:"start"});
     });
     deep.querySelector('[data-act="next"]').addEventListener("click", function(ev){
       ev.stopPropagation(); setDeep(false);
@@ -4061,15 +4157,41 @@ function storyNode(brief, n, index){
   const ver = verificaText(n.verifica);
   if(ver) body.appendChild(el("p", {class:"sources verifica", text:ver}));
 
-  head.addEventListener("click", function(){
-    body.hidden = !body.hidden;
-    wrap.classList.toggle("is-open", !body.hidden);
-    if(!body.hidden && NOTES && !(mk(k) && mk(k).read_at)){
+  wrap._markRead = function(){
+    if(NOTES && !(mk(k) && mk(k).read_at)){
       mark(k).read_at = new Date().toISOString();
       wrap.classList.add("is-read");
       touched(k);
     }
+  };
+  head.addEventListener("click", function(){
+    /* sul Duo aperto la notizia non si apre qui sotto: va nel pannello a destra */
+    if(Reader.claims(wrap)){ Reader.show(wrap, true); return; }
+    body.hidden = !body.hidden;
+    wrap.classList.toggle("is-open", !body.hidden);
+    if(!body.hidden) wrap._markRead();
   });
+
+  /* Quello che il pannello del Duo si porta via e poi restituisce: il corpo e
+     i pulsanti si spostano, non si copiano, cosi' approfondimento, Ascolta,
+     appunti e segnali di lettura restano gli stessi oggetti. Il capo invece
+     si ridisegna, piu' grande, perche' nella lista resta il titolo. */
+  wrap._parts = {body:body, bar:null, panel:null};
+  wrap._readerHead = function(){
+    /* l'occhiello riprende il pallino della lista: stesso numero, stesso
+       colore, cosi' si vede a colpo d'occhio quale voce e' aperta a destra */
+    const i0 = typeof index === "number" ? index : (n.rank || 1) - 1;
+    return el("header", {class:"reader-head"}, [
+      el("div", {class:"reader-kicker"}, [
+        bead(i0, String(i0 + 1)),
+        el("span", {class:"eyebrow", text:fmtDate(brief.date)})
+      ]),
+      chips.childNodes.length ? chips.cloneNode(true) : null,
+      el("h2", {text:n.title}),
+      (n.hero || n.image) ? el("img", {class:"reader-shot", src:n.hero || n.image, alt:"", decoding:"async"}) : null,
+      n.sintesi ? el("p", {class:"lede", text:n.sintesi}) : null
+    ]);
+  };
 
   wrap.appendChild(head);
   wrap.appendChild(body);
@@ -4079,6 +4201,8 @@ function storyNode(brief, n, index){
     ref:{date:brief.date, id:n.id, title:n.title},
     onNote:function(){ body.hidden = false; wrap.classList.add("is-open"); }
   });
+  wrap._parts.bar = tools.bar;
+  wrap._parts.panel = tools.panel;
   wrap.appendChild(tools.bar);
   wrap.appendChild(tools.panel);
   return wrap;
@@ -4104,6 +4228,164 @@ function removeDiary(id){
 }
 function liveDiary(){ return S.diary.filter(function(e){ return !e.deleted_at; }); }
 
+/* ================= il pannello del Duo =================
+   Sullo schermo interno di iPhone Duo (fra 601 e 1.039 punti, in verticale e
+   in orizzontale) la scheda APPLE e' lista a sinistra e notizia a destra. Si
+   decide sulla larghezza, non sul modello: vale anche per l'iPad mini in
+   verticale, e un Duo chiuso torna telefono.
+
+   La notizia non viene copiata nel pannello: ci si sposta il suo corpo con i
+   pulsanti, e torna al suo posto quando ne scegli un'altra o chiudi il
+   telefono. Cosi' approfondimento, Ascolta e appunti restano gli stessi, e i
+   segnali di lettura — che si agganciano all'<article> con i pulsanti —
+   contano una volta sola: il pannello e' anch'esso un <article>.
+
+   Il momento che giustifica tutto: stai leggendo una notizia a telefono
+   chiuso, lo apri, e la ritrovi a destra senza perdere il punto. E il
+   contrario: chiudi il telefono e la notizia resta aperta nella lista.
+
+   Il pannello non e' mai vuoto: all'apertura mostra la notizia d'apertura,
+   ma come anteprima — non conta come aperta, ne' per "letta" ne' per il
+   tempo di lettura, finche' non la tocchi tu. */
+const Reader = (function(){
+  const MQ = window.matchMedia ? window.matchMedia("(min-width:601px) and (max-width:1039px)") : null;
+  let box = null, pane = null, cur = null;
+
+  function on(){ return !!(MQ && MQ.matches); }
+  function root(){ return document.getElementById("view-oggi"); }
+  function active(){ return on() && !!box && box.isConnected; }
+  function claims(w){ return active() && !!w && !!w._parts && box.contains(w) && !pane.contains(w); }
+  function holds(w){ return !!w && cur === w; }
+
+  function mast(){
+    const m = document.getElementById("masthead");
+    if(m && m.offsetHeight) document.documentElement.style.setProperty("--mast", m.offsetHeight + "px");
+  }
+
+  /* rimette corpo e pulsanti nella notizia, nell'ordine di prima */
+  function restore(openInline){
+    if(!cur) return;
+    const w = cur, p = w._parts;
+    w.appendChild(p.body);
+    if(p.bar) w.appendChild(p.bar);
+    if(p.panel) w.appendChild(p.panel);
+    p.body.hidden = !openInline;
+    w.classList.toggle("is-open", !!openInline);
+    w.classList.remove("is-reading");
+    w.removeAttribute("aria-current");
+    pane.innerHTML = "";
+    pane.classList.remove("is-open");
+    cur = null;
+  }
+
+  function show(w, real){
+    if(!active() || !w || !w._parts) return;
+    if(cur === w){
+      /* l'anteprima diventa lettura vera quando la tocchi */
+      if(real && !pane.classList.contains("is-open")){
+        pane.classList.add("is-open"); w.classList.add("is-open");
+        if(w._markRead) w._markRead();
+      }
+      return;
+    }
+    if(cur) restore(false);
+    const p = w._parts;
+    pane.appendChild(w._readerHead());
+    pane.appendChild(p.body);
+    p.body.hidden = false;
+    if(p.bar) pane.appendChild(p.bar);
+    if(p.panel) pane.appendChild(p.panel);
+    pane.scrollTop = 0;
+    cur = w;
+    w.classList.add("is-reading");
+    w.setAttribute("aria-current", "true");
+    pane.classList.toggle("is-open", !!real);
+    w.classList.toggle("is-open", !!real);
+    if(real && w._markRead) w._markRead();
+  }
+
+  /* telefono aperto: va nel pannello la notizia che stavi leggendo — se ce
+     n'e' piu' d'una aperta, quella che occupa piu' schermo — o l'apertura */
+  function enter(){
+    const r = root();
+    if(r) r.classList.add("duo");
+    mast();
+    if(!active() || cur) return;
+    const list = box.querySelector(".newslist");
+    if(!list) return;
+    const opened = Array.prototype.filter.call(list.querySelectorAll(".story.is-open"),
+                                               function(w){ return !!w._parts; });
+    /* -Infinity, non -1: aprendo il telefono la pagina si ridispone e la
+       notizia aperta puo' finire fuori schermo, ma resta quella da leggere */
+    let target = null, best = -Infinity;
+    opened.forEach(function(w){
+      const rc = w.getBoundingClientRect();
+      const vis = Math.min(rc.bottom, window.innerHeight) - Math.max(rc.top, 0);
+      if(vis > best){ best = vis; target = w; }
+    });
+    opened.forEach(function(w){
+      if(w !== target){ w._parts.body.hidden = true; w.classList.remove("is-open"); }
+    });
+    if(target){
+      show(target, true);
+      /* la lista compatta e' molto piu' corta di quella del telefono: senza
+         questo la pagina resterebbe dov'era, giu' nel radar, e il pannello
+         sopra lo schermo. Con la notizia a centro lista il pannello e' li'. */
+      target.scrollIntoView({block:"center"});
+      return;
+    }
+    const first = list.querySelector(".story");
+    if(first) show(first, false);
+  }
+
+  /* telefono chiuso: la notizia torna nella lista, aperta se la stavi leggendo */
+  function leave(){
+    const r = root();
+    if(r) r.classList.remove("duo");
+    if(!cur) return;
+    const w = cur, real = pane.classList.contains("is-open");
+    restore(real);
+    if(real) w.scrollIntoView({block:"start"});
+  }
+
+  function mount(b){
+    box = b; pane = b ? b.querySelector(".reader") : null; cur = null;
+    last = on();
+    if(last) enter(); else { const r = root(); if(r) r.classList.remove("duo"); }
+  }
+  function state(){
+    return cur ? {id:cur.id, real:pane.classList.contains("is-open"), top:pane.scrollTop} : null;
+  }
+  function top(v){ if(pane) pane.scrollTop = v || 0; }
+  function reveal(node){
+    if(!pane || !node) return;
+    const y = node.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop - 12;
+    pane.scrollTo({top:Math.max(0, y), behavior:"smooth"});
+  }
+
+  /* Aprire o chiudere il Duo e' un cambio di larghezza. L'evento della media
+     query di solito arriva, ma non in ogni WebView e non sempre in modalita'
+     app a tutto schermo: a ogni ridimensionamento si ricontrolla anche a mano,
+     e si agisce solo se lo stato e' davvero cambiato. */
+  let last = on();
+  function sync(){
+    const now = on();
+    if(now === last && (now ? root() && root().classList.contains("duo") : true)) return;
+    last = now;
+    if(now) enter(); else leave();
+  }
+  if(MQ){
+    if(MQ.addEventListener) MQ.addEventListener("change", sync);
+    else if(MQ.addListener) MQ.addListener(sync);
+  }
+  let mt = null;
+  const onResize = function(){ clearTimeout(mt); mt = setTimeout(function(){ mast(); sync(); }, 120); };
+  window.addEventListener("resize", onResize);
+  window.addEventListener("orientationchange", onResize);
+
+  return {active:active, claims:claims, holds:holds, show:show, mount:mount, state:state, top:top, reveal:reveal};
+})();
+
 /* ================= vista edizione ================= */
 let currentDate = BRIEFS[0] ? BRIEFS[0].date : null;
 
@@ -4114,8 +4396,12 @@ let currentDate = BRIEFS[0] ? BRIEFS[0].date : null;
 function renderEdition(){
   const root = document.getElementById("view-oggi");
   const was = root.dataset.date || "", y = window.scrollY, open = [];
+  /* sul Duo il corpo della notizia sta nel pannello, non dentro l'<article>:
+     approfondimento e grafico si cercano nel corpo, ovunque si trovi */
+  const bodyOf = function(w){ return w._parts ? w._parts.body : w.querySelector(".story-body"); };
+  const rd = Reader.state();
   Array.prototype.forEach.call(root.querySelectorAll(".story.is-open"), function(w){
-    const d = w.querySelector(".deep");
+    const b = bodyOf(w), d = b ? b.querySelector(".deep") : null;
     open.push({id:w.id, deep:!!(d && !d.hidden), tab:d ? d.dataset.tab : null, slide:d ? d.dataset.slide : null});
   });
   const brief = drawEdition(root);
@@ -4124,15 +4410,19 @@ function renderEdition(){
   open.forEach(function(o){
     const w = document.getElementById(o.id);
     if(!w || !root.contains(w)) return;
-    const body = w.querySelector(".story-body");
-    if(body){ body.hidden = false; w.classList.add("is-open"); }
+    const body = bodyOf(w);
+    if(Reader.active()) Reader.show(w, true);
+    else if(body){ body.hidden = false; w.classList.add("is-open"); }
     if(o.deep && w._deep){
       w._deep(true);
-      const d = w.querySelector(".deep");
+      const d = body ? body.querySelector(".deep") : null;
       if(d && d._tab && o.tab) d._tab(+o.tab);
       if(d && d._slide && o.slide && +o.slide > 0) d._slide(+o.slide);
     }
   });
+  /* e il punto dentro il pannello, se era lo stesso pezzo */
+  const now = Reader.state();
+  if(rd && now && now.id === rd.id) Reader.top(rd.top);
   window.scrollTo(0, y);
 }
 function drawEdition(root){
@@ -4191,7 +4481,14 @@ function drawEdition(root){
     el("span", {class:"pip"}), el("h2", {text:"Le notizie"}),
     el("span", {class:"eyebrow hint", text:"tocca un titolo per aprirlo"})
   ]));
-  (brief.news || []).forEach(function(n, i){ col.appendChild(storyNode(brief, n, i)); });
+  /* le notizie stanno in una scatola con accanto il pannello del Duo: sul
+     telefono e sul Mac il pannello non si vede e la lista e' quella di sempre */
+  const newslist = el("div", {class:"newslist"});
+  (brief.news || []).forEach(function(n, i){ newslist.appendChild(storyNode(brief, n, i)); });
+  const newsbox = el("div", {class:"newsbox"}, [
+    newslist, el("article", {class:"reader", "aria-live":"polite"})
+  ]);
+  col.appendChild(newsbox);
 
   /* le voci AI non stanno nell'edizione: hanno la loro scheda accanto, con
      Notizie e LAB. Qui sarebbero un doppione, e allungherebbero la pagina. */
@@ -4343,6 +4640,7 @@ function drawEdition(root){
      si guarda dal Mac, con lint.py e feedcheck.py. */
 
   root.appendChild(el("div", {class:"columns"}, [col, rail]));
+  Reader.mount(newsbox);
   dotfield(canvas);
 
   const srcs = {};
