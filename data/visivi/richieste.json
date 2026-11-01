@@ -382,5 +382,29 @@
   "interazione": "Un cursore 'velocità di risposta' che confronta OLED e LCD a parità di frequenza, mostrando perché a 60Hz il movimento resta netto.",
   "dati": "OLED risponde più di 10 volte più in fretta di un LCD (Dave Pakula, Apple); ProMotion riservato all'iPad Pro; nessun valore assoluto in millisecondi nella fonte.",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-01",
+  "notizia": "macbook-pro-touch-macos27-golden-gate",
+  "idea": "I gesti touch del trackpad replicati sullo schermo, mappati sull'azione che scatenano: swipe dalla Dynamic Island apre Spotlight, pressione prolungata fa clic destro, drag multi-touch",
+  "interazione": "Tocchi un gesto nell'elenco e vedi l'azione che scatena sullo schermo (Spotlight, Dock, clic destro)",
+  "dati": "15 gesti dall'hands-on di MacRumors e lo Spotlight da Dynamic Island di 9to5Mac; solo un elenco, nessun dato numerico",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-01",
+  "notizia": "homeview-tour-liquid-glass-quickpath",
+  "idea": "Il riconoscimento di fino a sei utenti via fotocamera che personalizza automaticamente cinque app (Messages, Calendar, Reminders, FaceTime, Dov'è)",
+  "interazione": "Scegli un utente fra sei e vedi quali app cambiano aspetto o contenuto",
+  "dati": "Elenco app personalizzate per utente riconosciuto (MacRumors); nessuna descrizione di cosa succede con un utente non riconosciuto, quindi nessuna rottura verificabile per 'catena'",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-01",
+  "notizia": "apple-maps-offusca-basi-militari",
+  "idea": "Le basi USA offuscate su Apple Maps (Whiteman AFB, Cape Canaveral, Vandenberg, Wallops, Area 51, Los Alamos) contro quelle non toccate (Pearl Harbor, Norfolk, Kennedy Space Center) e la stessa lista su Google Maps, dove nessuna è sfocata",
+  "interazione": "Tocchi un punto e vedi se è offuscato su Apple Maps e su Google Maps",
+  "dati": "Elenco verificato a mano dalla fonte sulle stesse coordinate; nessun dato numerico, serve una mappa di stato per punto, non un raggio d'allarme",
+  "stato": "aperta"
  }
 ]

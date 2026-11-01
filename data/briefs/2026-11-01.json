@@ -96,7 +96,13 @@
       "perche": "La frase di Jobs del 2010 contro il touch sui laptop, letta oggi."
      }
     ],
-    "scritto": "2026-11-01"
+    "scritto": "2026-11-01",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-11-01/macbook-pro-touch-macos27-golden-gate-28545ae3ad2c.mp3",
+     "durata": 139,
+     "voce": "kore",
+     "impronta": "28545ae3ad2c"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -146,7 +152,29 @@
    ],
    "approfondimento": {
     "punto": "Per anni Apple ha comprato memorie a prezzi stracciati grazie al suo potere d'acquisto. La domanda dei data center AI ha ribaltato i rapporti di forza, e il conto arriva ai clienti.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "stime",
+      "titolo": "La spesa di Apple in memoria NAND",
+      "didascalia": "In un anno la spesa di Apple per i chip NAND è passata da 6 a 25 miliardi di dollari: il prezzo di una domanda che non controlla più lei.",
+      "fonte": "Wall Street Journal (Rolfe Winkler), TechInsights (via Macitynet, 31 ottobre 2026)",
+      "unita": "miliardi USD",
+      "punti": [
+       {
+        "data": "2025",
+        "valore": 6,
+        "tipo": "dato",
+        "fonte": "Wall Street Journal / TechInsights"
+       },
+       {
+        "data": "2026",
+        "valore": 25,
+        "tipo": "dato",
+        "fonte": "Wall Street Journal / TechInsights"
+       }
+      ]
+     }
+    ],
     "sotto": [
      "Il simbolo del vecchio ordine è Tony «Blevinator» Blevins, l'ex capo acquisti Apple uscito nel 2022: riunioni fino a notte, concorrenti incrociati nei corridoi apposta. Nel 2023, mentre i produttori di memorie perdevano insieme 19 miliardi di dollari, Apple incassava 14 miliardi dai soli upgrade di storage: pagava 15 dollari per raddoppiare lo spazio su un iPhone 17 Pro e ne faceva pagare 200.",
      "Oggi Microsoft, Amazon, Meta e Google comprano insieme più del doppio delle memorie flash di Apple per i data center AI, con contratti pluriennali a prezzi alti: i fornitori possono finalmente dire no a Cupertino. Apple spenderà 25 miliardi di dollari in NAND nel 2026, contro 6 nel 2025, e il margine sull'upgrade è già sceso a 134 dollari. Parte del rincaro lo assorbe, il resto lo scarica sui prezzi."
@@ -198,7 +226,13 @@
       "perche": "Perché il problema non si risolve a breve: lo dice chi vende ad Apple."
      }
     ],
-    "scritto": "2026-11-01"
+    "scritto": "2026-11-01",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-11-01/apple-fornitori-memorie-vendetta-wsj-7d00d744c6b1.mp3",
+     "durata": 144,
+     "voce": "kore",
+     "impronta": "7d00d744c6b1"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -238,7 +272,31 @@
    ],
    "approfondimento": {
     "punto": "Il mercato smartphone mondiale attraversa il calo peggiore da tredici anni, ma non colpisce tutti uguale: chi vende ai margini alti resiste, chi vende ai margini bassi paga il caro-memoria.",
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Il crollo che non è uguale per tutti",
+      "didascalia": "Il mercato smartphone mondiale cala del 20% nel trimestre, il peggio dal 2013: in Cina, dove il mercato è ai minimi dal 2013, Apple cresce invece del 15%.",
+      "unita": "% di variazione",
+      "voci": [
+       {
+        "etichetta": "Mercato globale",
+        "min": -20,
+        "max": -20,
+        "colore": "rosso",
+        "nota": "variazione del trimestre, minimo dal 2013 (Omdia)"
+       },
+       {
+        "etichetta": "Apple in Cina",
+        "min": 15,
+        "max": 15,
+        "colore": "blu",
+        "nota": "crescita nel trimestre, mercato cinese ai minimi dal 2013 (IDC/Counterpoint)"
+       }
+      ],
+      "fonte": "Omdia (dato globale); IDC, Counterpoint (Cina)"
+     }
+    ],
     "sotto": [
      "Il motivo è lo stesso che spinge Apple a litigare con i fornitori di NAND: il rincaro delle memorie, guidato dalla domanda dei data center AI, colpisce più duramente chi vende telefoni economici, dove il costo dei chip pesa una quota maggiore sul prezzo finale. Xiaomi, OPPO e vivo tagliano gli sconti perché non possono assorbire l'aumento come fanno i produttori premium.",
      "Samsung e Apple, che vendono soprattutto modelli di fascia alta con margini più ampi, restano quasi stabili e insieme coprono quasi metà delle spedizioni mondiali. È lo stesso schema visto in Cina, dove il mercato è ai minimi dal 2013 ma Apple è salita al secondo posto per quota: quando il mercato si restringe, chi può permettersi di non scontare guadagna terreno su chi deve farlo."
@@ -287,7 +345,13 @@
       "perche": "Lo stesso schema, visto in anticipo sul solo mercato cinese."
      }
     ],
-    "scritto": "2026-11-01"
+    "scritto": "2026-11-01",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-11-01/mercato-smartphone-calo-q3-apple-resiste-2c2eadcddaae.mp3",
+     "durata": 141,
+     "voce": "kore",
+     "impronta": "2c2eadcddaae"
+    }
    },
    "verifica": {
     "testate": 1,
@@ -367,7 +431,13 @@
       "perche": "La scoperta del launcher BreadBoard, un giorno prima di questa."
      }
     ],
-    "scritto": "2026-11-01"
+    "scritto": "2026-11-01",
+    "audio": {
+     "url": "https://bjwyesqwwyogsdbjlaui.supabase.co/storage/v1/object/public/brief-audio/2026-11-01/homeview-tour-liquid-glass-quickpath-e312ce639fb7.mp3",
+     "durata": 124,
+     "voce": "kore",
+     "impronta": "e312ce639fb7"
+    }
    },
    "verifica": {
     "testate": 1,
