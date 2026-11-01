@@ -410,9 +410,13 @@ VISIVI = {
 # un ripiego (1 ottobre 2026: due "esploso", e su HomePad non spiegava niente)
 DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # le misure dell'approfondimento sul telefono: oltre, si scorre troppo
-# (30 settembre 2026, "scorro scorro tante sezioni")
-DEEP_MAX = {"punto": 220, "sotto_par": 2, "sotto_len": 450, "tappe": 4, "tappa_len": 90,
-            "fonti": 250, "dopo": 3, "dopo_len": 90, "letture": 3, "perche_len": 70}
+# (30 settembre 2026, "scorro scorro tante sezioni"). Dal 1 novembre 2026 e'
+# un articolo: titolo suo, sommario, numeri, testo, voci degli altri, letture.
+DEEP_MAX = {"titolo": 80, "punto": 200, "sotto_par": 3, "sotto_len": 450, "numeri": 3,
+            "voci": 4, "voce_len": 240, "letture": 3, "perche_len": 70}
+DEEP_VOCI = {"analista", "testata", "apple", "social", "storia", "esperto"}
+# il titolo dell'approfondimento che somiglia a quello della notizia la ripete
+DEEP_TITLE_SAME = 0.5
 
 
 RUBRICHE_MAX = {"games": 10, "tech": 8, "spazio": 5}
@@ -432,10 +436,28 @@ def check_rubriche(brief, r):
                 r.error(k, f"voce senza id, titolo o link: {v.get('title') or v.get('orig')}")
 
 
+# il reparto: la parola sopra il titolo nella lista del Duo (2 novembre 2026)
+REPARTI = {"Mac", "iPhone", "iPad", "Watch", "Casa", "Servizi", "Software", "Mercato",
+           "Regole", "Azienda", "Eventi", "Accessori", "AI"}
+
+
+def check_reparto(brief, r):
+    """Ogni notizia dice il suo reparto, uno della lista: nell'app del Duo e'
+    quello che fa capire che notizia aspettarsi prima di aprirla."""
+    for n in brief.get("news") or []:
+        rep = n.get("reparto")
+        if not rep:
+            r.warn(f"news/{n.get('id')}", "manca il reparto (Mac, iPhone, Mercato, Regole…)")
+        elif rep not in REPARTI:
+            r.warn(f"news/{n.get('id')}", f"reparto {rep!r} fuori lista: {', '.join(sorted(REPARTI))}")
+
+
 def check_approfondimento(brief, r):
-    """Le prime cinque notizie hanno l'approfondimento, e l'approfondimento
-    ha le sue parti: il punto, cosa c'e' sotto, chi lo dice, almeno due
-    letture vere e — se c'e' — una visualizzazione che l'app sa disegnare."""
+    """Le prime cinque notizie hanno l'approfondimento, e l'approfondimento e'
+    un articolo che va oltre la notizia (1 novembre 2026): un titolo suo che
+    non la ripete, il testo, le voci degli altri con chi le ha dette, letture
+    vere e — se c'e' — una visualizzazione che l'app sa disegnare. Tappe, «chi
+    lo dice» e «cosa aspettarsi» non si scrivono piu': l'app non li mostra."""
     news = sorted(brief.get("news") or [], key=lambda n: n.get("rank") or 99)
     tipi_usati = []
     for n in news[:DEEP_TOP]:
@@ -446,36 +468,51 @@ def check_approfondimento(brief, r):
         if not a:
             continue
         where = f"news/{n.get('id')}/approfondimento"
-        for field in ("punto", "sotto", "fonti"):
+        for field in ("titolo", "sotto"):
             if not a.get(field):
                 r.error(where, f"manca {field}")
+        if a.get("titolo") and C.similarity(a["titolo"], n.get("title", ""), cross_language=False) >= DEEP_TITLE_SAME:
+            r.warn(where, "il titolo ripete quello della notizia: l'approfondimento deve guardarla da un altro lato")
+        for k in ("tappe", "fonti", "dopo"):
+            if a.get(k):
+                r.warn(where, f"«{k}» non si mostra piu' nell'app: non serve scriverlo")
+        voci = a.get("voci") or []
+        if not voci:
+            r.warn(where, "nessuna voce: senza pareri, commenti o reazioni l'approfondimento non va oltre la notizia")
+        for v in voci:
+            if not v.get("testo") or not (v.get("chi") or v.get("dove")):
+                r.error(where, "voce senza testo o senza chi l'ha detta")
+            if v.get("tipo") and v["tipo"] not in DEEP_VOCI:
+                r.warn(where, f"tipo di voce non previsto: {v['tipo']!r} (ammessi: {', '.join(sorted(DEEP_VOCI))})")
+            if v.get("link") and not str(v["link"]).startswith(("http://", "https://")):
+                r.error(where, f"voce con link non valido: {v.get('chi', '')}")
+        for x in a.get("numeri") or []:
+            if not x.get("valore") or not x.get("etichetta"):
+                r.error(where, "numero senza valore o etichetta")
         letture = a.get("approfondire") or []
         if len(letture) < 2:
-            r.warn(where, "meno di due letture in «Se ti interessa»")
+            r.warn(where, "meno di due letture in «Per andare oltre»")
         for x in letture:
             if not str(x.get("link", "")).startswith(("http://", "https://")):
                 r.error(where, f"lettura senza link valido: {x.get('titolo', '')[:40]}")
             if x.get("tipo") not in DEEP_KINDS:
                 r.error(where, f"tipo di lettura non ammesso: {x.get('tipo')!r}")
-        for t in (a.get("tappe") or []) + (a.get("dopo") or []):
-            if t.get("data") and not DATA_OK.match(str(t["data"])):
-                r.error(where, f"data non leggibile: {t['data']!r}")
+            if x.get("link") and x.get("link") == n.get("link"):
+                r.warn(where, "una lettura e' l'articolo della notizia: c'e' gia' «Leggi su»")
         M = DEEP_MAX
+        if len(a.get("titolo") or "") > M["titolo"]:
+            r.warn(where, f"titolo di {len(a['titolo'])} caratteri, massimo {M['titolo']}")
         if len(a.get("punto") or "") > M["punto"]:
-            r.warn(where, f"punto di {len(a['punto'])} caratteri, massimo {M['punto']}")
+            r.warn(where, f"sommario di {len(a['punto'])} caratteri, massimo {M['punto']}")
         sotto = a.get("sotto") or []
         if len(sotto) > M["sotto_par"] or any(len(x) > M["sotto_len"] for x in sotto):
-            r.warn(where, f"«Cosa c'è sotto» troppo lungo: al massimo {M['sotto_par']} paragrafi da {M['sotto_len']} caratteri")
-        tappe = a.get("tappe") or []
-        if len(tappe) > M["tappe"] or any(len(t.get("testo", "")) > M["tappa_len"] for t in tappe):
-            r.warn(where, f"tappe: al massimo {M['tappe']}, da {M['tappa_len']} caratteri l'una")
-        if len(a.get("fonti") or "") > M["fonti"]:
-            r.warn(where, f"«Chi lo dice» di {len(a['fonti'])} caratteri, massimo {M['fonti']}")
-        dopo = a.get("dopo") or []
-        if len(dopo) > M["dopo"] or any(len(d.get("testo", "")) > M["dopo_len"] for d in dopo):
-            r.warn(where, f"«Cosa aspettarsi»: al massimo {M['dopo']} voci da {M['dopo_len']} caratteri")
+            r.warn(where, f"testo troppo lungo: al massimo {M['sotto_par']} paragrafi da {M['sotto_len']} caratteri")
+        if len(a.get("numeri") or []) > M["numeri"]:
+            r.warn(where, f"piu' di {M['numeri']} numeri: l'app mostra i primi {M['numeri']}")
+        if len(voci) > M["voci"] or any(len(v.get("testo", "")) > M["voce_len"] for v in voci):
+            r.warn(where, f"voci: al massimo {M['voci']}, da {M['voce_len']} caratteri l'una")
         if len(letture) > M["letture"] or any(len(x.get("perche", "")) > M["perche_len"] for x in letture):
-            r.warn(where, f"«Se ti interessa»: al massimo {M['letture']} voci, «perché» entro {M['perche_len']} caratteri")
+            r.warn(where, f"«Per andare oltre»: al massimo {M['letture']} voci, «perché» entro {M['perche_len']} caratteri")
         visivi = a.get("visivi") or []
         if not visivi:
             r.warn(where, "nessuna visualizzazione: un approfondimento senza e' mezzo approfondimento")
@@ -644,6 +681,7 @@ def lint(brief, with_links):
     check_duplicates(news, r)
     check_memory(brief, r)
     check_verifica(brief, r)
+    check_reparto(brief, r)
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
     check_ranking(news, r)

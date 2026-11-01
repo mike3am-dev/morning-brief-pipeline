@@ -56,9 +56,13 @@ Il filo vale anche per le voci AI.
 
 Scrivi `data/briefs/YYYY-MM-DD.json` seguendo lo schema di
 `data/briefs/2026-08-09.json`. Le **prime cinque notizie** hanno il campo
-`approfondimento`: leggi gli articoli interi, prendi le tappe dall'archivio,
-verifica ogni link, e metti almeno una visualizzazione del kit (vedi
-*L'approfondimento* in `CLAUDE.md`: esempio completo in `data/briefs/2026-09-30.json`). Leggi l'edizione del giorno prima e non ripetere
+`approfondimento`, che è un articolo che va **oltre** la notizia, non la ripete: un
+titolo suo, il testo, i numeri che contano e le **voci** degli altri — analisti,
+testate, dirigenti, i commenti più votati su Reddit, Hacker News, GSMArena — con chi
+l'ha detto e il link. Leggi gli articoli interi e le discussioni, verifica ogni link
+(vedi *L'approfondimento* in `CLAUDE.md`: esempio completo in
+`data/briefs/2026-11-01.json`). Tappe, «chi lo dice» e «cosa aspettarsi» non si
+scrivono più. Leggi l'edizione del giorno prima e non ripetere
 le stesse notizie senza sviluppi nuovi.
 
 ```bash

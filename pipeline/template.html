@@ -347,14 +347,19 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 .lede{color:var(--ink-2); font-size:.98rem; line-height:1.5}
 .story-body{padding:1rem 0 0 3.25rem; display:flex; flex-direction:column; gap:.9rem}
 .story-body[hidden]{display:none}
-.rel-note{
-  font-size:.87rem; color:var(--ink-2); background:var(--paper);
-  padding:.7rem .9rem; border-radius:3px; box-shadow:inset 4px 0 0 var(--yellow);
-}
-.rel-note b{display:block; margin-bottom:.2rem; font-size:.6rem; font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
-.readmore{display:flex; flex-wrap:wrap; gap:.4rem .95rem; align-items:center; font-size:.92rem}
-.readmore .primary{font-weight:700}
+/* quanto gira: dieci caselle, il conto, l'origine, e il link alla fonte */
+.echo{display:grid; grid-template-columns:auto minmax(0,1fr); grid-template-areas:"m t" ". r";
+  column-gap:.85rem; row-gap:.55rem; align-items:center; padding-top:.95rem; border-top:1px solid var(--rule)}
+.echo-meter{grid-area:m; display:grid; grid-template-columns:repeat(5, 8px); gap:4px; position:relative}
+.echo-meter i{width:8px; height:8px; border-radius:50%; box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.echo-meter i.on{background:var(--ink); box-shadow:none}
+.echo-meter.t-blue i.on{background:var(--blue)}
+.echo-meter.t-yellow i.on{background:var(--yellow)}
+.echo-meter em{position:absolute; right:-.85rem; top:-.2rem; font-style:normal; font-weight:700; font-size:.8rem}
+.echo-txt{grid-area:t; display:flex; flex-direction:column; gap:.1rem; min-width:0}
+.echo-txt b{font-family:var(--display); font-weight:700; text-transform:uppercase; font-size:.92rem; letter-spacing:.04em; line-height:1.15}
+.echo-txt span{font-size:.84rem; color:var(--ink-2); line-height:1.35}
+.echo-read{grid-area:r; justify-self:start; font-weight:700; font-size:.92rem}
 .sources{font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
 
 .story .tools{padding-left:3.25rem}
@@ -426,59 +431,72 @@ html.duo-forzato{--gutter:1.25rem}
   display:grid; grid-template-columns:minmax(220px, 36%) minmax(0,1fr);
   column-gap:1.5rem; align-items:start;
 }
-/* La lista e' un indice, non una pila di schede: pallino in colonna, titolo
-   accanto a filo, e sotto una riga di meta silenziosa. Il titolo viene prima
-   perche' e' quello che si scorre; il tag scende a testo con il suo pallino
-   di colore, invece di una scatola ripetuta quindici volte. Sintesi,
-   miniatura e pulsanti stanno nel pannello, dove c'e' spazio per leggerli. */
-#view-oggi.duo .newslist .story{padding:.95rem .25rem .9rem .85rem; cursor:pointer; position:relative}
+/* La lista del Duo, seconda versione (1 novembre 2026). La prima era un
+   indice di numeri colorati e titoli in condensato sottile, con il tag sotto:
+   Mike la trovava piccola, poco leggibile, anonima, e i colori non tornavano
+   — il pallino giallo, il tag rosso, la barra arancione sulla stessa voce.
+   Ora:
+   - i titoli sono nel carattere di sistema, pieno e grande: e' una colonna da
+     scorrere, non una testata;
+   - due sezioni, «In primo piano» (le cinque con l'approfondimento, con la
+     foto) e «In breve»: l'occhio sa subito cosa pesa di piu';
+   - sopra ogni titolo il reparto (Mac, iPhone, Mercato, Regole…): dice che
+     notizia aspettarsi, che e' quello che i numeri e i tag non dicevano;
+   - un colore solo: l'arancione di «sei qui», come la scheda attiva in
+     testata. Il giallo resta ai rumor, perche' e' il suo significato. */
+#view-oggi.duo .newslist .list-sec{display:flex; align-items:center; gap:.6rem;
+  margin:0; padding:1.25rem .25rem .55rem .85rem; font-size:.62rem; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--ink)}
+#view-oggi.duo .newslist .list-sec::after{content:""; flex:1; height:1.5px; background:var(--ink)}
+#view-oggi.duo .newslist .list-sec + .story{border-top:0}
+#view-oggi.duo .newslist .story{padding:.85rem .25rem .9rem .85rem; cursor:pointer; position:relative}
 #view-oggi.duo .newslist .story-head,
 #view-oggi.duo .newslist .story-head.with-thumb{
-  grid-template-columns:24px minmax(0,1fr);
-  grid-template-areas:"bead title" ". chips";
-  column-gap:.7rem; row-gap:.4rem;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"kicker" "title";
+  column-gap:.8rem; row-gap:.3rem;
 }
-#view-oggi.duo .newslist .story-head .bead{align-self:start}
-#view-oggi.duo .newslist .bead{width:24px; height:24px; font-size:.74rem; margin-top:.02rem}
+#view-oggi.duo .newslist .story.top .story-head.with-thumb{
+  grid-template-columns:minmax(0,1fr) 64px;
+  grid-template-areas:"kicker thumb" "title thumb";
+}
+#view-oggi.duo .newslist .story-head .bead,
+#view-oggi.duo .newslist .story-head .chips,
 #view-oggi.duo .newslist .story-head .lede,
 #view-oggi.duo .newslist .story-head .thumb,
 #view-oggi.duo .newslist .tools,
 #view-oggi.duo .newslist .workspace{display:none}
-/* il titolo: Medium, non Demi. Il grassetto resta a quella che stai leggendo */
-/* text-wrap:pretty e non balance: in un indice stretto il bilanciamento
-   accorcia le righe e lascia il margine destro frastagliato */
-#view-oggi.duo .newslist .story h3{font-weight:500; font-size:1.07rem; line-height:1.24;
-  letter-spacing:0; margin:0; color:var(--ink); transition:color .15s; text-wrap:pretty}
-#view-oggi.duo .newslist .story.is-read:not(.is-reading) h3{color:var(--ink-2)}
+#view-oggi.duo .newslist .story.top .story-head .thumb{display:block; grid-area:thumb; width:64px; height:64px;
+  margin:.1rem 0 0; border-radius:3px; object-fit:cover; transition:opacity .15s}
+.story-head .kicker{display:none}
+#view-oggi.duo .newslist .story-head .kicker{display:flex; align-items:center; gap:.5rem; grid-area:kicker;
+  font-size:.6rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+#view-oggi.duo .newslist .kicker .rumor{color:var(--yellow-ink); display:inline-flex; align-items:center; gap:.3rem}
+#view-oggi.duo .newslist .kicker .rumor::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow)}
+/* il titolo: il carattere di sistema, non il condensato — si legge meglio a
+   questa misura, e il condensato resta alle testate, dove fa il suo lavoro */
+#view-oggi.duo .newslist .story h3{grid-area:title; font-family:var(--body); font-weight:600; font-size:1.02rem;
+  line-height:1.3; letter-spacing:-.006em; margin:0; color:var(--ink); text-wrap:pretty; transition:color .15s}
+#view-oggi.duo .newslist .story:not(.top) h3{font-weight:500; font-size:.96rem; line-height:1.32}
+#view-oggi.duo .newslist .story.is-read:not(.is-reading) h3{color:var(--ink-3)}
+#view-oggi.duo .newslist .story.is-read:not(.is-reading) .thumb{opacity:.45}
 #view-oggi.duo .newslist .story:hover h3{color:var(--ink)}
-/* la riga di meta: maiuscoletto, pallino del colore del tag, niente scatole */
-#view-oggi.duo .newslist .chips{margin:0; gap:.2rem .7rem}
-#view-oggi.duo .newslist .chip{background:none; box-shadow:none; padding:0; color:var(--ink-3);
-  font-size:.56rem; letter-spacing:.13em; display:inline-flex; align-items:center; gap:.38rem}
-#view-oggi.duo .newslist .chip[class*="t-"]::before{content:""; width:7px; height:7px;
-  border-radius:50%; background:var(--tagc, var(--ink-3)); flex:none}
-#view-oggi.duo .newslist .chip.t-rumor{--tagc:var(--yellow)}
-#view-oggi.duo .newslist .chip.t-confermato{--tagc:var(--blue)}
-#view-oggi.duo .newslist .chip.t-dati{--tagc:var(--orange)}
-#view-oggi.duo .newslist .chip.t-analisi,
-#view-oggi.duo .newslist .chip.t-opinione{--tagc:var(--red)}
-#view-oggi.duo .newslist .chip.t-contorno,
-#view-oggi.duo .newslist .chip.t-contesto,
-#view-oggi.duo .newslist .chip.t-servizio{--tagc:var(--ink)}
-/* "approfondita" nella lista e' ridondante — per regola sono le prime cinque —
-   e nella colonna stretta del Duo in verticale mandava la meta su due righe
-   solo per quelle. Nel pannello la pastiglia c'e'. */
-#view-oggi.duo .newslist .chip.deep-mark{display:none}
-#view-oggi.duo .newslist .meter{padding:0}
-/* Quella che stai leggendo si segna come la scheda attiva in testata: la
-   barra arancione di quattro punti, qui in verticale. Niente fondo: in TMB
-   le campiture hanno un ruolo, e "selezionato" non e' fra questi. */
-#view-oggi.duo .newslist .story::before{content:""; position:absolute; left:0; top:.85rem; bottom:.8rem;
+/* quella che stai leggendo: la barra arancione di «sei qui» e il titolo pieno.
+   Niente fondo: in TMB le campiture hanno un ruolo, e «selezionato» non c'e'. */
+#view-oggi.duo .newslist .story::before{content:""; position:absolute; left:0; top:.8rem; bottom:.85rem;
   width:4px; background:var(--orange); transform:scaleY(0); transform-origin:top;
   transition:transform .18s ease}
 #view-oggi.duo .newslist .story.is-reading::before{transform:scaleY(1)}
 #view-oggi.duo .newslist .story.is-reading h3{font-weight:700; color:var(--ink)}
-#view-oggi.duo .newslist .story.is-reading .bead{transform:none; opacity:1}
+#view-oggi.duo .newslist .story.is-reading .kicker{color:var(--orange-ink)}
+.list-sec{display:none}
+/* il Duo in verticale: la colonna e' stretta, e con la foto accanto un titolo
+   andava su sette righe. Li' la foto si toglie e il titolo prende la riga. */
+#view-oggi.duo .newslist{container-type:inline-size}
+@container (max-width:330px){
+  #view-oggi.duo .newslist .story.top .story-head.with-thumb{grid-template-columns:minmax(0,1fr); grid-template-areas:"kicker" "title"}
+  #view-oggi.duo .newslist .story.top .story-head .thumb{display:none}
+}
 
 /* il pannello: resta agganciato sotto la testata e scorre per conto suo */
 #view-oggi.duo .reader{
@@ -490,7 +508,7 @@ html.duo-forzato{--gutter:1.25rem}
 }
 .reader-head{display:flex; flex-direction:column; gap:.6rem; padding-bottom:.2rem}
 .reader-kicker{display:flex; align-items:center; gap:.6rem}
-.reader-kicker .bead{width:26px; height:26px; font-size:.78rem; margin:0}
+.reader-rep{font-size:.66rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--orange-ink)}
 .reader-kicker .eyebrow{margin:0}
 .reader-head .chips{margin:0}
 .reader-head h2{font-family:var(--display); font-weight:600; font-size:clamp(1.55rem, 3.4vw, 2.05rem);
@@ -1190,61 +1208,40 @@ body.has-player .toast{bottom:calc(6.6rem + env(safe-area-inset-bottom))}
 .deep-top{display:flex; align-items:center; gap:.6rem}
 .deep-top .dots{display:flex; gap:3px}
 .deep-top .dots i{width:9px; height:9px; border-radius:50%; display:block}
-.deep-punto{
-  font-family:var(--display); font-weight:700; font-size:clamp(1.3rem,4.4vw,1.75rem);
-  line-height:1.16; letter-spacing:-.005em; padding-left:1rem; border-left:6px solid var(--yellow);
-  text-wrap:pretty;
-}
-.deep-sec{display:flex; flex-direction:column; gap:.65rem}
-.deep-sec h4{
-  display:flex; align-items:center; gap:.55rem; font-size:.66rem; font-weight:700;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2);
-}
-.deep-sec h4 .pip{width:11px; height:11px; border-radius:50%; flex:none}
-.deep-sec p{font-size:1rem; line-height:1.62}
-.deep-tappe{list-style:none; margin:0; padding:0 0 0 1.1rem; position:relative}
-.deep-tappe::before{content:""; position:absolute; left:.28rem; top:.5rem; bottom:.5rem; width:2px; background:var(--rule-strong)}
-.deep-tappe li{position:relative; padding:0 0 .9rem .6rem}
-.deep-tappe li::before{
-  content:""; position:absolute; left:-1.1rem; top:.35rem; width:11px; height:11px; border-radius:50%;
-  background:var(--bone); box-shadow:inset 0 0 0 2.5px var(--ink-3);
-}
-.deep-tappe li.now::before{background:var(--orange); box-shadow:none}
-.deep-tappe .d{display:block; font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
-.deep-tappe .t{font-size:.95rem; line-height:1.5}
-.deep-tappe a{font-weight:700; text-decoration:none; margin-left:.25rem}
-.deep-fonti{background:var(--paper); border-radius:4px; padding:.85rem 1rem; box-shadow:inset 4px 0 0 var(--blue);
-  font-size:.95rem; line-height:1.55; color:var(--ink-2)}
-.deep-dopo{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.55rem}
-.deep-dopo li{display:grid; grid-template-columns:auto 1fr; gap:.7rem; align-items:baseline; font-size:.95rem; line-height:1.5}
-.deep-dopo .when{
-  font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;
-  background:var(--orange); color:#17181B; padding:.2rem .45rem; border-radius:2px;
-}
-.deep-dopo .when.none{background:var(--paper-2); color:var(--ink-3)}
-/* sul telefono la data sta sopra: il testo prende tutta la riga */
-@media (max-width:600px){
-  .deep-dopo li{grid-template-columns:1fr; gap:.25rem}
-  .deep-dopo .when{justify-self:start}
-}
-.deep-cards{display:grid; grid-template-columns:1fr; gap:.7rem}
-@media (min-width:640px){ .deep-cards{grid-template-columns:1fr 1fr} }
-.deep-card{
-  display:flex; flex-direction:column; gap:.35rem; text-decoration:none; color:var(--ink);
-  background:var(--paper); border-radius:6px; padding:.85rem .95rem .9rem; box-shadow:var(--shadow);
-  transition:transform .15s;
-}
-.deep-card:hover{transform:translateY(-2px)}
-.deep-card .k{
-  align-self:flex-start; font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
-  padding:.22rem .5rem; border-radius:2px; color:#17181B;
-}
-.deep-card .k.leggi{background:var(--blue)}
-.deep-card .k.ascolta{background:var(--orange)}
-.deep-card .k.guarda{background:var(--red); color:#FFF}
-.deep-card b{font-family:var(--display); font-weight:600; font-size:1.08rem; line-height:1.2}
-.deep-card .src{font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
-.deep-card .why{font-size:.88rem; line-height:1.45; color:var(--ink-2)}
+/* l'approfondimento come articolo: titolo suo, sommario, numeri, testo,
+   voci, letture — una colonna sola, niente schede */
+.deep-title{font-family:var(--display); font-weight:700; font-size:clamp(1.45rem, 4.6vw, 1.85rem);
+  line-height:1.08; letter-spacing:-.008em; margin:-.2rem 0 0; text-wrap:balance}
+.deep-deck{font-size:1.06rem; line-height:1.48; color:var(--ink-2); margin:-.35rem 0 0; text-wrap:pretty}
+.deep-nums{display:grid; grid-template-columns:repeat(auto-fit, minmax(118px, 1fr)); gap:.9rem 1rem;
+  padding:.85rem 0; border-top:1.5px solid var(--ink); border-bottom:1px solid var(--rule)}
+.deep-num{display:flex; flex-direction:column; gap:.2rem; padding-left:.7rem; border-left:4px solid var(--orange)}
+.deep-num:nth-child(2){border-left-color:var(--blue)}
+.deep-num:nth-child(3){border-left-color:var(--red)}
+.deep-num b{font-family:var(--display); font-weight:700; font-size:1.7rem; line-height:1; letter-spacing:-.01em}
+.deep-num span{font-size:.82rem; line-height:1.35; color:var(--ink-2); hyphens:auto; overflow-wrap:break-word}
+.deep-num small{font-size:.56rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.deep-body{display:flex; flex-direction:column; gap:.95rem}
+.deep-body p{font-size:1.02rem; line-height:1.66; margin:0}
+/* il capolettera arancione, come l'attacco di un pezzo di rivista */
+.deep-body > p:first-child::first-letter{float:left; font-family:var(--display); font-weight:700;
+  font-size:3.3em; line-height:.82; padding:.06em .1em 0 0; color:var(--orange)}
+.deep-part{display:flex; flex-direction:column; gap:.75rem}
+.deep-h{font-size:.62rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3);
+  margin:0; padding-top:.95rem; border-top:1px solid var(--rule)}
+.deep-voci{display:flex; flex-direction:column; gap:1rem}
+.voce-link{text-decoration:none; color:inherit; display:block}
+.voce{margin:0; padding:.05rem 0 .05rem 1rem; border-left:3px solid var(--ink)}
+.voce.v-social{border-left-color:var(--yellow)}
+.voce.v-apple{border-left-color:var(--blue)}
+.voce.v-storia{border-left-color:var(--rule-strong)}
+.voce blockquote{margin:0; font-family:var(--display); font-weight:500; font-size:1.16rem; line-height:1.28; text-wrap:pretty}
+.voce blockquote::before{content:"«"}
+.voce blockquote::after{content:"»"}
+.voce figcaption{display:flex; flex-wrap:wrap; gap:.15rem .6rem; align-items:baseline; margin-top:.4rem; font-size:.8rem; color:var(--ink-3)}
+.voce figcaption b{font-weight:700; color:var(--ink)}
+.voce figcaption .sig{font-size:.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase}
+.voce-link:hover blockquote{text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px}
 .deep-foot{font-size:.62rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
 
 /* ---------------- il lettore: la barra in fondo mentre ascolti ---------------- */
@@ -1517,18 +1514,6 @@ body.has-player .toast{bottom:calc(6.6rem + env(safe-area-inset-bottom))}
    Una scheda alla volta, i grafici di lato, la barra per uscire. */
 .story,.deep{scroll-margin-top:7.4rem}
 @media (max-width:600px){ .story,.deep{scroll-margin-top:5.6rem} }
-.deep-tabs{display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; margin:0 -.1rem; padding:.1rem .1rem .2rem;
-  scroll-snap-type:x proximity}
-.deep-tabs::-webkit-scrollbar{display:none}
-.deep-tabs button{
-  flex:none; display:inline-flex; align-items:center; gap:.4rem; border:0; cursor:pointer; scroll-snap-align:start;
-  background:var(--paper); color:var(--ink-3); border-radius:999px; padding:.42rem .8rem;
-  font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;
-  box-shadow:inset 0 0 0 1.5px var(--rule)}
-.deep-tabs button i{width:8px; height:8px; border-radius:50%; display:block}
-.deep-tabs button[aria-selected=true]{background:var(--ink); color:var(--bone); box-shadow:none}
-.deep-pane{display:flex; flex-direction:column; gap:.7rem; min-height:4rem}
-.deep-pane p{font-size:1rem; line-height:1.6}
 .deep-gallery{display:flex; flex-direction:column; gap:.5rem}
 .deep-carousel{display:flex; align-items:flex-start; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory;
   scrollbar-width:none; gap:0; margin:0 -.2rem; -webkit-overflow-scrolling:touch; transition:height .35s ease}
@@ -1925,6 +1910,31 @@ function safeUrl(u){
   return /^https?:\/\//i.test(s) ? s : null;
 }
 function tagClass(tag){ return "chip t-" + String(tag || "").toLowerCase().replace(/[^a-z]/g,""); }
+/* Il reparto della notizia: l'argomento in una parola, che nella lista del
+   Duo dice che notizia aspettarsi. Dal 2 novembre 2026 la corsa lo scrive nel
+   campo "reparto"; per le edizioni di prima si ricava da "category", che era
+   testo libero ("iphone duo", "Casa intelligente", "legale"…). */
+const REPARTI = [
+  ["Mac", /^(mac|macbook|imac|chip)/],
+  ["iPhone", /^(iphone|ios$)/],
+  ["iPad", /^ipad/],
+  ["Watch", /watch/],
+  ["Casa", /^(casa|smart home|homepod|homeview)/],
+  ["Servizi", /^(servizi|app store|apple music|apple tv|apple wallet|apple pay|app$)/],
+  ["Software", /^(software|ios|macos|siri)/],
+  ["Mercato", /^(mercat|vendite|cina|catena|manifattura|concorrenza|operatori|retail|apple store)/],
+  ["Regole", /^(regolament|legale|antitrust|privacy|brevetti|sicurezza)/],
+  ["Azienda", /^(azienda|leadership|dirigenza|organizzazione|strategia|acquisizioni)/],
+  ["Eventi", /^(eventi|calendario)/],
+  ["Accessori", /^(accessori|audio|airpods)/],
+  ["AI", /^ai$/]
+];
+function reparto(n){
+  if(n.reparto) return n.reparto;
+  const c = String(n.category || "").trim().toLowerCase();
+  for(let i = 0; i < REPARTI.length; i++) if(REPARTI[i][1].test(c)) return REPARTI[i][0];
+  return "Apple";
+}
 
 /* ================= accesso ================= */
 let AUTH = null;
@@ -2700,20 +2710,49 @@ function itemTools(k, opts){
   return {bar:bar, panel:panel};
 }
 
-/* La catena delle fonti (pipeline/verify.py), detta in una riga. Si mostra
-   solo quando dice qualcosa: se nessuna testata dichiara da dove viene, spesso
-   e' perche' la fonte e' la testata stessa — ha provato la beta, era in sala —
-   e scriverlo sembrerebbe un sospetto che non c'e'. */
-function verificaText(v){
-  if(!v) return "";
-  const official = ["Apple", "documenti SEC", "atti giudiziari", "Commissione europea"];
-  const indip = (v.origini || []).filter(function(o){ return official.indexOf(o) < 0; });
-  const tail = v.testate > 1 ? " · " + v.testate + " testate" : "";
-  if(v.ufficiale) return "Verifica · c'è la parola di Apple" + tail;
-  if(indip.length >= 2) return "Verifica · " + indip.length + " fonti indipendenti: " + indip.join(", ");
-  if(indip.length === 1) return "Verifica · una sola fonte d'origine, " + indip[0]
-    + (v.riprese >= 2 ? ", ripresa da " + v.riprese + " testate" : "");
-  return "";
+/* Quanto gira la notizia (1 novembre 2026). Mike non leggeva l'elenco dei
+   nomi delle testate ne' i titoli dei link in piu': gli interessa quante, per
+   capire se e' una voce isolata o la ripetono tutti, e chi l'ha detta per
+   primo. Il conto viene da verify.py (testate, origini, primo); per le
+   edizioni vecchie, dalle fonti e dai link della notizia.
+
+   Una testata che non dice da dove viene non e' sospetta — spesso e' la fonte
+   di se stessa — quindi «origine non dichiarata» non si scrive mai. */
+const OFFICIAL_ORIGINS = ["Apple", "documenti SEC", "atti giudiziari", "Commissione europea"];
+function echoNode(n){
+  const v = n.verifica || {};
+  const count = v.testate || Math.max((n.sources || []).length, 1 + (n.extra_links || []).length);
+  const indip = (v.origini || []).filter(function(o){ return OFFICIAL_ORIGINS.indexOf(o) < 0; });
+  let label, tone = "ink";
+  if(v.ufficiale){ label = "C'è la parola di Apple"; tone = "blue"; }
+  else if(count <= 1){ label = n.tag === "RUMOR" ? "Una voce sola" : "Una testata sola"; if(n.tag === "RUMOR") tone = "yellow"; }
+  else if(count <= 3) label = count + " testate";
+  else if(count <= 7) label = "Ripresa da " + count + " testate";
+  else label = "Ne parlano tutti · " + count + " testate";
+  if(v.ufficiale && count > 1) label += " · " + count + " testate";
+
+  let origin = "";
+  if(indip.length >= 2) origin = "Fonti indipendenti: " + indip.slice(0, 3).join(", ");
+  else if(indip.length === 1) origin = "All'origine: " + indip[0];
+  else if(v.primo && v.primo.testata && count > 1){
+    const t = v.primo.ora ? new Date(v.primo.ora) : null;
+    origin = "Prima a darla: " + v.primo.testata + (t && !isNaN(t) ? ", " + fmtShort(t.toISOString().slice(0, 10)).replace(/ \d{4}$/, "") +
+      " alle " + t.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"}) : "");
+  }
+
+  /* dieci caselle: quante si accendono dice la rarita' a colpo d'occhio */
+  const meter = el("span", {class:"echo-meter t-" + tone, "aria-hidden":"true"});
+  for(let i = 0; i < 10; i++) meter.appendChild(el("i", {class:i < count ? "on" : ""}));
+  if(count > 10) meter.appendChild(el("em", {text:"+"}));
+
+  const primary = safeUrl(n.link);
+  const name = (n.sources || [])[0];
+  return el("div", {class:"echo"}, [
+    meter,
+    el("div", {class:"echo-txt"}, [el("b", {text:label}), origin ? el("span", {text:origin}) : null]),
+    primary ? el("a", {class:"echo-read", href:primary, target:"_blank", rel:"noopener noreferrer",
+      text:(name ? "Leggi su " + name : "Leggi l'articolo") + " →"}) : null
+  ]);
 }
 
 /* ================= notizia ================= */
@@ -3738,11 +3777,13 @@ function visualNode(v){
   try{ return f(v); }catch(e){ return null; }   /* una visualizzazione rotta non rompe la notizia */
 }
 
-function deepSec(title, color, kids){
-  const pip = el("span", {class:"pip"}); pip.style.background = "var(" + color + ")";
-  return el("div", {class:"deep-sec"}, [el("h4", {}, [pip, el("span", {text:title})])].concat(kids));
-}
-
+/* L'approfondimento come pezzo, non come schede (1 novembre 2026). Mike
+   leggeva solo «Cosa c'e' sotto»: tappe, «chi lo dice» e «cosa aspettarsi» li
+   saltava, e il punto ripeteva il titolo. Ora e' un articolo che va oltre la
+   notizia: un titolo suo, un sommario, i numeri che contano, il testo con i
+   grafici dentro, le voci degli altri — analisti, testate, commenti — e le
+   letture per andare oltre. Le edizioni vecchie, senza titolo ne' voci,
+   mostrano il testo, i grafici e le letture; il resto resta nei dati. */
 function deepNode(brief, n){
   const a = n.approfondimento || {};
   const box = el("section", {class:"deep", hidden:"hidden", "aria-label":"Approfondimento"});
@@ -3754,13 +3795,29 @@ function deepNode(brief, n){
     ]),
     el("span", {class:"eyebrow", text:"Approfondimento"})
   ]));
-  if(a.punto) box.appendChild(el("p", {class:"deep-punto", text:a.punto}));
+  /* il sommario solo sotto un titolo suo: da solo, il punto ripeteva la notizia */
+  if(a.titolo){
+    box.appendChild(el("h3", {class:"deep-title", text:a.titolo}));
+    if(a.punto) box.appendChild(el("p", {class:"deep-deck", text:a.punto}));
+  }
+
+  /* i numeri che contano, grandi, prima del testo */
+  const nums = (a.numeri || []).filter(function(x){ return x && x.valore; }).slice(0, 3);
+  if(nums.length){
+    box.appendChild(el("div", {class:"deep-nums"}, nums.map(function(x){
+      return el("div", {class:"deep-num"}, [
+        el("b", {text:String(x.valore)}),
+        el("span", {text:x.etichetta || ""}),
+        x.fonte ? el("small", {text:x.fonte}) : null
+      ]);
+    })));
+  }
 
   /* I grafici non si impilano: scorrono di lato, uno per schermata, con i
-     pallini che dicono quanti sono. Sul telefono tre grafici uno sotto
-     l'altro erano tre schermate di scorrimento prima di arrivare al testo. */
+     pallini che dicono quanti sono. */
   const vis = (a.visivi || []).map(visualNode).filter(Boolean);
-  if(vis.length === 1) box.appendChild(vis[0]);
+  let gallery = null;
+  if(vis.length === 1) gallery = vis[0];
   if(vis.length > 1){
     const track = el("div", {class:"deep-carousel"});
     vis.forEach(function(x){ track.appendChild(el("div", {class:"slide"}, [x])); });
@@ -3782,53 +3839,46 @@ function deepNode(brief, n){
     };
     track.addEventListener("scroll", fit, {passive:true});
     whenSeen(track, fit);
-    /* i grafici cambiano altezza mentre si animano (l'esploso si apre, la
-       tela si ridimensiona): si riadatta quando succede. window resize solo
-       come ripiego: si accumulerebbe a ogni nuovo disegno dell'edizione */
     if("ResizeObserver" in window){
       const ro = new ResizeObserver(function(){ if(cur >= 0) fit(); });
       Array.prototype.forEach.call(track.children, function(sl){ ro.observe(sl.firstChild); });
     } else window.addEventListener("resize", fit);
     /* per ritrovare il grafico giusto dopo un nuovo disegno dell'edizione */
     box._slide = function(i){ track.scrollLeft = track.clientWidth * i; fit(); };
-    box.appendChild(el("div", {class:"deep-gallery"}, [track, el("div", {class:"deep-gallery-foot"}, [
+    gallery = el("div", {class:"deep-gallery"}, [track, el("div", {class:"deep-gallery-foot"}, [
       el("span", {class:"eyebrow", text:vis.length + " grafici · scorri"}), pips
-    ])]));
+    ])]);
   }
 
-  /* Le sezioni sono schede: se ne legge una alla volta. Prima scorrevano
-     tutte di seguito, e sul telefono l'approfondimento era lungo sei
-     schermate. La prima, "Cosa c'e' sotto", e' aperta da sola. */
-  const panes = [];
-  if(a.sotto && a.sotto.length){
-    panes.push(["Cosa c'è sotto", "--blue", [].concat(a.sotto).map(function(p){ return el("p", {text:p}); })]);
-  }
-  if(a.tappe && a.tappe.length){
-    const ol = el("ol", {class:"deep-tappe"});
-    a.tappe.forEach(function(t){
-      const u = safeUrl(t.link);
-      ol.appendChild(el("li", {class:t.data === brief.date ? "now" : ""}, [
-        el("span", {class:"d", text:fmtDeepDate(t.data)}),
-        el("span", {class:"t", text:t.testo}),
-        u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:"→", "aria-label":"apri la fonte"}) : null
-      ]));
+  /* il testo, con i grafici dopo il primo paragrafo: si legge, poi si vede */
+  const paras = [].concat(a.sotto || []);
+  const text = el("div", {class:"deep-body"});
+  paras.forEach(function(p, i){
+    text.appendChild(el("p", {text:p}));
+    if(i === 0 && gallery) text.appendChild(gallery);
+  });
+  if(!paras.length && gallery) text.appendChild(gallery);
+  if(text.childNodes.length) box.appendChild(text);
+
+  /* le voci degli altri: chi lo dice, dove, e quanto pesa la discussione */
+  const voci = (a.voci || []).filter(function(v){ return v && v.testo; });
+  if(voci.length){
+    const list = el("div", {class:"deep-voci"});
+    voci.forEach(function(v){
+      const u = safeUrl(v.link);
+      const cap = el("figcaption", {}, [
+        el("b", {text:v.chi || v.dove || ""}),
+        (v.chi && v.dove) ? el("span", {text:v.dove}) : null,
+        v.segnale ? el("span", {class:"sig", text:v.segnale}) : null
+      ]);
+      const fig = el("figure", {class:"voce" + (v.tipo ? " v-" + String(v.tipo).toLowerCase() : "")}, [
+        el("blockquote", {text:v.testo}), cap
+      ]);
+      list.appendChild(u ? el("a", {class:"voce-link", href:u, target:"_blank", rel:"noopener noreferrer"}, [fig]) : fig);
     });
-    panes.push(["Tappe", "--ink", [ol]]);
+    box.appendChild(el("div", {class:"deep-part"}, [el("h4", {class:"deep-h", text:"Cosa ne dicono"}), list]));
   }
-  if(a.fonti) panes.push(["Chi lo dice", "--red", [el("div", {class:"deep-fonti", text:a.fonti})]]);
-  if(a.dopo && a.dopo.length){
-    const ul = el("ul", {class:"deep-dopo"});
-    a.dopo.forEach(function(d){
-      let when = "da seguire", cls = "when none";
-      if(d.data){
-        const left = daysUntil(d.data, brief.date);
-        when = fmtDeepDate(d.data).replace(/ \d{4}$/, "") + (left !== null && left > 0 ? " · fra " + left + (left === 1 ? " giorno" : " giorni") : "");
-        cls = "when";
-      }
-      ul.appendChild(el("li", {}, [el("span", {class:cls, text:when}), el("span", {text:d.testo})]));
-    });
-    panes.push(["Cosa aspettarsi", "--orange", [ul]]);
-  }
+
   if(a.approfondire && a.approfondire.length){
     const list = el("div", {class:"deep-links"});
     a.approfondire.forEach(function(x){
@@ -3844,31 +3894,7 @@ function deepNode(brief, n){
         el("i", {"aria-hidden":"true", text:"↗"})
       ]));
     });
-    panes.push(["Se ti interessa", "--yellow", [list]]);
-  }
-  if(panes.length){
-    const tabs = el("div", {class:"deep-tabs", role:"tablist"});
-    const stage = el("div", {class:"deep-pane"});
-    const show = function(i){
-      i = Math.max(0, Math.min(panes.length - 1, i || 0));
-      Array.prototype.forEach.call(tabs.children, function(b, j){ b.setAttribute("aria-selected", j === i ? "true" : "false"); });
-      stage.innerHTML = "";
-      panes[i][2].forEach(function(x){ stage.appendChild(x); });
-      box.dataset.tab = String(i);
-    };
-    box._tab = show;
-    panes.forEach(function(p, i){
-      const pip = el("i"); pip.style.background = "var(" + p[1] + ")";
-      const b = el("button", {type:"button", role:"tab"}, [pip, el("span", {text:p[0]})]);
-      b.addEventListener("click", function(){
-        show(i);
-        b.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
-      });
-      tabs.appendChild(b);
-    });
-    box.appendChild(tabs);
-    box.appendChild(stage);
-    show(0);
+    if(list.childNodes.length) box.appendChild(el("div", {class:"deep-part"}, [el("h4", {class:"deep-h", text:"Per andare oltre"}), list]));
   }
   box.appendChild(el("p", {class:"deep-foot", text:"Approfondimento scritto il " + fmtShort(a.scritto || brief.date)}));
 
@@ -4192,7 +4218,9 @@ const Voice = (function(){
 
 function storyNode(brief, n, index){
   const k = key(brief.date, n.id);
-  const wrap = el("article", {class:"story", id:"s-" + n.id});
+  /* top: le prime cinque, quelle con l'approfondimento — nella lista del Duo
+     stanno «In primo piano», con la foto */
+  const wrap = el("article", {class:"story" + (typeof index === "number" && index < 5 ? " top" : ""), id:"s-" + n.id});
   const m0 = mk(k);
   if(m0 && m0.read_at) wrap.classList.add("is-read");
 
@@ -4211,8 +4239,13 @@ function storyNode(brief, n, index){
   if(n.approfondimento) chips.appendChild(el("span", {class:"chip deep-mark", text:"approfondita"}));
   const thread = n.thread ? THREADS[n.thread] : null;
 
+  const kicker = el("span", {class:"kicker"}, [
+    el("span", {text:reparto(n)}),
+    n.tag === "RUMOR" ? el("span", {class:"rumor", text:"rumor"}) : null
+  ]);
   const head = el("div", {class:"story-head"}, [
     bead(typeof index === "number" ? index : 0, String(typeof index === "number" ? index + 1 : (n.rank || 0))),
+    kicker,
     chips,
     el("h3", {text:n.title}),
     el("p", {class:"lede", text:n.sintesi || ""})
@@ -4280,11 +4313,9 @@ function storyNode(brief, n, index){
      Voice.play(brief, n). */
   if(acts.childNodes.length) body.appendChild(acts);
   if(deep) body.appendChild(deep);
-  if(n.reliability_note){
-    body.appendChild(el("div", {class:"rel-note"}, [
-      el("b", {text:"Nota sulla fonte"}), el("span", {text:n.reliability_note})
-    ]));
-  }
+  /* La nota sulla fonte e «Chiude una previsione» restano nei dati — servono
+     alla taratura e alle pagelle — ma non si mostrano: Mike non le leggeva
+     (1 novembre 2026). */
   /* La previsione di un rumor si mostra solo dopo che qualcuno l'ha chiusa:
      aperta e' contabilita' interna, verificata e' una notizia. Il conto per
      fonte non sta nell'app — si legge con pipeline/claims.py score. */
@@ -4306,37 +4337,7 @@ function storyNode(brief, n, index){
     }
   }
 
-  (n.resolves || []).forEach(function(r){
-    const c = claimById(r.claim);
-    const box = el("div", {class:"claim closed"}, [
-      el("span", {class:"lbl", text:"Chiude una previsione"}),
-      el("p", {class:"txt", text:c ? c.text : r.claim})
-    ]);
-    box.appendChild(el("div", {class:"foot"}, [
-      el("span", {class:"verdict v-" + (r.verdict || "aperto"), text:r.verdict || ""}),
-      c ? el("span", {class:"eyebrow", text:c.source + " · " + fmtShort(c.date)}) : null
-    ]));
-    if(r.note) box.appendChild(el("span", {text:r.note}));
-    if(c){
-      box.appendChild(el("button", {class:"act", type:"button", text:"Vedi dove era stata detta",
-        onclick:function(ev){ ev.stopPropagation(); jumpTo(c.date, c.news.id); }}));
-    }
-    body.appendChild(box);
-  });
-
-  const read = el("div", {class:"readmore"});
-  const primary = safeUrl(n.link);
-  if(primary) read.appendChild(el("a", {class:"primary", href:primary, target:"_blank", rel:"noopener noreferrer", text:"Leggi l'articolo →"}));
-  (n.extra_links || []).forEach(function(l){
-    const u = safeUrl(l.url);
-    if(u) read.appendChild(el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:l.label}));
-  });
-  if(read.childNodes.length) body.appendChild(read);
-  if(n.sources && n.sources.length){
-    body.appendChild(el("p", {class:"sources", text:n.sources.length + (n.sources.length === 1 ? " fonte — " : " fonti — ") + n.sources.join(", ")}));
-  }
-  const ver = verificaText(n.verifica);
-  if(ver) body.appendChild(el("p", {class:"sources verifica", text:ver}));
+  body.appendChild(echoNode(n));
 
   wrap._markRead = function(){
     if(NOTES && !(mk(k) && mk(k).read_at)){
@@ -4359,12 +4360,11 @@ function storyNode(brief, n, index){
      si ridisegna, piu' grande, perche' nella lista resta il titolo. */
   wrap._parts = {body:body, bar:null, panel:null};
   wrap._readerHead = function(){
-    /* l'occhiello riprende il pallino della lista: stesso numero, stesso
-       colore, cosi' si vede a colpo d'occhio quale voce e' aperta a destra */
-    const i0 = typeof index === "number" ? index : (n.rank || 1) - 1;
+    /* l'occhiello ripete il reparto della lista, nell'arancione di «sei qui»:
+       si vede a colpo d'occhio quale voce e' aperta a destra */
     return el("header", {class:"reader-head"}, [
       el("div", {class:"reader-kicker"}, [
-        bead(i0, String(i0 + 1)),
+        el("span", {class:"reader-rep", text:reparto(n) + (n.tag === "RUMOR" ? " · rumor" : "")}),
         el("span", {class:"eyebrow", text:fmtDate(brief.date)})
       ]),
       chips.childNodes.length ? chips.cloneNode(true) : null,
@@ -4822,7 +4822,12 @@ function drawEdition(root){
   /* le notizie stanno in una scatola con accanto il pannello del Duo: sul
      telefono e sul Mac il pannello non si vede e la lista e' quella di sempre */
   const newslist = el("div", {class:"newslist"}, [frontEntry(brief)]);
-  const wraps = (brief.news || []).map(function(n, i){ return newslist.appendChild(storyNode(brief, n, i)); });
+  const wraps = (brief.news || []).map(function(n, i){
+    /* le sezioni si vedono solo sul Duo: sul telefono e sul Mac la lista e' quella di sempre */
+    if(i === 0) newslist.appendChild(el("h3", {class:"list-sec", text:"In primo piano"}));
+    if(i === 5) newslist.appendChild(el("h3", {class:"list-sec", text:"In breve"}));
+    return newslist.appendChild(storyNode(brief, n, i));
+  });
   const newsbox = el("div", {class:"newsbox"}, [
     newslist, el("article", {class:"reader", "aria-live":"polite"})
   ]);

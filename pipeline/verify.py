@@ -20,7 +20,8 @@ Questo script, per ogni notizia dell'edizione, risale la catena:
 Il risultato si scrive dentro la notizia, nel campo `verifica`:
 
     "verifica": {"testate": 5, "origini": ["Bloomberg"], "ufficiale": false,
-                 "riprese": 4, "senza_fonte": 1, "il": "2026-09-30"}
+                 "riprese": 4, "senza_fonte": 1, "il": "2026-09-30",
+                 "primo": {"testata": "9to5Mac", "ora": "2026-09-30T06:12:00+02:00"}}
 
 Poi stampa le notizie dove tag e affidabilita' non tornano con quello che ha
 trovato: un CONFERMATO che ha dietro una fonte sola e nessuna parola di Apple,
@@ -355,6 +356,22 @@ def verdict(news, urls, cited, feeds, day):
     }
 
 
+def first_of(urls, raw_items, feeds):
+    """Chi l'ha data per primo fra le nostre testate: l'articolo del mucchio
+    con l'ora piu' vecchia nel grezzo. L'app lo mostra quando le testate sono
+    piu' d'una e nessuno dichiara un'origine (1 novembre 2026: a Mike interessa
+    quante l'hanno data e chi per primo, non l'elenco dei nomi)."""
+    by_url = {C.norm_url(i.get("link")): i for i in raw_items}
+    best = None
+    for u in urls:
+        it = by_url.get(C.norm_url(u))
+        if it and it.get("date") and (best is None or it["date"] < best[1]):
+            best = (u, it["date"])
+    if not best:
+        return None
+    return {"testata": outlet_of(best[0], feeds), "ora": best[1]}
+
+
 def mismatch(news, v):
     """Dove tag e affidabilita' dicono una cosa e la catena un'altra.
 
@@ -416,6 +433,9 @@ def main():
     rows, warnings = [], []
     for n in news:
         v = verdict(n, clusters[n.get("id")], cited, feeds, day)
+        primo = first_of(clusters[n.get("id")], raw, feeds)
+        if primo:
+            v["primo"] = primo
         if not args.dry:
             n["verifica"] = v
         indip = [o for o in v["origini"] if o not in OFFICIAL]

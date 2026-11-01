@@ -220,11 +220,18 @@ passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole e
 - **Tono**: giornalistico, asciutto, tipo Bloomberg. Niente hype, niente entusiasmo da creator.
 - **Non inventare nulla.** Se un dato non è nell'articolo, non va nel brief.
 
+Campo `reparto`: l'argomento in una parola, uno fra `Mac` · `iPhone` · `iPad` · `Watch` ·
+`Casa` · `Servizi` · `Software` · `Mercato` · `Regole` · `Azienda` · `Eventi` · `Accessori` ·
+`AI`. Nella lista del Duo sta sopra il titolo e dice che notizia aspettarsi (vedi
+*L'impaginato del Duo*); il lint avvisa se manca. `category` resta, libero, per la taratura.
+
 Campo `tag` (determina il colore della pastiglia):
 `CONFERMATO` (blu) · `RUMOR` (giallo) · `DATI` (arancio) · `ANALISI` / `OPINIONE` (rosso) ·
 `CONTORNO` / `CONTESTO` / `SERVIZIO` (nero).
 
 Campo `reliability`: `alta` | `media` | `bassa`, con `reliability_note` che spiega **perché**.
+La nota **non si mostra più nell'app** (1 novembre 2026: Mike non la leggeva): resta
+nell'edizione, perché serve a te e alle pagelle.
 
 | Fonte | Affidabilità |
 |---|---|
@@ -377,8 +384,9 @@ python3 pipeline/claims.py score
 Se una fonte ha un tasso basso su un campione decente, il suo prossimo rumor non è
 `alta` per definizione, per quanto blasonata sia — la tabella in cima a questo file è il
 punto di partenza, le pagelle la correggono con i fatti. Nell'app resta solo la parte
-che è notizia: sulla vecchia notizia compare "Come è andata a finire", su quella nuova
-"Chiude una previsione".
+che è notizia: sulla vecchia notizia compare "Come è andata a finire". "Chiude una
+previsione" sulla notizia nuova non si mostra più (1 novembre 2026: Mike la saltava), ma
+`resolves` si scrive come sempre: chiude la previsione nei dati.
 
 #### La sezione social — `social`
 
@@ -624,8 +632,17 @@ e stampa le notizie da riguardare. Gli avvisi scattano **solo su prove positive*
 
 Una testata che non cita nessuno **non è sospetta**: spesso è la fonte di se stessa (ha
 provato la beta, era in sala). Per questo «origine non dichiarata» non fa scattare niente
-e nell'app non compare. L'app mostra la riga solo quando dice qualcosa: «c'è la parola di
-Apple», «una sola fonte d'origine, Bloomberg, ripresa da 3 testate», «2 fonti indipendenti».
+e nell'app non compare.
+
+**Nell'app, «quanto gira»** (1 novembre 2026). In fondo alla notizia non c'è più l'elenco
+dei nomi delle testate né i titoli dei link in più: Mike non li leggeva. Vuole capire la
+**rarità** — una voce sola, una speculazione, o una cosa ripresa da tutti — e **chi l'ha
+detta per primo**. Quindi: dieci pallini, tanti accesi quante le testate (`testate`), una
+riga che lo dice a parole («Una testata sola», «Ripresa da 5 testate», «Ne parlano tutti»,
+«C'è la parola di Apple»), sotto l'origine se c'è («All'origine: Bloomberg», «Fonti
+indipendenti: …») e altrimenti **chi l'ha data per primo** fra le nostre testate
+(`primo`, che `verify.py` ricava dall'ora degli articoli nel grezzo), poi «Leggi su
+9to5Mac →». Gli `extra_links` restano nell'edizione: contano nel numero.
 
 Lo script **non cambia i tag**: dice cosa ha visto, la decisione è tua. Il lint ripete i
 suoi avvisi, così non si perdono. Gli articoli già letti restano in
@@ -634,57 +651,74 @@ suoi avvisi, così non si perdono. Gli articoli già letti restano in
 #### L'approfondimento — `approfondimento`
 
 Le **prime cinque notizie** hanno un approfondimento già scritto: nell'app c'è il pulsante
-giallo *Approfondisci* sotto la notizia. Non sono tre
-righe in più. È un pezzo che fa **capire**, e dove può fa **vedere**: il 30 settembre 2026
-Mike ha chiesto una testata futuristica, «un progetto visto anziché raccontato».
+giallo *Approfondisci* sotto la notizia. **Dal 1 novembre 2026 è un articolo, non un
+modulo a schede.** Mike leggeva solo «Cosa c'è sotto»: tappe, «chi lo dice» e «cosa
+aspettarsi» li saltava, e il punto ripeteva il titolo — «lo vedo inconsistente e inutile».
+Ha chiesto un pezzo che **vada in profondità senza ripetere quanto letto sopra**: che
+spieghi, illumini, allarghi, con altri pareri, commenti social, grafici, statistiche, e che
+consigli altri articoli, nomi, testate.
 
 **Quali cinque.** Il rank segue l'importanza, e le prime cinque sono quelle che la meritano.
-Il metro: peso della notizia, quanto ha girato (posizione su Reddit, numero di testate in
-`verifica`) e quanto serve a Mike al banco. Se due delle cinque raccontano lo stesso fatto,
-i due approfondimenti devono guardarlo da lati diversi (il 30 settembre: la produzione del
-Duo *come fabbrica*, i preordini *come acquisto*).
+Se due delle cinque raccontano lo stesso fatto, i due approfondimenti devono guardarlo da
+lati diversi (il 30 settembre: la produzione del Duo *come fabbrica*, i preordini *come
+acquisto*).
 
 ```json
 "approfondimento": {
-  "punto": "1–2 frasi: il senso, detto meglio del titolo",
-  "visivi": [ {"tipo": "resa", "titolo": "…", "didascalia": "…", …} ],
-  "sotto": ["Cosa c'è sotto: 2–3 paragrafi che spiegano il meccanismo"],
-  "tappe": [ {"data": "2026-09-05", "testo": "…", "link": "…"} ],
-  "fonti": "Chi lo dice: la catena delle fonti e i dubbi",
-  "dopo": [ {"data": "2026-10-16", "testo": "…"}, {"testo": "da seguire, senza data"} ],
+  "titolo": "Il Mac touch non vuole cambiare il Mac",
+  "punto": "Il sommario: una frase che apre l'angolo, non riassume la notizia",
+  "numeri": [ {"valore": "2.899 $", "etichetta": "il 14 pollici, 400 più del mini-LED", "fonte": "MacRumors"} ],
+  "sotto": ["Il testo: 2–3 paragrafi che spiegano, collegano, allargano"],
+  "visivi": [ {"tipo": "stime", "titolo": "…", "didascalia": "…", …} ],
+  "voci": [ {"chi": "Nabila Popal", "dove": "IDC", "tipo": "analista",
+             "testo": "Il peggio deve ancora venire.", "link": "…", "segnale": "…"} ],
   "approfondire": [ {"tipo": "leggi|ascolta|guarda", "titolo": "…", "fonte": "…",
                      "durata": "85 min", "link": "…", "perche": "una riga: perché aprirlo"} ],
-  "scritto": "2026-09-30"
+  "scritto": "2026-11-01"
 }
 ```
 
-**Asciutto.** Si legge sul telefono, una scheda alla volta: il 30 settembre 2026 la prima
-versione era lunga sei schermate e Mike ha chiesto di tagliare. Le misure, che il lint
-controlla:
+Nell'app si legge dall'alto in basso, senza schede: il titolo grande, il sommario, i
+numeri in una fascia (al massimo tre, grandi, con la fonte), il testo con il capolettera e
+i grafici dopo il primo paragrafo, «Cosa ne dicono» con le voci, «Per andare oltre» con le
+letture. L'esempio completo è l'edizione del 1 novembre 2026.
+
+- **`titolo`** è suo, e non è il titolo della notizia detto in un altro modo: è l'angolo.
+  «Perché Apple sfoca Area 51 ma lascia in chiaro Pearl Harbor», non «Apple Maps sfoca le
+  basi». Il lint avvisa quando i due si somigliano troppo.
+- **`sotto`** non ripete la descrizione della notizia: parte da dove quella finisce. Il
+  meccanismo, il precedente, il confronto, le domande che restano.
+- **`voci`** è quello che mancava: chi altro ne parla e cosa dice. `tipo` è `analista` ·
+  `testata` · `apple` (un dirigente, un portavoce) · `esperto` (un recensore, uno
+  sviluppatore) · `social` (un commento, un post) · `storia` (una frase del passato che
+  torna). `testo` è una citazione vera, tradotta fedelmente, o la sua parafrasi stretta —
+  mai un'invenzione, mai un'attribuzione a chi l'ha solo ripresa. I commenti si prendono
+  dove ci sono: il thread di Reddit (il suo RSS, `…/comments/<id>/.rss`, si legge senza
+  chiave), Hacker News, i commenti di GSMArena e di 9to5Mac; `segnale` dice quanto pesa
+  («il thread più discusso di r/apple», «1.180 punti su HN»). Un commento è un parere,
+  non un fatto: «un lettore di GSMArena», mai «gli utenti».
+- **`numeri`**: le cifre che fanno capire la scala, non quelle già nella notizia.
+  `valore` è breve («+550%», «15 → 66 $», «20 mesi»), `etichetta` dice cosa misura.
+- **`approfondire`**: 2–3 voci, **ogni link aperto e verificato**, mai l'articolo della
+  notizia (c'è già «Leggi su»). Il precedente storico, l'inchiesta originale, il podcast
+  sull'argomento preciso — puntata specifica, mai la home.
+
+**Asciutto.** Si legge sul telefono: le misure, che il lint controlla.
 
 | Campo | Massimo |
 |---|---|
-| `punto` | 220 caratteri |
-| `sotto` | 2 paragrafi da 450 |
-| `tappe` | 4 tappe da 90 (sempre l'ultima, quella di oggi) |
-| `fonti` | 250 caratteri: «quattro testate, una fonte: Bloomberg» |
-| `dopo` | 3 voci da 90 |
+| `titolo` | 80 caratteri |
+| `punto` | 200 caratteri |
+| `sotto` | 3 paragrafi da 450 |
+| `numeri` | 3 |
+| `voci` | 4, da 240 caratteri |
 | `approfondire` | 3 voci, `perche` entro 70 |
 
 Accorciare non autorizza ad arrotondare: «poco sopra il 60%» non diventa «al 60%», e la
-stima della fonte di Jiemian non diventa la stima di Jiemian.
-
-Regole:
-- **Non inventare nulla**, qui più che altrove: ogni numero e ogni citazione devono stare
-  negli articoli letti o nell'archivio. Si leggono gli articoli **interi**.
-- `tappe` viene dall'archivio: `threads.py show <filo>` dà le puntate con i link. Date
-  `YYYY-MM-DD`, oppure `YYYY-MM` per i fatti di cui si conosce solo il mese.
-- `fonti` dice la catena vera (usa `verify.py`): «quattro testate, una fonte».
-- `approfondire`: 2–4 voci, **ogni link aperto e verificato**. Un podcast o un video
-  valgono doppio se sono sull'argomento preciso: puntata specifica, mai la home.
-- `dopo` con la data: l'app scrive da sola «fra 16 giorni».
-- La voce legge titolo, punto, didascalie delle visualizzazioni, `sotto`, `tappe`, `fonti`
-  e `dopo`: scrivi frasi che stanno in piedi anche ascoltate.
+stima della fonte di Jiemian non diventa la stima di Jiemian. **Non inventare nulla**, qui
+più che altrove: ogni numero e ogni citazione devono stare negli articoli e nelle
+discussioni letti. Si leggono **interi**. Tappe, «chi lo dice» e «cosa aspettarsi» non si
+scrivono più: nelle edizioni vecchie restano nei dati, l'app non li mostra.
 
 **Le visualizzazioni — il kit.** Il codice sta nell'app, l'edizione passa solo il tipo e i
 numeri: dal database non arriva mai codice da eseguire. Almeno una per approfondimento,
@@ -1164,13 +1198,20 @@ accanto; «Prima pagina» a sinistra ci riporta. La prima pagina non porta pulsa
 non conta come lettura, e ha preso il posto dell'anteprima della prima notizia. Sul pannello
 stretto (Duo in verticale) il sottopancia scende sotto la foto. Telefono e Mac non cambiano.
 
-**Lo stile della lista** (rivisto con Mike sul Duo vero lo stesso giorno): è un indice, non
-una pila di schede. Pallino in colonna, titolo accanto a filo in Medium, sotto una riga di meta
-in maiuscoletto con il pallino del colore del tag — niente scatole, niente «approfondita»
-(sono sempre le prime cinque). La voce aperta si segna come la scheda attiva in testata,
-con la barra arancione di quattro punti in verticale e il titolo in grassetto: **niente fondo
-campito**, Mike l'ha bocciato come estraneo allo stile. Nel pannello l'occhiello ripete il
-pallino colorato della voce, per legare a colpo d'occhio lista e notizia.
+**Lo stile della lista**, seconda versione (1 novembre 2026, sera). La prima — pallini numerati
+colorati, titoli in condensato sottile, il tag sotto — Mike l'ha trovata piccola, poco
+leggibile, anonima, e con i colori che non tornavano (pallino giallo, tag rosso, barra
+arancione sulla stessa voce). Ora:
+
+- **due sezioni**: «In primo piano», le prime cinque (quelle con l'approfondimento), con la
+  foto quadrata accanto al titolo; «In breve», le altre, solo testo;
+- **i titoli nel carattere di sistema**, pieno e grande (semibold nelle prime cinque, medium
+  nelle brevi): il condensato resta alle testate;
+- sopra ogni titolo **il reparto** (Mac, iPhone, Mercato…): niente numeri, niente
+  confermato/analisi/dati. Il giallo «rumor» resta, perché è un avvertimento;
+- **un colore solo**: l'arancione di «sei qui», come la scheda attiva in testata — la barra
+  verticale sulla voce aperta, il reparto che diventa arancione, e lo stesso reparto in
+  arancione come occhiello del pannello. Niente fondo campito.
 
 **Le sezioni sotto le notizie** prendono sul Duo una forma ciascuna, dal materiale che
 portano (Mike: «così proprio scarne», 31 ottobre 2026): il **radar** è una griglia di
