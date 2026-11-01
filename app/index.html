@@ -245,9 +245,12 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 .view[hidden]{display:none}
 .columns{display:block}
 .rail{display:none}
+/* html.duo-forzato: il Duo con la pagina rimpicciolita (zoom al 75%) dichiara
+   piu' di 1.040 punti e si crederebbe un Mac. Reader lo riconosce dallo
+   schermo, che lo zoom non cambia, e qui le colonne del Mac si spengono. */
 @media (min-width:1040px){
-  .columns{display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:4rem; align-items:start}
-  .rail{display:block; position:sticky; top:7.2rem; padding-top:2.6rem}
+  html:not(.duo-forzato) .columns{display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:4rem; align-items:start}
+  html:not(.duo-forzato) .rail{display:block; position:sticky; top:7.2rem; padding-top:2.6rem}
 }
 .col-main{min-width:0; max-width:70ch}
 
@@ -415,6 +418,7 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
    margine e non la lista, cosi' testata, schede, lista e pannello restano
    tutti sulla stessa linea verticale. */
 @media (min-width:601px) and (max-width:1039px){ :root{--gutter:1.25rem} }
+html.duo-forzato{--gutter:1.25rem}
 
 /* ---------------- Duo aperto ----------------
    Fra il telefono (sotto i 600 punti) e il Mac (dai 1.040) cade lo schermo
@@ -4361,7 +4365,24 @@ const Reader = (function(){
   const MQ = window.matchMedia ? window.matchMedia("(min-width:601px) and (max-width:1039px)") : null;
   let box = null, pane = null, cur = null;
 
-  function on(){ return !!(MQ && MQ.matches); }
+  /* La larghezza della pagina cambia con lo zoom di Safari: al 75% il Duo
+     dichiara oltre 1.040 punti e prendeva le colonne del Mac (1 novembre
+     2026). Lo schermo invece non cambia: uno schermo touch largo fra 601 e
+     1.039 punti nel verso in cui lo tieni e' il Duo, a qualunque zoom. In
+     quel caso si segna html.duo-forzato, che spegne anche le colonne del Mac. */
+  const COARSE = window.matchMedia ? window.matchMedia("(pointer:coarse)") : null;
+  const LAND = window.matchMedia ? window.matchMedia("(orientation:landscape)") : null;
+  function screenDuo(){
+    if(!COARSE || !COARSE.matches || !window.screen) return false;
+    const a = screen.width, b = screen.height;
+    const w = LAND && LAND.matches ? Math.max(a, b) : Math.min(a, b);
+    return w >= 601 && w <= 1039;
+  }
+  function on(){
+    const mq = !!(MQ && MQ.matches), forced = !mq && screenDuo();
+    document.documentElement.classList.toggle("duo-forzato", forced);
+    return mq || forced;
+  }
   function root(){ return document.getElementById("view-oggi"); }
   function active(){ return on() && !!box && box.isConnected; }
   function claims(w){ return active() && !!w && !!w._parts && box.contains(w) && !pane.contains(w); }

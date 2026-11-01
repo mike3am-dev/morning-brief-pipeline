@@ -1164,6 +1164,12 @@ colonne. Nel pannello non c'è la barra «Chiudi / Prossima notizia» dell'appro
 si sceglie a sinistra, e Mike ha scartato anche una «Prossima» in fondo al pannello. Il margine della pagina sul Duo è 20 punti (`--gutter`), non il 4,5% pensato per
 il Mac. Telefono e Mac restano a colonna di righe.
 
+**Lo zoom non lo inganna.** Con la pagina rimpicciolita (Safari al 75%) il Duo dichiara più
+di 1.040 punti e prendeva le colonne del Mac: è successo il 1 novembre 2026. Da allora
+`Reader` guarda anche lo schermo, che lo zoom non cambia: uno schermo touch largo fra 601 e
+1.039 punti nel verso in cui lo tieni è il Duo a qualunque zoom, e la classe
+`html.duo-forzato` spegne le colonne del Mac.
+
 Per provarlo nel browser del Mac: l'emulatore di larghezza non manda alla pagina l'evento
 di ridimensionamento, quindi dopo aver cambiato misura serve
 `window.dispatchEvent(new Event('resize'))`. Un telefono vero lo manda da solo.
