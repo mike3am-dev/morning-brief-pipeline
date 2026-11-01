@@ -78,15 +78,15 @@ stessa fonte **non** sono conferme.
 errori ora c'è anche il link già uscito in una vecchia edizione.
 
 **Poi, e solo dopo questo `push.py`**, il visualista (sottoagente `visualista`, con i
-`visivi` ancora vuoti nell'edizione pubblicata) e l'audio — **mai i due insieme**: leggono
-e riscrivono lo stesso file, e chi finisce dopo sovrascrive chi ha finito prima (vedi
-CLAUDE.md, *Il visualista*, e il paragrafo del 7 ottobre 2026). Aspetta che uno abbia
-salvato prima di lanciare l'altro:
+`visivi` ancora vuoti nell'edizione pubblicata), e di nuovo lint e pubblicazione:
 
 ```bash
 python3 pipeline/lint.py && python3 pipeline/push.py      # dopo il visualista
-python3 pipeline/audio.py && python3 pipeline/push.py     # dopo, in un passo separato
 ```
+
+**L'audio non si fa più** (1 novembre 2026: Mike non ha mai usato *Ascolta*, e il pulsante
+è stato tolto dall'app). Non lanciare `audio.py`: vedi CLAUDE.md, *La voce degli
+approfondimenti — sospesa*.
 
 **Non serve toccare l'app**: le edizioni viaggiano sul database, e la copia
 Artifact non si aggiorna più da agosto 2026 (vedi `CLAUDE.md`). `build.py` e

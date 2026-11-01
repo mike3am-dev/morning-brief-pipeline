@@ -634,7 +634,7 @@ suoi avvisi, così non si perdono. Gli articoli già letti restano in
 #### L'approfondimento — `approfondimento`
 
 Le **prime cinque notizie** hanno un approfondimento già scritto: nell'app c'è il pulsante
-giallo *Approfondisci* sotto la notizia, e *Ascolta* lo legge ad alta voce. Non sono tre
+giallo *Approfondisci* sotto la notizia. Non sono tre
 righe in più. È un pezzo che fa **capire**, e dove può fa **vedere**: il 30 settembre 2026
 Mike ha chiesto una testata futuristica, «un progetto visto anziché raccontato».
 
@@ -716,7 +716,7 @@ registro: l'approfondimento deve stare in piedi da solo.
 aspettato 23 minuti prima di pubblicare e l'edizione è uscita con un'ora di ritardo. L'ordine è:
 edizione scritta, immagini, lint, **`push.py`** (con i `visivi` vuoti) → visualista (chiamata
 normale, non in background, senza `sleep` né `ListAgents` per aspettarlo; massimo 8 minuti) →
-lint → `push.py` → audio → `push.py`. Se il visualista non risponde in tempo, l'edizione è già
+lint → `push.py`. Se il visualista non risponde in tempo, l'edizione è già
 online senza grafici: meglio di un'edizione che non c'è.
 
 **Il visualista.** Le visualizzazioni non le sceglie chi scrive l'edizione: le sceglie un agente
@@ -875,10 +875,16 @@ alleggerisci l'archivio, poi ricaricalo:
 python3 pipeline/images.py --prune 60 && python3 pipeline/push.py --all
 ```
 
-### 3b. La voce degli approfondimenti
+### 3b. La voce degli approfondimenti — sospesa
+
+**Dal 1 novembre 2026 la corsa non lancia `audio.py`.** Mike non ha mai usato *Ascolta*, e
+il pulsante è stato tolto dall'app: produrre l'audio costava quattro minuti a corsa per
+niente. Il modulo `Voice` dell'app e lo script restano, pronti: per riaccendere basta
+rimettere un pulsante che chiami `Voice.play(brief, n)` e tornare a lanciare lo script qui.
+Quello che segue racconta come funziona, per quel giorno.
 
 ```bash
-python3 pipeline/audio.py
+python3 pipeline/audio.py   # sospeso: non lanciarlo nella corsa
 ```
 
 Legge ad alta voce i cinque approfondimenti e ne fa file audio veri. **Dal 1 ottobre 2026 la
@@ -1136,15 +1142,27 @@ Il codice è il modulo `Reader` in `pipeline/template.html`. Tre cose da sapere 
 toccarlo:
 
 - **La notizia si sposta, non si copia.** Corpo e pulsanti passano nel pannello e tornano
-  nell'`<article>` quando ne scegli un'altra. Così approfondimento, Ascolta e appunti sono
+  nell'`<article>` quando ne scegli un'altra. Così approfondimento e appunti sono
   gli stessi oggetti, e i segnali di lettura — che si agganciano all'`<article>` con i
   pulsanti — contano una volta sola: il pannello è anch'esso un `<article>`.
 - **Aprire e chiudere il telefono non perde il punto.** La notizia aperta a telefono
   chiuso finisce nel pannello quando lo apri; quella nel pannello resta aperta nella lista
   quando lo chiudi.
-- **All'apertura il pannello mostra la notizia d'apertura come anteprima**: non conta come
-  aperta né come tempo di lettura finché Mike non la tocca. Altrimenti la taratura
-  crederebbe che la prima notizia la legge sempre.
+- **All'apertura il pannello mostra la prima pagina** (vedi sotto), non una notizia: niente
+  conta come aperta né come tempo di lettura finché Mike non tocca qualcosa. Altrimenti la
+  taratura crederebbe che la prima notizia la legge sempre.
+
+**La prima pagina** (1 novembre 2026). Aprendo il Duo, l'apertura del telefono — pallini,
+data, i tre titoli, l'intro — si prendeva tutta la prima schermata prima della prima notizia,
+e Mike l'ha bocciata. Sul Duo quell'apertura non c'è più: la colonna di sinistra parte subito
+con l'indice, in cima la voce **Prima pagina**, e il pannello di destra, finché non scegli una
+notizia, mostra la prima pagina dell'edizione (`frontPage`): la data in grande; la fila dei pallini, uno per notizia, spenti quelli già letti; la
+notizia d'apertura con il **sottopancia** televisivo sulla foto (fascia gialla, titolo su
+nero — è un programma del mattino, e il riferimento grafico è la sua sigla); seconda e terza
+affiancate; il quadro della giornata con la prima frase in nero. Ogni tocco apre la notizia
+accanto; «Prima pagina» a sinistra ci riporta. La prima pagina non porta pulsanti né segnali:
+non conta come lettura, e ha preso il posto dell'anteprima della prima notizia. Sul pannello
+stretto (Duo in verticale) il sottopancia scende sotto la foto. Telefono e Mac non cambiano.
 
 **Lo stile della lista** (rivisto con Mike sul Duo vero lo stesso giorno): è un indice, non
 una pila di schede. Pallino in colonna, titolo accanto a filo in Medium, sotto una riga di meta
