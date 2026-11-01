@@ -1240,6 +1240,21 @@ fondo osso, campiture piatte, campo di pallini, condensato pesante, quattro colo
 ruolo semantico. Il marchio in testata è tutto giallo. Se tocchi lo stile, resta dentro
 questo sistema.
 
+
+**Le chicche** (1 novembre 2026). Mike ha visto i pallini della prima pagina che entrano e il
+sottopancia che scorre, e li vuole «qua e là in tutto l'editoriale, senza che risultino
+troppo». Il modulo `Motion` in `pipeline/template.html` ha un linguaggio solo, preso dalla
+sigla: le cose **entrano come una banda** da sinistra (il titolo dell'approfondimento, i
+titoli di sezione), **si accendono come pallini** (i tre dell'approfondimento, i dieci di
+«quanto gira», lo scoppio di colori quando salvi) o **salgono di poco** (la notizia che
+cambia nel pannello, il corpo che si apre sul telefono, i numeri, le voci, le foto che
+sfumano). I numeri dell'approfondimento contano da zero; la lineetta sotto le schede scivola
+da una all'altra col colore della scheda; il cambio di tema si allarga a cerchio dal
+pulsante. Regole: ogni cosa parte **una volta**, quando arriva a schermo, e dura meno di un
+secondo; con «Riduci movimento» non parte niente; un elemento in attesa è trasparente, mai
+ritagliato (ritagliato del tutto, l'osservatore non lo vede mai e resta nascosto). Una
+chicca nuova si aggiunge a quel linguaggio, non ne inventa un altro.
+
 ## Fonti monitorate
 
 **Primarie** (parlano di rado, ma è la parola di Apple e chiude i rumor invece di aprirne):

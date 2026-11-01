@@ -105,6 +105,62 @@ button{font:inherit; color:inherit; cursor:pointer}
 :focus-visible{outline:2.5px solid var(--blue); outline-offset:2px; border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
 
+/* ---------------- le chicche ----------------
+   Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
+   come un pallino (pop), sale di poco (rise). Le classi .mo-* le mette
+   Motion solo se il movimento e' permesso; .mo-in arriva quando l'elemento
+   e' a schermo. Senza .mo-in l'elemento aspetta, nascosto o spento. */
+@keyframes mo-rise{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+@keyframes mo-wipe{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)}}
+@keyframes mo-pop{0%{transform:scale(0); opacity:0} 70%{transform:scale(1.18); opacity:1} 100%{transform:scale(1); opacity:1}}
+@keyframes mo-fade{from{opacity:0} to{opacity:1}}
+@keyframes mo-burst{from{transform:rotate(var(--a)) translateY(0) scale(1); opacity:1}
+  to{transform:rotate(var(--a)) translateY(-24px) scale(.35); opacity:0}}
+.mo-rise:not(.mo-in), .mo-quote:not(.mo-in), .mo-img:not(.mo-in){opacity:0}
+.mo-rise.mo-in{animation:mo-rise .5s cubic-bezier(.2,.7,.2,1) .12s both}
+/* in attesa trasparente, non ritagliato: un elemento ritagliato del tutto
+   per l'osservatore non si vede mai, e il titolo restava nascosto */
+.mo-wipe:not(.mo-in){opacity:0}
+.mo-wipe.mo-in{animation:mo-wipe .6s cubic-bezier(.6,0,.2,1) both}
+.mo-img.mo-in{animation:mo-fade .7s ease both}
+/* le voci: la riga verticale cresce, poi la frase sale */
+.mo-quote.mo-in{animation:mo-rise .55s cubic-bezier(.2,.7,.2,1) both}
+/* i figli in fila: numeri dell'approfondimento, seconda e terza in prima pagina */
+.mo-kids:not(.mo-in) > *{opacity:0}
+.mo-kids.mo-in > *{animation:mo-rise .5s cubic-bezier(.2,.7,.2,1) both; animation-delay:calc(var(--mo-i, 0) * 90ms)}
+/* i tre pallini dell'approfondimento */
+.mo-dots:not(.mo-in) i{transform:scale(0)}
+.mo-dots.mo-in i{animation:mo-pop .42s cubic-bezier(.2,1.4,.4,1) both}
+.mo-dots.mo-in i:nth-child(2){animation-delay:.08s}
+.mo-dots.mo-in i:nth-child(3){animation-delay:.16s}
+/* quanto gira: le caselle si accendono una dopo l'altra */
+.mo-fill:not(.mo-in) i.on{background:transparent; box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.mo-fill i{transition:background .22s ease, box-shadow .22s ease; transition-delay:calc(var(--mo-i, 0) * 70ms)}
+/* i titoli di sezione: il pallino si accende, il titolo entra come una banda */
+.mo-head:not(.mo-in) .pip{transform:scale(0)}
+.mo-head.mo-in .pip{animation:mo-pop .45s cubic-bezier(.2,1.4,.4,1) both}
+.mo-head:not(.mo-in) h2{clip-path:inset(0 100% 0 0)}
+.mo-head.mo-in h2{animation:mo-wipe .6s cubic-bezier(.6,0,.2,1) .08s both}
+/* il pannello che cambia notizia, il corpo che si apre sul telefono */
+.mo-swap > *{animation:mo-rise .38s cubic-bezier(.2,.7,.2,1) both}
+.mo-swap > :nth-child(2){animation-delay:.04s}
+.mo-swap > :nth-child(3){animation-delay:.08s}
+.mo-swap > :nth-child(n+4){animation-delay:.12s}
+/* salvare: lo scoppio di pallini */
+.tool{overflow:visible}
+.burst{position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none}
+.burst i{position:absolute; left:-3px; top:-3px; width:6px; height:6px; border-radius:50%;
+  animation:mo-burst .62s cubic-bezier(.2,.7,.2,1) forwards}
+/* la lineetta delle schede, che scivola */
+nav.tabs{position:relative}
+.tab-ink{position:absolute; left:0; height:4px; pointer-events:none; background:var(--orange);
+  transition:transform .42s cubic-bezier(.6,0,.2,1), width .42s cubic-bezier(.6,0,.2,1), background-color .42s ease}
+nav.tabs.has-ink .tab[aria-current="true"]::after{display:none}
+/* il cambio di tema: niente dissolvenza di serie, il cerchio lo fa Motion */
+::view-transition-old(root), ::view-transition-new(root){animation:none; mix-blend-mode:normal}
+.deep-num b{font-variant-numeric:tabular-nums}
+
+
 .eyebrow{
   font-size:.63rem; font-weight:600; letter-spacing:.19em;
   text-transform:uppercase; color:var(--ink-3);
@@ -2704,6 +2760,7 @@ function itemTools(k, opts){
     const m = mark(k);
     m.starred_at = m.starred_at ? null : new Date().toISOString();
     paintStar(); touched(k); refreshCounts();
+    if(m.starred_at) Motion.burst(star);
     toast(m.starred_at ? "Salvata" : "Tolta dai salvati");
   });
   note.addEventListener("click", function(ev){
@@ -2762,6 +2819,8 @@ function echoNode(n){
   const meter = el("span", {class:"echo-meter t-" + tone, "aria-hidden":"true"});
   for(let i = 0; i < 10; i++) meter.appendChild(el("i", {class:i < count ? "on" : ""}));
   if(count > 10) meter.appendChild(el("em", {text:"+"}));
+  Motion.stagger(meter.children);
+  Motion.once(meter, "fill");
 
   const primary = safeUrl(n.link);
   const name = (n.sources || [])[0];
@@ -2823,6 +2882,80 @@ function whenSeen(node, fn){
   }, {threshold:.35});
   io.observe(node);
 }
+
+/* ================= le chicche =================
+   Piccoli movimenti che fanno sembrare la rassegna viva (1 novembre 2026:
+   Mike ha visto i pallini della prima pagina e il sottopancia, e li vuole
+   «qua e la' in tutto l'editoriale, senza che risultino troppo»). Un
+   linguaggio solo, preso dalla sigla: le cose entrano da sinistra come una
+   banda (wipe), si accendono come i pallini (pop), o salgono di poco (rise).
+   Ognuna parte una volta, quando arriva a schermo, e dura meno di un
+   secondo. Con «Riduci movimento» non parte niente e tutto e' gia' al suo
+   posto: le classi non si mettono nemmeno. */
+const Motion = (function(){
+  /* basta che se ne veda un pezzo: con la soglia piu' alta di whenSeen un
+     elemento attraversato in fretta poteva restare in attesa */
+  function seen(node, fn){
+    if(!("IntersectionObserver" in window)){ setTimeout(fn, 60); return; }
+    const io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); fn(); } });
+    }, {threshold:.12});
+    io.observe(node);
+  }
+  function once(node, kind){
+    if(STILL || !node || node.classList.contains("mo")) return node;
+    node.classList.add("mo", "mo-" + kind);
+    seen(node, function(){ node.classList.add("mo-in"); });
+    return node;
+  }
+  /* i figli in fila, uno dopo l'altro */
+  function stagger(nodes){
+    Array.prototype.forEach.call(nodes, function(n, i){ n.style.setProperty("--mo-i", i); });
+  }
+  /* un numero che conta da zero fino al suo valore: «+550%», «2.899 $»,
+     «1,5 mln». Se dopo il numero ce n'e' un altro («15 → 66 $») si lascia stare. */
+  function count(b){
+    if(STILL || !b) return;
+    const txt = b.textContent, m = txt.match(/^([^\d]*)(\d[\d.]*(?:,\d+)?)(\D*)$/);
+    if(!m) return;
+    const dec = m[2].indexOf(",") >= 0 ? m[2].split(",")[1].length : 0;
+    const to = parseFloat(m[2].replace(/\./g, "").replace(",", "."));
+    if(!(to > 0)) return;
+    const fmt = function(v){ return m[1] + v.toLocaleString("it-IT", {minimumFractionDigits:dec, maximumFractionDigits:dec}) + m[3]; };
+    /* il valore vero resta scritto finche' non si vede: se l'osservatore non
+       scatta mai, si legge il numero giusto, non uno zero */
+    seen(b, function(){
+      const t0 = performance.now(), dur = 900;
+      (function step(now){
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        b.textContent = k < 1 ? fmt(dec ? to * e : Math.round(to * e)) : txt;
+        if(k < 1) requestAnimationFrame(step);
+      })(t0);
+    });
+  }
+  /* il pannello che cambia notizia: il contenuto nuovo sale al suo posto */
+  function swap(node){
+    if(STILL || !node) return;
+    node.classList.remove("mo-swap"); void node.offsetWidth; node.classList.add("mo-swap");
+  }
+  /* salvare: uno scoppio di pallini nei quattro colori */
+  function burst(btn){
+    if(STILL || !btn) return;
+    const b = el("span", {class:"burst", "aria-hidden":"true"});
+    ["--red", "--yellow", "--blue", "--orange", "--red", "--yellow", "--blue", "--orange"].forEach(function(c, i){
+      const d = el("i"); d.style.background = "var(" + c + ")"; d.style.setProperty("--a", (i * 45) + "deg"); b.appendChild(d);
+    });
+    btn.appendChild(b);
+    setTimeout(function(){ b.remove(); }, 700);
+  }
+  /* quello che entra in una vista: titoli di sezione e foto */
+  function scan(root){
+    if(STILL || !root) return;
+    Array.prototype.forEach.call(root.querySelectorAll(".section-head"), function(h){ once(h, "head"); });
+    Array.prototype.forEach.call(root.querySelectorAll("img"), function(i){ once(i, "img"); });
+  }
+  return {once:once, stagger:stagger, count:count, swap:swap, burst:burst, scan:scan};
+})();
 
 /* Un'animazione che gira solo mentre si vede. Fuori schermo si ferma e
    riparte al ritorno; quando il nodo esce dalla pagina (l'edizione ridisegnata)
@@ -3815,20 +3948,25 @@ function deepNode(brief, n){
   ]));
   /* il sommario solo sotto un titolo suo: da solo, il punto ripeteva la notizia */
   if(a.titolo){
-    box.appendChild(el("h3", {class:"deep-title", text:a.titolo}));
-    if(a.punto) box.appendChild(el("p", {class:"deep-deck", text:a.punto}));
+    box.appendChild(Motion.once(el("h3", {class:"deep-title", text:a.titolo}), "wipe"));
+    if(a.punto) box.appendChild(Motion.once(el("p", {class:"deep-deck", text:a.punto}), "rise"));
   }
+  Motion.once(box.querySelector(".deep-top .dots"), "dots");
 
   /* i numeri che contano, grandi, prima del testo */
   const nums = (a.numeri || []).filter(function(x){ return x && x.valore; }).slice(0, 3);
   if(nums.length){
-    box.appendChild(el("div", {class:"deep-nums"}, nums.map(function(x){
+    const strip = el("div", {class:"deep-nums"}, nums.map(function(x){
+      const v = el("b", {text:String(x.valore)});
+      Motion.count(v);
       return el("div", {class:"deep-num"}, [
-        el("b", {text:String(x.valore)}),
+        v,
         el("span", {text:x.etichetta || ""}),
         x.fonte ? el("small", {text:x.fonte}) : null
       ]);
-    })));
+    }));
+    Motion.stagger(strip.children);
+    box.appendChild(Motion.once(strip, "kids"));
   }
 
   /* I grafici non si impilano: scorrono di lato, uno per schermata, con i
@@ -3889,9 +4027,9 @@ function deepNode(brief, n){
         (v.chi && v.dove) ? el("span", {text:v.dove}) : null,
         v.segnale ? el("span", {class:"sig", text:v.segnale}) : null
       ]);
-      const fig = el("figure", {class:"voce" + (v.tipo ? " v-" + String(v.tipo).toLowerCase() : "")}, [
+      const fig = Motion.once(el("figure", {class:"voce" + (v.tipo ? " v-" + String(v.tipo).toLowerCase() : "")}, [
         el("blockquote", {text:v.testo}), cap
-      ]);
+      ]), "quote");
       list.appendChild(u ? el("a", {class:"voce-link", href:u, target:"_blank", rel:"noopener noreferrer"}, [fig]) : fig);
     });
     box.appendChild(el("div", {class:"deep-part"}, [el("h4", {class:"deep-h", text:"Cosa ne dicono"}), list]));
@@ -4369,7 +4507,7 @@ function storyNode(brief, n, index){
     if(Reader.claims(wrap)){ Reader.show(wrap, true); return; }
     body.hidden = !body.hidden;
     wrap.classList.toggle("is-open", !body.hidden);
-    if(!body.hidden) wrap._markRead();
+    if(!body.hidden){ wrap._markRead(); Motion.swap(body); }
   });
 
   /* Quello che il pannello del Duo si porta via e poi restituisce: il corpo e
@@ -4508,6 +4646,7 @@ const Reader = (function(){
     pane.appendChild(cover());
     pane.scrollTop = 0;
     front = true;
+    Motion.swap(pane);
     const e = entry();
     if(e){ e.classList.add("is-reading"); e.setAttribute("aria-current", "true"); }
   }
@@ -4538,6 +4677,7 @@ const Reader = (function(){
     if(p.bar) pane.appendChild(p.bar);
     if(p.panel) pane.appendChild(p.panel);
     pane.scrollTop = 0;
+    Motion.swap(pane);
     cur = w;
     w.classList.add("is-reading");
     w.setAttribute("aria-current", "true");
@@ -4751,7 +4891,8 @@ function frontPage(brief, wraps){
         el("h3", {text:n.title})
       ]));
     });
-    fp.appendChild(box);
+    Motion.stagger(box.children);
+    fp.appendChild(Motion.once(box, "kids"));
   }
 
   /* il quadro: la prima frase in nero, come l'attacco di un fondo */
@@ -5015,6 +5156,7 @@ function drawEdition(root){
 
   root.appendChild(el("div", {class:"columns"}, [col, rail]));
   Reader.mount(newsbox, function(){ return frontPage(brief, wraps); });
+  Motion.scan(root);
   dotfield(canvas);
 
   const srcs = {};
@@ -5643,7 +5785,29 @@ function show(name){
   if(name === "salvati") renderStarred();
   if(name === "diario") renderDiary();
   if(name === "cerca"){ renderSearch(); const i = document.querySelector("#view-cerca input"); if(i) i.focus(); }
+  Motion.scan(document.getElementById("view-" + name));
+  tabInk();
 }
+/* la lineetta sotto la scheda attiva scivola da una scheda all'altra, e
+   prende il colore della scheda (arancione APPLE, rosso AI, giallo GAMES…) */
+const TAB_INK = {ai:"--red", games:"--yellow", tech:"--blue", spazio:"--ink"};
+function tabInk(){
+  const nav = document.querySelector("nav.tabs");
+  if(!nav || STILL) return;
+  let ink = nav.querySelector(".tab-ink");
+  const on = nav.querySelector('.tab[aria-current="true"]');
+  if(!on || !on.offsetWidth){ if(ink) ink.style.opacity = "0"; return; }
+  const first = !ink;
+  if(first){ ink = el("span", {class:"tab-ink", "aria-hidden":"true"}); nav.appendChild(ink); nav.classList.add("has-ink"); }
+  if(first) ink.style.transition = "none";
+  ink.style.opacity = "1";
+  ink.style.width = on.offsetWidth + "px";
+  ink.style.transform = "translateX(" + on.offsetLeft + "px)";
+  ink.style.top = (on.offsetTop + on.offsetHeight - 2) + "px";
+  ink.style.background = "var(" + (TAB_INK[on.dataset.view] || "--orange") + ")";
+  if(first){ void ink.offsetWidth; ink.style.transition = ""; }
+}
+window.addEventListener("resize", function(){ clearTimeout(tabInk._t); tabInk._t = setTimeout(tabInk, 150); });
 /* i tre puntini sul telefono: Diario e Cerca stanno li' dentro */
 (function(){
   const more = document.getElementById("moreTab"), menu = document.getElementById("tabmenu");
@@ -5708,12 +5872,25 @@ function refreshCounts(){
 
 /* ================= tema ================= */
 document.getElementById("themeBtn").addEventListener("click", function(){
-  const r = document.documentElement;
-  const dark = r.getAttribute("data-theme") === "dark" ||
-    (!r.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme:dark)").matches);
-  r.setAttribute("data-theme", dark ? "light" : "dark");
-  try{ localStorage.setItem("tmb-theme", dark ? "light" : "dark"); }catch(e){}
-  dotfield(document.getElementById("dotfield"));
+  const btn = this;
+  const apply = function(){
+    const r = document.documentElement;
+    const dark = r.getAttribute("data-theme") === "dark" ||
+      (!r.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme:dark)").matches);
+    r.setAttribute("data-theme", dark ? "light" : "dark");
+    try{ localStorage.setItem("tmb-theme", dark ? "light" : "dark"); }catch(e){}
+    dotfield(document.getElementById("dotfield"));
+  };
+  /* il tema nuovo si allarga a cerchio dal pulsante, invece di scattare */
+  if(STILL || !document.startViewTransition){ apply(); return; }
+  const rc = btn.getBoundingClientRect(), x = rc.left + rc.width / 2, y = rc.top + rc.height / 2;
+  const R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  const t = document.startViewTransition(apply);
+  t.ready.then(function(){
+    document.documentElement.animate(
+      {clipPath:["circle(0px at " + x + "px " + y + "px)", "circle(" + R + "px at " + x + "px " + y + "px)"]},
+      {duration:560, easing:"cubic-bezier(.4,0,.2,1)", pseudoElement:"::view-transition-new(root)"});
+  }).catch(function(){});
 });
 try{
   const saved = localStorage.getItem("tmb-theme");
