@@ -391,8 +391,14 @@ html.vista-magazine #view-oggi :is(.banco .foot, .recap.tl .foot, .rd-wrap .rada
 /* ---------------- la testata della Magazine ---------------- */
 .nameplate, .mt-mini, .mt-actions{display:none}
 html.vista-magazine body:not(:has(#masthead[hidden])) .nameplate{display:block}
-.np-inner{max-width:1240px; margin:0 auto; padding:1rem var(--gutter) 0; display:flex; flex-direction:column}
-.np-dots{gap:6px; margin-bottom:.55rem}
+/* il logo a sinistra, a destra i tre pallini e la data, centrati in altezza sul logo;
+   sotto, a tutta larghezza, la riga nera */
+.np-inner{max-width:1240px; margin:0 auto; padding:1.1rem var(--gutter) 0; display:grid;
+  grid-template-columns:auto minmax(0,1fr); grid-template-areas:"logo side" "rule rule"; column-gap:1.5rem; align-items:center}
+.np-wordmark{grid-area:logo}
+.np-side{grid-area:side; justify-self:end; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; text-align:right}
+.np-rule{grid-area:rule}
+.np-dots{gap:6px}
 .np-dots i{width:11px; height:11px}
 /* ricalcata sulla sigla: un bastoni largo e pesantissimo, non il condensato,
    le tre righe strette l'una sull'altra, THE e BRIEF grandi meta' di MORNING,
@@ -408,8 +414,18 @@ html.vista-magazine body:not(:has(#masthead[hidden])) .nameplate{display:block}
    in mezzo; parte prima della M e finisce sotto la I, davanti al sole che le sorge dietro */
 .np-arc{position:absolute; left:-3%; width:72%; top:70%; height:.3em; z-index:1; overflow:visible;
   animation:mo-wipe .9s cubic-bezier(.6,0,.2,1) .15s both}
-.np-date{margin:.7rem 0 0; font-size:.62rem; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--ink-2)}
-.np-rule{height:4px; background:var(--ink); margin:.55rem 0 .1rem}
+.np-date{margin:0; font-size:.66rem; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--ink-2); line-height:1.6}
+.np-date span{display:block}
+.np-date .np-day{font-family:var(--display); font-weight:800; font-size:1.55rem; letter-spacing:.02em; color:var(--ink); line-height:1}
+.np-rule{height:4px; background:var(--ink); margin:.9rem 0 .1rem}
+/* sul telefono il logo prende la riga: pallini e data scendono sotto, a sinistra */
+@media (max-width:600px){
+  .np-inner{grid-template-columns:minmax(0,1fr); grid-template-areas:"logo" "side" "rule"}
+  .np-side{justify-self:start; align-items:center; flex-direction:row; gap:.6rem; margin-top:.7rem; text-align:left}
+  .np-date span{display:inline}
+  .np-date .np-day{font-family:inherit; font-weight:inherit; font-size:inherit; letter-spacing:inherit; color:inherit; margin-right:.4em}
+  .np-rule{margin-top:.55rem}
+}
 /* l'alba: la O di MORNING sorge, i tre pallini si accendono, la riga si stende */
 /* l'alba vera: il sole sale da dietro la falce azzurra, lento, arancione che diventa
    giallo. Il ritaglio tiene nascosta la parte ancora sotto l'orizzonte mentre sale */
@@ -2193,9 +2209,11 @@ footer.colophon .sp{flex:1}
 
 <div class="nameplate" id="nameplate" aria-hidden="true">
   <div class="np-inner">
-    <span class="dot-mark np-dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
     <div class="wordmark np-wordmark"><span class="the">The</span><span class="mrn">M<i class="o"></i>rning<svg class="np-arc" viewBox="0 0 100 14" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="npArc" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1A5FAF"/><stop offset=".48" stop-color="#7CC6F2"/><stop offset="1" stop-color="#1A5FAF"/></linearGradient></defs><path d="M0 13.6 Q48 -5 100 13.6 Q48 4.2 0 13.6 Z" fill="url(#npArc)"/></svg></span><span class="brf">Brief</span></div>
-    <p class="np-date" id="npDate"></p>
+    <div class="np-side">
+      <span class="dot-mark np-dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
+      <p class="np-date" id="npDate"></p>
+    </div>
     <div class="np-rule"></div>
   </div>
 </div>
@@ -6188,7 +6206,11 @@ const Testata = (function(){
     if(!t || !brief) return;
     const d = new Date(brief.date + "T12:00:00");
     const g = isNaN(d) ? brief.date : GIORNI[d.getDay()] + " " + d.getDate() + " " + MESI[d.getMonth()] + " " + d.getFullYear();
-    t.textContent = g.charAt(0).toUpperCase() + g.slice(1);
+    /* il giorno sopra, la data sotto: a destra del logo si legge come un timbro */
+    t.textContent = "";
+    if(isNaN(d)){ t.textContent = brief.date; return; }
+    t.appendChild(el("span", {class:"np-day", text:GIORNI[d.getDay()]}));
+    t.appendChild(el("span", {text:d.getDate() + " " + MESI[d.getMonth()] + " " + d.getFullYear()}));
   }
   return {date:date, close:close};
 })();

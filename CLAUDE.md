@@ -1334,7 +1334,9 @@ sigla** — il carattere di sistema nel peso più pesante (largo e massiccio, no
 condensato), le righe strette, THE e BRIEF grandi metà di MORNING, la O sostituita da un sole
 poco più alto delle maiuscole — con **la falce azzurra** dell'orizzonte: sottile ai lati e
 piena al centro, scura ai bordi e chiara in mezzo, parte prima della M e finisce sotto la
-I, davanti al sole che all'apertura **le sorge dietro come un'alba vera**: parte nascosto
+I — il logo a sinistra e, a destra, centrati in altezza sul logo, i tre pallini e la data
+come un timbro (il giorno grande, la data sotto; sul telefono scendono sotto il logo) —,
+davanti al sole che all'apertura **le sorge dietro come un'alba vera**: parte nascosto
 sotto l'orizzonte, sale in quattro secondi abbondanti e passa dall'arancione al giallo (un
 ritaglio tiene nascosta la parte ancora sotto la falce mentre sale); subito sotto
 la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava chiamarsi
