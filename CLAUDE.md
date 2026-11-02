@@ -859,7 +859,7 @@ A destra della testata della Magazine ci sono tre riquadri (vedi *La plancia del
 sotto): il meteo di Milano, che l'app chiede da sola, e due che scrive la corsa.
 
 ```json
-"prossimo": [{"titolo": "HomeView in negozio", "data": "2026-11-13", "tipo": "lancio",
+"prossimo": [{"titolo": "Uscita HomeView", "data": "2026-11-13", "tipo": "lancio",
               "notizia": "homeview-sei-mesi-software"}],
 "borsa": {"simbolo": "AAPL", "chiusura": 344.63, "variazione": -1.23, "data": "2026-10-30",
           "serie": [348.22, 347.73, 343.91, 347.1, 343.83, 348.91, 344.63], "fonte": "Yahoo Finance"}
@@ -868,7 +868,9 @@ sotto): il meteo di Milano, che l'app chiede da sola, e due che scrive la corsa.
 - **`prossimo`**: il lancio o l'evento Apple **confermato** più vicino, con la data esatta — un
   prodotto che arriva nei negozi, un evento annunciato, un aggiornamento con la sua data. Mai
   un rumor: la plancia conta i giorni, e contarli verso una data che nessuno ha confermato
-  sarebbe spacciarla per certa. `titolo` entro 32 caratteri; `notizia` è l'id della notizia di
+  sarebbe spacciarla per certa. `titolo` entro 32 caratteri, **generico e senza paese**:
+  «Uscita HomeView», non «HomeView in negozio» — se in Italia non arriva, il titolo non deve
+  far credere il contrario (2 novembre 2026, Mike); `notizia` è l'id della notizia di
   oggi che ne parla (toccando il riquadro si apre), se c'è. Si può scrivere più di una voce:
   l'app mostra la più vicina non ancora passata. Se non c'è niente di confermato in vista, il
   campo resta vuoto e il riquadro non esce.
@@ -1398,6 +1400,16 @@ con la variazione e la curva della settimana che si traccia; **il prossimo**, gi
 giorni che mancano al lancio o all'evento più vicino, che toccato apre la notizia. Il modulo è
 `Plancia` in `pipeline/template.html`. Un riquadro senza dati non esce. Sul Duo in verticale e
 sul telefono la plancia scende sotto il logo, a tutta larghezza.
+
+**Lo stile della plancia è la sigla, non un cruscotto** (2 novembre 2026, sera: «tutti e 3 sono
+proprio Claude style, li vorrei più TMB style»). Riquadri piatti, angoli quasi vivi, nessuna
+ombra né vetro: il meteo è campitura blu col sole giallo della O del marchio, il prossimo è
+giallo pieno col numero in condensato pesante. L'eccezione voluta è **la borsa, che ricalca il
+widget Azioni di iOS**: fondo nero, simbolo col triangolo, variazione in percentuale e in
+dollari, la curva con la linea tratteggiata della chiusura precedente, il prezzo sottile. I tre
+pallini della sigla non stanno più soli nell'angolo: sono **un timbro verticale accanto alla
+data**, come la firma del giorno. Il logo sta un filo dentro dal bordo (la T non tocca
+l'angolo) e centrato in altezza fra il bordo in alto e la riga nera.
 
 **La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
 stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa
