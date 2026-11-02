@@ -41,7 +41,31 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
 # a 300px si vedeva la sgranatura. Sono ~25 KB l'una invece di ~10.
 THUMBS = 8
 THUMB_PX, THUMB_Q = 480, 60
-HERO_PX, HERO_Q = 880, 70
+# le prime cinque nella Magazine stanno in schede larghe mezzo Duo, e la prima a
+# tutta pagina: a 480 e 880 si vedevano sgranate accanto alla foto del Duo stesso
+# (Mike, 2 novembre 2026). Sono ~60 KB l'una e ~140 la grande.
+CARD_PX, CARD_Q, CARDS = 800, 64, 5
+HERO_PX, HERO_Q = 1280, 68
+# sotto questa larghezza d'origine una foto delle prime cinque e' sgranata: si
+# cerca un'altra testata che racconta la stessa cosa, e se non c'e' lo si dice
+MIN_SRC = {"hero": 1100, "card": 700}
+
+# I siti che stampano il loro marchio sulle foto: il logo di 9to5Mac in un angolo
+# in basso, la fascia di GSMArena col nome gigante. Prima si prova la foto di
+# un'altra testata della stessa notizia; se non c'e', si taglia la striscia in
+# basso (frazione dell'altezza) prima di riportare la foto a 16:9.
+WATERMARK = {
+    "9to5mac.com": 0.13, "9to5google.com": 0.13, "9to5toys.com": 0.13, "electrek.co": 0.13,
+    "gsmarena.com": 0.2,
+}
+
+
+def watermark_of(url):
+    host = re.sub(r"^https?://(www\.)?", "", url or "").split("/")[0].lower()
+    for dom, cut in WATERMARK.items():
+        if host == dom or host.endswith("." + dom):
+            return cut
+    return 0.0
 # la miniatura quadrata della cronaca AI: nella scheda occupa 5,2rem (~83
 # punti), qui sta a 240 per reggere lo schermo a tripla densita'. Sono ~12 KB
 # l'una: una decina di voci pesano quanto due foto delle notizie.
@@ -105,13 +129,16 @@ def find_image_url(page_url):
     return None
 
 
-def encode(raw, width, quality, target=16 / 9):
-    """Ridimensiona, ritaglia nel formato chiesto e restituisce un data URI JPEG."""
+def encode(raw, width, quality, target=16 / 9, cut=0.0):
+    """Ridimensiona, ritaglia nel formato chiesto e restituisce un data URI JPEG.
+    `cut` toglie quella frazione d'altezza dal fondo: e' dove le testate mettono il logo."""
     try:
         img = Image.open(io.BytesIO(raw))
     except Exception:
         return None
     img = img.convert("RGB")
+    if cut:
+        img = img.crop((0, 0, img.width, int(img.height * (1 - cut))))
 
     w, h = img.size
     if w / h > target:                       # troppo larga: taglio ai lati
@@ -133,18 +160,68 @@ def encode(raw, width, quality, target=16 / 9):
 RUBRICHE = ("games", "tech", "spazio")
 
 
+def size_of(raw):
+    try:
+        return Image.open(io.BytesIO(raw)).size
+    except Exception:
+        return None
+
+
+def candidate(page):
+    """La foto di un articolo: (byte, larghezza, taglio del logo, indirizzo della pagina)."""
+    src = find_image_url(page)
+    raw = fetch(src) if src else b""
+    dims = size_of(raw) if raw else None
+    if not dims:
+        return None
+    return raw, dims[0], max(watermark_of(page), watermark_of(src)), page
+
+
+def best_photo(item, need):
+    """Fra la notizia e le altre testate che la raccontano (extra_links), la foto
+    senza marchio e abbastanza grande; poi quella col marchio, tagliata; poi la piu'
+    grande che c'e'. Le altre testate si aprono solo se la prima non basta."""
+    pages = [item.get("link", "")] + [x.get("url") if isinstance(x, dict) else x
+                                      for x in (item.get("extra_links") or [])]
+    seen = []
+    for page in [p for p in pages if p][:5]:
+        c = candidate(page)
+        if not c:
+            continue
+        if not c[2] and c[1] >= need:
+            return c, ""
+        seen.append(c)
+    if not seen:
+        return None, ""
+    seen.sort(key=lambda c: (c[1] >= need, c[1]), reverse=True)
+    c = seen[0]
+    note = []
+    if c[2]:
+        note.append("logo tagliato")
+    if c[1] < need:
+        note.append(f"sgranata: l'originale è largo {c[1]}px")
+    return c, ", ".join(note)
+
+
 def harvest(job):
     idx, item, shape = job
-    src = find_image_url(item.get("link", ""))
-    if not src:
-        return idx, None, None
-    raw = fetch(src)
-    if not raw:
-        return idx, None, None
     width, quality, ratio = shape
-    thumb = encode(raw, width, quality, ratio)
-    hero = encode(raw, HERO_PX, HERO_Q) if idx == 0 else None
-    return idx, thumb, hero
+    # le notizie (idx < 1000) cercano la foto migliore; AI e rubriche la loro
+    if idx < 1000:
+        need = MIN_SRC["hero"] if idx == 0 else MIN_SRC["card"] if idx < CARDS else 0
+        c, note = best_photo(item, need)
+    else:
+        c, note = candidate(item.get("link", "")), ""
+    if not c:
+        return idx, None, None, ""
+    raw, _, cut, page = c
+    if idx < CARDS:
+        width, quality = CARD_PX, CARD_Q
+    thumb = encode(raw, width, quality, ratio, cut)
+    hero = encode(raw, HERO_PX, HERO_Q, cut=cut) if idx == 0 else None
+    if page != item.get("link"):
+        note = ("da " + re.sub(r"^https?://(www\.)?", "", page).split("/")[0] + (", " + note if note else ""))
+    return idx, thumb, hero, note
 
 
 def enrich(path, refresh=False):
@@ -172,7 +249,7 @@ def enrich(path, refresh=False):
 
     got = 0
     with cf.ThreadPoolExecutor(max_workers=6) as pool:
-        for idx, thumb, hero in pool.map(harvest, jobs):
+        for idx, thumb, hero, note in pool.map(harvest, jobs):
             news = brief["news"][idx]
             # in --refresh una fonte muta non deve cancellare quel che c'era
             if thumb:
@@ -180,15 +257,15 @@ def enrich(path, refresh=False):
                 got += 1
             if hero:
                 news["hero"] = hero
-            print(f"  {news['id']:22} {'immagine acquisita' if thumb else 'nessuna immagine'}")
-        for idx, thumb, _ in pool.map(harvest, [(1000 + i, a, shape) for i, a, shape in ai_jobs]):
+            print(f"  {news['id']:22} {'immagine acquisita' if thumb else 'nessuna immagine'}" + (f" ({note})" if note else ""))
+        for idx, thumb, _, _ in pool.map(harvest, [(1000 + i, a, shape) for i, a, shape in ai_jobs]):
             a = brief["ai"][idx - 1000]
             if thumb:
                 a["image"] = thumb
                 got += 1
             print(f"  ai/{a['id']:19} {'immagine acquisita' if thumb else 'nessuna immagine'}")
 
-        for (k, i, it, _), (_, thumb, _) in zip(
+        for (k, i, it, _), (_, thumb, _, _) in zip(
                 rub_jobs, pool.map(harvest, [(2000 + n, it, shape) for n, (k, i, it, shape) in enumerate(rub_jobs)])):
             if thumb:
                 it["image"] = thumb

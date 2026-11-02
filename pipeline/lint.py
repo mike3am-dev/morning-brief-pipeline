@@ -509,6 +509,40 @@ def check_plancia(brief, r):
             r.warn("prossimo", f"la notizia {x['notizia']!r} non e' in questa edizione: il riquadro non si potra' toccare")
 
 
+def check_origine(brief, r):
+    """`origine` e' il riferimento supremo della notizia: chi l'ha detta o dichiarata
+    per primo (Bloomberg, Apple, AppleDB, un leaker), non chi l'ha ripresa. Nella
+    Magazine e' la testata in cima alla scheda, da sola, senza «via»."""
+    for n in brief.get("news") or []:
+        o = n.get("origine")
+        if not o:
+            r.warn(f"news/{n.get('id')}", "manca `origine`: chi l'ha detta per primo (la testata in cima alla scheda)")
+        elif re.search(r"\bvia\b|,|\(", o):
+            r.warn(f"news/{n.get('id')}", f"origine {o!r}: un nome solo, senza «via» e senza parentesi")
+
+
+def check_foto(brief, r):
+    """Le prime cinque stanno in schede grandi: una foto stretta si vede sgranata.
+    images.py cerca gia' fra le altre testate; qui si guarda cosa ne e' uscito."""
+    try:
+        import base64, io
+        from PIL import Image
+    except Exception:
+        return
+    for i, n in enumerate((brief.get("news") or [])[:5]):
+        src = (n.get("hero") if i == 0 else None) or n.get("image")
+        if not src or not src.startswith("data:"):
+            r.warn(f"news/{n.get('id')}", "nessuna foto fra le prime cinque: lancia python3 pipeline/images.py")
+            continue
+        try:
+            w = Image.open(io.BytesIO(base64.b64decode(src.split(",", 1)[1]))).width
+        except Exception:
+            continue
+        need = 1100 if i == 0 else 700
+        if w < need:
+            r.warn(f"news/{n.get('id')}", f"foto larga {w}px, sgranata nella scheda (servono {need}): cercane una migliore fra le altre testate")
+
+
 def check_reparto(brief, r):
     """Ogni notizia dice il suo reparto, uno della lista: nell'app del Duo e'
     quello che fa capire che notizia aspettarsi prima di aprirla."""
@@ -750,6 +784,8 @@ def lint(brief, with_links):
     check_memory(brief, r)
     check_verifica(brief, r)
     check_reparto(brief, r)
+    check_origine(brief, r)
+    check_foto(brief, r)
     check_accenti(brief, r)
     check_magazine(brief, r)
     check_plancia(brief, r)

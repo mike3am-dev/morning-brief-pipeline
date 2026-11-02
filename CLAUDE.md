@@ -269,6 +269,16 @@ passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole e
   compresa. Il lint lo blocca come errore; `python3 pipeline/accenti.py --fix` corregge.
 - **Non inventare nulla.** Se un dato non è nell'articolo, non va nel brief.
 
+Campo `origine`: **il riferimento supremo** della notizia — chi l'ha detta o dichiarata per
+primo, in un nome solo: «Bloomberg» (Gurman), «Apple», «AppleDB», «Digital Chat Station»,
+«Reddit» se l'ha trovata un utente, «The Verge» se è la sua prova. Non chi l'ha ripresa: si
+leggono più testate per scrivere (vedi *eco.py*), ma da dove viene la notizia è una cosa sola
+(2 novembre 2026, Mike: «se è 9to5Mac via The Verge, mettiamo The Verge direttamente»). Nella
+Magazine è la testata in cima alla scheda, senza «via»; nella notizia aperta «All'origine:»
+quando è diversa dalla testata che si legge. La decide la corsa, non `verify.py`, che sbaglia
+quando un articolo linka un'altra testata per contesto (la prova di HomePod mini 2 di The
+Verge risultava «via 9to5Mac»). Il lint avvisa se manca.
+
 Campo `reparto`: l'argomento in una parola, uno fra `Mac` · `iPhone` · `iPad` · `Watch` ·
 `Casa` · `Servizi` · `Software` · `Mercato` · `Regole` · `Azienda` · `Eventi` · `Accessori` ·
 `AI`. Nella lista del Duo sta sopra il titolo e dice che notizia aspettarsi (vedi
@@ -1007,10 +1017,22 @@ python3 pipeline/images.py
 ```
 
 Legge l'og:image di ogni articolo fra i primi otto e di ogni voce AI, e la incorpora
-nell'edizione come data URI. Tre formati: 16:9 da 480px per le notizie e per il LAB, 880px
-per la notizia di apertura, e **quadrata da 240px per la cronaca AI** (la miniatura di
-fianco al titolo). Incorporare invece di linkare serve perché le immagini funzionino
-offline e perché la copia su Artifact le mostri — la sua CSP blocca ogni richiesta esterna.
+nell'edizione come data URI. Quattro formati: 16:9 da 480px per le notizie dalla sesta in
+giù e per il LAB, **800px per le prime cinque e 1280 per la notizia di apertura** (nelle
+schede della Magazine a 480 si vedevano sgranate), e **quadrata da 240px per la cronaca AI**
+(la miniatura di fianco al titolo). Incorporare invece di linkare serve perché le immagini
+funzionino offline e perché la copia su Artifact le mostri — la sua CSP blocca ogni
+richiesta esterna.
+
+**Niente loghi sulle foto, niente foto sgranate** (2 novembre 2026, Mike: il «9TO5MAC» in un
+angolo, la fascia di GSMArena col nome gigante). Per le prime cinque `images.py` prova la
+notizia e poi le altre testate in `extra_links`, e tiene la prima foto senza marchio e larga
+abbastanza (1100px d'origine per l'apertura, 700 per le altre); se c'è solo quella col
+marchio, taglia la striscia in basso dove sta il logo (`WATERMARK`: i siti che firmano le
+foto, con quanto tagliare). Stampa da dove ha preso la foto, se ha tagliato e se è rimasta
+sgranata, e il lint lo ripete: una foto stretta fra le prime cinque si sostituisce prima di
+pubblicare, con quella di un'altra testata della stessa notizia. Un sito nuovo che firma le
+foto si aggiunge a `WATERMARK`.
 
 480px perché sul telefono la foto occupa tutta la colonna (~341 punti): a 300px si vedeva
 la sgranatura. Se un giorno cambi di nuovo il formato, `--refresh` riscarica anche le
@@ -1021,7 +1043,7 @@ lascia al suo posto l'immagine vecchia invece di cancellarla.
 python3 pipeline/images.py --all --refresh && python3 pipeline/push.py --all
 ```
 
-Costo: circa 400 KB per edizione — otto notizie, la foto grande di apertura, le schede LAB
+Costo: circa 550 KB per edizione (400 prima delle foto grandi) — otto notizie, la foto grande di apertura, le schede LAB
 e le miniature della cronaca AI. Fa un centinaio di MB l'anno, quindi `--prune` non è un
 vezzo: toglie le immagini (notizie e AI) alle edizioni oltre i giorni indicati. Ogni tanto
 alleggerisci l'archivio, poi ricaricalo:
@@ -1432,9 +1454,9 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   grigio freddo e il bianco puro di Apple restano ad Apple: l'osso e i pallini sono nostri.
 - **Una costruzione sola**: la testata nel condensato (la sua «voce»), il reparto, il
   titolo, e **sotto le due-tre righe della sintesi, intere** — la cosa che a Mike piace di
-  noi e che a News+ manca: troppo spazio vuoto. La testata è **chi l'ha detta per primo**
-  (l'origine dichiarata in `verifica.origini`, es. «Bloomberg»), con «via 9to5Mac» in
-  piccolo quando l'abbiamo letta altrove. In fondo il piede: **da quanto è uscita** («3 ore
+  noi e che a News+ manca: troppo spazio vuoto. La testata è **chi l'ha detta per primo**,
+  da sola: il campo `origine` (es. «Bloomberg»), senza «via 9to5Mac» (tolto il 2 novembre
+  2026). In fondo il piede: **da quanto è uscita** («3 ore
   fa», dall'ora in cui l'ha data la prima delle nostre testate: Mike lo preferisce
   all'orario), i cinque pallini e **il numero delle testate**, e
   **solo la stellina**: appunti e «non mi interessa» stanno nella notizia aperta. Su un
@@ -1512,7 +1534,11 @@ titoli di sezione), **si accendono come pallini** (i tre dell'approfondimento, i
 cambia nel pannello, il corpo che si apre sul telefono, i numeri, le voci, le foto che
 sfumano). I numeri dell'approfondimento contano da zero; la lineetta sotto le schede scivola
 da una all'altra col colore della scheda; il cambio di tema si allarga a cerchio dal
-pulsante. Regole: ogni cosa parte **una volta**, quando ha superato **un margine dal basso**
+pulsante. **I pallini delle sezioni nella Magazine sono vivi** (2 novembre 2026): un'onda del
+loro colore parte e si allarga, come il «dal vivo» della plancia, ognuno col suo passo.
+Accanto ai titoli di sezione non ci sono più i commentini («la notizia che pesa di più», «le
+altre con l'approfondimento»…, «orrendi»): restano solo «il commento della redazione» e «il
+resto, in due righe». Nella Classica restano. Regole: ogni cosa parte **una volta**, quando ha superato **un margine dal basso**
 (il terzo inferiore dello schermo non conta: chi scorre piano leggendo, quando arrivava con
 gli occhi trovava l'animazione già finita — Mike, 2 novembre 2026); quello che sta in fondo
 alla pagina o alla notizia aperta, e lassù non sale mai, parte quando si arriva in fondo. Le

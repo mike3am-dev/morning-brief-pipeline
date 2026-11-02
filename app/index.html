@@ -137,7 +137,6 @@ html.vista-magazine main{padding-bottom:7.5rem}
 .card-src{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .55rem}
 /* la testata con la sua voce: il nome nel condensato, come una testatina */
 .card-src b{font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:.005em; color:var(--ink)}
-.card-src .via{text-transform:none; letter-spacing:0; font-size:.78rem; font-weight:500}
 .card-src span{font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
 .card-src .rumor{color:var(--yellow-ink); display:inline-flex; align-items:center; gap:.3rem}
 .card-src .rumor::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow); align-self:center}
@@ -979,6 +978,17 @@ main{max-width:1240px; margin:0 auto; padding:0 var(--gutter) 5rem}
 }
 .section-head .hint{margin-left:auto}
 .section-head .pip{width:12px; height:12px; border-radius:50%; background:var(--orange); flex:none}
+/* nella Magazine i commentini accanto ai titoli di sezione non ci sono: restano solo
+   quelli che dicono qualcosa («il commento della redazione», «il resto, in due righe») */
+html.vista-magazine .chiosa{display:none}
+/* e i pallini delle sezioni sono vivi, come il «dal vivo» della plancia: un'onda del
+   loro colore parte e si allarga, ognuno col suo passo, cosi' non battono all'unisono */
+html.vista-magazine .section-head .pip{position:relative}
+html.vista-magazine .section-head .pip::after{content:""; position:absolute; inset:0; border-radius:50%; background:inherit;
+  animation:pip-onda 2.4s cubic-bezier(.2,.6,.3,1) infinite; pointer-events:none}
+html.vista-magazine .section-head:nth-of-type(2n) .pip::after{animation-delay:.8s}
+html.vista-magazine .section-head:nth-of-type(3n) .pip::after{animation-delay:1.6s}
+@keyframes pip-onda{0%{transform:scale(1); opacity:.55} 70%, 100%{transform:scale(2.8); opacity:0}}
 @media (max-width:600px){
   .section-head .hint{margin-left:0; flex-basis:100%; padding-left:1.7rem}
 }
@@ -3453,7 +3463,8 @@ function echoNode(n){
   if(v.ufficiale && n.tag !== "RUMOR" && count > 1) label += " · " + count + " testate";
 
   let origin = "";
-  if(indip.length >= 2) origin = "Fonti indipendenti: " + indip.slice(0, 3).join(", ");
+  if(n.origine){ if(n.origine !== (n.sources || [])[0]) origin = "All'origine: " + n.origine; }
+  else if(indip.length >= 2) origin = "Fonti indipendenti: " + indip.slice(0, 3).join(", ");
   else if(indip.length === 1) origin = "All'origine: " + indip[0];
   else if(v.primo && v.primo.testata && count > 1){
     const t = v.primo.ora ? new Date(v.primo.ora) : null;
@@ -5799,12 +5810,14 @@ function tempoFa(n){
   const d = Math.round(h / 24);
   return d === 1 ? "ieri" : d + " giorni fa";
 }
-/* chi l'ha detta per primo: l'origine dichiarata (Bloomberg), e chi l'ha
-   ripresa resta in piccolo, «via 9to5Mac» */
+/* chi l'ha detta per primo, e basta: niente «via 9to5Mac» (Mike, 2 novembre
+   2026: «vorrei un riferimento supremo, per capire da dove viene»). Lo scrive
+   la corsa in `origine`; per le edizioni di prima, l'origine trovata da
+   verify.py o la testata che abbiamo letto */
 function testataDi(n){
+  if(n.origine) return {nome:n.origine};
   const indip = ((n.verifica || {}).origini || []).filter(function(o){ return OFFICIAL_ORIGINS.indexOf(o) < 0; });
-  const ripresa = srcName(n);
-  return indip.length ? {nome:indip[0], via:indip[0] !== ripresa ? ripresa : ""} : {nome:ripresa, via:""};
+  return {nome:indip.length ? indip[0] : srcName(n)};
 }
 
 function magCard(brief, n, i, w, kind){
@@ -5837,7 +5850,6 @@ function magCard(brief, n, i, w, kind){
   const body = el("div", {class:"card-body"}, [
     el("div", {class:"card-src"}, [
       src.nome ? el("b", {text:src.nome}) : null,
-      src.via ? el("span", {class:"via", text:"via " + src.via}) : null,
       el("span", {text:reparto(n)}),
       n.tag === "RUMOR" ? el("span", {class:"rumor", text:"rumor"}) : null
     ]),
@@ -5980,7 +5992,7 @@ function magFeed(brief, wraps){
   if(!news.length) return feed;
   const card = function(i, kind){ return news[i] ? magCard(brief, news[i], i, wraps[i], kind) : null; };
 
-  feed.appendChild(magSection("apertura", "In apertura", "la notizia che pesa di più"));
+  feed.appendChild(magSection("apertura", "In apertura"));
   feed.appendChild(card(0, "hero"));
   if(news[1] || news[2]) feed.appendChild(el("div", {class:"mag-row two"}, [card(1, "std"), card(2, "std")]));
 
@@ -5988,7 +6000,7 @@ function magFeed(brief, wraps){
   if(q) feed.appendChild(q);
 
   if(news[3] || news[4]){
-    feed.appendChild(magSection("primo", "In primo piano", "le altre con l'approfondimento", "--blue"));
+    feed.appendChild(magSection("primo", "In primo piano", null, "--blue"));
     /* due orizzontali a specchio: una sola scheda a tutta larghezza con la foto
        sopra diventava una foto grande quanto lo schermo (HomePod, 2 novembre 2026) */
     if(news[3]) feed.appendChild(card(3, "wide"));
@@ -6512,7 +6524,7 @@ function drawEdition(root){
     const pipY = el("span", {class:"pip"}); pipY.style.background = "var(--yellow)";
     col.appendChild(el("div", {class:"section-head"}, [
       pipY, el("h2", {text:"Sul banco"}),
-      el("span", {class:"eyebrow hint", text:"la concorrenza, e chi la prova"})
+      el("span", {class:"eyebrow hint chiosa", text:"la concorrenza, e chi la prova"})
     ]));
     const ul = el("ul", {class:"banco"});
     brief.banco.forEach(function(b){
@@ -6547,7 +6559,7 @@ function drawEdition(root){
     const pipO = el("span", {class:"pip"}); pipO.style.background = "var(--orange)";
     col.appendChild(el("div", {class:"section-head"}, [
       pipO, el("h2", {text:"Se te lo fossi perso"}),
-      el("span", {class:"eyebrow hint", text:"non è di oggi, ma ne hanno parlato tutti"})
+      el("span", {class:"eyebrow hint chiosa", text:"non è di oggi, ma ne hanno parlato tutti"})
     ]));
     const ul = el("ul", {class:"recap"});
     brief.recap.forEach(function(m){
@@ -6589,7 +6601,7 @@ function drawEdition(root){
     const pipS = el("span", {class:"pip"}); pipS.style.background = "var(--red)";
     col.appendChild(el("div", {class:"section-head"}, [
       pipS, el("h2", {text:"Nelle discussioni"}),
-      el("span", {class:"eyebrow hint", text:"cosa si dice, non cosa è successo"})
+      el("span", {class:"eyebrow hint chiosa", text:"cosa si dice, non cosa è successo"})
     ]));
     col.appendChild(el("p", {class:"caveat", text:"Voci e opinioni raccolte su Reddit, Hacker News e altrove. Non sono notizie verificate: se una cosa qui dentro diventa un fatto, la ritrovi fra le notizie con la sua fonte."}));
     const ul = el("ul", {class:"talk"});
@@ -6623,7 +6635,7 @@ function drawEdition(root){
     const pipB = el("span", {class:"pip"}); pipB.style.background = "var(--blue)";
     col.appendChild(el("div", {class:"section-head"}, [
       pipB, el("h2", {text:"Radar"}),
-      el("span", {class:"eyebrow hint", text:"quello che non ha una scheda sua"})
+      el("span", {class:"eyebrow hint chiosa", text:"quello che non ha una scheda sua"})
     ]));
     const ul = el("ul", {class:"radar"});
     brief.radar.forEach(function(r){

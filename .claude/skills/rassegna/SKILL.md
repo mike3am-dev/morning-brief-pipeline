@@ -68,7 +68,9 @@ Scrivi `data/briefs/YYYY-MM-DD.json` seguendo lo schema di
 `approfondimento`, che è un articolo che va **oltre** la notizia, non la ripete: un
 titolo suo, il testo, i numeri che contano e le **voci** degli altri — analisti,
 testate, dirigenti, i commenti più votati su Reddit, Hacker News, GSMArena — con chi
-l'ha detto e il link. Leggi gli articoli interi e le discussioni, verifica ogni link
+l'ha detto e il link. Ogni notizia ha `origine`: chi l'ha detta o dichiarata per
+primo, un nome solo («Bloomberg», «Apple», «The Verge»), non chi l'ha ripresa — è la
+testata in cima alla scheda. Leggi gli articoli interi e le discussioni, verifica ogni link
 (vedi *L'approfondimento* in `CLAUDE.md`: esempio completo in
 `data/briefs/2026-11-01.json`). Tappe, «chi lo dice» e «cosa aspettarsi» non si
 scrivono più.
