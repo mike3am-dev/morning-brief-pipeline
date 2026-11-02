@@ -853,6 +853,36 @@ Classica non mostra, e la corsa li scrive ogni mattina:
 
 Il lint avvisa se mancano e dà errore se puntano a notizie che non ci sono.
 
+#### La plancia del mattino — `prossimo` e `borsa`
+
+A destra della testata della Magazine ci sono tre riquadri (vedi *La plancia del mattino* più
+sotto): il meteo di Milano, che l'app chiede da sola, e due che scrive la corsa.
+
+```json
+"prossimo": [{"titolo": "HomeView in negozio", "data": "2026-11-13", "tipo": "lancio",
+              "notizia": "homeview-sei-mesi-software"}],
+"borsa": {"simbolo": "AAPL", "chiusura": 344.63, "variazione": -1.23, "data": "2026-10-30",
+          "serie": [348.22, 347.73, 343.91, 347.1, 343.83, 348.91, 344.63], "fonte": "Yahoo Finance"}
+```
+
+- **`prossimo`**: il lancio o l'evento Apple **confermato** più vicino, con la data esatta — un
+  prodotto che arriva nei negozi, un evento annunciato, un aggiornamento con la sua data. Mai
+  un rumor: la plancia conta i giorni, e contarli verso una data che nessuno ha confermato
+  sarebbe spacciarla per certa. `titolo` entro 32 caratteri; `notizia` è l'id della notizia di
+  oggi che ne parla (toccando il riquadro si apre), se c'è. Si può scrivere più di una voce:
+  l'app mostra la più vicina non ancora passata. Se non c'è niente di confermato in vista, il
+  campo resta vuoto e il riquadro non esce.
+- **`borsa`** la scrive lo script, dopo la scrittura e prima della pubblicazione:
+
+```bash
+python3 pipeline/borsa.py
+```
+
+  È la chiusura dell'ultima seduta conclusa di AAPL, con la variazione sul giorno prima e
+  la curva degli ultimi sette giorni di borsa (Yahoo Finance). Non è un prezzo dal vivo, e la
+  plancia lo dice («chiusura ven»). Se Yahoo non risponde lo script lo dice ed esce senza
+  errore: il riquadro manca, la corsa no.
+
 #### Controllo prima di pubblicare
 
 ```bash
@@ -1204,6 +1234,7 @@ pipeline/eco.py          quanto gira una notizia fuori dalle nostre testate (Goo
 pipeline/audio.py        gli approfondimenti letti ad alta voce (Piper) -> Supabase Storage
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li trova, --fix li corregge
+pipeline/borsa.py        la chiusura di AAPL per la plancia della Magazine (Yahoo Finance)  ->  `borsa`
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
 pipeline/icon.py         disegna app/icon.png (monogramma + pallini). --check la prova piccola
@@ -1356,6 +1387,17 @@ quella di sempre.
 interessa e al lavoro quell'articolo lo devo riprendere»). Nella Magazine c'è la scheda
 **Più tardi** subito dopo Spazio, col numero, e dentro le notizie messe da parte come schede
 che si aprono a tutto schermo. Nella Classica restano i Salvati nei tre puntini.
+
+**La plancia del mattino** (2 novembre 2026). Nella Magazine, a destra del logo sotto la
+data, tre riquadri che fanno «dal vivo» («qualcosa che dia live, quasi dei widget, visto che
+è un'edizione del mattino», Mike): **il meteo di Milano** — sempre Milano — chiesto a
+Open-Meteo (gratuito, senza chiave) all'apertura e ogni venti minuti, con l'icona disegnata
+che si muove (il sole che gira, la luna con la sua stella, le nuvole che passano, la pioggia e
+la neve che cadono, il lampo) e il pallino rosso del dal vivo; **Apple in borsa**, la chiusura
+con la variazione e la curva della settimana che si traccia; **il prossimo**, giallo pieno, i
+giorni che mancano al lancio o all'evento più vicino, che toccato apre la notizia. Il modulo è
+`Plancia` in `pipeline/template.html`. Un riquadro senza dati non esce. Sul Duo in verticale e
+sul telefono la plancia scende sotto il logo, a tutta larghezza.
 
 **La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
 stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa

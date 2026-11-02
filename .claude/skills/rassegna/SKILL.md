@@ -76,7 +76,9 @@ scrivono più.
 Per la vista Magazine scrivi anche `citazione` («L'ultima parola»: una frase con nome e
 cognome che porta dentro un approfondimento) ed `editoriale` («Il punto»: il commento della
 redazione, 2–3 paragrafi che tengono insieme le notizie del giorno, mai un riassunto) — vedi
-*La vista Magazine* in `CLAUDE.md`, esempio in `data/briefs/2026-11-02.json`. Leggi l'edizione del giorno prima e non ripetere
+*La vista Magazine* in `CLAUDE.md`, esempio in `data/briefs/2026-11-02.json`. E per la plancia
+del mattino `prossimo` (il lancio o l'evento confermato più vicino, con la data esatta; mai un
+rumor) e, prima di `push.py`, `python3 pipeline/borsa.py` — vedi *La plancia del mattino*. Leggi l'edizione del giorno prima e non ripetere
 le stesse notizie senza sviluppi nuovi.
 
 ```bash

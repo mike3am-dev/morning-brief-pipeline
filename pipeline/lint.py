@@ -487,6 +487,26 @@ def check_magazine(brief, r):
             r.warn("editoriale", "collegato a meno di due notizie: il commento deve tenerle insieme")
 
 
+def check_plancia(brief, r):
+    """La plancia del mattino nella Magazine: `borsa` la scrive pipeline/borsa.py,
+    `prossimo` lo scrive la corsa (il lancio o l'evento piu' vicino, con la data)."""
+    if not brief.get("borsa"):
+        r.warn("borsa", "manca: lancia python3 pipeline/borsa.py (la plancia fa a meno del riquadro)")
+    ids = {n.get("id") for n in brief.get("news") or []}
+    prossimi = brief.get("prossimo") or []
+    if not prossimi:
+        r.warn("prossimo", "manca il prossimo lancio o evento per la plancia")
+    for x in prossimi:
+        if not x.get("titolo") or not DATA_OK.match(str(x.get("data", ""))) or len(str(x.get("data"))) != 10:
+            r.error("prossimo", f"voce senza titolo o senza data AAAA-MM-GG: {x}")
+        elif (C.days_between(x["data"], brief.get("date", C.today())) or 0) < 0:
+            r.warn("prossimo", f"«{x['titolo']}» e' gia' passato ({x['data']})")
+        if len(x.get("titolo") or "") > 32:
+            r.warn("prossimo", f"«{x['titolo']}»: nella plancia stanno 32 caratteri")
+        if x.get("notizia") and x["notizia"] not in ids:
+            r.warn("prossimo", f"la notizia {x['notizia']!r} non e' in questa edizione: il riquadro non si potra' toccare")
+
+
 def check_reparto(brief, r):
     """Ogni notizia dice il suo reparto, uno della lista: nell'app del Duo e'
     quello che fa capire che notizia aspettarsi prima di aprirla."""
@@ -730,6 +750,7 @@ def lint(brief, with_links):
     check_reparto(brief, r)
     check_accenti(brief, r)
     check_magazine(brief, r)
+    check_plancia(brief, r)
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
     check_ranking(news, r)
