@@ -1280,16 +1280,26 @@ questo sistema.
 
 
 **La testata della Magazine** (2 novembre 2026). Nella Magazine il nome del giornale è
-in cima, grande, come una testata vera: i tre pallini, *The Morning Brief* a tutta larghezza
-con la O di MORNING che sorge come un sole all'apertura, una riga nera spessa, e sotto una
-riga sola con la data e quante notizie su quanti articoli letti. Prima la Magazine sembrava
-chiamarsi «2 novembre», e il nome stava appiccicato nell'angolo. La testata grande scorre
-via; nella barra che resta in cima compaiono allora il marchio piccolo, le sezioni (Apple,
-AI, Games, Tech, Spazio), la lente e **il menu** — un pulsante di vetro col pallino della
-sincronizzazione che apre un pannello con le parole scritte: Vista (Classica / Magazine),
-Tema (Chiaro / Scuro), Archivio, Salvati, Diario, Cerca, Esporta e Importa gli appunti,
-Esci. Prendono il posto delle icone sparse e dei tre puntini, che «non si capiva niente».
-Nella Classica la testata resta quella di sempre.
+in cima, grande, come una testata vera: i tre pallini, *The Morning Brief* massiccio e
+compatto come la sigla (il peso più pesante, le righe strette), con **l'arco azzurro**
+dell'orizzonte davanti alla O di MORNING, che all'apertura sorge come un sole; subito sotto
+la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava chiamarsi
+«2 novembre», e il nome stava appiccicato nell'angolo. La testata grande scorre via; nella
+barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
+
+**Le sezioni sono pillole** col pallino del loro colore (Apple arancione, AI rosso, Games
+giallo, Tech blu, Spazio grigio, Più tardi la stellina), e una **pillola nera scivola**
+sotto quella attiva; nella barra stretta si rimpiccioliscono. A destra tre pulsanti: la
+**vista** (Classica / Magazine, con la sua icona — un elenco puntato o quattro quadrati), la
+**lente**, e **il menu** di vetro col pallino della sincronizzazione: Tema, Archivio, Diario,
+Esporta e Importa gli appunti, Esci, con le parole scritte. Il menu si apre sotto il pulsante
+se c'è posto, altrimenti sale finché sta tutto a schermo. Nella Classica la testata resta
+quella di sempre.
+
+**La stellina vuol dire «Leggi più tardi»** (2 novembre 2026, Mike: «la clicco se mi
+interessa e al lavoro quell'articolo lo devo riprendere»). Nella Magazine c'è la scheda
+**Più tardi** subito dopo Spazio, col numero, e dentro le notizie messe da parte come schede
+che si aprono a tutto schermo. Nella Classica restano i Salvati nei tre puntini.
 
 **La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
 stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa
@@ -1328,17 +1338,22 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   le viste.
 - **«Il punto»** è solo titolo e testo, giustificato, su due colonne pari: i link alle notizie
   e la firma facevano un muro di parole, e che sia il commento lo dice già l'intestazione.
-- **«Sul banco»** nella Magazine prende la forma delle schede: il genere come occhiello col
-  suo pallino, «Al banco» dentro la scheda su un velo giallo, non più il foglietto giallo
-  accanto («sembra un'altra rivista», Mike).
+- **«Sul banco»** nella Magazine prende la forma delle schede, tutte della stessa altezza: il
+  genere come occhiello col suo pallino, «Al banco» dentro la scheda su un velo giallo, non
+  più il foglietto giallo accanto («sembra un'altra rivista», Mike).
+- **Le schede normali hanno la foto sopra**, a tutta larghezza; **le brevi sono solo testo**
+  (le fotine nell'angolo erano «orrende»). Nelle sezioni in fondo (banco, perso, radar) il
+  piede ha **solo la stellina**.
 - **Le tre sezioni in fondo hanno ciascuna la sua forma**, perché l'occhio le riconosca
   prima di leggere (2 novembre 2026): **«Se te lo fossi perso»** sta su una linea del tempo
   — un righello degli ultimi dieci giorni con i pallini arancioni dove cadono le voci
-  (impilati se sono dello stesso giorno), e le voci appese a una linea verticale col
-  «quando» in grande; **il radar** è un radar — un quadrante scuro con i cerchi e il fascio
+  (impilati se sono dello stesso giorno) e la data sotto, e a sinistra di ogni voce **la data
+  in cui è uscita, come un foglio di calendario** («27 / ott»), non un numero; **il radar** è un radar — un quadrante scuro con i cerchi e il fascio
   blu che gira, ogni voce un puntino numerato che si accende quando il fascio ci passa, con
-  la scheda accanto; **le discussioni** sono una chat — pannello scuro, la barra coi tre
-  pallini e le piattaforme, i fumetti alternati con la piattaforma come mittente.
+  la scheda accanto; **le discussioni** sono un pannello scuro con la barra coi tre
+  pallini e le piattaforme, e ogni discussione è un post a sé con l'avatar della sua
+  piattaforma (r/ arancione per Reddit, Y per Hacker News, X) — voci diverse, non un botta
+  e risposta, che entrano una dopo l'altra.
 - **Il vetro** che Mike ha amato in News+: la barretta galleggiante in basso che salta fra
   le sezioni e dice dove sei, il tasto indietro, il menu dei «•••».
 - Le chicche restano: le schede salgono quando arrivano, la data e la citazione entrano
