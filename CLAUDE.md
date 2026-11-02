@@ -1447,7 +1447,9 @@ l'angolo) e centrato in altezza fra il bordo in alto e la riga nera.
 **La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
 stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa
 dalla vista **Classica** — quella del 1 novembre, salvata nel tag git
-`app-amata-2026-11-02` — alla **Magazine**, e il dispositivo si ricorda la scelta. Solo la
+`app-amata-2026-11-02` — alla **Magazine**. **L'app si apre sempre nella Magazine** (2
+novembre 2026, sera): solo il pulsante porta alla Classica, che dura finché l'app resta
+aperta; alla prossima apertura si riparte dalla Magazine. Solo la
 scheda APPLE. Cosa prende da News+ e cosa no:
 
 - **Schede su carta** (`--paper`) sul fondo osso, angoli tondi, ombra leggera. Il fondo

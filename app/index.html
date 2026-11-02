@@ -5664,15 +5664,16 @@ function frontEntry(brief){
    una citazione grande a meta' strada, un commento della redazione. Senza il
    vuoto di News+: sotto ogni titolo le due-tre righe che dicono di cosa
    parla, che e' la cosa che fa venire voglia di aprire. La vista Classica
-   resta com'era: il pulsante in testata passa dall'una all'altra, e il
-   dispositivo se lo ricorda. Il fondo osso, i pallini e le chicche restano.
+   resta com'era: il pulsante in testata passa dall'una all'altra. L'app si apre
+   sempre nella Magazine (Mike, 2 novembre 2026): la Classica dura finche' l'app
+   resta aperta (sessionStorage), alla prossima apertura si riparte dalla Magazine. Il fondo osso, i pallini e le chicche restano.
 
    La notizia toccata si apre a tutto schermo (Sheet): ci si spostano corpo
    e pulsanti dell'<article> della lista, come fa il pannello del Duo, cosi'
    approfondimento, appunti e segnali di lettura restano gli stessi oggetti. */
 const VISTA_KEY = "tmb-vista";
-let VISTA = "classica";
-try{ VISTA = localStorage.getItem(VISTA_KEY) === "magazine" ? "magazine" : "classica"; }catch(e){}
+let VISTA = "magazine";
+try{ VISTA = sessionStorage.getItem(VISTA_KEY) === "classica" ? "classica" : "magazine"; localStorage.removeItem(VISTA_KEY); }catch(e){}
 function magazine(){ return VISTA === "magazine"; }
 document.documentElement.classList.toggle("vista-magazine", magazine());
 
@@ -6057,7 +6058,7 @@ const MagNav = (function(){
 
 function setVista(v){
   VISTA = v;
-  try{ localStorage.setItem(VISTA_KEY, v); }catch(e){}
+  try{ sessionStorage.setItem(VISTA_KEY, v); }catch(e){}
   document.documentElement.classList.toggle("vista-magazine", magazine());
   Array.prototype.forEach.call(document.querySelectorAll("#vistaBtn, .mt-vista"), paintVistaBtn);
   if(!magazine() && currentView === "salvati"){ show("oggi"); }
