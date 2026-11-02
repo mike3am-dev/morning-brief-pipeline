@@ -18,6 +18,12 @@ sottoagente invece di farla nella sessione che scrive l'edizione, non stampare m
 file con immagini o audio incorporati senza filtrare prima quei campi, ed estrai il testo
 di tutti gli articoli scaricati con un solo script.
 
+**La prosa delle notizie la scrive il redattore su Opus** (`.claude/agents/redattore.md`, dal 3
+novembre 2026): in una corsa manuale puoi scriverla tu, ma per restare uguale alla routine
+delega la lettura a un sottoagente (file in `/tmp/lettura-<giorno>.md`), scrivi le sezioni
+`ai`, `banco`, `social`, `radar`, `recap` e chiama il redattore per il resto. Vedi
+*Chi scrive la prosa* in `CLAUDE.md`.
+
 ## Controllo di uscita anticipata
 
 ```bash

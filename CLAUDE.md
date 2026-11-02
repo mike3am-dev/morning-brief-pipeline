@@ -243,6 +243,24 @@ notizia (va fatto nel sottoagente di lettura: è tanto testo). Le regole della s
 fuori, e `primo` è chi l'ha data per primo fra tutte. Le risposte restano in
 `data/eco/<giorno>.json`: la seconda corsa non rifà le domande.
 
+#### Chi scrive la prosa — il redattore su Opus
+
+**Dal 3 novembre 2026 le notizie le scrive un sottoagente su Opus**, `.claude/agents/redattore.md`
+(Mike, 2 novembre: «usiamo Opus per la scrittura»; la rilettura dei token si affronta dopo). In un
+confronto alla pari su una stessa notizia Opus era più prudente nel separare fatto e ipotesi,
+Sonnet più incisivo nel titolo: la differenza è piccola, e se Opus non ripaga si torna a Sonnet
+cancellando una riga dal prompt della routine. La regia resta alla sessione principale (Sonnet):
+
+1. la **lettura** va a un sottoagente, che scrive `/tmp/lettura-<giorno>.md` (non è nel repo);
+2. la regia scrive nell'edizione `date`, `title`, `window`, `stats`, `feed_notes` e le sezioni
+   `ai`, `banco`, `social`, `radar`, `recap`;
+3. il **redattore** aggiunge `news`, `top3`, `intro`, gli approfondimenti, `citazione`,
+   `editoriale`, `prossimo`, senza cancellare niente di quello che c'è;
+4. se non consegna, la regia scrive le notizie da sé: un'edizione in Sonnet batte nessuna.
+
+Il resto della procedura (verify, immagini, lint, push, visualista) non cambia. Le regole di
+scrittura che seguono valgono per il redattore; stanno anche, in forma breve, nel suo file.
+
 Poi scrivi `data/briefs/YYYY-MM-DD.json` seguendo esattamente lo schema di
 `data/briefs/2026-08-08.json`. **Scrivi `sintesi`, `descrizione` e i campi
 dell'`approfondimento` già dentro le misure che `lint.py` controlla** (vedi le tabelle
