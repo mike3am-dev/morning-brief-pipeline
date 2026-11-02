@@ -197,6 +197,52 @@ comando** (un ciclo bash con i `curl` lanciati in background e un `wait` finale,
 non uno alla volta in chiamate separate: leggerli uno dopo l'altro, in sequenza, è il modo più
 lento di passare questa fase — il 2 ottobre 2026 ci sono voluti da soli una ventina di minuti.
 
+#### Quanto gira, e più racconti per notizia — `eco.py`
+
+**Il 2 novembre 2026 Mike ha detto la cosa giusta**: «tu apri 9to5Mac e mi schiaffi dentro
+le notizie; io ne leggo una decina "riportate da una testata" e hai finito il compitino».
+Era vero. Dodici notizie su tredici erano riscritte da un articolo solo, e «una testata
+sola» voleva dire «una sola fra le sette che leggiamo»: la modalità telecamera di HomeView,
+data da The Verge come voce isolata, alle 6 del mattino l'avevano già scritta una dozzina di
+siti (il primo un sito francese, poi iClarified, AppleInsider, Digital Trends) e a
+mezzogiorno erano venticinque. Il software vecchio di HomeView, «di MacRumors», MacRumors
+l'aveva preso da AppleDB. Quindi, subito dopo la raccolta:
+
+```bash
+python3 pipeline/eco.py
+```
+
+Per ogni notizia Apple del grezzo chiede a Google News e Bing News (senza chiave) chi altro
+l'ha scritta negli ultimi tre giorni, e stampa le notizie **ordinate per quanto girano**:
+quante testate, nostre e no; chi l'ha data per prima, con l'ora; gli articoli da leggere
+oltre al nostro. È un segnale di selezione: una notizia ripresa da venti siti non sta al
+rank 10, e una che sta solo da noi va detta come tale («lo scrive solo MacRumors»).
+
+Scelte le notizie, **si leggono tutte insieme in un comando solo**:
+
+```bash
+python3 pipeline/eco.py --leggi "titolo o link del grezzo" "altro titolo" ...
+```
+
+scarica in parallelo il nostro articolo e quelli da leggere e ne stampa il testo, notizia per
+notizia (va fatto nel sottoagente di lettura: è tanto testo). Le regole della stesura:
+
+- **Mai una notizia riscritta da un articolo solo quando ce ne sono altri.** Le prime cinque
+  si scrivono da almeno tre racconti di testate diverse, le altre da almeno due quando
+  `eco.py` ne trova. La descrizione mette insieme quello che ciascuno aggiunge — il dato che
+  ha uno solo, la dichiarazione raccolta da un altro, il dettaglio che contraddice — e
+  `sources` elenca le testate **lette davvero**, gli altri link in `extra_links`.
+- **All'origine, non alla ripresa.** Se l'articolo dice da dove l'ha preso (AppleDB, un
+  codice trovato da Aaron Perris, Gurman), è quella la fonte da nominare e, se si apre, da
+  leggere.
+- **Una stesura nostra, non una traduzione.** L'ordine dei fatti, l'attacco e il contesto
+  sono nostri; si traduce solo quello che va fra virgolette.
+
+`verify.py` poi rifà il conto dentro l'edizione: `verifica.testate` sono **tutte** le testate
+(quelle che l'app mostra in «quanto gira»), `lette` quelle delle nostre, `web` quelle trovate
+fuori, e `primo` è chi l'ha data per primo fra tutte. Le risposte restano in
+`data/eco/<giorno>.json`: la seconda corsa non rifà le domande.
+
 Poi scrivi `data/briefs/YYYY-MM-DD.json` seguendo esattamente lo schema di
 `data/briefs/2026-08-08.json`. **Scrivi `sintesi`, `descrizione` e i campi
 dell'`approfondimento` già dentro le misure che `lint.py` controlla** (vedi le tabelle
@@ -1153,6 +1199,8 @@ pipeline/rubriche.py     le schede GAMES, TECH, SPAZIO: raccolta, punteggio, Gem
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
+pipeline/eco.py          quanto gira una notizia fuori dalle nostre testate (Google/Bing News),
+                         chi l'ha data per prima, e gli altri articoli da leggere (--leggi)
 pipeline/audio.py        gli approfondimenti letti ad alta voce (Piper) -> Supabase Storage
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
 pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li trova, --fix li corregge
@@ -1187,6 +1235,7 @@ data/social/             le discussioni raccolte per data
 data/missed/             i candidati al ripescaggio, per data
 data/lab/                cosa ci fa la gente con i modelli, per data
 data/verify/cache.json   gli articoli già letti da verify.py, per un mese
+data/eco/                le risposte di Google/Bing News per giorno, riusate da verify.py
 data/social/manual.md    dove incolli a mano i link da X e affini
 app/                     output generato, non modificare a mano
 ```

@@ -49,6 +49,7 @@ from urllib.parse import urljoin, urlparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import common as C
+import eco
 from fetch import UA
 
 VERIFY_DIR = os.path.join(C.ROOT, "data", "verify")
@@ -388,8 +389,8 @@ def mismatch(news, v):
     if tag == "RUMOR" and v["ufficiale"]:
         out.append("RUMOR, ma una delle testate riporta un comunicato o una "
                    "dichiarazione di Apple: forse non e' piu' un rumor")
-    if tag == "RUMOR" and rel == "alta" and not indip and v["testate"] > 1:
-        out.append(f"RUMOR ad affidabilita' alta, ma nessuna delle {v['testate']} testate "
+    if tag == "RUMOR" and rel == "alta" and not indip and v.get("lette", v["testate"]) > 1:
+        out.append(f"RUMOR ad affidabilita' alta, ma nessuna delle {v.get('lette', v['testate'])} testate lette "
                    "dice da chi viene")
     scoops = [o for o in indip if is_scoop(o)]
     if tag == "RUMOR" and len(scoops) >= 2 and rel != "alta":
@@ -430,10 +431,34 @@ def main():
     cited = read_all(all_urls, cache, args.refresh)
     C.save_json(CACHE_FILE, cache)
 
+    # quanto gira fuori dalle nostre testate: si chiede col titolo originale degli
+    # articoli del grezzo, che e' quello che gli altri siti hanno scritto
+    by_url = {C.norm_url(i.get("link")): i for i in raw}
+    seeds = {n.get("id"): [by_url[C.norm_url(u)]["title"] for u in clusters[n.get("id")]
+                           if C.norm_url(u) in by_url][:3] for n in news}
+    print("Chiedo a Google News e Bing News chi altro l'ha scritta...\n")
+    covs = eco.lookup(sorted({t for ts in seeds.values() for t in ts}), day)
+
     rows, warnings = [], []
     for n in news:
         v = verdict(n, clusters[n.get("id")], cited, feeds, day)
         primo = first_of(clusters[n.get("id")], raw, feeds)
+        web = {}
+        for t in seeds[n.get("id")]:
+            for x in (covs.get(t) or {}).get("voci", []):
+                k = eco.key(x["testata"])
+                if k not in web or (x["ora"] and (web[k]["ora"] is None or x["ora"] < web[k]["ora"])):
+                    web[k] = x
+        ours = {eco.key(o) for o in {outlet_of(u, feeds) for u in clusters[n.get("id")]}}
+        # "testate" e' quello che l'app mostra in "quanto gira": tutte, non solo
+        # le nostre (fino al 2 novembre 2026 erano solo le nostre, e la modalita'
+        # telecamera di HomeView ripresa da venti siti risultava "una testata sola")
+        v["lette"] = v["testate"]
+        v["testate"] = len(ours | set(web))
+        v["web"] = len(set(web) - ours)
+        first_web = min((x for x in web.values() if x["ora"]), key=lambda x: x["ora"], default=None)
+        if first_web and (not primo or eco.when_iso(first_web["ora"]) < eco.when_iso(primo["ora"])):
+            primo = {"testata": first_web["testata"], "ora": first_web["ora"]}
         if primo:
             v["primo"] = primo
         if not args.dry:
@@ -455,7 +480,8 @@ def main():
 
     print(C.table(rows, ["#", "tag", "affid.", "test.", "rip.", "muti", "catena", "notizia"]))
     print("""
-  test.   testate che la raccontano (le nostre, piu' i link della notizia)
+  test.   testate che la raccontano: le nostre, i link della notizia e quelle
+          che Google News e Bing News trovano negli ultimi tre giorni
   rip.    testate che la riprendono citando qualcun altro
   muti    testate che la raccontano senza dire da dove viene
   catena  chi l'ha detto per primo: le origini indipendenti, o la parola ufficiale""")

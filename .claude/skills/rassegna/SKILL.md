@@ -36,11 +36,20 @@ python3 pipeline/lab.py --hours 30
 python3 pipeline/taste.py
 python3 pipeline/missed.py
 python3 pipeline/threads.py recall --raw
+python3 pipeline/eco.py
 ```
 
-Leggi il file grezzo appena scritto. Scegli le notizie che contano e, per le
-8–12 più importanti, scarica l'articolo intero con `curl -sL` e togli i tag:
-servono dati e citazioni verificabili, l'abstract RSS non basta. **Prendi gli
+`eco.py` dice quanto gira ogni notizia Apple del grezzo fuori dalle nostre testate
+(Google News e Bing News), chi l'ha data per prima e quali altri articoli leggere: è un
+segnale di selezione. Scelte le notizie, `eco.py --leggi "titolo" ...` le scarica tutte
+in un colpo, il nostro articolo più gli altri. **Mai riscrivere una notizia da un
+articolo solo quando ce ne sono altri**: le prime cinque da almeno tre testate, le altre
+da almeno due, la descrizione fonde quello che ciascuna aggiunge, `sources` dice chi hai
+letto davvero (vedi *Quanto gira, e più racconti per notizia* in `CLAUDE.md`).
+
+Leggi il file grezzo appena scritto. Scegli le notizie che contano e leggile intere
+con `eco.py --leggi` (non con un `curl` alla volta): servono dati e citazioni
+verificabili, l'abstract RSS non basta. **Prendi gli
 URL dal file grezzo, non ricostruirli dal titolo** — cambiano.
 
 Ogni articolo grezzo ha un `tier` che dice dove va a finire: `ai` e `lab`

@@ -393,7 +393,7 @@ def judge(s, st, solo_share, follow_share, days, name=""):
     tier = TIERS.get(name)
     rado = tier in ("ai", "banco", "lab")
 
-    if state in ("unreachable", "parse-error"):
+    if state in ("unreachable", "parse-error", "html-not-feed"):
         return "PANCHINA", "il feed non risponde o non si legge"
     limite = QUIET_TOLERANCE_H if quiet else (SLOW_HOURS if rado else DEAD_HOURS)
     if isinstance(stale, (int, float)) and stale > limite:

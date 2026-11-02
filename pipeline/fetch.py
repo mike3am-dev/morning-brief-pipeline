@@ -11,6 +11,7 @@ Uso:
 
 import argparse
 import concurrent.futures as cf
+import gzip
 import html
 import json
 import os
@@ -70,7 +71,7 @@ def strip_html(text):
 def download(name, url):
     try:
         out = subprocess.run(
-            ["curl", "-sL", "--max-time", "30", "-A", UA, url],
+            ["curl", "-sL", "--compressed", "--max-time", "30", "-A", UA, url],
             capture_output=True, timeout=45,
         )
         # curl che esce male ha comunque scritto qualcosa a volte (una pagina di
@@ -116,9 +117,21 @@ def parse_feed(source, blob, cutoff, now):
     # qualche feed antepone una riga vuota o il BOM alla dichiarazione XML,
     # e il parser si rifiuta di partire (capita a Il Post)
     blob = blob.lstrip(b"\xef\xbb\xbf \t\r\n")
+    # Google DeepMind manda il feed compresso senza dirlo nell'intestazione, e
+    # --compressed non basta: dal 2 novembre 2026 risultava "parse-error"
+    if blob[:2] == b"\x1f\x8b":
+        try:
+            blob = gzip.decompress(blob).lstrip(b"\xef\xbb\xbf \t\r\n")
+        except Exception:
+            pass
     try:
         root = ET.fromstring(blob)
     except Exception:
+        # una pagina al posto del feed e' un muro (consenso, anti-bot, limite di
+        # richieste), non un feed rotto: si cura in un altro modo
+        head = blob[:600].lower()
+        if b"<html" in head or b"<!doctype html" in head:
+            return items, newest, "html-not-feed"
         return items, newest, "parse-error"
 
     entries = root.findall(".//item") or root.findall(".//atom:entry", NS)
