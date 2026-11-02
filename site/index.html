@@ -550,14 +550,15 @@ html.vista-magazine #view-oggi .talk.chat li{position:relative}
 
 /* ---- L'ultima parola: si scrive da sola, parola per parola, poi il cursore e il nome ---- */
 .mo-type:not(.mo-in) .w{opacity:0}
-.mo-type.mo-in .w{animation:mo-fade .22s ease-out both; animation-delay:calc(.15s + var(--k, 0) * 70ms)}
+.ww{white-space:nowrap}
+.mo-type.mo-in .w{animation:mo-fade .16s ease-out both; animation-delay:calc(.2s + var(--k, 0) * 36ms)}
 .tw-cursor{display:inline-block; width:.07em; height:.82em; margin-left:.06em; vertical-align:-.06em; background:var(--yellow); opacity:0}
 .mo-type.mo-in .tw-cursor{animation:tw-blink .8s steps(1) 4 both, mo-fade .3s reverse forwards;
-  animation-delay:calc(.15s + var(--n, 10) * 70ms), calc(.15s + var(--n, 10) * 70ms + 3.2s)}
+  animation-delay:calc(.2s + var(--n, 60) * 36ms), calc(.2s + var(--n, 60) * 36ms + 3.2s)}
 @keyframes tw-blink{0%{opacity:1} 50%{opacity:0}}
 .mag-quote .mo-type:not(.mo-in) ~ figcaption, .mag-quote .mo-type:not(.mo-in) ~ .mag-quote-go{opacity:0}
 .mag-quote .mo-type.mo-in ~ figcaption, .mag-quote .mo-type.mo-in ~ .mag-quote-go{animation:mo-rise .45s cubic-bezier(.2,.7,.2,1) both;
-  animation-delay:calc(.25s + var(--n, 10) * 70ms)}
+  animation-delay:calc(.35s + var(--n, 60) * 36ms)}
 
 /* ---- In breve: la scritta che scorre del telegiornale ---- */
 .tg{display:flex; align-items:stretch; height:44px; border-radius:12px; overflow:hidden; background:var(--ink); color:var(--bone); margin:.3rem 0 .2rem}
@@ -597,6 +598,35 @@ html.vista-magazine #view-oggi .talk.chat li{position:relative}
 @keyframes kb-breathe{from{transform:scale(1)} to{transform:scale(1.07) translate(-1.2%, -.8%)}}
 .c-hero .card-img, .c-hero .card-img.mo-img.mo-in{animation:mo-fade .7s ease both, kb-breathe 22s ease-in-out .7s infinite alternate;
   transform-origin:60% 40%}
+
+/* ---- Magazine: le foto respirano tutte, piano, ognuna col suo passo ---- */
+.breath{display:block; overflow:hidden; border-radius:5px}
+.breath.reader-frame{border-radius:3px}
+html.vista-magazine :is(.card-img, .rub-card .shot, .breath > img){
+  animation:mo-fade .7s ease both, kb-breathe 24s ease-in-out infinite alternate;
+  animation-delay:0s, var(--kb, 0s); transform-origin:var(--kbo, 60% 40%)}
+
+/* ---- Magazine: Sul banco, i foglietti vivi ---- */
+html.vista-magazine #view-oggi .banco .why{position:relative; border-radius:2px 10px 2px 10px;
+  transform:rotate(calc(-.45deg + var(--wind, 0) * 1.3deg)); transform-origin:50% 0;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+html.vista-magazine #view-oggi .banco li:nth-child(even) .why{transform:rotate(calc(.4deg - var(--wind, 0) * 1.1deg))}
+/* l'angolo in basso a destra: si solleva col vento */
+html.vista-magazine #view-oggi .banco .why::after{content:""; position:absolute; right:0; bottom:0; width:15px; height:15px;
+  background:linear-gradient(315deg, var(--paper) 50%, color-mix(in srgb, var(--yellow) 55%, var(--paper)) 50%);
+  border-top-left-radius:5px; box-shadow:-1px -1px 3px rgba(23,24,27,.12); transform-origin:100% 100%;
+  transform:scale(calc(1 + max(var(--wind, 0), calc(var(--wind, 0) * -1)) * 1.6)); transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+/* «Al banco» sottolineato a mano, col pennarello rosso, quando arrivi */
+/* display:table: va a capo come un blocco ma e' largo quanto la parola, e la riga resta sotto «Al banco» */
+html.vista-magazine #view-oggi .banco .why::before{display:table; padding-bottom:5px; margin-bottom:.3rem;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5 C 14 1, 26 8, 40 4 S 68 1, 99 4' fill='none' stroke='%23E01F3D' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 100% 6px no-repeat}
+html.vista-magazine #view-oggi .banco .why.mo-scribble:not(.mo-in)::before{background-size:0 6px}
+html.vista-magazine #view-oggi .banco .why.mo-scribble.mo-in::before{transition:background-size .7s cubic-bezier(.4,0,.2,1) .35s}
+html.vista-magazine #view-oggi .banco .why.mo-scribble.mo-in{animation:note-stick .6s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes note-stick{from{transform:rotate(-3deg) scale(1.03); opacity:.3} to{opacity:1}}
+
+/* ---- Se te lo fossi perso: la data e' gia' a sinistra, «6 giorni fa» non serve ---- */
+html.vista-magazine #view-oggi .recap.tl .when{display:none}
 
 /* ---------------- le chicche ----------------
    Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
@@ -3461,7 +3491,12 @@ const Motion = (function(){
   function scan(root){
     if(STILL || !root) return;
     Array.prototype.forEach.call(root.querySelectorAll(".section-head"), function(h){ once(h, "head"); });
-    Array.prototype.forEach.call(root.querySelectorAll("img"), function(i){ once(i, "img"); });
+    Array.prototype.forEach.call(root.querySelectorAll("img"), function(i, n){
+      once(i, "img");
+      /* ogni foto respira col suo passo, non tutte insieme */
+      i.style.setProperty("--kb", (-Math.random() * 24).toFixed(1) + "s");
+      i.style.setProperty("--kbo", ["60% 40%", "35% 60%", "50% 30%", "70% 65%"][n % 4]);
+    });
   }
   /* salvare per dopo: una stellina parte dal pulsante e vola fino alla pillola
      «Più tardi», che fa un piccolo sobbalzo all'arrivo */
@@ -3485,7 +3520,26 @@ const Motion = (function(){
       to.classList.remove("bump"); void to.offsetWidth; to.classList.add("bump");
     };
   }
-  return {once:once, stagger:stagger, count:count, swap:swap, burst:burst, scan:scan, fly:fly};
+  /* il vento: scorrendo la pagina i foglietti «Al banco» ondeggiano e l'angolo si
+     solleva, poi tornano fermi. La velocita' dello scorrimento si scrive in --wind
+     sulla sola lista del banco, cosi' il ricalcolo resta li' dentro */
+  let windEl = null, windV = 0, windRaf = null, lastY = 0, lastT = 0;
+  function windTick(){
+    windV *= .88;
+    if(windEl) windEl.style.setProperty("--wind", windV.toFixed(3));
+    windRaf = Math.abs(windV) > .01 ? requestAnimationFrame(windTick) : null;
+    if(!windRaf && windEl) windEl.style.setProperty("--wind", "0");
+  }
+  if(!STILL) window.addEventListener("scroll", function(){
+    const now = performance.now(), dy = window.scrollY - lastY, dt = Math.max(16, now - lastT);
+    lastY = window.scrollY; lastT = now;
+    if(!windEl || !windEl.isConnected) return;
+    windV = windV * .6 + Math.max(-1, Math.min(1, dy / dt / 2.2)) * .4;
+    windEl.style.setProperty("--wind", windV.toFixed(3));
+    if(!windRaf) windRaf = requestAnimationFrame(windTick);
+  }, {passive:true});
+  function wind(node){ if(!STILL) windEl = node; }
+  return {once:once, stagger:stagger, count:count, swap:swap, burst:burst, scan:scan, fly:fly, wind:wind};
 })();
 
 /* Un'animazione che gira solo mentre si vede. Fuori schermo si ferma e
@@ -5056,7 +5110,7 @@ function storyNode(brief, n, index){
       ]),
       chips.childNodes.length ? chips.cloneNode(true) : null,
       el("h2", {text:n.title}),
-      (n.hero || n.image) ? el("img", {class:"reader-shot", src:n.hero || n.image, alt:"", decoding:"async"}) : null,
+      (n.hero || n.image) ? el("span", {class:"breath reader-frame"}, [el("img", {class:"reader-shot", src:n.hero || n.image, alt:"", decoding:"async"})]) : null,
       n.sintesi ? el("p", {class:"lede", text:n.sintesi}) : null
     ]);
   };
@@ -5693,17 +5747,27 @@ function magQuote(brief, wraps){
   const idx = (brief.news || []).findIndex(function(n){ return n.id === c.notizia; });
   const w = idx >= 0 ? wraps[idx] : null;
   const fig = el("figure", {class:"mag-quote" + (w ? " is-link" : ""), tabindex:w ? "0" : null,
-    style:"--n:" + String(c.testo).split(/\s+/).length}, [
+    style:"--n:" + String(c.testo).length}, [
     el("span", {class:"eyebrow", text:"L'ultima parola"}),
     /* la frase compare parola per parola, come sul gobbo, poi il cursore e il nome */
+    /* lettera per lettera, come una mano che scrive; le parole restano intere
+       a capo, poi il cursore e il nome */
     (function(){
       const words = String(c.testo).split(/\s+/);
-      const q = el("blockquote", {"aria-label":c.testo}, words.map(function(w, i){
-        const sp = el("span", {class:"w", "aria-hidden":"true", text:w + (i < words.length - 1 ? " " : "")});
-        sp.style.setProperty("--k", i);
-        return sp;
-      }).concat([el("i", {class:"tw-cursor", "aria-hidden":"true"})]));
-      return Motion.once(q, "type");
+      let k = 0;
+      const kids = [];
+      words.forEach(function(w, i){
+        const ww = el("span", {class:"ww", "aria-hidden":"true"});
+        Array.prototype.forEach.call(w, function(ch){
+          const sp = el("span", {class:"w", text:ch});
+          sp.style.setProperty("--k", k++);
+          ww.appendChild(sp);
+        });
+        kids.push(ww);
+        if(i < words.length - 1){ kids.push(document.createTextNode(" ")); k++; }
+      });
+      kids.push(el("i", {class:"tw-cursor", "aria-hidden":"true"}));
+      return Motion.once(el("blockquote", {"aria-label":c.testo}, kids), "type");
     })(),
     el("figcaption", {}, [el("b", {text:c.chi}), c.dove ? el("span", {text:c.dove}) : null]),
     w ? el("p", {class:"mag-quote-go", text:(c.contesto || brief.news[idx].title) + " →"}) : null
@@ -5749,7 +5813,7 @@ function magTicker(brief, wraps){
   });
   track.style.setProperty("--tg-dur", Math.max(24, items.length * 9) + "s");
   return el("div", {class:"tg", role:"marquee", "aria-label":"In breve"}, [
-    el("span", {class:"tg-label"}, [el("i"), document.createTextNode("In breve")]),
+    el("span", {class:"tg-label"}, [el("i"), document.createTextNode("Ultim'ora")]),
     el("div", {class:"tg-window"}, [track])
   ]);
 }
@@ -6181,6 +6245,10 @@ function drawEdition(root){
         tools ? tools.panel : null
       ]));
     });
+    if(magazine()){
+      Array.prototype.forEach.call(ul.querySelectorAll(".why"), function(w){ Motion.once(w, "scribble"); });
+      Motion.wind(ul);
+    }
     col.appendChild(ul);
   }
 
@@ -6704,7 +6772,7 @@ function labCard(date, a){
   const card = el("article", {class:"labcard" + (a.image ? "" : " noshot"), id:"a-" + a.id});
   const body = el("div", {class:"body", hidden:"hidden"});
   const toggle = function(){ body.hidden = !body.hidden; card.classList.toggle("is-open", !body.hidden); };
-  if(a.image) card.appendChild(el("img", {class:"shot", src:a.image, alt:"", loading:"lazy", decoding:"async", onclick:toggle}));
+  if(a.image) card.appendChild(el("span", {class:"breath"}, [el("img", {class:"shot", src:a.image, alt:"", loading:"lazy", decoding:"async", onclick:toggle})]));
   card.appendChild(el("div", {class:"chips"}, [
     el("span", {class:"chip k-lab", text:"LAB · " + String(a.kind || "")}),
     el("span", {class:"chip lab-name", text:labName(String(a.lab || "altri").toLowerCase())})
