@@ -1285,7 +1285,9 @@ sigla** — il carattere di sistema nel peso più pesante (largo e massiccio, no
 condensato), le righe strette, THE e BRIEF grandi metà di MORNING, la O sostituita da un sole
 poco più alto delle maiuscole — con **la falce azzurra** dell'orizzonte: sottile ai lati e
 piena al centro, scura ai bordi e chiara in mezzo, parte prima della M e finisce sotto la
-I, davanti al sole che all'apertura le sorge dietro; subito sotto
+I, davanti al sole che all'apertura **le sorge dietro come un'alba vera**: parte nascosto
+sotto l'orizzonte, sale in quattro secondi abbondanti e passa dall'arancione al giallo (un
+ritaglio tiene nascosta la parte ancora sotto la falce mentre sale); subito sotto
 la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava chiamarsi
 «2 novembre», e il nome stava appiccicato nell'angolo. La testata grande scorre via; nella
 barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
@@ -1394,8 +1396,11 @@ titoli di sezione), **si accendono come pallini** (i tre dell'approfondimento, i
 cambia nel pannello, il corpo che si apre sul telefono, i numeri, le voci, le foto che
 sfumano). I numeri dell'approfondimento contano da zero; la lineetta sotto le schede scivola
 da una all'altra col colore della scheda; il cambio di tema si allarga a cerchio dal
-pulsante. Regole: ogni cosa parte **una volta**, quando arriva a schermo, e dura meno di un
-secondo; con «Riduci movimento» non parte niente; un elemento in attesa è trasparente, mai
+pulsante. Regole: ogni cosa parte **una volta**, quando ha superato **un margine dal basso**
+(il terzo inferiore dello schermo non conta: chi scorre piano leggendo, quando arrivava con
+gli occhi trovava l'animazione già finita — Mike, 2 novembre 2026); quello che sta in fondo
+alla pagina o alla notizia aperta, e lassù non sale mai, parte quando si arriva in fondo. Le
+animazioni in loop (radar, Ultim'ora, foto che respirano, vento) non aspettano niente; con «Riduci movimento» non parte niente; un elemento in attesa è trasparente, mai
 ritagliato (ritagliato del tutto, l'osservatore non lo vede mai e resta nascosto). Una
 chicca nuova si aggiunge a quel linguaggio, non ne inventa un altro.
 
