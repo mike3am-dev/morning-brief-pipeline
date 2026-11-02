@@ -859,7 +859,8 @@ A destra della testata della Magazine ci sono tre riquadri (vedi *La plancia del
 sotto): il meteo di Milano, che l'app chiede da sola, e due che scrive la corsa.
 
 ```json
-"prossimo": [{"titolo": "Uscita HomeView", "data": "2026-11-13", "tipo": "lancio",
+"prossimo": [{"titolo": "MacBook Pro", "data": "2026-11-06", "tipo": "lancio"},
+             {"titolo": "HomeView", "data": "2026-11-13", "tipo": "lancio",
               "notizia": "homeview-sei-mesi-software"}],
 "borsa": {"simbolo": "AAPL", "chiusura": 344.63, "variazione": -1.23, "data": "2026-10-30",
           "serie": [348.22, 347.73, 343.91, 347.1, 343.83, 348.91, 344.63], "fonte": "Yahoo Finance"}
@@ -868,12 +869,17 @@ sotto): il meteo di Milano, che l'app chiede da sola, e due che scrive la corsa.
 - **`prossimo`**: il lancio o l'evento Apple **confermato** più vicino, con la data esatta — un
   prodotto che arriva nei negozi, un evento annunciato, un aggiornamento con la sua data. Mai
   un rumor: la plancia conta i giorni, e contarli verso una data che nessuno ha confermato
-  sarebbe spacciarla per certa. `titolo` entro 32 caratteri, **generico e senza paese**:
-  «Uscita HomeView», non «HomeView in negozio» — se in Italia non arriva, il titolo non deve
-  far credere il contrario (2 novembre 2026, Mike); `notizia` è l'id della notizia di
-  oggi che ne parla (toccando il riquadro si apre), se c'è. Si può scrivere più di una voce:
-  l'app mostra la più vicina non ancora passata. Se non c'è niente di confermato in vista, il
-  campo resta vuoto e il riquadro non esce.
+  sarebbe spacciarla per certa. **`titolo` è solo il nome**: il prodotto («MacBook Pro»,
+  «HomeView») o l'evento («WWDC», «Keynote») — niente «Uscita», niente «in negozio», che
+  fa credere a un paese (2 novembre 2026, Mike). Entro 14 caratteri, se no nel riquadro va a
+  capo (il lint avvisa). `notizia` è l'id della notizia di oggi che ne parla (toccando il
+  riquadro si apre), se c'è. **Il campo si porta avanti da un giorno all'altro**: la corsa
+  riprende le voci di ieri, toglie quelle passate e aggiunge quelle nuove che l'edizione di
+  oggi o l'archivio confermano (il MacBook Pro touch del 6 novembre stava nell'edizione del
+  29 ottobre e il 2 novembre mancava: Mike se n'è accorto prima della corsa). Si scrivono
+  tutte le date confermate in vista; l'app mostra la più vicina non ancora passata. Quando il
+  riquadro cambia, il messaggio di chiusura lo dice in una riga, così Mike può correggere. Se
+  non c'è niente di confermato in vista, il campo resta vuoto e il riquadro non esce.
 - **`borsa`** la scrive lo script, dopo la scrittura e prima della pubblicazione:
 
 ```bash
@@ -1395,8 +1401,11 @@ data, tre riquadri che fanno «dal vivo» («qualcosa che dia live, quasi dei wi
 è un'edizione del mattino», Mike): **il meteo di Milano** — sempre Milano — chiesto a
 Open-Meteo (gratuito, senza chiave) all'apertura e ogni venti minuti, con l'icona disegnata
 che si muove (il sole che gira, la luna con la sua stella, le nuvole che passano, la pioggia e
-la neve che cadono, il lampo) e il pallino rosso del dal vivo; **Apple in borsa**, la chiusura
-con la variazione e la curva della settimana che si traccia; **il prossimo**, giallo pieno, i
+la neve che cadono, il lampo, il vento che soffia) e il pallino rosso del dal vivo — la riga
+sotto dice **la cosa che conta oggi**: se piove, nevica, c'è nebbia o temporale, quello; se no
+la pioggia probabile dal 40% («Pioggia 65%»), poi il vento (oltre 30 km/h o raffiche oltre 50,
+«Ventoso»); solo se non c'è niente, il cielo con minima e massima; **Apple in borsa**, la
+chiusura con il triangolo e la variazione; **il prossimo**, giallo pieno, i
 giorni che mancano al lancio o all'evento più vicino, che toccato apre la notizia. Il modulo è
 `Plancia` in `pipeline/template.html`. Un riquadro senza dati non esce. Sul Duo in verticale e
 sul telefono la plancia scende sotto il logo, a tutta larghezza.
@@ -1404,9 +1413,11 @@ sul telefono la plancia scende sotto il logo, a tutta larghezza.
 **Lo stile della plancia è la sigla, non un cruscotto** (2 novembre 2026, sera: «tutti e 3 sono
 proprio Claude style, li vorrei più TMB style»). Riquadri piatti, angoli quasi vivi, nessuna
 ombra né vetro: il meteo è campitura blu col sole giallo della O del marchio, il prossimo è
-giallo pieno col numero in condensato pesante. L'eccezione voluta è **la borsa, che ricalca il
-widget Azioni di iOS**: fondo nero, simbolo col triangolo, variazione in percentuale e in
-dollari, la curva con la linea tratteggiata della chiusura precedente, il prezzo sottile. I tre
+giallo pieno col numero in condensato pesante, **la borsa in negativo rispetto alla pagina**
+(nero sull'osso, osso sul nero): AAPL, la chiusura grande, sotto il triangolo con la
+percentuale nel suo colore. Niente grafico — la curva in stile widget Azioni di iOS l'ha
+bocciata la sera stessa: «solo il numero grande, la percentuale col triangolino e AAPL. Stop».
+Tutti e tre con lo stesso passo: etichetta, numero grande, riga sotto. I tre
 pallini della sigla non stanno più soli nell'angolo: sono **un timbro verticale accanto alla
 data**, come la firma del giorno. Il logo sta un filo dentro dal bordo (la T non tocca
 l'angolo) e centrato in altezza fra il bordo in alto e la riga nera.

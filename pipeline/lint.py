@@ -501,8 +501,10 @@ def check_plancia(brief, r):
             r.error("prossimo", f"voce senza titolo o senza data AAAA-MM-GG: {x}")
         elif (C.days_between(x["data"], brief.get("date", C.today())) or 0) < 0:
             r.warn("prossimo", f"«{x['titolo']}» e' gia' passato ({x['data']})")
-        if len(x.get("titolo") or "") > 32:
-            r.warn("prossimo", f"«{x['titolo']}»: nella plancia stanno 32 caratteri")
+        if len(x.get("titolo") or "") > 14:
+            r.warn("prossimo", f"«{x['titolo']}»: nella plancia va a capo oltre 14 caratteri (solo il prodotto o l'evento)")
+        if re.match(r"(?i)(uscita|lancio|arriva|in negozio)\b", x.get("titolo") or ""):
+            r.warn("prossimo", f"«{x['titolo']}»: solo il nome del prodotto o dell'evento, senza «uscita»")
         if x.get("notizia") and x["notizia"] not in ids:
             r.warn("prossimo", f"la notizia {x['notizia']!r} non e' in questa edizione: il riquadro non si potra' toccare")
 

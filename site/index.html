@@ -37,7 +37,7 @@
   --yellow:#F5C518;
   --orange:#F0821E;
   --red:#E01F3D;
-  --blue:#0E9CD8;
+  --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
   --brand:#E0AB00;
 
   --yellow-ink:#7A5F00;
@@ -63,7 +63,7 @@
     --bone:#131418; --paper:#1B1D22; --paper-2:#24272E;
     --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
     --rule:#2B2E35; --rule-strong:#414550;
-    --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC;
+    --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
     --brand:#F7CE3C;
     --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
     --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
@@ -74,7 +74,7 @@
   --bone:#131418; --paper:#1B1D22; --paper-2:#24272E;
   --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
   --rule:#2B2E35; --rule-strong:#414550;
-  --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC;
+  --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
   --brand:#F7CE3C;
   --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
   --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
@@ -84,7 +84,7 @@
   --bone:#EDEAE3; --paper:#F8F6F2; --paper-2:#E3DFD6;
   --ink:#17181B; --ink-2:#4B4D53; --ink-3:#7C7F87;
   --rule:#D7D2C7; --rule-strong:#BDB7AA;
-  --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8;
+  --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
   --brand:#E0AB00;
   --yellow-ink:#7A5F00; --orange-ink:#93490A; --red-ink:#A5122A; --blue-ink:#0A5E82;
   --accent:#F0821E; --accent-ink:#93490A; --on-fill:#17181B; --ok:#2C7A46;
@@ -692,28 +692,22 @@ button.pl-tile{cursor:pointer}
 .pl-fiocchi circle:nth-child(2){animation-delay:.8s}
 .pl-fiocchi circle:nth-child(3){animation-delay:1.6s}
 .pl-lampo{fill:var(--yellow); animation:pl-lampo 3s steps(1) infinite}
+.pl-soffi path{fill:none; stroke:#F8F6F2; stroke-width:3; stroke-linecap:round; animation:pl-nube 2.6s ease-in-out infinite alternate}
+.pl-soffi path:nth-child(2){animation-delay:.5s; stroke:#0B1218}
+.pl-soffi path:nth-child(3){animation-delay:1s}
 .pl-banchi rect{fill:#F8F6F2; animation:pl-nube 6s ease-in-out infinite alternate}
 .pl-banchi rect:nth-child(2){animation-direction:alternate-reverse}
 @keyframes pl-giro{to{transform:rotate(360deg)}}
 @keyframes pl-nube{from{transform:translateX(-2px)} to{transform:translateX(3px)}}
 @keyframes pl-cade{from{transform:translateY(-4px); opacity:0} 30%{opacity:1} to{transform:translateY(8px); opacity:0}}
 @keyframes pl-lampo{0%, 92%{opacity:1} 94%{opacity:.1} 96%{opacity:1} 98%{opacity:.2}}
-/* la borsa: il widget Azioni di iOS, sul nero della sigla */
-.pl-borsa{background:#17181B; color:#F1EEE8; font-family:-apple-system, system-ui, sans-serif; gap:0; padding:.5rem .6rem .45rem}
-.pl-borsa.su{--pl-c:#34C759}
-.pl-borsa.giu{--pl-c:#FF453A}
-.pl-row{display:flex; justify-content:space-between; align-items:baseline; gap:.3rem; font-size:.74rem; font-weight:700; line-height:1.2}
-.pl-row2{font-size:.6rem; font-weight:500; color:rgba(241,238,232,.55); white-space:nowrap}
-.pl-sym i{font-style:normal; color:var(--pl-c); font-size:.62rem; margin-right:.2rem}
-.pl-borsa .pl-var{color:var(--pl-c)}
-.pl-spark{display:block; height:20px; margin:.2rem -.6rem .05rem; color:var(--pl-c)}
-.pl-spark svg{width:100%; height:100%; display:block; overflow:visible}
-.pl-spark polyline{fill:none; stroke:currentColor; stroke-width:1.6; vector-effect:non-scaling-stroke; stroke-linejoin:round; stroke-linecap:round;
-  stroke-dasharray:400; stroke-dashoffset:400; animation:pl-traccia 1.8s cubic-bezier(.4,0,.2,1) .6s forwards}
-.pl-spark .pl-area{fill:url(#plArea); opacity:0; animation:mo-fade .8s ease 1.6s forwards}
-.pl-spark .pl-base{stroke:rgba(241,238,232,.35); stroke-width:1; stroke-dasharray:2 3; vector-effect:non-scaling-stroke}
-.pl-borsa .pl-prezzo{font-family:-apple-system, system-ui, sans-serif; font-weight:300; font-size:1.3rem; letter-spacing:-.02em; line-height:1}
-@keyframes pl-traccia{to{stroke-dashoffset:0}}
+/* la borsa: in negativo rispetto alla pagina (nero sull'osso, osso sul nero), come la
+   terza campitura della sigla; il triangolo e la variazione nel loro colore */
+.pl-borsa{background:var(--ink); color:var(--bone)}
+.pl-borsa.su{--pl-c:var(--pl-su)}
+.pl-borsa.giu{--pl-c:var(--pl-giu)}
+.pl-borsa .pl-var{color:var(--pl-c); font-family:var(--display); font-weight:800; font-size:.8rem; letter-spacing:.04em}
+.pl-borsa .pl-var i{font-style:normal; font-size:.7em; margin-right:.25em; vertical-align:.1em}
 /* il prossimo: campitura gialla, i giorni grandi */
 .pl-prossimo{background:var(--yellow); color:#17181B}
 .pl-prossimo .pl-num{font-size:2.3rem}
@@ -737,10 +731,6 @@ button.pl-tile{cursor:pointer}
   .pl-label{font-size:.62rem}
   .pl-ico{width:24px; height:24px}
   .pl-sub{font-size:.55rem}
-  .pl-row{font-size:.66rem}
-  .pl-borsa .pl-prezzo{font-size:1.15rem}
-  .pl-spark{height:20px}
-  .pl-chi{display:none}
 }
 
 /* ---------------- le chicche ----------------
@@ -6335,6 +6325,16 @@ const Plancia = (function(){
     if(c >= 95) return ["Temporale", "temporale"];
     return ["—", "nube"];
   };
+  /* la riga del meteo dice la cosa che conta oggi: se piove, nevica, c'e' nebbia o
+     temporale lo dice il cielo; altrimenti la pioggia probabile (dal 40%), poi il vento
+     (oltre 30 km/h, o raffiche oltre 50); solo se non c'e' niente di tutto questo, il cielo */
+  function condizione(m){
+    const w = WMO(m.c);
+    if(m.c >= 45) return w;
+    if(m.p !== null && m.p !== undefined && m.p >= 40) return ["Pioggia " + Math.round(m.p) + "%", m.p >= 70 ? "pioggia" : w[1]];
+    if((m.v || 0) >= 30 || (m.r || 0) >= 50) return ["Ventoso", "vento"];
+    return w;
+  }
   /* le icone sono disegnate qui, e si muovono: i raggi girano, le nuvole passano,
      la pioggia e la neve cadono, il lampo lampeggia, la luna ha la sua stella */
   function icona(tipo, giorno){
@@ -6352,17 +6352,21 @@ const Plancia = (function(){
       '<g class="pl-gocce"><rect x="16" y="34" width="2.2" height="6" rx="1.1"/><rect x="24" y="36" width="2.2" height="6" rx="1.1"/><rect x="32" y="34" width="2.2" height="6" rx="1.1"/></g>');
     if(tipo === "neve") return svg(nube.replace("M14 36", "M14 30") +
       '<g class="pl-fiocchi"><circle cx="17" cy="37" r="2"/><circle cx="25" cy="40" r="2"/><circle cx="33" cy="37" r="2"/></g>');
+    if(tipo === "vento") return svg('<g class="pl-soffi"><path d="M6 18h22a5 5 0 1 0-5-5"/><path d="M6 26h32a5 5 0 1 1-5 5"/><path d="M6 34h16"/></g>');
     if(tipo === "temporale") return svg(nube.replace("M14 36", "M14 30") + '<path class="pl-lampo" d="M25 30l-5 9h5l-3 8 9-11h-5l3-6z"/>');
     return svg(nube);
   }
   function chiedi(){
     const u = "https://api.open-meteo.com/v1/forecast?latitude=" + MI.lat + "&longitude=" + MI.lon +
-      "&current=temperature_2m,weather_code,is_day&daily=temperature_2m_max,temperature_2m_min&timezone=Europe%2FRome&forecast_days=1";
+      "&current=temperature_2m,weather_code,is_day,wind_speed_10m,wind_gusts_10m" +
+      "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FRome&forecast_days=1";
     fetch(u).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
       if(!d || !d.current) return;
       meteo = {t:d.current.temperature_2m, c:d.current.weather_code, g:d.current.is_day === 1,
                max:d.daily && d.daily.temperature_2m_max ? d.daily.temperature_2m_max[0] : null,
-               min:d.daily && d.daily.temperature_2m_min ? d.daily.temperature_2m_min[0] : null};
+               min:d.daily && d.daily.temperature_2m_min ? d.daily.temperature_2m_min[0] : null,
+               v:d.current.wind_speed_10m, r:d.current.wind_gusts_10m,
+               p:d.daily && d.daily.precipitation_probability_max ? d.daily.precipitation_probability_max[0] : null};
       try{ localStorage.setItem(KEY, JSON.stringify({t:Date.now(), d:meteo})); }catch(e){}
       disegna();
     }).catch(function(){});
@@ -6386,38 +6390,23 @@ const Plancia = (function(){
     if(!magazine()) return;
     /* il meteo */
     if(meteo){
-      const w = WMO(meteo.c);
+      const w = condizione(meteo);
       box.appendChild(tile("pl-meteo", [
         el("span", {class:"pl-label"}, [el("i", {class:"pl-live"}), document.createTextNode("Milano")]),
         el("div", {class:"pl-main"}, [el("span", {html:icona(w[1], meteo.g)}), el("b", {text:Math.round(meteo.t) + "°"})]),
-        el("span", {class:"pl-sub", text:w[0] + (meteo.min !== null ? " · " + Math.round(meteo.min) + "°/" + Math.round(meteo.max) + "°" : "")})
+        /* minima e massima solo accanto a una parola corta: «Pioggia 65%» sta da sola */
+        el("span", {class:"pl-sub", text:w[0] + (meteo.min !== null && w[0].length <= 7 ? " · " + Math.round(meteo.min) + "°/" + Math.round(meteo.max) + "°" : "")})
       ]));
     }
-    /* la borsa, come il widget Azioni di iOS: freccia e simbolo, la variazione,
-       l'area della settimana sopra la linea tratteggiata della seduta prima, il
-       prezzo grande in fondo. «chiusura ven» al posto del nome: e' la verita' */
+    /* la borsa: il simbolo, la chiusura grande, il triangolo con la variazione. Niente
+       grafico: lo stesso passo degli altri due riquadri */
     const b = brief && brief.borsa;
     if(b && b.chiusura){
-      const su = b.variazione >= 0, serie = b.serie || [];
-      const prev = serie.length > 1 ? serie[serie.length - 2] : null;
-      let chart = null;
-      if(serie.length > 1){
-        const lo = Math.min.apply(null, serie), hi = Math.max.apply(null, serie), span = (hi - lo) || 1;
-        const y = function(v){ return (26 - (v - lo) / span * 22).toFixed(1); };
-        const pts = serie.map(function(v, i){ return (i / (serie.length - 1) * 100).toFixed(1) + "," + y(v); });
-        const area = "M0,30 L" + pts.join(" L") + " L100,30 Z";
-        chart = el("span", {class:"pl-spark", html:'<svg viewBox="0 0 100 30" preserveAspectRatio="none">' +
-          '<defs><linearGradient id="plArea" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".55"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>' +
-          (prev !== null ? '<line class="pl-base" x1="0" x2="100" y1="' + y(prev) + '" y2="' + y(prev) + '"/>' : "") +
-          '<path class="pl-area" d="' + area + '"/><polyline points="' + pts.join(" ") + '"/></svg>'});
-      }
+      const su = b.variazione >= 0;
       box.appendChild(tile("pl-borsa " + (su ? "su" : "giu"), [
-        el("div", {class:"pl-row"}, [el("span", {class:"pl-sym"}, [el("i", {text:su ? "▲" : "▼"}), document.createTextNode(b.simbolo)]),
-          el("span", {class:"pl-var", text:(su ? "+" : "") + fmt(b.variazione, 2) + "%"})]),
-        el("div", {class:"pl-row pl-row2"}, [el("span", {}, [el("span", {class:"pl-chi", text:"chiusura "}), document.createTextNode(giornoBreve(b.data).split(" ")[0])]),
-          prev !== null ? el("span", {class:"pl-var", text:(su ? "+" : "") + fmt(b.chiusura - prev, 2)}) : null]),
-        chart,
-        el("b", {class:"pl-prezzo", text:fmt(b.chiusura, 2)})
+        el("span", {class:"pl-label", text:b.simbolo}),
+        el("div", {class:"pl-main"}, [el("b", {text:fmt(b.chiusura, 2)})]),
+        el("span", {class:"pl-var"}, [el("i", {text:su ? "▲" : "▼"}), document.createTextNode(fmt(Math.abs(b.variazione), 2) + "%")])
       ]));
     }
     /* il prossimo */
