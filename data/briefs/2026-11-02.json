@@ -84,7 +84,48 @@
             "perche": "Tutte le voci sull'iPad Air OLED raccolte in un posto"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "roadmap",
+            "titolo": "Il chip che accende l'IA sull'iPad base",
+            "didascalia": "Quando ogni linea di iPad ha superato la soglia di 8GB di RAM richiesta da Apple Intelligence, fissata nel 2024.",
+            "periodi": [
+              "2024",
+              "2027"
+            ],
+            "linee": [
+              {
+                "nome": "iPad Air / iPad Pro",
+                "tappe": [
+                  {
+                    "quando": "2024",
+                    "chip": "8GB+",
+                    "stato": "uscito",
+                    "nota": "Apple Intelligence attiva dal lancio"
+                  }
+                ]
+              },
+              {
+                "nome": "iPad (base)",
+                "tappe": [
+                  {
+                    "quando": "2024",
+                    "chip": "sotto 8GB",
+                    "stato": "saltato",
+                    "nota": "soglia Apple Intelligence non raggiunta"
+                  },
+                  {
+                    "quando": "2027",
+                    "chip": "A19, 8GB RAM",
+                    "stato": "previsto",
+                    "nota": "Apple Intelligence si accende, secondo Bloomberg"
+                  }
+                ]
+              }
+            ],
+            "fonte": "Bloomberg"
+          }
+        ],
         "scritto": "2026-11-02"
       },
       "sources": [
@@ -168,7 +209,30 @@
             "perche": "L'altro scoop di oggi sullo stesso dispositivo"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "anno",
+            "titolo": "Sei mesi di scarto prima del lancio",
+            "didascalia": "Il software installato in fabbrica su HomeView è fermo a maggio, mentre la versione corrente è già di novembre.",
+            "eventi": [
+              {
+                "data": "2026-05",
+                "etichetta": "26.5, software di fabbrica"
+              },
+              {
+                "data": "2026-11",
+                "etichetta": "27.2, versione attuale"
+              },
+              {
+                "data": "2026-11-13",
+                "etichetta": "HomeView in vendita"
+              }
+            ],
+            "obiettivo": "2026-11-13",
+            "centro": "6 mesi di scarto",
+            "fonte": "AppleDB / MacRumors"
+          }
+        ],
         "scritto": "2026-11-02"
       },
       "sources": [
@@ -247,7 +311,31 @@
             "perche": "Cosa scarica davvero l'IA di Apple, dispositivo per dispositivo"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "barre",
+            "titolo": "Quanto spazio libera il trucco della lingua",
+            "didascalia": "Passare a una variante inglese senza modello scaricato (canadese, irlandese, sudafricana, neozelandese) libera quasi tutto lo spazio preso da Apple Intelligence.",
+            "voci": [
+              {
+                "etichetta": "Lingua con modello IA scaricato",
+                "min": 9,
+                "max": 16,
+                "colore": "#f5a623",
+                "nota": "GB occupati"
+              },
+              {
+                "etichetta": "Lingua senza modello (workaround)",
+                "min": 0.1,
+                "max": 0.1,
+                "colore": "#4a90d9",
+                "nota": "~100MB restanti"
+              }
+            ],
+            "unita": "GB",
+            "fonte": "segnalazioni Reddit via GSMArena"
+          }
+        ],
         "scritto": "2026-11-02"
       },
       "sources": [
@@ -418,7 +506,35 @@
             "perche": "La stessa settimana, un'altra scoperta sul device gemello"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "catena",
+            "titolo": "La configurazione esatta che Apple ha chiesto, e che non funziona",
+            "didascalia": "The Verge ha seguito passo dopo passo la combinazione indicata da Apple per usare HomePod mini 2 come altoparlante del Mac. L'opzione non è mai apparsa.",
+            "passi": [
+              {
+                "titolo": "Mac mini M4 aggiornato a macOS 27.2",
+                "nota": "requisito hardware e software soddisfatto"
+              },
+              {
+                "titolo": "HomePod mini 2 aggiornato a HomePod Software 27.2",
+                "nota": "stessa versione richiesta da Apple"
+              },
+              {
+                "titolo": "Pannello Audio del Mac",
+                "nota": "dovrebbe mostrare HomePod come altoparlante AirPlay persistente"
+              }
+            ],
+            "rottura": {
+              "dopo": "tutti i passaggi completati",
+              "senza": "l'opzione non appare",
+              "etichetta": "interruttore lato server non attivato",
+              "nota": "altri utenti con configurazioni aggiornate segnalano lo stesso vuoto"
+            },
+            "azione": "Il pannello Audio si aggiorna da solo quando Apple accende l'interruttore: nessuna azione manuale lo forza.",
+            "fonte": "The Verge"
+          }
+        ],
         "scritto": "2026-11-02"
       },
       "sources": [

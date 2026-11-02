@@ -406,5 +406,13 @@
   "interazione": "Tocchi un punto e vedi se è offuscato su Apple Maps e su Google Maps",
   "dati": "Elenco verificato a mano dalla fonte sulle stesse coordinate; nessun dato numerico, serve una mappa di stato per punto, non un raggio d'allarme",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-02",
+  "notizia": "homeview-codice-telecamera-sicurezza",
+  "idea": "Le regole di privacy sono già scritte nel codice (spia luminosa, notifiche, accesso solo al cerchio famiglia) ma la funzione camera non è ancora attiva: serve un modo per mostrare pezzi di una funzione software già pronti ma spenti, non un oggetto fisico da scomporre (esploso è per hardware) né un processo con una rottura netta (catena è già usato oggi per HomePod)",
+  "interazione": "Toccare ogni regola di privacy per vederne lo stato: scritta nel codice, non ancora accesa",
+  "dati": "Le tre regole trovate nelle stringhe (spia luminosa, notifiche di accesso, restrizione al cerchio famiglia iCloud) e l'anno di riferimento HomeKit Secure Video (2019); nessun numero su quando si attiverà",
+  "stato": "aperta"
  }
 ]
