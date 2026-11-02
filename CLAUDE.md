@@ -218,6 +218,9 @@ passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole e
 - **Sintesi**: una riga. **Descrizione**: 3–4 righe con dati concreti, virgolette dove ci sono
   dichiarazioni, contesto utile.
 - **Tono**: giornalistico, asciutto, tipo Bloomberg. Niente hype, niente entusiasmo da creator.
+- **Gli accenti sono accenti**: «metà», «già», «perché», «è» — mai «meta'», «gia'», «perche'».
+  Il 2 novembre 2026 l'edizione è uscita con gli apostrofi al posto degli accenti, apertura
+  compresa. Il lint lo blocca come errore; `python3 pipeline/accenti.py --fix` corregge.
 - **Non inventare nulla.** Se un dato non è nell'articolo, non va nel brief.
 
 Campo `reparto`: l'argomento in una parola, uno fra `Mac` · `iPhone` · `iPad` · `Watch` ·
@@ -691,8 +694,9 @@ letture. L'esempio completo è l'edizione del 1 novembre 2026.
 - **`voci`** è quello che mancava: chi altro ne parla e cosa dice. `tipo` è `analista` ·
   `testata` · `apple` (un dirigente, un portavoce) · `esperto` (un recensore, uno
   sviluppatore) · `social` (un commento, un post) · `storia` (una frase del passato che
-  torna). `testo` è una citazione vera, tradotta fedelmente, o la sua parafrasi stretta —
-  mai un'invenzione, mai un'attribuzione a chi l'ha solo ripresa. I commenti si prendono
+  torna). `testo` è una citazione vera **nella lingua originale, mai tradotta** (2 novembre
+  2026: una frase di Ternus resta in inglese), o la sua parafrasi stretta in italiano
+  dichiarata come tale — mai un'invenzione, mai un'attribuzione a chi l'ha solo ripresa. I commenti si prendono
   dove ci sono: il thread di Reddit (il suo RSS, `…/comments/<id>/.rss`, si legge senza
   chiave), Hacker News, i commenti di GSMArena e di 9to5Mac; `segnale` dice quanto pesa
   («il thread più discusso di r/apple», «1.180 punti su HN»). Un commento è un parere,
@@ -789,7 +793,8 @@ Classica non mostra, e la corsa li scrive ogni mattina:
 - **`citazione`** — «L'ultima parola», la frase grande a metà del feed. Una persona con nome
   (Ternus, Gurman, Brownlee, un'analista, una recensora), mai «un utente»; una frase che
   cattura rispetto alla notizia e fa venire voglia di aprirla, entro 200 caratteri. Viene
-  da una delle voci degli approfondimenti o dagli articoli letti, tradotta fedelmente.
+  da una delle voci degli approfondimenti o dagli articoli letti, **nella lingua in cui è
+  stata detta: mai tradotta** (Mike, 2 novembre 2026). Gurman in inglese, Galeazzi in italiano.
   `notizia` è l'id della notizia in cui porta: al tocco l'app apre quell'approfondimento
   dritto sulle voci. `contesto` è la riga che lo dice («Perché HomeView…»).
 - **`editoriale`** — «Il punto», il commento della redazione: lo scrive Claude, e l'app lo
@@ -1150,6 +1155,7 @@ pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
 pipeline/audio.py        gli approfondimenti letti ad alta voce (Piper) -> Supabase Storage
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
+pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li trova, --fix li corregge
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
 pipeline/icon.py         disegna app/icon.png (monogramma + pallini). --check la prova piccola
@@ -1273,6 +1279,18 @@ ruolo semantico. Il marchio in testata è tutto giallo. Se tocchi lo stile, rest
 questo sistema.
 
 
+**La testata della Magazine** (2 novembre 2026). Nella Magazine il nome del giornale è
+in cima, grande, come una testata vera: i tre pallini, *The Morning Brief* a tutta larghezza
+con la O di MORNING che sorge come un sole all'apertura, una riga nera spessa, e sotto una
+riga sola con la data e quante notizie su quanti articoli letti. Prima la Magazine sembrava
+chiamarsi «2 novembre», e il nome stava appiccicato nell'angolo. La testata grande scorre
+via; nella barra che resta in cima compaiono allora il marchio piccolo, le sezioni (Apple,
+AI, Games, Tech, Spazio), la lente e **il menu** — un pulsante di vetro col pallino della
+sincronizzazione che apre un pannello con le parole scritte: Vista (Classica / Magazine),
+Tema (Chiaro / Scuro), Archivio, Salvati, Diario, Cerca, Esporta e Importa gli appunti,
+Esci. Prendono il posto delle icone sparse e dei tre puntini, che «non si capiva niente».
+Nella Classica la testata resta quella di sempre.
+
 **La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
 stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa
 dalla vista **Classica** — quella del 1 novembre, salvata nel tag git
@@ -1283,9 +1301,15 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   grigio freddo e il bianco puro di Apple restano ad Apple: l'osso e i pallini sono nostri.
 - **Una costruzione sola**: la testata nel condensato (la sua «voce»), il reparto, il
   titolo, e **sotto le due-tre righe della sintesi, intere** — la cosa che a Mike piace di
-  noi e che a News+ manca: troppo spazio vuoto. In fondo il piede: tempo fa (dall'ora della
-  prima testata, `verifica.primo`), i cinque pallini della copertura, la **stella sempre a
-  portata** e i «•••» con Appunti e Non mi interessa.
+  noi e che a News+ manca: troppo spazio vuoto. La testata è **chi l'ha detta per primo**
+  (l'origine dichiarata in `verifica.origini`, es. «Bloomberg»), con «via 9to5Mac» in
+  piccolo quando l'abbiamo letta altrove. In fondo il piede: **l'orario** in cui l'ha data la
+  prima delle nostre testate («ieri, 16:27», non «21 ore fa», che sotto «scelte stamattina»
+  faceva sembrare vecchia l'apertura), i cinque pallini e **il numero delle testate**, e
+  **solo la stellina**: appunti e «non mi interessa» stanno nella notizia aperta. Su un
+  `RUMOR` non si scrive mai «parola di Apple», anche se `verify.py` ha trovato una
+  dichiarazione: le due cose si contraddicono (2 novembre 2026). Il titolo di una notizia
+  letta non si sbiadisce.
 - **Il ritmo**: «In apertura» grande, due affiancate, **«L'ultima parola»** su campitura
   piena, «In primo piano» con una scheda orizzontale, **«Il punto»** in graziato, «In breve»
   in due colonne. Poi le sezioni di sempre (Sul banco, discussioni, ripescaggio, radar).

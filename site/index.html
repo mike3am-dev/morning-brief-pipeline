@@ -114,10 +114,6 @@ html.vista-magazine #view-oggi .news-head,
 html.vista-magazine #view-oggi .newsbox{display:none}
 html.vista-magazine main{padding-bottom:7.5rem}
 .mag{container-type:inline-size; display:flex; flex-direction:column; gap:1rem; padding-top:1rem}
-.mag-head{display:flex; flex-direction:column; gap:.3rem; padding-bottom:.2rem}
-.mag-date{font-family:var(--display); font-weight:700; text-transform:uppercase;
-  font-size:clamp(2.6rem, 10cqi, 4.4rem); line-height:.88; letter-spacing:-.012em; margin:.15rem 0 0}
-.mag-dek{margin:.35rem 0 0; color:var(--ink-2); font-size:1rem; line-height:1.45}
 .mag .section-head{padding:1.5rem 0 .1rem}
 
 /* il vetro: la barretta delle sezioni, il tasto indietro, il menu dei «•••» */
@@ -140,13 +136,13 @@ html.vista-magazine main{padding-bottom:7.5rem}
 .card-src{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .55rem}
 /* la testata con la sua voce: il nome nel condensato, come una testatina */
 .card-src b{font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:.005em; color:var(--ink)}
+.card-src .via{text-transform:none; letter-spacing:0; font-size:.78rem; font-weight:500}
 .card-src span{font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
 .card-src .rumor{color:var(--yellow-ink); display:inline-flex; align-items:center; gap:.3rem}
 .card-src .rumor::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow); align-self:center}
 .card-title{font-family:var(--body); font-weight:700; font-size:1.13rem; line-height:1.26; letter-spacing:-.01em; margin:0; text-wrap:pretty}
 /* le due-tre righe intere, mai troncate: la sintesi e' gia' breve per regola */
 .card-dek{margin:0; font-size:.94rem; line-height:1.45; color:var(--ink-2); text-wrap:pretty}
-.card.is-read .card-title{color:var(--ink-2)}
 .card-foot.tools{grid-area:foot; display:flex; align-items:center; justify-content:flex-start; gap:.65rem;
   margin:0; padding:.75rem .7rem .75rem 1.1rem; font-size:.76rem; color:var(--ink-3)}
 .card-when{white-space:nowrap}
@@ -241,9 +237,6 @@ html.vista-magazine main{padding-bottom:7.5rem}
   box-shadow:0 1px 3px rgba(23,24,27,.18)}
 body.sheet-open .mag-nav{opacity:0; transform:translate(-50%, 20px); pointer-events:none}
 html:not(.vista-magazine) .mag-nav{display:none}
-.mag-menu{position:absolute; z-index:55; display:flex; flex-direction:column; padding:5px; border-radius:16px; min-width:11rem}
-.mag-menu button{border:0; background:none; text-align:left; padding:.6rem .8rem; border-radius:11px; font:inherit; font-size:.88rem; font-weight:600; color:var(--ink); cursor:pointer}
-.mag-menu button:hover{background:color-mix(in srgb, var(--paper) 80%, transparent)}
 #vistaBtn.on{color:var(--orange-ink)}
 
 /* la notizia a tutto schermo: scivola da destra, il tasto indietro e' di vetro */
@@ -397,6 +390,71 @@ html.vista-magazine #view-oggi .talk.chat p{font-size:.9rem; line-height:1.45; c
 html.vista-magazine #view-oggi .caveat{font-size:.82rem}
 /* il piede delle schede in fondo prende tutta la larghezza: fonte a sinistra, pulsanti a destra */
 html.vista-magazine #view-oggi :is(.banco .foot, .recap.tl .foot, .rd-wrap .radar-foot){align-self:stretch}
+
+/* ---------------- la testata della Magazine ---------------- */
+.nameplate, .mt-mini, .mt-actions{display:none}
+html.vista-magazine body:not(:has(#masthead[hidden])) .nameplate{display:block}
+.np-inner{max-width:1240px; margin:0 auto; padding:1.3rem var(--gutter) .2rem; display:flex; flex-direction:column}
+.np-dots{gap:6px; margin-bottom:.7rem}
+.np-dots i{width:12px; height:12px}
+.np-wordmark{font-size:clamp(3.1rem, min(15vw, 19vh), 7.4rem); line-height:.82}
+.np-rule{height:4px; background:var(--ink); margin:1rem 0 .55rem}
+.np-date{margin:0; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.2rem 1rem;
+  font-size:.62rem; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--ink-2)}
+.np-date span:last-child{color:var(--ink-3)}
+/* l'alba: la O di MORNING sorge, i tre pallini si accendono, la riga si stende */
+@keyframes np-sun{from{transform:translateY(55%) scale(.55); opacity:0} 60%{opacity:1} to{transform:none; opacity:1}}
+.np-wordmark .o{animation:np-sun 1.1s cubic-bezier(.2,.8,.2,1) .25s both; box-shadow:0 0 0 0 transparent}
+.np-dots i{animation:mo-pop .45s cubic-bezier(.2,1.4,.4,1) both}
+.np-dots i:nth-child(2){animation-delay:.08s}
+.np-dots i:nth-child(3){animation-delay:.16s}
+.np-rule{animation:mo-wipe .8s cubic-bezier(.6,0,.2,1) .35s both}
+
+/* la barra in cima: il marchio piccolo (quando la testata e' uscita), le sezioni, cerca e menu */
+html.vista-magazine .masthead .brand{display:none}
+html.vista-magazine .masthead #moreTab, html.vista-magazine .masthead .tabmenu{display:none}
+html.vista-magazine .masthead-inner{display:flex; align-items:center; gap:1rem; padding-top:.3rem}
+html.vista-magazine nav.tabs{flex:1; min-width:0; margin-top:0; order:2}
+html.vista-magazine .mt-mini{display:block; order:1; overflow:hidden; max-width:0; opacity:0;
+  transition:max-width .35s cubic-bezier(.4,0,.2,1), opacity .25s ease}
+html.vista-magazine .mt-mini .wordmark{font-size:1.25rem; padding:.2rem 0}
+html.vista-magazine.np-out .mt-mini{max-width:9rem; opacity:1}
+html.vista-magazine .mt-actions{display:flex; order:3; gap:.35rem; align-items:center; padding-bottom:.3rem}
+.mt-btn{position:relative; width:36px; height:36px; border:0; border-radius:50%; background:none; color:var(--ink);
+  display:grid; place-items:center; cursor:pointer}
+.mt-btn .ico{width:17px; height:17px}
+.mt-menu-btn.glass{background:color-mix(in srgb, var(--paper) 70%, transparent)}
+.mt-sync{position:absolute; top:3px; right:3px; width:8px; height:8px; border-radius:50%; background:var(--ok);
+  box-shadow:0 0 0 2px var(--bone)}
+.mt-sync[data-state="busy"]{background:var(--blue); animation:pulse 1s ease-in-out infinite}
+.mt-sync[data-state="offline"]{background:var(--rule-strong)}
+.mt-sync[data-state="error"]{background:var(--red)}
+@media (max-width:600px){ html.vista-magazine.np-out .mt-mini{max-width:0; opacity:0} }
+
+/* il menu, con le parole scritte */
+.mt-menu{position:fixed; z-index:55; width:min(300px, calc(100vw - 24px)); padding:.5rem; border-radius:20px;
+  max-height:calc(100vh - 80px); max-height:calc(100dvh - 80px); overflow-y:auto; overscroll-behavior:contain;
+  display:flex; flex-direction:column; gap:.45rem; animation:mo-rise .22s cubic-bezier(.2,.7,.2,1) both}
+.mm-head{display:flex; flex-direction:column; gap:.15rem; padding:.45rem .6rem .2rem}
+.mm-head b{font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.02em; font-size:1rem; color:var(--brand)}
+.mm-sync{font-size:.74rem; color:var(--ink-3); display:inline-flex; align-items:center; gap:.4rem}
+.mm-sync::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--ok)}
+.mm-sync[data-state="busy"]::before{background:var(--blue)}
+.mm-sync[data-state="offline"]::before{background:var(--rule-strong)}
+.mm-sync[data-state="error"]::before{background:var(--red)}
+.mm-seg-wrap{display:flex; align-items:center; justify-content:space-between; gap:.6rem; padding:.15rem .6rem}
+.mm-label{font-size:.6rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.mm-seg{display:flex; padding:3px; border-radius:999px; background:color-mix(in srgb, var(--ink) 8%, transparent)}
+.mm-seg button{border:0; background:none; border-radius:999px; padding:.38rem .8rem; font:inherit; font-size:.8rem; font-weight:600; color:var(--ink-2); cursor:pointer}
+.mm-seg button.on{background:var(--paper); color:var(--ink); box-shadow:0 1px 3px rgba(23,24,27,.18)}
+.mm-list{display:flex; flex-direction:column; border-radius:14px; background:color-mix(in srgb, var(--paper) 70%, transparent); overflow:hidden}
+.mm-row{display:flex; align-items:center; justify-content:space-between; gap:.6rem; border:0; background:none; text-align:left;
+  padding:.68rem .85rem; font:inherit; font-size:.92rem; font-weight:600; color:var(--ink); cursor:pointer}
+.mm-row + .mm-row{border-top:1px solid var(--rule)}
+.mm-row:hover{background:color-mix(in srgb, var(--paper) 90%, transparent)}
+.mm-row i{font-style:normal; color:var(--ink-3); font-size:1.1rem}
+.mm-row b{font-size:.75rem; color:var(--orange-ink)}
+.mm-row.out{color:var(--red-ink)}
 
 /* ---------------- le chicche ----------------
    Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
@@ -1950,6 +2008,14 @@ footer.colophon .sp{flex:1}
   </div>
 </div>
 
+<div class="nameplate" id="nameplate" aria-hidden="true">
+  <div class="np-inner">
+    <span class="dot-mark np-dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
+    <div class="wordmark np-wordmark"><span class="the">The</span><span class="mrn">M<i class="o"></i>rning</span><span class="brf">Brief</span></div>
+    <div class="np-rule"></div>
+    <p class="np-date" id="npDate"></p>
+  </div>
+</div>
 <header class="masthead" id="masthead" hidden>
   <div class="masthead-inner">
     <div class="brand">
@@ -3096,12 +3162,12 @@ function echoNode(n){
   const count = v.testate || Math.max((n.sources || []).length, 1 + (n.extra_links || []).length);
   const indip = (v.origini || []).filter(function(o){ return OFFICIAL_ORIGINS.indexOf(o) < 0; });
   let label, tone = "ink";
-  if(v.ufficiale){ label = "C'è la parola di Apple"; tone = "blue"; }
+  if(v.ufficiale && n.tag !== "RUMOR"){ label = "C'è la parola di Apple"; tone = "blue"; }
   else if(count <= 1){ label = n.tag === "RUMOR" ? "Una voce sola" : "Una testata sola"; if(n.tag === "RUMOR") tone = "yellow"; }
   else if(count <= 3) label = count + " testate";
   else if(count <= 7) label = "Ripresa da " + count + " testate";
   else label = "Ne parlano tutti · " + count + " testate";
-  if(v.ufficiale && count > 1) label += " · " + count + " testate";
+  if(v.ufficiale && n.tag !== "RUMOR" && count > 1) label += " · " + count + " testate";
 
   let origin = "";
   if(indip.length >= 2) origin = "Fonti indipendenti: " + indip.slice(0, 3).join(", ");
@@ -5368,35 +5434,45 @@ function testate(n){
   const v = n.verifica || {};
   return v.testate || Math.max((n.sources || []).length, 1 + (n.extra_links || []).length);
 }
-/* "3 ore fa", dall'ora in cui la prima delle nostre testate l'ha data */
-function tempoFa(n){
+/* quando l'ha data la prima delle nostre testate: «ieri, 16:27». Un orario
+   vero e non «21 ore fa», che sotto «scelte stamattina» faceva sembrare vecchia
+   l'apertura di oggi (Mike, 2 novembre 2026) */
+function orario(n){
   const iso = n.verifica && n.verifica.primo && n.verifica.primo.ora;
   const t = iso ? new Date(iso) : null;
   if(!t || isNaN(t)) return "";
-  const min = Math.round((Date.now() - t) / 60000);
-  if(min < 1) return "adesso";
-  if(min < 60) return min + " min fa";
-  const h = Math.round(min / 60);
-  if(h < 24) return h + (h === 1 ? " ora fa" : " ore fa");
-  const d = Math.round(h / 24);
-  return d === 1 ? "ieri" : d + " giorni fa";
+  const hm = t.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"});
+  const day = function(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(); };
+  const diff = Math.round((day(new Date()) - day(t)) / 86400000);
+  if(diff === 0) return "oggi, " + hm;
+  if(diff === 1) return "ieri, " + hm;
+  return t.getDate() + " " + MESI[t.getMonth()].slice(0, 3) + ", " + hm;
+}
+/* chi l'ha detta per primo: l'origine dichiarata (Bloomberg), e chi l'ha
+   ripresa resta in piccolo, «via 9to5Mac» */
+function testataDi(n){
+  const indip = ((n.verifica || {}).origini || []).filter(function(o){ return OFFICIAL_ORIGINS.indexOf(o) < 0; });
+  const ripresa = srcName(n);
+  return indip.length ? {nome:indip[0], via:indip[0] !== ripresa ? ripresa : ""} : {nome:ripresa, via:""};
 }
 
 function magCard(brief, n, i, w, kind){
   const k = key(brief.date, n.id);
-  const src = srcName(n), count = testate(n), official = !!(n.verifica && n.verifica.ufficiale);
+  /* «parola di Apple» mai su un rumor: le due cose si contraddicono */
+  const src = testataDi(n), count = testate(n), official = !!(n.verifica && n.verifica.ufficiale) && n.tag !== "RUMOR";
   const img = (kind === "hero" ? (n.hero || n.image) : n.image) || null;
 
   /* il piede: tempo fa, copertura, la stella sempre a portata e i «•••» */
   const cov = el("span", {class:"card-cov" + (official ? " t-blue" : n.tag === "RUMOR" && count <= 1 ? " t-yellow" : ""),
     title:official ? "C'è la parola di Apple" : count === 1 ? "Una testata" : count + " testate"});
   for(let j = 0; j < 5; j++) cov.appendChild(el("i", {class:j < count ? "on" : ""}));
-  cov.appendChild(el("b", {text:official ? "parola di Apple" : count === 1 ? "1 testata" : count + " testate"}));
+  /* il numero sempre; il blu dice che c'e' anche la parola di Apple */
+  cov.appendChild(el("b", {text:count === 1 ? "1 testata" : count + " testate"}));
+  /* solo la stellina: appunti e «non mi interessa» stanno nella notizia aperta */
   const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Salva", html:I_STAR});
-  const more = el("button", {type:"button", class:"card-btn card-more", "aria-label":"Altro", text:"•••"});
-  const when = tempoFa(n);
+  const when = orario(n);
   const foot = el("div", {class:"card-foot tools", "data-sig":k}, [
-    when ? el("span", {class:"card-when", text:when}) : null, cov, el("span", {class:"card-gap"}), star, more
+    when ? el("span", {class:"card-when", text:when}) : null, cov, el("span", {class:"card-gap"}), star
   ]);
   const paintStar = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
   paintStar();
@@ -5406,17 +5482,10 @@ function magCard(brief, n, i, w, kind){
     const b = barBtn(".t-star");
     if(b){ b.click(); paintStar(); if(mk(k) && mk(k).starred_at) Motion.burst(star); }
   });
-  more.addEventListener("click", function(ev){
-    ev.stopPropagation();
-    magMenu(more, [
-      ["Appunti", function(){ Sheet.open(w); const b = barBtn(".t-note"); if(b && w._parts.panel && w._parts.panel.hidden) setTimeout(function(){ b.click(); }, 380); }],
-      ["Non mi interessa", function(){ const b = barBtn(".t-down"); if(b) b.click(); }]
-    ]);
-  });
-
   const body = el("div", {class:"card-body"}, [
     el("div", {class:"card-src"}, [
-      src ? el("b", {text:src}) : null,
+      src.nome ? el("b", {text:src.nome}) : null,
+      src.via ? el("span", {class:"via", text:"via " + src.via}) : null,
       el("span", {text:reparto(n)}),
       n.tag === "RUMOR" ? el("span", {class:"rumor", text:"rumor"}) : null
     ]),
@@ -5432,24 +5501,6 @@ function magCard(brief, n, i, w, kind){
   card.addEventListener("click", go);
   card.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
   return Motion.once(card, "rise");
-}
-
-/* il menu dei «•••»: una nuvoletta di vetro accanto al pulsante */
-function magMenu(anchor, items){
-  const old = document.querySelector(".mag-menu");
-  if(old){ old.remove(); if(old._for === anchor) return; }
-  const m = el("div", {class:"mag-menu glass", role:"menu"});
-  m._for = anchor;
-  items.forEach(function(it){
-    m.appendChild(el("button", {type:"button", role:"menuitem", text:it[0], onclick:function(ev){ ev.stopPropagation(); m.remove(); it[1](); }}));
-  });
-  document.body.appendChild(m);
-  const r = anchor.getBoundingClientRect();
-  m.style.top = (r.bottom + window.scrollY + 6) + "px";
-  m.style.left = Math.max(12, Math.min(window.innerWidth - m.offsetWidth - 12, r.right - m.offsetWidth)) + window.scrollX + "px";
-  setTimeout(function(){
-    document.addEventListener("click", function off(){ m.remove(); document.removeEventListener("click", off); });
-  }, 0);
 }
 
 /* «L'ultima parola»: la frase che fa entrare nell'approfondimento. La scrive
@@ -5513,15 +5564,7 @@ function magSection(id, title, hint, color){
 
 function magFeed(brief, wraps){
   const news = brief.news || [];
-  const d = new Date(brief.date + "T12:00:00");
-  const st = brief.stats || {};
   const feed = el("div", {class:"mag"});
-  feed.appendChild(el("header", {class:"mag-head"}, [
-    el("span", {class:"eyebrow", text:isNaN(d) ? "" : GIORNI[d.getDay()] + " · " + (brief.window || "ultime 24 ore")}),
-    Motion.once(el("h2", {class:"mag-date", text:isNaN(d) ? brief.date : d.getDate() + " " + MESI[d.getMonth()]}), "wipe"),
-    el("p", {class:"mag-dek", text:"Scelte dalla redazione stamattina: " + news.length + " notizie" +
-      (st.articoli_letti ? " da " + st.articoli_letti + " articoli letti" : "") + "."})
-  ]));
   if(!news.length) return feed;
   const card = function(i, kind){ return news[i] ? magCard(brief, news[i], i, wraps[i], kind) : null; };
 
@@ -5680,6 +5723,119 @@ function magTalk(ul, brief){
   ]);
 }
 
+/* ================= la testata della Magazine =================
+   Nella Magazine il giornale ha il suo nome in testa, grande, come una
+   testata vera (2 novembre 2026, Mike: «sembra che questo magazine si chiami
+   2 novembre, e The Morning Brief e' finito lassu', appiccicato nell'angolo»).
+   Sotto il nome una riga sola con la data, detta una volta. La barra che resta
+   attaccata in cima porta le sezioni e, quando la testata grande esce di
+   scena, il marchio piccolo. Le icone sparse (tema, esporta, importa, esci,
+   i tre puntini di Archivio, Salvati, Diario, Cerca) diventano un menu con le
+   parole scritte: «non si capisce niente dell'interfaccia». */
+const Testata = (function(){
+  let menu = null;
+  const inner = document.querySelector("#masthead .masthead-inner");
+  if(!inner) return {date:function(){}};
+  const mini = el("div", {class:"mt-mini", "aria-hidden":"true"}, [
+    el("span", {class:"wordmark"}, [el("span", {class:"the", text:"The"}),
+      el("span", {class:"mrn"}, [document.createTextNode("M"), el("i", {class:"o"}), document.createTextNode("rning")]),
+      el("span", {class:"brf", text:"Brief"})])
+  ]);
+  const I_LENTE = ico("M6.8 1.8a5 5 0 0 1 4 8l3.4 3.4-1.1 1.1-3.4-3.4a5 5 0 1 1-2.9-9.1zm0 1.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8z");
+  const I_MENU = ico("M2 3.2h12v1.6H2zM2 7.2h12v1.6H2zM2 11.2h12v1.6H2z");
+  const search = el("button", {type:"button", class:"mt-btn", "aria-label":"Cerca", html:I_LENTE,
+    onclick:function(){ close(); show("cerca"); }});
+  const dot = el("i", {class:"mt-sync"});
+  const menuBtn = el("button", {type:"button", class:"mt-btn mt-menu-btn glass", "aria-label":"Menu", "aria-haspopup":"true", "aria-expanded":"false"},
+    [el("span", {html:I_MENU}), dot]);
+  inner.appendChild(mini);
+  inner.appendChild(el("div", {class:"mt-actions"}, [search, menuBtn]));
+
+  /* il pallino della sincronizzazione segue quello di sempre */
+  const pip = document.getElementById("syncPip");
+  const paintDot = function(){ dot.dataset.state = pip ? (pip.dataset.state || "ok") : "ok"; };
+  if(pip && "MutationObserver" in window) new MutationObserver(paintDot).observe(pip, {attributes:true});
+  paintDot();
+
+  function dark(){
+    const r = document.documentElement;
+    return r.getAttribute("data-theme") === "dark" ||
+      (!r.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme:dark)").matches);
+  }
+  function seg(label, opts, on, pick){
+    return el("div", {class:"mm-seg-wrap"}, [
+      el("span", {class:"mm-label", text:label}),
+      el("div", {class:"mm-seg"}, opts.map(function(o){
+        return el("button", {type:"button", class:o[0] === on ? "on" : "", text:o[1],
+          onclick:function(ev){ ev.stopPropagation(); if(o[0] !== on){ close(); pick(o[0]); } }});
+      }))
+    ]);
+  }
+  function row(label, count, fn, cls){
+    return el("button", {type:"button", class:"mm-row" + (cls ? " " + cls : ""), onclick:function(ev){ ev.stopPropagation(); close(); fn(); }}, [
+      el("span", {text:label}), count ? el("b", {text:count}) : el("i", {"aria-hidden":"true", text:"›"})
+    ]);
+  }
+  function txt(id){ const e = document.getElementById(id); return e ? e.textContent.trim() : ""; }
+  function clickId(id){ const b = document.getElementById(id); if(b) b.click(); }
+  function open(){
+    close();
+    const states = {ok:"Sincronizzato", busy:"Sincronizzazione…", offline:"Offline: le modifiche partono appena torna la rete", error:"Errore di sincronizzazione"};
+    menu = el("div", {class:"mt-menu glass", role:"dialog", "aria-label":"Menu"}, [
+      el("div", {class:"mm-head"}, [
+        el("b", {text:"The Morning Brief"}),
+        el("span", {class:"mm-sync", "data-state":dot.dataset.state, text:states[dot.dataset.state] || states.ok})
+      ]),
+      seg("Vista", [["classica", "Classica"], ["magazine", "Magazine"]], magazine() ? "magazine" : "classica", setVista),
+      seg("Tema", [["light", "Chiaro"], ["dark", "Scuro"]], dark() ? "dark" : "light", function(){ clickId("themeBtn"); }),
+      el("div", {class:"mm-list"}, [
+        row("Archivio", "", function(){ show("archivio"); }),
+        row("Salvati", txt("cStar"), function(){ show("salvati"); }),
+        row("Diario", txt("cDiary"), function(){ show("diario"); }),
+        row("Cerca", "", function(){ show("cerca"); })
+      ]),
+      el("div", {class:"mm-list"}, [
+        row("Esporta gli appunti", "", function(){ clickId("exportBtn"); }),
+        row("Importa gli appunti", "", function(){ clickId("importBtn"); })
+      ]),
+      el("div", {class:"mm-list"}, [row("Esci", "", function(){ clickId("outBtn"); }, "out")])
+    ]);
+    document.body.appendChild(menu);
+    menuBtn.setAttribute("aria-expanded", "true");
+    const r = menuBtn.getBoundingClientRect();
+    menu.style.top = (r.bottom + 8) + "px";
+    menu.style.right = Math.max(12, window.innerWidth - r.right) + "px";
+    setTimeout(function(){ document.addEventListener("click", outside); }, 0);
+  }
+  function outside(ev){ if(menu && !menu.contains(ev.target)) close(); }
+  function close(){
+    if(menu){ menu.remove(); menu = null; }
+    menuBtn.setAttribute("aria-expanded", "false");
+    document.removeEventListener("click", outside);
+  }
+  menuBtn.addEventListener("click", function(ev){ ev.stopPropagation(); menu ? close() : open(); });
+  document.addEventListener("keydown", function(ev){ if(ev.key === "Escape") close(); });
+
+  /* la testata grande esce di scena: nella barra compare il marchio piccolo */
+  const np = document.getElementById("nameplate");
+  if(np && "IntersectionObserver" in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ document.documentElement.classList.toggle("np-out", !e.isIntersecting); });
+    }, {rootMargin:"-60px 0px 0px 0px"}).observe(np);
+  }
+  /* la data, detta una volta sola, sotto il nome */
+  function date(brief){
+    const t = document.getElementById("npDate");
+    if(!t || !brief) return;
+    const d = new Date(brief.date + "T12:00:00"), st = brief.stats || {}, n = (brief.news || []).length;
+    const g = isNaN(d) ? brief.date : GIORNI[d.getDay()] + " " + d.getDate() + " " + MESI[d.getMonth()] + " " + d.getFullYear();
+    t.textContent = "";
+    t.appendChild(el("span", {text:g.charAt(0).toUpperCase() + g.slice(1)}));
+    t.appendChild(el("span", {text:n + " notizie scelte" + (st.articoli_letti ? " su " + st.articoli_letti + " articoli letti" : "")}));
+  }
+  return {date:date, close:close};
+})();
+
 function drawEdition(root){
   const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   root.innerHTML = "";
@@ -5688,6 +5844,7 @@ function drawEdition(root){
     return;
   }
   document.getElementById("editionLabel").textContent = fmtShort(brief.date);
+  Testata.date(brief);
 
   const col = el("div", {class:"col-main"});
 

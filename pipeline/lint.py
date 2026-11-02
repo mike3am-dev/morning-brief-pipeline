@@ -441,6 +441,16 @@ REPARTI = {"Mac", "iPhone", "iPad", "Watch", "Casa", "Servizi", "Software", "Mer
            "Regole", "Azienda", "Eventi", "Accessori", "AI"}
 
 
+def check_accenti(brief, r):
+    """«meta'», «gia'», «perche'»: gli accenti scritti con l'apostrofo (2 novembre
+    2026, in apertura). Si correggono con pipeline/accenti.py --fix."""
+    import accenti
+    n = accenti.walk(brief, False)
+    if n:
+        r.error("accenti", f"{n} accenti scritti con l'apostrofo (meta', gia', perche'): "
+                           "lancia python3 pipeline/accenti.py --fix")
+
+
 def check_magazine(brief, r):
     """La vista Magazine (2 novembre 2026) vuole due pezzi in piu': la
     citazione che porta dentro un approfondimento e il commento della
@@ -718,6 +728,7 @@ def lint(brief, with_links):
     check_memory(brief, r)
     check_verifica(brief, r)
     check_reparto(brief, r)
+    check_accenti(brief, r)
     check_magazine(brief, r)
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
