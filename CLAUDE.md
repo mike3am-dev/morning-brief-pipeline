@@ -1449,7 +1449,14 @@ pulsante. Regole: ogni cosa parte **una volta**, quando ha superato **un margine
 (il terzo inferiore dello schermo non conta: chi scorre piano leggendo, quando arrivava con
 gli occhi trovava l'animazione già finita — Mike, 2 novembre 2026); quello che sta in fondo
 alla pagina o alla notizia aperta, e lassù non sale mai, parte quando si arriva in fondo. Le
-animazioni in loop (radar, Ultim'ora, foto che respirano, vento) non aspettano niente; con «Riduci movimento» non parte niente; un elemento in attesa è trasparente, mai
+animazioni in loop (radar, Ultim'ora, foto che respirano, vento) non aspettano niente.
+**L'impaginato c'è sempre, dal primo istante**: schede, foto, titoli, riquadri non aspettano di
+essere visti per esistere (2 novembre 2026, Mike davanti a uno spazio nero sotto «Ultim'ora»:
+«sembra non abbia caricato la pagina»). Aspettano solo le cose che ci stanno sopra — i
+pallini, le sottolineature, la testina, i numeri che contano — e il testo che si scrive da
+solo: «L'ultima parola» lettera per lettera e **«Il punto» parola per parola**, con la scheda
+già al suo posto, lo spazio già tenuto e un cursore che lampeggia finché non ci arrivi; nelle
+discussioni i post ci sono con il loro avatar, e il testo arriva dopo i tre puntini; con «Riduci movimento» non parte niente; un elemento in attesa è trasparente, mai
 ritagliato (ritagliato del tutto, l'osservatore non lo vede mai e resta nascosto). Una
 chicca nuova si aggiunge a quel linguaggio, non ne inventa un altro.
 
