@@ -1360,6 +1360,16 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   pallini e le piattaforme, e ogni discussione è un post a sé con l'avatar della sua
   piattaforma (r/ arancione per Reddit, Y per Hacker News, X) — voci diverse, non un botta
   e risposta, che entrano una dopo l'altra.
+- **Altre chicche della Magazine** (2 novembre 2026, scelte da Mike fra sette proposte):
+  «In breve» si apre con **la scritta che scorre del telegiornale** (fascia nera, etichetta
+  gialla col pallino rosso, i titoli che passano piano, si ferma sotto il dito, il titolo
+  toccato apre la notizia); **«L'ultima parola» si scrive da sola** parola per parola, poi
+  il cursore giallo lampeggia e arriva il nome; in **«Se te lo fossi perso»** una testina
+  riavvolge il righello da «oggi» all'indietro e ogni pallino si accende quando ci passa;
+  **la stellina vola** dalla scheda fino alla pillola «Più tardi», che sobbalza; nelle
+  **discussioni** ogni post è preceduto dai tre puntini «sta scrivendo»; la foto di **«In
+  apertura» respira**, con uno zoom lentissimo come una ripresa in studio. Scartata la barra
+  di lettura per «Il punto»: sta in una schermata, non si scorre.
 - **Il vetro** che Mike ha amato in News+: la barretta galleggiante in basso che salta fra
   le sezioni e dice dove sei, il tasto indietro, il menu dei «•••».
 - Le chicche restano: le schede salgono quando arrivano, la data e la citazione entrano
