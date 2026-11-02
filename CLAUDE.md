@@ -1307,6 +1307,14 @@ scheda APPLE. Cosa prende da News+ e cosa no:
 - **«Sul banco»** nella Magazine prende la forma delle schede: il genere come occhiello col
   suo pallino, «Al banco» dentro la scheda su un velo giallo, non più il foglietto giallo
   accanto («sembra un'altra rivista», Mike).
+- **Le tre sezioni in fondo hanno ciascuna la sua forma**, perché l'occhio le riconosca
+  prima di leggere (2 novembre 2026): **«Se te lo fossi perso»** sta su una linea del tempo
+  — un righello degli ultimi dieci giorni con i pallini arancioni dove cadono le voci
+  (impilati se sono dello stesso giorno), e le voci appese a una linea verticale col
+  «quando» in grande; **il radar** è un radar — un quadrante scuro con i cerchi e il fascio
+  blu che gira, ogni voce un puntino numerato che si accende quando il fascio ci passa, con
+  la scheda accanto; **le discussioni** sono una chat — pannello scuro, la barra coi tre
+  pallini e le piattaforme, i fumetti alternati con la piattaforma come mittente.
 - **Il vetro** che Mike ha amato in News+: la barretta galleggiante in basso che salta fra
   le sezioni e dice dove sei, il tasto indietro, il menu dei «•••».
 - Le chicche restano: le schede salgono quando arrivano, la data e la citazione entrano

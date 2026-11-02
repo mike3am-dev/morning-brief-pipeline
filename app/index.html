@@ -296,6 +296,108 @@ html.vista-magazine #view-oggi .banco{align-items:start}
 html.vista-magazine #view-oggi .banco .tool{box-shadow:none; width:34px; height:34px}
 @container (min-width:620px){ html.vista-magazine #view-oggi .banco{grid-template-columns:1fr 1fr} }
 
+/* ---- Magazine: «Se te lo fossi perso» nel tempo ---- */
+.tl-ruler{margin:.4rem 0 .2rem; padding:2.6rem .4rem .2rem}
+.tl-track{position:relative; height:2px; background:var(--rule-strong); margin:0 .6rem}
+.tl-tick{position:absolute; top:-4px; width:2px; height:10px; background:var(--rule-strong); transform:translateX(-1px)}
+.tl-tick.now{background:var(--orange); height:16px; top:-7px; width:3px}
+.tl-blip{position:absolute; top:50%; width:26px; height:26px; margin:-13px 0 0 -13px; border-radius:50%;
+  background:var(--orange); color:#17181B; display:grid; place-items:center; font-family:var(--display); font-weight:700; font-size:.8rem;
+  box-shadow:0 0 0 4px var(--bone)}
+.tl-blip.up::after{content:""; position:absolute; left:50%; top:100%; width:2px; height:8px; margin-left:-1px; background:var(--orange)}
+.tl-labels{display:flex; justify-content:space-between; margin-top:.9rem; font-size:.58rem; font-weight:700;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.tl-labels span:last-child{color:var(--orange-ink)}
+.mo-ruler:not(.mo-in) .tl-blip{transform:scale(0)}
+.mo-ruler.mo-in .tl-blip{animation:mo-pop .45s cubic-bezier(.2,1.4,.4,1) both; animation-delay:calc(.25s + var(--mo-i, 0) * .15s)}
+.mo-ruler:not(.mo-in) .tl-track{clip-path:inset(0 100% 0 0)}
+.mo-ruler.mo-in .tl-track{animation:mo-wipe .7s cubic-bezier(.6,0,.2,1) both}
+html.vista-magazine #view-oggi .recap.tl{position:relative; display:flex; flex-direction:column; gap:1rem; padding-left:2.1rem; margin-top:.6rem}
+html.vista-magazine #view-oggi .recap.tl::before{content:""; position:absolute; left:.78rem; top:.4rem; bottom:.4rem; width:2px;
+  background:linear-gradient(var(--orange), color-mix(in srgb, var(--orange) 20%, transparent))}
+html.vista-magazine #view-oggi .recap.tl li{position:relative; display:flex; flex-direction:column; gap:.4rem; border:0; padding:1rem 1.1rem .6rem;
+  background:var(--paper); border-radius:18px; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+html.vista-magazine #view-oggi .recap.tl .tl-num{position:absolute; left:-2.1rem; top:.9rem; width:26px; height:26px; margin-left:.05rem;
+  border-radius:50%; background:var(--orange); color:#17181B; display:grid; place-items:center;
+  font-family:var(--display); font-weight:700; font-size:.8rem; box-shadow:0 0 0 4px var(--bone)}
+html.vista-magazine #view-oggi .recap.tl .head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .7rem}
+html.vista-magazine #view-oggi .recap.tl .when{background:none; padding:0; box-shadow:none; color:var(--orange-ink);
+  font-family:var(--display); font-weight:700; font-size:1.25rem; letter-spacing:.01em; text-transform:uppercase; line-height:1}
+html.vista-magazine #view-oggi .recap.tl .signal{font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); padding:0}
+html.vista-magazine #view-oggi .recap.tl h4{font-family:var(--body); font-weight:700; font-size:1.08rem; line-height:1.27; letter-spacing:-.01em}
+html.vista-magazine #view-oggi .recap.tl h4 a{color:var(--ink); text-decoration:none}
+html.vista-magazine #view-oggi .recap.tl li > p{font-size:.93rem; line-height:1.45; color:var(--ink-2); margin:0}
+html.vista-magazine #view-oggi .recap.tl .foot{justify-content:space-between}
+html.vista-magazine #view-oggi .recap.tl .tools{padding-top:0; margin-left:auto}
+html.vista-magazine #view-oggi .recap.tl .tool{box-shadow:none}
+
+/* ---- Magazine: il radar ---- */
+.rd-wrap{display:grid; grid-template-columns:minmax(0,1fr); gap:1.1rem; align-items:center; margin-top:.4rem}
+@container (min-width:600px){ .rd-wrap{grid-template-columns:220px minmax(0,1fr)} }
+.rd-scope{position:relative; width:min(220px, 70vw); aspect-ratio:1; justify-self:center; border-radius:50%; overflow:hidden;
+  background:
+    linear-gradient(transparent calc(50% - .5px), color-mix(in srgb, var(--blue) 35%, transparent) calc(50% - .5px), color-mix(in srgb, var(--blue) 35%, transparent) calc(50% + .5px), transparent calc(50% + .5px)),
+    linear-gradient(90deg, transparent calc(50% - .5px), color-mix(in srgb, var(--blue) 35%, transparent) calc(50% - .5px), color-mix(in srgb, var(--blue) 35%, transparent) calc(50% + .5px), transparent calc(50% + .5px)),
+    repeating-radial-gradient(circle, transparent 0 calc(25% - 1px), color-mix(in srgb, var(--blue) 40%, transparent) calc(25% - 1px) 25%),
+    #10151C;
+  box-shadow:inset 0 0 0 3px color-mix(in srgb, var(--blue) 60%, transparent), 0 14px 34px -18px rgba(14,156,216,.55)}
+.rd-sweep{position:absolute; inset:0; border-radius:50%;
+  background:conic-gradient(from 0deg, transparent 0deg 290deg, color-mix(in srgb, var(--blue) 10%, transparent) 300deg, color-mix(in srgb, var(--blue) 70%, transparent) 360deg);
+  animation:rd-spin var(--rd-period, 4.8s) linear infinite}
+@keyframes rd-spin{to{transform:rotate(360deg)}}
+.rd-blip{position:absolute; width:22px; height:22px; margin:-11px 0 0 -11px; border-radius:50%; background:var(--blue); color:#10151C;
+  display:grid; place-items:center; font-family:var(--display); font-weight:700; font-size:.72rem; z-index:1;
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--blue) 70%, transparent);
+  animation:rd-ping var(--rd-period, 4.8s) ease-out infinite; animation-delay:var(--rd-delay, 0s)}
+@keyframes rd-ping{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--blue) 75%, transparent); transform:scale(1.25)}
+  25%{box-shadow:0 0 0 12px transparent; transform:scale(1)} 100%{box-shadow:0 0 0 0 transparent; transform:scale(1)}}
+.rd-count{position:absolute; left:50%; bottom:12%; transform:translateX(-50%); font-size:.55rem; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:color-mix(in srgb, var(--blue) 85%, #FFF); white-space:nowrap}
+html.vista-magazine #view-oggi .rd-wrap .radar{display:flex; flex-direction:column; gap:.8rem}
+html.vista-magazine #view-oggi .rd-wrap .radar li{position:relative; display:flex; flex-direction:column; gap:.4rem; border:0;
+  padding:1rem 1.1rem .6rem 3rem; background:var(--paper); border-radius:18px;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+html.vista-magazine #view-oggi .rd-wrap .radar li:first-child:nth-last-child(odd){grid-column:auto}
+html.vista-magazine #view-oggi .rd-num{position:absolute; left:1rem; top:1.05rem; width:22px; height:22px; border-radius:50%;
+  background:var(--blue); color:#10151C; display:grid; place-items:center; font-family:var(--display); font-weight:700; font-size:.72rem}
+html.vista-magazine #view-oggi .rd-wrap .radar .topic{display:block; font-size:.58rem; font-weight:700; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--blue-ink)}
+html.vista-magazine #view-oggi .rd-wrap .radar h4{font-family:var(--body); font-weight:700; font-size:1.08rem; line-height:1.27; letter-spacing:-.01em}
+html.vista-magazine #view-oggi .rd-wrap .radar h4 a{color:var(--ink); text-decoration:none}
+html.vista-magazine #view-oggi .rd-wrap .radar p{font-size:.93rem; line-height:1.45; color:var(--ink-2); margin:0}
+html.vista-magazine #view-oggi .rd-wrap .radar-foot{justify-content:space-between; margin-top:0}
+html.vista-magazine #view-oggi .rd-wrap .tools{padding-top:0; margin-left:auto}
+html.vista-magazine #view-oggi .rd-wrap .tool{box-shadow:none}
+
+/* ---- Magazine: le discussioni come una chat ---- */
+.chat-panel{margin-top:.4rem; background:#14171D; border-radius:22px; padding:0 0 1rem; overflow:hidden;
+  box-shadow:0 14px 34px -20px rgba(23,24,27,.6)}
+.chat-bar{display:flex; align-items:center; gap:.7rem; padding:.8rem 1rem; border-bottom:1px solid rgba(255,255,255,.08); color:#F1EEE8}
+.chat-bar b{font-size:.82rem; font-weight:700}
+.chat-bar span:last-child{margin-left:auto; font-size:.58rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(241,238,232,.5)}
+.chat-dots{display:flex; gap:5px}
+.chat-dots i{width:9px; height:9px; border-radius:50%; background:var(--red)}
+.chat-dots i:nth-child(2){background:var(--yellow)}
+.chat-dots i:nth-child(3){background:var(--blue)}
+html.vista-magazine #view-oggi .talk.chat{display:flex; flex-direction:column; gap:.85rem; padding:1rem 1rem 0}
+html.vista-magazine #view-oggi .talk.chat li{max-width:86%; align-self:flex-start; display:flex; flex-direction:column; gap:.3rem;
+  border:0; padding:.75rem .95rem .8rem; background:#252A33; color:#F1EEE8; border-radius:20px 20px 20px 6px}
+html.vista-magazine #view-oggi .talk.chat li:nth-child(even){align-self:flex-end; background:var(--blue); color:#0B1218; border-radius:20px 20px 6px 20px}
+html.vista-magazine #view-oggi .talk.chat li:first-child:nth-last-child(odd){grid-column:auto}
+html.vista-magazine #view-oggi .talk.chat .who{display:flex; flex-wrap:wrap; align-items:center; gap:.3rem .5rem; order:-1}
+html.vista-magazine #view-oggi .talk.chat .where{background:none; padding:0; color:var(--orange); font-size:.6rem; font-weight:700; letter-spacing:.13em}
+html.vista-magazine #view-oggi .talk.chat li:nth-child(even) .where{color:#0B1218}
+html.vista-magazine #view-oggi .talk.chat .where.new{background:var(--red); color:#FFF; padding:.12rem .45rem; border-radius:999px}
+html.vista-magazine #view-oggi .talk.chat .heat{font-size:.6rem; font-weight:700; letter-spacing:.06em; padding:.15rem .5rem; border-radius:999px;
+  background:rgba(255,255,255,.1); color:inherit}
+html.vista-magazine #view-oggi .talk.chat li:nth-child(even) .heat{background:rgba(11,18,24,.14)}
+html.vista-magazine #view-oggi .talk.chat h4{font-family:var(--body); font-weight:700; font-size:1.02rem; line-height:1.28; letter-spacing:-.005em; color:inherit}
+html.vista-magazine #view-oggi .talk.chat h4 a{color:inherit; text-decoration:none}
+html.vista-magazine #view-oggi .talk.chat p{font-size:.9rem; line-height:1.45; color:inherit; opacity:.82; margin:0}
+html.vista-magazine #view-oggi .caveat{font-size:.82rem}
+/* il piede delle schede in fondo prende tutta la larghezza: fonte a sinistra, pulsanti a destra */
+html.vista-magazine #view-oggi :is(.banco .foot, .recap.tl .foot, .rd-wrap .radar-foot){align-self:stretch}
+
 /* ---------------- le chicche ----------------
    Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
    come un pallino (pop), sale di poco (rise). Le classi .mo-* le mette
@@ -5503,6 +5605,81 @@ function paintVistaBtn(b){
   b.classList.toggle("on", magazine());
 }
 
+/* Le tre sezioni in fondo, nella vista Magazine, prendono ciascuna una forma
+   che si riconosce prima di leggere (2 novembre 2026, Mike: «devo arrivare
+   li' e l'occhio gia' sapere che e' una sezione diversa»). */
+
+/* «Se te lo fossi perso» su una linea del tempo: un righello degli ultimi
+   dieci giorni con i pallini dove cadono le voci, e le voci appese a una
+   linea verticale, con il «quando» in grande. */
+function magTimeline(ul, brief){
+  const span = 10;
+  const track = el("div", {class:"tl-track"});
+  for(let d = span; d >= 0; d--){
+    const t = el("i", {class:"tl-tick" + (d === 0 ? " now" : "")});
+    t.style.left = ((span - d) / span * 100) + "%";
+    track.appendChild(t);
+  }
+  const stack = {};
+  (brief.recap || []).forEach(function(m, i){
+    const back = -(daysUntil(m.when, brief.date) || 0);
+    const pos = Math.max(0, Math.min(span, back));
+    const blip = el("span", {class:"tl-blip", text:String(i + 1)});
+    blip.style.left = ((span - pos) / span * 100) + "%";
+    /* due voci dello stesso giorno: la seconda sale sopra la prima, col suo gambo */
+    const k = stack[pos] = (stack[pos] || 0) + 1;
+    if(k > 1){ blip.style.marginTop = (-13 - (k - 1) * 30) + "px"; blip.classList.add("up"); }
+    blip.style.setProperty("--mo-i", i);
+    track.appendChild(blip);
+    const li = ul.children[i];
+    if(li) li.insertBefore(el("span", {class:"tl-num", text:String(i + 1)}), li.firstChild);
+  });
+  const ruler = el("div", {class:"tl-ruler", "aria-hidden":"true"}, [
+    track, el("div", {class:"tl-labels"}, [el("span", {text:span + " giorni fa"}), el("span", {text:"oggi"})])
+  ]);
+  ul.classList.add("tl");
+  return Motion.once(ruler, "ruler");
+}
+
+/* Il radar come un radar: il quadrante con i cerchi, il fascio che gira, e
+   ogni voce un puntino numerato che si accende quando il fascio ci passa. */
+function magRadar(ul, brief){
+  const PERIOD = 4.8;
+  const scope = el("div", {class:"rd-scope", "aria-hidden":"true"}, [el("i", {class:"rd-sweep"})]);
+  scope.style.setProperty("--rd-period", PERIOD + "s");
+  (brief.radar || []).forEach(function(r, i){
+    const ang = (52 + i * 137.5) % 360, dist = [.62, .38, .78, .5, .7][i % 5];
+    const rad = ang * Math.PI / 180;
+    const b = el("span", {class:"rd-blip", text:String(i + 1)});
+    b.style.left = (50 + Math.sin(rad) * dist * 50) + "%";
+    b.style.top = (50 - Math.cos(rad) * dist * 50) + "%";
+    b.style.setProperty("--rd-delay", (ang / 360 * PERIOD) + "s");
+    scope.appendChild(b);
+    const li = ul.children[i];
+    if(li) li.insertBefore(el("span", {class:"rd-num", text:String(i + 1)}), li.firstChild);
+  });
+  const n = (brief.radar || []).length;
+  scope.appendChild(el("span", {class:"rd-count", text:n === 1 ? "1 segnale" : n + " segnali"}));
+  return el("div", {class:"rd-wrap"}, [scope]);
+}
+
+/* Le discussioni come una chat: un pannello scuro, i fumetti, la piattaforma
+   come mittente e i numeri della discussione come reazioni sotto il fumetto. */
+function magTalk(ul, brief){
+  const plats = [];
+  (brief.social || []).forEach(function(x){
+    const raw = String(x.platform || x.source || "");
+    const p = /^reddit/i.test(raw) ? "Reddit" : /^hacker news/i.test(raw) ? "Hacker News" : raw.replace(/\s*\(.*\)\s*$/, "").split(" ")[0];
+    if(p && plats.indexOf(p) < 0) plats.push(p);
+  });
+  ul.classList.add("chat");
+  return el("div", {class:"chat-bar", "aria-hidden":"true"}, [
+    el("span", {class:"chat-dots"}, [el("i"), el("i"), el("i")]),
+    el("b", {text:plats.join(" · ") || "Discussioni"}),
+    el("span", {text:(brief.social || []).length + " conversazioni"})
+  ]);
+}
+
 function drawEdition(root){
   const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   root.innerHTML = "";
@@ -5645,6 +5822,7 @@ function drawEdition(root){
         tools ? tools.panel : null
       ]));
     });
+    if(magazine()) col.appendChild(magTimeline(ul, brief));
     col.appendChild(ul);
   }
 
@@ -5659,7 +5837,8 @@ function drawEdition(root){
     brief.social.forEach(function(s){
       const u = safeUrl(s.link);
       const who = el("div", {class:"who"}, [
-        el("span", {class:"where" + (s.origine === "nuovo" ? " new" : ""), text:s.platform || ""})
+        /* le edizioni scrivono la piattaforma in "source" ("Reddit r/apple"); "platform" era il nome vecchio */
+        el("span", {class:"where" + (s.origine === "nuovo" ? " new" : ""), text:String(s.platform || s.source || "").replace(/\s*\(.*\)\s*$/, "")})
       ]);
       if(s.signal) who.appendChild(el("span", {class:"heat", text:s.signal}));
       if(s.origine === "nuovo"){
@@ -5672,7 +5851,10 @@ function drawEdition(root){
         s.note ? el("p", {text:s.note}) : null
       ]));
     });
-    col.appendChild(ul);
+    if(magazine()){
+      const panel = el("div", {class:"chat-panel"}, [magTalk(ul, brief), ul]);
+      col.appendChild(Motion.once(panel, "rise"));
+    } else col.appendChild(ul);
   }
 
   /* Il radar sta in fondo (31 ottobre 2026): e' il contorno del contorno.
@@ -5705,7 +5887,11 @@ function drawEdition(root){
         tools ? tools.panel : null
       ]));
     });
-    col.appendChild(ul);
+    if(magazine()){
+      const wrap = magRadar(ul, brief);
+      wrap.appendChild(ul);
+      col.appendChild(Motion.once(wrap, "rise"));
+    } else col.appendChild(ul);
   }
 
   const rail = el("aside", {class:"rail"});
