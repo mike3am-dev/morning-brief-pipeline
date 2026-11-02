@@ -5672,8 +5672,17 @@ function frontEntry(brief){
    e pulsanti dell'<article> della lista, come fa il pannello del Duo, cosi'
    approfondimento, appunti e segnali di lettura restano gli stessi oggetti. */
 const VISTA_KEY = "tmb-vista";
+/* Dal 3 novembre 2026 c'e' solo la Magazine (Mike: «via il pulsante, da domani solo
+   modern»). La Classica resta qui dentro, spenta: per riaccenderla basta rimettere
+   true, e torna il pulsante in testata. Il suo stato «amato» e' nel tag git
+   app-amata-2026-11-02. */
+const VISTA_PULSANTE = false;
 let VISTA = "magazine";
-try{ VISTA = sessionStorage.getItem(VISTA_KEY) === "classica" ? "classica" : "magazine"; localStorage.removeItem(VISTA_KEY); }catch(e){}
+try{
+  localStorage.removeItem(VISTA_KEY);
+  if(VISTA_PULSANTE && sessionStorage.getItem(VISTA_KEY) === "classica") VISTA = "classica";
+  else sessionStorage.removeItem(VISTA_KEY);
+}catch(e){}
 function magazine(){ return VISTA === "magazine"; }
 document.documentElement.classList.toggle("vista-magazine", magazine());
 
@@ -6216,7 +6225,7 @@ const Testata = (function(){
   const menuBtn = el("button", {type:"button", class:"mt-btn mt-menu-btn glass", "aria-label":"Menu", "aria-haspopup":"true", "aria-expanded":"false"},
     [el("span", {html:I_MENU}), dot]);
   inner.appendChild(mini);
-  inner.appendChild(el("div", {class:"mt-actions"}, [vista, search, menuBtn]));
+  inner.appendChild(el("div", {class:"mt-actions"}, [VISTA_PULSANTE ? vista : null, search, menuBtn]));
 
   /* il pallino della sincronizzazione segue quello di sempre */
   const pip = document.getElementById("syncPip");
@@ -7446,6 +7455,7 @@ function refreshCounts(){
 (function(){
   const b = document.getElementById("vistaBtn");
   if(!b) return;
+  if(!VISTA_PULSANTE){ b.remove(); return; }
   paintVistaBtn(b);
   b.addEventListener("click", function(){ setVista(magazine() ? "classica" : "magazine"); });
 })();
