@@ -1294,6 +1294,19 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   della lista, quindi approfondimento, appunti e segnali restano gli stessi. Le schede
   portano la loro barra dei segnali (`card-foot.tools[data-sig]`): «vista» si conta sulla
   scheda, «aperta» al tocco.
+- **Nella notizia a tutto schermo l'approfondimento è già aperto**, parte della notizia, senza
+  pulsante (2 novembre 2026). Non conta come «approfondita» (`d`): non è un gesto di Mike.
+  **Si torna indietro anche col dito**: trascinando la notizia verso destra ricompare
+  l'edizione; oltre un quarto di schermo, o con uno strattone, si chiude. Un gesto verticale,
+  o sopra un grafico o un carosello, non la tocca.
+- **Il capolettera**: la descrizione della notizia aperta comincia con la lettera grande
+  arancione, come «Il punto» (in rosso) e il testo dell'approfondimento. Vale in tutte e due
+  le viste.
+- **«Il punto»** è solo titolo e testo, giustificato, su due colonne pari: i link alle notizie
+  e la firma facevano un muro di parole, e che sia il commento lo dice già l'intestazione.
+- **«Sul banco»** nella Magazine prende la forma delle schede: il genere come occhiello col
+  suo pallino, «Al banco» dentro la scheda su un velo giallo, non più il foglietto giallo
+  accanto («sembra un'altra rivista», Mike).
 - **Il vetro** che Mike ha amato in News+: la barretta galleggiante in basso che salta fra
   le sezioni e dice dove sei, il tasto indietro, il menu dei «•••».
 - Le chicche restano: le schede salgono quando arrivano, la data e la citazione entrano

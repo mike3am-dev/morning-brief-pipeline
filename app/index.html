@@ -219,14 +219,15 @@ html.vista-magazine main{padding-bottom:7.5rem}
 .punto-title{font-family:ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-weight:700;
   font-size:clamp(1.55rem, 5.4cqi, 2.2rem); line-height:1.1; letter-spacing:-.012em; margin:0; text-wrap:balance}
 .punto-text{display:flex; flex-direction:column; gap:.8rem}
-.punto-text p{margin:0; font-family:ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-size:1.06rem; line-height:1.6}
+.punto-text p{margin:0; font-family:ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-size:1.06rem; line-height:1.6;
+  text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 .punto-text p:first-child::first-letter{float:left; font-weight:700; font-size:3.1em; line-height:.84; padding:.06em .08em 0 0; color:var(--red)}
-.punto-by{margin:0; font-size:.6rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
-.punto-links{display:flex; flex-direction:column; gap:.35rem; padding-top:.7rem; border-top:1px solid var(--rule)}
-.punto-link{background:none; border:0; padding:.2rem 0; text-align:left; font:inherit; font-size:.86rem; font-weight:600; color:var(--ink);
-  cursor:pointer; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden}
-.punto-link::after{content:" →"; color:var(--red)}
-@container (min-width:680px){ .punto-text{columns:2; column-gap:1.6rem; display:block} .punto-text p{margin-bottom:.8rem; break-inside:avoid-column} }
+/* due colonne pari: i paragrafi possono passare da una colonna all'altra */
+@container (min-width:680px){
+  .punto-text{columns:2; column-gap:1.8rem; column-fill:balance; display:block}
+  .punto-text p{margin-bottom:.8rem}
+  .punto-text p:last-child{margin-bottom:0}
+}
 
 /* la barretta di vetro delle sezioni */
 .mag-nav{position:fixed; left:50%; bottom:calc(14px + env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:40;
@@ -261,6 +262,39 @@ body.sheet-open{overflow:hidden}
 .sheet-art .tools{padding-left:0}
 .sheet-art .workspace{padding-left:0}
 .sheet .deep-bar{display:none}
+
+/* il capolettera arancione anche nella notizia aperta: la descrizione
+   comincia come un pezzo di rivista, come «Il punto» (Mike, 2 novembre 2026) */
+.story-body > p:first-child::first-letter{float:left; font-family:var(--display); font-weight:700;
+  font-size:3.2em; line-height:.82; padding:.06em .1em 0 0; color:var(--orange)}
+/* nella notizia a tutto schermo l'approfondimento e' gia' aperto: niente pulsante */
+.sheet .deep-acts{display:none}
+.sheet.dragging{box-shadow:-24px 0 48px -24px rgba(23,24,27,.45)}
+
+/* Sul banco nella vista Magazine: schede come le altre, «Al banco» dentro la
+   scheda e non piu' un foglietto giallo accanto (Mike: «sembra un'altra rivista») */
+html.vista-magazine #view-oggi .col-main{container-type:inline-size}
+html.vista-magazine #view-oggi .banco{display:grid; grid-template-columns:minmax(0,1fr); gap:.9rem}
+html.vista-magazine #view-oggi .banco li{background:var(--paper); border:0; border-radius:18px; padding:1rem 1.1rem .55rem;
+  display:flex; flex-direction:column; gap:.45rem; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+html.vista-magazine #view-oggi .banco .kind{align-self:flex-start; background:none; color:var(--ink-3); padding:0;
+  font-size:.58rem; letter-spacing:.15em; display:inline-flex; align-items:center; gap:.4rem}
+html.vista-magazine #view-oggi .banco .kind::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow)}
+html.vista-magazine #view-oggi .banco .kind.k-video::before{background:var(--red)}
+html.vista-magazine #view-oggi .banco .kind.k-confronto::before{background:var(--blue)}
+html.vista-magazine #view-oggi .banco h4{font-family:var(--body); font-weight:700; font-size:1.1rem; line-height:1.27; letter-spacing:-.01em}
+html.vista-magazine #view-oggi .banco h4 a{color:var(--ink); text-decoration:none}
+html.vista-magazine #view-oggi .banco li > p:not(.why){font-size:.94rem; line-height:1.45; color:var(--ink-2); margin:0}
+html.vista-magazine #view-oggi .banco .why{margin:.15rem 0 0; background:color-mix(in srgb, var(--yellow) 14%, transparent);
+  color:var(--ink); box-shadow:inset 3px 0 0 var(--yellow); border-radius:0 10px 10px 0; padding:.6rem .8rem .65rem .95rem;
+  font-size:.9rem; line-height:1.45}
+html.vista-magazine #view-oggi .banco .why::before{content:"Al banco"; display:block; margin-bottom:.2rem;
+  font-family:var(--body); font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--yellow-ink)}
+html.vista-magazine #view-oggi .banco .foot{margin-top:.1rem; justify-content:space-between}
+html.vista-magazine #view-oggi .banco .tools{padding-top:0; gap:.1rem; margin-left:auto}
+html.vista-magazine #view-oggi .banco{align-items:start}
+html.vista-magazine #view-oggi .banco .tool{box-shadow:none; width:34px; height:34px}
+@container (min-width:620px){ html.vista-magazine #view-oggi .banco{grid-template-columns:1fr 1fr} }
 
 /* ---------------- le chicche ----------------
    Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
@@ -3092,6 +3126,8 @@ const Motion = (function(){
         b.textContent = k < 1 ? fmt(dec ? to * e : Math.round(to * e)) : txt;
         if(k < 1) requestAnimationFrame(step);
       })(t0);
+      /* se i fotogrammi si fermano (app in secondo piano) il numero vero arriva comunque */
+      setTimeout(function(){ b.textContent = txt; }, dur + 200);
     });
   }
   /* il pannello che cambia notizia: il contenuto nuovo sale al suo posto */
@@ -5123,6 +5159,44 @@ const Sheet = (function(){
     back.addEventListener("click", function(){ close(); });
     document.addEventListener("keydown", function(ev){ if(ev.key === "Escape" && cur) close(); });
     document.body.appendChild(box);
+    swipe();
+  }
+  /* Indietro con il dito (2 novembre 2026, Mike): si trascina la notizia verso
+     destra e sotto ricompare l'edizione; oltre un quarto di schermo, o con uno
+     strattone, si chiude, altrimenti torna al suo posto. Solo se il gesto e'
+     orizzontale, e mai sopra un grafico o un carosello, che il dito lo usano gia'. */
+  function swipe(){
+    let sx = 0, sy = 0, dx = 0, t0 = 0, decided = false, drag = false;
+    box.addEventListener("touchstart", function(e){
+      if(e.touches.length !== 1){ decided = true; drag = false; return; }
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY; dx = 0; t0 = Date.now(); decided = false; drag = false;
+    }, {passive:true});
+    box.addEventListener("touchmove", function(e){
+      if(!cur || e.touches.length !== 1) return;
+      const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+      if(!decided){
+        if(Math.abs(mx) < 10 && Math.abs(my) < 10) return;
+        decided = true;
+        drag = mx > 0 && Math.abs(mx) > Math.abs(my) * 1.3 &&
+               !(e.target.closest && e.target.closest(".deep-carousel, .vis, input, textarea, .workspace"));
+        if(drag){ box.style.transition = "none"; box.classList.add("dragging"); }
+      }
+      if(!drag) return;
+      dx = Math.max(0, mx);
+      box.style.transform = "translateX(" + dx + "px)";
+      e.preventDefault();
+    }, {passive:false});
+    const end = function(){
+      if(!drag) return;
+      drag = false;
+      box.style.transition = "";
+      box.classList.remove("dragging");
+      const fast = dx / Math.max(1, Date.now() - t0) > .55;
+      box.style.transform = "";
+      if(dx > window.innerWidth * .26 || (fast && dx > 40)) close();
+    };
+    box.addEventListener("touchend", end);
+    box.addEventListener("touchcancel", end);
   }
   function restore(){
     if(!cur) return;
@@ -5131,6 +5205,7 @@ const Sheet = (function(){
     if(p.bar) w.appendChild(p.bar);
     if(p.panel) w.appendChild(p.panel);
     p.body.hidden = true;
+    if(w._deep) w._deep(false);
     w.classList.remove("is-open");
     art.innerHTML = "";
     art.classList.remove("is-open");
@@ -5149,6 +5224,10 @@ const Sheet = (function(){
       if(p.panel) art.appendChild(p.panel);
     }
     p.body.hidden = false;
+    /* l'approfondimento e' parte della notizia: aperto da subito, senza
+       pulsante (Mike, 2 novembre 2026). Non conta come «approfondita» (d):
+       non l'ha chiesto lui, e la taratura lo prenderebbe per un gesto. */
+    if(w._deep) w._deep(true);
     cur = w;
     w.classList.add("is-open");
     art.classList.add("is-open");
@@ -5161,7 +5240,6 @@ const Sheet = (function(){
     Motion.swap(art);
     /* dalla citazione: l'approfondimento aperto, fino alle voci */
     if(opts && opts.deep && w._deep){
-      w._deep(true);
       setTimeout(function(){
         const t = art.querySelector(".deep-voci") || art.querySelector(".deep");
         if(t) box.scrollTo({top:Math.max(0, t.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop - 90), behavior:"smooth"});
@@ -5315,18 +5393,11 @@ function magQuote(brief, wraps){
 function magPunto(brief, wraps){
   const e = brief.editoriale;
   if(!e || !e.titolo || !e.testo) return null;
-  const links = el("div", {class:"punto-links"});
-  (e.notizie || []).forEach(function(id){
-    const i = (brief.news || []).findIndex(function(n){ return n.id === id; });
-    if(i < 0) return;
-    links.appendChild(el("button", {type:"button", class:"punto-link", text:reparto(brief.news[i]) + " · " + brief.news[i].title,
-      onclick:function(){ Sig.bump(key(brief.date, id), "o"); Sheet.open(wraps[i]); }}));
-  });
+  /* solo titolo e testo: i link alle notizie e la firma facevano un muro di
+     parole sotto (Mike). Che sia il commento lo dice gia' l'intestazione */
   return Motion.once(el("section", {class:"mag-punto"}, [
     el("h2", {class:"punto-title", text:e.titolo}),
-    el("div", {class:"punto-text"}, [].concat(e.testo).map(function(p){ return el("p", {text:p}); })),
-    el("p", {class:"punto-by", text:"Commento · " + (e.firma || "Claude, per The Morning Brief")}),
-    links.childNodes.length ? links : null
+    el("div", {class:"punto-text"}, [].concat(e.testo).map(function(p){ return el("p", {text:p}); }))
   ]), "rise");
 }
 
