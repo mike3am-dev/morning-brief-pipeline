@@ -62,7 +62,12 @@ testate, dirigenti, i commenti più votati su Reddit, Hacker News, GSMArena — 
 l'ha detto e il link. Leggi gli articoli interi e le discussioni, verifica ogni link
 (vedi *L'approfondimento* in `CLAUDE.md`: esempio completo in
 `data/briefs/2026-11-01.json`). Tappe, «chi lo dice» e «cosa aspettarsi» non si
-scrivono più. Leggi l'edizione del giorno prima e non ripetere
+scrivono più.
+
+Per la vista Magazine scrivi anche `citazione` («L'ultima parola»: una frase con nome e
+cognome che porta dentro un approfondimento) ed `editoriale` («Il punto»: il commento della
+redazione, 2–3 paragrafi che tengono insieme le notizie del giorno, mai un riassunto) — vedi
+*La vista Magazine* in `CLAUDE.md`, esempio in `data/briefs/2026-11-02.json`. Leggi l'edizione del giorno prima e non ripetere
 le stesse notizie senza sviluppi nuovi.
 
 ```bash

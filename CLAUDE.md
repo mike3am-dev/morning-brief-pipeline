@@ -770,6 +770,38 @@ dentro `lint.py` e una riga in questa tabella. Idee già pronte da fare quando a
 notizia giusta: la resistenza del vetro, un chip che si scompone per core, la mappa dei
 paesi di un lancio.
 
+#### La vista Magazine — `citazione` e `editoriale`
+
+Dal 2 novembre 2026 la scheda APPLE ha due vesti, e Mike passa dall'una all'altra con il
+pulsante in testata (vedi *La vista Magazine* più sotto). La Magazine vuole due pezzi che la
+Classica non mostra, e la corsa li scrive ogni mattina:
+
+```json
+"citazione": {"testo": "Con la magia di Siri AI, tutto si tiene in un modo che prima non eravamo in grado di offrire.",
+              "chi": "Kaiann Drance", "dove": "vicepresidente marketing Home, Apple — a The Verge, 20 ottobre",
+              "notizia": "homeview-sei-mesi-software",
+              "contesto": "Perché HomeView esce con sei mesi di software indietro", "link": "…"},
+"editoriale": {"titolo": "Le scatole sono pronte, l'intelligenza no",
+               "testo": ["…", "…", "…"],
+               "notizie": ["homeview-sei-mesi-software", "homepod-mini2-prova-pratica", "…"]}
+```
+
+- **`citazione`** — «L'ultima parola», la frase grande a metà del feed. Una persona con nome
+  (Ternus, Gurman, Brownlee, un'analista, una recensora), mai «un utente»; una frase che
+  cattura rispetto alla notizia e fa venire voglia di aprirla, entro 200 caratteri. Viene
+  da una delle voci degli approfondimenti o dagli articoli letti, tradotta fedelmente.
+  `notizia` è l'id della notizia in cui porta: al tocco l'app apre quell'approfondimento
+  dritto sulle voci. `contesto` è la riga che lo dice («Perché HomeView…»).
+- **`editoriale`** — «Il punto», il commento della redazione: lo scrive Claude, e l'app lo
+  firma come commento. **Non è un riassunto**: è il filo che tiene insieme le notizie del
+  giorno e dice al lettore cosa significano — per chi compra, e per chi sta al banco.
+  Titolo in graziato entro 70 caratteri, 2–3 paragrafi entro 480, `notizie` con gli id che
+  collega (almeno due). Ogni fatto viene dall'edizione; l'opinione si dichiara come tale.
+  Se l'edizione non ha un filo che valga un commento, non si scrive: meglio niente che un
+  riempitivo.
+
+Il lint avvisa se mancano e dà errore se puntano a notizie che non ci sono.
+
 #### Controllo prima di pubblicare
 
 ```bash
@@ -1240,6 +1272,36 @@ fondo osso, campiture piatte, campo di pallini, condensato pesante, quattro colo
 ruolo semantico. Il marchio in testata è tutto giallo. Se tocchi lo stile, resta dentro
 questo sistema.
 
+
+**La vista Magazine** (2 novembre 2026). Mike ha letto Apple News+ e se n'è innamorato: lo
+stile, la pulizia, il ritmo. Il pulsante in testata (quattro quadratini / tre righe) passa
+dalla vista **Classica** — quella del 1 novembre, salvata nel tag git
+`app-amata-2026-11-02` — alla **Magazine**, e il dispositivo si ricorda la scelta. Solo la
+scheda APPLE. Cosa prende da News+ e cosa no:
+
+- **Schede su carta** (`--paper`) sul fondo osso, angoli tondi, ombra leggera. Il fondo
+  grigio freddo e il bianco puro di Apple restano ad Apple: l'osso e i pallini sono nostri.
+- **Una costruzione sola**: la testata nel condensato (la sua «voce»), il reparto, il
+  titolo, e **sotto le due-tre righe della sintesi, intere** — la cosa che a Mike piace di
+  noi e che a News+ manca: troppo spazio vuoto. In fondo il piede: tempo fa (dall'ora della
+  prima testata, `verifica.primo`), i cinque pallini della copertura, la **stella sempre a
+  portata** e i «•••» con Appunti e Non mi interessa.
+- **Il ritmo**: «In apertura» grande, due affiancate, **«L'ultima parola»** su campitura
+  piena, «In primo piano» con una scheda orizzontale, **«Il punto»** in graziato, «In breve»
+  in due colonne. Poi le sezioni di sempre (Sul banco, discussioni, ripescaggio, radar).
+- **La notizia si apre a tutto schermo** e scivola da destra, con il tasto «‹ Edizione» di
+  vetro (modulo `Sheet`): come il pannello del Duo, sposta corpo e pulsanti dell'`<article>`
+  della lista, quindi approfondimento, appunti e segnali restano gli stessi. Le schede
+  portano la loro barra dei segnali (`card-foot.tools[data-sig]`): «vista» si conta sulla
+  scheda, «aperta» al tocco.
+- **Il vetro** che Mike ha amato in News+: la barretta galleggiante in basso che salta fra
+  le sezioni e dice dove sei, il tasto indietro, il menu dei «•••».
+- Le chicche restano: le schede salgono quando arrivano, la data e la citazione entrano
+  come una banda, la stella scoppia.
+
+Sul Duo la Magazine occupa tutta la larghezza (niente lista e pannello); le sezioni sotto
+tengono la loro forma da Duo. Se la prova non convince, si torna alla Classica col
+pulsante, e se Mike vuole togliere la Magazine del tutto si ripristina il template dal tag.
 
 **Le chicche** (1 novembre 2026). Mike ha visto i pallini della prima pagina che entrano e il
 sottopancia che scorre, e li vuole «qua e là in tutto l'editoriale, senza che risultino

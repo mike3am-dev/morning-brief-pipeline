@@ -105,6 +105,163 @@ button{font:inherit; color:inherit; cursor:pointer}
 :focus-visible{outline:2.5px solid var(--blue); outline-offset:2px; border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
 
+/* ---------------- la vista Magazine ----------------
+   Schede su carta sul fondo osso, una costruzione sola (testata, titolo, le
+   due-tre righe, il piede), e il ritmo da rivista: l'apertura grande, due
+   affiancate, la citazione, una orizzontale, il commento, le brevi. */
+html.vista-magazine #view-oggi .hero,
+html.vista-magazine #view-oggi .news-head,
+html.vista-magazine #view-oggi .newsbox{display:none}
+html.vista-magazine main{padding-bottom:7.5rem}
+.mag{container-type:inline-size; display:flex; flex-direction:column; gap:1rem; padding-top:1rem}
+.mag-head{display:flex; flex-direction:column; gap:.3rem; padding-bottom:.2rem}
+.mag-date{font-family:var(--display); font-weight:700; text-transform:uppercase;
+  font-size:clamp(2.6rem, 10cqi, 4.4rem); line-height:.88; letter-spacing:-.012em; margin:.15rem 0 0}
+.mag-dek{margin:.35rem 0 0; color:var(--ink-2); font-size:1rem; line-height:1.45}
+.mag .section-head{padding:1.5rem 0 .1rem}
+
+/* il vetro: la barretta delle sezioni, il tasto indietro, il menu dei «•••» */
+.glass{background:color-mix(in srgb, var(--paper) 60%, transparent);
+  -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
+  border:1px solid color-mix(in srgb, #FFFFFF 55%, transparent);
+  box-shadow:0 10px 30px -14px rgba(23,24,27,.45), inset 0 1px 0 rgba(255,255,255,.55)}
+:root[data-theme="dark"] .glass{border-color:rgba(255,255,255,.12); box-shadow:0 10px 30px -14px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08)}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .glass{border-color:rgba(255,255,255,.12); box-shadow:0 10px 30px -14px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08)} }
+
+/* la scheda */
+.card{position:relative; display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:"body" "foot";
+  background:var(--paper); border-radius:18px; overflow:hidden; cursor:pointer;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4);
+  transition:transform .18s ease, box-shadow .18s ease}
+.card:active{transform:scale(.985)}
+.card:focus-visible{outline:2px solid var(--orange); outline-offset:2px}
+.card-img{grid-area:img; display:block; width:100%; object-fit:cover; background:var(--paper-2)}
+.card-body{grid-area:body; display:flex; flex-direction:column; gap:.4rem; padding:1rem 1.1rem 0; min-width:0}
+.card-src{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .55rem}
+/* la testata con la sua voce: il nome nel condensato, come una testatina */
+.card-src b{font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:.005em; color:var(--ink)}
+.card-src span{font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.card-src .rumor{color:var(--yellow-ink); display:inline-flex; align-items:center; gap:.3rem}
+.card-src .rumor::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow); align-self:center}
+.card-title{font-family:var(--body); font-weight:700; font-size:1.13rem; line-height:1.26; letter-spacing:-.01em; margin:0; text-wrap:pretty}
+/* le due-tre righe intere, mai troncate: la sintesi e' gia' breve per regola */
+.card-dek{margin:0; font-size:.94rem; line-height:1.45; color:var(--ink-2); text-wrap:pretty}
+.card.is-read .card-title{color:var(--ink-2)}
+.card-foot.tools{grid-area:foot; display:flex; align-items:center; justify-content:flex-start; gap:.65rem;
+  margin:0; padding:.75rem .7rem .75rem 1.1rem; font-size:.76rem; color:var(--ink-3)}
+.card-when{white-space:nowrap}
+.card-cov{display:inline-flex; align-items:center; gap:3px}
+.card-cov i{width:6px; height:6px; border-radius:50%; box-shadow:inset 0 0 0 1.3px var(--rule-strong)}
+.card-cov i.on{background:var(--ink); box-shadow:none}
+.card-cov.t-blue i.on{background:var(--blue)}
+.card-cov.t-yellow i.on{background:var(--yellow)}
+.card-cov b{margin-left:.35rem; font-size:.58rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase}
+.card-gap{flex:1}
+.card-btn{width:34px; height:34px; border:0; border-radius:50%; background:none; color:var(--ink-3);
+  display:grid; place-items:center; position:relative; cursor:pointer; font-size:.8rem; letter-spacing:.05em; transition:color .15s, background .15s}
+.card-btn:hover{background:var(--paper-2); color:var(--ink)}
+.card-star.on{color:var(--yellow)}
+.card-star.on .ico path{stroke:var(--yellow-ink); stroke-width:.6}
+
+/* le forme: grande, normale (foto quadrata a destra), orizzontale, breve */
+.c-hero.has-img{grid-template-areas:"img" "body" "foot"}
+.c-hero .card-img{aspect-ratio:16/9}
+.c-hero .card-title{font-size:clamp(1.35rem, 4.4cqi, 1.75rem); line-height:1.16}
+.c-hero .card-body{padding-top:1.05rem}
+.c-std.has-img, .c-brief.has-img{grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"body img" "foot foot"}
+.c-std .card-img{width:112px; height:112px; border-radius:12px; margin:1rem 1rem 0 0}
+.c-brief .card-img{width:72px; height:72px; border-radius:10px; margin:1rem 1rem 0 0}
+.c-wide.has-img{grid-template-areas:"img" "body" "foot"}
+.c-wide .card-img{aspect-ratio:2/1}
+.c-wide .card-title{font-size:1.28rem}
+.c-brief .card-title{font-size:1.01rem; font-weight:650}
+.c-brief .card-dek{font-size:.9rem}
+.mag-row{display:grid; grid-template-columns:minmax(0,1fr); gap:1rem}
+.mag-brevi{display:grid; grid-template-columns:minmax(0,1fr); gap:.8rem}
+/* il telefono: la foto quadrata si fa piccola, il titolo prende la riga */
+@container (max-width:460px){
+  .c-std .card-img{width:84px; height:84px; border-radius:10px}
+  .card-title{font-size:1.06rem}
+  .card-foot.tools{gap:.5rem; padding-left:1rem}
+}
+.card-cov{white-space:nowrap}
+@container (min-width:620px){
+  .mag-row.two{grid-template-columns:1fr 1fr}
+  .mag-row.two .c-std .card-img{width:88px; height:88px}
+  .mag-brevi{grid-template-columns:1fr 1fr}
+  .c-wide.has-img{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); grid-template-areas:"img body" "img foot"}
+  .c-wide .card-img{aspect-ratio:auto; height:100%; min-height:220px}
+}
+@container (min-width:780px){
+  .c-hero.has-img{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); grid-template-areas:"img body" "img foot"}
+  .c-hero .card-img{aspect-ratio:auto; height:100%; min-height:300px}
+  .c-hero .card-body{padding:1.4rem 1.3rem 0}
+  .c-hero .card-title{font-size:clamp(1.3rem, 3.2cqi, 1.6rem)}
+}
+
+/* L'ultima parola: la pausa nel ritmo, su campitura piena */
+.mag-quote{margin:.4rem 0; padding:1.4rem 1.4rem 1.3rem; border-radius:18px; background:var(--ink); color:var(--bone);
+  display:flex; flex-direction:column; gap:.75rem}
+.mag-quote.is-link{cursor:pointer}
+.mag-quote .eyebrow{color:color-mix(in srgb, var(--bone) 70%, transparent)}
+.mag-quote blockquote{margin:0; font-family:var(--display); font-weight:700; font-size:clamp(1.75rem, 6.2cqi, 3rem);
+  line-height:1.02; letter-spacing:-.012em; text-wrap:balance}
+.mag-quote blockquote::before{content:"«"; color:var(--yellow)}
+.mag-quote blockquote::after{content:"»"; color:var(--yellow)}
+.mag-quote figcaption{display:flex; flex-wrap:wrap; gap:.2rem .6rem; align-items:baseline; font-size:.85rem}
+.mag-quote figcaption b{color:var(--yellow); font-weight:700}
+.mag-quote figcaption span{color:color-mix(in srgb, var(--bone) 72%, transparent)}
+.mag-quote-go{margin:0; font-size:.86rem; font-weight:600; color:var(--bone); opacity:.9}
+
+/* Il punto: il commento, in graziato */
+.mag-punto{background:var(--paper); border-radius:18px; padding:1.3rem 1.3rem 1.2rem; display:flex; flex-direction:column; gap:.75rem;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4); border-top:5px solid var(--red)}
+.punto-title{font-family:ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-weight:700;
+  font-size:clamp(1.55rem, 5.4cqi, 2.2rem); line-height:1.1; letter-spacing:-.012em; margin:0; text-wrap:balance}
+.punto-text{display:flex; flex-direction:column; gap:.8rem}
+.punto-text p{margin:0; font-family:ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-size:1.06rem; line-height:1.6}
+.punto-text p:first-child::first-letter{float:left; font-weight:700; font-size:3.1em; line-height:.84; padding:.06em .08em 0 0; color:var(--red)}
+.punto-by{margin:0; font-size:.6rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.punto-links{display:flex; flex-direction:column; gap:.35rem; padding-top:.7rem; border-top:1px solid var(--rule)}
+.punto-link{background:none; border:0; padding:.2rem 0; text-align:left; font:inherit; font-size:.86rem; font-weight:600; color:var(--ink);
+  cursor:pointer; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden}
+.punto-link::after{content:" →"; color:var(--red)}
+@container (min-width:680px){ .punto-text{columns:2; column-gap:1.6rem; display:block} .punto-text p{margin-bottom:.8rem; break-inside:avoid-column} }
+
+/* la barretta di vetro delle sezioni */
+.mag-nav{position:fixed; left:50%; bottom:calc(14px + env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:40;
+  display:flex; gap:2px; padding:5px; border-radius:999px; max-width:calc(100% - 28px); overflow-x:auto; scrollbar-width:none;
+  transition:opacity .25s ease, transform .25s ease}
+.mag-nav::-webkit-scrollbar{display:none}
+.mag-nav[hidden]{display:none}
+.mag-nav button{flex:none; border:0; background:none; border-radius:999px; padding:.55rem .9rem; font:inherit; font-size:.8rem;
+  font-weight:600; color:var(--ink-2); cursor:pointer; white-space:nowrap; transition:background .2s, color .2s}
+.mag-nav button.on{background:color-mix(in srgb, var(--paper) 92%, transparent); color:var(--ink);
+  box-shadow:0 1px 3px rgba(23,24,27,.18)}
+body.sheet-open .mag-nav{opacity:0; transform:translate(-50%, 20px); pointer-events:none}
+html:not(.vista-magazine) .mag-nav{display:none}
+.mag-menu{position:absolute; z-index:55; display:flex; flex-direction:column; padding:5px; border-radius:16px; min-width:11rem}
+.mag-menu button{border:0; background:none; text-align:left; padding:.6rem .8rem; border-radius:11px; font:inherit; font-size:.88rem; font-weight:600; color:var(--ink); cursor:pointer}
+.mag-menu button:hover{background:color-mix(in srgb, var(--paper) 80%, transparent)}
+#vistaBtn.on{color:var(--orange-ink)}
+
+/* la notizia a tutto schermo: scivola da destra, il tasto indietro e' di vetro */
+.sheet{position:fixed; inset:0; z-index:50; background:var(--bone); overflow-y:auto; overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch; transform:translateX(100%); transition:transform .34s cubic-bezier(.2,.8,.2,1);
+  padding:0 var(--gutter) 4rem}
+.sheet[hidden]{display:none}
+.sheet.in{transform:none}
+body.sheet-open{overflow:hidden}
+.sheet-back{position:sticky; top:calc(.8rem + env(safe-area-inset-top)); z-index:2; margin:.8rem 0 0;
+  display:inline-flex; align-items:center; gap:.35rem; padding:.5rem 1rem .5rem .75rem; border-radius:999px;
+  font:inherit; font-size:.88rem; font-weight:600; color:var(--ink); cursor:pointer}
+.sheet-back i{font-style:normal; font-size:1.3rem; line-height:.8}
+.sheet-art{max-width:720px; margin:1rem auto 0; display:flex; flex-direction:column}
+.sheet-art .story-body{padding:1rem 0 0}
+.sheet-art .tools{padding-left:0}
+.sheet-art .workspace{padding-left:0}
+.sheet .deep-bar{display:none}
+
 /* ---------------- le chicche ----------------
    Un linguaggio solo, dalla sigla: entra come una banda (wipe), si accende
    come un pallino (pop), sale di poco (rise). Le classi .mo-* le mette
@@ -1669,6 +1826,7 @@ footer.colophon .sp{flex:1}
       <span class="edition" id="editionLabel"></span>
       <span class="brand-tools">
         <span id="syncPip" data-state="ok" title="Sincronizzato"></span>
+        <button class="icon-btn" id="vistaBtn" title="Passa alla vista Magazine" aria-label="Passa alla vista Magazine"></button>
         <button class="icon-btn" id="themeBtn" title="Cambia tema" aria-label="Cambia tema">◐</button>
         <button class="icon-btn" id="exportBtn" title="Esporta appunti" aria-label="Esporta appunti">↧</button>
         <button class="icon-btn" id="importBtn" title="Importa appunti" aria-label="Importa appunti">↥</button>
@@ -2510,6 +2668,7 @@ function storyEl(id){
 function openStory(id, block){
   const t = storyEl(id);
   if(!t) return null;
+  if(magazine()){ Sheet.open(t); return t; }
   t.scrollIntoView({behavior:(block === "start" ? "smooth" : "auto"),
                     block:block || "center"});
   const head = t.querySelector(".story-head");
@@ -2657,6 +2816,8 @@ function ico(d){
 }
 const I_STAR  = ico("M8 1.6l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6z");
 const I_PEN   = ico("M2.2 11.5l6.9-6.9 2.3 2.3-6.9 6.9-3 .7zM10.2 3.5l1.3-1.3a1 1 0 0 1 1.4 0l.9.9a1 1 0 0 1 0 1.4l-1.3 1.3z");
+const I_GRIGLIA = ico("M2 2.5A.5.5 0 0 1 2.5 2h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-4A.5.5 0 0 1 2 6.5zM9 2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-4A.5.5 0 0 1 9 6.5zM2 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5zM9 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z");
+const I_LISTA = ico("M2 3h12v1.6H2zM2 7.2h12v1.6H2zM2 11.4h12V13H2z");
 const I_THUMB = ico("M6.1 14.2H4.3a.8.8 0 0 1-.8-.8V7.6c0-.4.4-.8.8-.8h1.8v7.4zM13.9 8.1l-1.3 5.3c-.1.5-.5.8-1 .8H7V6.6l2.3-2.6c.3-.4.8-.5 1.2-.3.5.2.8.7.7 1.2l-.5 2.2h2.4c.6 0 1 .5.8 1z");
 
 function toolBtn(cls, title, glyph){
@@ -4785,6 +4946,8 @@ function renderEdition(){
      approfondimento e grafico si cercano nel corpo, ovunque si trovi */
   const bodyOf = function(w){ return w._parts ? w._parts.body : w.querySelector(".story-body"); };
   const rd = Reader.state();
+  const sh = Sheet.state();
+  Sheet.drop();
   Array.prototype.forEach.call(root.querySelectorAll(".story.is-open"), function(w){
     const b = bodyOf(w), d = b ? b.querySelector(".deep") : null;
     open.push({id:w.id, deep:!!(d && !d.hidden), tab:d ? d.dataset.tab : null, slide:d ? d.dataset.slide : null});
@@ -4792,6 +4955,12 @@ function renderEdition(){
   const brief = drawEdition(root);
   root.dataset.date = brief ? brief.date : "";
   if(!was || was !== root.dataset.date) return;
+  if(magazine()){
+    const w = sh ? document.getElementById(sh.id) : null;
+    if(w){ Sheet.open(w, {instant:true}); Sheet.top(sh.top); }
+    window.scrollTo(0, y);
+    return;
+  }
   open.forEach(function(o){
     const w = document.getElementById(o.id);
     if(!w || !root.contains(w)) return;
@@ -4920,6 +5089,347 @@ function frontEntry(brief){
         (brief.news || []).length + " notizie"})
     ])
   ]);
+}
+
+/* ================= la vista Magazine =================
+   La seconda veste della scheda APPLE (2 novembre 2026). Mike ha letto
+   Apple News+ e se n'e' innamorato: schede su carta, una costruzione uguale
+   per tutte, il ritmo da rivista — grande, affiancate, orizzontale, brevi —
+   una citazione grande a meta' strada, un commento della redazione. Senza il
+   vuoto di News+: sotto ogni titolo le due-tre righe che dicono di cosa
+   parla, che e' la cosa che fa venire voglia di aprire. La vista Classica
+   resta com'era: il pulsante in testata passa dall'una all'altra, e il
+   dispositivo se lo ricorda. Il fondo osso, i pallini e le chicche restano.
+
+   La notizia toccata si apre a tutto schermo (Sheet): ci si spostano corpo
+   e pulsanti dell'<article> della lista, come fa il pannello del Duo, cosi'
+   approfondimento, appunti e segnali di lettura restano gli stessi oggetti. */
+const VISTA_KEY = "tmb-vista";
+let VISTA = "classica";
+try{ VISTA = localStorage.getItem(VISTA_KEY) === "magazine" ? "magazine" : "classica"; }catch(e){}
+function magazine(){ return VISTA === "magazine"; }
+document.documentElement.classList.toggle("vista-magazine", magazine());
+
+/* la notizia a tutto schermo, con il tasto indietro di vetro */
+const Sheet = (function(){
+  let box = null, art = null, cur = null, timer = null;
+  function ensure(){
+    if(box) return;
+    const back = el("button", {type:"button", class:"sheet-back glass", "aria-label":"Torna all'edizione"}, [
+      el("i", {"aria-hidden":"true", text:"‹"}), el("span", {text:"Edizione"})
+    ]);
+    art = el("article", {class:"sheet-art", "aria-live":"polite"});
+    box = el("div", {class:"sheet", hidden:"hidden", role:"dialog", "aria-modal":"true", "aria-label":"Notizia"}, [back, art]);
+    back.addEventListener("click", function(){ close(); });
+    document.addEventListener("keydown", function(ev){ if(ev.key === "Escape" && cur) close(); });
+    document.body.appendChild(box);
+  }
+  function restore(){
+    if(!cur) return;
+    const w = cur, p = w._parts;
+    w.appendChild(p.body);
+    if(p.bar) w.appendChild(p.bar);
+    if(p.panel) w.appendChild(p.panel);
+    p.body.hidden = true;
+    w.classList.remove("is-open");
+    art.innerHTML = "";
+    art.classList.remove("is-open");
+    cur = null;
+  }
+  function open(w, opts){
+    if(!w || !w._parts) return;
+    ensure();
+    clearTimeout(timer);
+    if(cur && cur !== w) restore();
+    const p = w._parts;
+    if(cur !== w){
+      art.appendChild(w._readerHead());
+      art.appendChild(p.body);
+      if(p.bar) art.appendChild(p.bar);
+      if(p.panel) art.appendChild(p.panel);
+    }
+    p.body.hidden = false;
+    cur = w;
+    w.classList.add("is-open");
+    art.classList.add("is-open");
+    if(w._markRead) w._markRead();
+    box.hidden = false;
+    document.body.classList.add("sheet-open");
+    box.scrollTop = 0;
+    if(opts && opts.instant) box.classList.add("in");
+    else requestAnimationFrame(function(){ requestAnimationFrame(function(){ box.classList.add("in"); }); });
+    Motion.swap(art);
+    /* dalla citazione: l'approfondimento aperto, fino alle voci */
+    if(opts && opts.deep && w._deep){
+      w._deep(true);
+      setTimeout(function(){
+        const t = art.querySelector(".deep-voci") || art.querySelector(".deep");
+        if(t) box.scrollTo({top:Math.max(0, t.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop - 90), behavior:"smooth"});
+      }, 420);
+    }
+  }
+  function close(){
+    if(!box || !cur) return;
+    box.classList.remove("in");
+    document.body.classList.remove("sheet-open");
+    timer = setTimeout(function(){ restore(); box.hidden = true; }, 340);
+  }
+  function state(){ return cur ? {id:cur.id, top:box.scrollTop} : null; }
+  function top(v){ if(box) box.scrollTop = v || 0; }
+  /* l'edizione si ridisegna (sincronizzazione): i pezzi tornano alla notizia vecchia */
+  function drop(){ clearTimeout(timer); restore(); if(box){ box.hidden = true; box.classList.remove("in"); } document.body.classList.remove("sheet-open"); }
+  return {open:open, close:close, state:state, top:top, drop:drop, holds:function(w){ return !!w && cur === w; }};
+})();
+
+/* la testata senza le parentesi: "Macitynet (Digital Chat Station, Weibo)" -> "Macitynet" */
+function srcName(n){ return String((n.sources || [])[0] || "").replace(/\s*\(.*\)\s*$/, "").trim(); }
+/* quante testate l'hanno data: lo stesso conto di «quanto gira» */
+function testate(n){
+  const v = n.verifica || {};
+  return v.testate || Math.max((n.sources || []).length, 1 + (n.extra_links || []).length);
+}
+/* "3 ore fa", dall'ora in cui la prima delle nostre testate l'ha data */
+function tempoFa(n){
+  const iso = n.verifica && n.verifica.primo && n.verifica.primo.ora;
+  const t = iso ? new Date(iso) : null;
+  if(!t || isNaN(t)) return "";
+  const min = Math.round((Date.now() - t) / 60000);
+  if(min < 1) return "adesso";
+  if(min < 60) return min + " min fa";
+  const h = Math.round(min / 60);
+  if(h < 24) return h + (h === 1 ? " ora fa" : " ore fa");
+  const d = Math.round(h / 24);
+  return d === 1 ? "ieri" : d + " giorni fa";
+}
+
+function magCard(brief, n, i, w, kind){
+  const k = key(brief.date, n.id);
+  const src = srcName(n), count = testate(n), official = !!(n.verifica && n.verifica.ufficiale);
+  const img = (kind === "hero" ? (n.hero || n.image) : n.image) || null;
+
+  /* il piede: tempo fa, copertura, la stella sempre a portata e i «•••» */
+  const cov = el("span", {class:"card-cov" + (official ? " t-blue" : n.tag === "RUMOR" && count <= 1 ? " t-yellow" : ""),
+    title:official ? "C'è la parola di Apple" : count === 1 ? "Una testata" : count + " testate"});
+  for(let j = 0; j < 5; j++) cov.appendChild(el("i", {class:j < count ? "on" : ""}));
+  cov.appendChild(el("b", {text:official ? "parola di Apple" : count === 1 ? "1 testata" : count + " testate"}));
+  const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Salva", html:I_STAR});
+  const more = el("button", {type:"button", class:"card-btn card-more", "aria-label":"Altro", text:"•••"});
+  const when = tempoFa(n);
+  const foot = el("div", {class:"card-foot tools", "data-sig":k}, [
+    when ? el("span", {class:"card-when", text:when}) : null, cov, el("span", {class:"card-gap"}), star, more
+  ]);
+  const paintStar = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
+  paintStar();
+  const barBtn = function(cls){ return w && w._parts && w._parts.bar ? w._parts.bar.querySelector(cls) : null; };
+  star.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    const b = barBtn(".t-star");
+    if(b){ b.click(); paintStar(); if(mk(k) && mk(k).starred_at) Motion.burst(star); }
+  });
+  more.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    magMenu(more, [
+      ["Appunti", function(){ Sheet.open(w); const b = barBtn(".t-note"); if(b && w._parts.panel && w._parts.panel.hidden) setTimeout(function(){ b.click(); }, 380); }],
+      ["Non mi interessa", function(){ const b = barBtn(".t-down"); if(b) b.click(); }]
+    ]);
+  });
+
+  const body = el("div", {class:"card-body"}, [
+    el("div", {class:"card-src"}, [
+      src ? el("b", {text:src}) : null,
+      el("span", {text:reparto(n)}),
+      n.tag === "RUMOR" ? el("span", {class:"rumor", text:"rumor"}) : null
+    ]),
+    el("h3", {class:"card-title", text:n.title}),
+    n.sintesi ? el("p", {class:"card-dek", text:n.sintesi}) : null
+  ]);
+  const card = el("article", {class:"card c-" + kind + (img ? " has-img" : "") + (w && w.classList.contains("is-read") ? " is-read" : ""),
+    tabindex:"0"}, [
+    img ? el("img", {class:"card-img", src:img, alt:"", loading:i < 3 ? "eager" : "lazy", decoding:"async"}) : null,
+    body, foot
+  ]);
+  const go = function(){ Sig.bump(k, "o"); Sheet.open(w); card.classList.add("is-read"); };
+  card.addEventListener("click", go);
+  card.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
+  return Motion.once(card, "rise");
+}
+
+/* il menu dei «•••»: una nuvoletta di vetro accanto al pulsante */
+function magMenu(anchor, items){
+  const old = document.querySelector(".mag-menu");
+  if(old){ old.remove(); if(old._for === anchor) return; }
+  const m = el("div", {class:"mag-menu glass", role:"menu"});
+  m._for = anchor;
+  items.forEach(function(it){
+    m.appendChild(el("button", {type:"button", role:"menuitem", text:it[0], onclick:function(ev){ ev.stopPropagation(); m.remove(); it[1](); }}));
+  });
+  document.body.appendChild(m);
+  const r = anchor.getBoundingClientRect();
+  m.style.top = (r.bottom + window.scrollY + 6) + "px";
+  m.style.left = Math.max(12, Math.min(window.innerWidth - m.offsetWidth - 12, r.right - m.offsetWidth)) + window.scrollX + "px";
+  setTimeout(function(){
+    document.addEventListener("click", function off(){ m.remove(); document.removeEventListener("click", off); });
+  }, 0);
+}
+
+/* «L'ultima parola»: la frase che fa entrare nell'approfondimento. La scrive
+   la corsa del mattino (brief.citazione); per le edizioni senza, si prende
+   la voce piu' forte fra quelle degli approfondimenti — mai un anonimo. */
+function citazioneDi(brief){
+  const news = brief.news || [];
+  if(brief.citazione && brief.citazione.testo) return brief.citazione;
+  const pesi = {apple:4, esperto:3, analista:3, testata:2, storia:1};
+  let best = null, score = 0;
+  news.slice(0, 5).forEach(function(n){
+    ((n.approfondimento || {}).voci || []).forEach(function(v){
+      const s = pesi[v.tipo] || 0;
+      if(!s || !v.chi || /^(un|una) /i.test(v.chi) || !v.testo || v.testo.length > 220) return;
+      if(s > score){ score = s; best = {testo:v.testo, chi:v.chi, dove:v.dove, notizia:n.id}; }
+    });
+  });
+  return best;
+}
+function magQuote(brief, wraps){
+  const c = citazioneDi(brief);
+  if(!c) return null;
+  const idx = (brief.news || []).findIndex(function(n){ return n.id === c.notizia; });
+  const w = idx >= 0 ? wraps[idx] : null;
+  const fig = el("figure", {class:"mag-quote" + (w ? " is-link" : ""), tabindex:w ? "0" : null}, [
+    el("span", {class:"eyebrow", text:"L'ultima parola"}),
+    Motion.once(el("blockquote", {text:c.testo}), "wipe"),
+    el("figcaption", {}, [el("b", {text:c.chi}), c.dove ? el("span", {text:c.dove}) : null]),
+    w ? el("p", {class:"mag-quote-go", text:(c.contesto || brief.news[idx].title) + " →"}) : null
+  ]);
+  if(w){
+    const go = function(){ Sig.bump(key(brief.date, brief.news[idx].id), "o"); Sheet.open(w, {deep:true}); };
+    fig.addEventListener("click", go);
+    fig.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
+  }
+  return Motion.once(fig, "rise");
+}
+
+/* «Il punto»: il commento della redazione, scritto da Claude la mattina e
+   ancorato alle notizie dell'edizione (brief.editoriale). Il titolo e' in
+   graziato, come i pezzi lunghi delle riviste: si capisce subito che qui si
+   ragiona, non si riferisce. Si firma, perche' e' un'opinione. */
+function magPunto(brief, wraps){
+  const e = brief.editoriale;
+  if(!e || !e.titolo || !e.testo) return null;
+  const links = el("div", {class:"punto-links"});
+  (e.notizie || []).forEach(function(id){
+    const i = (brief.news || []).findIndex(function(n){ return n.id === id; });
+    if(i < 0) return;
+    links.appendChild(el("button", {type:"button", class:"punto-link", text:reparto(brief.news[i]) + " · " + brief.news[i].title,
+      onclick:function(){ Sig.bump(key(brief.date, id), "o"); Sheet.open(wraps[i]); }}));
+  });
+  return Motion.once(el("section", {class:"mag-punto"}, [
+    el("h2", {class:"punto-title", text:e.titolo}),
+    el("div", {class:"punto-text"}, [].concat(e.testo).map(function(p){ return el("p", {text:p}); })),
+    el("p", {class:"punto-by", text:"Commento · " + (e.firma || "Claude, per The Morning Brief")}),
+    links.childNodes.length ? links : null
+  ]), "rise");
+}
+
+function magSection(id, title, hint, color){
+  const pip = el("span", {class:"pip"});
+  if(color) pip.style.background = "var(" + color + ")";
+  return el("div", {class:"section-head mag-sec", id:"mag-" + id, "data-label":title}, [
+    pip, el("h2", {text:title}), hint ? el("span", {class:"eyebrow hint", text:hint}) : null
+  ]);
+}
+
+function magFeed(brief, wraps){
+  const news = brief.news || [];
+  const d = new Date(brief.date + "T12:00:00");
+  const st = brief.stats || {};
+  const feed = el("div", {class:"mag"});
+  feed.appendChild(el("header", {class:"mag-head"}, [
+    el("span", {class:"eyebrow", text:isNaN(d) ? "" : GIORNI[d.getDay()] + " · " + (brief.window || "ultime 24 ore")}),
+    Motion.once(el("h2", {class:"mag-date", text:isNaN(d) ? brief.date : d.getDate() + " " + MESI[d.getMonth()]}), "wipe"),
+    el("p", {class:"mag-dek", text:"Scelte dalla redazione stamattina: " + news.length + " notizie" +
+      (st.articoli_letti ? " da " + st.articoli_letti + " articoli letti" : "") + "."})
+  ]));
+  if(!news.length) return feed;
+  const card = function(i, kind){ return news[i] ? magCard(brief, news[i], i, wraps[i], kind) : null; };
+
+  feed.appendChild(magSection("apertura", "In apertura", "la notizia che pesa di più"));
+  feed.appendChild(card(0, "hero"));
+  if(news[1] || news[2]) feed.appendChild(el("div", {class:"mag-row two"}, [card(1, "std"), card(2, "std")]));
+
+  const q = magQuote(brief, wraps);
+  if(q) feed.appendChild(q);
+
+  if(news[3] || news[4]){
+    feed.appendChild(magSection("primo", "In primo piano", "le altre con l'approfondimento", "--blue"));
+    if(news[3]) feed.appendChild(card(3, "wide"));
+    if(news[4]) feed.appendChild(card(4, "std"));
+  }
+
+  const p = magPunto(brief, wraps);
+  if(p){ feed.appendChild(magSection("punto", "Il punto", "il commento della redazione", "--red")); feed.appendChild(p); }
+
+  if(news.length > 5){
+    feed.appendChild(magSection("breve", "In breve", "il resto, in due righe", "--yellow"));
+    const list = el("div", {class:"mag-brevi"});
+    news.slice(5).forEach(function(n, j){ list.appendChild(magCard(brief, n, j + 5, wraps[j + 5], "brief")); });
+    feed.appendChild(list);
+  }
+  return feed;
+}
+
+/* La barretta di vetro: salta fra le sezioni dell'edizione e dice dove sei.
+   Galleggia in basso, sopra il contenuto, solo nella vista Magazine. */
+const MagNav = (function(){
+  let nav = null, io = null;
+  function build(root){
+    if(io){ io.disconnect(); io = null; }
+    if(nav){ nav.remove(); nav = null; }
+    if(!magazine() || !root) return;
+    const secs = Array.prototype.filter.call(root.querySelectorAll(".section-head"), function(h){ return !h.classList.contains("news-head"); });
+    if(secs.length < 2) return;
+    nav = el("nav", {class:"mag-nav glass", "aria-label":"Sezioni dell'edizione"});
+    secs.forEach(function(h){
+      const label = h.dataset.label || (h.querySelector("h2") || {}).textContent || "";
+      const b = el("button", {type:"button", text:label.replace(/^Se te lo fossi perso$/, "Perso").replace(/^Nelle discussioni$/, "Discussioni")});
+      b.addEventListener("click", function(){ h.scrollIntoView({behavior:"smooth", block:"start"}); });
+      b._h = h;
+      nav.appendChild(b);
+    });
+    document.body.appendChild(nav);
+    if("IntersectionObserver" in window){
+      io = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(!e.isIntersecting) return;
+          Array.prototype.forEach.call(nav.children, function(b){ b.classList.toggle("on", b._h === e.target); });
+          const on = nav.querySelector(".on");
+          if(on) on.scrollIntoView({block:"nearest", inline:"center"});
+        });
+      }, {rootMargin:"-20% 0px -70% 0px"});
+      secs.forEach(function(h){ io.observe(h); });
+    }
+  }
+  function visible(v){ if(nav) nav.hidden = !v; }
+  return {build:build, visible:visible};
+})();
+
+function setVista(v){
+  VISTA = v;
+  try{ localStorage.setItem(VISTA_KEY, v); }catch(e){}
+  document.documentElement.classList.toggle("vista-magazine", magazine());
+  const b = document.getElementById("vistaBtn");
+  if(b) paintVistaBtn(b);
+  Sheet.drop();
+  const root = document.getElementById("view-oggi");
+  if(root) root.dataset.date = "";
+  renderEdition();
+  window.scrollTo(0, 0);
+  toast(magazine() ? "Vista Magazine" : "Vista Classica");
+}
+function paintVistaBtn(b){
+  b.innerHTML = magazine() ? I_LISTA : I_GRIGLIA;
+  b.title = magazine() ? "Passa alla vista Classica" : "Passa alla vista Magazine";
+  b.setAttribute("aria-label", b.title);
+  b.classList.toggle("on", magazine());
 }
 
 function drawEdition(root){
@@ -5155,8 +5665,12 @@ function drawEdition(root){
      si guarda dal Mac, con lint.py e feedcheck.py. */
 
   root.appendChild(el("div", {class:"columns"}, [col, rail]));
-  Reader.mount(newsbox, function(){ return frontPage(brief, wraps); });
+  /* nella vista Magazine il feed prende il posto dell'apertura e della lista,
+     che restano nella pagina, nascoste: le notizie da aprire sono quelle */
+  if(magazine()) col.insertBefore(magFeed(brief, wraps), col.querySelector(".hero"));
+  Reader.mount(magazine() ? null : newsbox, function(){ return frontPage(brief, wraps); });
   Motion.scan(root);
+  setTimeout(function(){ MagNav.build(root); MagNav.visible(currentView === "oggi"); }, 0);
   dotfield(canvas);
 
   const srcs = {};
@@ -5787,6 +6301,8 @@ function show(name){
   if(name === "cerca"){ renderSearch(); const i = document.querySelector("#view-cerca input"); if(i) i.focus(); }
   Motion.scan(document.getElementById("view-" + name));
   tabInk();
+  MagNav.visible(name === "oggi");
+  if(name !== "oggi") Sheet.close();
 }
 /* la lineetta sotto la scheda attiva scivola da una scheda all'altra, e
    prende il colore della scheda (arancione APPLE, rosso AI, giallo GAMES…) */
@@ -5869,6 +6385,14 @@ function refreshCounts(){
   const cs = document.getElementById("cStar"); if(cs) cs.textContent = stars || "";
   const cd = document.getElementById("cDiary"); if(cd) cd.textContent = liveDiary().length || "";
 }
+
+/* ================= vista ================= */
+(function(){
+  const b = document.getElementById("vistaBtn");
+  if(!b) return;
+  paintVistaBtn(b);
+  b.addEventListener("click", function(){ setVista(magazine() ? "classica" : "magazine"); });
+})();
 
 /* ================= tema ================= */
 document.getElementById("themeBtn").addEventListener("click", function(){

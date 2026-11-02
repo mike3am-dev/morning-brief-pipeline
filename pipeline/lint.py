@@ -441,6 +441,42 @@ REPARTI = {"Mac", "iPhone", "iPad", "Watch", "Casa", "Servizi", "Software", "Mer
            "Regole", "Azienda", "Eventi", "Accessori", "AI"}
 
 
+def check_magazine(brief, r):
+    """La vista Magazine (2 novembre 2026) vuole due pezzi in piu': la
+    citazione che porta dentro un approfondimento e il commento della
+    redazione, ancorato alle notizie del giorno. Mancano? L'app regge (la
+    citazione la ripesca dalle voci, il commento non esce), ma e' un avviso."""
+    ids = {n.get("id") for n in brief.get("news") or []}
+    c = brief.get("citazione")
+    if not c:
+        r.warn("citazione", "manca: nella vista Magazine «L'ultima parola» la ripesca dalle voci")
+    else:
+        if not c.get("testo") or not c.get("chi"):
+            r.error("citazione", "senza testo o senza chi l'ha detta")
+        if c.get("notizia") not in ids:
+            r.error("citazione", f"la notizia {c.get('notizia')!r} non e' in questa edizione")
+        if len(c.get("testo") or "") > 200:
+            r.warn("citazione", f"{len(c['testo'])} caratteri: «L'ultima parola» regge fino a 200")
+        if c.get("chi") and re.match(r"(?i)^(un|una|gli|alcuni) ", c["chi"]):
+            r.warn("citazione", "un anonimo non e' «L'ultima parola»: serve una persona con nome")
+    e = brief.get("editoriale")
+    if not e:
+        r.warn("editoriale", "manca «Il punto»: nella vista Magazine il commento non esce")
+    else:
+        if not e.get("titolo") or not e.get("testo"):
+            r.error("editoriale", "senza titolo o senza testo")
+        testo = e.get("testo") or []
+        if len(testo) > 3 or any(len(x) > 480 for x in testo):
+            r.warn("editoriale", "al massimo 3 paragrafi da 480 caratteri")
+        if len(e.get("titolo") or "") > 70:
+            r.warn("editoriale", f"titolo di {len(e['titolo'])} caratteri, massimo 70")
+        mancanti = [x for x in e.get("notizie") or [] if x not in ids]
+        if mancanti:
+            r.error("editoriale", f"notizie collegate che non sono in edizione: {', '.join(mancanti)}")
+        if len(e.get("notizie") or []) < 2:
+            r.warn("editoriale", "collegato a meno di due notizie: il commento deve tenerle insieme")
+
+
 def check_reparto(brief, r):
     """Ogni notizia dice il suo reparto, uno della lista: nell'app del Duo e'
     quello che fa capire che notizia aspettarsi prima di aprirla."""
@@ -682,6 +718,7 @@ def lint(brief, with_links):
     check_memory(brief, r)
     check_verifica(brief, r)
     check_reparto(brief, r)
+    check_magazine(brief, r)
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
     check_ranking(news, r)
