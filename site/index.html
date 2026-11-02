@@ -131,7 +131,8 @@ html.vista-magazine main{padding-bottom:7.5rem}
   transition:transform .18s ease, box-shadow .18s ease}
 .card:active{transform:scale(.985)}
 .card:focus-visible{outline:2px solid var(--orange); outline-offset:2px}
-.card-img{grid-area:img; display:block; width:100%; object-fit:cover; background:var(--paper-2)}
+/* nessuna foto piu' alta di cosi', qualunque sia la scheda e lo schermo */
+.card-img{grid-area:img; display:block; width:100%; object-fit:cover; background:var(--paper-2); max-height:min(40vh, 320px)}
 .card-body{grid-area:body; display:flex; flex-direction:column; gap:.4rem; padding:1rem 1.1rem 0; min-width:0}
 .card-src{display:flex; align-items:baseline; flex-wrap:wrap; gap:.15rem .55rem}
 /* la testata con la sua voce: il nome nel condensato, come una testatina */
@@ -186,11 +187,12 @@ html.vista-magazine main{padding-bottom:7.5rem}
   .mag-row.two{grid-template-columns:1fr 1fr}
   .mag-brevi{grid-template-columns:1fr 1fr}
   .c-wide.has-img{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); grid-template-areas:"img body" "img foot"}
-  .c-wide .card-img{aspect-ratio:auto; height:100%; min-height:220px}
+  .c-wide .card-img{aspect-ratio:auto; height:100%; min-height:220px; max-height:none}
+  .c-wide.flip.has-img{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); grid-template-areas:"body img" "foot img"}
 }
 @container (min-width:780px){
   .c-hero.has-img{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); grid-template-areas:"img body" "img foot"}
-  .c-hero .card-img{aspect-ratio:auto; height:100%; min-height:300px}
+  .c-hero .card-img{aspect-ratio:auto; height:100%; min-height:300px; max-height:none}
   .c-hero .card-body{padding:1.4rem 1.3rem 0}
   .c-hero .card-title{font-size:clamp(1.3rem, 3.2cqi, 1.6rem)}
 }
@@ -394,15 +396,19 @@ html.vista-magazine body:not(:has(#masthead[hidden])) .nameplate{display:block}
 .np-inner{max-width:1240px; margin:0 auto; padding:1rem var(--gutter) 0; display:flex; flex-direction:column}
 .np-dots{gap:6px; margin-bottom:.55rem}
 .np-dots i{width:11px; height:11px}
-/* massiccia come la sigla: il peso piu' pesante, le righe strette l'una sull'altra */
-.np-wordmark{font-size:clamp(2.7rem, min(12.5vw, 15vh), 6rem); font-weight:800; line-height:.76; letter-spacing:-.02em;
+/* ricalcata sulla sigla: un bastoni largo e pesantissimo, non il condensato,
+   le tre righe strette l'una sull'altra, THE e BRIEF grandi meta' di MORNING,
+   la O sostituita da un sole poco piu' alto delle maiuscole */
+.np-wordmark{font-family:-apple-system, "SF Pro Display", system-ui, "Avenir Next", sans-serif; font-weight:900;
+  font-size:clamp(2.5rem, min(11.5vw, 14vh), 5.6rem); line-height:.8; letter-spacing:-.035em;
   justify-self:start; align-self:flex-start}
-.np-wordmark .the{font-size:.42em; letter-spacing:.01em; padding-bottom:.02em}
-.np-wordmark .brf{font-size:.44em; letter-spacing:.01em; padding-top:.02em}
+.np-wordmark .the{font-size:.47em; letter-spacing:-.01em; padding-bottom:.06em}
+.np-wordmark .brf{font-size:.47em; letter-spacing:-.01em; padding-top:.06em}
 .np-wordmark .mrn{position:relative}
-/* l'orizzonte: l'arco azzurro della sigla passa davanti al sole, che gli sorge dietro */
-.np-wordmark .mrn::after{content:""; position:absolute; left:-4%; right:-4%; top:64%; height:.6em;
-  border-top:.06em solid var(--blue); border-radius:50% 50% 0 0 / 100% 100% 0 0; z-index:1;
+.np-wordmark .o{width:.92em; height:.92em; vertical-align:-.13em; margin:0 .02em}
+/* la falce azzurra della sigla: sottile ai lati, piena al centro, scura ai bordi e chiara
+   in mezzo; parte prima della M e finisce sotto la I, davanti al sole che le sorge dietro */
+.np-arc{position:absolute; left:-3%; width:72%; top:70%; height:.3em; z-index:1; overflow:visible;
   animation:mo-wipe .9s cubic-bezier(.6,0,.2,1) .15s both}
 .np-date{margin:.7rem 0 0; font-size:.62rem; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--ink-2)}
 .np-rule{height:4px; background:var(--ink); margin:.55rem 0 .1rem}
@@ -421,7 +427,8 @@ html.vista-magazine .masthead-inner{display:flex; align-items:center; gap:1rem; 
 html.vista-magazine nav.tabs{flex:1; min-width:0; margin-top:0; order:2}
 html.vista-magazine .mt-mini{display:block; order:1; overflow:hidden; max-width:0; opacity:0;
   transition:max-width .35s cubic-bezier(.4,0,.2,1), opacity .25s ease}
-html.vista-magazine .mt-mini .wordmark{font-size:1.25rem; font-weight:800; padding:.2rem 0}
+html.vista-magazine .mt-mini .wordmark{font-family:-apple-system, "SF Pro Display", system-ui, sans-serif; font-weight:900;
+  letter-spacing:-.035em; font-size:1.15rem; padding:.2rem 0}
 html.vista-magazine.np-out .mt-mini{max-width:9rem; opacity:1}
 html.vista-magazine .mt-actions{display:flex; order:3; gap:.35rem; align-items:center; padding-bottom:.3rem}
 .mt-btn{position:relative; width:36px; height:36px; border:0; border-radius:50%; background:none; color:var(--ink);
@@ -2084,7 +2091,7 @@ footer.colophon .sp{flex:1}
 <div class="nameplate" id="nameplate" aria-hidden="true">
   <div class="np-inner">
     <span class="dot-mark np-dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
-    <div class="wordmark np-wordmark"><span class="the">The</span><span class="mrn">M<i class="o"></i>rning</span><span class="brf">Brief</span></div>
+    <div class="wordmark np-wordmark"><span class="the">The</span><span class="mrn">M<i class="o"></i>rning<svg class="np-arc" viewBox="0 0 100 14" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="npArc" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#1A5FAF"/><stop offset=".48" stop-color="#7CC6F2"/><stop offset="1" stop-color="#1A5FAF"/></linearGradient></defs><path d="M0 13.6 Q48 -5 100 13.6 Q48 4.2 0 13.6 Z" fill="url(#npArc)"/></svg></span><span class="brf">Brief</span></div>
     <p class="np-date" id="npDate"></p>
     <div class="np-rule"></div>
   </div>
@@ -5509,19 +5516,19 @@ function testate(n){
   const v = n.verifica || {};
   return v.testate || Math.max((n.sources || []).length, 1 + (n.extra_links || []).length);
 }
-/* quando l'ha data la prima delle nostre testate: «ieri, 16:27». Un orario
-   vero e non «21 ore fa», che sotto «scelte stamattina» faceva sembrare vecchia
-   l'apertura di oggi (Mike, 2 novembre 2026) */
-function orario(n){
+/* da quanto e' uscita: «3 ore fa», contato dall'ora in cui l'ha data la prima
+   delle nostre testate (Mike preferisce cosi' all'orario, 2 novembre 2026) */
+function tempoFa(n){
   const iso = n.verifica && n.verifica.primo && n.verifica.primo.ora;
   const t = iso ? new Date(iso) : null;
   if(!t || isNaN(t)) return "";
-  const hm = t.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"});
-  const day = function(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(); };
-  const diff = Math.round((day(new Date()) - day(t)) / 86400000);
-  if(diff === 0) return "oggi, " + hm;
-  if(diff === 1) return "ieri, " + hm;
-  return t.getDate() + " " + MESI[t.getMonth()].slice(0, 3) + ", " + hm;
+  const min = Math.round((Date.now() - t) / 60000);
+  if(min < 1) return "adesso";
+  if(min < 60) return min + " min fa";
+  const h = Math.round(min / 60);
+  if(h < 24) return h + (h === 1 ? " ora fa" : " ore fa");
+  const d = Math.round(h / 24);
+  return d === 1 ? "ieri" : d + " giorni fa";
 }
 /* chi l'ha detta per primo: l'origine dichiarata (Bloomberg), e chi l'ha
    ripresa resta in piccolo, «via 9to5Mac» */
@@ -5546,7 +5553,7 @@ function magCard(brief, n, i, w, kind){
   cov.appendChild(el("b", {text:count === 1 ? "1 testata" : count + " testate"}));
   /* solo la stellina: appunti e «non mi interessa» stanno nella notizia aperta */
   const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Leggi più tardi", title:"Leggi più tardi", html:I_STAR});
-  const when = orario(n);
+  const when = tempoFa(n);
   const foot = el("div", {class:"card-foot tools", "data-sig":k}, [
     when ? el("span", {class:"card-when", text:when}) : null, cov, el("span", {class:"card-gap"}), star
   ]);
@@ -5653,8 +5660,10 @@ function magFeed(brief, wraps){
 
   if(news[3] || news[4]){
     feed.appendChild(magSection("primo", "In primo piano", "le altre con l'approfondimento", "--blue"));
+    /* due orizzontali a specchio: una sola scheda a tutta larghezza con la foto
+       sopra diventava una foto grande quanto lo schermo (HomePod, 2 novembre 2026) */
     if(news[3]) feed.appendChild(card(3, "wide"));
-    if(news[4]) feed.appendChild(card(4, "std"));
+    if(news[4]){ const c5 = card(4, "wide"); c5.classList.add("flip"); feed.appendChild(c5); }
   }
 
   const p = magPunto(brief, wraps);

@@ -1280,9 +1280,12 @@ questo sistema.
 
 
 **La testata della Magazine** (2 novembre 2026). Nella Magazine il nome del giornale è
-in cima, grande, come una testata vera: i tre pallini, *The Morning Brief* massiccio e
-compatto come la sigla (il peso più pesante, le righe strette), con **l'arco azzurro**
-dell'orizzonte davanti alla O di MORNING, che all'apertura sorge come un sole; subito sotto
+in cima, grande, come una testata vera: i tre pallini, *The Morning Brief* **ricalcato sulla
+sigla** — il carattere di sistema nel peso più pesante (largo e massiccio, non il
+condensato), le righe strette, THE e BRIEF grandi metà di MORNING, la O sostituita da un sole
+poco più alto delle maiuscole — con **la falce azzurra** dell'orizzonte: sottile ai lati e
+piena al centro, scura ai bordi e chiara in mezzo, parte prima della M e finisce sotto la
+I, davanti al sole che all'apertura le sorge dietro; subito sotto
 la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava chiamarsi
 «2 novembre», e il nome stava appiccicato nell'angolo. La testata grande scorre via; nella
 barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
@@ -1313,9 +1316,9 @@ scheda APPLE. Cosa prende da News+ e cosa no:
   titolo, e **sotto le due-tre righe della sintesi, intere** — la cosa che a Mike piace di
   noi e che a News+ manca: troppo spazio vuoto. La testata è **chi l'ha detta per primo**
   (l'origine dichiarata in `verifica.origini`, es. «Bloomberg»), con «via 9to5Mac» in
-  piccolo quando l'abbiamo letta altrove. In fondo il piede: **l'orario** in cui l'ha data la
-  prima delle nostre testate («ieri, 16:27», non «21 ore fa», che sotto «scelte stamattina»
-  faceva sembrare vecchia l'apertura), i cinque pallini e **il numero delle testate**, e
+  piccolo quando l'abbiamo letta altrove. In fondo il piede: **da quanto è uscita** («3 ore
+  fa», dall'ora in cui l'ha data la prima delle nostre testate: Mike lo preferisce
+  all'orario), i cinque pallini e **il numero delle testate**, e
   **solo la stellina**: appunti e «non mi interessa» stanno nella notizia aperta. Su un
   `RUMOR` non si scrive mai «parola di Apple», anche se `verify.py` ha trovato una
   dichiarazione: le due cose si contraddicono (2 novembre 2026). Il titolo di una notizia
@@ -1341,6 +1344,9 @@ scheda APPLE. Cosa prende da News+ e cosa no:
 - **«Sul banco»** nella Magazine prende la forma delle schede, tutte della stessa altezza: il
   genere come occhiello col suo pallino, «Al banco» dentro la scheda su un velo giallo, non
   più il foglietto giallo accanto («sembra un'altra rivista», Mike).
+- **Nessuna foto più alta di 320 punti o del 40% dello schermo**: una scheda sola a tutta
+  larghezza con la foto sopra diventava una foto grande quanto il Duo (HomePod, 2 novembre
+  2026). Per questo la quinta notizia è un'orizzontale a specchio della quarta.
 - **Le schede normali hanno la foto sopra**, a tutta larghezza; **le brevi sono solo testo**
   (le fotine nell'angolo erano «orrende»). Nelle sezioni in fondo (banco, perso, radar) il
   piede ha **solo la stellina**.
