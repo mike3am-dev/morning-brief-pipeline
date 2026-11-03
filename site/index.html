@@ -237,6 +237,9 @@ html.vista-magazine main{padding-bottom:7.5rem}
 .mag-nav button.on{background:color-mix(in srgb, var(--paper) 92%, transparent); color:var(--ink);
   box-shadow:0 1px 3px rgba(23,24,27,.18)}
 body.sheet-open .mag-nav{opacity:0; transform:translate(-50%, 20px); pointer-events:none}
+/* sul Duo chiuso la barretta dorme finche' non cominci a scorrere: in cima alla
+   pagina toglieva respiro alla prima foto (3 novembre 2026) */
+@media (max-width:600px){ .mag-nav.dorme{opacity:0; transform:translate(-50%, 20px); pointer-events:none} }
 html:not(.vista-magazine) .mag-nav{display:none}
 #vistaBtn.on{color:var(--orange-ink)}
 
@@ -461,6 +464,26 @@ html.vista-magazine .mt-actions{display:flex; order:3; gap:.35rem; align-items:c
 .mt-sync[data-state="offline"]{background:var(--rule-strong)}
 .mt-sync[data-state="error"]{background:var(--red)}
 @media (max-width:600px){ html.vista-magazine.np-out .mt-mini{max-width:0; opacity:0} }
+/* il Duo chiuso: le pillole si fanno compatte e scorrono (le sezioni sono sei,
+   lo schermo ne teneva tre e mezza, tagliate a caso); la lente entra nel menu,
+   la riga sotto la barra si assottiglia */
+@media (max-width:600px){
+  html.vista-magazine .masthead{border-bottom-width:1px}
+  html.vista-magazine .masthead-inner{gap:.25rem}
+  html.vista-magazine .mt-actions .mt-search{display:none}
+  html.vista-magazine .mt-actions .mt-btn{width:32px; height:32px}
+  html.vista-magazine nav.tabs{justify-content:space-between}
+  html.vista-magazine .masthead nav.tabs .tab{position:relative; font-size:clamp(.78rem, 3vw, 1rem); letter-spacing:.01em; gap:.28em;
+    padding:.46em .49em .41em .44em; margin:.3rem 0 .4rem; flex:none}
+  html.vista-magazine .masthead nav.tabs .tab::before{width:.56em; height:.56em}
+  /* il numero delle novita' e' un esponente: non ruba la larghezza alle sezioni */
+  html.vista-magazine .masthead nav.tabs .tab .count{display:inline; position:absolute; top:.14rem; right:.04rem; margin:0;
+    font-size:.54rem; line-height:1; letter-spacing:0; opacity:.75}
+  html.vista-magazine .masthead nav.tabs .tab:has(.count:not(:empty)){padding-right:.74em}
+  /* «Più tardi» e' la stellina col suo numero */
+  html.vista-magazine .masthead nav.tabs .tab-dopo{font-size:0; gap:0}
+  html.vista-magazine .masthead nav.tabs .tab-dopo::before{width:auto; height:auto; font-size:.9rem}
+}
 
 /* il menu, con le parole scritte */
 .mt-menu{position:fixed; z-index:55; width:min(300px, calc(100vw - 24px)); padding:.5rem; border-radius:20px;
@@ -730,6 +753,22 @@ button.pl-tile{cursor:pointer}
   .pl-label{font-size:.62rem}
   .pl-ico{width:24px; height:24px}
   .pl-sub{font-size:.55rem}
+}
+/* il Duo chiuso (3 novembre 2026, Mike: «data a sinistra anziche' a destra, tre
+   pallini in mezzo, spazio in alto a destra vuoto, i widget hanno poco respiro,
+   linee un po' grosse»). Il timbro torna a destra del logo come sul Duo aperto,
+   la plancia scende sotto a tutta larghezza con piu' aria, la riga si assottiglia.
+   Solo sotto i 600 punti: il Duo aperto non cambia. */
+@media (max-width:600px){
+  .np-inner{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"logo date" "pl pl" "rule rule"; column-gap:.8rem; padding-top:1.1rem}
+  .np-side{display:contents}
+  .np-dateline{grid-area:date; justify-self:end; align-self:center; justify-content:flex-end; gap:.5rem; text-align:right}
+  .np-date{font-size:clamp(.56rem, 1.9vw, .66rem); letter-spacing:.1em; line-height:1.5}
+  .np-date span{display:block}
+  .np-date .np-day{font-family:var(--display); font-weight:800; font-size:clamp(1.3rem, 4.6vw, 1.6rem); letter-spacing:.02em; color:var(--ink); line-height:1; margin:0 0 .2rem}
+  .plancia{grid-area:pl; margin-top:1.2rem; gap:.55rem}
+  .pl-tile{min-height:5.7rem; padding:.62rem .66rem}
+  .np-rule{height:2px; margin:1.2rem 0 0}
 }
 
 /* ---------------- le chicche ----------------
@@ -6049,6 +6088,7 @@ const MagNav = (function(){
       nav.appendChild(b);
     });
     document.body.appendChild(nav);
+    sveglia();
     if("IntersectionObserver" in window){
       io = new IntersectionObserver(function(es){
         es.forEach(function(e){
@@ -6061,6 +6101,21 @@ const MagNav = (function(){
       secs.forEach(function(h){ io.observe(h); });
     }
   }
+  /* all'apertura dalla Home, a volte iOS lascia la pagina qualche centimetro piu'
+     giu' e la rimette a posto solo al primo scorrimento (Mike, 3 novembre 2026):
+     quel primo scorrimento lo facciamo noi, di un punto, e torniamo su */
+  function assesta(){
+    if(window.scrollY > 2) return;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      if(window.scrollY > 2) return;
+      window.scrollTo(0, 1); window.scrollTo(0, 0);
+    }); });
+  }
+  window.addEventListener("pageshow", assesta);
+  document.addEventListener("visibilitychange", function(){ if(document.visibilityState === "visible") assesta(); });
+  window.addEventListener("load", assesta);
+  function sveglia(){ if(nav) nav.classList.toggle("dorme", window.scrollY < 24); }
+  window.addEventListener("scroll", sveglia, {passive:true});
   function visible(v){ if(nav) nav.hidden = !v; }
   return {build:build, visible:visible};
 })();
@@ -6216,7 +6271,7 @@ const Testata = (function(){
   ]);
   const I_LENTE = ico("M6.8 1.8a5 5 0 0 1 4 8l3.4 3.4-1.1 1.1-3.4-3.4a5 5 0 1 1-2.9-9.1zm0 1.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8z");
   const I_MENU = ico("M2 3.2h12v1.6H2zM2 7.2h12v1.6H2zM2 11.2h12v1.6H2z");
-  const search = el("button", {type:"button", class:"mt-btn", "aria-label":"Cerca", html:I_LENTE,
+  const search = el("button", {type:"button", class:"mt-btn mt-search", "aria-label":"Cerca", html:I_LENTE,
     onclick:function(){ close(); show("cerca"); }});
   /* la vista sta fuori dal menu, accanto alla lente, con la sua icona */
   const vista = el("button", {type:"button", class:"mt-btn mt-vista", onclick:function(){ close(); setVista(magazine() ? "classica" : "magazine"); }});
@@ -6264,6 +6319,8 @@ const Testata = (function(){
       ]),
       seg("Tema", [["light", "Chiaro"], ["dark", "Scuro"]], dark() ? "dark" : "light", function(){ clickId("themeBtn"); }),
       el("div", {class:"mm-list"}, [
+        /* sul Duo chiuso la lente sta qui: nella barra lascia il posto alle sezioni */
+        search.offsetParent === null ? row("Cerca", "", function(){ show("cerca"); }) : null,
         row("Archivio", "", function(){ show("archivio"); }),
         row("Diario", txt("cDiary"), function(){ show("diario"); })
       ]),

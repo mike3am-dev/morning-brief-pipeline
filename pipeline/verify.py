@@ -44,6 +44,7 @@ import os
 import re
 import subprocess
 import sys
+from datetime import datetime
 from urllib.parse import urljoin, urlparse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -357,6 +358,23 @@ def verdict(news, urls, cited, feeds, day):
     }
 
 
+# Un'anteprima non e' la notizia: «What analysts expect from Apple's Q4 results»
+# usciva il giorno prima dei conti, Google News lo metteva fra chi li aveva dati,
+# e l'app scriveva «2 giorni fa» su risultati usciti la sera prima (3 novembre 2026)
+ANTICIPO = re.compile(r"\b(what (?:analysts |wall street |to )?expect|ahead of (?:\w+ )?(?:earnings|results)|"
+                      r"cosa aspettarsi|alla vigilia dei (?:conti|risultati))\b", re.I)
+ANTICIPO_MAX_ORE = 36
+
+
+def anticipa_troppo(ora_web, ora_nostra):
+    """Una testata trovata fuori che la darebbe piu' di un giorno e mezzo prima di
+    tutte le nostre: quasi sempre un pezzo diverso con le stesse parole chiave."""
+    a, b = eco.when_iso(ora_web), eco.when_iso(ora_nostra)
+    if datetime.max.year in (a.year, b.year):
+        return False
+    return (b - a).total_seconds() > ANTICIPO_MAX_ORE * 3600
+
+
 def first_of(urls, raw_items, feeds):
     """Chi l'ha data per primo fra le nostre testate: l'articolo del mucchio
     con l'ora piu' vecchia nel grezzo. L'app lo mostra quando le testate sono
@@ -446,6 +464,8 @@ def main():
         web = {}
         for t in seeds[n.get("id")]:
             for x in (covs.get(t) or {}).get("voci", []):
+                if ANTICIPO.search(x.get("titolo") or ""):
+                    continue
                 k = eco.key(x["testata"])
                 if k not in web or (x["ora"] and (web[k]["ora"] is None or x["ora"] < web[k]["ora"])):
                     web[k] = x
@@ -457,6 +477,8 @@ def main():
         v["testate"] = len(ours | set(web))
         v["web"] = len(set(web) - ours)
         first_web = min((x for x in web.values() if x["ora"]), key=lambda x: x["ora"], default=None)
+        if first_web and primo and anticipa_troppo(first_web["ora"], primo["ora"]):
+            first_web = None
         if first_web and (not primo or eco.when_iso(first_web["ora"]) < eco.when_iso(primo["ora"])):
             primo = {"testata": first_web["testata"], "ora": first_web["ora"]}
         if primo:

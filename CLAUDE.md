@@ -240,7 +240,10 @@ notizia (va fatto nel sottoagente di lettura: è tanto testo). Le regole della s
 
 `verify.py` poi rifà il conto dentro l'edizione: `verifica.testate` sono **tutte** le testate
 (quelle che l'app mostra in «quanto gira»), `lette` quelle delle nostre, `web` quelle trovate
-fuori, e `primo` è chi l'ha data per primo fra tutte. Le risposte restano in
+fuori, e `primo` è chi l'ha data per primo fra tutte — ma non un'anteprima («What analysts
+expect from Apple's Q4»: il 3 novembre 2026 faceva scrivere «2 giorni fa» su conti usciti la sera
+prima), e non una testata trovata fuori più di 36 ore prima di tutte le nostre (`ANTICIPO` in
+`verify.py`). Le risposte restano in
 `data/eco/<giorno>.json`: la seconda corsa non rifà le domande.
 
 #### Chi scrive la prosa — il redattore su Opus
@@ -1394,6 +1397,17 @@ di 1.040 punti e prendeva le colonne del Mac: è successo il 1 novembre 2026. Da
 `Reader` guarda anche lo schermo, che lo zoom non cambia: uno schermo touch largo fra 601 e
 1.039 punti nel verso in cui lo tieni è il Duo a qualunque zoom, e la classe
 `html.duo-forzato` spegne le colonne del Mac.
+
+**Il Duo chiuso** (3 novembre 2026). Lo schermo esterno è largo circa 562 punti, quindi sta
+nel telefono (sotto i 600). Lì, nella Magazine: il timbro con giorno, data e tre pallini sta a
+destra del logo come sul Duo aperto, la plancia sotto a tutta larghezza con più aria, le righe
+sottili (2 e 1 punto invece di 4 e 2); le sei pillole delle sezioni ci stanno tutte — si
+rimpiccioliscono con la larghezza, il numero delle novità è un esponente, «Più tardi» è la
+stellina, la lente passa nel menu come «Cerca»; la barretta di vetro dorme finché non cominci a
+scorrere. Tutto dentro `@media (max-width:600px)`: **il Duo aperto non va toccato** (Mike: «è
+perfetto, assicurati che nei cambiamenti non venga modificato alcunché»). All'apertura dalla Home
+iOS a volte lascia la pagina qualche centimetro più giù fino al primo scorrimento: `assesta()` in
+`MagNav` fa da sé quello scorrimento di un punto.
 
 Per provarlo nel browser del Mac: l'emulatore di larghezza non manda alla pagina l'evento
 di ridimensionamento, quindi dopo aver cambiato misura serve
