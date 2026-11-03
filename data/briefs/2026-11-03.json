@@ -1,0 +1,240 @@
+{
+ "date": "2026-11-03",
+ "title": "The Morning Brief – 3 novembre 2026",
+ "generated_at": "2026-11-03T06:30:00+01:00",
+ "window": "Ultime 26 ore",
+ "stats": {
+  "articoli_letti": 0,
+  "notizie_selezionate": 0
+ },
+ "feed_notes": [
+  "AI Explained: html-not-feed, nessuna data leggibile",
+  "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+  "Anthropic cookbook: parse-error, nessuna data leggibile",
+  "MKBHD: html-not-feed, nessuna data leggibile",
+  "Matt Wolfe: html-not-feed, nessuna data leggibile",
+  "One Useful Thing: ok, ultimo articolo 324.8h fa",
+  "Push Square: html-not-feed, nessuna data leggibile"
+ ],
+ "news": [],
+ "top3": [],
+ "intro": "",
+ "ai": [
+  {
+   "id": "ai-anthropic-rsi-warning",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "Anthropic avverte di essere vicina alla capacità RSI, l'IA che addestra se stessa",
+   "sintesi": "Anthropic dice di essere molto vicina alla capacità RSI, il punto in cui un modello migliora così bene il proprio addestramento da accelerare drasticamente le capacità successive.",
+   "note": "RSI (recursive self-improvement) è lo scenario in cui un'IA diventa abile a migliorare il proprio addestramento, innescando un'accelerazione delle capacità difficile da prevedere e controllare. Per chi teme una corsa fuori controllo è il punto di non ritorno; per Anthropic è un traguardo tecnico da annunciare, non da nascondere.",
+   "apple": "niente, per ora: nessuna fonte collega oggi l'annuncio ad Apple.",
+   "link": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
+   "source": "TechCrunch AI"
+  },
+  {
+   "id": "ai-anthropic-ricavi-ipo",
+   "lab": "anthropic",
+   "kind": "affari",
+   "title": "Anthropic: ricavi cresciuti di dodici volte, ma 23 miliardi di dollari di perdita operativa",
+   "sintesi": "Anthropic torna in perdita operativa per 23 miliardi di dollari nonostante ricavi cresciuti di dodici volte, proprio alla vigilia della sua attesa IPO.",
+   "note": "Il salto di ricavi non ha coperto l'aumento dei costi di calcolo e personale, e la società torna in rosso dopo un periodo di break-even. Il dato arriva mentre Anthropic si prepara a una quotazione molto attesa, che renderà pubblici i suoi conti con una regolarità che finora non c'era.",
+   "apple": "niente, per ora.",
+   "link": "https://the-decoder.com/anthropic-grows-revenue-twelvefold-but-posts-23-billion-loss/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "ai-grok-bot-throttling",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Musk limita le quote di Grok Bot per i costi 'insostenibilmente alti'",
+   "sintesi": "Musk taglia le quote di Grok Bot per costi operativi 'insostenibilmente alti', poche settimane dopo averlo definito il prodotto in più rapida crescita della sua vita.",
+   "note": "Musk ha scritto su X che i costi operativi erano sproporzionati rispetto ai ricavi. Non è un caso isolato: anche OpenAI e Anthropic stanno irrigidendo i piani a tariffa fissa di fronte al costo reale degli agenti AI, che consumano calcolo ben oltre quanto un abbonamento flat riesce a coprire.",
+   "apple": "niente, per ora.",
+   "link": "https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/",
+   "source": "TechCrunch AI, The Decoder"
+  },
+  {
+   "id": "ai-goldman-sachs-coding-tools",
+   "lab": "altri",
+   "kind": "regole",
+   "title": "Goldman Sachs ritira gli strumenti di coding AI da trader e banker",
+   "sintesi": "Goldman Sachs ritira Claude Code e gli altri strumenti di coding AI da trader e banker, riservandoli agli ingegneri per 'produttività e gestione del rischio'.",
+   "note": "È un dietrofront netto: a luglio il CIO Marco Argenti elogiava pubblicamente il 'vibe coding' dei non tecnici. Ora la banca cita motivi di produttività e gestione del rischio per restringere l'accesso ai soli ingegneri, un segnale che la fiducia nell'uso libero di questi strumenti in ambito finanziario si è incrinata.",
+   "apple": "niente, per ora.",
+   "link": "https://the-decoder.com/goldman-sachs-pulls-ai-coding-tools-from-traders-and-bankers/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "ai-qwen-open-source",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Qwen (Alibaba) smentisce i rumor: resterà open source",
+   "sintesi": "Il capo di Qwen smentisce i rumor su un passaggio a modelli solo via API: Qwen 4.0 e 5.0 resteranno open source, dopo oltre 3 miliardi di download cumulativi.",
+   "note": "Circolavano voci che Qwen4 sarebbe stata l'ultima serie a pesi apribili, con i modelli futuri offerti solo via API. Liu Dayi Heng, a capo di Qwen, le ha smentite: oltre 460 modelli open source rilasciati finora e più di 300.000 derivati, dice, dimostrano la strada da continuare.",
+   "apple": "niente, per ora.",
+   "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xm28e6/official_statement_qwen_models_will_stick_to_open/",
+   "source": "Reddit r/LocalLLaMA"
+  },
+  {
+   "id": "ai-meta-robot-domestico",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Meta costruisce con Fourier un prototipo di robot domestico per i mestieri",
+   "sintesi": "Meta ha costruito con la cinese Fourier un prototipo di robot domestico alto 1,5 metri e da 48 kg, con il chip NVIDIA Jetson Thor: per ora resta un progetto di ricerca.",
+   "note": "Il prototipo usa il chip NVIDIA Jetson Thor ed è stato sviluppato insieme alla cinese Fourier; Meta lavorerebbe già a una seconda generazione. Resta, per esplicita ammissione, un progetto di ricerca e non un prodotto in arrivo.",
+   "apple": "Apple punterebbe a un suo robot domestico da 1.000 dollari per il 2027 (FaceTime, accendere le luci): mentre il suo hub HomeView arriva solo ora, i concorrenti testano già prototipi che si muovono in casa.",
+   "link": "https://www.dday.it/redazione/59295/un-robot-che-fa-i-mestieri-meta-lo-ha-costruito-ma-per-ora-e-solo-per-ricerca",
+   "source": "DDay.it"
+  },
+  {
+   "id": "lab-nightshoal-opus",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Un dev solista scrive con Opus 5.5 un gioco di pesca ed esplorazione",
+   "note": "RUSuper posta da mesi aggiornamenti settimanali su r/ClaudeAI: ha scritto tutto il codice di 'Nightshoal', un gioco di pesca ed esplorazione con progressione da RPG, meteo dinamico e pericoli notturni, usando principalmente Claude Opus 5.5. La prima zona e la demo sono ora complete.",
+   "prova": "La demo di Nightshoal è gratis su itch.io (profactor.itch.io/nightshoal): si gioca, non si legge solo il post.",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xlr3u8/been_making_this_game_for_3_months_using_only_ai/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "lab-numbat-forensics",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Un utente dimostra che un presunto modello Anthropic da 7,72TB in circolazione è falso",
+   "note": "Il checkpoint 'burner22/numbat', presentato come modello interno Anthropic della classe Mythos, è stato ricostruito bit per bit con SHA-256 e NumPy PCG64: 11,37 milioni di valori su 633 tensori coincidono al 100% con una sequenza pseudocasuale, prova che i pesi sono generati e non addestrati. Un modello troncato da 4,73 miliardi di parametri, ricostruito ed eseguito, produce solo punteggiatura ripetuta.",
+   "prova": "Script di ricostruzione e prove sono pubblicati su HuggingFace (adityawakharkar/numbat-forensics): si possono rifare i conti da soli.",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xls4cj/the_772tb_alleged_anthropic_ai_model_is_fake_i/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "lab-subvocal-glasses",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Due studenti costruiscono occhiali che leggono il parlato silenzioso via radiofrequenza",
+   "note": "Aarush e Arnav (The Subvocal Company, YC) volevano ricreare in 36 ore AlterEgo del MIT Media Lab: dal primo prototipo con elettrodi EMG incollati in faccia sono passati a occhiali che emettono onde radio modulate dal movimento di lingua, labbra e palato mentre si 'parla' senza voce, decodificate da modelli addestrati su dati raccolti da centinaia di persone. Il video mostra un membro di YC usarlo dopo una calibrazione di 20 frasi.",
+   "prova": "Il video della prova è nel post Show HN; i primi 500 esemplari sono in preordine su subvocal.co/preorder.",
+   "link": "https://news.ycombinator.com/item?id=50340088",
+   "source": "Hacker News (Show HN), 605 punti e 319 commenti"
+  }
+ ],
+ "radar": [
+  {
+   "id": "spacex-boost-mobile",
+   "topic": "telecomunicazioni",
+   "title": "SpaceX tratterebbe l'acquisto di Boost Mobile per diventare un operatore vero",
+   "note": "Dopo l'acquisto di nuovo spettro il mese scorso e il rifiuto di T-Mobile di ospitare Starlink Mobile sulla sua rete, SpaceX avrebbe trattato con EchoStar, la società madre di Boost Mobile: Musk ha incontrato di persona il presidente di EchoStar, Charlie Ergen, in ottobre. L'accordo darebbe a Starlink l'accesso terrestre che le manca per competere con AT&T, T-Mobile e Verizon.",
+   "link": "https://techcrunch.com/2026/11/02/spacex-reportedly-wants-to-buy-boost-mobile-to-compete-with-att-t-mobile-and-verizon/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "google-wallet-sicurezza-pagamenti",
+   "topic": "fintech-sicurezza",
+   "title": "Google Wallet potrebbe far scegliere più sicurezza o più comodità nei pagamenti",
+   "note": "Una funzione in test permetterebbe di richiedere una verifica aggiuntiva, come l'impronta, per i pagamenti contactless sopra una soglia scelta dall'utente, oggi gestita in automatico dal sistema. È il compromesso che si ripresenta ogni volta che i pagamenti al volo si scontrano con la sicurezza.",
+   "link": "https://www.androidauthority.com/google-wallet-tap-to-pay-verification-settings-3730434/",
+   "source": "Android Authority"
+  }
+ ],
+ "social": [
+  {
+   "id": "social-maps-gaza-satellite",
+   "origine": "nuovo",
+   "title": "Su r/apple e Hacker News si discute delle immagini satellitari di Apple Maps su Gaza",
+   "note": "Due discussioni distinte (3ª più votata del giorno su r/apple, 59 punti e 23 commenti su Hacker News) notano che le immagini satellitari di Apple Maps su Gaza mostrano gli edifici intatti o la distruzione secondo la versione/data della cache: le testate non ne hanno ancora scritto.",
+   "link": "https://www.reddit.com/r/apple/comments/1xlw3t7/apple_maps_reversed_satellite_images_showing_the/",
+   "source": "Reddit r/apple, Hacker News"
+  },
+  {
+   "id": "social-macbook-neo-filippine",
+   "origine": "nuovo",
+   "title": "Su r/apple si discute di un maxi-accordo scolastico: 170.000 MacBook Neo alle Filippine",
+   "note": "11° fra i più votati del giorno su r/apple: un utente segnala quello che descrive come il più grande accordo educativo di Apple nella regione. Le testate non ne hanno ancora scritto, e il dettaglio non è verificato in modo indipendente.",
+   "link": "https://www.reddit.com/r/apple/comments/1xmg0qh/apples_latest_giant_education_deal_170000_macbook/",
+   "source": "Reddit r/apple"
+  },
+  {
+   "id": "social-nxnative-switch2-mac",
+   "origine": "nuovo",
+   "title": "nxnative porta il supporto ai giochi Switch 2 su Mac, Donkey Kong Bananza a 60 FPS",
+   "note": "9° fra i più votati del giorno su r/apple: il progetto di emulazione nxnative avrebbe aggiunto il supporto ai giochi Nintendo Switch 2, con Donkey Kong Bananza che girerebbe a 60 fotogrammi al secondo su Mac.",
+   "link": "https://www.reddit.com/r/apple/comments/1xm2gvi/nxnative_gains_nintendo_switch_2_game_support/",
+   "source": "Reddit r/apple"
+  }
+ ],
+ "banco": [
+  {
+   "id": "duo-vs-foldable-android",
+   "kind": "confronto",
+   "topic": "pieghevoli",
+   "title": "Un recensore che ha usato ogni pieghevole Android dell'anno mette alla prova l'iPhone Duo",
+   "note": "Chi usa pieghevoli Android dal Galaxy Z Flip 3 e ha provato tutti gli otto foldable arrivati negli USA quest'anno (quattro Motorola, tre Samsung, uno Google) ha usato l'iPhone Duo per cinque giorni: la cerniera e il formato largo convincono, ma lo schermo con finitura nano-texture — più opaco e meno saturo di un pannello lucido — divide, e in alcuni casi preferisce ancora il suo Galaxy Z Fold 8.",
+   "perche": "È il confronto diretto che farà al banco il cliente già abituato ai pieghevoli Android.",
+   "link": "https://www.androidauthority.com/iphone-duo-android-user-impressions-3728257/",
+   "source": "Android Authority"
+  },
+  {
+   "id": "s27-ultra-dummy-leak",
+   "kind": "confronto",
+   "topic": "flagship-concorrenza",
+   "title": "Un modello dummy del Galaxy S27 Ultra confrontato con Pixel 11 Pro e iPhone 18 Pro",
+   "note": "Un modello dummy (fedele alle dimensioni reali ma non funzionante) del Galaxy S27 Ultra è stato messo a confronto fisico con Pixel 11 Pro, iPhone 18 Pro e il Galaxy S26 Ultra dell'anno scorso, per misurare ingombri e differenze di design prima del lancio.",
+   "perche": "È la domanda di chi deve scegliere fra il prossimo top di gamma Samsung e l'iPhone 18 Pro.",
+   "link": "https://www.androidauthority.com/samsung-galaxy-s27-ultra-dummy-leak-3730910/",
+   "source": "Android Authority"
+  },
+  {
+   "id": "motorola-signature-27",
+   "kind": "video",
+   "topic": "flagship-concorrenza",
+   "title": "Motorola Signature 27: hands-on in video e specifiche ufficiali prima del lancio",
+   "note": "Motorola ha affidato a Danny Winget un video hands-on in esclusiva sul suo nuovo flagship: schermo 'Extreme AMOLED Duo' da 6,8 pollici, audio Bang & Olufsen, due colorazioni Pantone. Le specifiche ufficiali parlano di una luminosità circa 5 volte superiore al Galaxy S26 Ultra.",
+   "perche": "Un flagship che si proclama più luminoso di ogni concorrente è il tipo di claim che un cliente informato porterà al banco.",
+   "link": "https://www.gsmarena.com/motorola_signature_27_stars_in_handson_promo_video_ahead_of_launch-news-75315.php",
+   "source": "GSMArena"
+  }
+ ],
+ "recap": [
+  {
+   "id": "persa-ipad-mini8-oled",
+   "when": "2026-10-26",
+   "ref": {
+    "date": "2026-10-26",
+    "id": "ipadmini8-oled-preview"
+   },
+   "title": "iPad mini 8: schermo OLED, chip A20 Pro e la prima resistenza all'acqua per la linea",
+   "note": "Il primo iPad mini con schermo OLED e la prima resistenza all'acqua della linea, annunciato alla vigilia del lancio. Nei giorni dopo gli hands-on hanno confermato il chip A20 Pro 'tagliato' sotto i 512GB, l'assenza del ProMotion a 120Hz e una batteria da 4.900 mAh, più piccola della precedente.",
+   "signal": "1 testata, 2 seguiti nei giorni dopo, 3 discussioni",
+   "link": "https://9to5mac.com/2026/10/25/ipad-mini-8-redesign-with-oled-coming-this-week/",
+   "source": "9to5Mac"
+  },
+  {
+   "id": "persa-memoria-rincari-2030",
+   "when": "2026-10-29",
+   "ref": {
+    "date": "2026-10-29",
+    "id": "memoria-rincari-fino-2030"
+   },
+   "title": "Il fornitore di memoria di Apple avverte: rincari di RAM e NAND almeno fino al 2030",
+   "note": "SK Hynix avvertiva che la domanda dei data center AI avrebbe tenuto alti i prezzi di RAM e NAND fino al 2030, nonostante gli accordi di approvvigionamento di Apple. È l'avviso che la call sui risultati del quarto trimestre, oggi, conferma: Apple dice che i costi di memoria peseranno sui margini del trimestre natalizio.",
+   "signal": "3 testate, 3 seguiti nei giorni dopo",
+   "link": "https://9to5mac.com/2026/10/28/apple-memory-supplier-expects-price-increases-through-at-least-2030/",
+   "source": "9to5Mac"
+  }
+ ],
+ "borsa": {
+  "simbolo": "AAPL",
+  "chiusura": 338.32,
+  "variazione": -1.83,
+  "data": "2026-11-02",
+  "serie": [
+   347.73,
+   343.91,
+   347.1,
+   343.83,
+   348.91,
+   344.63,
+   338.32
+  ],
+  "fonte": "Yahoo Finance"
+ }
+}
