@@ -449,7 +449,35 @@
       "perche": "I tempi d'attesa UBS a confronto con gli iPhone 18"
      }
     ],
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "barre",
+      "titolo": "Chi aspetta, e quanto",
+      "didascalia": "L'attesa media per un ordine, misurata da UBS Evidence Lab al 30 ottobre: il Duo costringe ad aspettare da cinque a diciotto volte più di un iPhone 18.",
+      "fonte": "UBS Evidence Lab",
+      "unita": "giorni di attesa media (30 ottobre 2026)",
+      "voci": [
+       {
+        "etichetta": "iPhone Duo",
+        "min": 89,
+        "max": 89,
+        "nota": "una settimana in meno della rilevazione precedente"
+       },
+       {
+        "etichetta": "iPhone 18 Pro Max",
+        "min": 18,
+        "max": 18,
+        "nota": ""
+       },
+       {
+        "etichetta": "iPhone 18 Pro",
+        "min": 5,
+        "max": 5,
+        "nota": ""
+       }
+      ]
+     }
+    ],
     "scritto": "2026-11-03"
    },
    "verifica": {
@@ -646,7 +674,39 @@
       "perche": "Un'altra ricerca sulle app per spogliare le foto negli store"
      }
     ],
-    "visivi": [],
+    "visivi": [
+     {
+      "tipo": "catena",
+      "titolo": "Come un'app passa la revisione e poi cambia pelle",
+      "didascalia": "Lo schema descritto da Wired: Apple esamina un contenuto, un interruttore lato server ne accende un altro dopo l'installazione.",
+      "fonte": "Wired",
+      "passi": [
+       {
+        "titolo": "Questionario sulla fascia d'età",
+        "nota": "lo sviluppatore dichiara la classe, nessuna verifica indipendente"
+       },
+       {
+        "titolo": "Revisione Apple",
+        "nota": "l'app mostra contenuti innocui, viene approvata"
+       },
+       {
+        "titolo": "Pubblicazione sull'App Store",
+        "nota": "resta in vendita, in alcuni casi fino a un anno"
+       },
+       {
+        "titolo": "Sblocco da remoto",
+        "nota": "un controllo dal server accende le funzioni nascoste dopo l'installazione"
+       }
+      ],
+      "rottura": {
+       "dopo": "l'approvazione e la pubblicazione",
+       "senza": "una nuova revisione del contenuto reale",
+       "etichetta": "decide il server, non la revisione",
+       "nota": "Apple: le app erano in regola quando sono state esaminate"
+      },
+      "azione": "Una casella in più nel questionario d'età non tocca questo schema: il controllo resta su quello dichiarato alla domanda, non su quello che l'app fa dopo."
+     }
+    ],
     "scritto": "2026-11-03"
    },
    "verifica": {
