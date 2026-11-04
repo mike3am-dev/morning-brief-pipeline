@@ -1,0 +1,238 @@
+{
+ "date": "2026-11-04",
+ "title": "The Morning Brief – 4 novembre 2026",
+ "generated_at": "2026-11-04T04:55:31Z",
+ "window": "Ultime 26 ore",
+ "stats": {
+  "articoli_letti": 0,
+  "notizie_selezionate": 0
+ },
+ "feed_notes": [
+  "AI Explained: html-not-feed, nessuna data leggibile",
+  "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+  "Anthropic cookbook: parse-error, nessuna data leggibile",
+  "MKBHD: html-not-feed, nessuna data leggibile",
+  "Matt Wolfe: html-not-feed, nessuna data leggibile",
+  "One Useful Thing: ok, ultimo articolo 348.8h fa"
+ ],
+ "ai": [
+  {
+   "id": "openai-astra-hardware-device",
+   "lab": "openai",
+   "kind": "funzione",
+   "title": "GPT-6 Astra progetta da solo un dispositivo hardware in meno di una settimana",
+   "sintesi": "Il team hardware di OpenAI ha lasciato che GPT-6 Astra progettasse da zero un dispositivo per l'agente di coding Codex — involucro, circuito e firmware — in meno di una settimana.",
+   "note": "Il modello ha gestito l'intero processo, dall'involucro allo schema del circuito al firmware, passando da zero a un progetto pronto per la produzione. OpenAI racconta che sono servite più revisioni perché GPT-6 Astra non considerava sempre i margini di tolleranza industriali. È uno dei primi casi pubblici di un modello che progetta un oggetto fisico end-to-end per uso interno di un'azienda.",
+   "apple": "niente, per ora.",
+   "link": "https://the-decoder.com/openai-says-gpt-6-astra-designed-a-hardware-device-from-scratch-in-under-a-week/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "anthropic-message-threads",
+   "lab": "anthropic",
+   "kind": "funzione",
+   "title": "Anthropic lancia Message Threads: -35% sul tempo di risposta nelle conversazioni lunghe",
+   "sintesi": "Con Message Threads nella Messages API gli agenti rimandano solo le modifiche, non tutta la conversazione, e il tempo per il primo token scende del 35%.",
+   "note": "La novità riguarda la Messages API di Anthropic: finora ogni richiesta rispediva l'intera cronologia della conversazione, anche quando cresceva a centinaia di migliaia di token. Con Message Threads il client invia solo ciò che è cambiato dall'ultimo turno. Il guadagno più netto è sulle conversazioni molto lunghe, quelle tipiche degli agenti che lavorano per ore sullo stesso compito.",
+   "apple": "niente, per ora.",
+   "link": "https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "anthropic-flashprove-identita",
+   "lab": "anthropic",
+   "kind": "funzione",
+   "title": "Anthropic lavora a FlashProve, un sistema per certificare l'identità dei modelli AI",
+   "sintesi": "FlashProve, il sistema su cui lavora Anthropic, permetterebbe a chiunque di verificare che una risposta sia arrivata davvero dal modello che dichiara di averla generata.",
+   "note": "Il progetto nasce dal problema della contraffazione: risposte che si spacciano per generate da un certo modello quando in realtà vengono da un altro, più economico o meno controllato. FlashProve punta a dare una prova verificabile dell'origine, non solo una dichiarazione. Anthropic non ha ancora detto quando sarà disponibile.",
+   "apple": "niente, per ora.",
+   "link": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
+   "source": "TechCrunch AI"
+  },
+  {
+   "id": "anthropic-claude-code-game-cloning",
+   "lab": "anthropic",
+   "kind": "regole",
+   "title": "Anthropic blocca Claude Code quando clona videogiochi esistenti",
+   "sintesi": "Dopo un'ondata di cloni costruiti con l'IA, Anthropic ha iniziato a impedire a Claude Code di ricreare videogiochi già esistenti.",
+   "note": "La restrizione arriva dopo che diversi utenti avevano usato Claude Code per ricostruire giochi commerciali esistenti, pezzo per pezzo. Anthropic non ha dettagliato la lista coperta né se la misura riguarda solo titoli protetti da copyright attivo o un criterio più ampio. È la stessa tensione già vista su altri strumenti di coding assistito.",
+   "apple": "niente, per ora.",
+   "link": "https://the-decoder.com/anthropic-cracks-down-on-game-cloning-in-claude-code-after-wave-of-ai-built-knockoffs/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "google-deepmind-antigravity-chimica",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "Google Antigravity accelera la scoperta di farmaci con agenti di chimica informatica",
+   "sintesi": "Le «Cheminformatics Skills» di Google Antigravity cercano composti e propongono nuovi macrocicli rigidificati, accelerando i flussi di lavoro della scoperta di farmaci.",
+   "note": "Google DeepMind presenta Antigravity applicato alla chimica computazionale: gli agenti eseguono ricerche di composti e generano proposte di nuove molecole (macrocicli rigidificati) all'interno dei flussi di lavoro usati nella scoperta di farmaci. Il post è tecnico e rivolto a chi lavora già in questo campo, non un prodotto consumer.",
+   "apple": "niente, per ora.",
+   "link": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "robot-iso-interoperabilita",
+   "lab": "robot",
+   "kind": "regole",
+   "title": "Un nuovo standard ISO fa parlare tra loro i robot mobili di produttori diversi",
+   "sintesi": "Lo standard ISO 21423:2026 definisce un protocollo comune perché robot mobili di fornitori diversi possano comunicare e coordinarsi sullo stesso spazio di lavoro.",
+   "note": "Finora i robot mobili di produttori diversi, messi nello stesso magazzino o piazzale, in genere non potevano coordinarsi direttamente: ognuno seguiva solo le proprie regole di evitamento. Il nuovo standard ISO definisce un linguaggio comune per farli comunicare e negoziare la precedenza. Riguarda soprattutto la logistica industriale.",
+   "apple": "niente, per ora.",
+   "link": "https://www.therobotreport.com/new-iso-interoperability-standard-covers-collaboration-among-mobile-robots-from-multiple-vendors/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "lab-claude-13-modelli-14-mesi",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Un utente dà lo stesso prompt a 13 modelli Claude in 14 mesi e mette in fila l'evoluzione",
+   "sintesi": "",
+   "note": "Da luglio 2025 lo stesso identico prompt è stato sottoposto a ogni modello Claude uscito da allora, tredici in tutto in quattordici mesi: il thread su r/ClaudeAI mette le risposte in sequenza per mostrare come sono cambiate precisione, stile e capacità. Il prompt resta fisso, quindi quello che cambia è solo il modello: un modo diretto per vedere il progresso invece di leggerlo in una classifica.",
+   "prova": "Scegli un prompt che usi spesso e confronta la risposta di due o tre modelli Claude diversi sulla stessa identica domanda.",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xn6eli/i_gave_every_claude_model_the_exact_same_prompt/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "lab-weightspace-programming-gemma-italiano",
+   "lab": "anthropic",
+   "kind": "trucco",
+   "title": "Weight-space programming: Claude riscrive 8 neuroni di Gemma per correggere un tempo verbale italiano",
+   "sintesi": "",
+   "note": "Partendo dalla tecnica del «weight-space programming» — editare i pesi di un modello invece di allungare il prompt — un utente di r/LocalLLaMA l'ha applicata a un caso concreto: ha chiesto a Claude di modificare direttamente 8 neuroni di Gemma 4 12B per correggere come il modello traduceva un tempo verbale italiano. Non un prompt più lungo, un intervento dentro la rete.",
+   "prova": "Chiedi a Claude di analizzare i pesi di un modello open come Gemma e indicare quali neuroni toccare per correggere un errore ricorrente specifico.",
+   "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xn1gs9/i_tried_mits_weightspace_programming_on_my_own/",
+   "source": "Reddit r/LocalLLaMA"
+  },
+  {
+   "id": "lab-astra-drone-pcb",
+   "lab": "openai",
+   "kind": "demo",
+   "title": "Astra progetta il circuito di un drone in KiCad e lo converte in JLCEDA",
+   "sintesi": "",
+   "note": "Nella lista curata awesome-gpt-6-astra, il creatore GoFly racconta di aver fatto progettare ad Astra il circuito di un flight controller per drone in KiCad, per poi farlo ridisegnare in JLCEDA: il modello ha prodotto uno schema KiCad seguito direttamente dal file pronto per la produzione.",
+   "prova": "Descrivi ad Astra il circuito che ti serve e fagli generare lo schema KiCad, poi fallo convertire nel formato del tuo produttore di PCB.",
+   "link": "https://x.com/GoGoFly23/status/2096950327807185138",
+   "source": "X (lista awesome-gpt-6-astra)"
+  }
+ ],
+ "radar": [
+  {
+   "id": "radar-uefi-bootkit-blackx",
+   "topic": "privacy-sicurezza",
+   "title": "Un bootkit UEFI chiamato BlackX infetta Windows anche con tutte le patch installate",
+   "note": "BlackX sfrutta l'ambiguità delle protezioni Secure Boot di Microsoft per installarsi sotto il sistema operativo, su macchine Windows completamente aggiornate: la domanda che si fanno i ricercatori è di chi sia la responsabilità di chiudere la falla.",
+   "link": "https://arstechnica.com/security/2026/11/uefi-bootkit-infected-fully-patched-windows-machines-is-microsoft-to-blame/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "radar-android-tv-botnet-backdoor",
+   "topic": "sorveglianza-tech",
+   "title": "Google smantella una botnet nascosta in 1,3 milioni di box Android TV con una backdoor di fabbrica",
+   "note": "Google ha tagliato i rapporti con il produttore responsabile dopo aver scoperto che i dispositivi avevano una backdoor inserita di proposito, usata per far girare di nascosto una botnet su 1,3 milioni di apparecchi.",
+   "link": "https://arstechnica.com/google/2026/11/google-dismantles-botnet-secretly-running-on-1-3-million-android-tv-boxes/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "radar-msg-sorveglianza-mamdani",
+   "topic": "sorveglianza-digitale",
+   "title": "Il sindaco di New York critica il proprietario del Madison Square Garden per la sorveglianza nei locali",
+   "note": "Le critiche di Mamdani arrivano dopo la violazione dei dati dell'anno scorso che aveva esposto i sistemi di sorveglianza usati da James Dolan nei locali del gruppo.",
+   "link": "https://techcrunch.com/2026/11/03/new-york-citys-mamdani-criticizes-madison-square-garden-owner-over-surveillance-tech/",
+   "source": "TechCrunch"
+  }
+ ],
+ "social": [
+  {
+   "id": "social-apple-always-listening",
+   "origine": "nuovo",
+   "title": "Un post molto discusso su Hacker News accusa le funzioni «always-listening» di Apple di aprire la porta all'ascolto permanente",
+   "note": "Il pezzo, ripreso con 59 punti e 24 commenti su Hacker News, critica Audio Intelligence e le funzioni di Siri AI che restano in ascolto per registrare e riassumere le conversazioni, e teme che diventino la norma su più dispositivi.",
+   "link": "https://this.weekinsecurity.com/watch-what-you-say-apple-opens-the-door-to-a-nightmare-world-of-always-listening-tech/",
+   "source": "Hacker News"
+  },
+  {
+   "id": "social-macos-word-list",
+   "origine": "nuovo",
+   "title": "Un utente estrae e pubblica la lista delle parole volgari filtrate dal correttore di macOS",
+   "note": "143 punti e 80 commenti su Hacker News per un utente che ha estratto dal sistema la lista di parole che macOS segnala come volgari nel correttore automatico, con discussione su cosa contiene e come viene usata.",
+   "link": "https://helgesver.re/articles/macos-vulgar-word-flags",
+   "source": "Hacker News"
+  },
+  {
+   "id": "social-apple-intelligence-storage",
+   "origine": "nuovo",
+   "title": "Un thread di r/ios si lamenta che i modelli di Apple Intelligence occupano 25GB sul telefono",
+   "note": "Decimo thread più votato della giornata su r/ios: l'utente chiede come eliminare i modelli scaricati da Apple Intelligence per liberare spazio, un fastidio diffuso sull'occupazione di storage dei modelli on-device.",
+   "link": "https://www.reddit.com/r/ios/comments/1xmw46j/any_chance_i_could_delete_apple_ai_its_taking_up/",
+   "source": "Reddit r/ios"
+  },
+  {
+   "id": "social-magic-trackpad-pro-concept",
+   "origine": "nuovo",
+   "title": "Un utente di r/mac propone un concept di «Magic Trackpad Pro» più grande e configurabile",
+   "note": "Quarto thread più votato della giornata su r/mac: rilancia la richiesta, ricorrente fra i lettori Mac, di un trackpad desktop più grande e con più funzioni rispetto al Magic Trackpad attuale.",
+   "link": "https://www.reddit.com/r/mac/comments/1xn1zw9/my_concept_magic_trackpad_pro/",
+   "source": "Reddit r/mac"
+  }
+ ],
+ "banco": [
+  {
+   "id": "banco-duo-fold8-vendite",
+   "kind": "confronto",
+   "topic": "pieghevoli",
+   "title": "I problemi del Duo spingono le vendite del Galaxy Z Fold8: +20% in una settimana",
+   "note": "Un report dalla Corea del Sud lega display difettosi e controllo qualità incerto sull'iPhone Duo a un aumento di oltre il 20% delle vendite del Fold8 nella settimana dopo l'arrivo del Duo nei negozi — era già successo a settembre, con un +10% dopo la sola presentazione.",
+   "perche": "È la domanda che arriva al banco quando il pieghevole Apple ha scorte scarse: «Allora perché non mi prendo il Samsung?» — ora c'è anche un dato di vendita a darle peso.",
+   "link": "https://www.gsmarena.com/iphone_duos_woes_are_a_boon_for_samsung_as_galaxy_z_fold8_sales_go_up_by_20_in_a_week-news-75325.php",
+   "source": "GSMArena"
+  },
+  {
+   "id": "banco-nothing-sony-bw-confronto",
+   "kind": "confronto",
+   "topic": "cuffie",
+   "title": "Nothing Headphone (1) Pro contro Sony e Bowers & Wilkins: ha senso spendere il doppio?",
+   "note": "HDblog confronta le Nothing Headphone (1) Pro da 349 euro con cuffie over-ear di fascia alta di Sony e Bowers & Wilkins, che costano circa il doppio.",
+   "perche": "Il cliente indeciso fra una cuffia economica e una costosa chiede sempre se la differenza si sente: utile anche per posizionare le AirPods Max nella stessa fascia di prezzo.",
+   "link": "https://www.hdblog.it/indossabili/comparazioni/n675599/confronto-nothing-sony-bowers-wilkins-cuffie/",
+   "source": "HDblog"
+  },
+  {
+   "id": "banco-samsung-apnea-notturna",
+   "kind": "curiosità",
+   "topic": "salute indossabili",
+   "title": "Il rilevamento dell'apnea notturna di Samsung arriva anche sul Galaxy Ring",
+   "note": "La versione aggiornata della funzione, con autorizzazione FDA negli Stati Uniti da luglio, è ora disponibile anche sul Galaxy Ring: Samsung lo definisce il primo anello smart con rilevamento del rischio di apnea autorizzato dalla FDA per la vendita libera.",
+   "perche": "Chi confronta Apple Watch e Galaxy Watch sulle funzioni di salute del sonno chiederà di questa: utile sapere che Samsung l'ha estesa anche all'anello.",
+   "link": "https://www.gsmarena.com/samsungs_upgraded_sleep_apnea_feature_is_now_available_on_the_galaxy_ring_and_watch9-news-75313.php",
+   "source": "GSMArena"
+  },
+  {
+   "id": "banco-honor-batteria-settimana",
+   "kind": "curiosità",
+   "topic": "batteria",
+   "title": "Honor avrebbe in produzione uno smartphone con batteria da 14.000-15.000 mAh, per una settimana d'uso",
+   "note": "Secondo il tipster Digital Chat Station la batteria, in sviluppo da giugno, sarebbe entrata in produzione di prova con una capacità fra 14.000 e 15.000 mAh — Honor promette fino a una settimana di autonomia con una sola carica.",
+   "perche": "La domanda sulla batteria arriva sempre al banco: utile per spiegare perché iPhone non punta su una capacità così estrema.",
+   "link": "https://www.gsmarena.com/honors_14000mah_smartphone_battery_can_reportedly_last_a_week-news-75326.php",
+   "source": "GSMArena"
+  }
+ ],
+ "recap": [],
+ "borsa": {
+  "simbolo": "AAPL",
+  "chiusura": 331.9,
+  "variazione": -1.9,
+  "data": "2026-11-03",
+  "serie": [
+   343.91,
+   347.1,
+   343.83,
+   348.91,
+   344.63,
+   338.32,
+   331.9
+  ],
+  "fonte": "Yahoo Finance"
+ }
+}
