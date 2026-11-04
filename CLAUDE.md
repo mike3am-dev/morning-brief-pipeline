@@ -1398,6 +1398,12 @@ di 1.040 punti e prendeva le colonne del Mac: è successo il 1 novembre 2026. Da
 1.039 punti nel verso in cui lo tieni è il Duo a qualunque zoom, e la classe
 `html.duo-forzato` spegne le colonne del Mac.
 
+**Il Duo aperto in verticale** ha un po' d'aria in più in cima alla testata (`.np-inner`, 2,6rem):
+sotto la barra di sistema iOS sfuma il bordo alto della pagina, e il giorno a destra del logo
+usciva «mezzo sfumato» (4 novembre 2026). Solo `(orientation:portrait)` fra 601 e 1.039 punti.
+L'altezza che la barra di sistema occupa in cima (circa 96 punti sul Duo) è di iOS: la pagina
+non ci disegna, e la barra delle sezioni, quando si scorre, si ferma sotto.
+
 **Il Duo chiuso** (3 novembre 2026). Lo schermo esterno è largo circa 562 punti, quindi sta
 nel telefono (sotto i 600). Lì, nella Magazine: il timbro con giorno, data e tre pallini sta a
 destra del logo come sul Duo aperto, la plancia sotto a tutta larghezza con più aria, le righe
@@ -1539,7 +1545,10 @@ scheda APPLE. Cosa prende da News+ e cosa no:
 - **Altre chicche della Magazine** (2 novembre 2026, scelte da Mike fra sette proposte):
   «In breve» si apre con **la scritta che scorre del telegiornale** (fascia nera, etichetta
   gialla «Ultim'ora» col pallino rosso — non «In breve», che è già il nome della sezione —, i
-  titoli che passano piano, si ferma sotto il dito, il titolo toccato apre la notizia);
+  titoli che passano piano a 90 px al secondo, si ferma solo mentre ci tieni il dito sopra e riparte
+da dove era; il titolo toccato apre la notizia. Lo muove `tickerRun()` con `requestAnimationFrame`,
+non un'animazione CSS: con `:hover`/`:focus-within` il nastro, su touch, restava fermo per sempre
+dopo un tocco — 4 novembre 2026);
   **«L'ultima parola» si scrive da sola**, lettera per lettera come una mano che scrive
   (circa 36 millisecondi a lettera), poi il cursore giallo lampeggia e arriva il nome; in **«Se te lo fossi perso»** una testina
   riavvolge il righello da «oggi» all'indietro e ogni pallino si accende quando ci passa;

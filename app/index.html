@@ -611,9 +611,9 @@ html.vista-magazine #view-oggi .talk.chat li{position:relative}
 .tg-window{flex:1; overflow:hidden; position:relative;
   -webkit-mask-image:linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 30px), transparent);
   mask-image:linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 30px), transparent)}
-.tg-track{display:flex; width:max-content; height:100%; align-items:center; animation:tg-run var(--tg-dur, 40s) linear infinite}
-.tg:hover .tg-track, .tg:active .tg-track, .tg:focus-within .tg-track{animation-play-state:paused}
-@keyframes tg-run{to{transform:translateX(-50%)}}
+/* il nastro lo muove magTicker() con requestAnimationFrame: l'animazione CSS si fermava
+   per sempre dopo un tocco (su touch :hover e :focus-within restano attaccati), 4 novembre 2026 */
+.tg-track{display:flex; width:max-content; height:100%; align-items:center; will-change:transform}
 .tg-item{flex:none; display:inline-flex; align-items:baseline; gap:.55rem; border:0; background:none; color:inherit; font:inherit;
   font-size:.92rem; font-weight:600; padding:0 1.6rem 0 0; cursor:pointer; white-space:nowrap}
 .tg-item::after{content:""; width:6px; height:6px; border-radius:50%; background:var(--yellow); margin-left:1.6rem; align-self:center}
@@ -753,6 +753,13 @@ button.pl-tile{cursor:pointer}
   .pl-label{font-size:.62rem}
   .pl-ico{width:24px; height:24px}
   .pl-sub{font-size:.55rem}
+}
+/* Duo aperto in verticale (4 novembre 2026): sotto la barra di sistema iOS sfuma il bordo
+   alto della pagina per qualche centimetro; la testata partiva li' dentro e il giorno, a
+   destra, usciva «mezzo sfumato». Un po' d'aria in cima e a riposo tutto e' nitido. Solo
+   questa misura: orizzontale, telefono e Mac restano come sono. */
+@media (min-width:601px) and (max-width:1039px) and (orientation:portrait){
+  .np-inner{padding-top:2.6rem}
 }
 /* il Duo chiuso (3 novembre 2026, Mike: «data a sinistra anziche' a destra, tre
    pallini in mezzo, spazio in alto a destra vuoto, i widget hanno poco respiro,
@@ -6020,11 +6027,47 @@ function magTicker(brief, wraps){
       ]));
     });
   });
-  track.style.setProperty("--tg-dur", Math.max(24, items.length * 9) + "s");
-  return el("div", {class:"tg", role:"marquee", "aria-label":"In breve"}, [
+  const box = el("div", {class:"tg", role:"marquee", "aria-label":"In breve"}, [
     el("span", {class:"tg-label"}, [el("i"), document.createTextNode("Ultim'ora")]),
     el("div", {class:"tg-window"}, [track])
   ]);
+  tickerRun(box, track);
+  return box;
+}
+
+/* Il nastro scorre a velocita' costante (px al secondo, non «un giro in N secondi»: con
+   dieci titoli o con due la lettura e' la stessa). Si ferma solo mentre ci tieni il dito
+   sopra e riparte da dove era, un istante dopo; fuori schermo non consuma niente. */
+function tickerRun(box, track){
+  if(window.matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const SPEED = 90;
+  let x = 0, last = 0, half = 0, held = false, shown = false, raf = 0, rel = 0;
+  function measure(){ half = track.scrollWidth / 2; }
+  function frame(t){
+    raf = 0;
+    if(!box.isConnected || !shown) return;
+    if(last && !held && half > 0){
+      x = (x + (t - last) * SPEED / 1000) % half;
+      track.style.transform = "translate3d(" + (-x).toFixed(1) + "px,0,0)";
+    }
+    last = t;
+    raf = requestAnimationFrame(frame);
+  }
+  function go(){ if(!raf && shown){ last = 0; measure(); raf = requestAnimationFrame(frame); } }
+  function hold(){ clearTimeout(rel); held = true; }
+  function release(){ clearTimeout(rel); rel = setTimeout(function(){ held = false; }, 900); }
+  box.addEventListener("pointerdown", hold);
+  box.addEventListener("pointerup", release);
+  box.addEventListener("pointercancel", release);
+  box.addEventListener("pointerleave", function(ev){ if(ev.pointerType === "mouse") release(); });
+  box.addEventListener("pointerenter", function(ev){ if(ev.pointerType === "mouse") hold(); });
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){
+      shown = es[es.length - 1].isIntersecting;
+      if(shown) go();
+    }).observe(box);
+  }else{ shown = true; go(); }
+  if("ResizeObserver" in window) new ResizeObserver(measure).observe(track);
 }
 
 function magSection(id, title, hint, color){
