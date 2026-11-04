@@ -438,5 +438,29 @@
   "interazione": "un interruttore Mac/iPad che accende e spegne gli strumenti assenti, per vedere subito quanto iPad è già completo e cosa manca ancora",
   "dati": "elenco esplicito delle funzioni assenti e presenti dato dall'articolo, nessun numero da inventare",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-04",
+  "notizia": "siri-ai-aperta-sviluppatori",
+  "idea": "Le fasi di apertura di Siri alle app su più anni: il 2021 che chiude 22 comandi di terze parti, oggi (iOS 27.3) che apre solo alle app Apple in dev/TestFlight, la primavera 2027 che apre l'App Store pubblico, la UE ancora senza data. 'anno' mostra solo un anno sul quadrante: qui serve una linea più lunga.",
+  "interazione": "toccare o scorrere ogni tappa per vedere cosa è chiuso/aperto in quel momento, con un marcatore 'oggi'",
+  "dati": "date: iOS 15 (2021), iOS 27.3 (oggi, nov 2026), primavera 2027 (App Store), orizzonte UE entro fine novembre 2026 (previsione Gurman)",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-04",
+  "notizia": "salute-nuova-app-ios273-lingue",
+  "idea": "La sovrapposizione delle lingue fra Siri AI e la nuova app Salute (quasi identiche, Salute ha in più il cinese semplificato) e perché l'italiano manca in entrambe; oppure le 5 misure del test di movimento mappate sulle 7 aree Longevity che la Health Age riassume in un numero",
+  "interazione": "toccare una lingua o un'area per vedere se è coperta",
+  "dati": "elenco lingue di Siri AI e di Salute, le 7 aree Longevity, le 5 misure del test di movimento: nessun valore numerico nell'articolo",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-04",
+  "notizia": "ipad-mini-8-recensioni-batteria-60hz",
+  "idea": "Perché il 60Hz 'non convince' nonostante i pixel OLED più rapidi: due assi diversi della fluidità, il tempo di risposta del pixel (migliorato dall'OLED) e la frequenza di aggiornamento (ferma a 60Hz); un confronto affiancato dei due assi",
+  "interazione": "muovere un oggetto virtuale e vedere la scia cambiare col tempo di risposta, a frequenza fissa",
+  "dati": "solo qualitativi: 'più di dieci volte più rapido' senza numero assoluto, 60Hz fisso, ProMotion riservato a iPad Pro senza valore citato",
+  "stato": "aperta"
  }
 ]
