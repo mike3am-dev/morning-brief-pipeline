@@ -1,0 +1,222 @@
+{
+  "date": "2026-11-05",
+  "title": "The Morning Brief – 5 novembre 2026",
+  "generated_at": "2026-11-05T06:30:00+01:00",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 0,
+    "notizie_selezionate": 0
+  },
+  "feed_notes": [
+    "AI Explained: html-not-feed, nessuna data leggibile",
+    "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "MKBHD: html-not-feed, nessuna data leggibile",
+    "One Useful Thing: ok, ultimo articolo 372.8h fa"
+  ],
+  "ai": [
+    {
+      "id": "openai-astra-weight-editing-mit",
+      "lab": "openai",
+      "kind": "ricerca",
+      "title": "Ricercatori MIT: GPT-6 Astra può riscrivere i pesi di altri modelli senza addestrarli",
+      "sintesi": "Cambiando solo lo 0,016% dei pesi di un modello Qwen, GPT-6 Astra ha fatto salire la sua accuratezza in matematica dal 7,9 al 48,1%, senza un addestramento tradizionale.",
+      "note": "Lo studio del MIT mostra che Astra può leggere e modificare direttamente i pesi di altri modelli AI, invece di limitarsi a generare testo o codice. Nell'esperimento citato, l'intervento su una frazione minima dei parametri di un modello Qwen ne ha moltiplicato per sei l'accuratezza in matematica. I ricercatori parlano di un approccio che potrebbe semplificare l'ottimizzazione dei modelli, ma segnalano anche limiti chiari: non è chiaro quanto la tecnica regga su modelli più grandi o su compiti diversi dalla matematica.",
+      "apple": "Una tecnica che aggira l'addestramento tradizionale interesserebbe chi deve aggiornare modelli on-device senza i costi di un nuovo training — ma per ora è un risultato di laboratorio universitario, non un prodotto.",
+      "link": "https://the-decoder.com/gpt-6-astra-sees-the-matrix-and-reprograms-other-ai-models-directly-through-their-weights/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "anthropic-flashprove-prototipo",
+      "lab": "anthropic",
+      "kind": "ricerca",
+      "title": "Anthropic rilascia FlashProve, il prototipo che verifica chi ha scritto davvero una risposta AI",
+      "sintesi": "FlashProve usa la crittografia per provare quale modello ha generato una risposta senza rivelarne i pesi, ma Anthropic stessa segnala limiti ancora significativi nel sistema.",
+      "note": "Il 3 novembre Anthropic aveva detto di lavorare a un sistema per certificare l'origine delle risposte AI; oggi lo pubblica come prototipo di ricerca con un nome, FlashProve. La tecnica usa la crittografia per dimostrare che una risposta viene davvero dal modello dichiarato, senza bisogno di esporre i pesi del modello stesso — il problema che il progetto vuole risolvere è quello delle risposte spacciate per generate da un modello più costoso quando in realtà arrivano da uno più economico. Anthropic è esplicita sui limiti: il sistema non è ancora pronto per un uso generale.",
+      "apple": "Se uno standard così si diffondesse, servirebbe anche a chi mescola più modelli in un solo assistente — com'è il caso di Siri quando si appoggia a modelli di terze parti.",
+      "thread": "flashprove-identita",
+      "link": "https://the-decoder.com/anthropics-new-prototype-proves-which-model-wrote-an-ai-response-without-exposing-its-weights/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "anthropic-watermark-bypass-opus46",
+      "lab": "anthropic",
+      "kind": "ricerca",
+      "title": "Il watermark nei testi di Claude si disattiva con un solo parametro su Opus 4.6 e Sonnet 4.6",
+      "sintesi": "Anthropic estende il watermark a quattro modelli in più, ma su Opus 4.6 e Sonnet 4.6 basta un parametro di campionamento per disattivarlo.",
+      "note": "Anthropic sta estendendo la filigrana nei testi generati a quattro modelli Claude in più, in vista della scadenza di dicembre prevista dall'AI Act dell'Unione Europea. Sui modelli più vecchi, però, chi usa le API può disattivare il watermark cambiando un solo parametro di campionamento — una scappatoia tecnica, non un bug nascosto. La risposta di Anthropic, per ora, è un avviso di conformità nei termini d'uso, non una patch che chiuda la falla.",
+      "apple": "niente, per ora.",
+      "link": "https://the-decoder.com/anthropics-text-watermark-is-easy-to-bypass-on-several-older-claude-models/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "openai-acquisisce-pierre-computer",
+      "lab": "openai",
+      "kind": "affari",
+      "title": "OpenAI compra Pierre Computer Company per tenere Git al passo con gli agenti di coding",
+      "sintesi": "OpenAI compra Pierre Computer Company, le cui librerie alimentano già Codex, per rafforzare l'infrastruttura Git degli agenti AI insieme al backend Pando.",
+      "note": "Pierre Computer Company è la startup le cui librerie sono già alla base di Codex, l'agente di coding di OpenAI. Con l'acquisizione, unita al lancio recente del backend Git proprietario Pando, OpenAI punta a un'infrastruttura di sviluppo pensata per agenti e programmatori umani che lavorano fianco a fianco sullo stesso codice.",
+      "apple": "niente, per ora.",
+      "link": "https://the-decoder.com/openai-acquires-pierre-computer-company-to-make-git-keep-up-with-ai-coding-agents/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "meta-acquisisce-conductor",
+      "lab": "meta",
+      "kind": "affari",
+      "title": "Meta acquisisce Conductor, startup che coordina squadre di agenti di coding",
+      "sintesi": "Meta compra Conductor, la startup che permette a chi scrive software di far lavorare in parallelo più agenti AI su aspetti diversi dello stesso progetto.",
+      "note": "Conductor permette agli sviluppatori di assegnare a più agenti AI, in parallelo, parti diverse dello stesso progetto software. L'acquisizione entra nella stessa corsa all'infrastruttura per il coding assistito dall'AI in cui si muove anche OpenAI con Pierre Computer Company.",
+      "apple": "niente, per ora.",
+      "link": "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/",
+      "source": "TechCrunch AI"
+    },
+    {
+      "id": "liberai-liber0-world-action-model",
+      "lab": "robot",
+      "kind": "modello",
+      "title": "LiberAI presenta Liber-0, il modello addestrato su 2,2 milioni di ore di esperienza umana per guidare i robot",
+      "sintesi": "Liber-0 di LiberAI è un «world action model» pre-addestrato su oltre 2,2 milioni di ore di esperienza umana per permettere a un robot di manipolare oggetti senza addestramento specifico.",
+      "note": "LiberAI descrive Liber-0 come un modello che impara dall'esperienza umana registrata — più di 2,2 milioni di ore — per trasferirla direttamente alla manipolazione robotica «zero-shot», cioè senza che il robot debba essere addestrato caso per caso sul compito specifico. È il tipo di modello di fondo che punta a diventare lo standard per far muovere braccia e mani robotiche in compiti nuovi.",
+      "apple": "niente, per ora.",
+      "link": "https://www.therobotreport.com/liberai-unveils-liber-0-a-world-action-model-that-grounds-human-experience-in-robot-action/",
+      "source": "The Robot Report"
+    },
+    {
+      "id": "lab-pcdealcheck-prezzo-prebuilt",
+      "lab": "altri",
+      "kind": "uso",
+      "title": "Un programmatore costruisce un sito che valuta se un PC già assemblato è un affare",
+      "sintesi": "",
+      "note": "Su Show HN, un programmatore racconta di aver perso un buon computer per un progetto perché valutarne il prezzo richiedeva troppo tempo manuale: ha costruito pcdealcheck.com, dove si incolla l'annuncio di un PC prebuilt e un motore di prezzo proprietario — con l'AI che legge l'annuncio per identificare i componenti — restituisce un punteggio sull'affare. Il post ha raccolto 98 punti e 72 commenti su Hacker News.",
+      "prova": "Incolla il link di un annuncio di PC già assemblato su pcdealcheck.com e guarda il punteggio del prezzo componente per componente.",
+      "link": "https://pcdealcheck.com/",
+      "source": "Show HN"
+    },
+    {
+      "id": "lab-wingcommander-coop-ai-porting",
+      "lab": "altri",
+      "kind": "uso",
+      "title": "Dopo dieci anni di reverse engineering, due fratelli fanno funzionare il co-op nel DOS Wing Commander",
+      "sintesi": "",
+      "note": "Dal 2015 l'autore e il fratello hanno sondato la memoria del Wing Commander originale per DOS, scoprendo dove vivono le variabili di gioco e come sincronizzare lo stato su rete per volare insieme nelle missioni della storia. Per l'ultimo passo — portare il tutto nel browser e convertire lo stack di rete TCP in WebRTC con voce, oltre a risolvere alcuni bug residui — l'autore dichiara di aver usato l'AI, dopo aver passato un decennio a reverse-engineerare il gioco a mano. Il post ha raccolto 134 punti e 15 commenti su Hacker News.",
+      "prova": "Gioca nel browser su fireflyk64.github.io/dosbox: se possiedi Wing Commander puoi caricare l'installer originale, altrimenti carica la versione open source di Vega Strike.",
+      "link": "https://fireflyk64.github.io/wcmulti/",
+      "source": "Show HN"
+    },
+    {
+      "id": "lab-mattwolfe-claude-video-editing",
+      "lab": "anthropic",
+      "kind": "trucco",
+      "title": "Matt Wolfe mostra come fa editare i suoi video a Claude senza scrivere codice",
+      "sintesi": "",
+      "note": "Nel video, Matt Wolfe spiega passo per passo come usa Claude per editare i suoi video senza toccare codice: dà istruzioni in linguaggio naturale su tagli, sequenza e ritmo e lascia che sia Claude a produrre il risultato.",
+      "prova": "Descrivi a Claude il montaggio che vuoi — i tagli, l'ordine delle clip, il ritmo — e lascia che generi lui la timeline, seguendo il metodo mostrato nel video.",
+      "link": "https://www.youtube.com/watch?v=ep4psgAFOqc",
+      "source": "Matt Wolfe"
+    }
+  ],
+  "radar": [
+    {
+      "id": "fcc-cruz-repubblicano-lame-duck",
+      "topic": "telecomunicazioni",
+      "title": "Cruz punta a un altro repubblicano alla FCC prima che il Senato cambi mano",
+      "note": "Il senatore repubblicano Ted Cruz cerca di far confermare un commissario repubblicano in più alla FCC durante la sessione di fine mandato del Senato, prima che i democratici ne riprendano il controllo dopo le elezioni in Texas. Cruz e Trump non hanno in programma di riempire il seggio democratico rimasto vacante, lasciando la commissaria Anna Gomez sola nella minoranza.",
+      "link": "https://arstechnica.com/tech-policy/2026/11/ted-cruz-aims-to-put-another-republican-on-fcc-in-senates-lame-duck-session/",
+      "source": "Ars Technica"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-icloud-link-scan-reazioni",
+      "origine": "eco",
+      "title": "Su Hacker News si discute del controllo di Apple sui link pubblici di iCloud",
+      "note": "35 punti e 17 commenti per la discussione sull'annuncio che da iOS 27.3 Apple scansionerà i link pubblici condivisi su iCloud in cerca di contenuti dannosi: il punto di attrito nei commenti è dove passi il confine tra moderazione e lettura dei contenuti privati.",
+      "link": "https://news.ycombinator.com/item?id=50370245",
+      "source": "Hacker News"
+    },
+    {
+      "id": "social-mac-studio-512gb-prezzo",
+      "origine": "eco",
+      "title": "Su Hacker News si discute del Mac Studio con 512 GB di RAM",
+      "note": "30 punti e 23 commenti per la discussione sul Mac Studio da 512 GB di RAM venduto da Apple: nei commenti il confronto è col prezzo di un'auto di fascia media, non con un altro computer.",
+      "link": "https://news.ycombinator.com/item?id=50369098",
+      "source": "Hacker News"
+    },
+    {
+      "id": "social-macbookair-m6-prezzo-rabbia",
+      "origine": "nuovo",
+      "title": "Su r/mac cresce il malumore per i prezzi in attesa del MacBook Air con chip M6",
+      "note": "5° fra i più votati del giorno su r/mac: un utente si lamenta che i prezzi d'ingresso della gamma Mac non torneranno ai livelli di prima, in attesa del MacBook Air con M6. Le testate non ne hanno ancora scritto.",
+      "link": "https://www.reddit.com/r/mac/comments/1xnjwpj/yeb_we_f_up_it_will_never_be_the_price_before_im/",
+      "source": "Reddit r/mac"
+    },
+    {
+      "id": "social-airpods-mouse-trucco",
+      "origine": "nuovo",
+      "title": "Su r/mac si scopre che le AirPods possono fare da mouse per il Mac",
+      "note": "6° fra i più votati del giorno su r/mac: un utente mostra come usare il movimento della testa con le AirPods per controllare il puntatore su Mac tramite le funzioni di accessibilità — una funzione che in pochi conoscevano.",
+      "link": "https://www.reddit.com/r/mac/comments/1xnyeq2/using_airpods_as_a_mouse_on_mac/",
+      "source": "Reddit r/mac"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-oppo-findn7-europa",
+      "kind": "curiosità",
+      "topic": "pieghevoli",
+      "title": "Oppo conferma il Find N7 in Europa, dopo che il Find N6 aveva saltato il continente",
+      "note": "Un product manager regionale di Oppo ha confermato a una testata locale che il Find N7 arriverà in Europa, a differenza del Find N6 che era rimasto fuori dal continente. Oppo punta così a giocarsela direttamente con Apple e Samsung nel segmento dei pieghevoli larghi.",
+      "perche": "È la domanda del cliente che ha visto l'iPhone Duo e chiede «cosa c'è oltre a Samsung»: ora anche Oppo entra in Europa a contendersi lo stesso segmento.",
+      "link": "https://www.gsmarena.com/oppo_find_n7_officially_confirmed_to_arrive_in_europe-news-75346.php",
+      "source": "GSMArena"
+    },
+    {
+      "id": "banco-prezzi-oled-samsung-2027",
+      "kind": "curiosità",
+      "topic": "prezzi",
+      "title": "I telefoni rischiano di costare ancora di più nel 2027: stavolta non è solo la RAM",
+      "note": "Secondo le indiscrezioni riportate, i pannelli OLED di Samsung potrebbero costare 10-20 dollari in più per unità nel 2027, un rincaro che si aggiungerebbe a quello già in corso sulla memoria.",
+      "perche": "È la domanda che sentirai al banco quando i prezzi saliranno ancora: la RAM non è più la sola voce che spinge in alto il costo dei telefoni.",
+      "link": "https://www.androidauthority.com/samsung-oled-ram-price-increase-report-3731642/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-galaxy-s27-pro-chip",
+      "kind": "curiosità",
+      "topic": "chip",
+      "title": "Il Galaxy S27 Pro non avrà il chip più spinto della gamma: solo l'Ultra lo monterà",
+      "note": "Un database di certificazione mostra la gamma Galaxy S27 europea: l'Ultra con lo Snapdragon 8 Elite Extreme Gen 6, S27 e S27+ con l'Exynos 2700 di Samsung, e il Pro con lo Snapdragon 8 Elite Gen 6 — una versione meno spinta di quella dell'Ultra.",
+      "perche": "Il cliente che confronta il prossimo Samsung di fascia alta con l'iPhone vorrà sapere perché il Pro non ha il chip migliore: la gamma S27 si differenzia più nettamente al suo interno.",
+      "link": "https://www.gsmarena.com/samsung_galaxy_s27_pro_processor_revealed-news-75339.php",
+      "source": "GSMArena"
+    },
+    {
+      "id": "banco-honor-magic9-arri",
+      "kind": "video",
+      "topic": "fotocamere",
+      "title": "Honor Magic9 Pro Max: l'accordo con ARRI per la fotocamera arriva sul modello di punta",
+      "note": "GSMArena ha in redazione l'Honor Magic9 Pro Max e ne mostra l'unboxing: dopo la collaborazione limitata sul Robot Phone, il marchio cinema ARRI arriva sul nuovo flagship di Honor, che punta al titolo di miglior cameraphone.",
+      "perche": "Il cliente che confronta le fotocamere dei top di gamma vorrà sapere cos'è questo marchio ARRI che Honor sbandiera: è lo stesso nome usato nel cinema hollywoodiano, ora su un telefono vero e proprio, non più un esperimento limitato.",
+      "link": "https://www.gsmarena.com/honor_magic9_pro_max_in_for_review-news-75351.php",
+      "source": "GSMArena"
+    }
+  ],
+  "recap": [],
+  "borsa": {
+    "simbolo": "AAPL",
+    "chiusura": 349.51,
+    "variazione": 5.31,
+    "data": "2026-11-04",
+    "serie": [
+      347.1,
+      343.83,
+      348.91,
+      344.63,
+      338.32,
+      331.9,
+      349.51
+    ],
+    "fonte": "Yahoo Finance"
+  }
+}
