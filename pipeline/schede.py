@@ -102,6 +102,24 @@ def run(day):
                 L.append(f"VOTO DELLA RECENSIONE: {vt}")
             L.append(f"LINK: {c.get('link')}")
         L.append("")
+    # quello che e' gia' uscito nelle due schede (e in GTA VI) nei sette giorni prima: lo stesso
+    # fatto raccontato da un'altra testata e' un doppione, non una notizia (prova del 6 novembre
+    # 2026: Swift e i vulcani di Marte tornavano il giorno dopo da Space.com e RaiNews)
+    from datetime import date as _d, timedelta as _td
+    lim = (_d.fromisoformat(day) - _td(days=7)).isoformat()
+    usciti = []
+    for name in sorted(os.listdir(C.BRIEFS_DIR)):
+        m = re.match(r"^(\d{4}-\d{2}-\d{2})\.json$", name)
+        if not m or m.group(1) >= day or m.group(1) < lim:
+            continue
+        try:
+            b = C.load_json(os.path.join(C.BRIEFS_DIR, name))
+        except ValueError:
+            continue
+        for k in NOMI:
+            for it in b.get(k) or []:
+                usciti.append(f"- {m.group(1)} [{NOMI[k]}] {it.get('title')}" + (f" ({it.get('orig')})" if it.get("orig") else ""))
+    L += [f"## GIA' USCITO nei sette giorni prima ({len(usciti)}) — non ripetere: un seguito vero si dice tale"] + usciti + [""]
     L += [f"Articoli aperti: {letti} su {len(jobs)}.", "", "<!-- fine lettura -->"]
     txt = "\n".join(L) + "\n"
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

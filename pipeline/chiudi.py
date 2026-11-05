@@ -127,8 +127,11 @@ def prepara(day):
                 esiti = (json.load(fh).get("_traduzione") or {})
         except (OSError, ValueError):
             esiti = {}
-        if any(isinstance(e, dict) and e.get("esito") in ("parziale", "fallita", "saltata", "senza chiave")
-               for e in esiti.values()):
+        # se l'agente `schede` (Opus) ha gia' scritto le schede, i titoli di Gemini non servono: sono
+        # il ripiego, e rifarli costerebbe fino a tre minuti sul percorso critico
+        scritte = os.path.exists(os.path.join(ROOT, "data", "rubriche", f"{giorno}-scritte.json"))
+        if not scritte and any(isinstance(e, dict) and e.get("esito") in ("parziale", "fallita", "saltata", "senza chiave")
+                               for e in esiti.values()):
             code, out, sec = esegui("rubriche-traduci", ["rubriche.py", "--traduci"] + day, tmax=200)
             riga("rubriche --traduci", code, sec, ultima(out))
     code, out, sec = esegui("rubriche-merge", ["rubriche.py", "--merge"] + day)

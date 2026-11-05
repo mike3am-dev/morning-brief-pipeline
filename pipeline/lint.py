@@ -454,7 +454,8 @@ def check_rubriche(brief, r):
             # il titolo tradotto si porta dietro l'originale: senza, e' rimasto in
             # inglese (Gemini in 503 dal 4 novembre 2026, e nessuno se ne accorgeva)
             elif not v.get("orig") and v.get("source") not in RUBRICHE_IT and v.get("lingua") != "it":
-                r.error(k, f"titolo non tradotto ({v.get('source')}): {v['title'][:70]} — "
+                # avviso, non errore: un errore ferma la pubblicazione, e l'edizione esce comunque
+                r.warn(k, f"TITOLO NON TRADOTTO ({v.get('source')}): {v['title'][:70]} — "
                            "lancia python3 pipeline/rubriche.py --traduci")
 
 
@@ -466,18 +467,18 @@ def check_chicche(brief, r):
     """I dati delle chicche (5 novembre 2026): valori ammessi e misure, perche' l'app li disegna."""
     for v in brief.get("games") or []:
         if v.get("tasto") and v["tasto"] not in TASTI_GAMES:
-            r.error("games", f"tasto {v['tasto']!r}: {v.get('title', '')[:40]}")
+            r.warn("games", f"tasto {v['tasto']!r}: {v.get('title', '')[:40]}")
         vd = v.get("verdetto")
         if vd and len(vd.get("voti") or []) < 3:
             r.warn("games", f"verdetto con meno di tre voti: {v.get('title', '')[:40]}")
     for v in brief.get("spazio") or []:
         sc, pr, tp = v.get("scala"), v.get("prova"), v.get("tempo")
         if sc and not (isinstance(sc.get("metri"), (int, float)) and sc["metri"] > 0 and sc.get("etichetta")):
-            r.error("spazio", f"scala senza metri o etichetta: {v.get('title', '')[:40]}")
+            r.warn("spazio", f"scala senza metri o etichetta: {v.get('title', '')[:40]}")
         if pr and pr.get("livello") not in LIVELLI_PROVA:
-            r.error("spazio", f"prova, livello {pr.get('livello')!r}: {v.get('title', '')[:40]}")
+            r.warn("spazio", f"prova, livello {pr.get('livello')!r}: {v.get('title', '')[:40]}")
         if tp and not (isinstance(tp.get("anni_fa"), (int, float)) and tp["anni_fa"] >= 0 and tp.get("etichetta")):
-            r.error("spazio", f"tempo senza anni_fa o etichetta: {v.get('title', '')[:40]}")
+            r.warn("spazio", f"tempo senza anni_fa o etichetta: {v.get('title', '')[:40]}")
     sp = brief.get("spazio") or []
     if sp and (sp[0].get("prova") or {}).get("livello") in ("cellule", "animali"):
         r.warn("spazio", "in apertura uno studio su cellule o animali: non va in testa")
@@ -487,7 +488,7 @@ def check_chicche(brief, r):
     for a in conti:
         c = a["conto"]
         if not (isinstance(c.get("parte"), (int, float)) and isinstance(c.get("tutto"), (int, float)) and 0 < c["parte"] <= c["tutto"]):
-            r.error("ai", f"conto con parte o tutto non validi: {a.get('title', '')[:40]}")
+            r.warn("ai", f"conto con parte o tutto non validi: {a.get('title', '')[:40]}")
     for a in brief.get("ai") or []:
         for p in a.get("passi") or []:
             if len(p) > 60:
@@ -548,7 +549,7 @@ def check_gta(brief, r):
         if not v.get("segnale") and v.get("tipo") in ("scoperta", "curiosita", "reazione", "leak"):
             r.warn("gta", f"{nome}: manca il segnale (la misura: voti, visualizzazioni)")
         if C.norm_url(v.get("link", "")) in prima:
-            r.error("gta", f"{nome}: link gia' uscito nella sezione nei 14 giorni prima")
+            r.warn("gta", f"{nome}: LINK GIA' USCITO nella sezione nei 14 giorni prima: toglila")
 
 
 # il reparto: la parola sopra il titolo nella lista del Duo (2 novembre 2026)

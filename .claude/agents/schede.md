@@ -47,6 +47,11 @@ le prime tre hanno la foto.
   `medicina` · `natura` · `fisica` · `terra` · `tecnica` · `storia`: correggi quella dello
   script se è sbagliata.
 
+**Quello che è già uscito non si ripete.** In fondo al dossier c'è l'elenco delle voci uscite nelle
+due schede nei sette giorni prima. Lo stesso fatto raccontato oggi da un'altra testata è un
+doppione: si scarta. Entra solo un **seguito vero**, con un fatto nuovo, e il titolo lo dice
+(«dopo il rientro di Swift, la NASA spiega…»).
+
 **I doppioni, anche fra lingue.** Lo stesso fatto può arrivare da due testate con due titoli
 diversi, una in italiano e una in inglese (il telescopio Swift dal NYT e dall'ANSA). Tieni la
 voce migliore e metti gli altri id in `anche`: i loro link entrano come testate in più.

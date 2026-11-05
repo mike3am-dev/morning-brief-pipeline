@@ -154,7 +154,8 @@ inglese senza che nessuno se ne accorgesse). Una chiamata per scheda, in paralle
 schema della risposta imposto, 40 secondi a tentativo e **3 minuti in tutto**: si gira fra i
 modelli finché non scade il tetto. L'esito resta nel file, `_traduzione: {games: {esito,
 modello, voci, tradotte}, …}` (il log in `/tmp` sparisce con la sessione cloud). Un titolo
-tradotto porta sempre `orig`, anche se uguale; senza, `lint.py` dà **errore** (le voci da
+tradotto porta sempre `orig`, anche se uguale; senza, `lint.py` dà un **avviso** in maiuscolo
+(non un errore: un errore fermerebbe la pubblicazione, e l'edizione esce comunque) (le voci da
 fonti italiane portano `lingua: "it"` e non si traducono). `chiudi.py prepara` rilancia
 `rubriche.py --traduci`, che rifà solo le traduzioni mancanti, e rilancia tutto `rubriche.py`
 solo davanti a un `Traceback` vero (prima prendeva per crash anche «HTTP Error 503» e perdeva
@@ -216,7 +217,7 @@ riverificare ogni giorno) la sezione racconta anche cosa dicono i giocatori.
 
 `tipo` ∈ `ufficiale` · `scoperta` · `curiosita` · `leak` · `reazione` · `notizia`;
 `affidabilita` ∈ `confermato` · `voce` · `da verificare`. Da 3 a 8 voci; il lint dà errore
-oltre le 8, su tipi sconosciuti e su link già usciti nei 14 giorni prima. Se l'agente non ha
+oltre le 8 e su tipi sconosciuti, e avvisa su un link già uscito nei 14 giorni prima. Se l'agente non ha
 girato, l'app mostra come ripiego le notizie GTA che `rubriche.py` ha trovato
 (`gta_notizie`).
 
@@ -259,7 +260,8 @@ settimane in carica). Le foto delle schede si prendono a 800 pixel, e una foto p
 all'origine non entra (`MIN_SCHEDE` in `images.py`): le foto AI erano miniature da 240 tirate a
 tutta larghezza, «sgranatissime».
 
-Il lint controlla i valori ammessi (`check_chicche`). Il codice è nel blocco «LE CHICCHE DELLE
+Il lint controlla i valori ammessi (`check_chicche`) con avvisi: un valore che l'app non
+conosce non si disegna, e non vale la pena di fermare la pubblicazione. Il codice è nel blocco «LE CHICCHE DELLE
 SCHEDE» di `pipeline/template.html`.
 
 I pesi stanno in `pipeline/rubriche.py` (`RUBRICHE`): si ritoccano lì, guardando

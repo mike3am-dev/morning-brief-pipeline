@@ -60,7 +60,7 @@ RUMORE = re.compile(
     # le offerte travestite da notizia (5 novembre 2026: «for Less Than $7 Each
     # With This One Easy Step», «Try … on PS Plus Premium Now»)
     r"for less than|less than \$\d|one easy (step|trick)|this one (simple |easy )?(step|trick)|"
-    r"(try|play|grab|claim) [^.]{2,60} (now|today|for free)$|free (this|next) (week|weekend)|"
+    r"(try|play|grab|claim) [^.]{2,60} (now|today|for free)$|free (this|next) (week|weekend)|explained$|explained:|"
     r"offerta|sconto|coupon|miglior[ei] )", re.I)
 # il titolo-domanda e il pezzo in prima persona sono opinione, non notizia
 # («can Bethesda recapture the magic?», «had me captivated»)
@@ -255,7 +255,12 @@ def score(rub, a):
     h = a["age_hours"]
     s = cfg["fonti"].get(a["source"], 0.8) + (fresh(h) if rub != "spazio" else 3.0 if h < 12 else 2.2 if h < 24 else 1.2 if h < 36 else 0.0)
     if a.get("_gn"):
-        s += 1.5               # Google News ordina per quanto gira: e' il segnale «ne parlano tutti»
+        # Google News e' il segnale «ne parlano tutti», non una fonte: le sue voci contano come
+        # testate in piu' quando raccontano lo stesso fatto di una fonte nostra (cluster), ma da
+        # sole partono indietro. La prova del 6 novembre 2026: 17 candidati su 18 di Scienza
+        # venivano da Google News (Medical Xpress, una tv locale, HuffPost), con link che non si
+        # aprono, e Nature, Science, NYT e Guardian restavano fuori.
+        s -= 3.0
     for rx, w in cfg["boost"]:
         if re.search(rx, low, re.I):
             s += w
@@ -280,6 +285,12 @@ def score(rub, a):
     if OPINIONE.search(t):
         s -= 3.0
     if rub == "tech" and FUORI_TEMA.search(t):
+        s -= 4.0
+    # Games: il cinema e la tv tratti dai giochi, e l'AI, hanno altre case
+    if rub == "games" and re.search(r"\b(movie|film|actor|actress|cast(ing)?|tv series|season \d|episode|batman|marvel's [a-z]+ (series|movie)|"
+                                    r"box office|netflix|hbo|attore|attrice)\b", low):
+        s -= 3.0
+    if rub == "games" and AI_WORDS.search(t) or rub == "games" and re.search(r"\bclaude code\b|anthropic|openai", low):
         s -= 4.0
     return round(s, 2)
 
@@ -377,6 +388,12 @@ def cluster(items, rare=frozenset(), altri=()):
     out = []
     for g in groups:
         rep = dict(g[0])
+        if "news.google.com" in rep.get("link", ""):
+            vera = [x for x in g if "news.google.com" not in x.get("link", "")]
+            if vera:
+                v = vera[0]
+                rep.update(link=v["link"], source=v["source"], summary=v.get("summary") or rep.get("summary"),
+                           title=v["title"], orig=v.get("orig") or v["title"], _gn=False, _it=v.get("_it", False))
         fonti = {x["source"] for x in g}
         links = {x["link"] for x in g}
         for a in altri:
@@ -410,6 +427,23 @@ def history(day, days=POOL_DAYS):
         for k in KEYS:
             for it in d.get(k, []):
                 out[k].append((it.get("orig") or it.get("title", ""), it.get("link", ""), m.group(1)))
+    # Dal 5 novembre 2026 in edizione va la scelta dell'agente `schede`, che puo' pescare dalla rosa
+    # voci che lo script non aveva scelto: senza leggere le edizioni, il giorno dopo le riproponeva.
+    visti = {(k, C.norm_url(l)) for k in KEYS for _, l, _ in out[k]}
+    for name in sorted(os.listdir(C.BRIEFS_DIR)):
+        m = re.match(r"^(\d{4}-\d{2}-\d{2})\.json$", name)
+        if not m or m.group(1) >= day or m.group(1) < lim:
+            continue
+        try:
+            b = C.load_json(os.path.join(C.BRIEFS_DIR, name))
+        except ValueError:
+            continue
+        for k in KEYS:
+            for it in b.get(k) or []:
+                if (k, C.norm_url(it.get("link", ""))) not in visti:
+                    out[k].append((it.get("orig") or it.get("title", ""), it.get("link", ""), m.group(1)))
+        for it in (b.get("gta") or {}).get("voci") or []:
+            out["games"].append((it.get("title", ""), it.get("link", ""), m.group(1)))
     return out
 
 
@@ -902,11 +936,14 @@ def merge(day):
     if isinstance(w.get("attese"), list):
         import attese
         attese.aggiorna(day, w["attese"])
-    try:
-        import attese
-        extra["games_attese"] = attese.per_edizione(day)
-    except Exception:
-        pass
+    # le barre «In caricamento» esistono dal 5 novembre 2026: un push.py --all non le aggiunge
+    # alle edizioni di prima
+    if day >= "2026-11-05":
+        try:
+            import attese
+            extra["games_attese"] = attese.per_edizione(day)
+        except Exception:
+            pass
     if isinstance(w.get("settimana"), list):
         extra["games_settimana"] = w["settimana"]
     for k, dst_key in [(k, k) for k in KEYS] + [("gta", "gta_notizie")]:
