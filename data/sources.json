@@ -17,6 +17,15 @@
   "checked": null,
   "history": []
  },
+ "ANSA Scienza": {
+  "url": "https://www.ansa.it/canale_scienza_tecnica/notizie/scienzaetecnica_rss.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Andrea Galeazzi": {
   "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC5yXB_ThsufRJYMRlzIGoeQ",
   "state": "attiva",
@@ -116,7 +125,7 @@
  "Ars Technica Gadget": {
   "url": "https://arstechnica.com/gadgets/feed/",
   "state": "attiva",
-  "tier": "tech",
+  "tier": "larga",
   "since": "2026-10-02",
   "reason": "",
   "checked": null,
@@ -127,6 +136,24 @@
   "state": "attiva",
   "tier": "spazio",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "BBC Health": {
+  "url": "https://feeds.bbci.co.uk/news/health/rss.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "BBC Science": {
+  "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -149,10 +176,19 @@
   "checked": null,
   "history": []
  },
+ "ESA": {
+  "url": "https://www.esa.int/rssfeed/TopNews",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Engadget": {
   "url": "https://www.engadget.com/rss.xml",
   "state": "attiva",
-  "tier": "tech",
+  "tier": "larga",
   "since": "2026-10-02",
   "reason": "",
   "checked": null,
@@ -167,11 +203,38 @@
   "checked": null,
   "history": []
  },
+ "Everyeye": {
+  "url": "https://www.everyeye.it/feed/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "GSMArena": {
   "url": "https://www.gsmarena.com/rss-news-reviews.php3",
   "state": "attiva",
   "tier": "banco",
   "since": "2026-08-09",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Game Informer": {
+  "url": "https://gameinformer.com/rss.xml",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "GameSpot": {
+  "url": "https://www.gamespot.com/feeds/mashup/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -185,11 +248,38 @@
   "checked": null,
   "history": []
  },
+ "GamesRadar": {
+  "url": "https://www.gamesradar.com/rss/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Gematsu": {
+  "url": "https://www.gematsu.com/feed",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Gizmodo": {
   "url": "https://gizmodo.com/rss",
   "state": "attiva",
-  "tier": "tech",
+  "tier": "larga",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google AI Blog": {
+  "url": "https://blog.google/technology/ai/rss/",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -199,6 +289,69 @@
   "state": "attiva",
   "tier": "ai",
   "since": "2026-08-09",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google News GTA VI": {
+  "url": "https://news.google.com/rss/search?q=%22GTA+6%22+OR+%22GTA+VI%22+when:2d&hl=en-US&gl=US&ceid=US:en",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google News Health US": {
+  "url": "https://news.google.com/rss/headlines/section/topic/HEALTH?hl=en-US&gl=US&ceid=US:en",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google News Rockstar": {
+  "url": "https://news.google.com/rss/search?q=Rockstar+Games+when:2d&hl=en-US&gl=US&ceid=US:en",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google News Science US": {
+  "url": "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=en-US&gl=US&ceid=US:en",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Google News Scienza": {
+  "url": "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=it&gl=IT&ceid=IT:it",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Guardian Environment": {
+  "url": "https://www.theguardian.com/environment/rss",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Guardian Science": {
+  "url": "https://www.theguardian.com/science/rss",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -214,21 +367,25 @@
  },
  "Hackaday": {
   "url": "https://hackaday.com/blog/feed/",
-  "state": "attiva",
+  "state": "panchina",
   "tier": "tech",
-  "since": "2026-10-02",
-  "reason": "",
+  "since": "2026-11-05",
+  "reason": "scheda Tech tolta il 5 novembre 2026",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 panchina: scheda Tech tolta il 5 novembre 2026"
+  ]
  },
  "Hacker News": {
   "url": "https://hnrss.org/frontpage?points=150",
-  "state": "attiva",
+  "state": "panchina",
   "tier": "tech",
-  "since": "2026-10-02",
-  "reason": "",
+  "since": "2026-11-05",
+  "reason": "scheda Tech tolta il 5 novembre 2026",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 panchina: scheda Tech tolta il 5 novembre 2026"
+  ]
  },
  "IEEE Spectrum Robotica": {
   "url": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
@@ -244,6 +401,42 @@
   "state": "attiva",
   "tier": "games",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Il Post Scienza": {
+  "url": "https://www.ilpost.it/scienza/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Import AI": {
+  "url": "https://importai.substack.com/feed",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Insider Gaming": {
+  "url": "https://insider-gaming.com/feed/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Interconnects": {
+  "url": "https://www.interconnects.ai/feed",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -268,9 +461,29 @@
  },
  "Liliputing": {
   "url": "https://liliputing.com/feed/",
-  "state": "attiva",
+  "state": "panchina",
   "tier": "tech",
-  "since": "2026-10-02",
+  "since": "2026-11-05",
+  "reason": "scheda Tech tolta il 5 novembre 2026",
+  "checked": null,
+  "history": [
+   "2026-11-05 panchina: scheda Tech tolta il 5 novembre 2026"
+  ]
+ },
+ "MIT News": {
+  "url": "https://news.mit.edu/rss/feed",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "MIT News AI": {
+  "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -349,6 +562,51 @@
   "checked": null,
   "history": []
  },
+ "NVIDIA Blog": {
+  "url": "https://blogs.nvidia.com/feed/",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "NYT Health": {
+  "url": "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "NYT Science": {
+  "url": "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Nature": {
+  "url": "https://www.nature.com/nature.rss",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Nintendo Everything": {
+  "url": "https://nintendoeverything.com/feed/",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Nintendo Life": {
   "url": "https://www.nintendolife.com/feeds/latest",
   "state": "attiva",
@@ -385,14 +643,34 @@
   "checked": null,
   "history": []
  },
- "Product Hunt": {
-  "url": "https://www.producthunt.com/feed",
+ "PlayStation LifeStyle": {
+  "url": "https://www.playstationlifestyle.net/feed/",
   "state": "attiva",
-  "tier": "tech",
-  "since": "2026-10-02",
+  "tier": "games",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
+ },
+ "Polygon": {
+  "url": "https://www.polygon.com/rss/index.xml",
+  "state": "attiva",
+  "tier": "games",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Product Hunt": {
+  "url": "https://www.producthunt.com/feed",
+  "state": "panchina",
+  "tier": "tech",
+  "since": "2026-11-05",
+  "reason": "scheda Tech tolta il 5 novembre 2026",
+  "checked": null,
+  "history": [
+   "2026-11-05 panchina: scheda Tech tolta il 5 novembre 2026"
+  ]
  },
  "Push Square": {
   "url": "https://www.pushsquare.com/feeds/latest",
@@ -403,11 +681,56 @@
   "checked": null,
   "history": []
  },
+ "Quanta Magazine": {
+  "url": "https://www.quantamagazine.org/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Rock Paper Shotgun": {
   "url": "https://www.rockpapershotgun.com/feed",
   "state": "attiva",
   "tier": "games",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "STAT": {
+  "url": "https://www.statnews.com/feed/",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Science": {
+  "url": "https://www.science.org/rss/news_current.xml",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Science News": {
+  "url": "https://www.sciencenews.org/feed",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Scientific American": {
+  "url": "http://rss.sciam.com/ScientificAmerican-Global",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -423,12 +746,14 @@
  },
  "SpaceNews": {
   "url": "https://spacenews.com/feed/",
-  "state": "attiva",
+  "state": "panchina",
   "tier": "spazio",
-  "since": "2026-10-02",
-  "reason": "",
+  "since": "2026-11-05",
+  "reason": "industria e nicchia: la scheda Scienza e' piu' larga (5 novembre 2026)",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 panchina: industria e nicchia: la scheda Scienza e' piu' larga (5 novembre 2026)"
+  ]
  },
  "TechCrunch": {
   "url": "https://techcrunch.com/feed/",
@@ -451,8 +776,17 @@
  "TechRadar": {
   "url": "https://www.techradar.com/rss",
   "state": "attiva",
-  "tier": "tech",
+  "tier": "larga",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "The Conversation": {
+  "url": "https://theconversation.com/global/articles.atom",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -486,6 +820,15 @@
    "2026-11-05 indirizzo: feed Apple al posto di quello generale (copriva 15 h su 26, quasi niente Apple)"
   ]
  },
+ "The Verge AI": {
+  "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
  "Tom's Hardware IT": {
   "url": "https://www.tomshw.it/feed",
   "state": "attiva",
@@ -497,18 +840,29 @@
  },
  "Universe Today": {
   "url": "https://www.universetoday.com/feed",
-  "state": "attiva",
+  "state": "panchina",
   "tier": "spazio",
-  "since": "2026-10-02",
-  "reason": "",
+  "since": "2026-11-05",
+  "reason": "industria e nicchia: la scheda Scienza e' piu' larga (5 novembre 2026)",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 panchina: industria e nicchia: la scheda Scienza e' piu' larga (5 novembre 2026)"
+  ]
  },
  "VGC": {
   "url": "https://www.videogameschronicle.com/feed/",
   "state": "attiva",
   "tier": "games",
   "since": "2026-10-02",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "Wired AI": {
+  "url": "https://www.wired.com/feed/tag/ai/latest/rss",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
   "reason": "",
   "checked": null,
   "history": []
@@ -527,6 +881,24 @@
    "2026-08-17 riprova: ancora non risponde",
    "2026-11-05 riprova: 0 articoli, 0 su Apple, 0 che non avevamo"
   ]
+ },
+ "Wired Science": {
+  "url": "https://www.wired.com/feed/category/science/latest/rss",
+  "state": "attiva",
+  "tier": "spazio",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
+ },
+ "ZDNet AI": {
+  "url": "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": []
  },
  "iClarified": {
   "url": "https://www.iclarified.com/rss/news.xml",

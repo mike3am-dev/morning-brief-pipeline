@@ -24,6 +24,7 @@ Esce con 1 se trova errori, cosi' si puo' mettere in coda a un comando.
 """
 
 import argparse
+import glob
 import concurrent.futures as cf
 import os
 import re
@@ -239,7 +240,7 @@ def archivio():
 
 # Le schede che hanno una casa per il loro materiale: quello che spetta a
 # loro non va nel radar, altrimenti la stessa cosa esce due volte.
-OTHER_HOMES = {"ai": "AI", "games": "GAMES", "tech": "TECH", "spazio": "SPAZIO"}
+OTHER_HOMES = {"ai": "AI", "games": "GAMES", "spazio": "SCIENZA"}
 
 
 def check_radar_home(brief, radar, r):
@@ -419,7 +420,7 @@ DEEP_VOCI = {"analista", "testata", "apple", "social", "storia", "esperto"}
 DEEP_TITLE_SAME = 0.5
 
 
-RUBRICHE_MAX = {"games": 10, "tech": 8, "spazio": 5}      # "spazio" e' la scheda Scienza
+RUBRICHE_MAX = {"games": 10, "spazio": 10}      # "spazio" e' la scheda Scienza; GTA VI (fino a 5) e' a parte
 try:
     from rubriche import LANG_IT as RUBRICHE_IT              # le fonti gia' in italiano
 except Exception:
@@ -431,7 +432,7 @@ def check_rubriche(brief, r):
     titolo o link, mai un titolo rimasto in inglese. Il vuoto e' legittimo: meglio una scheda vuota che di riempitivi."""
     for k, tetto in RUBRICHE_MAX.items():
         voci = brief.get(k) or []
-        if len([v for v in voci if not v.get("perso")]) > tetto:
+        if len([v for v in voci if not v.get("perso") and v.get("gruppo") != "gta"]) > tetto:
             r.warn(k, f"{len(voci)} voci, il tetto e' {tetto}")
         if len([v for v in voci if v.get("top")]) > 3:
             r.warn(k, "piu' di tre voci grandi")
@@ -440,9 +441,66 @@ def check_rubriche(brief, r):
                 r.error(k, f"voce senza id, titolo o link: {v.get('title') or v.get('orig')}")
             # il titolo tradotto si porta dietro l'originale: senza, e' rimasto in
             # inglese (Gemini in 503 dal 4 novembre 2026, e nessuno se ne accorgeva)
-            elif not v.get("orig") and v.get("source") not in RUBRICHE_IT:
+            elif not v.get("orig") and v.get("source") not in RUBRICHE_IT and v.get("lingua") != "it":
                 r.error(k, f"titolo non tradotto ({v.get('source')}): {v['title'][:70]} — "
                            "lancia python3 pipeline/rubriche.py --traduci")
+
+
+GTA_TIPI = {"ufficiale", "scoperta", "curiosita", "leak", "reazione", "notizia"}
+GTA_AFF = {"confermato", "voce", "da verificare"}
+
+
+def _giorni_prima(day, n):
+    from datetime import date, timedelta
+    try:
+        return (date.fromisoformat(day) - timedelta(days=n)).isoformat()
+    except ValueError:
+        return ""
+
+
+def check_gta(brief, r):
+    """GTA VI (5 novembre 2026): la sezione dell'agente `gta`. Mai oltre otto voci, ogni voce
+    con tipo, titolo e link; le misure; niente link gia' usciti nei 14 giorni prima."""
+    g = brief.get("gta")
+    if not g:
+        return
+    voci = g.get("voci") or []
+    if len(voci) > 8:
+        r.error("gta", f"{len(voci)} voci: il tetto e' 8")
+    if g.get("uscita") and not re.match(r"^\d{4}-\d{2}-\d{2}$", str(g["uscita"])):
+        r.error("gta", f"uscita non e' una data ISO: {g['uscita']!r}")
+    prima = set()
+    day = brief.get("date") or ""
+    for path in sorted(glob.glob(os.path.join(C.BRIEFS_DIR, "*.json"))):
+        d = os.path.basename(path)[:10]
+        if not day or d >= day or d < _giorni_prima(day, 14):
+            continue
+        try:
+            old = C.load_json(path)
+        except ValueError:
+            continue
+        prima |= {C.norm_url(v.get("link", "")) for v in (old.get("gta") or {}).get("voci") or []}
+    ids = set()
+    for v in voci:
+        nome = v.get("id") or v.get("title", "")[:30]
+        if not (v.get("id") and v.get("title") and v.get("link")):
+            r.error("gta", f"voce senza id, titolo o link: {nome}")
+        if v.get("id") in ids:
+            r.error("gta", f"id doppio: {v.get('id')}")
+        ids.add(v.get("id"))
+        if v.get("tipo") not in GTA_TIPI:
+            r.error("gta", f"{nome}: tipo {v.get('tipo')!r} (ammessi: {', '.join(sorted(GTA_TIPI))})")
+        if v.get("affidabilita") and v["affidabilita"] not in GTA_AFF:
+            r.error("gta", f"{nome}: affidabilita {v['affidabilita']!r}")
+        if v.get("tipo") == "leak" and v.get("affidabilita") == "confermato":
+            r.warn("gta", f"{nome}: un leak confermato e' ufficiale, non un leak")
+        for campo, tetto in (("title", 90), ("nota", 320), ("citazione", 200)):
+            if len(v.get(campo) or "") > tetto:
+                r.warn("gta", f"{nome}: {campo} di {len(v[campo])} caratteri (tetto {tetto})")
+        if not v.get("segnale") and v.get("tipo") in ("scoperta", "curiosita", "reazione", "leak"):
+            r.warn("gta", f"{nome}: manca il segnale (la misura: voti, visualizzazioni)")
+        if C.norm_url(v.get("link", "")) in prima:
+            r.error("gta", f"{nome}: link gia' uscito nella sezione nei 14 giorni prima")
 
 
 # il reparto: la parola sopra il titolo nella lista del Duo (2 novembre 2026)
@@ -873,6 +931,7 @@ def lint(brief, with_links):
     check_plancia(brief, r)
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
+    check_gta(brief, r)
     check_ranking(news, r)
     if with_links:
         check_links(brief, r)

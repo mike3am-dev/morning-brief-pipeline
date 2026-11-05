@@ -184,6 +184,12 @@ def pubblica(day):
 
 def fine(day):
     giorno = day[0] if day else date.today().isoformat()
+    # GTA VI: se l'agente `gta` ha consegnato dopo `prepara`, la sua sezione entra ora, con le foto
+    code, out, sec = esegui("rubriche-merge-fine", ["rubriche.py", "--merge"] + day)
+    riga("rubriche --merge (GTA VI)", code, sec, ultima(out) if code == 0 else errore_breve(out))
+    if code == 0 and "ricopiate" in out:
+        code, out, sec = esegui("images-fine", ["images.py"] + day, tmax=300)
+        riga("images (GTA VI)", code, sec, ultima(out) if code == 0 else errore_breve(out))
     if lint(day):
         print("Errori nel lint dopo il visualista: correggili (o togli il visivo che li fa) "
               "e rilancia chiudi.py fine. Su Supabase resta l'edizione pubblicata prima.")

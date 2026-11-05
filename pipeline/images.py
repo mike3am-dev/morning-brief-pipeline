@@ -157,7 +157,8 @@ def encode(raw, width, quality, target=16 / 9, cut=0.0):
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
-RUBRICHE = ("games", "tech", "spazio")
+RUBRICHE = ("games", "spazio")
+GTA_FOTO = 4
 
 
 def size_of(raw):
@@ -167,9 +168,11 @@ def size_of(raw):
         return None
 
 
-def candidate(page):
-    """La foto di un articolo: (byte, larghezza, taglio del logo, indirizzo della pagina)."""
-    src = find_image_url(page)
+def candidate(page, src=None):
+    """La foto di un articolo: (byte, larghezza, taglio del logo, indirizzo della pagina).
+    `src`, se c'e', e' la foto gia' nota (la miniatura di un post Reddit dal feed): vale piu'
+    dell'anteprima di share.redd.it, che sui post con video o galleria e' il cartello col logo."""
+    src = src or find_image_url(page)
     raw = fetch(src) if src else b""
     dims = size_of(raw) if raw else None
     if not dims:
@@ -211,7 +214,7 @@ def harvest(job):
         need = MIN_SRC["hero"] if idx == 0 else MIN_SRC["card"] if idx < CARDS else 0
         c, note = best_photo(item, need)
     else:
-        c, note = candidate(item.get("link", "")), ""
+        c, note = candidate(item.get("link", ""), item.get("image_src")), ""
     if not c:
         return idx, None, None, ""
     raw, _, cut, page = c
@@ -243,7 +246,10 @@ def enrich(path, refresh=False):
     rub_jobs = [(k, i, it, WIDE) for k in RUBRICHE
                 for i, it in enumerate(brief.get(k, []))
                 if it.get("top") and (refresh or not it.get("image"))]
-    if not jobs and not ai_jobs and not rub_jobs:
+    # GTA VI (agente `gta`): la foto alle prime voci che ne hanno bisogno, mai oltre quattro
+    gta_voci = (brief.get("gta") or {}).get("voci") or []
+    gta_jobs = [(i, it) for i, it in enumerate(gta_voci[:GTA_FOTO]) if it.get("link") and (refresh or not it.get("image"))]
+    if not jobs and not ai_jobs and not rub_jobs and not gta_jobs:
         print("Immagini già presenti, niente da fare.")
         return 0
 
@@ -272,11 +278,18 @@ def enrich(path, refresh=False):
                 got += 1
             print(f"  {k}/{it['id']:17} {'immagine acquisita' if thumb else 'nessuna immagine'}")
 
+        for (i, it), (_, thumb, _, _) in zip(
+                gta_jobs, pool.map(harvest, [(3000 + n, it, WIDE) for n, (i, it) in enumerate(gta_jobs)])):
+            if thumb:
+                it["image"] = thumb
+                got += 1
+            print(f"  gta/{it.get('id', i)!s:17} {'immagine acquisita' if thumb else 'nessuna immagine'}")
+
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(brief, fh, ensure_ascii=False, indent=1)
 
     size = os.path.getsize(path) // 1024
-    print(f"{got} immagini su {len(jobs) + len(ai_jobs) + len(rub_jobs)} voci · edizione ora {size} KB")
+    print(f"{got} immagini su {len(jobs) + len(ai_jobs) + len(rub_jobs) + len(gta_jobs)} voci · edizione ora {size} KB")
     return 0
 
 
@@ -294,7 +307,8 @@ def prune(days):
         # anche le voci AI, che dal 12 settembre 2026 hanno la loro foto: se
         # restassero, l'alleggerimento lascerebbe indietro meta' del peso
         for item in (list(brief.get("news", [])) + list(brief.get("ai", []))
-                     + [x for k in RUBRICHE for x in brief.get(k, [])]):
+                     + [x for k in RUBRICHE for x in brief.get(k, [])]
+                     + list((brief.get("gta") or {}).get("voci") or [])):
             for k in ("image", "hero"):
                 if item.pop(k, None) is not None:
                     stripped = True

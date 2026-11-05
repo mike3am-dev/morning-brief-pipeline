@@ -39,7 +39,7 @@
   --red:#E01F3D;
   --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
   --brand:#E0AB00;
-  /* il blu notte di Scienza (5 novembre 2026): il blu pieno resta a Tech */
+  /* il blu notte di Scienza (5 novembre 2026): */
   --night:#14204A;
 
   --yellow-ink:#7A5F00;
@@ -523,7 +523,6 @@ html.vista-magazine .masthead .tab::before{content:""; width:9px; height:9px; bo
 html.vista-magazine .masthead .tab[data-view="oggi"]{--tc:var(--orange)}
 html.vista-magazine .masthead .tab[data-view="ai"]{--tc:var(--red)}
 html.vista-magazine .masthead .tab[data-view="games"]{--tc:var(--yellow)}
-html.vista-magazine .masthead .tab[data-view="tech"]{--tc:var(--blue)}
 html.vista-magazine .masthead .tab[data-view="spazio"]{--tc:var(--night)}
 html.vista-magazine .masthead .tab[data-view="spazio"]::before{background:radial-gradient(circle, var(--yellow) 0 30%, var(--night) 36%)}
 html.vista-magazine .masthead .tab-dopo::before{content:"★"; width:auto; height:auto; background:none; color:var(--yellow); font-size:.85rem; line-height:1}
@@ -954,7 +953,6 @@ nav.tabs.more-left:not(.more-right){
 /* ogni scheda ha il suo colore sotto la voce attiva */
 .tab[data-view="ai"][aria-current="true"]::after{background:var(--red)}
 .tab[data-view="games"][aria-current="true"]::after{background:var(--yellow)}
-.tab[data-view="tech"][aria-current="true"]::after{background:var(--blue)}
 .tab[data-view="spazio"][aria-current="true"]::after{background:var(--night)}
 .masthead-inner{position:relative}
 .tabmenu{
@@ -1584,7 +1582,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .rub-games .rub-head{background-image:linear-gradient(45deg, rgba(23,24,27,.1) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.1) 75%),
   linear-gradient(45deg, rgba(23,24,27,.1) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.1) 75%);
   background-size:22px 22px; background-position:0 0, 11px 11px}
-.rub-tech .rub-head{background-image:radial-gradient(rgba(23,24,27,.28) 1.5px, transparent 1.6px); background-size:14px 14px}
 .rub-spazio .rub-head{
   background-image:radial-gradient(1.2px 1.2px at 12% 30%, #fff, transparent), radial-gradient(1px 1px at 38% 70%, #fff, transparent),
     radial-gradient(1.6px 1.6px at 62% 25%, #fff, transparent), radial-gradient(1px 1px at 84% 60%, #fff, transparent),
@@ -1631,8 +1628,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
   background-image:linear-gradient(45deg, rgba(23,24,27,.09) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.09) 75%),
     linear-gradient(45deg, rgba(23,24,27,.09) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.09) 75%);
   background-size:22px 22px; background-position:0 0, 11px 11px}
-.rubm-tech{background-color:var(--blue); background-image:radial-gradient(rgba(23,24,27,.26) 1.5px, transparent 1.6px); background-size:14px 14px}
-.rubm-tech .rubm-dots i:nth-child(1){background:var(--bone)}
 /* Scienza: il blu notte con le stelle, e l'accento giallo */
 .rubm-spazio{background-color:var(--night); color:#F1EEE8;
   background-image:radial-gradient(1.2px 1.2px at 12% 30%, #fff, transparent), radial-gradient(1px 1px at 38% 70%, #fff, transparent),
@@ -1643,6 +1638,57 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .rubm-spazio .rubm-stamp b{color:var(--yellow)}
 .rubm-spazio .rubm-dots i:nth-child(1){background:var(--yellow)}
 .rub-mag .mag{padding-top:.4rem}
+/* l'occhiello della disciplina in Scienza */
+.rub-mag .card-src .disc{color:var(--night); font-weight:800}
+:root[data-theme="dark"] .rub-mag .card-src .disc{color:#9DB0FF}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .rub-mag .card-src .disc{color:#9DB0FF} }
+
+/* ---- GTA VI: i colori di Vice City, campiture piatte (5 novembre 2026) ----
+   rosa neon, arancio tramonto, viola notte, turchese. Niente logo: solo i colori. */
+.gta{--g-pink:#FF3D8B; --g-orange:#FF8A3D; --g-purple:#2A0B4D; --g-teal:#19D3C5; --g-yellow:#FFD84A;
+  margin:.4rem 0 1.4rem; border-radius:4px; overflow:hidden; color:#fff;
+  background:linear-gradient(165deg, #12062B 0%, var(--g-purple) 34%, #7A1B6B 66%, #D6336C 88%, var(--g-orange) 100%)}
+.gta-head{display:flex; flex-wrap:wrap; align-items:flex-end; gap:.8rem 1rem; padding:1.15rem 1.15rem .9rem; position:relative}
+.gta-head .gta-sint{flex:0 0 100%; max-width:none}
+.gta-name{flex:1; min-width:0; display:flex; flex-direction:column; gap:.35rem}
+.gta-kicker{font-size:.62rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--g-teal)}
+.gta-head h2{font-family:var(--display); font-weight:800; font-size:clamp(3rem, 14cqi, 5rem); line-height:.82; letter-spacing:.01em;
+  text-transform:uppercase; color:#fff}
+.gta-head h2 em{font-style:normal; background:linear-gradient(90deg, var(--g-yellow), var(--g-orange) 45%, var(--g-pink));
+  -webkit-background-clip:text; background-clip:text; color:transparent}
+.gta-sint{font-size:.92rem; line-height:1.4; color:rgba(255,255,255,.88); max-width:38rem; text-wrap:pretty}
+.gta-count{flex:none; display:flex; flex-direction:column; align-items:flex-end; line-height:1; text-align:right;
+  background:var(--g-teal); color:#0B1A2B; padding:.55rem .7rem .5rem; border-radius:3px}
+.gta-count b{font-family:var(--display); font-weight:800; font-size:2.4rem; line-height:.85}
+.gta-count span{font-size:.55rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; margin-top:.3rem}
+.gta-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:.75rem; padding:.2rem .9rem 1rem}
+.gcard{position:relative; display:flex; flex-direction:column; background:rgba(12,4,30,.62); color:#fff; border-radius:4px; overflow:hidden;
+  cursor:pointer; border-left:4px solid var(--c, var(--g-pink)); transition:transform .18s ease}
+.gcard:active{transform:scale(.99)}
+.gcard:focus-visible{outline:2px solid var(--g-yellow); outline-offset:2px}
+.gt-ufficiale{--c:var(--g-teal)} .gt-scoperta{--c:var(--g-pink)} .gt-curiosita{--c:var(--g-orange)}
+.gt-leak{--c:var(--g-yellow)} .gt-reazione{--c:#B58CFF} .gt-notizia{--c:#fff}
+.gt-img{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; max-height:min(38vh, 300px); background:#12062B}
+.gt-body{display:flex; flex-direction:column; gap:.4rem; padding:.85rem 1rem .2rem; min-width:0}
+.gt-meta{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .6rem; font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase}
+.gt-meta b{font-family:var(--display); font-size:.98rem; letter-spacing:.005em; text-transform:none; color:#fff}
+.gt-tipo{background:var(--c); color:#12062B; padding:.14rem .45rem; border-radius:2px}
+.gt-sign{color:rgba(255,255,255,.7)}
+.gt-sign.s-confermato{color:var(--g-teal)} .gt-sign.s-voce{color:var(--g-yellow)} .gt-sign.s-daverificare{color:var(--g-pink)}
+.gcard h3{font-family:var(--body); font-weight:700; font-size:1.12rem; line-height:1.26; letter-spacing:-.01em; text-wrap:pretty}
+.gcard.big h3{font-size:clamp(1.3rem, 4.6cqi, 1.7rem)}
+.gcard blockquote{margin:0; padding-left:.8rem; border-left:2px solid var(--c); font-style:italic; font-size:.95rem; line-height:1.4; color:rgba(255,255,255,.92)}
+.gt-nota{font-size:.93rem; line-height:1.45; color:rgba(255,255,255,.84); text-wrap:pretty}
+.gt-foot{display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem .6rem 1rem; font-size:.72rem; color:rgba(255,255,255,.7)}
+.gt-segnale{font-weight:700; letter-spacing:.04em}
+.gta .card-btn{color:rgba(255,255,255,.7)} .gta .card-btn:hover{background:rgba(255,255,255,.12); color:#fff}
+.gta .card-star.on{color:var(--g-yellow)}
+@container (min-width:620px){
+  .gta-grid{grid-template-columns:1fr 1fr}
+  .gcard.big{grid-column:1 / -1}
+  .gcard.big.has-img{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  .gcard.big.has-img .gt-img{grid-row:1 / span 2; height:100%; max-height:none; aspect-ratio:auto; min-height:240px}
+}
 .rub-mag .card-orig{margin:0; font-size:.76rem; line-height:1.35; color:var(--ink-3); font-style:italic; text-wrap:pretty}
 .rub-mag .card-src .hot{color:var(--orange-ink)}
 .rub-mag .empty{border-top:0}
@@ -2461,7 +2507,6 @@ footer.colophon .sp{flex:1}
       <button class="tab" data-view="oggi" role="tab">Apple</button>
       <button class="tab" data-view="ai" role="tab">AI<span class="count" id="cAI"></span></button>
       <button class="tab" data-view="games" role="tab">Games<span class="count" id="cGames"></span></button>
-      <button class="tab" data-view="tech" role="tab">Tech<span class="count" id="cTech"></span></button>
       <button class="tab" data-view="spazio" role="tab">Scienza<span class="count" id="cSpazio"></span></button>
       <button class="tab tab-dopo" data-view="salvati" role="tab">Più tardi<span class="count" id="cDopo"></span></button>
       <button class="tab more" type="button" id="moreTab" aria-haspopup="true" aria-expanded="false" title="Archivio, Salvati, Diario, Cerca">⋯</button>
@@ -2479,7 +2524,6 @@ footer.colophon .sp{flex:1}
   <section class="view" id="view-oggi"></section>
   <section class="view" id="view-ai" hidden></section>
   <section class="view" id="view-games" hidden></section>
-  <section class="view" id="view-tech" hidden></section>
   <section class="view" id="view-spazio" hidden></section>
   <section class="view" id="view-archivio" hidden></section>
   <section class="view" id="view-salvati" hidden></section>
@@ -3056,9 +3100,9 @@ function indexAll(){
     /* radar, banco e recap non sono notizie ma si salvano lo stesso: un video
        da guardare dopo deve ricomparire fra i salvati come tutto il resto */
     [["radar", "Radar"], ["banco", "Sul banco"], ["recap", "Se te lo fossi perso"],
-     ["games", "Games"], ["tech", "Tech"], ["spazio", "Scienza"]]
+     ["games", "Games"], ["tech", "Tech"], ["spazio", "Scienza"], ["gta", "GTA VI"]]
       .forEach(function(sez){
-        (b[sez[0]] || []).forEach(function(it){
+        (sez[0] === "gta" ? ((b.gta && b.gta.voci) || b.gta_notizie || []) : (b[sez[0]] || [])).forEach(function(it){
           if(!it.id) return;
           if(it.nota && !it.note) it = Object.assign({}, it, {note:it.nota});
           EXTRAS.push({brief:b, item:it, kind:sez[0], label:sez[1],
@@ -7523,7 +7567,6 @@ function renderAI(){
    sei perso», e si confondeva con «Se te lo fossi perso» della scheda APPLE). */
 const RUB = {
   games: {nome:"Games", sub:"PlayStation in testa, poi tutto il resto", count:"cGames", rc:"--yellow", on:"#17181B"},
-  tech: {nome:"Tech", sub:"Gadget, hardware e quello che affiora", count:"cTech", rc:"--blue", on:"#17181B"},
   /* la chiave resta "spazio" (gironi, archivio, segnali): la scheda si chiama Scienza */
   spazio: {nome:"Scienza", sub:"Le scoperte che fanno alzare lo sguardo", count:"cSpazio", rc:"--night", on:"#F1EEE8"}
 };
@@ -7665,6 +7708,7 @@ function rubMagCard(date, kind, it, i, form){
   const body = el("div", {class:"card-body"}, [
     el("div", {class:"card-src"}, [
       it.source ? el("b", {text:it.source}) : null,
+      it.disciplina ? el("span", {class:"disc d-" + it.disciplina, text:it.disciplina}) : null,
       it.continua ? el("span", {text:"se ne parla da giorni"}) : null,
       it.perso ? el("span", {class:"hot", text:"dalla settimana"}) : null
     ]),
@@ -7685,6 +7729,82 @@ function rubMagCard(date, kind, it, i, form){
   card.addEventListener("click", go);
   card.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
   return Motion.once(card, "rise");
+}
+/* GTA VI (5 novembre 2026): una sezione tematizzata coi colori di Vice City, fatta da un
+   agente che ogni giorno cerca quello che la gente scova — Reddit, X, i forum, l'ufficiale e
+   il resto, le curiosita'. I dati stanno in brief.gta = {uscita, sintesi, voci:[{tipo, title,
+   nota, fonte, link, segnale, affidabilita, image}]}; se l'agente non ha girato, il ripiego
+   sono le notizie che rubriche.py trova (brief.gta_notizie). */
+const GTA_TIPI = {ufficiale:"Ufficiale", scoperta:"Scoperta", curiosita:"Curiosità", leak:"Leak",
+                  reazione:"Dai giocatori", notizia:"Notizia"};
+function gtaCountdown(g, date){
+  if(!g || !g.uscita) return null;
+  const a = new Date(String(date).slice(0, 10) + "T12:00:00"), b = new Date(g.uscita + "T12:00:00");
+  if(isNaN(a) || isNaN(b)) return null;
+  const d = Math.round((b - a) / 86400000);
+  if(d > 1) return {n:String(d), t:"giorni all'uscita"};
+  if(d === 1) return {n:"1", t:"giorno all'uscita"};
+  if(d === 0) return {n:"OGGI", t:"esce GTA VI"};
+  return {n:String(-d), t:(-d === 1 ? "giorno" : "giorni") + " dall'uscita"};
+}
+function gtaCard(date, it, i, big){
+  const k = rubKey(date, "gta", it), u = safeUrl(it.link);
+  const tipo = GTA_TIPI[it.tipo] ? it.tipo : "notizia";
+  const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Leggi più tardi", title:"Leggi più tardi", html:I_STAR});
+  const paint = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
+  paint();
+  star.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    if(!NOTES) return;
+    const m = mark(k); m.starred_at = m.starred_at ? null : new Date().toISOString();
+    paint(); touched(k); refreshCounts();
+    if(m.starred_at){ Motion.burst(star); Motion.fly(star); }
+    toast(m.starred_at ? "Da leggere più tardi" : "Tolta da Più tardi");
+  });
+  const sign = it.affidabilita === "confermato" ? "confermato" : it.affidabilita === "voce" ? "voce" : it.affidabilita === "da verificare" ? "da verificare" : "";
+  const body = el("div", {class:"gt-body"}, [
+    el("div", {class:"gt-meta"}, [
+      el("span", {class:"gt-tipo", text:GTA_TIPI[tipo]}),
+      it.fonte || it.source ? el("b", {text:it.fonte || it.source}) : null,
+      sign ? el("span", {class:"gt-sign s-" + sign.replace(/\W/g, ""), text:sign}) : null
+    ]),
+    el("h3", {text:it.title}),
+    it.citazione ? el("blockquote", {lang:it.citazione_lingua || "en", text:it.citazione}) : null,
+    it.nota ? el("p", {class:"gt-nota", text:it.nota}) : null
+  ]);
+  const foot = el("div", {class:"gt-foot tools", "data-sig":k}, [
+    it.segnale ? el("span", {class:"gt-segnale", text:it.segnale}) : (it.ore != null ? el("span", {text:rubWhen(it)}) : null),
+    el("span", {class:"card-gap"}), NOTES && it.id ? star : null
+  ]);
+  const card = el("article", {class:"gcard gt-" + tipo + (it.image ? " has-img" : "") + (big ? " big" : ""), tabindex:"0", role:u ? "link" : null}, [
+    it.image ? el("img", {class:"gt-img", src:it.image, alt:"", loading:i < 2 ? "eager" : "lazy", decoding:"async"}) : null,
+    body, foot
+  ]);
+  const go = function(){ if(!u) return; Sig.bump(k, "o"); Sig.bump(k, "l"); window.open(u, "_blank", "noopener"); };
+  card.addEventListener("click", go);
+  card.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
+  return Motion.once(card, "rise");
+}
+function renderGta(brief){
+  const g = brief.gta || {};
+  const voci = (g.voci && g.voci.length ? g.voci : (brief.gta_notizie || [])).filter(function(it){ return it && it.title; });
+  if(!voci.length) return null;
+  const cd = gtaCountdown(g, brief.date);
+  const sec = el("section", {class:"gta", "aria-label":"GTA VI"});
+  sec.appendChild(Motion.once(el("header", {class:"gta-head"}, [
+    el("div", {class:"gta-name"}, [
+      el("span", {class:"gta-kicker", text:"Leonida, in diretta dalla rete"}),
+      el("h2", {}, [el("span", {text:"GTA"}), el("em", {text:" VI"})])
+    ]),
+    cd ? el("div", {class:"gta-count"}, [el("b", {text:cd.n}), el("span", {text:cd.t})]) : null,
+    /* il tema del giorno sotto, a tutta larghezza: accanto al conto alla rovescia, sul
+       telefono, restava una colonna stretta */
+    g.sintesi ? el("p", {class:"gta-sint", text:g.sintesi}) : null
+  ]), "dots"));
+  const grid = el("div", {class:"gta-grid"});
+  voci.forEach(function(it, i){ grid.appendChild(gtaCard(brief.date, it, i, i === 0)); });
+  sec.appendChild(grid);
+  return sec;
 }
 function rubMagHead(kind, brief, items){
   const cfg = RUB[kind];
@@ -7721,17 +7841,27 @@ function renderRubricaMag(kind){
   const tops = good.filter(function(it){ return it.top; });
   const rest = good.filter(function(it){ return !it.top; });
   const feed = el("div", {class:"mag"});
-  const pip = "--" + ({games:"yellow", tech:"blue", spazio:"night"}[kind] || "orange");
+  const pip = "--" + ({games:"yellow", spazio:"night"}[kind] || "orange");
   let i = 0;
+  /* GTA VI ha la sua sezione, in cima a Games, coi colori di GTA */
+  if(kind === "games"){ const g = renderGta(brief); if(g) feed.appendChild(g); }
   if(tops[0]) feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
   if(tops[1] || tops[2]) feed.appendChild(el("div", {class:"mag-row two"}, tops.slice(1, 3).map(function(it){
     return rubMagCard(brief.date, kind, it, i++, "std");
   })));
   if(rest.length){
-    if(tops.length) feed.appendChild(magSection(kind + "-oggi", "Anche oggi", null, pip));
-    const list = el("div", {class:"mag-brevi"});
-    rest.forEach(function(it){ list.appendChild(rubMagCard(brief.date, kind, it, i++, "brief")); });
-    feed.appendChild(list);
+    /* Games: PlayStation da una parte, il resto dall'altra; le altre schede in fila */
+    const gruppi = kind === "games"
+      ? [["PlayStation", rest.filter(function(it){ return it.gruppo === "playstation"; }), "--blue"],
+         ["Il resto", rest.filter(function(it){ return it.gruppo !== "playstation"; }), pip]]
+      : [["Anche oggi", rest, pip]];
+    gruppi.forEach(function(gr){
+      if(!gr[1].length) return;
+      if(tops.length || kind === "games") feed.appendChild(magSection(kind + "-" + gr[0].toLowerCase().replace(/\W/g, ""), gr[0], null, gr[2]));
+      const list = el("div", {class:"mag-brevi"});
+      gr[1].forEach(function(it){ list.appendChild(rubMagCard(brief.date, kind, it, i++, "brief")); });
+      feed.appendChild(list);
+    });
   }
   if(persi.length){
     feed.appendChild(magSection(kind + "-settimana", "Dalla settimana", "la più calda dei giorni scorsi", "--orange"));
@@ -7747,7 +7877,7 @@ function renderRubricaMag(kind){
 }
 
 /* ================= navigazione ================= */
-const views = ["oggi","ai","games","tech","spazio","archivio","salvati","diario","cerca"];
+const views = ["oggi","ai","games","spazio","archivio","salvati","diario","cerca"];
 let currentView = "oggi";
 
 function show(name){
@@ -7774,7 +7904,7 @@ function show(name){
 }
 /* la lineetta sotto la scheda attiva scivola da una scheda all'altra, e
    prende il colore della scheda (arancione APPLE, rosso AI, giallo GAMES…) */
-const TAB_INK = {ai:"--red", games:"--yellow", tech:"--blue", spazio:"--night"};
+const TAB_INK = {ai:"--red", games:"--yellow", spazio:"--night"};
 function tabInk(){
   const nav = document.querySelector("nav.tabs");
   if(!nav || STILL) return;

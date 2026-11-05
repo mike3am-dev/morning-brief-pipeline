@@ -80,13 +80,17 @@ che parte dell'edizione finirà:
 |---|---|---|
 | `primaria` | Apple Newsroom, Apple Developer, Apple Developer Releases | fra le notizie, e chiude i rumor; i rilasci portano `novita` |
 | `redazionale` | 9to5Mac, MacRumors, Macitynet, iSpazio, BGR, Tom's, The Verge, AppleInsider, iClarified | fra le notizie |
-| `larga` | Ars Technica, TechCrunch | sonde del radar |
-| `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI, Apple Machine Learning | sezione *AI*, strato cronaca |
+| `larga` | Ars Technica, TechCrunch, Engadget, Gizmodo, TechRadar, Ars Technica Gadget | sonde del radar (l'hardware di consumo: il Kindle è il concorrente dell'iPad mini) |
+| `ai` | OpenAI, Google DeepMind, Google AI Blog, Apple Machine Learning, NVIDIA, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI, The Verge AI, Wired AI, ZDNet AI, MIT News AI, Interconnects, Import AI | sezione *AI*, strato cronaca |
 | `lab` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato LAB |
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
-| `games` | Push Square, PlayStation Blog, Nintendo Life, VGC, GamesIndustry.biz, Kotaku, IGN, Eurogamer, Rock Paper Shotgun | scheda *Games* (la compone `rubriche.py`) |
-| `tech` | Engadget, Hackaday, Liliputing, Gizmodo, Hacker News, Product Hunt, TechRadar, Ars Technica Gadget | scheda *Tech* (`rubriche.py`) |
-| `spazio` | SpaceNews, Universe Today, NASA, Media INAF, Ars Technica Scienza, NASA APOD | scheda *Scienza* (`rubriche.py`; la chiave resta `spazio`) |
+| `games` | venti testate di giochi, PlayStation in testa, più due ricerche Google News per GTA VI | scheda *Games* (la compone `rubriche.py`; GTA VI l'agente `gta`) |
+| `spazio` | venticinque fonti di scienza, da Nature e Science a Il Post, più tre Google News | scheda *Scienza* (`rubriche.py`; la chiave resta `spazio`) |
+
+Le fonti di AI, Games e Scienza, con il perché di ognuna e quelle scartate, stanno in
+`docs/schede/fonti-2026-11-05.md`. **La scheda Tech non c'è più** (5 novembre 2026, Mike:
+«niente tech»): il girone `tech` è vuoto, le sue testate generaliste sono passate a `larga` e
+le altre in panchina.
 
 Il girone `ai` comprende anche **The Robot Report** e **IEEE Spectrum Robotica**: i robot stanno
 nella scheda AI (lab `robot`), non in una scheda a parte.
@@ -116,64 +120,109 @@ r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti LAB già scaricate da
 visualizzazioni, miniatura. È la materia dello strato *LAB* della sezione AI (vedi *La
 sezione AI* e *La caccia LAB*).
 
-#### Le schede GAMES, TECH, SCIENZA
+#### Le schede GAMES e SCIENZA, e la sezione GTA VI
 
-Dal 2 ottobre 2026 la barra è **APPLE · AI · GAMES · TECH · SCIENZA** (Spazio fino al 5
-novembre 2026: Mike ci vuole «tutto, spazio, medicina, natura, fisica, chimica»; il piano è
-`docs/schede/proposta-2026-11-05.md`), con i tre puntini per
-Archivio, Salvati, Diario e Cerca (Mike non li apriva mai). Le tre schede nuove **non le scrive
-Claude**: le compone uno script, e partono in background mentre tu scrivi l'edizione.
+Dal 5 novembre 2026 la barra è **APPLE · AI · GAMES · SCIENZA** (Mike: «niente tech»; Spazio
+è diventata Scienza lo stesso giorno: «ci mettiamo dentro tutto»). Il piano è
+`docs/schede/proposta-2026-11-05.md`, le fonti `docs/schede/fonti-2026-11-05.md`. Le due schede
+**non le scrive Claude**: le sceglie uno script, che parte in background mentre tu scrivi
+l'edizione, e subito dopo lo stesso processo prepara il dossier di GTA VI.
 
 ```bash
-nohup python3 pipeline/rubriche.py > /tmp/rubriche.log 2>&1 &
+nohup sh -c "python3 pipeline/rubriche.py; python3 pipeline/gta.py > /tmp/gta.log 2>&1" > /tmp/rubriche.log 2>&1 &
 ```
 
-Legge i gironi `games`, `tech`, `spazio` del grezzo, toglie offerte e rumore, raggruppa lo
-stesso fatto detto da più testate, dà un punteggio e sceglie; Gemini traduce i titoli e scrive
-la riga di sintesi (solo dal sommario del feed). Scrive `data/rubriche/<giorno>.json`. Prima
-delle immagini: `python3 pipeline/rubriche.py --merge` le ricopia nell'edizione (e `push.py` lo
-rifà da solo).
+`rubriche.py` legge i gironi `games` e `spazio` del grezzo, toglie offerte e rumore, raggruppa
+lo stesso fatto detto da più testate, dà un punteggio e sceglie; Gemini traduce i titoli e
+scrive la riga di sintesi (solo dal sommario del feed). Scrive `data/rubriche/<giorno>.json`.
+Prima delle immagini: `python3 pipeline/rubriche.py --merge` le ricopia nell'edizione (e
+`push.py` lo rifà da solo), insieme alla sezione GTA VI se l'agente l'ha già scritta.
+
+**Chi scrive la prosa** (5 novembre 2026, Mike: «basta che la prosa sia stesa da Opus»).
+Gemini traduce perché il 2 ottobre le schede dovevano costare zero token di Claude. Il passo
+previsto è che la scelta resti allo script e che titolo e riga delle voci scelte li scriva il
+redattore Opus, dall'articolo e non dal sommario; Gemini resterebbe il ripiego. Finché non è
+fatto, vale quello che segue.
 
 **La traduzione** (5 novembre 2026: dal 4 Gemini risponde spesso 503, e i titoli uscivano in
 inglese senza che nessuno se ne accorgesse). Una chiamata per scheda, in parallelo, con lo
 schema della risposta imposto, 40 secondi a tentativo e **3 minuti in tutto**: si gira fra i
 modelli finché non scade il tetto. L'esito resta nel file, `_traduzione: {games: {esito,
 modello, voci, tradotte}, …}` (il log in `/tmp` sparisce con la sessione cloud). Un titolo
-tradotto porta sempre `orig`, anche se uguale; senza, `lint.py` dà **errore**. `chiudi.py
-prepara` rilancia `rubriche.py --traduci`, che rifà solo le traduzioni mancanti, e rilancia
-tutto `rubriche.py` solo davanti a un `Traceback` vero (prima prendeva per crash anche
-«HTTP Error 503» e perdeva fino a 7 minuti).
+tradotto porta sempre `orig`, anche se uguale; senza, `lint.py` dà **errore** (le voci da
+fonti italiane portano `lingua: "it"` e non si traducono). `chiudi.py prepara` rilancia
+`rubriche.py --traduci`, che rifà solo le traduzioni mancanti, e rilancia tutto `rubriche.py`
+solo davanti a un `Traceback` vero (prima prendeva per crash anche «HTTP Error 503» e perdeva
+fino a 7 minuti).
 
 **Lo stesso fatto** si riconosce anche quando i titoli si somigliano poco: due titoli vanno
 insieme se condividono un **nome raro del giorno** (meno del 3% dei titoli del grezzo, scritto
 con la maiuscola a metà frase nei titoli in minuscolo: «Laufey», non «Update»; le case e le
 piattaforme in `MARCHI` non contano) più un po' di somiglianza. I gruppi si fanno per catena, e
-le testate si contano su tutto il grezzo, non solo sul girone della scheda. **Tech e Scienza**
-vogliono almeno una parola del tema (`tema` in `RUBRICHE`); politica, serie TV e film scendono
-di 4 punti. In **Games** le offerte travestite («for Less Than $7», «Try … Now») sono rumore, e
-i titoli a domanda o in prima persona sono opinione (−3).
+le testate si contano su tutto il grezzo, non solo sul girone della scheda. Le voci di **Google
+News** arrivano come «Titolo - Testata»: la testata vera diventa la fonte (così conta come una
+testata in più) e la voce prende un punto e mezzo, perché Google le ordina per quanto girano.
 
-Le regole di Mike, che valgono per tutte:
+Le regole di Mike, che valgono per tutte e due:
 
+- **Una decina di voci, non di più.** Tetto 10 per Games (GTA VI a parte) e 10 per Scienza.
 - **Mai riempire.** Se le voci buone sono tre, sono tre. Se sono due, la terza viene «Dalla
   settimana» (era «Ti sei perso», e si confondeva con «Se te lo fossi perso» della scheda
-  APPLE): la cosa più calda dei giorni scorsi non ancora uscita. Tetti: Games 10, Tech 8, Scienza 5. Una
-  scheda vuota («oggi niente che valga la tua attenzione») è un risultato onesto.
+  APPLE): la cosa più calda dei giorni scorsi non ancora uscita. Una scheda vuota («oggi
+  niente che valga la tua attenzione») è un risultato onesto.
 - **Al massimo due storie «di cui parlano tutti da giorni».** Il resto dev'essere nuovo.
-- **Games**: PlayStation 5 in testa, poi Nintendo, Apple Arcade, le grandi case, le fiere
-  (Lucca Comics, Game Awards…). **Tech**: tutto l'hardware di consumo (il Kindle, le
-  portatili, le cuffie) e quello che *affiora* (Hacker News, Product Hunt) — non software da
-  sviluppatori. **Scienza**: solo ciò che fa alzare lo sguardo, foto che stupiscono, primi
-  assoluti; niente appalti NASA.
+- **Games**: almeno quattro voci PlayStation quando ci sono, il resto generico (Nintendo, le
+  grandi case, le fiere, gli eventi); nell'app due gruppi, «PlayStation» e «Il resto». Le
+  offerte travestite («for Less Than $7», «Try … Now») sono rumore, i titoli a domanda o in
+  prima persona sono opinione (−3).
+- **Scienza**: «una rivista che mette dentro un po' di tutto» — notizie, scoperte recenti, le
+  cose di cui parlano tutti: dalla fisica dei motori all'analisi meteorologica di un
+  incidente aereo, dalla medicina alla nutrizione. **Mai «lo sapevi che».** L'AI resta nella
+  sua scheda (OpenAI che risolve problemi di matematica è AI). Ogni voce porta la
+  `disciplina` (spazio, medicina, fisica, terra, tecnica, storia, natura) come occhiello, e non
+  ce ne sono più di tre per disciplina né più di due per testata. La politica (midterm,
+  elezioni, amministrazione) scende di 8 punti, gli affari della sanità di 4, i premi e le
+  nomine di 3,5, i pezzi a pagamento di STAT di 3.
 - Titolo in italiano, originale in piccolo sotto. Le prime tre voci hanno la foto
   (`images.py`), le altre sono schede brevi di solo testo.
 
-**Nella Magazine** (5 novembre 2026) le tre schede hanno la grammatica delle notizie Apple
+**GTA VI** (5 novembre 2026, Mike: «voglio ogni giorno ciò che scovi in rete, specialmente da
+Reddit, X, forum utenti… ufficiale e non, chicche, curiosità — la radio di The Weeknd per
+esempio»). Una sezione tematizzata in cima alla scheda Games, coi colori di Vice City, che non
+compone lo script ma **un agente su Opus che fa solo quello**, `.claude/agents/gta.md`, con la
+qualità come priorità. `pipeline/gta.py` gli prepara il dossier (`/tmp/corsa/gta-dossier.txt`,
+completo in `data/gta/<giorno>.json`): r/GTA6 (top del giorno, della settimana, novità, in
+fila con una pausa perché Reddit risponde 429), r/GTA filtrato, i post su X linkati aperti
+con fxtwitter, il canale YouTube di Rockstar, le notizie GTA trovate da `rubriche.py`, gli
+appunti di Mike, lo storico dei 14 giorni. Il resto — X, GTAForums (dietro Cloudflare),
+ResetEra — l'agente lo cerca dal web. Scrive **solo** `data/gta/<giorno>-sezione.json`, mai
+l'edizione (la stanno scrivendo il redattore e la regia): la ricopia `rubriche.merge`, in
+`chiudi.py prepara` se l'agente ha già finito, in `chiudi.py fine` (con le foto) se arriva
+dopo. Gira in background in parallelo al redattore, con dieci minuti: non è mai sul percorso
+critico, e l'edizione esce anche senza. Dall'uscita del gioco (19 novembre 2026, da
+riverificare ogni giorno) la sezione racconta anche cosa dicono i giocatori.
+
+```json
+"gta": {"uscita": "2026-11-19", "sintesi": "il tema del giorno nella rete",
+        "voci": [{"id": "gta-…", "tipo": "scoperta", "title": "…", "nota": "…",
+                  "citazione": "…", "citazione_lingua": "en", "fonte": "r/GTA6",
+                  "link": "…", "segnale": "4.200 voti su r/GTA6", "affidabilita": "voce"}]}
+```
+
+`tipo` ∈ `ufficiale` · `scoperta` · `curiosita` · `leak` · `reazione` · `notizia`;
+`affidabilita` ∈ `confermato` · `voce` · `da verificare`. Da 3 a 8 voci; il lint dà errore
+oltre le 8, su tipi sconosciuti e su link già usciti nei 14 giorni prima. Se l'agente non ha
+girato, l'app mostra come ripiego le notizie GTA che `rubriche.py` ha trovato
+(`gta_notizie`).
+
+**Nella Magazine** (5 novembre 2026) le due schede hanno la grammatica delle notizie Apple
 (`renderRubricaMag` in `pipeline/template.html`): in testa la testatina piatta della scheda,
-nel suo colore e col suo disegno — pixel gialli per Games, griglia blu per Tech, **cielo blu
-notte con l'accento giallo per Scienza** (`--night`; il blu pieno resta a Tech) — con il giorno
-e i tre pallini della sigla; poi la prima voce grande, due affiancate, «Anche oggi» in schede
-brevi, «Dalla settimana». Ogni scheda: testata, titolo, la riga, l'originale in corsivo, il
+nel suo colore e col suo disegno — pixel gialli per Games, **cielo blu notte con l'accento
+giallo per Scienza** (`--night`) — con il giorno e i tre pallini della sigla; poi, in Games, la
+sezione GTA VI (`renderGta`: sfondo da tramonto di Vice City, «GTA VI» col VI in sfumatura
+gialla-arancio-rosa, il conto alla rovescia turchese, ogni voce con il filo del colore del suo
+tipo); poi la prima voce grande, due affiancate, i gruppi in schede brevi, «Dalla settimana».
+Ogni scheda: testata, disciplina (in Scienza), titolo, la riga, l'originale in corsivo, il
 piede con il tempo, quanto gira e la stellina. Il tocco apre l'articolo (segnali `o` e `l`).
 
 I pesi stanno in `pipeline/rubriche.py` (`RUBRICHE`): si ritoccano lì, guardando
@@ -379,12 +428,13 @@ Rumor e gossip **si includono**, ma sempre marcati con `tag: "RUMOR"` e una nota
 
 `radar`: **da 0 a 5 voci** brevi, ognuna con `id` (slug stabile, serve al voto) e
 `topic` (l'unità su cui il radar impara). **Il radar è per quello che non ha una scheda
-sua** (31 ottobre 2026, Mike: «se no è un mega doppione»): niente che spetti ad AI, GAMES,
-TECH o SCIENZA. La robotica e i capitali dell'AI vanno nella scheda AI, Hubble in SCIENZA, i
-visori e gli e-reader in TECH, i videogiochi in GAMES. Al radar restano regole e antitrust,
-sicurezza e sorveglianza, piattaforme e social, telecomunicazioni, energia, auto: il
-contorno che tocca Apple e non ha altra casa. In `data/radar_topics.json` i temi delle
-altre schede hanno `"axis"` (`ai`, `games`, `tech`, `spazio`) e stanno fuori dalla
+sua** (31 ottobre 2026, Mike: «se no è un mega doppione»): niente che spetti ad AI, GAMES
+o SCIENZA. La robotica e i capitali dell'AI vanno nella scheda AI, Hubble in SCIENZA, i
+videogiochi in GAMES. Al radar restano regole e antitrust, sicurezza e sorveglianza,
+piattaforme e social, telecomunicazioni, energia, auto, e **dal 5 novembre 2026 l'hardware di
+consumo** che fa concorrenza ad Apple (il Kindle nuovo contro l'iPad mini, i visori, le
+cuffie): la scheda Tech non c'è più. In `data/radar_topics.json` i temi delle
+altre schede hanno `"axis"` (`ai`, `games`, `spazio`) e stanno fuori dalla
 rotazione; il lint dà errore su una voce con uno di quei temi, o con un link già presente
 fra le voci AI o nelle rubriche dello stesso giorno. **Cinque è un tetto, non una quota**:
 se oggi c'è materiale per due voci, sono due; se non ce n'è, il radar non esce. Mai
@@ -1362,7 +1412,8 @@ pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le perse da te (segnali)
-pipeline/rubriche.py     le schede GAMES, TECH, SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
+pipeline/rubriche.py     le schede GAMES e SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
+pipeline/gta.py          il dossier di GTA VI per l'agente `gta` (Reddit, X, YouTube)  ->  data/gta/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
@@ -1404,7 +1455,8 @@ data/missed/             i candidati al ripescaggio, per data
 data/lab/                cosa ci fa la gente con i modelli, per data
 data/verify/cache.json   gli articoli già letti da verify.py, per un mese
 data/eco/                le risposte di Google/Bing News per giorno, riusate da verify.py
-data/social/manual.md    dove incolli a mano i link da X e affini
+data/social/manual.md    dove incolli a mano i link da X e affini (anche quelli su GTA VI)
+data/gta/                il dossier del giorno e la sezione scritta dall'agente (<giorno>-sezione.json)
 app/                     output generato, non modificare a mano
 ```
 
@@ -1529,7 +1581,7 @@ la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava ch
 barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
 
 **Le sezioni sono pillole** col pallino del loro colore (Apple arancione, AI rosso, Games
-giallo, Tech blu, Scienza blu notte con la stella gialla, Più tardi la stellina), e una **pillola nera scivola**
+giallo, Scienza blu notte con la stella gialla, Più tardi la stellina), e una **pillola nera scivola**
 sotto quella attiva; nella barra stretta si rimpiccioliscono. A destra tre pulsanti: la
 **vista** (Classica / Magazine, con la sua icona — un elenco puntato o quattro quadrati), la
 **lente**, e **il menu** di vetro col pallino della sincronizzazione: Tema, Archivio, Diario,

@@ -181,10 +181,15 @@ def main():
     for nome, cmd, tmax in PASSI:
         if nome == "rubriche":
             # come prima: nohup python3 pipeline/rubriche.py > /tmp/rubriche.log 2>&1 &
+            # GTA VI (5 novembre 2026): gta.py viene subito dopo, nello stesso processo in
+            # background, perche' il suo dossier usa le notizie GTA che rubriche.py ha trovato.
+            # Scrive /tmp/corsa/gta-dossier.txt, che l'agente `gta` aspetta con aspetta.py.
+            catena = (f'"{sys.executable}" pipeline/rubriche.py; '
+                      f'"{sys.executable}" pipeline/gta.py > /tmp/gta.log 2>&1')
             with open(RUBRICHE_LOG, "w") as log:
-                p = subprocess.Popen([sys.executable, os.path.join(PIPE, "rubriche.py")], cwd=ROOT,
+                p = subprocess.Popen(["/bin/sh", "-c", catena], cwd=ROOT,
                                      stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
-            print(f"- rubriche: partito in background (pid {p.pid}), log {RUBRICHE_LOG}")
+            print(f"- rubriche + gta: partiti in background (pid {p.pid}), log {RUBRICHE_LOG} e /tmp/gta.log")
             continue
         stato, sec, out, path = run(nome, cmd, tmax, args.dir)
         kb = len(out.encode("utf-8")) / 1024

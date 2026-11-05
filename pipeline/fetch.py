@@ -230,6 +230,10 @@ def parse_feed_full(source, blob, cutoff, now):
             blob = gzip.decompress(blob).lstrip(b"\xef\xbb\xbf \t\r\n")
         except Exception:
             pass
+    # RSS 1.0 (RDF: Nature, Science) mette gli <item> nel namespace di default
+    # purl.org/rss/1.0: senza toglierlo `.//item` non ne trova nessuno e il feed
+    # sembra vuoto (5 novembre 2026)
+    blob = blob.replace(b'xmlns="http://purl.org/rss/1.0/"', b"")
     try:
         root = ET.fromstring(blob)
     except Exception:

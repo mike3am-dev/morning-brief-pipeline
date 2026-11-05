@@ -43,7 +43,7 @@ PRIMARY = {"Apple Newsroom", "Apple Developer", "Apple Developer Releases"}
 
 # Fonti larghe: non parlano di Apple, servono al radar. Sono la materia prima
 # delle sonde — senza, il radar esplora fra gli avanzi delle testate Apple.
-BROAD = {"Ars Technica", "TechCrunch"}
+BROAD = {"Ars Technica", "TechCrunch", "Engadget", "Gizmodo", "TechRadar", "Ars Technica Gadget"}
 
 # Fonti AI: i laboratori quando parlano in prima persona, piu' chi li segue di
 # mestiere. Alimentano il presidio AI del radar, che e' una casella fissa.
@@ -54,6 +54,9 @@ AI = {"OpenAI", "Google DeepMind", "The Decoder", "TechCrunch AI",
       "Ars Technica AI", "MIT Technology Review AI",
       # la ricerca di Apple in prima persona: il lab "apple" della scheda AI (5 novembre 2026)
       "Apple Machine Learning",
+      # 5 novembre 2026: venti fonti per scheda (docs/schede/fonti-2026-11-05.md)
+      "Google AI Blog", "NVIDIA Blog", "The Verge AI", "Wired AI", "ZDNet AI", "MIT News AI",
+      "Interconnects", "Import AI",
       # i robot stanno nella scheda AI (2 ottobre 2026: "lo vedo a braccetto con l'AI")
       "The Robot Report", "IEEE Spectrum Robotica"}
 
@@ -61,10 +64,24 @@ AI = {"OpenAI", "Google DeepMind", "The Decoder", "TechCrunch AI",
 # ciascuna dal suo girone. Non passano dalla scrittura del mattino: le
 # compone pipeline/rubriche.py. Le fonti sono quelle provate quel giorno.
 GAMES = {"Push Square", "PlayStation Blog", "Nintendo Life", "VGC",
-         "GamesIndustry.biz", "Kotaku", "IGN", "Eurogamer", "Rock Paper Shotgun"}
-TECH = {"Engadget", "Hackaday", "Liliputing", "Gizmodo", "Hacker News", "Product Hunt",
-        "TechRadar", "Ars Technica Gadget"}
-SPAZIO = {"SpaceNews", "Universe Today", "NASA", "Media INAF", "Ars Technica Scienza", "NASA APOD"}
+         "GamesIndustry.biz", "Kotaku", "IGN", "Eurogamer", "Rock Paper Shotgun",
+         # 5 novembre 2026
+         "PlayStation LifeStyle", "Gematsu", "GameSpot", "Polygon", "Nintendo Everything",
+         "Insider Gaming", "Game Informer", "GamesRadar", "Everyeye",
+         "Google News GTA VI", "Google News Rockstar"}
+# La scheda Tech e' stata tolta il 5 novembre 2026 (Mike: «niente tech»): l'hardware di
+# consumo va al radar della scheda APPLE (il Kindle e' il concorrente dell'iPad mini).
+# Le testate generaliste passano al girone `larga`, il resto in panchina.
+TECH = set()
+# Scienza (ex Spazio): «una rivista che mette dentro un po' di tutto» — scoperte, medicina,
+# natura, fisica, motori, cose di cui tutti parlano. Le chiavi dei dati restano `spazio`.
+SPAZIO = {"NASA", "Media INAF", "Ars Technica Scienza", "NASA APOD",
+          "Nature", "Science", "Quanta Magazine", "Science News", "Scientific American",
+          "Guardian Science", "Guardian Environment", "BBC Science", "BBC Health",
+          "NYT Science", "NYT Health", "STAT", "MIT News", "The Conversation", "Wired Science",
+          "Il Post Scienza", "ANSA Scienza", "ESA",
+          # le storie «di cui parlano tutti»: Google News le ordina per quanto girano
+          "Google News Scienza", "Google News Science US", "Google News Health US"}
 
 # Fonti da banco: la concorrenza e chi la prova. Non sono materia da rassegna
 # Apple, sono materia da lavoro — un cliente che chiede del pieghevole Samsung
@@ -178,6 +195,49 @@ SEED = {
     "Media INAF": "https://www.media.inaf.it/feed/",
     "Ars Technica Scienza": "https://arstechnica.com/science/feed/",
     "NASA APOD": "https://apod.com/feed.rss",
+
+    # 5 novembre 2026 — venti fonti per scheda
+    "Google AI Blog": "https://blog.google/technology/ai/rss/",
+    "NVIDIA Blog": "https://blogs.nvidia.com/feed/",
+    "The Verge AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    "Wired AI": "https://www.wired.com/feed/tag/ai/latest/rss",
+    "ZDNet AI": "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
+    "MIT News AI": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "Interconnects": "https://www.interconnects.ai/feed",
+    "Import AI": "https://importai.substack.com/feed",
+    "PlayStation LifeStyle": "https://www.playstationlifestyle.net/feed/",
+    "Gematsu": "https://www.gematsu.com/feed",
+    "GameSpot": "https://www.gamespot.com/feeds/mashup/",
+    "Polygon": "https://www.polygon.com/rss/index.xml",
+    "Nintendo Everything": "https://nintendoeverything.com/feed/",
+    "Insider Gaming": "https://insider-gaming.com/feed/",
+    "Game Informer": "https://gameinformer.com/rss.xml",
+    "GamesRadar": "https://www.gamesradar.com/rss/",
+    "Everyeye": "https://www.everyeye.it/feed/",
+    # GTA VI non ha un feed ufficiale: Google News cerca per noi (senza chiave)
+    "Google News GTA VI": "https://news.google.com/rss/search?q=%22GTA+6%22+OR+%22GTA+VI%22+when:2d&hl=en-US&gl=US&ceid=US:en",
+    "Google News Rockstar": "https://news.google.com/rss/search?q=Rockstar+Games+when:2d&hl=en-US&gl=US&ceid=US:en",
+    "Nature": "https://www.nature.com/nature.rss",
+    "Science": "https://www.science.org/rss/news_current.xml",
+    "Quanta Magazine": "https://www.quantamagazine.org/feed/",
+    "Science News": "https://www.sciencenews.org/feed",
+    "Scientific American": "http://rss.sciam.com/ScientificAmerican-Global",
+    "Guardian Science": "https://www.theguardian.com/science/rss",
+    "Guardian Environment": "https://www.theguardian.com/environment/rss",
+    "BBC Science": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+    "BBC Health": "https://feeds.bbci.co.uk/news/health/rss.xml",
+    "NYT Science": "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+    "NYT Health": "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
+    "STAT": "https://www.statnews.com/feed/",
+    "MIT News": "https://news.mit.edu/rss/feed",
+    "The Conversation": "https://theconversation.com/global/articles.atom",
+    "Wired Science": "https://www.wired.com/feed/category/science/latest/rss",
+    "Il Post Scienza": "https://www.ilpost.it/scienza/feed/",
+    "ANSA Scienza": "https://www.ansa.it/canale_scienza_tecnica/notizie/scienzaetecnica_rss.xml",
+    "ESA": "https://www.esa.int/rssfeed/TopNews",
+    "Google News Scienza": "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=it&gl=IT&ceid=IT:it",
+    "Google News Science US": "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=en-US&gl=US&ceid=US:en",
+    "Google News Health US": "https://news.google.com/rss/headlines/section/topic/HEALTH?hl=en-US&gl=US&ceid=US:en",
 }
 
 

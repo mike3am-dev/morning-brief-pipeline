@@ -72,7 +72,7 @@ RADAR_SLOTS, RADAR_PROBES = 5, 2
 # Xreal in TECH. Al radar resta quello che non ha un'altra casa: regole,
 # sicurezza, sorveglianza, piattaforme, telecomunicazioni, energia, auto.
 AI_AXIS = "ai"
-OTHER_HOMES = {"ai", "games", "tech", "spazio"}
+OTHER_HOMES = {"ai", "games", "spazio"}
 
 
 # ------------------------------------------------------------------ lettura

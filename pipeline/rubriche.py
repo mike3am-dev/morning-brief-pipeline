@@ -46,7 +46,7 @@ import common as C
 
 DIR = os.path.join(C.ROOT, "data", "rubriche")
 POOL = os.path.join(DIR, "pool.json")
-KEYS = ("games", "tech", "spazio")
+KEYS = ("games", "spazio")        # la scheda Tech e' stata tolta il 5 novembre 2026
 
 # ---------------------------------------------------------------- le regole
 
@@ -73,6 +73,20 @@ FUORI_TEMA = re.compile(
     r"box office|movie|film|trailer|cast)\b", re.I)
 APPLE = re.compile(r"\b(apple|iphone|ipad|macbook|ios \d|macos|airpods|vision pro|apple watch)\b", re.I)
 AI_WORDS = re.compile(r"\b(ai|a\.i\.|gpt|openai|chatgpt|llm|chatbot|claude|gemini|copilot|anthropic)\b", re.I)
+
+SCIENZA_TEMA = (
+    r"\b(space|spazio|nasa|esa|spacex|rocket|razzo|orbit\w*|launch\w*|lancio|satellit\w*|astronaut\w*|moon|luna|mars|marte|"
+    r"planet\w*|pianet\w*|star|stell\w*|galax\w*|galassi\w*|nebula|nebulosa|comet\w*|asteroid\w*|black hole|buco nero|"
+    r"universe|universo|cosmic\w*|cosmo|telescop\w*|hubble|webb|jwst|artemis|starship|eclipse|eclissi|aurora\w*|sun|sole|swift|"
+    r"science|scienz\w*|scientists?|scienziat\w*|study|studio|research\w*|ricerca|ricercator\w*|discover\w*|scopert\w*|"
+    r"species|specie|fossil\w*|dinosaur\w*|evol\w+|animal\w*|dna|gene\w*|genom\w*|brain|cervello|cells?|cellul\w*|"
+    r"virus|vaccin\w*|cancer|cancro|tumou?r\w*|trial|drug|farmac\w*|heart|cuore|health|salute|disease|patient\w*|medic\w*|"
+    r"alzheimer|diabet\w*|obesity|ozempic|aging|ageing|sleep|nutrition|diet|milk|latte|meat|dairy|plant-based|"
+    r"physic\w*|fisic\w*|quantum|quantist\w*|particle\w*|cern|nuclear|uranium|laser|fusion|atom\w*|chemi\w*|chimic\w*|molecul\w*|"
+    r"climate|clima|weather|el ni[nñ]o|storm|typhoon|volcan\w*|vulcan\w*|earthquake|terremoto|glacier\w*|flood\w*|rain\w*|"
+    r"ocean\w*|seas?|polar|ancient|archaeolog\w*|archeolog\w*|roman|tribe|mummy|tomb|"
+    r"aircraft|flight|plane|aereo|volo|crash|engine|motore|battery|batteria|reactor|robot\w*|energy|energia|"
+    r"dog|dogs|cats?|bird\w*|whale\w*|dolphin\w*|insect\w*|bee|bees|chihuahua\w*|coyote|wildlife|ecosystem\w*|pollution|plastic)\b")
 
 RUBRICHE = {
     "games": {
@@ -105,80 +119,116 @@ RUBRICHE = {
             (r"\b(skin|cosmetic|battle pass|season \d|loot|mod[s]? )\b", -1.5),
         ],
     },
-    "tech": {
-        "nome": "Tech", "max": 8, "soglia": 6.0,
-        # senza almeno una di queste parole non e' una voce di Tech
-        "tema": r"\b(kindle|e-?readers?|e-?ink|handhelds?|consoles?|cameras?|drones?|headphones|earbuds|"
-                r"watch(es)?|smartwatch|speakers?|projectors?|printers?|3d print\w*|keyboards?|mouse|tablets?|"
-                r"laptops?|notebooks?|pc|desktop|monitors?|displays?|screens?|tvs?|oled|glasses|rings?|"
-                r"wearables?|phones?|smartphones?|pixel|galaxy|chips?|cpus?|gpus?|processors?|ram|ssd|"
-                r"batter(y|ies)|chargers?|solar|e-?bikes?|scooters?|cars?|ev|robots?|vacuum|router|wi-?fi|"
-                r"raspberry pi|esp32|arduino|hardware|gadgets?|devices?|prototype|teardown|diy|kickstarter|"
-                r"steam deck|rog ally|gopro|dji|insta360|sonos|bose|framework|nothing|telescopes?|lego|"
-                r"satellite|starlink|vinyl|radio|synth\w*|retro)\b",
-        "fonti": {"Hacker News": 1.8, "Liliputing": 1.6, "Hackaday": 2.4, "Engadget": 2.2,
-                  "Ars Technica Gadget": 2.2, "Gizmodo": 1.6, "TechRadar": 0.6, "Product Hunt": 1.2},
-        "boost": [
-            (r"\b(launch|launches|launched|announces?|introduces?|unveil(s|ed)?|debuts?|hands-on|first look|"
-             r"new [\w-]+ (reader|handheld|console|camera|drone|headphones|earbuds|watch|speaker|"
-             r"projector|printer|keyboard|tablet|laptop|glasses|ring))\b", 1.8),
-            (r"\b(kindle|e-?reader|e-?ink)\b", 2.6),
-            (r"\b(steam deck|handheld|rog ally|switch 2 dock|gopro|dji|insta360|"
-             r"drone|3d print|smart glasses|wearable|headphones|earbuds|sonos|bose|nothing|"
-             r"framework|raspberry pi|esp32|arduino|open[- ]source hardware|retro)\b", 1.6),
-            (r"\b(world'?s first|prototype|diy|homemade|built|open[- ]source|teardown|"
-             r"modded?|hacked?|crowdfund|kickstarter|backers?)\b", 1.6),
-            (r"\b(battery|solid-state|ev |charger|solar|e-?bike|scooter|telescope)\b", 0.8),
-        ],
-        "penalita": [
-            (r"\b(review|recensione)\b", -1.2),
-            (r"\b(best|top \d+|ranked)\b", -2.5),
-            (r"\b(linux|kernel|rust|python|javascript|api|sdk|framework \d|vulnerabilit|cve)\b", -1.5),
-            (r"\b(windows|android \d+|chrome|firefox|microsoft)\b", -1.0),
-            (r"\b(roundup|news roundup|weekly|podcast|newsletter)\b", -2.5),
-            (r"\b(git|sveltekit|svelte|react|database|vector|serverless|cloudflare|postgres|sql|compiler|"
-             r"typescript|kubernetes|docker|devops|startup|funding|raises|series [a-d]|valuation)\b", -3.0),
-        ],
-    },
     "spazio": {
-        # la chiave resta "spazio" (gironi, archivio, segnali), la scheda si chiama Scienza
-        "nome": "Scienza", "max": 5, "soglia": 6.0,
-        "tema": r"\b(space|spazio|nasa|esa|spacex|rocket|razzo|orbit\w*|launch\w*|lancio|satellit\w*|"
-                r"astronaut\w*|moon|luna|mars|marte|planet\w*|pianet\w*|star|stell\w*|galax\w*|galassi\w*|"
-                r"nebula|nebulosa|comet\w*|asteroid\w*|black hole|buco nero|universe|universo|cosmic|cosmo|"
-                r"telescope|telescopio|hubble|webb|jwst|artemis|starship|eclipse|eclissi|aurora|sun|sole|"
-                r"science|scienz\w*|scientists?|scienziat\w*|study|studio|research\w*|ricerca|discover\w*|"
-                r"scopert\w*|species|specie|fossil\w*|dinosaur\w*|evolution|evoluzione|animals?|animal[ei]|"
-                r"brain|cervello|cells?|cellul\w*|genes?|gene|dna|virus|vaccin\w*|cancer|cancro|tumor\w*|"
-                r"trial|drug|farmac\w*|physics|fisica|quantum|quantistic\w*|particle\w*|chemistry|chimica|"
-                r"molecul\w*|climate|clima|ocean\w*|volcan\w*|vulcan\w*|earthquake|terremoto|glacier\w*)\b",
-        "fonti": {"NASA APOD": 3.0, "Media INAF": 2.4, "Universe Today": 1.6, "Ars Technica Scienza": 2.4,
-                  "SpaceNews": 1.8, "NASA": 1.2},
+        # la chiave resta "spazio" (gironi, archivio, segnali), la scheda si chiama Scienza:
+        # «una rivista che mette dentro un po' di tutto» — notizie e scoperte recenti, le cose
+        # di cui parlano tutti. Mai «lo sapevi che». L'AI ha la sua scheda.
+        "nome": "Scienza", "max": 10, "soglia": 4.2,
+        "fonti": {"Nature": 2.5, "Science": 2.5, "Quanta Magazine": 2.4, "Science News": 2.2,
+                  "Scientific American": 1.8, "Guardian Science": 2.2, "Guardian Environment": 1.4,
+                  "BBC Science": 2.0, "BBC Health": 1.2, "NYT Science": 2.4, "NYT Health": 1.6,
+                  "STAT": 0.8, "MIT News": 1.2, "The Conversation": 1.0, "Wired Science": 2.0,
+                  "Ars Technica Scienza": 2.4, "Il Post Scienza": 2.2, "ANSA Scienza": 2.0,
+                  "Media INAF": 2.0, "ESA": 2.0, "NASA": 1.0, "NASA APOD": 2.0},
+        "tema": SCIENZA_TEMA,
         "boost": [
-            (r"\b(launch|launches|launched|lancio|lancia|decolla|liftoff|crew|astronaut|equipaggio)\b", 2.0),
-            (r"\b(webb|hubble|artemis|starship|starliner|spacex|blue origin|new glenn|vulcan|ariane|"
-             r"rocket lab|chandrayaan|perseverance|curiosity|voyager|parker|juno|europa|titan|jwst)\b", 2.6),
-            (r"\b(black hole|buco nero|exoplanet|esopianeta|asteroid|asteroide|comet|cometa|supernova|"
-             r"galax(y|ies)|galassi[ae]|nebula|nebulosa|mars|marte|moon|luna|venus|venere|jupiter|"
-             r"saturn|solar flare|aurora|eclipse|eclissi|dark matter|materia oscura|big bang)\b", 1.6),
-            (r"\b(first|primo|prima|record|discover(s|ed|y)?|scoperta|mystery|mistero|never before|"
-             r"unprecedented|image|immagine|photo|foto|video|mysteri\w+|collisions?|shatter\w*)\b", 1.2),
+            (r"\b(discover(s|ed|y|ies)?|reveal(s|ed)?|found|finds?|first|record|never before|unexpected|surpris\w+|"
+             r"mystery|hidden|evolv\w+|breakthrough|new study|researchers?|scientists?|"
+             r"scopert\w+|rivela\w*|primo|prima|record|inatteso|mistero|ricercatori|studio)\b", 1.6),
+            (r"\b(trial|clinical|journal|peer-reviewed|phase [123]|fda approv\w+|approved)\b", 1.0),
+            (r"\b(dinosaur\w*|dinosaur[oi]|fossil\w*|ancient|archaeolog\w+|dna|genom\w+|species|specie|extinct\w*)\b", 1.4),
+            (r"\b(webb|hubble|jwst|artemis|starship|mars|marte|moon|luna|black hole|buco nero|exoplanet|esopianeta|"
+             r"asteroid\w*|comet\w*|supernova|galax\w+|nebula|eclipse|aurora|telescope|telescopio|swift)\b", 1.4),
+            (r"\b(particle|quantum|cern|physics|fisic\w+|quantist\w+|nuclear|uranium|laser|fusion|superconduct\w+)\b", 1.4),
+            (r"\b(el ni[nñ]o|volcan\w+|vulcan\w+|supervolc\w+|earthquake|terremoto|storm|typhoon|glacier|"
+             r"ghiacciai\w*|flood|wettest|heatwave|polar vortex|meteo\w*)\b", 1.2),
+            (r"\b(brain|cervello|heart|cuore|cancer|tumou?r\w*|alzheimer|diabet\w+|obesity|ozempic|vaccin\w+|"
+             r"antibiotic\w*|aging|ageing|sleep|nutrition|diet|milk|latte|meat)\b", 1.0),
         ],
         "penalita": [
-            (r"\b(awards?|contract|procurement|appalt|agreements?|partner(s|ship)?|strategy|"
-             r"quarter|manifest|budget|workforce|logistics|services? (agreement|contract))\b", -3.0),
-            (r"\b(10 things|rains|flood|wildfire|earth observation|landsat|hurricane|climate)\b", -3.0),
-            (r"\b(world space week|skywatching tips|what'?s up)\b", -0.5),
+            # politica e potere: i midterm riempiono STAT, The Conversation e Scientific American
+            (r"\b(midterms?|election\w*|elezion\w+|trump|biden|harris|democrat\w*|republican\w*|congress|senate|"
+             r"white house|administration|maha|blue wave|voters?|super pac|lame duck|sanders|wyden|iran|war)\b", -8.0),
+            # affari della sanita' e della farma, che non sono scoperte
+            (r"\b(medicare|medicaid|cvs|insurer\w*|reimbursement|merger|stock market|stocks|share price|earnings|layoffs?|"
+             r"funding bill|startup|raises|valuation|commercial debut|cuts staff|executive|alleges)\b", -4.0),
+            (r"\b(awards? |contract|procurement|appalt|premio|prin |nomin\w+|student[si]?\b|inspiration tour|"
+             r"space grant|remembrances|has died|obituary|podcast|opinion:|country diary|video)\b", -3.5),
+            (r"\b(nhs|midwives|trust buildings|health trust|care home|council)\b", -3.0),
+            (r"stat\+:", -3.0),                      # articoli a pagamento di STAT
+            (r"\b(10 things|what'?s up|skywatching tips)\b", -1.0),
         ],
     },
 }
+# la disciplina: l'occhiello della voce in Scienza
+DISCIPLINE = [
+    ("spazio", r"\b(space|spazio|nasa|esa|mars|marte|moon|luna|telescop\w+|orbit\w*|asteroid\w*|galax\w+|planet\w*|pianet\w+|"
+               r"exoplanet|esopianet\w+|comet\w*|black hole|buco nero|jwst|hubble|webb|swift|artemis|star|stell\w+|nebula|eclips\w+|"
+               r"aurora\w*|meteor\w*|satellit\w+|astronom\w+|astrofisic\w+|universe|universo|cosmic\w*|enceladus|sun|sole)\b"),
+    ("medicina", r"\b(cancer|tumou?r\w*|drug|trial|vaccin\w+|disease|patient\w*|health|brain|cervello|heart|cuore|"
+                 r"alzheimer|diabet\w+|fda|surgery|clinical|antibiotic\w*|ozempic|obesity|estrogen|aging|ageing|sleep|"
+                 r"nutrition|deficienc\w+|micronutrient\w*|diagnos\w+|farmac\w+|salute|medic\w+|measles|cocaine|childbirth|"
+                 r"iron|milk|latte|dairy|diet)\b"),
+    ("fisica", r"\b(particle|quantum|physic\w*|fisic\w+|quantist\w+|cern|zeptovers\w*|nuclear|uranium|laser|atom\w*|fusion|superconduct\w+|einstein)\b"),
+    ("terra", r"\b(climate|clima|weather|el ni[nñ]o|storm|typhoon|volcan\w+|vulcan\w+|supervolc\w+|earthquake|terremoto|"
+              r"glacier|ghiacciai\w*|flood|rain\w*|wettest|ocean\w*|sea|seas|polar|vortex|heatwave|drought|meteo\w*|fish kill|pollution|plastic)\b"),
+    ("tecnica", r"\b(aircraft|flight|plane|aereo|volo|crash|engine|motore|battery|batteria|reactor|reattore|robot\w*|energy|energia|"
+                r"x-70|navigation|car|auto|vehicle|rocket|razzo|chip|computer)\b"),
+    ("storia", r"\b(ancient|archaeolog\w+|archeolog\w+|roman\w*|medieval|history|historians?|tribe|barbarian|king|queen|mummy|"
+               r"tomb|bronze age|neolithic|civili[sz]ation)\b"),
+    ("natura", r"\b(species|specie|animal\w*|dinosaur\w*|dinosaur[oi]|fossil\w*|evolv\w+|evolution|dna|genom\w+|gene|genes|bird\w*|"
+               r"dog|dogs|cats?|chihuahua\w*|coyote|wildlife|plant\w*|forest\w*|insect\w*|bee|bees|whale\w*|dolphin\w*|"
+               r"extinct\w*|ecosystem\w*|marine|fauna|flora|snake\w*|fungi|fungus|mushroom\w*|earwax)\b"),
+]
+
+
+def disciplina(title):
+    low = (title or "").lower()
+    for nome, rx in DISCIPLINE:
+        if re.search(rx, low, re.I):
+            return nome
+    return "scienza"
+
+
+# ---- Games: PlayStation, il resto, e GTA VI a parte (5 novembre 2026)
+PS_RX = re.compile(
+    r"\b(ps5|ps6|ps4|playstation|state of play|ps plus|psvr\w*|sony interactive|naughty dog|santa monica|insomniac|"
+    r"guerrilla|bluepoint|bend studio|astro bot|god of war|ghost of|horizon|spider-man|gran turismo|"
+    r"the last of us|returnal|ratchet|death stranding|intergalactic|wolverine|marathon|uncharted|bungie|pssr)\b", re.I)
+GTA_RX = re.compile(r"\bGTA\b|grand theft auto|rockstar|vice city|\bleonida\b|\blucia\b|take-two|zelnick", re.I)
+# titoli su GTA che non sono notizie
+GTA_NO = re.compile(r"unlocked \d+|makeover|club space|podcast|reaction|meme|mod\b|fan[- ]?made|wallpaper|"
+                    r"giveaway|tier list|where to buy|price of|preorder bonus", re.I)
+GTA_FORTI = {"IGN", "GamesIndustry.biz", "VGC", "Eurogamer", "GameSpot", "Insider Gaming", "GamesRadar", "Polygon",
+             "Kotaku", "PlayStation Blog", "Game Informer", "Push Square", "Everyeye"}
+GTA_MAX = 5
 # i feed che portano ore e punti: scritti in un modo che solo noi capiamo
 HN = re.compile(r"Points:\s*(\d+)", re.I)
 HN_C = re.compile(r"#\s*Comments:\s*(\d+)", re.I)
 MAX_SATURI = 2          # storie "di cui parlano tutti da giorni": al massimo due
 MIN_TOP = 3             # sotto questa soglia di voci buone, si completa con "ti sei perso"
 POOL_DAYS = 8
-LANG_IT = {"Media INAF"}
+LANG_IT = {"Media INAF", "Il Post Scienza", "ANSA Scienza", "Everyeye"}
+
+
+# ---------------------------------------------------------------- Google News
+
+def gn_prepara(a):
+    """Le voci di Google News arrivano come «Titolo - Testata» con un indirizzo di
+    rinvio. La testata vera diventa la fonte (cosi' conta come una testata in piu'
+    quando altri la raccontano), il titolo si ripulisce. Segna se e' italiana."""
+    if not str(a.get("source", "")).startswith("Google News"):
+        return a
+    a = dict(a)
+    t = a.get("title", "")
+    m = re.match(r"^(.*\S)\s+[-–—]\s+([^-–—]{2,40})$", t)
+    if m:
+        a["title"], a["source"] = m.group(1).strip(), m.group(2).strip()
+    else:
+        a["source"] = "Google News"
+    a["_gn"] = True
+    a["_it"] = str(a.get("_origine", "")).endswith("Scienza")
+    return a
 
 
 # ---------------------------------------------------------------- punteggio
@@ -195,10 +245,16 @@ def score(rub, a):
         return -9.0
     if rub == "tech" and APPLE.search(t):
         return -9.0            # sta gia' nell'edizione Apple
+    if rub == "spazio" and AI_WORDS.search(t) and not re.search(r"\b(brain|cervello|drug|cancer|dna|protein\w*|climate|physics)\b", low):
+        return -9.0            # l'AI ha la sua scheda
     # Tech e Scienza: senza una parola del tema non e' una voce della scheda
     if cfg.get("tema") and not re.search(cfg["tema"], low, re.I):
         return -9.0
-    s = cfg["fonti"].get(a["source"], 0.8) + fresh(a["age_hours"])
+    # la scienza invecchia piano: una scoperta di ieri e' ancora una notizia
+    h = a["age_hours"]
+    s = cfg["fonti"].get(a["source"], 0.8) + (fresh(h) if rub != "spazio" else 3.0 if h < 12 else 2.2 if h < 24 else 1.2 if h < 36 else 0.0)
+    if a.get("_gn"):
+        s += 1.5               # Google News ordina per quanto gira: e' il segnale «ne parlano tutti»
     for rx, w in cfg["boost"]:
         if re.search(rx, low, re.I):
             s += w
@@ -222,7 +278,7 @@ def score(rub, a):
         s -= 1.0
     if OPINIONE.search(t):
         s -= 3.0
-    if rub in ("tech", "spazio") and FUORI_TEMA.search(t):
+    if rub == "tech" and FUORI_TEMA.search(t):
         s -= 4.0
     return round(s, 2)
 
@@ -364,6 +420,59 @@ def load_pool(day):
 
 # ---------------------------------------------------------------- scelta
 
+def compose(rub, good, tetto):
+    """Dalla lista ordinata per punteggio alla scelta finale.
+
+    Games: almeno quattro voci PlayStation se ci sono (la scheda ha PS5 in testa), il resto
+    generico. Scienza: mai piu' di tre per disciplina e di due per testata, cosi' non diventa
+    la scheda di un solo argomento."""
+    if rub == "games":
+        ps = [g for g in good if PS_RX.search(g["title"])]
+        resto = [g for g in good if not PS_RX.search(g["title"])]
+        scelti = ps[:4] + resto[:max(0, tetto - len(ps[:4]))]
+        if len(scelti) < tetto:
+            scelti += [g for g in ps[4:]][:tetto - len(scelti)]
+        return sorted(scelti, key=lambda x: -x["_s"])[:tetto]
+    if rub == "spazio":
+        da, per_testata, out = {}, {}, []
+        for g in good:
+            d = disciplina(g["title"])
+            if da.get(d, 0) >= 3 or per_testata.get(g["source"], 0) >= 2:
+                continue
+            da[d] = da.get(d, 0) + 1
+            per_testata[g["source"]] = per_testata.get(g["source"], 0) + 1
+            out.append(g)
+            if len(out) >= tetto:
+                break
+        return out
+    return good[:tetto]
+
+
+def gta_scelta(items, hist, rare, altri):
+    """GTA VI a parte: fino a cinque voci, solo se c'e' una notizia (mai riempire).
+    Esce l'11 novembre 2026 +8: oggi ne parlano tutti, quindi si chiede che la cosa sia
+    detta da piu' testate, o da una forte e fresca; e non e' gia' uscita nei giorni prima."""
+    cand = []
+    for a in items:
+        if not GTA_RX.search(a["title"]) or GTA_NO.search(a["title"]):
+            continue
+        a = dict(a)
+        a["_s"] = round(RUBRICHE["games"]["fonti"].get(a["source"], 1.0) + fresh(a["age_hours"]) +
+                        (1.0 if a["source"] in GTA_FORTI else 0.0), 2)
+        cand.append(a)
+    prev = [t for t, _, _ in hist["games"]]
+    shown = {C.norm_url(l) for _, l, _ in hist["games"]}
+    out = []
+    for g in cluster(cand, rare, []):
+        if g["_n"] < 2 and not (g["source"] in GTA_FORTI and g["age_hours"] < 12):
+            continue
+        if C.norm_url(g["link"]) in shown or any(C.similarity(g["title"], t, cross_language=False) >= 0.5 for t in prev):
+            continue
+        g["_gta"] = True
+        out.append(g)
+    return sorted(out, key=lambda x: -x["_s"])[:GTA_MAX]
+
+
 def choose(rub, items, hist, pool, day, debug=False, rare=frozenset(), altri=()):
     cfg = RUBRICHE[rub]
     cand = []
@@ -392,7 +501,7 @@ def choose(rub, items, hist, pool, day, debug=False, rare=frozenset(), altri=())
             g["_s"] = round(g["_s"] - 2.0, 2)
             g["_continua"] = True
         good.append(g)
-    good = sorted(good, key=lambda x: -x["_s"])[:cfg["max"]]
+    good = compose(rub, sorted(good, key=lambda x: -x["_s"]), cfg["max"])
 
     # il pool dei giorni prima: tutto cio' che e' passato la soglia, per "ti sei perso"
     persi = []
@@ -540,16 +649,22 @@ def shape(rub, g, tr, top):
         if pts:
             nota = f"{int(pts.group(1)):,} punti".replace(",", ".") + \
                    (f" e {com.group(1)} commenti" if com else "") + " su Hacker News"
-    if g["source"] in LANG_IT:
+    if g["source"] in LANG_IT or g.get("_it"):
         title, nota = orig, first_sentence(g.get("summary"))
     it = {
         "id": hashlib.sha1(g["link"].encode()).hexdigest()[:8],
         # `orig` c'e' sempre quando il titolo e' tradotto (anche se uguale, un nome
         # proprio): senza, la voce e' ancora da tradurre e il lint lo dice
-        "title": title, "orig": orig if tradotto and g["source"] not in LANG_IT else None, "nota": nota,
+        "title": title, "orig": orig if tradotto and not (g["source"] in LANG_IT or g.get("_it")) else None, "nota": nota,
         "source": g["source"], "link": g["link"],
         "ore": int(g.get("age_hours", 0)), "score": g["_s"],
     }
+    if rub == "spazio":
+        it["disciplina"] = disciplina(orig)
+    if rub == "games":
+        it["gruppo"] = "gta" if g.get("_gta") else ("playstation" if PS_RX.search(orig) else "generico")
+    if g["source"] in LANG_IT or g.get("_it"):
+        it["lingua"] = "it"
     if g.get("_n", 1) > 1:
         it["testate"] = g["_n"]
     if g.get("_continua"):
@@ -568,10 +683,17 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
     arts = raw.get("items", []) if isinstance(raw, dict) else raw
     # Hacker News non e' una testata: porta l'argomento di cui discute e i punti
     hist, pool = history(day), load_pool(day)
+    # Google News: la testata vera al posto di «Google News», titolo ripulito
+    arts = [gn_prepara(dict(a, _origine=a.get("source"))) for a in arts]
     rare = rari([a.get("title", "") for a in arts])
     result, plan, newpool = {}, {}, []
+    gta = []
     for rub in KEYS:
         items = [dict(a, orig=a["title"]) for a in arts if a.get("tier") == rub]
+        if rub == "games":
+            # GTA VI ha la sua sezione: via dalla lista, e si sceglie a parte
+            gta = gta_scelta(items, hist, rare, arts)
+            items = [a for a in items if not GTA_RX.search(a["title"])]
         # il titolo che cerchiamo e' quello originale, che resta
         good, persi, groups = choose(rub, items, hist, pool, day, debug, rare, arts)
         plan[rub] = (good, persi)
@@ -580,7 +702,8 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
                 newpool.append({"rub": rub, "title": g["title"], "orig": g["orig"], "link": g["link"],
                                 "source": g["source"], "score": g["_s"], "date": day,
                                 "summary": (g.get("summary") or "")[:380], "age_hours": g["age_hours"]})
-    need = {rub: [g for g in plan[rub][0] + plan[rub][1] if g["source"] not in LANG_IT] for rub in KEYS}
+    need = {rub: [g for g in plan[rub][0] + plan[rub][1] + (gta if rub == "games" else [])
+                  if g["source"] not in LANG_IT and not g.get("_it")] for rub in KEYS}
     if tradurre:
         tr, esiti = traduci(need)
     else:
@@ -595,13 +718,17 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
         rows = [shape(rub, g, by_id.get(id(g), {}), top=i < 3) for i, g in enumerate(good)]
         rows += [shape(rub, g, by_id.get(id(g), {}), top=False) for g in persi]
         result[rub] = rows
+        if rub == "games":
+            # GTA VI ha la sua sezione: le notizie sono solo i candidati per l'agente `gta`
+            # (pipeline/gta.py) e il ripiego se l'agente non gira
+            result["gta"] = [shape(rub, g, by_id.get(id(g), {}), top=False) for g in gta]
 
     for rub in KEYS:
         print(f"\n== {RUBRICHE[rub]['nome']} — {len(plan[rub][0])} buone" +
               (f" + {len(plan[rub][1])} «dalla settimana»" if plan[rub][1] else "") + " ==")
         for it in result[rub]:
             tag = "★" if it.get("top") else ("↺" if it.get("perso") else " ")
-            print(f" {tag} {it['score']:5.1f} {it['source'][:13]:13} {it['title'][:80]}"
+            print(f" {tag} {it['score']:5.1f} {it['source'][:13]:13} {(it.get('gruppo') or it.get('disciplina') or '')[:11]:11} {it['title'][:76]}"
                   + (f"  [{it['testate']} testate]" if it.get("testate") else "")
                   + ("  [continua]" if it.get("continua") else ""))
     if dry:
@@ -614,7 +741,7 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
 
 
 def da_tradurre(it):
-    return not it.get("orig") and it.get("source") not in LANG_IT
+    return not it.get("orig") and it.get("source") not in LANG_IT and it.get("lingua") != "it"
 
 
 def traduci_mancanti(day):
@@ -674,22 +801,49 @@ def merge(day):
     """
     src = os.path.join(DIR, f"{day}.json")
     dst = os.path.join(C.BRIEFS_DIR, f"{day}.json")
-    if not (os.path.exists(src) and os.path.exists(dst)):
+    if not os.path.exists(dst):
         return False
-    d, b = C.load_json(src), C.load_json(dst)
+    d, b = (C.load_json(src) if os.path.exists(src) else {}), C.load_json(dst)
     changed = False
-    for k in KEYS:
+    for k, dst_key in [(k, k) for k in KEYS] + [("gta", "gta_notizie")]:
         if k not in d:
             continue
-        images = {it["id"]: it["image"] for it in b.get(k) or [] if it.get("image")}
+        images = {it["id"]: it["image"] for it in b.get(dst_key) or [] if it.get("image")}
         new_list = d[k]
         for it in new_list:
             img = images.get(it.get("id"))
             if img and not it.get("image"):
                 it["image"] = img
-        if b.get(k) != new_list:
-            b[k] = new_list
+        if b.get(dst_key) != new_list:
+            b[dst_key] = new_list
             changed = True
+    # GTA VI: la sezione la scrive l'agente `gta` in un file suo (data/gta/<giorno>-sezione.json),
+    # per non toccare l'edizione mentre la scrivono il redattore e la regia. Qui entra, con le
+    # foto gia' messe da images.py ritrovate per id.
+    sez = os.path.join(C.ROOT, "data", "gta", f"{day}-sezione.json")
+    if os.path.exists(sez):
+        try:
+            g = C.load_json(sez)
+        except ValueError:
+            g = None
+        if isinstance(g, dict):
+            # la foto vera di un post Reddit e' la miniatura del feed, che sta nel dossier
+            try:
+                dos = C.load_json(os.path.join(C.ROOT, "data", "gta", f"{day}.json"))
+                foto = {C.norm_url(r.get("link", "")): r.get("immagine") for r in dos.get("reddit", []) if r.get("immagine")}
+            except (OSError, ValueError):
+                foto = {}
+            for v in g.get("voci") or []:
+                f = foto.get(C.norm_url(v.get("link", "")))
+                if f and not v.get("image_src"):
+                    v["image_src"] = f.replace("&amp;", "&")
+            prima = {v.get("id"): v.get("image") for v in (b.get("gta") or {}).get("voci") or [] if v.get("image")}
+            for v in g.get("voci") or []:
+                if not v.get("image") and prima.get(v.get("id")):
+                    v["image"] = prima[v["id"]]
+            if b.get("gta") != g:
+                b["gta"] = g
+                changed = True
     if changed:
         C.save_json(dst, b)
     return changed
