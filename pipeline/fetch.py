@@ -85,6 +85,53 @@ def download(name, url):
         return name, url, b""
 
 
+# I feed corti. Un feed da 10 voci copre la finestra di 26 ore solo se la
+# testata pubblica meno di 10 pezzi in 26 ore: iSpazio ne fa di piu', e la
+# voce piu' vecchia del suo feed aveva 15 ore. Il resto del giorno spariva in
+# silenzio (misurato il 5 novembre 2026: troncati BGR, MacRumors, The Verge,
+# iSpazio, Tom's Hardware IT fra le testate Apple, piu' meta' dei gironi
+# games/tech). Quando la pagina 1 non arriva all'inizio della finestra si
+# chiede la pagina 2 (e poi la 3) nel modo di WordPress, ?paged=N: chi non
+# lo capisce rimanda la stessa pagina, e non porta niente di nuovo. Qui gli
+# indirizzi che WordPress da' solo in un'altra forma: iSpazio ignora ?paged
+# sul feed RSS ma lo rispetta su quello Atom, che ha lo stesso ordine.
+PAGINE = {
+    "iSpazio": "https://www.ispazio.net/feed/atom/?paged={n}",
+}
+MAX_PAGINE = 3
+
+
+def page_url(name, url, n):
+    if name in PAGINE:
+        return PAGINE[name].format(n=n)
+    return url + ("&" if "?" in url else "?") + f"paged={n}"
+
+
+def deepen(name, url, blob, cutoff, now):
+    """Le pagine successive di un feed troncato. Torna le voci nuove (gia'
+    filtrate per finestra), quante pagine in piu' sono servite, e se il feed
+    resta troncato anche dopo."""
+    extra, seen = [], set()
+    items, _, _, oldest = parse_feed_full(name, blob, cutoff, now)
+    seen.update(C.norm_url(i["link"]) for i in items)
+    pagine = 0
+    for n in range(2, MAX_PAGINE + 1):
+        if oldest is None or oldest < cutoff:
+            break
+        _, _, more = download(name, page_url(name, url, n))
+        if not more:
+            break
+        got, _, state, old2 = parse_feed_full(name, more, cutoff, now)
+        nuovi = [i for i in got if C.norm_url(i["link"]) not in seen]
+        if state != "ok" or not nuovi and (old2 is None or old2 >= oldest):
+            break  # stessa pagina di prima: il sito non capisce ?paged
+        pagine += 1
+        extra.extend(nuovi)
+        seen.update(C.norm_url(i["link"]) for i in nuovi)
+        oldest = min(oldest, old2) if old2 else oldest
+    return extra, pagine, oldest is not None and oldest >= cutoff, oldest
+
+
 def parse_date(raw):
     if not raw:
         return None
@@ -113,7 +160,14 @@ def categories(item):
 
 
 def parse_feed(source, blob, cutoff, now):
-    items, newest = [], None
+    items, newest, state, _ = parse_feed_full(source, blob, cutoff, now)
+    return items, newest, state
+
+
+def parse_feed_full(source, blob, cutoff, now):
+    """Come parse_feed, e in piu' la data della voce piu' vecchia del feed
+    (dentro o fuori la finestra). Con cutoff None non filtra niente."""
+    items, newest, oldest = [], None, None
     # qualche feed antepone una riga vuota o il BOM alla dichiarazione XML,
     # e il parser si rifiuta di partire (capita a Il Post)
     blob = blob.lstrip(b"\xef\xbb\xbf \t\r\n")
@@ -131,8 +185,8 @@ def parse_feed(source, blob, cutoff, now):
         # richieste), non un feed rotto: si cura in un altro modo
         head = blob[:600].lower()
         if b"<html" in head or b"<!doctype html" in head:
-            return items, newest, "html-not-feed"
-        return items, newest, "parse-error"
+            return items, newest, "html-not-feed", oldest
+        return items, newest, "parse-error", oldest
 
     entries = root.findall(".//item") or root.findall(".//atom:entry", NS)
     for it in entries:
@@ -164,7 +218,9 @@ def parse_feed(source, blob, cutoff, now):
             continue
         if newest is None or dt > newest:
             newest = dt
-        if dt < cutoff:
+        if oldest is None or dt < oldest:
+            oldest = dt
+        if cutoff is not None and dt < cutoff:
             continue
 
         # "atom:content" non e' un di piu': e' dove Apple Newsroom mette il
@@ -195,7 +251,7 @@ def parse_feed(source, blob, cutoff, now):
             "categories": categories(it),
         })
 
-    return items, newest, "ok" if entries else "empty"
+    return items, newest, "ok" if entries else "empty", oldest
 
 
 def main():
@@ -215,13 +271,13 @@ def main():
     with cf.ThreadPoolExecutor(max_workers=min(len(FEEDS), 24)) as pool:
         results = list(pool.map(lambda kv: download(*kv), FEEDS.items()))
 
-    all_items, status = [], {}
+    all_items, status, corti = [], {}, []
     for name, url, blob in results:
         if not blob:
             status[name] = {"state": "unreachable", "items": 0, "newest": None,
                             "stale_hours": None}
             continue
-        items, newest, state = parse_feed(name, blob, cutoff, now)
+        items, newest, state, oldest = parse_feed_full(name, blob, cutoff, now)
         all_items.extend(items)
         status[name] = {
             "state": state,
@@ -229,6 +285,20 @@ def main():
             "newest": newest.isoformat() if newest else None,
             "stale_hours": round((now - newest).total_seconds() / 3600, 1) if newest else None,
         }
+        if state == "ok" and oldest is not None and oldest >= cutoff:
+            corti.append((name, url, blob))
+
+    # i feed che non arrivano all'inizio della finestra: pagina 2 e 3, in parallelo
+    if corti:
+        with cf.ThreadPoolExecutor(max_workers=min(len(corti), 12)) as pool:
+            deep = list(pool.map(lambda c: (c[0],) + deepen(c[0], c[1], c[2], cutoff, now), corti))
+        for name, extra, pagine, troncato, oldest in deep:
+            all_items.extend(extra)
+            st = status[name]
+            st["items"] += len(extra)
+            st["pagine"] = 1 + pagine
+            st["troncato"] = troncato
+            st["oldest_hours"] = round((now - oldest).total_seconds() / 3600, 1) if oldest else None
 
     # dedup per URL normalizzato. Alcuni feed si sovrappongono (TechCrunch e
     # TechCrunch AI danno lo stesso pezzo): a parita' di data vince il girone
@@ -278,6 +348,18 @@ def main():
         # "ultimo articolo None h fa", che non e' una diagnosi
         quando = f"ultimo articolo {stale}h fa" if stale is not None else "nessuna data leggibile"
         print(f"  ATTENZIONE {name}: {st['state']}, {quando}")
+    # i feed troncati: lo sono anche dopo le pagine in piu', quindi una parte
+    # della finestra manca. Le testate Apple prima, perche' pesano di piu'.
+    tronchi = sorted((n for n, st in status.items() if st.get("troncato")),
+                     key=lambda n: (TIERS.get(n) not in ("primaria", "redazionale"), n))
+    for name in tronchi:
+        st = status[name]
+        print(f"  feed troncato {name} ({TIERS.get(name)}): {st['items']} voci, la piu' vecchia "
+              f"di {st['oldest_hours']}h su una finestra di {args.hours:g}h"
+              + (f", lette {st['pagine']} pagine" if st.get("pagine", 1) > 1 else ""))
+    letti = [n for n, st in status.items() if st.get("pagine", 1) > 1 and not st.get("troncato")]
+    if letti:
+        print("  Pagine in piu' lette, ora coprono la finestra: " + ", ".join(sorted(letti)))
     return 0
 
 

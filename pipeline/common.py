@@ -12,6 +12,7 @@ con push.py e restano dentro la copia Artifact, che non puo' fare rete.
 """
 
 import glob
+import functools
 import json
 import os
 import re
@@ -206,6 +207,21 @@ def entities(text):
     return out
 
 
+# Lo stesso titolo si confronta migliaia di volte: missed.py raggruppa una
+# settimana di grezzi (cinquemila titoli dal ritorno dei gironi games/tech) e
+# ritokenizzava entrambi i titoli a ogni confronto. Il 5 novembre 2026 andava
+# oltre i cinque minuti di CPU. Le versioni in memoria danno lo stesso risultato
+# (insiemi congelati, che nessuno modifica) e lo fanno in pochi secondi.
+@functools.lru_cache(maxsize=1 << 16)
+def _tokens_fissi(text):
+    return frozenset(tokens(text))
+
+
+@functools.lru_cache(maxsize=1 << 16)
+def _entities_fisse(text):
+    return frozenset(entities(text))
+
+
 def similarity(a, b, cross_language=True):
     """Quanto due titoli raccontano lo stesso fatto, fra 0 e 1.
 
@@ -215,7 +231,7 @@ def similarity(a, b, cross_language=True):
     La media dei due separa bene i casi veri dai vicini di argomento.
 
     Serve almeno un paio di parole in comune, altrimenti e' coincidenza."""
-    ta, tb = tokens(a), tokens(b)
+    ta, tb = _tokens_fissi(str(a or "")), _tokens_fissi(str(b or ""))
     if not ta or not tb:
         return 0.0
     shared = ta & tb
@@ -232,7 +248,7 @@ def similarity(a, b, cross_language=True):
     # far sembrare gemelle due notizie che non c'entrano. Li' si spegne.
     if not cross_language:
         return score
-    ea, eb = entities(a), entities(b)
+    ea, eb = _entities_fisse(str(a or "")), _entities_fisse(str(b or ""))
     se = ea & eb
     if len(se) >= 2:
         score = max(score, len(se) / len(ea | eb))

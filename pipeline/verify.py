@@ -346,7 +346,8 @@ def verdict(news, urls, cited, feeds, day):
         origins = {s for s in news.get("sources") or [] if s not in ours}
 
     official = bool(origins & OFFICIAL) or any(
-        outlet_of(u, feeds) in ("Apple Newsroom", "Apple Developer", "Apple") for u in urls)
+        outlet_of(u, feeds) in ("Apple Newsroom", "Apple Developer", "Apple Developer Releases", "Apple")
+        for u in urls)  # Releases condivide il dominio di Apple Developer e, in ordine, lo copre
     independent = sorted(o for o in origins if o not in OFFICIAL)
     return {
         "testate": len(outlets),

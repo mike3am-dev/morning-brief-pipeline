@@ -14,6 +14,14 @@ l'andamento giorno per giorno.
     python3 pipeline/costo.py --dry        stampa e basta
     python3 pipeline/costo.py --storia     le ultime corse registrate
     python3 pipeline/costo.py --fasi       quanto ha preso ogni passo della corsa di oggi
+    python3 pipeline/costo.py --confronto 2026-11-06
+                                           le corse prima e dopo quella data, in media
+
+Dal 5 novembre 2026 il conto e' anche diviso per registro (la sessione principale e
+ogni sottoagente, col suo nome) e per modello (Opus e Sonnet a parte): il piano di
+risparmio dei token (docs/risparmio-token/) si dimostra solo cosi'. Le due tabelle
+vanno in data/corse.json nei campi `registri` e `modelli`; le righe vecchie non le
+hanno, e --storia e --confronto le leggono lo stesso.
 
 Il 2 ottobre 2026 la corsa ha messo 98 minuti contro un tetto di 30, e per capire dove si
 era perso il tempo è servita una ricostruzione a mano. `--fasi` lo fa da solo: guarda quando
@@ -62,8 +70,9 @@ def session_files(pdir):
 
 
 PASSI = re.compile(
-    r"pipeline/(fetch|social|lab|taste|missed|threads|claims|facts|verify|"
-    r"images|audio|push|lint|prune_auto|build|publish_site|costo)\.py")
+    r"pipeline/(fetch|social|lab|taste|missed|threads|claims|facts|verify|eco|rubriche|"
+    r"borsa|accenti|images|audio|push|lint|prune_auto|build|publish_site|costo|"
+    r"mattino|chiudi|salva|aspetta|campi|qualita)\.py")
 
 
 def fasi_main(main_file):
@@ -135,15 +144,71 @@ def fasi_subagenti(files, main_file):
         if primi and ultimi:
             dur = round((datetime.fromisoformat(ultimi.replace("Z", "+00:00")) -
                          datetime.fromisoformat(primi.replace("Z", "+00:00"))).total_seconds() / 60)
-            nome = os.path.basename(os.path.dirname(f)) or os.path.basename(f)[:-6]
-            out.append((nome, dur))
+            out.append((nome_registro(f, main_file), dur))
     return out
 
 
-def tally(files):
+VOCI = ("nuovi", "in_cache", "scritti_cache", "scritti", "risposte", "ricerche_web")
+
+
+def zero():
+    return {k: 0 for k in VOCI}
+
+
+def modello(nome):
+    """Il nome breve del modello: Opus e Sonnet pesano in modo diverso sui
+    limiti, e mescolati nello stesso totale non si capisce chi ha speso."""
+    n = (nome or "").lower()
+    for k in ("opus", "sonnet", "haiku", "fable"):
+        if k in n:
+            return k.capitalize()
+    return nome or "?"
+
+
+def nome_registro(f, main_file):
+    """Chi ha scritto questo registro: «principale», o il sottoagente col suo
+    tipo e la descrizione data alla chiamata. Claude Code la scrive accanto, in
+    agent-<id>.meta.json; se manca, la prima riga del compito ricevuto."""
+    if f == main_file:
+        return "principale"
+    meta = f[:-6] + ".meta.json"
+    try:
+        with open(meta, encoding="utf-8") as fh:
+            m = json.load(fh)
+        tipo, desc = m.get("agentType") or "", m.get("description") or ""
+        if tipo and desc:
+            return f"{tipo}: {desc}"
+        if tipo or desc:
+            return tipo or desc
+    except (OSError, ValueError):
+        pass
+    try:
+        with open(f, encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                d = json.loads(line)
+                if d.get("type") != "user":
+                    continue
+                c = (d.get("message") or {}).get("content")
+                if isinstance(c, list):
+                    c = " ".join(b.get("text", "") for b in c if isinstance(b, dict))
+                c = re.sub(r"\s+", " ", str(c or "")).strip()
+                if c:
+                    return "sottoagente: " + c[:60]
+                break
+    except (OSError, ValueError):
+        pass
+    return os.path.basename(f)[:-6]
+
+
+def tally(files, main_file=None):
+    """Somma l'uso di token di tutti i registri. Oltre al totale, lo stesso
+    conto per registro (in ordine di file) e per modello."""
     seen, first = set(), None
-    t = {"nuovi": 0, "in_cache": 0, "scritti_cache": 0, "scritti": 0, "risposte": 0, "ricerche_web": 0}
+    t = zero()
+    registri, modelli = [], {}
     for f in files:
+        r = dict(zero(), nome=nome_registro(f, main_file), modelli=[])
+        primi, ultimi = None, None
         with open(f, encoding="utf-8", errors="replace") as fh:
             for line in fh:
                 try:
@@ -153,6 +218,9 @@ def tally(files):
                 ts = d.get("timestamp")
                 if ts and (first is None or ts < first):
                     first = ts
+                if ts:
+                    primi = ts if primi is None or ts < primi else primi
+                    ultimi = ts if ultimi is None or ts > ultimi else ultimi
                 msg = d.get("message") or {}
                 u = msg.get("usage")
                 if d.get("type") != "assistant" or not u:
@@ -161,13 +229,26 @@ def tally(files):
                 if mid in seen:      # la stessa risposta compare una riga per blocco
                     continue
                 seen.add(mid)
-                t["risposte"] += 1
-                t["nuovi"] += u.get("input_tokens", 0)
-                t["in_cache"] += u.get("cache_read_input_tokens", 0)
-                t["scritti_cache"] += u.get("cache_creation_input_tokens", 0)
-                t["scritti"] += u.get("output_tokens", 0)
-                t["ricerche_web"] += (u.get("server_tool_use") or {}).get("web_search_requests", 0)
-    return first, t
+                mod = modello(msg.get("model"))
+                if mod == "<synthetic>":   # messaggi di servizio, non risposte vere
+                    continue
+                m = modelli.setdefault(mod, zero())
+                if mod not in r["modelli"]:
+                    r["modelli"].append(mod)
+                for acc in (t, r, m):
+                    acc["risposte"] += 1
+                    acc["nuovi"] += u.get("input_tokens", 0)
+                    acc["in_cache"] += u.get("cache_read_input_tokens", 0)
+                    acc["scritti_cache"] += u.get("cache_creation_input_tokens", 0)
+                    acc["scritti"] += u.get("output_tokens", 0)
+                    acc["ricerche_web"] += (u.get("server_tool_use") or {}).get("web_search_requests", 0)
+        if primi and ultimi:
+            r["minuti"] = round((datetime.fromisoformat(ultimi.replace("Z", "+00:00")) -
+                                 datetime.fromisoformat(primi.replace("Z", "+00:00"))).total_seconds() / 60)
+        r["modello"] = "+".join(r.pop("modelli")) or "?"
+        if r["risposte"]:
+            registri.append(r)
+    return first, t, registri, modelli
 
 
 def human(n):
@@ -180,12 +261,77 @@ def line(r):
             f"{human(r['scritti'])} scritti")
 
 
+def parte(r):
+    """La riga breve di un registro o di un modello."""
+    return (f"{r['risposte']} passi, {human(r['nuovi'] + r['scritti_cache'])} nuovi, "
+            f"{human(r['in_cache'])} riletti, {human(r['scritti'])} scritti")
+
+
+def dettaglio(r):
+    """Le righe per registro e per modello, sotto la riga della corsa."""
+    out = []
+    if r.get("modelli"):
+        out.append("Per modello: " + " · ".join(
+            f"{k} {parte(v)}" for k, v in sorted(r["modelli"].items(), key=lambda kv: -kv[1]["in_cache"])))
+    if r.get("registri"):
+        out.append("Per registro:")
+        for g in r["registri"]:
+            dur = f", {g['minuti']} min" if g.get("minuti") is not None else ""
+            out.append(f"  {g['nome'][:58]:<58} [{g.get('modello', '?')}{dur}] {parte(g)}")
+    return out
+
+
+def confronto(log, giorno):
+    """Le corse prima e dopo una data, in media: il prima/dopo del risparmio.
+    Una corsa per giorno (l'ultima registrata), i giorni con piu' sessioni non
+    contano doppio."""
+    per_giorno = {}
+    for r in log:
+        per_giorno[r["giorno"]] = r
+    prima = [r for g, r in sorted(per_giorno.items()) if g < giorno]
+    dopo = [r for g, r in sorted(per_giorno.items()) if g >= giorno]
+    campi = (("minuti", "minuti", lambda r: r.get("minuti", 0)),
+             ("passi", "passi", lambda r: r.get("risposte", 0)),
+             ("nuovi", "tok", lambda r: r.get("nuovi", 0) + r.get("scritti_cache", 0)),
+             ("riletti", "tok", lambda r: r.get("in_cache", 0)),
+             ("scritti", "tok", lambda r: r.get("scritti", 0)))
+
+    def media(rs, f):
+        return sum(f(r) for r in rs) / len(rs) if rs else None
+
+    def fmt(v, kind):
+        if v is None:
+            return "—"
+        return human(v) if kind == "tok" else f"{v:.0f}"
+
+    print(f"Corse prima del {giorno}: {len(prima)}"
+          + (f" ({prima[0]['giorno']} … {prima[-1]['giorno']})" if prima else "")
+          + f" · dal {giorno}: {len(dopo)}"
+          + (f" ({dopo[0]['giorno']} … {dopo[-1]['giorno']})" if dopo else ""))
+    print(f"  {'':10} {'prima':>9} {'dopo':>9} {'diff':>7}")
+    for nome, kind, f in campi:
+        a, b = media(prima, f), media(dopo, f)
+        diff = f"{(b - a) / a * 100:+.0f}%" if a and b is not None else "—"
+        print(f"  {nome:10} {fmt(a, kind):>9} {fmt(b, kind):>9} {diff:>7}")
+    # la principale da sola, dove le corse nuove la registrano
+    princ = [g for r in dopo for g in r.get("registri") or [] if g.get("nome") == "principale"]
+    if princ:
+        print(f"  principale, dopo: {sum(g['risposte'] for g in princ) / len(princ):.0f} passi e "
+              f"{human(sum(g['in_cache'] for g in princ) / len(princ))} riletti in media")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description="tempo e token della corsa")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--storia", action="store_true")
     ap.add_argument("--fasi", action="store_true")
+    ap.add_argument("--confronto", metavar="AAAA-MM-GG",
+                    help="media delle corse prima e dopo quella data")
     args = ap.parse_args()
+
+    if args.confronto:
+        return confronto(C.load_json(LOG) if os.path.exists(LOG) else [], args.confronto)
 
     if args.storia:
         for r in (C.load_json(LOG) if os.path.exists(LOG) else [])[-14:]:
@@ -207,6 +353,10 @@ def main():
             print("\nSottoagenti (durata inizio-fine del loro registro):")
             for nome, dur in sub:
                 print(f"  {nome}: {dur} min")
+        _, _, registri, _ = tally(files, main_file)
+        if registri:
+            print()
+            print("\n".join(dettaglio({"registri": registri})))
         return 0
 
     pdir = project_dir()
@@ -214,11 +364,14 @@ def main():
         print("Registro di Claude Code non trovato: tempo e consumo non misurabili.")
         return 0
     sid, files = session_files(pdir)
-    first, t = tally(files)
+    main_file = os.path.join(pdir, sid + ".jsonl")
+    first, t, registri, modelli = tally(files, main_file)
     start = datetime.fromisoformat(first.replace("Z", "+00:00")) if first else datetime.now(timezone.utc)
     r = dict(t, giorno=C.today(), sessione=sid, inizio=start.isoformat(timespec="seconds"),
-             minuti=round((datetime.now(timezone.utc) - start).total_seconds() / 60))
+             minuti=round((datetime.now(timezone.utc) - start).total_seconds() / 60),
+             registri=registri, modelli=modelli)
     print(line(r))
+    print("\n".join(dettaglio(r)))
     if not args.dry:
         log = C.load_json(LOG) if os.path.exists(LOG) else []
         log = [x for x in log if x.get("sessione") != sid] + [r]

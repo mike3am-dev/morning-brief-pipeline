@@ -264,6 +264,29 @@ cancellando una riga dal prompt della routine. La regia resta alla sessione prin
 Il resto della procedura (verify, immagini, lint, push, visualista) non cambia. Le regole di
 scrittura che seguono valgono per il redattore; stanno anche, in forma breve, nel suo file.
 
+#### La corsa in tre script — risparmio token, fase 1 (dal 6 novembre 2026)
+
+Ogni passo della regia rilegge tutta la conversazione: il 3 novembre 2026 la corsa ha riletto
+41 M di token, quattro quinti nella regia, quasi tutti in passi meccanici (comandi uno alla
+volta, attese a vuoto, lint ripetuti, commit forzati dall'hook di Stop del cloud). Da qui tre
+script che fanno **gli stessi comandi di prima, nello stesso ordine**, e stampano solo l'utile:
+`mattino.py` (raccolta, uscite intere in `/tmp/corsa/*.txt`), `chiudi.py prepara | pubblica |
+fine` (la coda; `verify.py` resta fuori perché dopo decide il modello) e `salva.py` (commit in
+tre punti fissi). In più `aspetta.py` blocca finché la lettura non scrive `<!-- fine lettura -->`,
+`campi.py` stampa solo i campi chiesti di un JSON, e `qualita.py` controlla le soglie dure
+dell'edizione (base: 3 novembre 2026). `costo.py` divide il conto per registro e per modello,
+e `costo.py --confronto 2026-11-06` mostra il prima e il dopo. Il prompt della routine sta in
+`routine/prompt.md` (quello di prima in `routine/prompt-pre-risparmio.md`, e il codice nel tag
+`corsa-pre-risparmio`). Piano, pareri e stime: `docs/risparmio-token/`. La fase 2 (un
+sottoagente «cronista» per ai, banco, social, radar e recap) parte solo dopo cinque corse
+pulite e una prova a vuoto.
+
+Lo stesso giorno, due correzioni alle fonti: il feed ufficiale dei rilasci Apple («Apple
+Developer Releases», girone primaria: ogni iOS/macOS, beta o finale, entra nel grezzo) e la
+pagina 2–3 dei feed troncati per profondità (iSpazio ne dava 10, cioè poche ore nelle serate
+piene). `fetch.py` segnala «feed troncato» per quelli che non si possono sfogliare: MacRumors
+e The Verge, per ora.
+
 Poi scrivi `data/briefs/YYYY-MM-DD.json` seguendo esattamente lo schema di
 `data/briefs/2026-08-08.json`. **Scrivi `sintesi`, `descrizione` e i campi
 dell'`approfondimento` già dentro le misure che `lint.py` controlla** (vedi le tabelle

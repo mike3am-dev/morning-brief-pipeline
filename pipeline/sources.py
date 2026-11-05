@@ -36,7 +36,10 @@ RETEST_DAYS = 7
 
 # Fonti primarie: pubblicano di rado ma sono la parola di Apple. Il silenzio
 # non e' un sintomo, quindi non finiscono mai in panchina per inattivita'.
-PRIMARY = {"Apple Newsroom", "Apple Developer"}
+# Dal 5 novembre 2026 anche i rilasci (Apple Developer Releases): ogni build di
+# iOS, macOS, Xcode, beta o finale, con la sua data. Mike temeva di perdere una
+# notizia grossa, e un aggiornamento che esce di sera e' proprio quel caso.
+PRIMARY = {"Apple Newsroom", "Apple Developer", "Apple Developer Releases"}
 
 # Fonti larghe: non parlano di Apple, servono al radar. Sono la materia prima
 # delle sonde — senza, il radar esplora fra gli avanzi delle testate Apple.
@@ -96,6 +99,7 @@ def _tier(name):
 SEED = {
     "Apple Newsroom": "https://www.apple.com/newsroom/rss-feed.rss",
     "Apple Developer": "https://developer.apple.com/news/rss/news.rss",
+    "Apple Developer Releases": "https://developer.apple.com/news/releases/rss/releases.rss",
     "9to5Mac": "https://9to5mac.com/feed/",
     "BGR": "https://bgr.com/feed/",
     "Macitynet": "https://www.macitynet.it/feed",
