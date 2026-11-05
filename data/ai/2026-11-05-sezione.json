@@ -1,0 +1,124 @@
+{
+ "ai": [
+  {
+   "id": "google-scuole-ricerca-ai",
+   "lab": "google",
+   "kind": "regole",
+   "title": "Google alle scuole: chi spegne l'AI perde anche la Ricerca",
+   "sintesi": "Dal 2027 Gemini e Search saranno spenti di default per gli studenti, ma una scuola che non attiva l'AI non potrà avere la Ricerca senza.",
+   "note": "Lo ha detto al New York Times Chris Phillips, vicepresidente di Google per l'istruzione: «Search and AI are deeply integrated». Chi attiva la Ricerca sceglie fra la versione con AI Overviews e chat e la modalità «Guided Learning». Sanders parla di «extortion», Lina Khan di monopolista; DuckDuckGo si offre alle scuole. Google ha circa 50 milioni di Chromebook nelle classi.",
+   "link": "https://the-decoder.com/schools-that-turn-off-googles-ai-will-lose-search-too-starting-in-2027/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "kimi-k31-pro-pesi",
+   "lab": "aperti",
+   "kind": "modello",
+   "modello": {
+    "nome": "Kimi K3.1 Pro",
+    "famiglia": "aperto"
+   },
+   "title": "Moonshot pubblica i pesi di Kimi K3.1 Pro",
+   "sintesi": "Il modello cinese che a ottobre si avvicinava a Claude Opus 5.5 ora si scarica da Hugging Face, con una licenza propria di Moonshot.",
+   "note": "Uscito il 23 ottobre solo via API e app, Kimi K3.1 Pro arriva su Hugging Face come Moonshot aveva promesso, entro il 4 novembre. La licenza non è una di quelle open source riconosciute: si chiama «kimi-k3.1-pro». Su r/LocalLLaMA l'annuncio è fra i post più votati del giorno.",
+   "link": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+   "source": "Hugging Face"
+  },
+  {
+   "id": "chatgpt-gif-images-26",
+   "lab": "openai",
+   "kind": "funzione",
+   "title": "ChatGPT ora fa le GIF animate, con il modello Images 2.6",
+   "sintesi": "Da un prompt o da una foto ChatGPT genera una GIF con velocità e fotogrammi modificabili; le immagini generate superano i quattro miliardi a settimana.",
+   "note": "La funzione arriva a tutti gli utenti di ChatGPT e Codex, su web, desktop e app. Funziona perché il modello tiene riconoscibile il personaggio da un fotogramma all'altro, come uno sfogliatoio. Per gli sviluppatori escono GPT-Image-2.6 «Flare», per l'efficienza, e «Sunburst», per la qualità; a settimana si generano un miliardo di immagini in più di settembre.",
+   "link": "https://the-decoder.com/chatgpt-can-now-turn-text-prompts-and-photos-into-animated-gifs-with-openais-images-2-6-model/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "uber-agenti-quattro-corse",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Uber: nella settimana di Halloween, quattro corse prenotate da un agente AI",
+   "sintesi": "Su circa 320 milioni di corse e ordini, gli agenti AI hanno prenotato quattro corse Uber e 500 ordini Uber Eats: «very, very early», dice Khosrowshahi.",
+   "note": "I numeri vengono dalla trimestrale di Uber, li ha dati il direttore finanziario Balaji Krishnamurthy. È la misura più concreta finora della distanza fra l'entusiasmo per gli agenti personali (Instinct è valutata 10 miliardi di dollari) e l'uso reale. «We hope that there will be more traction», ha aggiunto l'amministratore delegato.",
+   "link": "https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "apple-tetto-spesa-ai-ingegneri",
+   "lab": "apple",
+   "kind": "affari",
+   "title": "Apple taglia il tetto di spesa AI dei suoi ingegneri",
+   "sintesi": "A ottobre il limite giornaliero è sceso da 300 a 200 dollari a testa e altri tagli lo porteranno a 100; fuori dall'ingegneria si valuta un tetto di 25, scrive Bloomberg.",
+   "note": "Apple aveva spinto i suoi team a usare l'AI nello sviluppo; ora raziona, come altre aziende dopo l'ondata di «tokenmaxxing» di inizio anno, quando sono arrivate le bollette dei token. Sotto resta la domanda di fondo: quanto costa l'AI, e quanto rende davvero in produttività.",
+   "apple": "Riguarda gli strumenti AI che Apple paga per il lavoro interno dei suoi team, non i suoi prodotti.",
+   "link": "https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "meta-compra-conductor",
+   "lab": "meta",
+   "kind": "affari",
+   "title": "Meta compra Conductor, che fa lavorare più agenti di coding in parallelo",
+   "sintesi": "Conductor, fondata nel 2024, lancia squadre di agenti di Anthropic e OpenAI su parti diverse di un progetto; il fondatore promette «something new» a inizio anno.",
+   "note": "La notizia l'ha data Axios, Meta l'ha confermata senza dettagli. Il fondatore Charlie Holtz lavorerà con Alexandr Wang e Nat Friedman nei Superintelligence Labs. Lo stesso giorno OpenAI ha comprato Pierre Computer Company, le cui librerie servono già Codex: la corsa si sposta sugli attrezzi intorno agli agenti, non solo sui modelli.",
+   "link": "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "liber-0-esperienza-umana",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Liber-0 impara a maneggiare oggetti da 2,2 milioni di ore di esperienza umana",
+   "sintesi": "Il world action model della pechinese LiberAI riesce nel 36% di 60 compiti senza dimostrazioni dedicate sul robot, e nel 63,5% dei prendi-e-posa.",
+   "note": "Il modello combina video di persone, movimenti della mano registrati con un guanto e un allineamento al corpo del robot. I 60 compiti di prova li ha proposti GPT-6: mettere una penna nell'astuccio, chiudere un cassetto spingendolo. Sui compiti lunghi e difficili il successo scende al 10,5%.",
+   "link": "https://www.therobotreport.com/liberai-unveils-liber-0-a-world-action-model-that-grounds-human-experience-in-robot-action/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "matt-wolfe-claude-montaggio",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Matt Wolfe fa montare i suoi video a Claude, dal girato ai clip per Shorts",
+   "note": "In 33 minuti mostra la sua catena: Claude Opus 5.5, vidIQ per le idee ed ElevenLabs, collegati in un sistema che parte dal girato grezzo e ne tira fuori il montaggio, con il B-roll scelto e il ritmo sistemato, dentro Premiere Pro. Costruisce Skill di Claude su misura per il canale e sistema gli errori dell'API strada facendo.",
+   "prova": "Crea una Skill di Claude con le regole del tuo canale e dagli un girato da tagliare in clip verticali.",
+   "strumento": "Claude Opus 5.5, vidIQ, ElevenLabs, Premiere Pro",
+   "segnale": "oltre 47.000 visualizzazioni su YouTube in mezza giornata",
+   "link": "https://www.youtube.com/watch?v=ep4psgAFOqc",
+   "source": "Matt Wolfe (YouTube)"
+  },
+  {
+   "id": "gemma-potata-85",
+   "lab": "google",
+   "kind": "uso",
+   "title": "Toglie l'85% dei pesi a Gemma 4, e il modello fa ancora il suo lavoro",
+   "note": "Un utente di r/LocalLLaMA ha ridotto Gemma 4 26B-A4B al 15% per un'app che tiene un modello acceso giorno e notte sul dispositivo: otto esperti per strato, sempre quelli, e il modello diventa denso, 3,81 miliardi di parametri in 2,75 GB. Su un compito di classificazione concorda col 26B nel 92% dei casi; sul suo Mac fa 79 token al secondo con 3,8 GB di memoria.",
+   "prova": "Per un modello locale da un compito solo, misura quanto il piccolo concorda col grande prima di scegliere il grande.",
+   "segnale": "fra i più votati del giorno su r/LocalLLaMA",
+   "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xnoqyy/i_removed_85_of_gemmas_weights_and_it_is_mostly/",
+   "source": "Reddit r/LocalLLaMA"
+  },
+  {
+   "id": "claude-code-non-vibecoded",
+   "lab": "anthropic",
+   "kind": "trucco",
+   "title": "Un'app fatta con Claude Code che non sembri fatta da Claude: disegnala prima tu",
+   "note": "Su r/ClaudeAI una domanda (mostratemi progetti che non sembrano «vibecoded») è diventata un processo pubblico alle app da oltre 800 commenti. I segni rivelatori: modalità scura con sfumature viola e neon, schede arrotondate, occhielli tutti maiuscoli, frasi alla «Good company. Great tools.». Il consiglio più votato: il disegno lo fai tu.",
+   "prova": "Disegna in Figma la pagina principale e qualche elemento secondario, poi passali a Claude come riferimento di stile.",
+   "segnale": "oltre 800 commenti su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xnnqkg/show_me_claude_code_projects_that_dont_look/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "datasette-agent-sqlite",
+   "lab": "altri",
+   "kind": "sapevi",
+   "title": "Datasette Agent: fai domande a un database SQLite e l'agente scrive le query",
+   "note": "È il progetto di Simon Willison, annunciato a maggio e aggiornato ieri: un assistente che risponde a domande sui tuoi dati scrivendo ed eseguendo SQL, esplora tabelle intere in cerca di schemi e, con il plugin datasette-agent-charts, aggiunge i grafici. Il sito dimostrativo si apre con l'accesso GitHub.",
+   "prova": "Apri agent.datasette.io, entra con GitHub e chiedi a parole qualcosa sui dati di esempio.",
+   "link": "https://agent.datasette.io/",
+   "source": "Simon Willison"
+  }
+ ],
+ "scritto": "2026-11-05"
+}

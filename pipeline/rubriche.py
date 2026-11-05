@@ -911,6 +911,47 @@ def merge(day):
             if b.get("gta") != g:
                 b["gta"] = g
                 changed = True
+    # La scheda AI (dal 5 novembre 2026): la scrive l'agente `ai` in data/ai/<giorno>-sezione.json.
+    # Prende il posto di quella della regia, che resta solo come ripiego; le foto gia' prese
+    # si ritrovano per id o per link.
+    ai_p = os.path.join(C.ROOT, "data", "ai", f"{day}-sezione.json")
+    if os.path.exists(ai_p):
+        try:
+            nuova = (C.load_json(ai_p) or {}).get("ai")
+        except ValueError:
+            nuova = None
+        if isinstance(nuova, list) and nuova:
+            # l'agente lavora in parallelo al redattore e non vede le notizie: una voce AI che
+            # ripete una notizia Apple dell'edizione (stesso link, o lo stesso fatto) si toglie qui
+            notizie = b.get("news") or []
+            link_news = set()
+            for n in notizie:
+                link_news.add(C.norm_url(n.get("link", "")))
+                for x in n.get("extra_links") or []:
+                    link_news.add(C.norm_url(x.get("url") if isinstance(x, dict) else x))
+            tenute = []
+            for v in nuova:
+                doppia = C.norm_url(v.get("link", "")) in link_news or any(
+                    C.similarity(v.get("title", ""), n.get("title", ""), cross_language=False) >= 0.30
+                    and re.search(r"\bapple\b", (v.get("title", "") + " " + (v.get("apple") or "")).lower())
+                    for n in notizie)
+                if doppia:
+                    print(f"  AI: tolta «{v.get('title', '')[:60]}», c'e' gia' fra le notizie", file=sys.stderr)
+                else:
+                    tenute.append(v)
+            nuova = tenute
+            foto = {}
+            for v in b.get("ai") or []:
+                if v.get("image"):
+                    foto[v.get("id")] = v["image"]
+                    foto[C.norm_url(v.get("link", ""))] = v["image"]
+            for v in nuova:
+                img = foto.get(v.get("id")) or foto.get(C.norm_url(v.get("link", "")))
+                if img and not v.get("image"):
+                    v["image"] = img
+            if b.get("ai") != nuova:
+                b["ai"] = nuova
+                changed = True
     if changed:
         C.save_json(dst, b)
     return changed

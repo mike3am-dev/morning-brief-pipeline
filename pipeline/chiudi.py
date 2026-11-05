@@ -133,6 +133,10 @@ def prepara(day):
             riga("rubriche --traduci", code, sec, ultima(out))
     code, out, sec = esegui("rubriche-merge", ["rubriche.py", "--merge"] + day)
     riga("rubriche --merge", code, sec, ultima(out) if code == 0 else errore_breve(out))
+    # la scheda AI la scrive l'agente `ai`: se non ha ancora consegnato, la regia lo sa qui
+    if not os.path.exists(os.path.join(ROOT, "data", "ai", f"{giorno}-sezione.json")):
+        print("  ! AI: l'agente `ai` non ha ancora consegnato data/ai/" + giorno + "-sezione.json: "
+              "se nell'edizione la sezione ai manca, scrivila tu (ripiego); se arriva dopo, entra in fine.")
 
     # 2. la borsa, 3. le immagini
     code, out, sec = esegui("borsa", ["borsa.py"] + day, tmax=120)

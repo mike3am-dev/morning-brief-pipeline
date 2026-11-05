@@ -180,6 +180,11 @@ def main():
     falliti = []
     for nome, cmd, tmax in PASSI:
         if nome == "rubriche":
+            # Il dossier della scheda AI (5 novembre 2026): serve il grezzo e lab.py, che a questo
+            # punto ci sono; in un processo suo, cosi' l'agente `ai` puo' partire subito.
+            pa = subprocess.Popen(["/bin/sh", "-c", f'"{sys.executable}" pipeline/ai_dossier.py > /tmp/ai-dossier.log 2>&1'],
+                                  cwd=ROOT, start_new_session=True)
+            print(f"- ai_dossier: partito in background (pid {pa.pid}), log /tmp/ai-dossier.log")
             # come prima: nohup python3 pipeline/rubriche.py > /tmp/rubriche.log 2>&1 &
             # GTA VI (5 novembre 2026): gta.py viene subito dopo, nello stesso processo in
             # background, perche' il suo dossier usa le notizie GTA che rubriche.py ha trovato.

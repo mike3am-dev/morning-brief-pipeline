@@ -626,6 +626,16 @@ una riga di contesto, e al giro dopo entra nella raccolta come tutto il resto.
 
 #### La sezione AI — `ai`
 
+**Dal 5 novembre 2026 la scrive un agente su Opus**, `.claude/agents/ai.md` (Mike: «basta che
+la prosa sia stesa da Opus»), non più la regia. `pipeline/ai_dossier.py` (lanciato da
+`mattino.py` appena finito `lab.py`) prepara `/tmp/corsa/ai-dossier.txt`: la cronaca del girone
+`ai` con gli articoli aperti, il LAB del grezzo e di `lab.py`, gli appunti di Mike, le voci dei 14
+giorni prima con il loro filo, il fronte fino a ieri. L'agente gira in background in parallelo
+alla lettura, fa anche la caccia LAB sul web, e scrive **solo** `data/ai/<giorno>-sezione.json`;
+`rubriche.merge` lo porta nell'edizione (in `chiudi.py prepara`, o in `fine` se arriva dopo). Se
+non consegna, `prepara` lo dice e la regia scrive la sezione da sé: è il ripiego. Le regole che
+seguono valgono per l'agente.
+
 Non è «notizie AI»: è **cronaca e LAB insieme**. Cosa fanno i laboratori, e cosa ci fa
 la gente. **6–12 voci** al giorno, una decina come misura giusta, e almeno un terzo deve
 essere LAB — solo cronaca è metà sezione, e il lint lo dice.
@@ -1445,6 +1455,7 @@ pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le perse da te (segnali)
 pipeline/rubriche.py     le schede GAMES e SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
+pipeline/ai_dossier.py   il dossier della scheda AI per l'agente `ai` (cronaca con gli articoli, LAB, storico, fronte)
 pipeline/schede.py       il dossier delle schede Games e Scienza per l'agente `schede` (gli articoli aperti)
 pipeline/gta.py          il dossier di GTA VI per l'agente `gta` (Reddit, X, YouTube)  ->  data/gta/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
