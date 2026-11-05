@@ -543,6 +543,78 @@ def check_foto(brief, r):
             r.warn(f"news/{n.get('id')}", f"foto larga {w}px, sgranata nella scheda (servono {need}): cercane una migliore fra le altre testate")
 
 
+# ------------------------------------------------------------ tutte le novita'
+# Quando Apple rilascia un sistema, una notizia fra le prime cinque porta
+# l'elenco completo di quello che cambia (5 novembre 2026, Mike: «sapere tutto,
+# non quattro notizie sparse»). Ogni voce: sistema, area, cosa, dettaglio, fonte, link.
+NOVITA_MAX = {"sistema": 40, "area": 40, "cosa": 120, "dettaglio": 220, "fonte": 40}
+# il titolo di un rilascio nel feed Apple Developer Releases: «iOS 27.3 beta
+# (24C5037i)», «macOS 27.2 (26B52)». Xcode, TestFlight e App Store Connect non
+# sono sistemi: per loro l'elenco non serve.
+RILASCIO = re.compile(r"^(iOS|iPadOS|macOS|watchOS|tvOS|visionOS|HomePod Software)\s+\d+(\.\d+)*"
+                      r"(\s+(beta(\s+\d+)?|RC(\s+\d+)?|Release Candidate))?\s*\(", re.I)
+
+
+def check_novita(brief, r):
+    """Il campo `novita` e' ben fatto; e se nel grezzo del giorno c'e' un rilascio
+    di sistema, una delle prime cinque notizie lo racconta con l'elenco completo."""
+    news = brief.get("news") or []
+    for n in news:
+        nov = n.get("novita")
+        if nov is None:
+            continue
+        where = f"news/{n.get('id')}/novita"
+        if not isinstance(nov, list) or not nov:
+            r.error(where, "`novita` e' una lista non vuota di {sistema, area, cosa, dettaglio, fonte, link}")
+            continue
+        seen = set()
+        for i, v in enumerate(nov, 1):
+            w = f"{where}[{i}]"
+            if not isinstance(v, dict):
+                r.error(w, "ogni voce e' un oggetto {sistema, area, cosa, dettaglio, fonte, link}")
+                continue
+            for f in ("sistema", "area", "cosa", "fonte", "link"):
+                if not isinstance(v.get(f), str) or not v.get(f).strip():
+                    r.error(w, f"manca `{f}`")
+            if "dettaglio" in v and v["dettaglio"] is not None and not isinstance(v["dettaglio"], str):
+                r.error(w, "`dettaglio` e' un testo")
+            for f, lim in NOVITA_MAX.items():
+                val = v.get(f)
+                if isinstance(val, str) and len(val) > lim:
+                    r.error(w, f"`{f}` di {len(val)} caratteri (massimo {lim})")
+            link = v.get("link")
+            if isinstance(link, str) and link and not re.match(r"^https?://", link):
+                r.error(w, f"link non valido: {link!r}")
+            k = (str(v.get("sistema", "")).lower(), C.deaccent(str(v.get("cosa", "")).lower()))
+            if k in seen:
+                r.warn(w, f"voce ripetuta: {v.get('cosa')!r}")
+            seen.add(k)
+
+    # il rilascio nel grezzo del giorno, uscito nella finestra
+    path = os.path.join(C.RAW_DIR, f"{brief.get('date')}.json")
+    if not os.path.exists(path):
+        return
+    try:
+        raw = C.load_json(path)
+    except Exception:
+        return
+    window = float(raw.get("window_hours") or 26)
+    rel = []
+    for it in raw.get("items") or []:
+        if it.get("source") != "Apple Developer Releases":
+            continue
+        try:
+            if float(it.get("age_hours") or 0) > window:
+                continue
+        except ValueError:
+            pass
+        if RILASCIO.match(it.get("title") or ""):
+            rel.append(it.get("title"))
+    if rel and not any(n.get("novita") for n in news[:5]):
+        r.warn("news", f"nel grezzo c'e' un rilascio ({'; '.join(rel[:3])}{'…' if len(rel) > 3 else ''}) "
+                       "e nessuna delle prime cinque ha `novita`: serve l'elenco completo di cosa cambia")
+
+
 def check_reparto(brief, r):
     """Ogni notizia dice il suo reparto, uno della lista: nell'app del Duo e'
     quello che fa capire che notizia aspettarsi prima di aprirla."""
@@ -784,6 +856,7 @@ def lint(brief, with_links):
     check_memory(brief, r)
     check_verifica(brief, r)
     check_reparto(brief, r)
+    check_novita(brief, r)
     check_origine(brief, r)
     check_foto(brief, r)
     check_accenti(brief, r)

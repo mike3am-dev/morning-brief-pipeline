@@ -52,6 +52,8 @@ BROAD = {"Ars Technica", "TechCrunch"}
 # 2026). Passa dalle testate qui sotto, che la coprono tutte.
 AI = {"OpenAI", "Google DeepMind", "The Decoder", "TechCrunch AI",
       "Ars Technica AI", "MIT Technology Review AI",
+      # la ricerca di Apple in prima persona: il lab "apple" della scheda AI (5 novembre 2026)
+      "Apple Machine Learning",
       # i robot stanno nella scheda AI (2 ottobre 2026: "lo vedo a braccetto con l'AI")
       "The Robot Report", "IEEE Spectrum Robotica"}
 
@@ -107,7 +109,13 @@ SEED = {
     "Tom's Hardware IT": "https://www.tomshw.it/feed",
     "Wired Italia": "https://www.wired.it/feed/rss",
     "MacRumors": "https://feeds.macrumors.com/MacRumors-All",
-    "The Verge": "https://www.theverge.com/rss/index.xml",
+    # dal 5 novembre 2026 il feed Apple: quello generale (10 voci) copriva 15 ore
+    # e quasi niente di Apple; questo ne copre 58, tutte Apple. Il nome resta.
+    "The Verge": "https://www.theverge.com/rss/apple/index.xml",
+    # 5 novembre 2026: le due testate Apple che arrivavano prima o da sole
+    # (vedi docs/fonti/2026-11-05.md)
+    "AppleInsider": "https://appleinsider.com/rss/news/",
+    "iClarified": "https://www.iclarified.com/rss/news.xml",
     "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
     "TechCrunch": "https://techcrunch.com/feed/",
 
@@ -118,6 +126,7 @@ SEED = {
     "TechCrunch AI": "https://techcrunch.com/category/artificial-intelligence/feed/",
     "Ars Technica AI": "https://arstechnica.com/ai/feed/",
     "MIT Technology Review AI": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+    "Apple Machine Learning": "https://machinelearning.apple.com/rss.xml",
 
     # Banco — la concorrenza e chi la prova, video compresi. I due canali
     # YouTube passano dal feed Atom pubblico, che non richiede chiave:

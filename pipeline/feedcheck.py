@@ -19,6 +19,8 @@ quanta roba portano che le nostre non hanno gia' dato.
     python3 pipeline/feedcheck.py --days 30       finestra di analisi
     python3 pipeline/feedcheck.py --discover      prova le candidate
     python3 pipeline/feedcheck.py --discover --hours 336   finestra piu' larga
+    python3 pipeline/feedcheck.py --troncati      chi non copre le 26 ore della raccolta
+    python3 pipeline/feedcheck.py --eco           chi fuori da noi racconta (e anticipa) le notizie Apple
 
 Il verdetto e' una proposta, non un'esecuzione: FEEDS in fetch.py si tocca a
 mano, dopo aver guardato i numeri.
@@ -96,6 +98,14 @@ CANDIDATES = [
      "italiano, buona parte tecnica e mercato"),
     ("Il Post — Tecnologia", "https://www.ilpost.it/tecnologia/feed/",
      "italiano, poche cose ma verificate: possibile sostituto di Wired Italia"),
+    # misurate il 5 novembre 2026 e lasciate fuori (docs/fonti/2026-11-05.md): si
+    # riprovano ogni settimana, perche' una testata cambia
+    ("Macworld", "https://www.macworld.com/feed",
+     "tutto Apple, ma meta' offerte e guide: entra se comincia ad arrivare prima"),
+    ("Apple Newsroom Italia", "https://www.apple.com/it/newsroom/rss-feed.rss",
+     "la newsroom in italiano: utile solo se porta comunicati che quella USA non ha"),
+    ("The Mac Observer", "https://www.macobserver.com/feed/",
+     "compare spesso in eco.py, mai per primo: da misurare sul rischio eco"),
 ]
 
 
@@ -448,10 +458,13 @@ def cmd_discover(args):
     our_urls = {C.norm_url(i.get("link")) for i in ours}
     our_titles = [i.get("title", "") for i in ours]
 
-    print(f"Provo {len(CANDIDATES)} fonti candidate sulle ultime "
+    # una candidata gia' in campo non si riprova: la misura il rapporto normale
+    attive = {C.norm_url(u) for u in FEEDS.values()}
+    candidate = [e for e in CANDIDATES if e[0] not in FEEDS and C.norm_url(e[1]) not in attive]
+    print(f"Provo {len(candidate)} fonti candidate sulle ultime "
           f"{args.hours:.0f} ore...\n")
     with cf.ThreadPoolExecutor(max_workers=8) as pool:
-        results = list(pool.map(lambda e: probe(e, cutoff, now), CANDIDATES))
+        results = list(pool.map(lambda e: probe(e, cutoff, now), candidate))
 
     rows, dead = [], []
     for r in results:
@@ -517,6 +530,93 @@ def cmd_discover(args):
     return 0
 
 
+# ----------------------------------------------------------------- troncati
+def cmd_troncati(args):
+    """Quanto copre ogni feed attivo rispetto alla finestra della raccolta, con le
+    pagine in piu' che fetch.py sa chiedere (?paged=N, PAGINE, MAPPE). Un feed che
+    resta corto perde in silenzio una parte del giorno: e' il controllo che il
+    rapporto normale non fa, perche' guarda solo quello che e' gia' arrivato."""
+    from fetch import parse_feed_full, deepen
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(hours=args.window)
+    with cf.ThreadPoolExecutor(max_workers=16) as pool:
+        got = list(pool.map(lambda kv: download(*kv), FEEDS.items()))
+    rows = []
+    for name, url, blob in got:
+        if not blob:
+            rows.append((name, TIERS.get(name, "?"), 0, None, 1, "non risponde"))
+            continue
+        items, _, state, oldest = parse_feed_full(name, blob, cutoff, now)
+        pagine, troncato = 1, False
+        if state == "ok" and oldest is not None and oldest >= cutoff:
+            extra, piu, troncato, oldest = deepen(name, url, blob, cutoff, now)
+            items = items + extra
+            pagine += piu
+        cop = round((now - oldest).total_seconds() / 3600, 1) if oldest else None
+        rows.append((name, TIERS.get(name, "?"), len(items), cop, pagine,
+                     "TRONCATO" if troncato else ("" if state == "ok" else state)))
+    order = {"primaria": 0, "redazionale": 1}
+    rows.sort(key=lambda r: (r[5] != "TRONCATO", order.get(r[1], 5), r[0]))
+    print(f"Copertura dei feed attivi su una finestra di {args.window:.0f} ore\n")
+    print(C.table([(n, t, str(v), "-" if c is None else f"{c} h", str(p), x) for n, t, v, c, p, x in rows],
+                  ["fonte", "girone", "voci", "copre", "pagine", "stato"]))
+    tr = [r for r in rows if r[5] == "TRONCATO"]
+    print(f"\n{len(tr)} troncati" + (": " + ", ".join(f"{r[0]} ({r[1]}, {r[3]} h)" for r in tr) if tr else "") + ".")
+    print("Rimedi, in ordine: un indirizzo che WordPress pagina (PAGINE in fetch.py), una mappa delle\n"
+          "notizie (MAPPE), un feed di sezione piu' profondo della stessa testata (sources.json).")
+    return 0
+
+
+# ---------------------------------------------------------------------- eco
+def _chiave(nome):
+    k = re.sub(r"[^a-z0-9]", "", C.deaccent(str(nome)).lower())
+    return re.sub(r"(it|com|net)$", "", k) if len(k) > 6 else k
+
+
+def cmd_eco(args):
+    """Chi, fuori dalle nostre testate, racconta le notizie Apple che diamo — e
+    chi le racconta prima di noi. Legge le risposte di Google/Bing News che
+    eco.py lascia in data/eco/: nessuna domanda in rete. Una testata che compare
+    spesso e arriva prima e' una candidata; una che compare spesso e arriva dopo
+    e' eco, e non serve."""
+    import glob
+    ours = {_chiave(n) for n in FEEDS}
+    def nostra(n):
+        k = _chiave(n)
+        return any(k == o or (len(o) > 5 and (k.startswith(o) or o.startswith(k))) for o in ours)
+    files = sorted(glob.glob(os.path.join(C.ROOT, "data", "eco", "*.json")))[-args.days:]
+    pres, prima, anticipo, storie = {}, {}, {}, 0
+    for path in files:
+        for v in (C.load_json(path) or {}).values():
+            voci = [x for x in (v.get("voci") or []) if x.get("ora") and x.get("testata")]
+            if not voci:
+                continue
+            storie += 1
+            nostre = [x["ora"] for x in voci if nostra(x["testata"])]
+            primo_nostro = min(nostre) if nostre else None
+            first = min(voci, key=lambda x: x["ora"])["testata"]
+            for t in {x["testata"] for x in voci if not nostra(x["testata"])}:
+                pres[t] = pres.get(t, 0) + 1
+                ora = min(x["ora"] for x in voci if x["testata"] == t)
+                if t == first:
+                    prima[t] = prima.get(t, 0) + 1
+                if primo_nostro and ora < primo_nostro:
+                    try:
+                        h = (datetime.fromisoformat(primo_nostro) - datetime.fromisoformat(ora)).total_seconds() / 3600
+                        anticipo.setdefault(t, []).append(h)
+                    except ValueError:
+                        pass
+    rows = sorted(pres.items(), key=lambda kv: (-prima.get(kv[0], 0), -kv[1]))[:args.top]
+    print(f"Eco di {storie} notizie Apple in {len(files)} giorni: le testate fuori dalle nostre\n")
+    print(C.table([(t, str(n), str(prima.get(t, 0)), str(len(anticipo.get(t, []))),
+                    f"{sorted(anticipo[t])[len(anticipo[t]) // 2]:.1f} h" if anticipo.get(t) else "-")
+                   for t, n in rows],
+                  ["testata", "notizie", "prima di tutti", "prima di noi", "anticipo mediano"]))
+    print("\nUna candidata vera arriva prima di noi, e piu' di una volta a settimana. Chi compare\n"
+          "spesso ma mai prima e' eco: non si aggiunge. Si misura poi con --discover.")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.strip().split("\n")[0])
     ap.add_argument("--days", type=int, default=30,
@@ -534,7 +634,20 @@ def main():
     ap.add_argument("--all", action="store_true",
                     help="con --retest: riprovale tutte, non solo quelle scadute")
     ap.add_argument("--reason", help="il perche', da scrivere nel registro")
+    ap.add_argument("--troncati", action="store_true",
+                    help="quanto copre ogni feed attivo rispetto alla finestra della raccolta")
+    ap.add_argument("--window", type=float, default=26,
+                    help="con --troncati: la finestra in ore (default 26, come fetch.py)")
+    ap.add_argument("--eco", action="store_true",
+                    help="le testate fuori dalle nostre che raccontano (e anticipano) le notizie Apple, da data/eco")
+    ap.add_argument("--top", type=int, default=20, help="con --eco: quante testate mostrare")
     args = ap.parse_args()
+    if args.eco:
+        if args.days == 30:
+            args.days = 7
+        return cmd_eco(args)
+    if args.troncati:
+        return cmd_troncati(args)
 
     if args.bench:
         return cmd_bench(args)

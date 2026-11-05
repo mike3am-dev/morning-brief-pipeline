@@ -78,10 +78,10 @@ che parte dell'edizione finirà:
 
 | Girone | Chi c'è | Dove finisce |
 |---|---|---|
-| `primaria` | Apple Newsroom, Apple Developer | fra le notizie, e chiude i rumor |
-| `redazionale` | 9to5Mac, MacRumors, Macitynet, iSpazio, BGR, Tom's, The Verge | fra le notizie |
+| `primaria` | Apple Newsroom, Apple Developer, Apple Developer Releases | fra le notizie, e chiude i rumor; i rilasci portano `novita` |
+| `redazionale` | 9to5Mac, MacRumors, Macitynet, iSpazio, BGR, Tom's, The Verge, AppleInsider, iClarified | fra le notizie |
 | `larga` | Ars Technica, TechCrunch | sonde del radar |
-| `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI | sezione *AI*, strato cronaca |
+| `ai` | OpenAI, Google DeepMind, The Decoder, TechCrunch AI, Ars Technica AI, MIT Technology Review AI, Apple Machine Learning | sezione *AI*, strato cronaca |
 | `lab` | Simon Willison, One Useful Thing, Latent Space, Anthropic cookbook, Matt Wolfe, AI Explained | sezione *AI*, strato LAB |
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
 | `games` | Push Square, PlayStation Blog, Nintendo Life, VGC, GamesIndustry.biz, Kotaku, IGN, Eurogamer, Rock Paper Shotgun | scheda *Games* (la compone `rubriche.py`) |
@@ -444,6 +444,33 @@ python3 pipeline/claims.py resolve m6-pro-autunno smentito --story m7-accelerazi
 
 Fili e previsioni **vivono dentro le edizioni**, non in una tabella a parte: viaggiano
 da soli con `push.py`, senza bisogno di query aggiuntive dall'app.
+
+#### I rilasci Apple — `novita`
+
+Quando Apple rilascia un sistema (iOS, iPadOS, macOS, watchOS, tvOS, visionOS; beta o finale),
+Mike vuole sapere **tutto** quello che cambia, non quattro notizie sparse (5 novembre 2026). Il
+rilascio arriva nel grezzo dal feed «Apple Developer Releases» (girone `primaria`). Allora una
+notizia fra le prime cinque — **l'apertura** se è un x.y finale o una beta 1 — racconta il
+rilascio con l'elenco **completo** delle novità:
+
+```json
+"novita": [{"sistema": "iOS 27.3 beta 1", "area": "Fotocamera", "cosa": "Modalità notte nei video 4K",
+            "dettaglio": "Facoltativo: dove si trova, cosa comporta", "fonte": "MacRumors", "link": "…"}]
+```
+
+- Si raccoglie da **tutte** le testate che hanno trovato novità (9to5Mac, MacRumors, iSpazio,
+  Macitynet, AppleInsider…), lette per intero dal sottoagente di lettura: una voce per novità,
+  senza doppioni, con la fonte di chi l'ha trovata.
+- Le beta successive e i giorni dopo aggiungono **solo le novità nuove**, come seguito sullo
+  stesso filo del rilascio. Le novità grosse possono avere anche la loro notizia, ma l'elenco
+  completo c'è sempre.
+- Misure: `cosa` ≤ 120, `dettaglio` ≤ 220, `link` sempre. Il lint le controlla, e **avvisa** se
+  nel grezzo c'è un rilascio uscito nella finestra e nessuna delle prime cinque ha `novita`.
+
+Nell'app è il blocco «Tutte le novità» dentro la notizia aperta, fra la descrizione e
+l'approfondimento: il numero grande, un pallino per sistema, poi per sistema e per area una
+riga a voce; oltre le dodici se ne vedono otto e il resto sta dietro «Mostra tutte». Sulla
+scheda della Magazine il piede dice «N novità».
 
 #### I numeri — `facts`
 
@@ -1185,6 +1212,10 @@ su quella. Nient'altro.
 
 ## Manutenzione delle fonti (una volta a settimana, il lunedì)
 
+Dal 9 novembre 2026 la fa una routine in cloud, col prompt in `routine/fonti-settimanale.md`:
+lancia i controlli qui sotto, giudica, applica da sola solo quello che è sicuro e reversibile, e
+scrive il rapporto in `docs/fonti/AAAA-MM-GG.md` con le decisioni da prendere in cima.
+
 ```bash
 python3 pipeline/feedcheck.py
 ```
@@ -1627,7 +1658,10 @@ chicca nuova si aggiunge a quel linguaggio, non ne inventa un altro.
 Apple Newsroom · Apple Developer
 
 **Redazionali**: 9to5Mac · MacRumors · BGR · Macitynet · iSpazio · Tom's Hardware IT ·
-The Verge
+The Verge · AppleInsider · iClarified (questi due dal 5 novembre 2026, iClarified in prova fino
+al 19). The Verge passa dal feed Apple (`/rss/apple/index.xml`), che copre più di due giorni;
+MacRumors dà sempre 20 voci e `fetch.py` completa la finestra con la sua mappa delle notizie
+(`MAPPE`). Le motivazioni stanno in `docs/fonti/2026-11-05.md`.
 
 **Larghe** (non parlano di Apple: sono la materia prima delle sonde del radar):
 Ars Technica · TechCrunch

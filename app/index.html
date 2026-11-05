@@ -1982,6 +1982,44 @@ body.has-player .toast{bottom:calc(6.6rem + env(safe-area-inset-bottom))}
 .deep-body > p:first-child::first-letter{float:left; font-family:var(--display); font-weight:700;
   font-size:3.3em; line-height:.82; padding:.06em .1em 0 0; color:var(--orange)}
 .deep-part{display:flex; flex-direction:column; gap:.75rem}
+/* ---------------- tutte le novita' ----------------
+   L'elenco completo di un rilascio: il numero grande nel condensato, i pallini
+   dei sistemi che si accendono, poi per sistema e per area una riga a voce. */
+.novita{margin:1.1rem 0 .4rem; padding-top:.9rem; border-top:4px solid var(--ink)}
+.nov-head{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:.2rem .8rem}
+.nov-n{font-family:var(--display); font-weight:800; font-size:2.6rem; line-height:.85; letter-spacing:-.01em;
+  color:var(--ink); font-variant-numeric:tabular-nums}
+.nov-title{min-width:0; display:flex; flex-direction:column; gap:.2rem}
+.nov-h{margin:0; font-family:var(--display); font-weight:800; font-size:1.15rem; letter-spacing:.03em;
+  text-transform:uppercase; line-height:1; color:var(--ink)}
+.nov-of{font-size:.72rem; color:var(--ink-3); line-height:1.3}
+.nov-meter{display:flex; gap:5px; align-self:start; padding-top:.2rem}
+.nov-meter i{width:10px; height:10px; border-radius:50%; box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.nov-meter i.on{background:var(--c, var(--ink)); box-shadow:none}
+.nov-sys{margin-top:1rem}
+.nov-sys-h{display:flex; align-items:center; gap:.5rem; margin:0 0 .3rem; padding-bottom:.35rem;
+  border-bottom:2px solid var(--ink); font-family:var(--display); font-weight:800; font-size:1rem;
+  letter-spacing:.04em; text-transform:uppercase; color:var(--ink)}
+.nov-sys-h b{margin-left:auto; font-weight:700; font-size:.85rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.nov-pip{width:11px; height:11px; border-radius:50%; flex:none; background:var(--c, var(--ink))}
+.nov-area{margin-top:.55rem}
+.nov-area-h{margin:0 0 .1rem; font-size:.6rem; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:var(--ink-3)}
+.nov-list{list-style:none; margin:0; padding:0}
+.nov-item{display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"c s" "d d";
+  gap:.15rem .8rem; padding:.5rem 0; border-top:1px solid var(--rule)}
+.nov-list .nov-item:first-child{border-top:0}
+.nov-cosa{grid-area:c; font-size:.95rem; line-height:1.35; color:var(--ink); text-wrap:pretty}
+.nov-det{grid-area:d; font-size:.8rem; line-height:1.4; color:var(--ink-2); text-wrap:pretty}
+.nov-src{grid-area:s; align-self:start; padding-top:.15rem; font-family:var(--display); font-weight:700; font-size:.78rem;
+  letter-spacing:.02em; color:var(--ink-3); text-decoration:none; white-space:nowrap}
+a.nov-src:hover{color:var(--ink); text-decoration:underline}
+.novita.is-short .nov-extra{display:none}
+.nov-more{margin-top:.7rem; width:100%; padding:.7rem 1rem; border:0; border-radius:999px; cursor:pointer;
+  background:var(--ink); color:var(--bone); font-family:var(--display); font-weight:800; font-size:.9rem;
+  letter-spacing:.06em; text-transform:uppercase}
+.nov-more:hover{background:var(--ink-2)}
+.card-nov{font-family:var(--display); font-weight:700; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-2); white-space:nowrap; padding-left:.65rem; border-left:1px solid var(--rule-strong)}
 .deep-h{font-size:.62rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3);
   margin:0; padding-top:.95rem; border-top:1px solid var(--rule)}
 .deep-voci{display:flex; flex-direction:column; gap:1rem}
@@ -3533,6 +3571,107 @@ function echoNode(n){
     primary ? el("a", {class:"echo-read", href:primary, target:"_blank", rel:"noopener noreferrer",
       text:(name ? "Leggi su " + name : "Leggi l'articolo") + " →"}) : null
   ]);
+}
+
+/* ================= tutte le novita' =================
+   Quando Apple rilascia un sistema (beta o finale) Mike vuole sapere tutto
+   quello che cambia, non quattro notizie sparse (5 novembre 2026). La notizia
+   del rilascio porta «novita»: [{sistema, area, cosa, dettaglio, fonte, link}].
+   Qui diventa un elenco dentro la notizia aperta, fra la descrizione e
+   l'approfondimento: per sistema, col pallino del suo colore, poi per area.
+   Oltre le dodici voci se ne vedono otto e il resto sta dietro «Mostra tutte». */
+const NOV_SHOW = 8, NOV_FOLD = 12;
+function novFamily(s){
+  const t = String(s || "").toLowerCase().replace(/\s+/g, "");
+  const fams = [["ios", "blue"], ["ipados", "orange"], ["macos", "red"], ["watchos", "yellow"],
+                ["visionos", "ink"], ["tvos", "ink"], ["homepod", "ink"], ["xcode", "ink"]];
+  for(let i = 0; i < fams.length; i++) if(t.indexOf(fams[i][0]) === 0) return {rank:i, color:fams[i][1]};
+  return {rank:fams.length, color:"ink-3"};
+}
+/* «iOS · iPadOS · macOS 27.3 beta 1» invece di ripetere la versione a ogni nome */
+function novOf(systems){
+  const parts = systems.map(function(s){ const m = s.name.match(/^(\S+)\s*(.*)$/); return m ? [m[1], m[2]] : [s.name, ""]; });
+  const rest = parts[0][1];
+  if(rest && parts.every(function(p){ return p[1] === rest; }))
+    return parts.map(function(p){ return p[0]; }).join(" · ") + " " + rest;
+  return systems.map(function(s){ return s.name; }).join(" · ");
+}
+function novitaNode(n){
+  const all = (n.novita || []).filter(function(v){ return v && v.cosa; });
+  if(!all.length) return null;
+  /* i gruppi: sistema nell'ordine di famiglia (iOS, iPadOS, macOS…), dentro
+     le aree nell'ordine in cui la corsa le ha scritte */
+  const systems = [];
+  all.forEach(function(v, i){
+    const name = String(v.sistema || "Altro").trim();
+    let s = systems.find(function(x){ return x.name === name; });
+    if(!s){ s = {name:name, fam:novFamily(name), first:i, areas:[]}; systems.push(s); }
+    const an = String(v.area || "Generale").trim();
+    let a = s.areas.find(function(x){ return x.name === an; });
+    if(!a){ a = {name:an, items:[]}; s.areas.push(a); }
+    a.items.push(v);
+  });
+  systems.sort(function(a, b){ return a.fam.rank - b.fam.rank || a.first - b.first; });
+
+  const fold = all.length > NOV_FOLD;
+  let shown = 0;
+  const meter = el("span", {class:"nov-meter", "aria-hidden":"true"});
+  const blocks = systems.map(function(s){
+    const count = s.areas.reduce(function(t, a){ return t + a.items.length; }, 0);
+    const dot = el("i", {class:"on"}); dot.style.setProperty("--c", "var(--" + s.fam.color + ")");
+    meter.appendChild(dot);
+    const pip = el("i", {class:"nov-pip"}); pip.style.setProperty("--c", "var(--" + s.fam.color + ")");
+    const sys = el("div", {class:"nov-sys"}, [
+      el("h5", {class:"nov-sys-h"}, [pip, el("span", {text:s.name}), el("b", {text:String(count)})])
+    ]);
+    let sysVisible = false;
+    s.areas.forEach(function(a){
+      const list = el("ul", {class:"nov-list"});
+      let areaVisible = false;
+      a.items.forEach(function(v){
+        const extra = fold && shown >= NOV_SHOW;
+        shown++;
+        if(!extra) areaVisible = true;
+        const href = safeUrl(v.link);
+        list.appendChild(el("li", {class:"nov-item" + (extra ? " nov-extra" : "")}, [
+          el("span", {class:"nov-cosa", text:v.cosa}),
+          v.dettaglio ? el("span", {class:"nov-det", text:v.dettaglio}) : null,
+          v.fonte ? (href ? el("a", {class:"nov-src", href:href, target:"_blank", rel:"noopener noreferrer", text:v.fonte})
+                          : el("span", {class:"nov-src", text:v.fonte})) : null
+        ]));
+      });
+      if(areaVisible) sysVisible = true;
+      sys.appendChild(el("div", {class:"nov-area" + (areaVisible ? "" : " nov-extra")}, [
+        el("h6", {class:"nov-area-h", text:a.name}), list
+      ]));
+    });
+    if(!sysVisible) sys.classList.add("nov-extra");
+    return sys;
+  });
+  Motion.stagger(meter.children);
+  Motion.once(meter, "fill");
+
+  const box = el("section", {class:"novita" + (fold ? " is-short" : ""), "aria-label":"Tutte le novità"}, [
+    el("header", {class:"nov-head"}, [
+      el("b", {class:"nov-n", text:String(all.length)}),
+      el("div", {class:"nov-title"}, [
+        el("h4", {class:"nov-h", text:"Tutte le novità"}),
+        el("span", {class:"nov-of", text:novOf(systems)})
+      ]),
+      meter
+    ])
+  ].concat(blocks));
+  if(fold){
+    const more = el("button", {type:"button", class:"nov-more", text:"Mostra tutte (" + all.length + ")"});
+    more.addEventListener("click", function(ev){
+      ev.stopPropagation();
+      const open = box.classList.toggle("is-short") === false;
+      more.textContent = open ? "Mostra meno" : "Mostra tutte (" + all.length + ")";
+      if(!open) box.scrollIntoView({block:"start"});
+    });
+    box.appendChild(more);
+  }
+  return box;
 }
 
 /* ================= notizia ================= */
@@ -5188,6 +5327,9 @@ function storyNode(brief, n, index){
   body.appendChild(el("p", {text:n.descrizione || ""}));
   const nums = numbersNode(n.facts);
   if(nums) body.appendChild(nums);
+  /* il rilascio di un sistema: l'elenco completo, prima dell'approfondimento */
+  const nov = novitaNode(n);
+  if(nov) body.appendChild(nov);
 
   /* Approfondisci e Ascolta: il primo apre il pezzo lungo scritto la mattina
      per le prime notizie, il secondo lo legge ad alta voce (o legge la
@@ -5893,7 +6035,10 @@ function magCard(brief, n, i, w, kind){
   const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Leggi più tardi", title:"Leggi più tardi", html:I_STAR});
   const when = tempoFa(n);
   const foot = el("div", {class:"card-foot tools", "data-sig":k}, [
-    when ? el("span", {class:"card-when", text:when}) : null, cov, el("span", {class:"card-gap"}), star
+    when ? el("span", {class:"card-when", text:when}) : null, cov,
+    /* il rilascio di un sistema: quante novita' ci sono dentro */
+    n.novita && n.novita.length ? el("span", {class:"card-nov", text:n.novita.length + " novità"}) : null,
+    el("span", {class:"card-gap"}), star
   ]);
   const paintStar = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
   paintStar();

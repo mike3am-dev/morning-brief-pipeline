@@ -44,7 +44,9 @@ TIERS = sources.tiers()
 # un giorno e' un sintomo; un laboratorio AI che tace da tre no, e un canale
 # YouTube pubblica quando il video e' pronto. Senza questa distinzione il
 # campanello suonerebbe ogni mattina e smetteremmo di guardarlo.
-QUIET = sources.PRIMARY
+# Apple Machine Learning pubblica un paper ogni tanto: tre settimane di
+# silenzio sono la norma, come per le fonti primarie (5 novembre 2026).
+QUIET = sources.PRIMARY | {"Apple Machine Learning"}
 QUIET_TOLERANCE_H = 24 * 21
 TIER_TOLERANCE_H = {"primaria": 24 * 21, "ai": 24 * 7, "banco": 24 * 12, "lab": 24 * 12,
                     "games": 24 * 5, "tech": 24 * 5, "spazio": 24 * 5}
@@ -100,6 +102,50 @@ PAGINE = {
 }
 MAX_PAGINE = 3
 
+# Chi non ha pagine: MacRumors da' sempre le stesse 20 voci (circa 21 ore) a
+# qualunque indirizzo, MacRumors-All, -Front, ?paged=2. Ha pero' la mappa delle
+# notizie per Google News, con titolo e ora degli ultimi due giorni (57 voci,
+# 46 ore, misurato il 5 novembre 2026): quando il feed resta corto si prende il
+# resto da li'. Il sommario manca, il titolo e l'ora bastano per selezionare.
+MAPPE = {
+    "MacRumors": "https://www.macrumors.com/sitemap/newsmap.xml.gz",
+}
+
+
+def sitemap_items(name, cutoff, now, seen):
+    """Le voci della mappa delle notizie (sitemap-news) dentro la finestra e non
+    gia' viste. Torna le voci e la data della piu' vecchia."""
+    _, _, blob = download(name, MAPPE[name])
+    if not blob:
+        return [], None
+    try:
+        blob = gzip.decompress(blob)
+    except OSError:
+        pass  # curl --compressed l'ha gia' aperta, o non era compressa
+    text = blob.decode("utf-8", "replace")
+    out, oldest = [], None
+    for block in re.findall(r"<url>(.*?)</url>", text, re.S):
+        link = re.search(r"<loc>\s*(.*?)\s*</loc>", block, re.S)
+        when = re.search(r"<news:publication_date>\s*(.*?)\s*</news:publication_date>", block, re.S)
+        title = re.search(r"<news:title>\s*(.*?)\s*</news:title>", block, re.S)
+        if not (link and when and title):
+            continue
+        dt = parse_date(when.group(1))
+        if dt is None:
+            continue
+        oldest = dt if oldest is None or dt < oldest else oldest
+        link = html.unescape(link.group(1))
+        if dt < cutoff or dt > now or C.norm_url(link) in seen:
+            continue
+        out.append({
+            "source": name, "tier": TIERS.get(name, "redazionale"),
+            "title": strip_html(title.group(1).replace("<![CDATA[", "").replace("]]>", "")),
+            "link": link, "date": dt.isoformat(),
+            "age_hours": round((now - dt).total_seconds() / 3600, 1),
+            "summary": "", "categories": [],
+        })
+    return out, oldest
+
 
 def page_url(name, url, n):
     if name in PAGINE:
@@ -129,6 +175,12 @@ def deepen(name, url, blob, cutoff, now):
         extra.extend(nuovi)
         seen.update(C.norm_url(i["link"]) for i in nuovi)
         oldest = min(oldest, old2) if old2 else oldest
+    if name in MAPPE and oldest is not None and oldest >= cutoff:
+        nuovi, old3 = sitemap_items(name, cutoff, now, seen)
+        if nuovi or old3:
+            pagine += 1
+            extra.extend(nuovi)
+            oldest = min(oldest, old3) if old3 else oldest
     return extra, pagine, oldest is not None and oldest >= cutoff, oldest
 
 

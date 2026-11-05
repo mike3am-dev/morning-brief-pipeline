@@ -64,6 +64,17 @@
    "2026-11-05 attiva: i rilasci di iOS, macOS e Xcode, beta e finali"
   ]
  },
+ "Apple Machine Learning": {
+  "url": "https://machinelearning.apple.com/rss.xml",
+  "state": "attiva",
+  "tier": "ai",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": [
+   "2026-11-05 attiva: la ricerca Apple in prima persona, lab apple della scheda AI; poche voci, costo nullo"
+  ]
+ },
  "Apple Newsroom": {
   "url": "https://www.apple.com/newsroom/rss-feed.rss",
   "state": "attiva",
@@ -72,6 +83,17 @@
   "reason": "",
   "checked": null,
   "history": []
+ },
+ "AppleInsider": {
+  "url": "https://appleinsider.com/rss/news/",
+  "state": "attiva",
+  "tier": "redazionale",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": [
+   "2026-11-05 attiva: 94% Apple, 46 h di copertura, 15 notizie Apple in 5 giorni che le nostre non avevano, prima di noi 7 volte"
+  ]
  },
  "Ars Technica": {
   "url": "https://feeds.arstechnica.com/arstechnica/index",
@@ -278,7 +300,9 @@
   "since": "2026-08-09",
   "reason": "",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 il feed resta a 20 voci (~21 h): fetch.py completa con la mappa delle notizie (newsmap, 46 h)"
+  ]
  },
  "Macitynet": {
   "url": "https://www.macitynet.it/feed",
@@ -452,13 +476,15 @@
   "history": []
  },
  "The Verge": {
-  "url": "https://www.theverge.com/rss/index.xml",
+  "url": "https://www.theverge.com/rss/apple/index.xml",
   "state": "attiva",
   "tier": "redazionale",
   "since": "2026-08-09",
   "reason": "",
   "checked": null,
-  "history": []
+  "history": [
+   "2026-11-05 indirizzo: feed Apple al posto di quello generale (copriva 15 h su 26, quasi niente Apple)"
+  ]
  },
  "Tom's Hardware IT": {
   "url": "https://www.tomshw.it/feed",
@@ -493,12 +519,24 @@
   "tier": "redazionale",
   "since": "2026-08-09",
   "reason": "fermo al 1 luglio, 39 giorni senza pubblicare",
-  "checked": "2026-08-17",
+  "checked": "2026-11-05",
   "history": [
    "2026-08-09 panchina: fermo al 1 luglio, 39 giorni senza pubblicare",
    "2026-08-09 riprova: ancora non risponde",
    "2026-08-09 riprova: 0 articoli, 0 su Apple, 0 che non avevamo",
-   "2026-08-17 riprova: ancora non risponde"
+   "2026-08-17 riprova: ancora non risponde",
+   "2026-11-05 riprova: 0 articoli, 0 su Apple, 0 che non avevamo"
+  ]
+ },
+ "iClarified": {
+  "url": "https://www.iclarified.com/rss/news.xml",
+  "state": "attiva",
+  "tier": "redazionale",
+  "since": "2026-11-05",
+  "reason": "",
+  "checked": null,
+  "history": [
+   "2026-11-05 attiva, in prova: 6 voci al giorno tutte Apple, notizie che le nostre non avevano (accordo scuole MacBook Neo, scorte Duo); si rimisura il 19 novembre"
   ]
  },
  "iSpazio": {

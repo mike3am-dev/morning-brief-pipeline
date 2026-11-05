@@ -77,7 +77,8 @@ gira: una notizia ripresa da venti siti non sta in fondo.
 Ogni notizia ha: `id` (slug stabile), `rank`, `tag`, `reliability` + `reliability_note`,
 `category`, `reparto`, `title`, `sintesi`, `descrizione`, `link`, `sources` (solo le testate
 **lette davvero**), `extra_links` (le altre), `origine` (un nome solo: chi l'ha detta per
-primo, mai chi l'ha ripresa), e dove pertinente `thread`, `claim`, `resolves`, `facts`.
+primo, mai chi l'ha ripresa), e dove pertinente `thread`, `claim`, `resolves`, `facts`,
+`novita`.
 
 - `reparto` ∈ Mac · iPhone · iPad · Watch · Casa · Servizi · Software · Mercato · Regole ·
   Azienda · Eventi · Accessori · AI.
@@ -93,6 +94,29 @@ primo, mai chi l'ha ripresa), e dove pertinente `thread`, `claim`, `resolves`, `
 Misure (le controlla il lint): `sintesi` ≤ 200 caratteri, una frase intera con il dato che
 conta, mai con i puntini; `descrizione` fra 200 e 950 caratteri, con almeno un dato concreto.
 Scrivile già dentro le misure: il lint è il collaudo, non la prima bozza.
+
+## I rilasci Apple — `novita`
+
+Quando Apple rilascia un sistema (iOS, iPadOS, macOS, watchOS, tvOS, visionOS; beta o finale:
+il grezzo lo porta dal feed «Apple Developer Releases»), Mike vuole sapere **tutto** quello che
+cambia, non quattro notizie sparse. Una notizia fra le prime cinque racconta il rilascio e porta
+l'elenco **completo**:
+
+```json
+"novita": [{"sistema": "iOS 27.3 beta 1", "area": "Fotocamera", "cosa": "…",
+            "dettaglio": "…", "fonte": "MacRumors", "link": "…"}]
+```
+
+- È **l'apertura** se il rilascio è un x.y finale o una beta 1; altrimenti sta fra le prime cinque.
+- L'elenco si raccoglie da **tutte** le testate che hanno trovato novità (9to5Mac, MacRumors,
+  iSpazio, Macitynet, AppleInsider…), lette per intero: la lettura lo porta già unito. Una voce
+  per novità, senza doppioni fra testate; `fonte` e `link` sono di chi l'ha trovata.
+- `cosa` ≤ 120 caratteri, una riga che dice cosa cambia; `dettaglio` ≤ 220, facoltativo, dove si
+  trova o cosa comporta; `area` raggruppa (Fotocamera, Messaggi, Privacy, Siri…).
+- Le beta successive e i giorni dopo aggiungono **solo le novità nuove**, come seguito sullo
+  stesso `thread` del rilascio, dicendo nel testo cosa è cambiato rispetto alla beta prima.
+- Una novità grossa può avere anche la sua notizia: l'elenco completo c'è sempre lo stesso.
+- Il lint avvisa se nel grezzo c'è un rilascio e nessuna delle prime cinque ha `novita`.
 
 ## L'approfondimento (prime cinque notizie)
 
