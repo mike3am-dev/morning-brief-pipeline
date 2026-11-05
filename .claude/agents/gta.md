@@ -102,6 +102,21 @@ entra nell'edizione da sola: `push.py` la ricopia (con `rubriche.merge`).
   frame del trailer — mettilo in `image_src`: preferisci il link che porta
   all'immagine giusta (il post con lo screenshot, il video), non la home di un sito.
 
+## Le tappe e i problemi (5 novembre 2026)
+
+Due campi in più nella sezione, scelti da Mike fra le idee del reparto creativo:
+
+- **`tappe`**: la strada verso l'uscita, `[{"data": "2026-11-10", "etichetta": "Precaricamento,
+  212 GB", "link": "…"}]` — preordini, trailer, galleria, precaricamento, copie fisiche, embargo
+  delle recensioni, uscita. **Solo date verificate oggi** (Rockstar, PlayStation, o più testate);
+  da 4 a 8 tappe, in ordine. Nell'app è una striscia turchese: le tappe passate piene, quella di
+  oggi si accende. Le riprendi ogni giorno dall'ultima edizione e le aggiorni.
+- **`problemi`**, **solo dal giorno dell'uscita**: i problemi che i giocatori segnalano davvero,
+  `[{"titolo": "Crash all'avvio su PS5 Pro", "stato": "segnalato|riconosciuto|corretto",
+  "segnale": "il post più votato di r/GTA6, 12.000 voti", "link": "…", "fonte": "r/GTA6"}]`.
+  `riconosciuto` solo se Rockstar l'ha detto, `corretto` solo con la patch che lo dice. Al massimo 6,
+  i più segnalati. Prima dell'uscita il campo non c'è.
+
 ## Il tempo
 
 Hai **dieci minuti**. Non sei sul percorso critico — l'edizione può uscire senza di te, e

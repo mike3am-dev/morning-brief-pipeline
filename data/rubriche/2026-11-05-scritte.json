@@ -1,64 +1,89 @@
 {
+ "attese": [
+  {
+   "id": "god-of-war-laufey",
+   "gioco": "God of War Laufey",
+   "casa": "Sony Santa Monica",
+   "piattaforme": [
+    "PS5"
+   ],
+   "uscita": "2027-05-20",
+   "precisione": "giorno",
+   "fonte": "Eurogamer",
+   "link": "https://www.eurogamer.net/god-of-war-laufey-delayed-may-three-months",
+   "notizia": "0f76e0d8"
+  }
+ ],
  "games": [
   {
    "id": "0f76e0d8",
    "gruppo": "playstation",
    "title": "God of War Laufey slitta di tre mesi: esce il 20 maggio 2027",
-   "nota": "Sony Santa Monica evita il febbraio affollato e usa il tempo per rifinire l'avventura di Faye, primo God of War senza Kratos protagonista."
+   "nota": "Sony Santa Monica evita il febbraio affollato e usa il tempo per rifinire l'avventura di Faye, primo God of War senza Kratos protagonista.",
+   "tasto": "rinvio"
   },
   {
    "id": "10bd7120",
    "gruppo": "playstation",
    "title": "Sony: la PlayStation 6 procede «as scheduled», memoria già assicurata per il prossimo anno",
-   "nota": "La CFO Lin Tao lo dice ai conti del trimestre. PS5 a 97,9 milioni di unità, con 2,6 milioni vendute fra luglio e settembre."
+   "nota": "La CFO Lin Tao lo dice ai conti del trimestre. PS5 a 97,9 milioni di unità, con 2,6 milioni vendute fra luglio e settembre.",
+   "tasto": "affari"
   },
   {
    "id": "9a61e768",
    "gruppo": "playstation",
    "title": "Wolverine parte piano: 2,4 milioni di copie in 50 giorni",
-   "nota": "Primo dato ufficiale di Sony, al 4 novembre. Spider-Man 2 ne aveva vendute 2,5 milioni in 24 ore; il gioco sarebbe costato circa 300 milioni di dollari."
+   "nota": "Primo dato ufficiale di Sony, al 4 novembre. Spider-Man 2 ne aveva vendute 2,5 milioni in 24 ore; il gioco sarebbe costato circa 300 milioni di dollari.",
+   "tasto": "affari"
   },
   {
    "id": "cb9702b0",
    "gruppo": "playstation",
    "title": "PlayStation, record di utenti: 127 milioni attivi al mese a settembre",
-   "nota": "Più 7% sull'anno, tempo di gioco +4%. Ricavi della divisione giochi +9%, utile operativo +83%; le PS5 vendute scendono da 4 a 2,6 milioni."
+   "nota": "Più 7% sull'anno, tempo di gioco +4%. Ricavi della divisione giochi +9%, utile operativo +83%; le PS5 vendute scendono da 4 a 2,6 milioni.",
+   "tasto": "affari"
   },
   {
    "id": "8da55e4d",
    "gruppo": "playstation",
    "title": "Assassin's Creed Valhalla si aggiorna: New Game+ e il nuovo PSSR su PS5 Pro",
-   "nota": "Aggiornamento gratuito disponibile da oggi su PS5 e PS5 Pro; l'upscaling PSSR migliorato è esclusivo della Pro."
+   "nota": "Aggiornamento gratuito disponibile da oggi su PS5 e PS5 Pro; l'upscaling PSSR migliorato è esclusivo della Pro.",
+   "tasto": "uscita"
   },
   {
    "id": "19b49c0c",
    "gruppo": "generico",
    "title": "Nintendo: nessun nuovo aumento per Switch 2, la memoria basta",
-   "nota": "Lo dice ai conti: utile -16%, vendite di Switch 2 -37%. Esce oggi The Legend of Zelda: Ocarina of Time Remake, già il più votato dell'anno su Metacritic."
+   "nota": "Lo dice ai conti: utile -16%, vendite di Switch 2 -37%. Esce oggi The Legend of Zelda: Ocarina of Time Remake, già il più votato dell'anno su Metacritic.",
+   "tasto": "affari"
   },
   {
    "id": "8dd03b31",
    "gruppo": "generico",
    "title": "BioWare, la petizione per salvarla arriva al Parlamento canadese",
-   "nota": "La e-7898 ha raccolto 1.700 firme in un giorno, oltre le 500 che la portano alla Camera dei Comuni. Ma il governo non può obbligare EA a vendere."
+   "nota": "La e-7898 ha raccolto 1.700 firme in un giorno, oltre le 500 che la portano alla Camera dei Comuni. Ma il governo non può obbligare EA a vendere.",
+   "tasto": "affari"
   },
   {
    "id": "5fce1438",
    "gruppo": "generico",
    "title": "Arkane, il sindacato: chiudere lo studio costa a Xbox più che finire Marvel's Blade",
-   "nota": "Il sindacato francese STJV dice che il gioco va «fine» e accusa Microsoft di sabotarlo. Lo studio ha tempo fino a dicembre per trovare un compratore."
+   "nota": "Il sindacato francese STJV dice che il gioco va «fine» e accusa Microsoft di sabotarlo. Lo studio ha tempo fino a dicembre per trovare un compratore.",
+   "tasto": "rinvio"
   },
   {
    "id": "bcfafe0f",
    "gruppo": "generico",
    "title": "World of Warcraft: Forever, il lancio più liscio che Blizzard ricordi",
-   "nota": "Code brevi e pochi scollegamenti nella notte d'uscita. La produttrice Holly Longdale su X: «so far so goodish»."
+   "nota": "Code brevi e pochi scollegamenti nella notte d'uscita. La produttrice Holly Longdale su X: «so far so goodish».",
+   "tasto": "uscita"
   },
   {
    "id": "161a2a1d",
    "gruppo": "generico",
    "title": "Xbox Cloud Gaming in prova con il telefono come controller",
-   "nota": "La funzione è entrata in anteprima: per giocare in streaming su una smart TV basterà lo schermo dello smartphone."
+   "nota": "La funzione è entrata in anteprima: per giocare in streaming su una smart TV basterà lo schermo dello smartphone.",
+   "tasto": "uscita"
   }
  ],
  "spazio": [
@@ -66,7 +91,15 @@
    "id": "b02175b4",
    "disciplina": "spazio",
    "title": "Marte non è spento: la sonda europea TGO trova segni di vulcani attivi",
-   "nota": "Picchi di acido cloridrico sopra le fratture di Alba Mons fanno pensare a magma caldo sotto la superficie. Lo studio è su Science Advances."
+   "nota": "Picchi di acido cloridrico sopra le fratture di Alba Mons fanno pensare a magma caldo sotto la superficie. Lo studio è su Science Advances.",
+   "scala": {
+    "metri": 10000000.0,
+    "etichetta": "un pianeta"
+   },
+   "prova": {
+    "livello": "rivista",
+    "rivista": "Science Advances"
+   }
   },
   {
    "id": "53f78f88",
@@ -81,19 +114,41 @@
    "id": "fde457b6",
    "disciplina": "natura",
    "title": "Trovati i globuli rossi di un dinosauro vissuto 115 milioni di anni fa",
-   "nota": "È la prima volta. Le ossa sono di un Aratasaurus museunacionali dal Brasile; lo studio, guidato dalla Curtin University, è su PNAS."
+   "nota": "È la prima volta. Le ossa sono di un Aratasaurus museunacionali dal Brasile; lo studio, guidato dalla Curtin University, è su PNAS.",
+   "scala": {
+    "metri": 1e-05,
+    "etichetta": "un globulo rosso"
+   },
+   "prova": {
+    "livello": "rivista",
+    "rivista": "PNAS"
+   },
+   "tempo": {
+    "anni_fa": 115000000,
+    "etichetta": "Aratasaurus"
+   }
   },
   {
    "id": "c6795390",
    "disciplina": "fisica",
    "title": "Al CERN un decadimento rarissimo apre la porta allo «zeptoverso»",
-   "nota": "Un mesone B neutro è decaduto in un muone e un antimuone: il modello standard lo prevede una volta ogni 10 miliardi. Lo si cercava da 40 anni."
+   "nota": "Un mesone B neutro è decaduto in un muone e un antimuone: il modello standard lo prevede una volta ogni 10 miliardi. Lo si cercava da 40 anni.",
+   "scala": {
+    "metri": 1e-21,
+    "etichetta": "lo «zeptoverso»"
+   },
+   "prova": {
+    "livello": "osservazione"
+   }
   },
   {
    "id": "ac1dc3f6",
    "disciplina": "medicina",
    "title": "Latte e formaggi vegetali al posto di quelli animali: rischio di carenza di iodio",
-   "nota": "Sostituire un terzo dei latticini porterebbe le ragazze britanniche con poco iodio dal 54% al 65%, secondo un modello dell'Università del Surrey."
+   "nota": "Sostituire un terzo dei latticini porterebbe le ragazze britanniche con poco iodio dal 54% al 65%, secondo un modello dell'Università del Surrey.",
+   "prova": {
+    "livello": "modello"
+   }
   },
   {
    "id": "d482c20d",
@@ -105,13 +160,29 @@
    "id": "df5dd8c3",
    "disciplina": "terra",
    "title": "I temporali più forti del pianeta durano meno e scaricano più pioggia",
-   "nota": "Dati di oltre 19.000 pluviometri dal 1980 al 2022: la durata scende di 86 minuti per decennio, fino a 144 in Europa. Lo studio è su Earth's Future."
+   "nota": "Dati di oltre 19.000 pluviometri dal 1980 al 2022: la durata scende di 86 minuti per decennio, fino a 144 in Europa. Lo studio è su Earth's Future.",
+   "prova": {
+    "livello": "rivista",
+    "rivista": "Earth's Future",
+    "campione": "oltre 19.000 pluviometri"
+   },
+   "tempo": {
+    "anni_fa": 46,
+    "etichetta": "dati dal 1980"
+   }
   },
   {
    "id": "3b2ef923",
    "disciplina": "storia",
    "title": "I cubi di uranio nazisti spiegano perché il reattore di Heisenberg fallì",
-   "nota": "Ne restano 14 al mondo. Dai calcoli su quei cubi, Heisenberg aveva sottostimato di molto il materiale necessario."
+   "nota": "Ne restano 14 al mondo. Dai calcoli su quei cubi, Heisenberg aveva sottostimato di molto il materiale necessario.",
+   "prova": {
+    "livello": "modello"
+   },
+   "tempo": {
+    "anni_fa": 82,
+    "etichetta": "il reattore di Heisenberg"
+   }
   },
   {
    "id": "9f6d16ac",
@@ -123,7 +194,15 @@
    "id": "f7f1db88",
    "disciplina": "spazio",
    "title": "Un software corregge le oscillazioni del James Webb: pianeti 15 volte più deboli",
-   "nota": "Modellando i piccoli movimenti del telescopio si toglie meglio il bagliore delle stelle. Lo studio, su Nature, è di Northwestern University."
+   "nota": "Modellando i piccoli movimenti del telescopio si toglie meglio il bagliore delle stelle. Lo studio, su Nature, è di Northwestern University.",
+   "scala": {
+    "metri": 6.5,
+    "etichetta": "lo specchio di Webb"
+   },
+   "prova": {
+    "livello": "rivista",
+    "rivista": "Nature"
+   }
   }
  ],
  "scritto": "2026-11-05"

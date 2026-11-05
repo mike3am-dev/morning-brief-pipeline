@@ -422,6 +422,23 @@ def load_pool(day):
 
 # ---------------------------------------------------------------- scelta
 
+# I quattro tasti di Games (5 novembre 2026): uscita ✕, rinvio ○, rumor △, affari □. L'agente
+# `schede` li corregge; questo e' il ripiego dal titolo.
+TASTI = [("rinvio", r"\b(delay\w*|postpon\w*|pushed back|slips?|rinvi\w*|slitta\w*|cancel\w*|shut(s|ting)? down|clos(es|ing))\b"),
+         ("rumor", r"\b(rumou?r\w*|leak\w*|reportedly|insider|datamin\w*|indiscrezion\w*)\b"),
+         ("affari", r"\b(sales|sold|revenue|earnings|financial|acqui\w+|layoffs?|union|sindacat\w*|price|prezz\w*|stock|"
+                    r"players?|users?|record|vend\w+|copies)\b"),
+         ("uscita", r"\b(out now|launch\w*|release\w*|announc\w*|reveal\w*|coming|arriv\w*|esce|uscit\w*|disponibil\w*|available)\b")]
+
+
+def tasto(title):
+    low = (title or "").lower()
+    for nome, rx in TASTI:
+        if re.search(rx, low, re.I):
+            return nome
+    return None
+
+
 def compose(rub, good, tetto):
     """Dalla lista ordinata per punteggio alla scelta finale.
 
@@ -669,6 +686,7 @@ def shape(rub, g, tr, top):
         it["disciplina"] = disciplina(orig)
     if rub == "games":
         it["gruppo"] = "gta" if g.get("_gta") else ("playstation" if PS_RX.search(orig) else "generico")
+        it["tasto"] = tasto(orig)
     if g["source"] in LANG_IT or g.get("_it"):
         it["lingua"] = "it"
     if g.get("_links"):
@@ -838,6 +856,11 @@ def scritte_opus(day, d):
                 base["gruppo"] = v["gruppo"]
             if v.get("disciplina"):
                 base["disciplina"] = v["disciplina"]
+            # le chicche scelte da Mike il 5 novembre 2026: i dati li scrive l'agente, che ha
+            # l'articolo aperto (docs/schede/chicche-2026-11-05/)
+            for campo in ("tasto", "verdetto", "scala", "prova", "tempo"):
+                if v.get(campo):
+                    base[campo] = v[campo]
             extra = list(base.get("extra_links") or [])
             for a in v.get("anche") or []:
                 o = pool.get(a)
@@ -870,6 +893,22 @@ def merge(day):
     d, b = (C.load_json(src) if os.path.exists(src) else {}), C.load_json(dst)
     changed = False
     scritte = scritte_opus(day, d)
+    # le parti delle scritte che non sono voci: la settimana delle uscite e le date dei giochi attesi
+    extra = {}
+    try:
+        w = C.load_json(os.path.join(DIR, f"{day}-scritte.json"))
+    except (OSError, ValueError):
+        w = {}
+    if isinstance(w.get("attese"), list):
+        import attese
+        attese.aggiorna(day, w["attese"])
+    try:
+        import attese
+        extra["games_attese"] = attese.per_edizione(day)
+    except Exception:
+        pass
+    if isinstance(w.get("settimana"), list):
+        extra["games_settimana"] = w["settimana"]
     for k, dst_key in [(k, k) for k in KEYS] + [("gta", "gta_notizie")]:
         if k in scritte:
             d = dict(d, **{k: scritte[k]})
@@ -952,6 +991,10 @@ def merge(day):
             if b.get("ai") != nuova:
                 b["ai"] = nuova
                 changed = True
+    for k, v in extra.items():
+        if b.get(k) != v:
+            b[k] = v
+            changed = True
     if changed:
         C.save_json(dst, b)
     return changed

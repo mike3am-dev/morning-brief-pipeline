@@ -73,6 +73,21 @@ elettorale, le opinioni travestite da notizia, i tutorial generici, le liste.
 - Le citazioni restano nella lingua originale. Tono Bloomberg, mai da creator. Gli accenti sono
   accenti. **Non inventare niente**: ogni numero e nome viene da quello che hai letto.
 
+## I dati delle chicche (5 novembre 2026)
+
+Mike ha scelto tre elementi animati per la scheda. Si nutrono di campi che scrivi tu, **solo se
+l'articolo li dà**:
+
+- **`modello`** su ogni voce `kind: "modello"`, sempre: è il tabellone del fronte, che fa girare
+  le palette quando un laboratorio cambia modello.
+- **`conto`**: su **una sola voce al giorno**, quella col numero che fa capire la scala, quando
+  l'articolo dà **la parte e il tutto**: `{"parte": 4, "tutto": 320000000, "etichetta": "corse Uber
+  prenotate da un agente AI, su 320 milioni", "fonte": "Uber"}`. Nell'app diventa un campo di
+  pallini con quelli accesi. Mai un tutto stimato da te.
+- **`passi`** sulle voci LAB: 2–4 passi per provarla, ognuno entro 60 caratteri, in ordine
+  («Apri pcdealcheck.com», «Incolla il link dell'annuncio», «Leggi il punteggio componente per
+  componente»). Nell'app un cursore li clicca e li spunta uno per uno. `prova` resta: è la riga.
+
 ## Cosa scrivi, e dove
 
 **Un file solo: `data/ai/<giorno>-sezione.json`.** Non toccare l'edizione: la stanno scrivendo

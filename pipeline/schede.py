@@ -62,6 +62,14 @@ def estratto(page):
     return " ".join(out)[:TESTO]
 
 
+def voto(page):
+    """Il voto di una recensione, se la pagina lo dichiara (schema.org reviewRating): '8/10'."""
+    m = re.search(r'"reviewRating"\s*:\s*\{[^}]*?"ratingValue"\s*:\s*"?([\d.,]+)"?[^}]*?(?:"bestRating"\s*:\s*"?([\d.,]+)"?)?', page or "")
+    if not m:
+        return ""
+    return f"{m.group(1)}/{m.group(2) or '10'}"
+
+
 def run(day):
     src = os.path.join(DIR, f"{day}.json")
     if not os.path.exists(src):
@@ -70,14 +78,16 @@ def run(day):
     cand = d.get("candidati") or {}
     jobs = [(k, c) for k in NOMI for c in cand.get(k) or []]
     with cf.ThreadPoolExecutor(max_workers=16) as ex:
-        testi = list(ex.map(lambda j: estratto(scarica(j[1].get("link"))), jobs))
+        pagine = list(ex.map(lambda j: scarica(j[1].get("link")), jobs))
+    testi = [estratto(p) for p in pagine]
+    voti = [voto(p) for p in pagine]
     L = [f"DOSSIER SCHEDE — {day}", "",
          "Per ogni candidato: id, gruppo o disciplina proposti dallo script, testata, ore, quante",
          "testate, titolo originale, sommario del feed, e l'estratto dell'articolo quando si apre.", ""]
     letti = 0
     for k, nome in NOMI.items():
         L.append(f"## {nome} — {len(cand.get(k) or [])} candidati (tetto in edizione: 10)")
-        for (kk, c), t in zip(jobs, testi):
+        for (kk, c), t, vt in zip(jobs, testi, voti):
             if kk != k:
                 continue
             letti += bool(t)
@@ -88,6 +98,8 @@ def run(day):
             if c.get("summary"):
                 L.append(f"SOMMARIO: {c['summary'][:500]}")
             L.append(f"ARTICOLO: {t}" if t else "ARTICOLO: (non si apre: solo il sommario)")
+            if vt:
+                L.append(f"VOTO DELLA RECENSIONE: {vt}")
             L.append(f"LINK: {c.get('link')}")
         L.append("")
     L += [f"Articoli aperti: {letti} su {len(jobs)}.", "", "<!-- fine lettura -->"]

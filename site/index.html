@@ -1661,7 +1661,7 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 /* il fronte: un tabellone nero, una colonna per laboratorio */
 .fronte-tab{background:#111214; color:#F1EEE8; border-radius:4px; padding:.9rem 0 .8rem; margin:.4rem 0}
 .fr-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .7rem; padding:0 1rem .7rem}
-.fr-head > span:first-child{font-family:var(--display); font-weight:800; font-size:1.35rem; text-transform:uppercase; letter-spacing:.02em}
+.fr-head > span:first-child:not(.fr-sub){font-family:var(--display); font-weight:800; font-size:1.35rem; text-transform:uppercase; letter-spacing:.02em}
 .fr-sub{font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(241,238,232,.6)}
 .fr-board{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(7.4rem, 1fr); overflow-x:auto; scroll-snap-type:x proximity;
   border-top:1px solid rgba(255,255,255,.14); border-bottom:1px solid rgba(255,255,255,.14); scrollbar-width:none}
@@ -1717,6 +1717,184 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .ai-prova-meta{font-size:.7rem; color:var(--ink-2); font-weight:600}
 .ai-mag .card-src .ai-genere{color:var(--red-ink)}
 .ai-mag .fronte-tab{margin-top:0}
+
+
+/* ---- le chicche delle schede (5 novembre 2026) ---- */
+/* AI · il tabellone Solari */
+.fr-nome.solari{display:flex; flex-wrap:wrap; gap:2px}
+.flap{display:inline-grid; place-items:center; min-width:.62em; padding:.08em .06em; background:#26282d; color:#F1EEE8;
+  border-radius:2px; box-shadow:inset 0 -1px 0 rgba(0,0,0,.6); position:relative}
+.flap::after{content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:rgba(0,0,0,.55)}
+.fr-col.oggi .flap{background:rgba(0,0,0,.28)}
+.flap.giro{animation:flap .07s linear}
+@keyframes flap{from{transform:rotateX(-80deg)} to{transform:none}}
+.lucchetto{align-self:flex-start; color:var(--yellow); line-height:0}
+.lucchetto .arco{transform-origin:15px 10px; transition:transform .6s cubic-bezier(.3,1.4,.5,1) .9s}
+.lucchetto.aperto .arco{transform:rotate(38deg) translateY(-2px)}
+/* AI · il conto in pallini */
+.ai-conto{background:var(--paper); border-radius:18px; padding:1.1rem 1.15rem 1rem; cursor:pointer;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+.conto-num{font-family:var(--display); text-transform:uppercase; line-height:1}
+.conto-num b{font-weight:800; font-size:clamp(1.8rem, 8cqi, 2.6rem); color:var(--red)}
+.conto-num b:last-child{color:var(--ink)}
+.conto-num span{font-weight:700; font-size:1.1rem; color:var(--ink-3); margin:0 .25rem}
+.conto-et{margin:.35rem 0 .8rem; font-size:.95rem; line-height:1.4; color:var(--ink-2)}
+.conto-campo{display:grid; grid-template-columns:repeat(20, 1fr); gap:5px}
+.conto-campo i{aspect-ratio:1; border-radius:50%; background:var(--rule)}
+.ai-conto.go .conto-campo i{animation:mo-pop .3s both; animation-delay:calc(var(--i) * 4ms)}
+.conto-campo i.on{background:var(--red)}
+.ai-conto.go .conto-campo i.on{animation:mo-pop .5s both, conto-pulsa 1.8s ease-in-out 1.4s infinite; animation-delay:.9s, 1.4s}
+@keyframes conto-pulsa{50%{box-shadow:0 0 0 5px color-mix(in srgb, var(--red) 25%, transparent)}}
+.conto-nota{margin-top:.75rem; font-size:.75rem; color:var(--ink-3)}
+/* AI · il cursore che lavora */
+.ai-passi-box{position:relative; margin-top:.15rem}
+.ai-passi{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4rem; counter-reset:passo}
+.ai-passi li{display:flex; gap:.55rem; align-items:flex-start; font-size:.88rem; line-height:1.35; color:var(--ink)}
+.spunta{flex:none; width:16px; height:16px; border-radius:3px; box-shadow:inset 0 0 0 1.6px var(--ink-2); margin-top:.1rem; position:relative}
+.ai-passi li.fatto .spunta{background:var(--ink); box-shadow:none}
+.ai-passi li.fatto .spunta::after{content:""; position:absolute; left:5px; top:1.5px; width:4px; height:8px; border:solid var(--yellow);
+  border-width:0 2px 2px 0; transform:rotate(45deg)}
+.ai-passi li.fatto > span:last-child{color:var(--ink-2)}
+.freccia{position:absolute; left:0; top:0; transform:translate(70%, 120%); transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .4s; pointer-events:none}
+.freccia.clic svg{transform:scale(.85)}
+.freccia.via{opacity:0}
+/* Games · i quattro tasti */
+.tasto{display:inline-grid; place-items:center; width:20px; height:20px; border-radius:50%; background:var(--ink); align-self:center; flex:none}
+.tasto.t-uscita{color:#5AB8FF} .tasto.t-rinvio{color:#FF5C6E} .tasto.t-rumor{color:var(--yellow)} .tasto.t-affari{color:var(--orange)}
+.mo-tasto.mo-in{animation:tasto-premi .35s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes tasto-premi{0%{transform:scale(1)} 40%{transform:scale(.78)} 100%{transform:scale(1)}}
+/* Games · il verdetto */
+.verdetto{margin:.35rem 0 .1rem}
+.verdetto-top{display:flex; justify-content:space-between; align-items:baseline; font-size:.6rem; font-weight:800; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3)}
+.verdetto-top b{font-family:var(--display); font-size:1.6rem; color:var(--violet); letter-spacing:0}
+.verdetto-riga{position:relative; height:26px; margin-top:.25rem; border-bottom:2px solid var(--ink)}
+.verdetto-riga .tic{position:absolute; bottom:-2px; width:1px; height:6px; background:var(--ink-3)}
+.verdetto-riga .voto{position:absolute; bottom:6px; left:0; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:var(--violet);
+  color:#fff; font-size:.6rem; font-weight:800; display:grid; place-items:center; transition:left .9s cubic-bezier(.3,1,.4,1)}
+.verdetto.go .voto{left:var(--x)}
+.verdetto-riga .media{position:absolute; bottom:-2px; left:var(--x); width:2px; height:30px; background:var(--ink)}
+/* Games · in caricamento */
+.carica{display:flex; flex-direction:column; gap:1rem; background:var(--paper); border-radius:18px; padding:1rem 1.1rem;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+.carica-riga.link{cursor:pointer}
+.carica-testa{display:flex; justify-content:space-between; align-items:baseline; gap:.6rem}
+.carica-testa b{font-family:var(--display); font-weight:800; font-size:1.2rem; text-transform:uppercase; letter-spacing:.01em}
+.carica-fine{font-family:var(--display); font-weight:800; font-size:1rem; text-transform:uppercase; color:var(--violet); white-space:nowrap}
+.carica-barra{position:relative; height:12px; margin:.4rem 0 .35rem; background:var(--paper-2); border-radius:2px; box-shadow:inset 0 0 0 1.5px var(--ink)}
+.carica-pieno{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:2px 0 0 2px;
+  background-color:var(--violet);
+  background-image:repeating-linear-gradient(-45deg, rgba(255,255,255,.24) 0 6px, transparent 6px 12px);
+  background-size:17px 17px;
+  transition:width 1.6s cubic-bezier(.3,.8,.3,1); animation:carica-scorre 1s linear infinite}
+@keyframes carica-scorre{to{background-position:17px 0}}
+.carica.go .carica-pieno{width:var(--p)}
+.tacca{position:absolute; top:-5px; bottom:-5px; width:3px; margin-left:-1.5px; background:var(--red); transform:scaleY(0); transition:transform .35s ease}
+.carica.go .tacca{transform:none; transition-delay:calc(1.6s + var(--i) * .15s)}
+.carica-piede{display:flex; flex-wrap:wrap; gap:.2rem .8rem; font-size:.74rem; color:var(--ink-3)}
+.carica-rinvii{color:var(--red-ink); font-weight:700}
+/* Games · questa settimana esce */
+.settimana{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; background:var(--paper); border-radius:18px; padding:.8rem .6rem}
+.sett-giorno{display:flex; flex-direction:column; align-items:center; gap:.2rem; min-width:0; padding:.3rem 0; border-radius:6px}
+.sett-giorno.oggi{background:color-mix(in srgb, var(--violet) 14%, transparent)}
+.sett-g{font-size:.56rem; font-weight:800; letter-spacing:.12em; color:var(--ink-3)}
+.sett-giorno b{font-family:var(--display); font-size:1.3rem; line-height:1}
+.sett-giorno.passato b{color:var(--ink-3); text-decoration:line-through; text-decoration-thickness:2px}
+.sett-giochi{display:flex; flex-direction:column; gap:3px; width:100%}
+.sett-gioco{font-size:.6rem; line-height:1.2; padding:.2rem .25rem; border-radius:3px; background:var(--violet); color:#fff; text-decoration:none;
+  overflow-wrap:anywhere}
+.sett-gioco.t-arcade{background:var(--orange)} .sett-gioco.t-psplus{background:var(--blue)}
+/* GTA VI · le tappe del lancio */
+.gta-tappe{list-style:none; margin:0; padding:.3rem 1.15rem 1rem; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(5.2rem, 1fr);
+  overflow-x:auto; scrollbar-width:none; position:relative}
+.gta-tappe::-webkit-scrollbar{display:none}
+.tappa{position:relative; display:flex; flex-direction:column; gap:.25rem; padding-top:1.1rem}
+.tappa::before{content:""; position:absolute; top:.42rem; left:0; right:0; height:2px; background:rgba(25,211,197,.35);
+  transform:scaleX(0); transform-origin:left; transition:transform .25s ease calc(var(--i) * .09s)}
+.gta-tappe.go .tappa::before{transform:none}
+.tappa-pt{position:absolute; top:.12rem; left:0; width:12px; height:12px; border-radius:50%; box-shadow:inset 0 0 0 2px var(--g-teal);
+  transform:scale(0); transition:transform .35s cubic-bezier(.2,1.4,.4,1) calc(.15s + var(--i) * .09s)}
+.gta-tappe.go .tappa-pt{transform:none}
+.tappa.passata .tappa-pt{background:var(--g-teal)}
+.tappa.oggi .tappa-pt{background:var(--g-pink); box-shadow:0 0 0 3px rgba(255,61,139,.35); animation:tappa-oggi 1.6s ease-in-out 1.5s infinite}
+@keyframes tappa-oggi{50%{box-shadow:0 0 0 7px rgba(255,61,139,.12)}}
+.tappa-d{font-family:var(--display); font-weight:800; font-size:.95rem; text-transform:uppercase; color:#fff}
+.tappa.passata .tappa-d{color:var(--g-teal)} .tappa.oggi .tappa-d{color:var(--g-pink)}
+.tappa-t{font-size:.72rem; line-height:1.3; color:rgba(255,255,255,.78); padding-right:.4rem}
+/* GTA VI · il registro dei problemi */
+.gta-problemi{margin:0 .9rem 1rem; padding:.8rem .9rem .3rem; background:rgba(12,4,30,.62); border-radius:4px}
+.gta-problemi h3{font-family:var(--display); font-weight:800; font-size:1.15rem; text-transform:uppercase; color:#fff; margin-bottom:.4rem}
+.problema{padding:.6rem 0; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-direction:column; gap:.3rem; color:#fff}
+.problema.link{cursor:pointer}
+.problema b{font-size:.95rem; line-height:1.3}
+.problema-st{display:flex; gap:4px}
+.problema-st span{font-size:.55rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:.12rem .35rem; border-radius:2px;
+  color:rgba(255,255,255,.45); box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.gta-problemi.go .problema-st span.on{color:#12062B; box-shadow:none; transition:background .3s ease}
+.gta-problemi.go .problema-st span.s0{background:var(--g-pink)} .gta-problemi.go .problema-st span.s1{background:var(--g-yellow)}
+.gta-problemi.go .problema-st span.s2{background:var(--g-teal)}
+.problema-seg{font-size:.72rem; color:rgba(255,255,255,.65)}
+/* Scienza · la tavola delle discipline */
+.tavola{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; margin-top:.4rem}
+.tav-cella{position:relative; aspect-ratio:1; border-radius:3px; background:var(--blue); color:#fff; display:flex; flex-direction:column;
+  justify-content:center; align-items:center}
+/* le caselle ci sono sempre; quando arrivi si accendono una dopo l'altra */
+.tavola.go .tav-cella:not(.vuota){animation:tav-accendi .45s cubic-bezier(.2,1.4,.4,1) both; animation-delay:calc(var(--i) * 70ms)}
+@keyframes tav-accendi{from{transform:scale(.82); filter:saturate(0) brightness(1.3)} to{transform:none; filter:none}}
+.tav-cella b{font-family:var(--display); font-weight:800; font-size:clamp(1.05rem, 5cqi, 1.6rem); line-height:1}
+.tav-n{position:absolute; top:3px; left:5px; font-size:.62rem; font-weight:800}
+.tav-nome{font-size:.48rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.85; margin-top:.15rem}
+.tav-cella.vuota{background:none; color:var(--ink-3); box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+/* Scienza · la scala delle cose */
+.scala{background:var(--paper); border-radius:18px; padding:1rem .9rem .8rem; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+.scala-riga{position:relative; height:118px; margin:0 .5rem; border-bottom:0}
+.scala-riga::before{content:""; position:absolute; left:0; right:0; top:58px; height:2px; background:var(--ink)}
+.scala-tic{position:absolute; top:54px; width:1px; height:10px; background:var(--ink-3)}
+.scala-tic.lungo{top:50px; height:18px; background:var(--ink)}
+.scala-rif{position:absolute; top:70px; transform:translateX(-50%); font-size:.5rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-3); white-space:nowrap}
+.scala-pt{position:absolute; top:0; transform:translateX(-50%); background:none; border:0; padding:0; display:flex; flex-direction:column;
+  align-items:center; gap:3px; cursor:pointer; max-width:6.5rem}
+.scala-pt i{order:2; width:11px; height:11px; border-radius:50%; background:var(--paper-2); box-shadow:inset 0 0 0 2px var(--blue);
+  transition:background .2s ease var(--d), transform .3s cubic-bezier(.2,1.6,.4,1) var(--d)}
+.scala-pt span{order:1; font-size:.62rem; font-weight:700; line-height:1.15; text-align:center; color:var(--ink-2)}
+.scala-pt.su{top:2px} .scala-pt.su i{margin-top:auto}
+.scala-pt.bordo-sx{transform:translateX(-6px); align-items:flex-start}
+.scala-pt.bordo-dx{transform:translateX(calc(-100% + 6px)); align-items:flex-end}
+.scala-pt.bordo-sx span{text-align:left} .scala-pt.bordo-dx span{text-align:right}
+.scala-pt.su{height:62px; justify-content:flex-end}
+.scala-pt.giu{top:53px; height:62px; justify-content:flex-start; padding-top:0} .scala-pt.giu i{order:1} .scala-pt.giu span{order:2; margin-top:22px}
+.scala.go .scala-pt i, .still .scala-pt i{background:var(--blue); transform:scale(1.25)}
+.scala-cursore{position:absolute; top:44px; left:100%; width:14px; height:30px; margin-left:-7px; border-radius:3px;
+  box-shadow:inset 0 0 0 2px var(--blue); background:color-mix(in srgb, var(--blue) 18%, transparent); opacity:0}
+.scala.go .scala-cursore{animation:scala-corsa 2.2s cubic-bezier(.5,0,.5,1) forwards}
+@keyframes scala-corsa{0%{left:100%; opacity:1} 92%{opacity:1} 100%{left:0; opacity:0}}
+.scala-nota{margin:.4rem .5rem 0; font-size:.78rem; color:var(--ink-2)}
+/* Scienza · il cilindro della prova */
+.cilindro{display:flex; align-items:flex-end; gap:.55rem; margin:.2rem 0 .1rem}
+.cil-vetro{position:relative; width:22px; height:58px; border-radius:0 0 6px 6px; box-shadow:inset 0 0 0 1.6px var(--ink); overflow:hidden; flex:none}
+.cil-liquido{position:absolute; left:2px; right:2px; bottom:2px; height:0; border-radius:0 0 4px 4px; background:var(--blue);
+  transition:height var(--t) cubic-bezier(.3,.8,.3,1)}
+.cilindro.go .cil-liquido, .still .cil-liquido{height:calc(var(--p) - 4px)}
+.cil-tacca{position:absolute; left:0; width:6px; height:1.4px; background:var(--ink)}
+.cil-et{display:flex; flex-direction:column; gap:.1rem; font-size:.74rem; color:var(--ink-3); line-height:1.3}
+.cil-et b{font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-ink)}
+.cilindro.piccolo .cil-vetro{width:14px; height:34px}
+/* Scienza · la carota */
+.carota{background:var(--paper); border-radius:18px; padding:1rem 1.1rem; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+.carota-core{position:relative; height:380px; margin-left:4.6rem; width:34px; border-radius:4px;
+  background:repeating-linear-gradient(180deg, #D9E6EE 0 7px, #C4D6E2 7px 9px, #E7EEF2 9px 15px, #B7CBD9 15px 16px)}
+.carota-rif{position:absolute; right:calc(100% + .5rem); transform:translateY(-50%); font-size:.55rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+.carota-pt{position:absolute; left:50%; transform:translate(-6px, -6px); background:none; border:0; padding:0; display:flex; align-items:flex-start;
+  gap:.6rem; cursor:pointer; white-space:nowrap}
+.carota-pt i{width:12px; height:12px; border-radius:50%; background:#fff; box-shadow:inset 0 0 0 2px var(--blue); flex:none;
+  transition:background .2s ease var(--d), transform .3s cubic-bezier(.2,1.6,.4,1) var(--d)}
+.carota-pt span{font-size:.78rem; font-weight:700; line-height:12px; color:var(--ink); position:relative; left:14px; top:var(--dy, 0)}
+.carota.go .carota-pt i, .still .carota-pt i{background:var(--blue); transform:scale(1.2)}
+/* la carota viene estratta: sale di poco, senza mai sparire */
+.carota.go .carota-core{animation:carota-estratta .8s cubic-bezier(.2,.7,.2,1)}
+@keyframes carota-estratta{from{transform:translateY(26px)} to{transform:none}}
 
 /* ---- GTA VI: i colori di Vice City, campiture piatte (5 novembre 2026) ----
    rosa neon, arancio tramonto, viola notte, turchese. Niente logo: solo i colori. */
@@ -4032,7 +4210,7 @@ const Motion = (function(){
     if(!windRaf) windRaf = requestAnimationFrame(windTick);
   }, {passive:true});
   function wind(node){ if(!STILL) windEl = node; }
-  return {once:once, stagger:stagger, count:count, swap:swap, burst:burst, scan:scan, fly:fly, wind:wind};
+  return {once:once, stagger:stagger, count:count, swap:swap, burst:burst, scan:scan, fly:fly, wind:wind, seen:seen};
 })();
 
 /* Un'animazione che gira solo mentre si vede. Fuori schermo si ferma e
@@ -7665,6 +7843,8 @@ function fronteTab(date){
       const cur = ultimi[l];
       /* «ultimo» non e' «di punta» (Anthropic mostrava Haiku): vince il piu' recente di punta */
       if(!cur || (!cur.punta && punta)) ultimi[l] = {a:a, date:b.date, punta:punta};
+      /* il modello di prima dello stesso laboratorio: e' il nome da cui girano le palette */
+      else if(!cur.prev && b.date < cur.date && nomeModello(a) !== nomeModello(cur.a)) cur.prev = nomeModello(a);
     });
   });
   return FRONTE_COL.map(function(x){ return ultimi[x[0]] ? {lab:x[1], m:ultimi[x[0]]} : null; }).filter(Boolean);
@@ -7681,7 +7861,8 @@ function fronteNode(brief){
     for(let i = 0; i < 8; i++) dots.appendChild(el("i", {class:i < sett ? "on" : ""}));
     const cell = el("div", {class:"fr-col" + (oggi ? " oggi" : ""), role:"listitem", tabindex:u ? "0" : null}, [
       el("span", {class:"fr-lab", text:c.lab}),
-      el("b", {class:"fr-nome", text:nomeModello(c.m.a)}),
+      oggi && c.m.prev ? solari(nomeModello(c.m.a), c.m.prev) : el("b", {class:"fr-nome", text:nomeModello(c.m.a)}),
+      oggi && ((c.m.a.modello || {}).famiglia === "aperto" || String(c.m.a.lab) === "aperti") ? lucchetto() : null,
       /* se l'ultimo del laboratorio non e' di punta, lo si dice invece di farlo passare per tale */
       c.m.punta ? null : el("span", {class:"fr-fam", text:(c.m.a.modello && c.m.a.modello.famiglia === "aperto") ? "aperto" : "veloce"}),
       dots,
@@ -7767,6 +7948,7 @@ function aiLabCard(date, a){
   const prova = el("div", {class:"ai-prova"}, [
     el("span", {class:"ai-prova-k", text:"Prova"}),
     a.prova ? el("p", {text:a.prova}) : null,
+    a.passi && a.passi.length ? passiCursore(a.passi) : null,
     a.prompt ? (function(){
       const pre = el("pre", {lang:a.prompt_lingua || "en", text:a.prompt});
       const btn = el("button", {type:"button", class:"ai-copia", text:"Copia"});
@@ -7839,6 +8021,8 @@ function renderAIMag(){
   if(cron[1] || cron[2]) feed.appendChild(el("div", {class:"mag-row two"}, cron.slice(1, 3).map(function(a){
     return aiMagCard(brief.date, a, i++, "std");
   })));
+  const ct = aiConto(brief.date, items);
+  if(ct){ feed.appendChild(magSection("ai-conto", "Il conto", null, "--red")); feed.appendChild(ct); }
   const fr = fronteNode(brief);
   if(fr){ feed.appendChild(magSection("ai-fronte", "Il fronte", null, "--ink")); feed.appendChild(fr); }
   const ap = aiApple(brief.date, items);
@@ -8010,6 +8194,7 @@ function rubMagCard(date, kind, it, i, form){
   ]);
   const body = el("div", {class:"card-body"}, [
     el("div", {class:"card-src"}, [
+      kind === "games" && it.tasto ? tastoNode(it.tasto) : null,
       it.source ? el("b", {text:it.source}) : null,
       it.disciplina ? el("span", {class:"disc d-" + it.disciplina, text:it.disciplina}) : null,
       it.continua ? el("span", {text:"se ne parla da giorni"}) : null,
@@ -8018,7 +8203,9 @@ function rubMagCard(date, kind, it, i, form){
     el("h3", {class:"card-title", text:it.title}),
     it.nota ? el("p", {class:"card-dek", text:it.nota}) : null,
     /* l'originale in piccolo, quando il titolo e' tradotto */
-    it.orig && it.orig !== it.title ? el("p", {class:"card-orig", lang:"en", text:it.orig}) : null
+    it.orig && it.orig !== it.title ? el("p", {class:"card-orig", lang:"en", text:it.orig}) : null,
+    kind === "games" && it.verdetto ? verdettoNode(it.verdetto) : null,
+    kind === "spazio" && it.prova && it.prova.livello ? cilindro(it.prova, form) : null
   ]);
   const card = el("article", {class:"card c-" + form + (img ? " has-img" : ""), tabindex:"0", role:u ? "link" : null}, [
     img ? el("img", {class:"card-img", src:img, alt:"", loading:i < 3 ? "eager" : "lazy", decoding:"async"}) : null,
@@ -8104,9 +8291,13 @@ function renderGta(brief){
        telefono, restava una colonna stretta */
     g.sintesi ? el("p", {class:"gta-sint", text:g.sintesi}) : null
   ]), "dots"));
+  const tp = gtaTappe(g, brief.date);
+  if(tp) sec.appendChild(tp);
   const grid = el("div", {class:"gta-grid"});
   voci.forEach(function(it, i){ grid.appendChild(gtaCard(brief.date, it, i, i === 0)); });
   sec.appendChild(grid);
+  const pr = gtaProblemi(g);
+  if(pr) sec.appendChild(pr);
   return sec;
 }
 function rubMagHead(kind, brief, items){
@@ -8149,6 +8340,16 @@ function renderRubricaMag(kind){
   let i = 0;
   /* GTA VI ha la sua sezione, in cima a Games, coi colori di GTA */
   if(kind === "games"){ const g = renderGta(brief); if(g) feed.appendChild(g); }
+  if(kind === "games"){
+    const ca = gamesCaricamento(brief);
+    if(ca){ feed.appendChild(magSection("games-caricamento", "In caricamento", null, "--violet")); feed.appendChild(ca); }
+  }
+  if(kind === "spazio"){
+    const tv = scienzaTavola(items);
+    if(tv) feed.appendChild(tv);
+    const sc = scienzaScala(brief.date, items);
+    if(sc){ feed.appendChild(magSection("spazio-scala", "La scala di oggi", null, "--blue")); feed.appendChild(sc); }
+  }
   if(tops[0]){
     feed.appendChild(magSection(kind + "-apertura", "In apertura", null, pip));
     feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
@@ -8170,6 +8371,14 @@ function renderRubricaMag(kind){
       feed.appendChild(list);
     });
   }
+  if(kind === "games"){
+    const st = gamesSettimana(brief);
+    if(st){ feed.appendChild(magSection("games-uscite", "Questa settimana esce", null, "--violet")); feed.appendChild(st); }
+  }
+  if(kind === "spazio"){
+    const ct = scienzaCarota(brief.date, items);
+    if(ct){ feed.appendChild(magSection("spazio-carota", "Quanto in fondo", null, "--blue")); feed.appendChild(ct); }
+  }
   if(persi.length){
     feed.appendChild(magSection(kind + "-settimana", "Dalla settimana", "la più calda dei giorni scorsi", "--orange"));
     const list = el("div", {class:"mag-brevi"});
@@ -8181,6 +8390,331 @@ function renderRubricaMag(kind){
   let seen = 0;
   items.forEach(function(it){ if(rubMarkSeen(brief.date, kind, it)) seen++; });
   if(seen){ save(); queueSync(); refreshCounts(); }
+}
+
+
+/* ================= LE CHICCHE DELLE SCHEDE (5 novembre 2026) =================
+   Scelte da Mike fra le idee del reparto creativo (docs/schede/chicche-2026-11-05/):
+   oggetti veri che si comportano da oggetti veri e portano un'informazione — come il radar,
+   i foglietti nel vento e la citazione a macchina della scheda Apple. Ognuna parte una volta,
+   quando arriva (Motion.seen); con «Riduci movimento» si vede subito lo stato finale. */
+function alArrivo(node, fn){ if(STILL){ fn(true); return; } Motion.seen(node, function(){ fn(false); }); }
+function numIt(n){
+  if(n >= 1e9) return (Math.round(n / 1e8) / 10).toLocaleString("it-IT") + " miliardi";
+  if(n >= 1e6) return (Math.round(n / 1e5) / 10).toLocaleString("it-IT") + " milioni";
+  return Number(n).toLocaleString("it-IT");
+}
+const MESI3 = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+function dataBreve(iso, prec){
+  const d = new Date(String(iso).slice(0, 10) + "T12:00:00");
+  if(isNaN(d)) return String(iso);
+  if(prec === "anno") return String(d.getFullYear());
+  if(prec === "mese" || prec === "trimestre") return MESI3[d.getMonth()] + " " + d.getFullYear();
+  return d.getDate() + " " + MESI3[d.getMonth()] + " " + d.getFullYear();
+}
+
+/* --- AI · il tabellone Solari: le palette girano dal modello di prima a quello nuovo --- */
+function solari(nuovo, prima){
+  const len = Math.max(nuovo.length, prima.length);
+  const b = el("b", {class:"fr-nome solari", "aria-label":nuovo});
+  const celle = [];
+  for(let i = 0; i < len; i++){
+    const c = el("span", {class:"flap", "aria-hidden":"true", text:prima.charAt(i) || " "});
+    celle.push(c); b.appendChild(c);
+  }
+  const ALFA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-";
+  alArrivo(b, function(fermo){
+    celle.forEach(function(c, i){
+      const fine = nuovo.charAt(i) || " ";
+      if(fermo){ c.textContent = fine; return; }
+      let giri = 4 + i * 2;
+      const t = setInterval(function(){
+        c.classList.remove("giro"); void c.offsetWidth; c.classList.add("giro");
+        c.textContent = --giri > 0 ? ALFA.charAt(Math.floor(Math.random() * ALFA.length)) : fine;
+        if(giri <= 0) clearInterval(t);
+      }, 70);
+    });
+  });
+  return b;
+}
+/* il lucchetto che si apre: i pesi sono pubblici */
+function lucchetto(){
+  const n = el("span", {class:"lucchetto", title:"pesi aperti", html:
+    '<svg viewBox="0 0 20 22" width="16" height="18" aria-hidden="true"><path class="arco" d="M5 10V6.5a5 5 0 0 1 10 0V10" fill="none" stroke="currentColor" stroke-width="2.2"/>' +
+    '<rect x="2.5" y="10" width="15" height="11" rx="1.5" fill="currentColor"/></svg>'});
+  alArrivo(n, function(){ n.classList.add("aperto"); });
+  return n;
+}
+
+/* --- AI · il conto in pallini: la parte e il tutto nel campo di pallini della sigla --- */
+function aiConto(date, items){
+  const a = items.filter(function(x){ return x.conto && x.conto.tutto > 0 && x.conto.parte > 0; })[0];
+  if(!a) return null;
+  const c = a.conto, N = 200, quota = c.parte / c.tutto * N;
+  const accesi = Math.max(1, Math.min(N, Math.round(quota)));
+  const campo = el("div", {class:"conto-campo", "aria-hidden":"true"});
+  for(let i = 0; i < N; i++){
+    const d = el("i", {class:i < accesi ? "on" : ""});
+    d.style.setProperty("--i", i);
+    campo.appendChild(d);
+  }
+  const box = el("section", {class:"ai-conto", tabindex:"0", "aria-label":"Il conto"}, [
+    el("div", {class:"conto-num"}, [el("b", {text:numIt(c.parte)}), el("span", {text:" su "}), el("b", {text:numIt(c.tutto)})]),
+    c.etichetta ? el("p", {class:"conto-et", text:c.etichetta}) : null,
+    campo,
+    el("p", {class:"conto-nota", text:(quota < 1 ? "Ogni pallino vale " + numIt(Math.round(c.tutto / N)) + ": il pallino rosso è già troppo grande." :
+      "Ogni pallino vale " + numIt(Math.round(c.tutto / N)) + ".") + (c.fonte ? " Fonte: " + c.fonte + "." : "")})
+  ]);
+  aiOpen(box, date, a);
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- AI · il cursore che lavora: una freccia clicca i passi e li spunta --- */
+function passiCursore(passi){
+  const ol = el("ol", {class:"ai-passi"});
+  passi.slice(0, 4).forEach(function(p){ ol.appendChild(el("li", {}, [el("span", {class:"spunta", "aria-hidden":"true"}), el("span", {text:p})])); });
+  const freccia = el("span", {class:"freccia", "aria-hidden":"true", html:
+    '<svg viewBox="0 0 16 22" width="15" height="21"><path d="M1 1v17l4.5-4.2 3 6.7 2.6-1.2-3-6.6H14z" fill="#17181B" stroke="#fff" stroke-width="1.2"/></svg>'});
+  const box = el("div", {class:"ai-passi-box"}, [ol, freccia]);
+  alArrivo(box, function(fermo){
+    const li = ol.querySelectorAll("li");
+    if(fermo){ li.forEach(function(x){ x.classList.add("fatto"); }); return; }
+    let k = 0;
+    (function prossimo(){
+      if(k >= li.length){ freccia.classList.add("via"); return; }
+      const r = li[k].querySelector(".spunta");
+      freccia.style.transform = "translate(" + (r.offsetLeft + 4) + "px," + (r.offsetTop + 4) + "px)";
+      const qui = li[k];
+      setTimeout(function(){ freccia.classList.add("clic"); qui.classList.add("fatto"); }, 520);
+      setTimeout(function(){ freccia.classList.remove("clic"); k++; prossimo(); }, 900);
+    })();
+  });
+  return box;
+}
+
+/* --- Games · i quattro tasti: ✕ uscita, ○ rinvio, △ rumor, □ affari --- */
+const TASTI = {uscita:["Uscita", '<path d="M4 4l8 8M12 4l-8 8"/>'], rinvio:["Rinvio", '<circle cx="8" cy="8" r="4.6"/>'],
+               rumor:["Rumor", '<path d="M8 3.2l5 8.6H3z"/>'], affari:["Affari", '<rect x="3.6" y="3.6" width="8.8" height="8.8"/>']};
+function tastoNode(t){
+  const x = TASTI[t];
+  if(!x) return null;
+  return Motion.once(el("span", {class:"tasto t-" + t, title:x[0], "aria-label":x[0], html:
+    '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">' + x[1] + '</svg>'}), "tasto");
+}
+
+/* --- Games · il verdetto: un pallino per recensione sulla riga 0–10, e la media --- */
+function verdettoNode(v){
+  const voti = (v.voti || []).filter(function(x){ return x.voto != null; });
+  if(voti.length < 3) return null;
+  const riga = el("div", {class:"verdetto-riga"});
+  for(let i = 0; i <= 10; i++){ const t = el("i", {class:"tic"}); t.style.left = (i * 10) + "%"; riga.appendChild(t); }
+  voti.forEach(function(x){
+    const val = x.voto / (x.su || 10) * 10;
+    const d = el("span", {class:"voto", title:x.testata + ": " + x.voto + "/" + (x.su || 10), text:String(x.testata || "?").charAt(0)});
+    d.style.setProperty("--x", val * 10 + "%");
+    riga.appendChild(d);
+  });
+  const media = v.media != null ? v.media : voti.reduce(function(s, x){ return s + x.voto / (x.su || 10) * 10; }, 0) / voti.length;
+  const m = el("span", {class:"media"}); m.style.setProperty("--x", media * 10 + "%"); riga.appendChild(m);
+  const box = el("div", {class:"verdetto"}, [
+    el("div", {class:"verdetto-top"}, [el("span", {text:"Il verdetto · " + voti.length + " recensioni"}),
+                                       el("b", {text:(Math.round(media * 10) / 10).toLocaleString("it-IT")})]), riga]);
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- Games · in caricamento: la barra dall'annuncio all'uscita, una tacca rossa per rinvio --- */
+function gamesCaricamento(brief){
+  const giochi = (brief.games_attese || []).filter(function(g){ return g.uscita; });
+  if(!giochi.length) return null;
+  const ms = function(iso){ return new Date(String(iso).slice(0, 10) + "T12:00:00").getTime(); };
+  const oggi = ms(brief.date);
+  const box = el("div", {class:"carica"});
+  giochi.forEach(function(g){
+    const storia = (g.storia || []).filter(function(s){ return s.uscita; });
+    const inizio = g.annuncio ? ms(g.annuncio) : (storia.filter(function(s){ return s.il; }).map(function(s){ return ms(s.il); })[0] || oggi);
+    const fine = Math.max.apply(null, [ms(g.uscita)].concat(storia.map(function(s){ return ms(s.uscita); })));
+    const pos = function(t){ return Math.max(0, Math.min(100, (t - inizio) / Math.max(1, fine - inizio) * 100)); };
+    const riempi = pos(oggi), giorni = Math.round((ms(g.uscita) - oggi) / 86400000);
+    const barra = el("div", {class:"carica-barra"}, [el("i", {class:"carica-pieno"})]);
+    barra.style.setProperty("--p", riempi + "%");
+    storia.slice(0, -1).forEach(function(s, i){
+      const t = el("span", {class:"tacca", title:"era il " + dataBreve(s.uscita, s.precisione)});
+      t.style.left = pos(ms(s.uscita)) + "%"; t.style.setProperty("--i", i);
+      barra.appendChild(t);
+    });
+    const rinvii = Math.max(0, storia.length - 1);
+    const n = brief.games && g.notizia ? brief.games.filter(function(x){ return x.id === g.notizia; })[0] : null;
+    const riga = el("div", {class:"carica-riga" + (n ? " link" : ""), tabindex:n ? "0" : null}, [
+      el("div", {class:"carica-testa"}, [el("b", {text:g.gioco}), el("span", {class:"carica-fine", text:dataBreve(g.uscita, g.precisione)})]),
+      barra,
+      el("div", {class:"carica-piede"}, [
+        el("span", {text:giorni > 1 ? "fra " + giorni + " giorni" : giorni === 1 ? "domani" : "oggi"}),
+        rinvii ? el("span", {class:"carica-rinvii", text:rinvii === 1 ? "un rinvio" : rinvii + " rinvii"}) : null,
+        g.casa ? el("span", {text:g.casa}) : null
+      ])
+    ]);
+    if(n){ const u = safeUrl(n.link); riga.addEventListener("click", function(){ if(u) window.open(u, "_blank", "noopener"); }); }
+    box.appendChild(riga);
+  });
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- Games · questa settimana esce: lunedi'-domenica, i giorni passati spuntati --- */
+function gamesSettimana(brief){
+  const lista = brief.games_settimana || [];
+  if(!lista.length) return null;
+  const oggi = new Date(brief.date + "T12:00:00"), lun = new Date(oggi);
+  lun.setDate(oggi.getDate() - ((oggi.getDay() + 6) % 7));
+  const strip = el("div", {class:"settimana"});
+  for(let i = 0; i < 7; i++){
+    const d = new Date(lun); d.setDate(lun.getDate() + i);
+    const iso = d.toISOString().slice(0, 10);
+    const giochi = lista.filter(function(x){ return String(x.giorno).slice(0, 10) === iso; });
+    const stato = iso < brief.date ? " passato" : iso === brief.date ? " oggi" : "";
+    strip.appendChild(el("div", {class:"sett-giorno" + stato}, [
+      el("span", {class:"sett-g", text:"LMMGVSD".charAt(i)}), el("b", {text:String(d.getDate())}),
+      el("div", {class:"sett-giochi"}, giochi.map(function(x){
+        const u = safeUrl(x.link);
+        const c = el(u ? "a" : "span", {class:"sett-gioco t-" + (x.tipo || "uscita"), href:u || null, target:u ? "_blank" : null, rel:u ? "noopener noreferrer" : null,
+          text:x.gioco + (x.piattaforme && x.piattaforme.length ? " · " + x.piattaforme.join(", ") : "")});
+        return c;
+      }))
+    ]));
+  }
+  return Motion.once(strip, "rise");
+}
+
+/* --- GTA VI · le tappe del lancio: la striscia turchese, quella di oggi si accende --- */
+function gtaTappe(g, date){
+  const tappe = (g.tappe || []).filter(function(t){ return t.data && t.etichetta; });
+  if(tappe.length < 2) return null;
+  const strip = el("ol", {class:"gta-tappe"});
+  tappe.forEach(function(t, i){
+    const d = String(t.data).slice(0, 10), stato = d < date ? "passata" : d === date ? "oggi" : "futura";
+    const li = el("li", {class:"tappa " + stato}, [el("i", {class:"tappa-pt"}),
+      el("span", {class:"tappa-d", text:dataBreve(d, "giorno").replace(/ \d{4}$/, "")}), el("span", {class:"tappa-t", text:t.etichetta})]);
+    li.style.setProperty("--i", i);
+    strip.appendChild(li);
+  });
+  alArrivo(strip, function(fermo){
+    strip.classList.add("go");
+    const q = strip.querySelector(".tappa.oggi .tappa-pt");
+    if(q && !fermo) setTimeout(function(){ Motion.burst(q); }, 300 + tappe.length * 90);
+  });
+  return strip;
+}
+/* --- GTA VI · il registro dei problemi (dall'uscita): segnalato, riconosciuto, corretto --- */
+function gtaProblemi(g){
+  const pr = (g.problemi || []).filter(function(p){ return p.titolo; });
+  if(!pr.length) return null;
+  const ST = ["segnalato", "riconosciuto", "corretto"];
+  const box = el("section", {class:"gta-problemi", "aria-label":"Cosa non va"}, [el("h3", {text:"Cosa non va"})]);
+  pr.slice(0, 6).forEach(function(p){
+    const liv = Math.max(0, ST.indexOf(p.stato));
+    const u = safeUrl(p.link);
+    const r = el("div", {class:"problema" + (u ? " link" : "")}, [
+      el("div", {class:"problema-st"}, ST.map(function(s, i){ return el("span", {class:i <= liv ? "on s" + i : "", text:s}); })),
+      el("b", {text:p.titolo}),
+      p.segnale ? el("span", {class:"problema-seg", text:p.segnale}) : null
+    ]);
+    if(u) r.addEventListener("click", function(){ window.open(u, "_blank", "noopener"); });
+    box.appendChild(r);
+  });
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- Scienza · la tavola delle discipline: quante voci per disciplina, oggi --- */
+const DISC = [["spazio","Sp"],["medicina","Md"],["natura","Na"],["fisica","Fi"],["terra","Te"],["tecnica","Tc"],["storia","St"]];
+function scienzaTavola(items){
+  if(items.filter(function(it){ return it.disciplina; }).length < 3) return null;
+  const t = el("div", {class:"tavola", "aria-label":"Le discipline di oggi"});
+  DISC.forEach(function(d, i){
+    const n = items.filter(function(it){ return it.disciplina === d[0] && !it.perso; }).length;
+    const c = el("div", {class:"tav-cella" + (n ? "" : " vuota")}, [el("span", {class:"tav-n", text:n ? String(n) : ""}),
+      el("b", {text:d[1]}), el("span", {class:"tav-nome", text:d[0]})]);
+    c.style.setProperty("--i", i);
+    t.appendChild(c);
+  });
+  alArrivo(t, function(){ t.classList.add("go"); });
+  return t;
+}
+
+/* --- Scienza · la scala delle cose: dallo zeptometro alle galassie --- */
+const SCALA_MIN = -21, SCALA_MAX = 26;
+/* pochi riferimenti e ben distanziati: a 390 punti nove si accavallavano */
+const SCALA_RIF = [[-15, "nucleo"], [0, "persona"], [7.1, "Terra"], [21, "Via Lattea"]];
+function scienzaScala(date, items){
+  const voci = items.filter(function(it){ return it.scala && it.scala.metri > 0; });
+  if(voci.length < 3) return null;
+  const x = function(e){ return Math.max(0, Math.min(100, (e - SCALA_MIN) / (SCALA_MAX - SCALA_MIN) * 100)); };
+  const riga = el("div", {class:"scala-riga"});
+  for(let e = SCALA_MIN; e <= SCALA_MAX; e++){ const t = el("i", {class:"scala-tic" + (e % 5 === 0 ? " lungo" : "")}); t.style.left = x(e) + "%"; riga.appendChild(t); }
+  SCALA_RIF.forEach(function(r){ const l = el("span", {class:"scala-rif", text:r[1]}); l.style.left = x(r[0]) + "%"; riga.appendChild(l); });
+  voci.map(function(it){ return {it:it, e:Math.log10(it.scala.metri)}; }).sort(function(a, b){ return a.e - b.e; }).forEach(function(v, i){
+    const p = el("button", {type:"button", class:"scala-pt " + (i % 2 ? "giu" : "su"), title:v.it.title}, [el("i"), el("span", {text:v.it.scala.etichetta})]);
+    p.style.left = x(v.e) + "%";
+    /* le etichette agli estremi si appoggiano al bordo invece di uscire */
+    if(x(v.e) < 14) p.classList.add("bordo-sx"); else if(x(v.e) > 86) p.classList.add("bordo-dx");
+    p.style.setProperty("--d", ((100 - x(v.e)) / 100 * 2.2).toFixed(2) + "s");
+    const u = safeUrl(v.it.link);
+    p.addEventListener("click", function(){ if(u) window.open(u, "_blank", "noopener"); });
+    riga.appendChild(p);
+  });
+  riga.appendChild(el("span", {class:"scala-cursore", "aria-hidden":"true"}));
+  const box = el("div", {class:"scala"}, [riga,
+    el("p", {class:"scala-nota", text:"Oggi la scheda va da " + voci.map(function(v){ return v.scala; }).sort(function(a, b){ return a.metri - b.metri; })[0].etichetta +
+      " a " + voci.map(function(v){ return v.scala; }).sort(function(a, b){ return b.metri - a.metri; })[0].etichetta + ": " +
+      Math.round(Math.log10(Math.max.apply(null, voci.map(function(v){ return v.scala.metri; }))) - Math.log10(Math.min.apply(null, voci.map(function(v){ return v.scala.metri; })))) + " ordini di grandezza."})]);
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- Scienza · il cilindro della prova: fin dove arriva lo studio --- */
+const PROVA_LIV = ["osservazione", "modello", "preprint", "rivista", "cellule", "animali", "persone", "approvato"];
+function cilindro(pr, form){
+  const k = PROVA_LIV.indexOf(pr.livello);
+  if(k < 0) return null;
+  const vetro = el("div", {class:"cil-vetro", "aria-hidden":"true"}, [el("i", {class:"cil-liquido"})]);
+  for(let i = 1; i < PROVA_LIV.length; i++){ const t = el("span", {class:"cil-tacca"}); t.style.bottom = (i / PROVA_LIV.length * 100) + "%"; vetro.appendChild(t); }
+  vetro.style.setProperty("--p", ((k + 1) / PROVA_LIV.length * 100) + "%");
+  vetro.style.setProperty("--t", (0.4 + k * 0.22).toFixed(2) + "s");
+  const box = el("div", {class:"cilindro" + (form === "brief" ? " piccolo" : ""), title:"Fin dove arriva la prova"}, [vetro,
+    el("div", {class:"cil-et"}, [el("b", {text:"Prova: " + pr.livello}),
+      el("span", {text:[pr.rivista, pr.campione].filter(Boolean).join(" · ")})])]);
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
+}
+
+/* --- Scienza · la carota: quanto in fondo scava la scienza di oggi --- */
+const CAROTA_RIF = [[0, "oggi"], [10, "10 anni"], [100, "un secolo"], [1000, "mille anni"], [1e6, "un milione"],
+                    [1e8, "100 milioni"], [4.5e9, "la Terra"], [1.38e10, "Big Bang"]];
+function scienzaCarota(date, items){
+  const voci = items.filter(function(it){ return it.tempo && it.tempo.anni_fa >= 0; });
+  if(voci.length < 2) return null;
+  const y = function(a){ return Math.log10(a + 1) / Math.log10(1.38e10 + 1) * 100; };
+  const core = el("div", {class:"carota-core"});
+  CAROTA_RIF.forEach(function(r){ const l = el("span", {class:"carota-rif", text:r[1]}); l.style.top = y(r[0]) + "%"; core.appendChild(l); });
+  let ultimo = -99, scarto = 0;
+  voci.sort(function(a, b){ return a.tempo.anni_fa - b.tempo.anni_fa; }).forEach(function(it){
+    const p = el("button", {type:"button", class:"carota-pt", title:it.title}, [el("i"), el("span", {text:it.tempo.etichetta})]);
+    const yy = y(it.tempo.anni_fa);
+    /* due voci vicine nel tempo: l'etichetta della seconda scende di una riga */
+    scarto = yy - ultimo < 6 ? scarto + 1 : 0;
+    ultimo = yy;
+    p.style.setProperty("--dy", (scarto * 15) + "px");
+    p.style.top = yy + "%";
+    p.style.setProperty("--d", (0.3 + y(it.tempo.anni_fa) / 100 * 1.8).toFixed(2) + "s");
+    const u = safeUrl(it.link);
+    p.addEventListener("click", function(){ if(u) window.open(u, "_blank", "noopener"); });
+    core.appendChild(p);
+  });
+  const box = el("div", {class:"carota"}, [core]);
+  alArrivo(box, function(){ box.classList.add("go"); });
+  return box;
 }
 
 /* ================= navigazione ================= */

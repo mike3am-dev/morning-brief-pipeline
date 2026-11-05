@@ -230,6 +230,34 @@ tipo); poi «In apertura» con la prima voce grande, due affiancate, i gruppi in
 Ogni scheda: testata, disciplina (in Scienza), titolo, la riga, l'originale in corsivo, il
 piede con il tempo, quanto gira e la stellina. Il tocco apre l'articolo (segnali `o` e `l`).
 
+**Le chicche delle schede** (5 novembre 2026). Mike: «mi fa impazzire il radar che si muove da
+solo, i post-it che svolazzano, la citazione che si scrive come una macchina da scrivere». Il
+reparto creativo (tre agenti, uno per scheda) ha proposto otto idee ciascuno
+(`docs/schede/chicche-2026-11-05/`), e Mike ne ha scelte tredici. Sono oggetti veri che si
+comportano da oggetti veri e **portano un'informazione**; partono una volta, quando arrivano
+(`alArrivo`, che usa `Motion.seen`), e con «Riduci movimento» mostrano subito lo stato finale.
+**Ognuna esce solo se ci sono i dati**: i campi li scrivono gli agenti che leggono già gli
+articoli, solo se l'articolo li dà.
+
+| Scheda | Chicca | Cosa fa | Dati (chi li scrive) |
+|---|---|---|---|
+| AI | Tabellone Solari | nel fronte, le palette girano dal modello di prima al nuovo; il lucchetto si apre sui pesi aperti | `modello` (agente `ai`) |
+| AI | Il conto | la parte e il tutto in un campo di 200 pallini, quelli accesi in rosso | `conto: {parte, tutto, etichetta, fonte}`, una voce al giorno (`ai`) |
+| AI | Il cursore che lavora | nel foglietto «Prova» una freccia clicca e spunta i passi | `passi` sul LAB (`ai`) |
+| Games | In caricamento | una barra per gioco atteso, dall'annuncio all'uscita; una tacca rossa per rinvio | registro `data/games/attese.json` (`pipeline/attese.py`), aggiornato da `attese` nelle scritte di `schede` |
+| Games | I quattro tasti | ✕ uscita · ○ rinvio · △ rumor · □ affari, premuti quando arrivano | `tasto` (`rubriche.py` dal titolo, `schede` corregge) |
+| Games | Questa settimana esce | lunedì–domenica, i giorni passati barrati | `settimana` nelle scritte di `schede`, solo se un articolo elenca le uscite |
+| Games | Il verdetto | un pallino per recensione sulla riga 0–10, e la media | `verdetto`, solo con 3 voti dichiarati (schema.org nelle pagine, letti da `schede.py`) |
+| GTA VI | Le tappe del lancio | la striscia turchese, la tappa di oggi rosa che si accende | `gta.tappe` (agente `gta`), solo date verificate |
+| GTA VI | Il registro dei problemi | dall'uscita: segnalato, riconosciuto, corretto | `gta.problemi` (`gta`) |
+| Scienza | La tavola delle discipline | sette caselle come la tavola periodica, col numero di voci; le assenti vuote | `disciplina` |
+| Scienza | La scala di oggi | il righello delle potenze di dieci, un cursore accende le voci al loro ordine di grandezza | `scala: {metri, etichetta}` (`schede`), almeno tre voci |
+| Scienza | Il cilindro della prova | il liquido sale fino alla tacca della prova, con rivista e campione | `prova: {livello, rivista, campione}` (`schede`) |
+| Scienza | Quanto in fondo | la carota del tempo, dai dati di ieri ai fossili | `tempo: {anni_fa, etichetta}` (`schede`), almeno due voci |
+
+Il lint controlla i valori ammessi (`check_chicche`). Il codice è nel blocco «LE CHICCHE DELLE
+SCHEDE» di `pipeline/template.html`.
+
 I pesi stanno in `pipeline/rubriche.py` (`RUBRICHE`): si ritoccano lì, guardando
 `rubriche.py --dry --debug`. Un redattore Claude per rubrica, dopo la pubblicazione, è
 l'evoluzione prevista: sceglie le top 3 e scrive il «perché apri». I segnali di lettura di
@@ -1459,6 +1487,7 @@ pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le pe
 pipeline/rubriche.py     le schede GAMES e SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
 pipeline/ai_dossier.py   il dossier della scheda AI per l'agente `ai` (cronaca con gli articoli, LAB, storico, fronte)
 pipeline/schede.py       il dossier delle schede Games e Scienza per l'agente `schede` (gli articoli aperti)
+pipeline/attese.py       il registro dei giochi attesi (barre «In caricamento»)  ->  data/games/attese.json
 pipeline/gta.py          il dossier di GTA VI per l'agente `gta` (Reddit, X, YouTube)  ->  data/gta/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)

@@ -64,6 +64,43 @@ voce migliore e metti gli altri id in `anche`: i loro link entrano come testate 
 - Tono: Bloomberg, non creator. Niente punti esclamativi, niente «incredibile».
 - Gli accenti sono accenti: «è», «perché», «già», mai «e'», «perche'».
 
+## I dati delle chicche (5 novembre 2026)
+
+Mike ha scelto degli elementi animati per le due schede. Si nutrono di piccoli campi che scrivi
+tu, perché l'articolo ce l'hai già davanti. **Ogni campo si scrive solo se l'articolo lo dice**:
+nel dubbio, niente. Un elemento senza dati non esce, e va bene così.
+
+**Games**
+- `tasto` su ogni voce: `uscita` (una data, un lancio, un annuncio) · `rinvio` (un rinvio, una
+  cancellazione, una chiusura) · `rumor` (un leak, un'indiscrezione) · `affari` (vendite, conti,
+  acquisizioni, sindacati, prezzi). Lo script ne propone uno dal titolo: correggilo.
+- `verdetto` solo quando nel dossier ci sono **almeno tre voti** (righe «VOTO DELLA RECENSIONE»)
+  di testate diverse sullo **stesso gioco**: `{"gioco": "…", "media": 8.3, "voti": [{"testata":
+  "IGN", "voto": 8, "su": 10, "link": "…"}]}`. Mai voti stimati o letti altrove.
+- `attese` (in cima al file, accanto a `games`): una voce per ogni gioco di cui un articolo letto
+  oggi **annuncia o sposta** la data d'uscita — `{"id": "god-of-war-laufey", "gioco": "God of War
+  Laufey", "casa": "Sony Santa Monica", "piattaforme": ["PS5"], "uscita": "2027-05-20",
+  "precisione": "giorno|mese|trimestre|anno", "annuncio": "AAAA-MM-GG se l'articolo lo dice",
+  "fonte": "Eurogamer", "link": "…", "notizia": "<id della voce>"}`. Alimenta le barre «In
+  caricamento»: il registro (`python3 pipeline/attese.py`) tiene la storia e ogni data cambiata
+  diventa una tacca rossa. L'`id` di un gioco già nel registro si riusa uguale. GTA VI ha id `gta-6`.
+- `settimana` (in cima al file) solo quando un articolo letto elenca **le uscite della settimana**:
+  `[{"giorno": "2026-11-06", "gioco": "…", "piattaforme": ["PS5"], "tipo": "uscita|psplus|arcade",
+  "link": "…"}]`. Altrimenti non c'è.
+
+**Scienza**
+- `scala`: `{"metri": 1e-5, "etichetta": "un globulo rosso"}` — l'ordine di grandezza della cosa di
+  cui parla la notizia (una particella, una cellula, un animale, un telescopio, un pianeta, una
+  galassia), etichetta di 2–3 parole. Solo se la cosa ha una taglia evidente; la potenza di dieci
+  basta, non serve la misura precisa. Il righello esce con almeno tre voci.
+- `prova`: solo sulle voci che raccontano **uno studio**: `{"livello": "osservazione|modello|preprint|
+  rivista|cellule|animali|persone|approvato", "rivista": "PNAS", "campione": "24 topi"}` — il
+  livello più alto che l'articolo **dichiara** (una simulazione è `modello`, uno studio pubblicato
+  su animali è `animali`). Mai sulle notizie che non sono uno studio. Una voce `cellule` o `animali`
+  non va in apertura.
+- `tempo`: `{"anni_fa": 115000000, "etichetta": "Aratasaurus"}` quando la notizia guarda al passato
+  e l'articolo dà il quando (un fossile, un popolo, un evento storico, un dato raccolto dal 1980).
+
 ## Cosa scrivi, e dove
 
 **Un file solo: `data/rubriche/<giorno>-scritte.json`.** Non toccare l'edizione né il file

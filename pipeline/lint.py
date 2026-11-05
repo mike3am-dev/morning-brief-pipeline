@@ -458,6 +458,42 @@ def check_rubriche(brief, r):
                            "lancia python3 pipeline/rubriche.py --traduci")
 
 
+LIVELLI_PROVA = {"osservazione", "modello", "preprint", "rivista", "cellule", "animali", "persone", "approvato"}
+TASTI_GAMES = {"uscita", "rinvio", "rumor", "affari"}
+
+
+def check_chicche(brief, r):
+    """I dati delle chicche (5 novembre 2026): valori ammessi e misure, perche' l'app li disegna."""
+    for v in brief.get("games") or []:
+        if v.get("tasto") and v["tasto"] not in TASTI_GAMES:
+            r.error("games", f"tasto {v['tasto']!r}: {v.get('title', '')[:40]}")
+        vd = v.get("verdetto")
+        if vd and len(vd.get("voti") or []) < 3:
+            r.warn("games", f"verdetto con meno di tre voti: {v.get('title', '')[:40]}")
+    for v in brief.get("spazio") or []:
+        sc, pr, tp = v.get("scala"), v.get("prova"), v.get("tempo")
+        if sc and not (isinstance(sc.get("metri"), (int, float)) and sc["metri"] > 0 and sc.get("etichetta")):
+            r.error("spazio", f"scala senza metri o etichetta: {v.get('title', '')[:40]}")
+        if pr and pr.get("livello") not in LIVELLI_PROVA:
+            r.error("spazio", f"prova, livello {pr.get('livello')!r}: {v.get('title', '')[:40]}")
+        if tp and not (isinstance(tp.get("anni_fa"), (int, float)) and tp["anni_fa"] >= 0 and tp.get("etichetta")):
+            r.error("spazio", f"tempo senza anni_fa o etichetta: {v.get('title', '')[:40]}")
+    sp = brief.get("spazio") or []
+    if sp and (sp[0].get("prova") or {}).get("livello") in ("cellule", "animali"):
+        r.warn("spazio", "in apertura uno studio su cellule o animali: non va in testa")
+    conti = [a for a in brief.get("ai") or [] if a.get("conto")]
+    if len(conti) > 1:
+        r.warn("ai", f"{len(conti)} voci con il conto: ne basta una al giorno")
+    for a in conti:
+        c = a["conto"]
+        if not (isinstance(c.get("parte"), (int, float)) and isinstance(c.get("tutto"), (int, float)) and 0 < c["parte"] <= c["tutto"]):
+            r.error("ai", f"conto con parte o tutto non validi: {a.get('title', '')[:40]}")
+    for a in brief.get("ai") or []:
+        for p in a.get("passi") or []:
+            if len(p) > 60:
+                r.warn("ai", f"passo di {len(p)} caratteri (tetto 60): {a.get('title', '')[:40]}")
+
+
 GTA_TIPI = {"ufficiale", "scoperta", "curiosita", "leak", "reazione", "notizia"}
 GTA_AFF = {"confermato", "voce", "da verificare"}
 
@@ -944,6 +980,7 @@ def lint(brief, with_links):
     check_approfondimento(brief, r)
     check_rubriche(brief, r)
     check_gta(brief, r)
+    check_chicche(brief, r)
     check_ranking(news, r)
     if with_links:
         check_links(brief, r)

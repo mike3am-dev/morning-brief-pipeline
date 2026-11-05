@@ -42,7 +42,13 @@
    "sintesi": "Su circa 320 milioni di corse e ordini, gli agenti AI hanno prenotato quattro corse Uber e 500 ordini Uber Eats: «very, very early», dice Khosrowshahi.",
    "note": "I numeri vengono dalla trimestrale di Uber, li ha dati il direttore finanziario Balaji Krishnamurthy. È la misura più concreta finora della distanza fra l'entusiasmo per gli agenti personali (Instinct è valutata 10 miliardi di dollari) e l'uso reale. «We hope that there will be more traction», ha aggiunto l'amministratore delegato.",
    "link": "https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/",
-   "source": "TechCrunch"
+   "source": "TechCrunch",
+   "conto": {
+    "parte": 504,
+    "tutto": 320000000,
+    "etichetta": "corse e ordini prenotati da un agente AI (4 corse, 500 ordini Eats), su circa 320 milioni",
+    "fonte": "Uber"
+   }
   },
   {
    "id": "apple-tetto-spesa-ai-ingegneri",
@@ -85,7 +91,13 @@
    "strumento": "Claude Opus 5.5, vidIQ, ElevenLabs, Premiere Pro",
    "segnale": "oltre 47.000 visualizzazioni su YouTube in mezza giornata",
    "link": "https://www.youtube.com/watch?v=ep4psgAFOqc",
-   "source": "Matt Wolfe (YouTube)"
+   "source": "Matt Wolfe (YouTube)",
+   "passi": [
+    "Apri Claude e crea una Skill nuova",
+    "Scrivi le regole di montaggio del tuo canale",
+    "Dagli il girato grezzo da tagliare",
+    "Chiedi i clip verticali per gli Shorts"
+   ]
   },
   {
    "id": "gemma-potata-85",
@@ -96,7 +108,13 @@
    "prova": "Per un modello locale da un compito solo, misura quanto il piccolo concorda col grande prima di scegliere il grande.",
    "segnale": "fra i più votati del giorno su r/LocalLLaMA",
    "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xnoqyy/i_removed_85_of_gemmas_weights_and_it_is_mostly/",
-   "source": "Reddit r/LocalLLaMA"
+   "source": "Reddit r/LocalLLaMA",
+   "passi": [
+    "Scegli un compito solo per il modello locale",
+    "Prova lo stesso compito sul grande e sul piccolo",
+    "Misura in quanti casi rispondono uguale",
+    "Tieni il piccolo se la concordanza regge"
+   ]
   },
   {
    "id": "claude-code-non-vibecoded",
@@ -107,7 +125,12 @@
    "prova": "Disegna in Figma la pagina principale e qualche elemento secondario, poi passali a Claude come riferimento di stile.",
    "segnale": "oltre 800 commenti su r/ClaudeAI",
    "link": "https://www.reddit.com/r/ClaudeAI/comments/1xnnqkg/show_me_claude_code_projects_that_dont_look/",
-   "source": "Reddit r/ClaudeAI"
+   "source": "Reddit r/ClaudeAI",
+   "passi": [
+    "Disegna in Figma la pagina principale",
+    "Aggiungi qualche elemento secondario",
+    "Passa le tavole a Claude Code come stile"
+   ]
   },
   {
    "id": "datasette-agent-sqlite",
@@ -117,7 +140,12 @@
    "note": "È il progetto di Simon Willison, annunciato a maggio e aggiornato ieri: un assistente che risponde a domande sui tuoi dati scrivendo ed eseguendo SQL, esplora tabelle intere in cerca di schemi e, con il plugin datasette-agent-charts, aggiunge i grafici. Il sito dimostrativo si apre con l'accesso GitHub.",
    "prova": "Apri agent.datasette.io, entra con GitHub e chiedi a parole qualcosa sui dati di esempio.",
    "link": "https://agent.datasette.io/",
-   "source": "Simon Willison"
+   "source": "Simon Willison",
+   "passi": [
+    "Apri agent.datasette.io",
+    "Entra con il tuo account GitHub",
+    "Chiedi a parole qualcosa sui dati di esempio"
+   ]
   }
  ],
  "scritto": "2026-11-05"
