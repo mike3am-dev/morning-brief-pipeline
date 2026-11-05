@@ -6,7 +6,7 @@ Dal 2 ottobre 2026 l'app ha tre schede oltre ad APPLE e AI. Mike le ha
 volute cosi':
 
 * **Mai riempire.** Se le notizie buone sono tre, sono tre. Se sono due, la
-  terza e' "ti sei perso": la cosa piu' calda della settimana che non e' gia'
+  terza viene «dalla settimana»: la cosa piu' calda della settimana che non e' gia'
   uscita. Mai oltre il tetto di ogni rubrica (Spazio 5, Tech 8, Games 10).
 * **Non solo quello che dicono tutti.** Al massimo 1-2 storie di cui si parla
   da giorni; il resto deve essere nuovo.
@@ -28,7 +28,7 @@ non lo aspetta.
     python3 pipeline/rubriche.py --merge         ricopia nell'edizione di oggi
 
 Scrive data/rubriche/<giorno>.json (le tre liste) e data/rubriche/pool.json
-(i candidati buoni degli ultimi otto giorni, da cui pesca "ti sei perso").
+(i candidati buoni degli ultimi otto giorni, da cui pesca «dalla settimana»).
 push.py ricopia le liste dentro l'edizione prima di caricarla.
 """
 
@@ -57,7 +57,20 @@ RUMORE = re.compile(
     r"buying guide|walkthrough|how to|guide:|tips|where to find|every [\w ]+ (location|collectible)|"
     r"wordle|connections|hints|answers|today'?s|quiz|giveaway|sweepstakes|where to buy|in stock|stock updates|"
     r"lowest price|lowest ever|just dropped|dropped to|price cut|"
+    # le offerte travestite da notizia (5 novembre 2026: «for Less Than $7 Each
+    # With This One Easy Step», «Try … on PS Plus Premium Now»)
+    r"for less than|less than \$\d|one easy (step|trick)|this one (simple |easy )?(step|trick)|"
+    r"(try|play|grab|claim) [^.]{2,60} (now|today|for free)$|free (this|next) (week|weekend)|"
     r"offerta|sconto|coupon|miglior[ei] )", re.I)
+# il titolo-domanda e il pezzo in prima persona sono opinione, non notizia
+# («can Bethesda recapture the magic?», «had me captivated»)
+OPINIONE = re.compile(r"\?\s*$|\b(i|i'm|i've|i'd|me|my|we|our)\b|\b(opinion|column|editorial|essay)\b", re.I)
+# Tech e Scienza: la politica e lo spettacolo arrivano alla soglia con la sola
+# testata e la freschezza (Musk e le elezioni, la serie Marvel «VisionQuest»)
+FUORI_TEMA = re.compile(
+    r"\b(elections?|midterms?|senate|congress|campaign|ballot|voters?|republicans?|democrats?|"
+    r"trump|musk|episode|season finale|tv series|the series|showrunner|netflix|disney\+|hbo|marvel|"
+    r"box office|movie|film|trailer|cast)\b", re.I)
 APPLE = re.compile(r"\b(apple|iphone|ipad|macbook|ios \d|macos|airpods|vision pro|apple watch)\b", re.I)
 AI_WORDS = re.compile(r"\b(ai|a\.i\.|gpt|openai|chatgpt|llm|chatbot|claude|gemini|copilot|anthropic)\b", re.I)
 
@@ -70,7 +83,9 @@ RUBRICHE = {
                   "Rock Paper Shotgun": 1.0},
         "boost": [
             (r"\b(ps5|ps5 pro|playstation|state of play|ps plus|psvr|sony interactive|naughty dog|"
-             r"santa monica|insomniac|guerrilla|bluepoint|bend studio|astro bot)\b", 3.0),
+             r"santa monica|insomniac|guerrilla|bluepoint|bend studio|astro bot|god of war|ghost of|horizon|"
+             r"spider-man|gran turismo|the last of us|returnal|ratchet|death stranding|intergalactic|"
+             r"wolverine|marathon|uncharted|bungie)\b", 3.0),
             (r"\b(nintendo|switch 2|zelda|mario|pokemon|pok[eé]mon|metroid|kirby|splatoon|direct)\b", 1.6),
             (r"\b(apple arcade|mac gaming|game porting|ios game|iphone game)\b", 2.5),
             (r"\b(xbox|microsoft|capcom|square enix|ubisoft|electronic arts|ea |rockstar|gta|"
@@ -92,6 +107,15 @@ RUBRICHE = {
     },
     "tech": {
         "nome": "Tech", "max": 8, "soglia": 6.0,
+        # senza almeno una di queste parole non e' una voce di Tech
+        "tema": r"\b(kindle|e-?readers?|e-?ink|handhelds?|consoles?|cameras?|drones?|headphones|earbuds|"
+                r"watch(es)?|smartwatch|speakers?|projectors?|printers?|3d print\w*|keyboards?|mouse|tablets?|"
+                r"laptops?|notebooks?|pc|desktop|monitors?|displays?|screens?|tvs?|oled|glasses|rings?|"
+                r"wearables?|phones?|smartphones?|pixel|galaxy|chips?|cpus?|gpus?|processors?|ram|ssd|"
+                r"batter(y|ies)|chargers?|solar|e-?bikes?|scooters?|cars?|ev|robots?|vacuum|router|wi-?fi|"
+                r"raspberry pi|esp32|arduino|hardware|gadgets?|devices?|prototype|teardown|diy|kickstarter|"
+                r"steam deck|rog ally|gopro|dji|insta360|sonos|bose|framework|nothing|telescopes?|lego|"
+                r"satellite|starlink|vinyl|radio|synth\w*|retro)\b",
         "fonti": {"Hacker News": 1.8, "Liliputing": 1.6, "Hackaday": 2.4, "Engadget": 2.2,
                   "Ars Technica Gadget": 2.2, "Gizmodo": 1.6, "TechRadar": 0.6, "Product Hunt": 1.2},
         "boost": [
@@ -117,7 +141,17 @@ RUBRICHE = {
         ],
     },
     "spazio": {
-        "nome": "Spazio", "max": 5, "soglia": 6.0,
+        # la chiave resta "spazio" (gironi, archivio, segnali), la scheda si chiama Scienza
+        "nome": "Scienza", "max": 5, "soglia": 6.0,
+        "tema": r"\b(space|spazio|nasa|esa|spacex|rocket|razzo|orbit\w*|launch\w*|lancio|satellit\w*|"
+                r"astronaut\w*|moon|luna|mars|marte|planet\w*|pianet\w*|star|stell\w*|galax\w*|galassi\w*|"
+                r"nebula|nebulosa|comet\w*|asteroid\w*|black hole|buco nero|universe|universo|cosmic|cosmo|"
+                r"telescope|telescopio|hubble|webb|jwst|artemis|starship|eclipse|eclissi|aurora|sun|sole|"
+                r"science|scienz\w*|scientists?|scienziat\w*|study|studio|research\w*|ricerca|discover\w*|"
+                r"scopert\w*|species|specie|fossil\w*|dinosaur\w*|evolution|evoluzione|animals?|animal[ei]|"
+                r"brain|cervello|cells?|cellul\w*|genes?|gene|dna|virus|vaccin\w*|cancer|cancro|tumor\w*|"
+                r"trial|drug|farmac\w*|physics|fisica|quantum|quantistic\w*|particle\w*|chemistry|chimica|"
+                r"molecul\w*|climate|clima|ocean\w*|volcan\w*|vulcan\w*|earthquake|terremoto|glacier\w*)\b",
         "fonti": {"NASA APOD": 3.0, "Media INAF": 2.4, "Universe Today": 1.6, "Ars Technica Scienza": 2.4,
                   "SpaceNews": 1.8, "NASA": 1.2},
         "boost": [
@@ -161,6 +195,9 @@ def score(rub, a):
         return -9.0
     if rub == "tech" and APPLE.search(t):
         return -9.0            # sta gia' nell'edizione Apple
+    # Tech e Scienza: senza una parola del tema non e' una voce della scheda
+    if cfg.get("tema") and not re.search(cfg["tema"], low, re.I):
+        return -9.0
     s = cfg["fonti"].get(a["source"], 0.8) + fresh(a["age_hours"])
     for rx, w in cfg["boost"]:
         if re.search(rx, low, re.I):
@@ -179,30 +216,117 @@ def score(rub, a):
         m = HN.search(a.get("summary", ""))
         if m:
             s += min(4.0, int(m.group(1)) / 150)
-    # un titolo vuoto di fatti — una domanda, un elenco — fa meno aprire
-    if t.endswith("?") or re.match(r"^\d+ ", t):
+    # un titolo vuoto di fatti — un elenco — fa meno aprire; una domanda o un
+    # pezzo in prima persona e' un'opinione, e scende di piu'
+    if re.match(r"^\d+ ", t):
         s -= 1.0
+    if OPINIONE.search(t):
+        s -= 3.0
+    if rub in ("tech", "spazio") and FUORI_TEMA.search(t):
+        s -= 4.0
     return round(s, 2)
 
 
-def cluster(items):
+RARO = 0.03     # un nome che sta in meno del 3% dei titoli del giorno
+# le case e le piattaforme non sono mai un nome raro: stanno in una notizia su
+# tre della loro scheda anche quando oggi ne parlano in pochi
+MARCHI = {"nintendo", "xbox", "sony", "playstation", "microsoft", "samsung", "google", "nasa", "apple",
+          "steam", "valve", "switch", "marvel", "amazon", "meta", "netflix", "disney", "ubisoft", "capcom",
+          "sega", "konami", "bandai", "namco", "tencent", "epic", "spacex", "esa", "garmin", "sonos", "dji"}
+
+
+def _parole(title):
+    return re.findall(r"[A-Za-zÀ-ÿ0-9][\w'’-]*", title or "")
+
+
+def _maiuscolo(title):
+    """Titolo all'inglese, con tutte le parole in maiuscolo: li' la maiuscola
+    non dice se una parola e' un nome."""
+    ws = [w for w in _parole(title) if len(w) > 3]
+    return bool(ws) and sum(w[0].isupper() for w in ws) / len(ws) > 0.6
+
+
+def rari(titles):
+    """I nomi rari del giorno: parole che nel grezzo stanno in meno del 3% dei
+    titoli e che, nei titoli scritti in minuscolo, compaiono con la maiuscola
+    a meta' frase («Laufey», «Dogma» si'; «Update», «Patch» o «Nintendo» no).
+    Un titolo all'inglese tutto in maiuscolo non prova niente."""
+    from collections import Counter
+    df = Counter(w for t in titles for w in C.tokens(t))
+    lim = max(2, RARO * len(titles))
+    nome, minuscolo = set(), set()
+    for t in titles:
+        if _maiuscolo(t):
+            continue
+        for k, w in enumerate(_parole(t)):
+            for tk in C.tokens(re.sub(r"['’]s$", "", w)):
+                if any(c.isdigit() for c in tk):
+                    continue
+                if w[0].isupper() and k > 0:
+                    nome.add(tk)
+                elif w[0].islower():
+                    minuscolo.add(tk)
+    return {w for w, n in df.items() if n < lim and w in nome and w not in minuscolo and w not in MARCHI}
+
+
+def _nomi(title, rare):
+    """Le parole rare del giorno che stanno nel titolo."""
+    return C.tokens(title) & rare
+
+
+def stesso_fatto(a, b, rare):
+    """Due titoli raccontano lo stesso fatto: o si somigliano (0,4), o hanno
+    in comune un nome raro del giorno piu' un'altra parola. Il 5 novembre 2026
+    God of War Laufey di Eurogamer e di Push Square stava a 0,383 e usciva due
+    volte."""
+    if C.similarity(a, b, cross_language=False) >= 0.4:
+        return True
+    comuni = _nomi(a, rare) & _nomi(b, rare)
+    if not comuni:
+        return False
+    # due nomi rari bastano; con uno solo serve che i titoli si somiglino almeno
+    # un po' (un «Call of Duty» citato di passaggio non fa lo stesso fatto)
+    if len(comuni) >= 2:
+        return True
+    return len(C.tokens(a) & C.tokens(b)) >= 2 and C.similarity(a, b, cross_language=False) >= 0.22
+
+
+def cluster(items, rare=frozenset(), altri=()):
     """Lo stesso fatto detto da piu' testate. Il primo del gruppo e' il piu'
     alto di punteggio, e ogni testata in piu' vale 2,5 punti: e' il segno che
-    la cosa ha girato."""
+    la cosa ha girato.
+
+    I gruppi si fanno per catena (se A sta con B e B con C, stanno insieme
+    tutti e tre), non col primo gruppo che capita. Le testate si contano su
+    tutto il grezzo (`altri`): una notizia di giochi data anche da The Verge
+    gira di piu' di una data solo da Push Square."""
     items = sorted(items, key=lambda x: -x["_s"])
-    groups = []
-    for it in items:
-        for g in groups:
-            # stesso fatto raccontato con parole diverse: 0,4 contro ogni titolo del gruppo
-            if any(C.similarity(it["title"], m["title"], cross_language=False) >= 0.4 for m in g):
-                g.append(it)
-                break
-        else:
-            groups.append([it])
+    n = len(items)
+    padre = list(range(n))
+
+    def radice(i):
+        while padre[i] != i:
+            padre[i] = padre[padre[i]]
+            i = padre[i]
+        return i
+    for i in range(n):
+        for j in range(i + 1, n):
+            if radice(i) != radice(j) and stesso_fatto(items[i]["title"], items[j]["title"], rare):
+                padre[radice(j)] = radice(i)
+    bucket = {}
+    for i in range(n):
+        bucket.setdefault(radice(i), []).append(items[i])
+    groups = sorted(bucket.values(), key=lambda g: -g[0]["_s"])
     out = []
     for g in groups:
         rep = dict(g[0])
         fonti = {x["source"] for x in g}
+        links = {x["link"] for x in g}
+        for a in altri:
+            if a["source"] in fonti or a["link"] in links:
+                continue
+            if any(stesso_fatto(a["title"], x["title"], rare) for x in g):
+                fonti.add(a["source"])
         rep["_n"] = len(fonti)
         rep["_s"] = round(rep["_s"] + 2.5 * min(3, len(fonti) - 1), 2)
         out.append(rep)
@@ -240,7 +364,7 @@ def load_pool(day):
 
 # ---------------------------------------------------------------- scelta
 
-def choose(rub, items, hist, pool, day, debug=False):
+def choose(rub, items, hist, pool, day, debug=False, rare=frozenset(), altri=()):
     cfg = RUBRICHE[rub]
     cand = []
     for a in items:
@@ -250,7 +374,7 @@ def choose(rub, items, hist, pool, day, debug=False):
         a = dict(a)
         a["_s"] = s
         cand.append(a)
-    groups = cluster(cand)
+    groups = cluster(cand, rare, [a for a in altri if a.get("tier") != rub])
     if debug:
         for g in groups[:14]:
             print(f"      {g['_s']:5.1f} n{g['_n']} {g['source'][:14]:14} {g['title'][:78]}")
@@ -309,38 +433,95 @@ VOCI:
 """
 
 
-def gemini(items):
-    key = ""
+SCHEMA = {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
+    "i": {"type": "INTEGER"}, "titolo": {"type": "STRING"}, "nota": {"type": "STRING"}},
+    "required": ["i", "titolo", "nota"]}}
+TENTATIVO = 40          # secondi per una chiamata
+TETTO = 180             # secondi in tutto, per tutte e tre le schede insieme
+
+
+def _chiave():
     try:
         import audio
-        key = audio.secret("GEMINI_API_KEY")
+        return audio.secret("GEMINI_API_KEY")
     except Exception:
-        pass
+        return ""
+
+
+def gemini(items, deadline=None, key=None):
+    """Traduce una lista di voci. Torna (traduzioni per indice, modello o None).
+
+    Dal 4 novembre 2026 Gemini risponde spesso 503: il 5 la traduzione e'
+    riuscita all'ottavo tentativo dopo 5'46". Quindi: 40 secondi a tentativo,
+    si gira fra i modelli finche' non scade il tetto comune, e lo schema della
+    risposta e' imposto (niente JSON da indovinare)."""
+    import time
+    key = key if key is not None else _chiave()
     if not key or not items:
-        return {}
+        return {}, None
+    deadline = deadline or time.time() + TETTO
     body = PROMPT + "\n".join(
         json.dumps({"i": i, "titolo_originale": it["orig"], "sommario": (it.get("summary") or "")[:380]},
                    ensure_ascii=False) for i, it in enumerate(items))
     payload = json.dumps({"contents": [{"parts": [{"text": body}]}],
-                          "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2}}).encode()
+                          "generationConfig": {"responseMimeType": "application/json",
+                                               "responseSchema": SCHEMA, "temperature": 0.2}}).encode()
+    giro = 0
+    while time.time() < deadline - 5:
+        model = GEMINI_MODELS[giro % len(GEMINI_MODELS)]
+        giro += 1
+        left = deadline - time.time()
+        try:
+            req = urllib.request.Request(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                data=payload, headers={"x-goog-api-key": key, "Content-Type": "application/json"})
+            d = json.load(urllib.request.urlopen(req, timeout=max(5, min(TENTATIVO, left))))
+            arr = json.loads(d["candidates"][0]["content"]["parts"][0]["text"])
+            out = {int(x["i"]): x for x in arr if isinstance(x, dict) and "i" in x and (x.get("titolo") or "").strip()}
+            if out:
+                return out, model
+        except Exception as e:
+            print(f"  (traduzione: {model} non ha risposto: {str(e)[:60]})", file=sys.stderr)
+            if "404" in str(e) and giro > len(GEMINI_MODELS) * 2:
+                break
+            time.sleep(min(3, max(0, deadline - time.time() - 5)))
+    return {}, None
+
+
+def traduci(per_scheda):
+    """Una chiamata per scheda, in parallelo, con un tetto comune. Torna le
+    traduzioni per scheda e l'esito da scrivere nel file (`_traduzione`)."""
     import time
-    for model in GEMINI_MODELS:
-        for attempt in range(2):          # un 503 passa da solo: si riprova una volta
+    from concurrent.futures import ThreadPoolExecutor
+    key = _chiave()
+    deadline = time.time() + TETTO
+    esiti, trad = {}, {}
+    todo = {r: v for r, v in per_scheda.items() if v}
+    for r in per_scheda:
+        if not per_scheda[r]:
+            esiti[r] = {"esito": "non serve", "modello": None}
+            trad[r] = {}
+    if todo and not key:
+        for r in todo:
+            esiti[r] = {"esito": "senza chiave", "modello": None, "voci": len(todo[r]), "tradotte": 0}
+            trad[r] = {}
+        return trad, esiti
+    t0 = time.time()
+    with ThreadPoolExecutor(max_workers=max(1, len(todo))) as ex:
+        futs = {r: ex.submit(gemini, v, deadline, key) for r, v in todo.items()}
+        for r, f in futs.items():
             try:
-                req = urllib.request.Request(
-                    f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                    data=payload, headers={"x-goog-api-key": key, "Content-Type": "application/json"})
-                d = json.load(urllib.request.urlopen(req, timeout=120))
-                txt = d["candidates"][0]["content"]["parts"][0]["text"]
-                arr = json.loads(txt)
-                return {int(x["i"]): x for x in arr if isinstance(x, dict) and "i" in x}
-            except Exception as e:
-                print(f"  (traduzione: {model} non ha risposto: {str(e)[:60]})", file=sys.stderr)
-                if "503" in str(e) or "429" in str(e):
-                    time.sleep(6)
-                else:
-                    break
-    return {}
+                tr, model = f.result()
+            except Exception:
+                tr, model = {}, None
+            n = len(todo[r])
+            fatte = sum(1 for i in range(n) if i in tr)
+            esiti[r] = {"esito": "ok" if fatte == n else "parziale" if fatte else "fallita",
+                        "modello": model, "voci": n, "tradotte": fatte}
+            trad[r] = tr
+    print(f"  traduzione: {round(time.time() - t0)} s — " +
+          ", ".join(f"{RUBRICHE[r]['nome']} {e['esito']}" for r, e in esiti.items()), file=sys.stderr)
+    return trad, esiti
 
 
 def first_sentence(txt, n=150):
@@ -351,7 +532,8 @@ def first_sentence(txt, n=150):
 
 def shape(rub, g, tr, top):
     orig = g.get("orig") or g["title"]
-    title = (tr.get("titolo") or "").strip() or orig
+    tradotto = (tr.get("titolo") or "").strip()
+    title = tradotto or orig
     nota = (tr.get("nota") or "").strip()
     if g["source"] == "Hacker News":
         pts, com = HN.search(g.get("summary", "")), HN_C.search(g.get("summary", ""))
@@ -362,7 +544,9 @@ def shape(rub, g, tr, top):
         title, nota = orig, first_sentence(g.get("summary"))
     it = {
         "id": hashlib.sha1(g["link"].encode()).hexdigest()[:8],
-        "title": title, "orig": orig if orig != title else None, "nota": nota,
+        # `orig` c'e' sempre quando il titolo e' tradotto (anche se uguale, un nome
+        # proprio): senza, la voce e' ancora da tradurre e il lint lo dice
+        "title": title, "orig": orig if tradotto and g["source"] not in LANG_IT else None, "nota": nota,
         "source": g["source"], "link": g["link"],
         "ore": int(g.get("age_hours", 0)), "score": g["_s"],
     }
@@ -379,28 +563,33 @@ def shape(rub, g, tr, top):
 
 # ---------------------------------------------------------------- corsa
 
-def run(raw_path, day, dry=False, debug=False):
+def run(raw_path, day, dry=False, debug=False, tradurre=True):
     raw = C.load_json(raw_path)
     arts = raw.get("items", []) if isinstance(raw, dict) else raw
     # Hacker News non e' una testata: porta l'argomento di cui discute e i punti
     hist, pool = history(day), load_pool(day)
+    rare = rari([a.get("title", "") for a in arts])
     result, plan, newpool = {}, {}, []
     for rub in KEYS:
         items = [dict(a, orig=a["title"]) for a in arts if a.get("tier") == rub]
         # il titolo che cerchiamo e' quello originale, che resta
-        good, persi, groups = choose(rub, items, hist, pool, day, debug)
+        good, persi, groups = choose(rub, items, hist, pool, day, debug, rare, arts)
         plan[rub] = (good, persi)
         for g in groups:
             if g["_s"] >= RUBRICHE[rub]["soglia"] - 1:
                 newpool.append({"rub": rub, "title": g["title"], "orig": g["orig"], "link": g["link"],
                                 "source": g["source"], "score": g["_s"], "date": day,
                                 "summary": (g.get("summary") or "")[:380], "age_hours": g["age_hours"]})
-    flat = [(rub, g) for rub in KEYS for g in plan[rub][0] + plan[rub][1]]
-    need = [g for rub, g in flat if g["source"] not in LANG_IT]
-    tr = gemini(need)
-    by_id = {id(g): tr.get(i, {}) for i, g in enumerate(need)}
-    if need and not tr:
-        print("  Gemini non ha risposto: titoli e note restano nella lingua della fonte.", file=sys.stderr)
+    need = {rub: [g for g in plan[rub][0] + plan[rub][1] if g["source"] not in LANG_IT] for rub in KEYS}
+    if tradurre:
+        tr, esiti = traduci(need)
+    else:
+        tr, esiti = {r: {} for r in KEYS}, {r: {"esito": "saltata", "modello": None} for r in KEYS}
+    by_id = {id(g): tr[rub].get(i, {}) for rub in KEYS for i, g in enumerate(need[rub])}
+    if any(need.values()) and not any(tr.values()):
+        print("  Gemini non ha risposto: titoli e note restano nella lingua della fonte "
+              "(chiudi.py prepara riprova con rubriche.py --traduci).", file=sys.stderr)
+    result["_traduzione"] = dict(esiti, il=datetime.now(timezone.utc).isoformat(timespec="seconds"))
     for rub in KEYS:
         good, persi = plan[rub]
         rows = [shape(rub, g, by_id.get(id(g), {}), top=i < 3) for i, g in enumerate(good)]
@@ -409,7 +598,7 @@ def run(raw_path, day, dry=False, debug=False):
 
     for rub in KEYS:
         print(f"\n== {RUBRICHE[rub]['nome']} — {len(plan[rub][0])} buone" +
-              (f" + {len(plan[rub][1])} «ti sei perso»" if plan[rub][1] else "") + " ==")
+              (f" + {len(plan[rub][1])} «dalla settimana»" if plan[rub][1] else "") + " ==")
         for it in result[rub]:
             tag = "★" if it.get("top") else ("↺" if it.get("perso") else " ")
             print(f" {tag} {it['score']:5.1f} {it['source'][:13]:13} {it['title'][:80]}"
@@ -422,6 +611,56 @@ def run(raw_path, day, dry=False, debug=False):
     seen = {p["link"] for p in newpool}
     C.save_json(POOL, newpool + [p for p in load_pool(day) if p["link"] not in seen and p.get("date") != day])
     return result
+
+
+def da_tradurre(it):
+    return not it.get("orig") and it.get("source") not in LANG_IT
+
+
+def traduci_mancanti(day):
+    """Rifa' solo le traduzioni che mancano nel file del giorno (chiudi.py
+    prepara la lancia quando `_traduzione` non e' «ok»). Il sommario si
+    riprende dal grezzo, per link."""
+    src = os.path.join(DIR, f"{day}.json")
+    if not os.path.exists(src):
+        print("nessun file delle rubriche per il giorno")
+        return 1
+    d = C.load_json(src)
+    raw_path = os.path.join(C.ROOT, "data", "raw", f"{day}.json")
+    summ = {}
+    if os.path.exists(raw_path):
+        raw = C.load_json(raw_path)
+        for a in (raw.get("items", []) if isinstance(raw, dict) else raw):
+            summ[a.get("link")] = a.get("summary") or ""
+    for p in load_pool(day):
+        summ.setdefault(p.get("link"), p.get("summary") or "")
+    need = {k: [dict(it, orig=it.get("title"), summary=summ.get(it.get("link"), ""))
+                for it in d.get(k, []) if da_tradurre(it)] for k in KEYS}
+    if not any(need.values()):
+        print("tutte tradotte")
+        return 0
+    tr, esiti = traduci(need)
+    for k in KEYS:
+        byid = {x["id"]: tr[k].get(i) for i, x in enumerate(need[k]) if tr[k].get(i)}
+        for it in d.get(k, []):
+            t = byid.get(it.get("id"))
+            if not t:
+                continue
+            it["orig"] = it["title"]
+            it["title"] = t["titolo"].strip()
+            if not it.get("nota") and (t.get("nota") or "").strip() and it.get("source") != "Hacker News":
+                it["nota"] = t["nota"].strip()
+    rest = sum(1 for k in KEYS for it in d.get(k, []) if da_tradurre(it))
+    prima = d.get("_traduzione") or {}
+    for k in KEYS:
+        if need[k]:
+            prima[k] = dict(esiti[k], ripresa=True)
+    prima["il"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    d["_traduzione"] = prima
+    C.save_json(src, d)
+    merge(day)
+    print(f"tradotte {sum(len(need[k]) for k in KEYS) - rest}, ne restano {rest}")
+    return 0 if not rest else 2
 
 
 def merge(day):
@@ -463,15 +702,19 @@ def main():
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--debug", action="store_true")
     ap.add_argument("--merge", action="store_true", help="ricopia nell'edizione e basta")
+    ap.add_argument("--traduci", action="store_true", help="rifa' solo le traduzioni che mancano")
+    ap.add_argument("--senza-traduzione", action="store_true", help="non chiama Gemini (prove)")
     a = ap.parse_args()
     day = a.date or C.today()
     if a.merge:
         print("ricopiate nell'edizione" if merge(day) else "niente da ricopiare")
         return 0
+    if a.traduci:
+        return traduci_mancanti(day)
     raw = a.raw or os.path.join(C.ROOT, "data", "raw", f"{day}.json")
     if not os.path.exists(raw):
         sys.exit(f"Nessun grezzo per il {day}: lancia prima fetch.py.")
-    run(raw, day, a.dry, a.debug)
+    run(raw, day, a.dry, a.debug, tradurre=not a.senza_traduzione)
     if not a.dry:
         merge(day)
     return 0

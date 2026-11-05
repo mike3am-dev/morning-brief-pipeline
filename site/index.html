@@ -39,6 +39,8 @@
   --red:#E01F3D;
   --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
   --brand:#E0AB00;
+  /* il blu notte di Scienza (5 novembre 2026): il blu pieno resta a Tech */
+  --night:#14204A;
 
   --yellow-ink:#7A5F00;
   --orange-ink:#93490A;
@@ -64,7 +66,7 @@
     --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
     --rule:#2B2E35; --rule-strong:#414550;
     --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
-    --brand:#F7CE3C;
+    --brand:#F7CE3C; --night:#22346E;
     --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
     --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
     --shadow:0 2px 4px rgba(0,0,0,.5), 0 16px 38px -24px rgba(0,0,0,.9);
@@ -75,7 +77,7 @@
   --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
   --rule:#2B2E35; --rule-strong:#414550;
   --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
-  --brand:#F7CE3C;
+  --brand:#F7CE3C; --night:#22346E;
   --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
   --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
   --shadow:0 2px 4px rgba(0,0,0,.5), 0 16px 38px -24px rgba(0,0,0,.9);
@@ -85,7 +87,7 @@
   --ink:#17181B; --ink-2:#4B4D53; --ink-3:#7C7F87;
   --rule:#D7D2C7; --rule-strong:#BDB7AA;
   --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
-  --brand:#E0AB00;
+  --brand:#E0AB00; --night:#14204A;
   --yellow-ink:#7A5F00; --orange-ink:#93490A; --red-ink:#A5122A; --blue-ink:#0A5E82;
   --accent:#F0821E; --accent-ink:#93490A; --on-fill:#17181B; --ok:#2C7A46;
   --shadow:0 2px 3px rgba(23,24,27,.05), 0 14px 34px -22px rgba(23,24,27,.45);
@@ -522,7 +524,8 @@ html.vista-magazine .masthead .tab[data-view="oggi"]{--tc:var(--orange)}
 html.vista-magazine .masthead .tab[data-view="ai"]{--tc:var(--red)}
 html.vista-magazine .masthead .tab[data-view="games"]{--tc:var(--yellow)}
 html.vista-magazine .masthead .tab[data-view="tech"]{--tc:var(--blue)}
-html.vista-magazine .masthead .tab[data-view="spazio"]{--tc:var(--ink-3)}
+html.vista-magazine .masthead .tab[data-view="spazio"]{--tc:var(--night)}
+html.vista-magazine .masthead .tab[data-view="spazio"]::before{background:radial-gradient(circle, var(--yellow) 0 30%, var(--night) 36%)}
 html.vista-magazine .masthead .tab-dopo::before{content:"★"; width:auto; height:auto; background:none; color:var(--yellow); font-size:.85rem; line-height:1}
 html.vista-magazine .masthead .tab:hover{color:var(--ink)}
 html.vista-magazine .masthead .tab[aria-current="true"]{color:var(--bone)}
@@ -952,7 +955,7 @@ nav.tabs.more-left:not(.more-right){
 .tab[data-view="ai"][aria-current="true"]::after{background:var(--red)}
 .tab[data-view="games"][aria-current="true"]::after{background:var(--yellow)}
 .tab[data-view="tech"][aria-current="true"]::after{background:var(--blue)}
-.tab[data-view="spazio"][aria-current="true"]::after{background:var(--ink)}
+.tab[data-view="spazio"][aria-current="true"]::after{background:var(--night)}
 .masthead-inner{position:relative}
 .tabmenu{
   position:absolute; right:var(--gutter); top:100%; z-index:20; min-width:11rem;
@@ -1603,6 +1606,50 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .rub-sub.hot::before{content:""; width:.7rem; height:.7rem; background:var(--orange); border-radius:50%; align-self:center}
 .rub-rows .row h4{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1.15}
 .rub-rows .row .rowtext{display:flex; flex-direction:column; gap:.3rem}
+
+/* ---- GAMES, TECH, SCIENZA nella Magazine (5 novembre 2026) ----
+   La testatina della scheda e' piatta, angoli quasi vivi, nel colore della
+   scheda e col suo disegno (pixel per Games, griglia per Tech, cielo per
+   Scienza); sotto, le schede su carta della Magazine. */
+.rub-mag{max-width:62rem; container-type:inline-size}
+.rubm-head{position:relative; overflow:hidden; display:flex; align-items:flex-end; gap:1rem;
+  margin:1.1rem 0 .4rem; padding:1.15rem 1.15rem 1rem; border-radius:4px; color:#17181B; background:var(--yellow)}
+.rubm-name{flex:1; min-width:0; display:flex; flex-direction:column; gap:.3rem; position:relative}
+.rubm-head h2{font-family:var(--display); font-weight:800; font-size:clamp(2.6rem, 11cqi, 4.2rem); line-height:.86;
+  text-transform:uppercase; letter-spacing:-.005em}
+.rubm-sub{font-size:.66rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; opacity:.78}
+.rubm-stamp{position:relative; flex:none; display:flex; flex-direction:column; align-items:flex-end; line-height:1;
+  padding-bottom:.1rem}
+.rubm-stamp b{font-family:var(--display); font-weight:800; font-size:2.2rem; line-height:.85}
+.rubm-stamp span{font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; margin-top:.2rem}
+.rubm-stamp small{font-size:.6rem; font-weight:600; letter-spacing:.06em; opacity:.72; margin-top:.35rem}
+.rubm-dots{position:absolute; top:.85rem; right:1rem; display:flex; gap:5px}
+.rubm-dots i{width:9px; height:9px; border-radius:50%; background:#17181B}
+.rubm-dots i:nth-child(2){background:var(--orange)}
+.rubm-dots i:nth-child(3){background:var(--red)}
+.rubm-games{background-color:var(--yellow);
+  background-image:linear-gradient(45deg, rgba(23,24,27,.09) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.09) 75%),
+    linear-gradient(45deg, rgba(23,24,27,.09) 25%, transparent 25%, transparent 75%, rgba(23,24,27,.09) 75%);
+  background-size:22px 22px; background-position:0 0, 11px 11px}
+.rubm-tech{background-color:var(--blue); background-image:radial-gradient(rgba(23,24,27,.26) 1.5px, transparent 1.6px); background-size:14px 14px}
+.rubm-tech .rubm-dots i:nth-child(1){background:var(--bone)}
+/* Scienza: il blu notte con le stelle, e l'accento giallo */
+.rubm-spazio{background-color:var(--night); color:#F1EEE8;
+  background-image:radial-gradient(1.2px 1.2px at 12% 30%, #fff, transparent), radial-gradient(1px 1px at 38% 70%, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 62% 25%, #fff, transparent), radial-gradient(1px 1px at 84% 60%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 92% 22%, #fff, transparent), radial-gradient(1px 1px at 52% 88%, #fff, transparent),
+    radial-gradient(1px 1px at 24% 82%, #fff, transparent), radial-gradient(1.4px 1.4px at 73% 78%, #fff, transparent)}
+.rubm-spazio .rubm-sub, .rubm-spazio .rubm-stamp span{color:var(--yellow); opacity:1}
+.rubm-spazio .rubm-stamp b{color:var(--yellow)}
+.rubm-spazio .rubm-dots i:nth-child(1){background:var(--yellow)}
+.rub-mag .mag{padding-top:.4rem}
+.rub-mag .card-orig{margin:0; font-size:.76rem; line-height:1.35; color:var(--ink-3); font-style:italic; text-wrap:pretty}
+.rub-mag .card-src .hot{color:var(--orange-ink)}
+.rub-mag .empty{border-top:0}
+@container (max-width:460px){
+  .rubm-head{padding:1rem 1rem .9rem}
+  .rubm-stamp b{font-size:1.8rem}
+}
 
 /* il dispaccio */
 .wire{list-style:none; margin:0 0 .4rem; padding:0}
@@ -2415,7 +2462,7 @@ footer.colophon .sp{flex:1}
       <button class="tab" data-view="ai" role="tab">AI<span class="count" id="cAI"></span></button>
       <button class="tab" data-view="games" role="tab">Games<span class="count" id="cGames"></span></button>
       <button class="tab" data-view="tech" role="tab">Tech<span class="count" id="cTech"></span></button>
-      <button class="tab" data-view="spazio" role="tab">Spazio<span class="count" id="cSpazio"></span></button>
+      <button class="tab" data-view="spazio" role="tab">Scienza<span class="count" id="cSpazio"></span></button>
       <button class="tab tab-dopo" data-view="salvati" role="tab">Più tardi<span class="count" id="cDopo"></span></button>
       <button class="tab more" type="button" id="moreTab" aria-haspopup="true" aria-expanded="false" title="Archivio, Salvati, Diario, Cerca">⋯</button>
     </nav>
@@ -3009,7 +3056,7 @@ function indexAll(){
     /* radar, banco e recap non sono notizie ma si salvano lo stesso: un video
        da guardare dopo deve ricomparire fra i salvati come tutto il resto */
     [["radar", "Radar"], ["banco", "Sul banco"], ["recap", "Se te lo fossi perso"],
-     ["games", "Games"], ["tech", "Tech"], ["spazio", "Spazio"]]
+     ["games", "Games"], ["tech", "Tech"], ["spazio", "Scienza"]]
       .forEach(function(sez){
         (b[sez[0]] || []).forEach(function(it){
           if(!it.id) return;
@@ -7468,15 +7515,17 @@ function renderAI(){
 }
 
 
-/* ================= GAMES, TECH, SPAZIO =================
+/* ================= GAMES, TECH, SCIENZA =================
    Tre schede alla pari con APPLE e AI (2 ottobre 2026). Le compone
    pipeline/rubriche.py: solo quello che merita, mai riempita. Le tre voci
    grandi hanno la foto; le altre sono righe. In fondo, se la giornata e'
-   magra, "Ti sei perso": la cosa piu' calda della settimana. */
+   magra, «Dalla settimana»: la cosa piu' calda dei giorni scorsi (era «Ti
+   sei perso», e si confondeva con «Se te lo fossi perso» della scheda APPLE). */
 const RUB = {
   games: {nome:"Games", sub:"PlayStation in testa, poi tutto il resto", count:"cGames", rc:"--yellow", on:"#17181B"},
   tech: {nome:"Tech", sub:"Gadget, hardware e quello che affiora", count:"cTech", rc:"--blue", on:"#17181B"},
-  spazio: {nome:"Spazio", sub:"Solo quello che fa alzare lo sguardo", count:"cSpazio", rc:"#10131C", on:"#F1EEE8"}
+  /* la chiave resta "spazio" (gironi, archivio, segnali): la scheda si chiama Scienza */
+  spazio: {nome:"Scienza", sub:"Le scoperte che fanno alzare lo sguardo", count:"cSpazio", rc:"--night", on:"#F1EEE8"}
 };
 function rubKey(date, kind, it){ return key(date, kind + ":" + it.id); }
 function rubRead(date, kind, it){ if(!it.id) return false; const m = mk(rubKey(date, kind, it)); return !!(m && m.read_at); }
@@ -7505,7 +7554,7 @@ function rubMeta(it){
   return el("p", {class:"rub-meta"}, [
     el("span", {text:parts.filter(Boolean).join(" · ")}),
     it.continua ? el("span", {class:"rub-tag", text:"se ne parla da giorni"}) : null,
-    it.perso ? el("span", {class:"rub-tag hot", text:"ti sei perso"}) : null
+    it.perso ? el("span", {class:"rub-tag hot", text:"dalla settimana"}) : null
   ]);
 }
 function rubCard(date, kind, it){
@@ -7539,6 +7588,7 @@ function rubRow(date, kind, it){
   return li;
 }
 function renderRubrica(kind){
+  if(magazine()) return renderRubricaMag(kind);
   const cfg = RUB[kind];
   const root = document.getElementById("view-" + kind);
   root.innerHTML = "";
@@ -7572,12 +7622,124 @@ function renderRubrica(kind){
     col.appendChild(ul);
   }
   if(persi.length){
-    col.appendChild(el("div", {class:"subhead rub-sub hot"}, [el("span", {text:"Ti sei perso"}),
-      el("span", {class:"eyebrow", text:"la cosa più calda della settimana"})]));
+    col.appendChild(el("div", {class:"subhead rub-sub hot"}, [el("span", {text:"Dalla settimana"}),
+      el("span", {class:"eyebrow", text:"la cosa più calda dei giorni scorsi"})]));
     const ul = el("ul", {class:"wire rub-rows"});
     persi.forEach(function(it){ ul.appendChild(rubRow(brief.date, kind, it)); });
     col.appendChild(ul);
   }
+  root.appendChild(col);
+  let seen = 0;
+  items.forEach(function(it){ if(rubMarkSeen(brief.date, kind, it)) seen++; });
+  if(seen){ save(); queueSync(); refreshCounts(); }
+}
+
+/* Le tre schede nella vista Magazine (5 novembre 2026, Mike: «devo avere il
+   layout grafico di Apple»). La stessa costruzione delle notizie: testata,
+   titolo, la riga, il piede con il tempo, quanto gira e la stellina. Le voci
+   non hanno un corpo da aprire: il tocco porta all'articolo. In testa la
+   testatina della scheda, piatta, nel suo colore e col suo disegno. */
+function rubMagCard(date, kind, it, i, form){
+  const k = rubKey(date, kind, it);
+  const u = safeUrl(it.link);
+  const img = form === "brief" ? null : (it.image || null);
+  const n = Math.max(1, it.testate || 1);
+  const cov = el("span", {class:"card-cov", title:n === 1 ? "Una testata" : n + " testate"});
+  for(let j = 0; j < 5; j++) cov.appendChild(el("i", {class:j < n ? "on" : ""}));
+  cov.appendChild(el("b", {text:n === 1 ? "1 testata" : n + " testate"}));
+  const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Leggi più tardi", title:"Leggi più tardi", html:I_STAR});
+  const paintStar = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
+  paintStar();
+  star.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    if(!NOTES) return;
+    const m = mark(k);
+    m.starred_at = m.starred_at ? null : new Date().toISOString();
+    paintStar(); touched(k); refreshCounts();
+    if(m.starred_at){ Motion.burst(star); Motion.fly(star); }
+    toast(m.starred_at ? "Da leggere più tardi" : "Tolta da Più tardi");
+  });
+  const foot = el("div", {class:"card-foot tools", "data-sig":k}, [
+    el("span", {class:"card-when", text:rubWhen(it)}), cov, el("span", {class:"card-gap"}), NOTES && it.id ? star : null
+  ]);
+  const body = el("div", {class:"card-body"}, [
+    el("div", {class:"card-src"}, [
+      it.source ? el("b", {text:it.source}) : null,
+      it.continua ? el("span", {text:"se ne parla da giorni"}) : null,
+      it.perso ? el("span", {class:"hot", text:"dalla settimana"}) : null
+    ]),
+    el("h3", {class:"card-title", text:it.title}),
+    it.nota ? el("p", {class:"card-dek", text:it.nota}) : null,
+    /* l'originale in piccolo, quando il titolo e' tradotto */
+    it.orig && it.orig !== it.title ? el("p", {class:"card-orig", lang:"en", text:it.orig}) : null
+  ]);
+  const card = el("article", {class:"card c-" + form + (img ? " has-img" : ""), tabindex:"0", role:u ? "link" : null}, [
+    img ? el("img", {class:"card-img", src:img, alt:"", loading:i < 3 ? "eager" : "lazy", decoding:"async"}) : null,
+    body, foot
+  ]);
+  const go = function(){
+    if(!u) return;
+    Sig.bump(k, "o"); Sig.bump(k, "l");
+    window.open(u, "_blank", "noopener");
+  };
+  card.addEventListener("click", go);
+  card.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
+  return Motion.once(card, "rise");
+}
+function rubMagHead(kind, brief, items){
+  const cfg = RUB[kind];
+  const good = items.filter(function(it){ return !it.perso; }).length;
+  const d = brief ? new Date(brief.date + "T12:00:00") : null;
+  const head = el("header", {class:"rubm-head rubm-" + kind}, [
+    el("div", {class:"rubm-name"}, [
+      el("h2", {text:cfg.nome}),
+      el("p", {class:"rubm-sub", text:cfg.sub})
+    ]),
+    d && !isNaN(d) ? el("div", {class:"rubm-stamp"}, [
+      el("b", {text:String(d.getDate())}),
+      el("span", {text:MESI[d.getMonth()].slice(0, 3)}),
+      el("small", {text:good === 1 ? "1 voce" : good + " voci"})
+    ]) : null,
+    /* i tre pallini della sigla, che si accendono quando arrivi */
+    el("span", {class:"rubm-dots", "aria-hidden":"true"}, [el("i"), el("i"), el("i")])
+  ]);
+  return Motion.once(head, "dots");
+}
+function renderRubricaMag(kind){
+  const root = document.getElementById("view-" + kind);
+  root.innerHTML = "";
+  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
+  const items = (brief && brief[kind]) || [];
+  const col = el("div", {class:"col-main rub-mag"});
+  col.appendChild(rubMagHead(kind, brief, items));
+  if(!items.length){
+    col.appendChild(el("div", {class:"empty", html:"<b>Oggi niente che valga la tua attenzione</b>Meglio una scheda vuota che una piena di riempitivi. Le altre giornate sono nell'archivio."}));
+    root.appendChild(col); return;
+  }
+  const good = items.filter(function(it){ return !it.perso; });
+  const persi = items.filter(function(it){ return it.perso; });
+  const tops = good.filter(function(it){ return it.top; });
+  const rest = good.filter(function(it){ return !it.top; });
+  const feed = el("div", {class:"mag"});
+  const pip = "--" + ({games:"yellow", tech:"blue", spazio:"night"}[kind] || "orange");
+  let i = 0;
+  if(tops[0]) feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
+  if(tops[1] || tops[2]) feed.appendChild(el("div", {class:"mag-row two"}, tops.slice(1, 3).map(function(it){
+    return rubMagCard(brief.date, kind, it, i++, "std");
+  })));
+  if(rest.length){
+    if(tops.length) feed.appendChild(magSection(kind + "-oggi", "Anche oggi", null, pip));
+    const list = el("div", {class:"mag-brevi"});
+    rest.forEach(function(it){ list.appendChild(rubMagCard(brief.date, kind, it, i++, "brief")); });
+    feed.appendChild(list);
+  }
+  if(persi.length){
+    feed.appendChild(magSection(kind + "-settimana", "Dalla settimana", "la più calda dei giorni scorsi", "--orange"));
+    const list = el("div", {class:"mag-brevi"});
+    persi.forEach(function(it){ list.appendChild(rubMagCard(brief.date, kind, it, i++, "brief")); });
+    feed.appendChild(list);
+  }
+  col.appendChild(feed);
   root.appendChild(col);
   let seen = 0;
   items.forEach(function(it){ if(rubMarkSeen(brief.date, kind, it)) seen++; });
@@ -7612,7 +7774,7 @@ function show(name){
 }
 /* la lineetta sotto la scheda attiva scivola da una scheda all'altra, e
    prende il colore della scheda (arancione APPLE, rosso AI, giallo GAMES…) */
-const TAB_INK = {ai:"--red", games:"--yellow", tech:"--blue", spazio:"--ink"};
+const TAB_INK = {ai:"--red", games:"--yellow", tech:"--blue", spazio:"--night"};
 function tabInk(){
   const nav = document.querySelector("nav.tabs");
   if(!nav || STILL) return;

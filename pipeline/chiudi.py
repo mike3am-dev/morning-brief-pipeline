@@ -29,6 +29,7 @@ prima corrispondente: sono gli stessi script, con gli stessi argomenti.
 """
 
 import argparse
+import json
 import os
 import re
 import subprocess
@@ -110,12 +111,26 @@ def prepara(day):
     if os.path.exists(RUBRICHE_LOG):
         with open(RUBRICHE_LOG, encoding="utf-8", errors="replace") as fh:
             log = fh.read()
-    manca = not os.path.exists(os.path.join(ROOT, "data", "rubriche", f"{giorno}.json"))
-    if not rubriche_in_corsa() and (manca or re.search(r"Traceback|Error\b", log)):
-        # come prima: se il log mostra un errore, si rilancia una volta e si va avanti
-        code, out, sec = esegui("rubriche", ["rubriche.py"] + day, tmax=300)
-        riga("rubriche (rilanciato: " + ("mancava il file" if manca else "errore nel log") + ")",
+    path = os.path.join(ROOT, "data", "rubriche", f"{giorno}.json")
+    manca = not os.path.exists(path)
+    # solo un crash vero fa rilanciare tutto: «HTTP Error 503» di Gemini sta nel
+    # log senza Traceback e non e' un crash (5 novembre 2026: la vecchia regex
+    # `Traceback|Error\b` lo prendeva e rilanciava rubriche.py fino a 300 s)
+    if not rubriche_in_corsa() and (manca or re.search(r"(?m)^Traceback", log)):
+        code, out, sec = esegui("rubriche", ["rubriche.py"] + day, tmax=240)
+        riga("rubriche (rilanciato: " + ("mancava il file" if manca else "crash nel log") + ")",
              code, sec, "" if code == 0 else errore_breve(out))
+    # le traduzioni mancanti (Gemini in 503): si rifanno solo quelle, con il tetto di 3 minuti
+    elif not rubriche_in_corsa():
+        try:
+            with open(path, encoding="utf-8") as fh:
+                esiti = (json.load(fh).get("_traduzione") or {})
+        except (OSError, ValueError):
+            esiti = {}
+        if any(isinstance(e, dict) and e.get("esito") in ("parziale", "fallita", "saltata", "senza chiave")
+               for e in esiti.values()):
+            code, out, sec = esegui("rubriche-traduci", ["rubriche.py", "--traduci"] + day, tmax=200)
+            riga("rubriche --traduci", code, sec, ultima(out))
     code, out, sec = esegui("rubriche-merge", ["rubriche.py", "--merge"] + day)
     riga("rubriche --merge", code, sec, ultima(out) if code == 0 else errore_breve(out))
 

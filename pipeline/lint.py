@@ -419,12 +419,16 @@ DEEP_VOCI = {"analista", "testata", "apple", "social", "storia", "esperto"}
 DEEP_TITLE_SAME = 0.5
 
 
-RUBRICHE_MAX = {"games": 10, "tech": 8, "spazio": 5}
+RUBRICHE_MAX = {"games": 10, "tech": 8, "spazio": 5}      # "spazio" e' la scheda Scienza
+try:
+    from rubriche import LANG_IT as RUBRICHE_IT              # le fonti gia' in italiano
+except Exception:
+    RUBRICHE_IT = {"Media INAF"}
 
 
 def check_rubriche(brief, r):
-    """GAMES, TECH, SPAZIO (rubriche.py): mai oltre il tetto, mai voci senza
-    titolo o link. Il vuoto e' legittimo: meglio una scheda vuota che di riempitivi."""
+    """GAMES, TECH, SCIENZA (rubriche.py): mai oltre il tetto, mai voci senza
+    titolo o link, mai un titolo rimasto in inglese. Il vuoto e' legittimo: meglio una scheda vuota che di riempitivi."""
     for k, tetto in RUBRICHE_MAX.items():
         voci = brief.get(k) or []
         if len([v for v in voci if not v.get("perso")]) > tetto:
@@ -434,6 +438,11 @@ def check_rubriche(brief, r):
         for v in voci:
             if not (v.get("id") and v.get("title") and v.get("link")):
                 r.error(k, f"voce senza id, titolo o link: {v.get('title') or v.get('orig')}")
+            # il titolo tradotto si porta dietro l'originale: senza, e' rimasto in
+            # inglese (Gemini in 503 dal 4 novembre 2026, e nessuno se ne accorgeva)
+            elif not v.get("orig") and v.get("source") not in RUBRICHE_IT:
+                r.error(k, f"titolo non tradotto ({v.get('source')}): {v['title'][:70]} — "
+                           "lancia python3 pipeline/rubriche.py --traduci")
 
 
 # il reparto: la parola sopra il titolo nella lista del Duo (2 novembre 2026)

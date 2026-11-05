@@ -86,7 +86,7 @@ che parte dell'edizione finirà:
 | `banco` | DDay.it, HDblog, GSMArena, Android Authority, Andrea Galeazzi, MKBHD | sezione *Sul banco* |
 | `games` | Push Square, PlayStation Blog, Nintendo Life, VGC, GamesIndustry.biz, Kotaku, IGN, Eurogamer, Rock Paper Shotgun | scheda *Games* (la compone `rubriche.py`) |
 | `tech` | Engadget, Hackaday, Liliputing, Gizmodo, Hacker News, Product Hunt, TechRadar, Ars Technica Gadget | scheda *Tech* (`rubriche.py`) |
-| `spazio` | SpaceNews, Universe Today, NASA, Media INAF, Ars Technica Scienza, NASA APOD | scheda *Spazio* (`rubriche.py`) |
+| `spazio` | SpaceNews, Universe Today, NASA, Media INAF, Ars Technica Scienza, NASA APOD | scheda *Scienza* (`rubriche.py`; la chiave resta `spazio`) |
 
 Il girone `ai` comprende anche **The Robot Report** e **IEEE Spectrum Robotica**: i robot stanno
 nella scheda AI (lab `robot`), non in una scheda a parte.
@@ -116,9 +116,11 @@ r/ChatGPT, r/LocalLLaMA; le Show HN con trazione; le fonti LAB già scaricate da
 visualizzazioni, miniatura. È la materia dello strato *LAB* della sezione AI (vedi *La
 sezione AI* e *La caccia LAB*).
 
-#### Le schede GAMES, TECH, SPAZIO
+#### Le schede GAMES, TECH, SCIENZA
 
-Dal 2 ottobre 2026 la barra è **APPLE · AI · GAMES · TECH · SPAZIO**, con i tre puntini per
+Dal 2 ottobre 2026 la barra è **APPLE · AI · GAMES · TECH · SCIENZA** (Spazio fino al 5
+novembre 2026: Mike ci vuole «tutto, spazio, medicina, natura, fisica, chimica»; il piano è
+`docs/schede/proposta-2026-11-05.md`), con i tre puntini per
 Archivio, Salvati, Diario e Cerca (Mike non li apriva mai). Le tre schede nuove **non le scrive
 Claude**: le compone uno script, e partono in background mentre tu scrivi l'edizione.
 
@@ -130,19 +132,49 @@ Legge i gironi `games`, `tech`, `spazio` del grezzo, toglie offerte e rumore, ra
 stesso fatto detto da più testate, dà un punteggio e sceglie; Gemini traduce i titoli e scrive
 la riga di sintesi (solo dal sommario del feed). Scrive `data/rubriche/<giorno>.json`. Prima
 delle immagini: `python3 pipeline/rubriche.py --merge` le ricopia nell'edizione (e `push.py` lo
-rifà da solo). Le regole di Mike, che valgono per tutte:
+rifà da solo).
 
-- **Mai riempire.** Se le voci buone sono tre, sono tre. Se sono due, la terza è «Ti sei perso»:
-  la cosa più calda della settimana non ancora uscita. Tetti: Games 10, Tech 8, Spazio 5. Una
+**La traduzione** (5 novembre 2026: dal 4 Gemini risponde spesso 503, e i titoli uscivano in
+inglese senza che nessuno se ne accorgesse). Una chiamata per scheda, in parallelo, con lo
+schema della risposta imposto, 40 secondi a tentativo e **3 minuti in tutto**: si gira fra i
+modelli finché non scade il tetto. L'esito resta nel file, `_traduzione: {games: {esito,
+modello, voci, tradotte}, …}` (il log in `/tmp` sparisce con la sessione cloud). Un titolo
+tradotto porta sempre `orig`, anche se uguale; senza, `lint.py` dà **errore**. `chiudi.py
+prepara` rilancia `rubriche.py --traduci`, che rifà solo le traduzioni mancanti, e rilancia
+tutto `rubriche.py` solo davanti a un `Traceback` vero (prima prendeva per crash anche
+«HTTP Error 503» e perdeva fino a 7 minuti).
+
+**Lo stesso fatto** si riconosce anche quando i titoli si somigliano poco: due titoli vanno
+insieme se condividono un **nome raro del giorno** (meno del 3% dei titoli del grezzo, scritto
+con la maiuscola a metà frase nei titoli in minuscolo: «Laufey», non «Update»; le case e le
+piattaforme in `MARCHI` non contano) più un po' di somiglianza. I gruppi si fanno per catena, e
+le testate si contano su tutto il grezzo, non solo sul girone della scheda. **Tech e Scienza**
+vogliono almeno una parola del tema (`tema` in `RUBRICHE`); politica, serie TV e film scendono
+di 4 punti. In **Games** le offerte travestite («for Less Than $7», «Try … Now») sono rumore, e
+i titoli a domanda o in prima persona sono opinione (−3).
+
+Le regole di Mike, che valgono per tutte:
+
+- **Mai riempire.** Se le voci buone sono tre, sono tre. Se sono due, la terza viene «Dalla
+  settimana» (era «Ti sei perso», e si confondeva con «Se te lo fossi perso» della scheda
+  APPLE): la cosa più calda dei giorni scorsi non ancora uscita. Tetti: Games 10, Tech 8, Scienza 5. Una
   scheda vuota («oggi niente che valga la tua attenzione») è un risultato onesto.
 - **Al massimo due storie «di cui parlano tutti da giorni».** Il resto dev'essere nuovo.
 - **Games**: PlayStation 5 in testa, poi Nintendo, Apple Arcade, le grandi case, le fiere
   (Lucca Comics, Game Awards…). **Tech**: tutto l'hardware di consumo (il Kindle, le
   portatili, le cuffie) e quello che *affiora* (Hacker News, Product Hunt) — non software da
-  sviluppatori. **Spazio**: solo ciò che fa alzare lo sguardo, foto che stupiscono, primi
+  sviluppatori. **Scienza**: solo ciò che fa alzare lo sguardo, foto che stupiscono, primi
   assoluti; niente appalti NASA.
 - Titolo in italiano, originale in piccolo sotto. Le prime tre voci hanno la foto
-  (`images.py`), le altre sono righe.
+  (`images.py`), le altre sono schede brevi di solo testo.
+
+**Nella Magazine** (5 novembre 2026) le tre schede hanno la grammatica delle notizie Apple
+(`renderRubricaMag` in `pipeline/template.html`): in testa la testatina piatta della scheda,
+nel suo colore e col suo disegno — pixel gialli per Games, griglia blu per Tech, **cielo blu
+notte con l'accento giallo per Scienza** (`--night`; il blu pieno resta a Tech) — con il giorno
+e i tre pallini della sigla; poi la prima voce grande, due affiancate, «Anche oggi» in schede
+brevi, «Dalla settimana». Ogni scheda: testata, titolo, la riga, l'originale in corsivo, il
+piede con il tempo, quanto gira e la stellina. Il tocco apre l'articolo (segnali `o` e `l`).
 
 I pesi stanno in `pipeline/rubriche.py` (`RUBRICHE`): si ritoccano lì, guardando
 `rubriche.py --dry --debug`. Un redattore Claude per rubrica, dopo la pubblicazione, è
@@ -348,7 +380,7 @@ Rumor e gossip **si includono**, ma sempre marcati con `tag: "RUMOR"` e una nota
 `radar`: **da 0 a 5 voci** brevi, ognuna con `id` (slug stabile, serve al voto) e
 `topic` (l'unità su cui il radar impara). **Il radar è per quello che non ha una scheda
 sua** (31 ottobre 2026, Mike: «se no è un mega doppione»): niente che spetti ad AI, GAMES,
-TECH o SPAZIO. La robotica e i capitali dell'AI vanno nella scheda AI, Hubble in SPAZIO, i
+TECH o SCIENZA. La robotica e i capitali dell'AI vanno nella scheda AI, Hubble in SCIENZA, i
 visori e gli e-reader in TECH, i videogiochi in GAMES. Al radar restano regole e antitrust,
 sicurezza e sorveglianza, piattaforme e social, telecomunicazioni, energia, auto: il
 contorno che tocca Apple e non ha altra casa. In `data/radar_topics.json` i temi delle
@@ -1330,7 +1362,7 @@ pipeline/claims.py       le previsioni: aperte, verdetti, pagelle per fonte
 pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le perse da te (segnali)
-pipeline/rubriche.py     le schede GAMES, TECH, SPAZIO: raccolta, punteggio, Gemini  ->  data/rubriche/
+pipeline/rubriche.py     le schede GAMES, TECH, SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)
 pipeline/verify.py       la catena delle fonti: origini, riprese, parola di Apple
@@ -1497,7 +1529,7 @@ la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava ch
 barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
 
 **Le sezioni sono pillole** col pallino del loro colore (Apple arancione, AI rosso, Games
-giallo, Tech blu, Spazio grigio, Più tardi la stellina), e una **pillola nera scivola**
+giallo, Tech blu, Scienza blu notte con la stella gialla, Più tardi la stellina), e una **pillola nera scivola**
 sotto quella attiva; nella barra stretta si rimpiccioliscono. A destra tre pulsanti: la
 **vista** (Classica / Magazine, con la sua icona — un elenco puntato o quattro quadrati), la
 **lente**, e **il menu** di vetro col pallino della sincronizzazione: Tema, Archivio, Diario,
@@ -1507,7 +1539,7 @@ quella di sempre.
 
 **La stellina vuol dire «Leggi più tardi»** (2 novembre 2026, Mike: «la clicco se mi
 interessa e al lavoro quell'articolo lo devo riprendere»). Nella Magazine c'è la scheda
-**Più tardi** subito dopo Spazio, col numero, e dentro le notizie messe da parte come schede
+**Più tardi** subito dopo Scienza, col numero, e dentro le notizie messe da parte come schede
 che si aprono a tutto schermo. Nella Classica restano i Salvati nei tre puntini.
 
 **La plancia del mattino** (2 novembre 2026). Nella Magazine, a destra del logo sotto la
