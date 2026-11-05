@@ -215,6 +215,13 @@ def harvest(job):
         c, note = best_photo(item, need)
     else:
         c, note = candidate(item.get("link", ""), item.get("image_src")), ""
+        # le schede e GTA: se la testata principale non da' la foto (il NYT ai bot), le altre
+        # testate della stessa voce
+        for alt in ([] if c else (item.get("extra_links") or [])[:3]):
+            alt = alt.get("url") if isinstance(alt, dict) else alt
+            c = candidate(alt) if alt else None
+            if c:
+                break
     if not c:
         return idx, None, None, ""
     raw, _, cut, page = c

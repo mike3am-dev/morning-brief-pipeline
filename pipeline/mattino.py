@@ -184,12 +184,14 @@ def main():
             # GTA VI (5 novembre 2026): gta.py viene subito dopo, nello stesso processo in
             # background, perche' il suo dossier usa le notizie GTA che rubriche.py ha trovato.
             # Scrive /tmp/corsa/gta-dossier.txt, che l'agente `gta` aspetta con aspetta.py.
+            # Poi schede.py, il dossier delle schede Games e Scienza per l'agente `schede` (Opus).
             catena = (f'"{sys.executable}" pipeline/rubriche.py; '
+                      f'"{sys.executable}" pipeline/schede.py > /tmp/schede.log 2>&1; '
                       f'"{sys.executable}" pipeline/gta.py > /tmp/gta.log 2>&1')
             with open(RUBRICHE_LOG, "w") as log:
                 p = subprocess.Popen(["/bin/sh", "-c", catena], cwd=ROOT,
                                      stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
-            print(f"- rubriche + gta: partiti in background (pid {p.pid}), log {RUBRICHE_LOG} e /tmp/gta.log")
+            print(f"- rubriche + schede + gta: partiti in background (pid {p.pid}), log {RUBRICHE_LOG} e /tmp/gta.log")
             continue
         stato, sec, out, path = run(nome, cmd, tmax, args.dir)
         kb = len(out.encode("utf-8")) / 1024

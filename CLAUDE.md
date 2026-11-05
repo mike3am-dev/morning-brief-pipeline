@@ -129,7 +129,7 @@ Dal 5 novembre 2026 la barra è **APPLE · AI · GAMES · SCIENZA** (Mike: «nie
 l'edizione, e subito dopo lo stesso processo prepara il dossier di GTA VI.
 
 ```bash
-nohup sh -c "python3 pipeline/rubriche.py; python3 pipeline/gta.py > /tmp/gta.log 2>&1" > /tmp/rubriche.log 2>&1 &
+nohup sh -c "python3 pipeline/rubriche.py; python3 pipeline/schede.py > /tmp/schede.log 2>&1; python3 pipeline/gta.py > /tmp/gta.log 2>&1" > /tmp/rubriche.log 2>&1 &
 ```
 
 `rubriche.py` legge i gironi `games` e `spazio` del grezzo, toglie offerte e rumore, raggruppa
@@ -138,11 +138,16 @@ scrive la riga di sintesi (solo dal sommario del feed). Scrive `data/rubriche/<g
 Prima delle immagini: `python3 pipeline/rubriche.py --merge` le ricopia nell'edizione (e
 `push.py` lo rifà da solo), insieme alla sezione GTA VI se l'agente l'ha già scritta.
 
-**Chi scrive la prosa** (5 novembre 2026, Mike: «basta che la prosa sia stesa da Opus»).
-Gemini traduce perché il 2 ottobre le schede dovevano costare zero token di Claude. Il passo
-previsto è che la scelta resti allo script e che titolo e riga delle voci scelte li scriva il
-redattore Opus, dall'articolo e non dal sommario; Gemini resterebbe il ripiego. Finché non è
-fatto, vale quello che segue.
+**Chi scrive la prosa: Opus** (5 novembre 2026, Mike: «basta che la prosa sia stesa da Opus,
+che come scrive mi piace molto»). Lo script sceglie una **rosa** di candidati per scheda (fino
+a 18, `candidati` nel file del giorno); `pipeline/schede.py` apre tutti gli articoli in un colpo
+solo e prepara `/tmp/corsa/schede-dossier.txt`; l'agente **`schede`** (Opus,
+`.claude/agents/schede.md`) sceglie fino a dieci voci per scheda, unisce i doppioni anche fra
+lingue (`anche`: lo stesso telescopio dal NYT e dall'ANSA), e scrive titolo e riga in italiano
+dall'articolo, con il dato che conta. Scrive **solo** `data/rubriche/<giorno>-scritte.json`;
+`rubriche.merge` compone l'edizione da lì, prendendo dal candidato link, testata, ore e foto
+(`scritta: "opus"` sulla voce). Gira in background in parallelo al redattore, con dieci minuti;
+se non consegna, restano la scelta dello script e i titoli di Gemini, che è il ripiego.
 
 **La traduzione** (5 novembre 2026: dal 4 Gemini risponde spesso 503, e i titoli uscivano in
 inglese senza che nessuno se ne accorgesse). Una chiamata per scheda, in parallelo, con lo
@@ -1413,6 +1418,7 @@ pipeline/facts.py        i numeri seguiti nel tempo: serie, derive, registro
 pipeline/taste.py        i pollici  ->  declassamenti + caselle del radar + briefing
 pipeline/missed.py       ripescaggio: le non date (copertura + trazione) e le perse da te (segnali)
 pipeline/rubriche.py     le schede GAMES e SCIENZA: raccolta, punteggio, Gemini  ->  data/rubriche/
+pipeline/schede.py       il dossier delle schede Games e Scienza per l'agente `schede` (gli articoli aperti)
 pipeline/gta.py          il dossier di GTA VI per l'agente `gta` (Reddit, X, YouTube)  ->  data/gta/
 pipeline/lab.py          Reddit AI + Show HN + fonti LAB + appunti  ->  data/lab/
                          (salta tutto quello che è già uscito in edizione)

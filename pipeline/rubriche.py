@@ -205,6 +205,7 @@ GTA_MAX = 5
 # i feed che portano ore e punti: scritti in un modo che solo noi capiamo
 HN = re.compile(r"Points:\s*(\d+)", re.I)
 HN_C = re.compile(r"#\s*Comments:\s*(\d+)", re.I)
+CANDIDATI = 18          # quanti candidati per scheda passano al redattore Opus
 MAX_SATURI = 2          # storie "di cui parlano tutti da giorni": al massimo due
 MIN_TOP = 3             # sotto questa soglia di voci buone, si completa con "ti sei perso"
 POOL_DAYS = 8
@@ -384,6 +385,7 @@ def cluster(items, rare=frozenset(), altri=()):
             if any(stesso_fatto(a["title"], x["title"], rare) for x in g):
                 fonti.add(a["source"])
         rep["_n"] = len(fonti)
+        rep["_links"] = [x["link"] for x in g if x["link"] != rep["link"]][:4]
         rep["_s"] = round(rep["_s"] + 2.5 * min(3, len(fonti) - 1), 2)
         out.append(rep)
     return sorted(out, key=lambda x: -x["_s"])
@@ -501,7 +503,8 @@ def choose(rub, items, hist, pool, day, debug=False, rare=frozenset(), altri=())
             g["_s"] = round(g["_s"] - 2.0, 2)
             g["_continua"] = True
         good.append(g)
-    good = compose(rub, sorted(good, key=lambda x: -x["_s"]), cfg["max"])
+    ordinati = sorted(good, key=lambda x: -x["_s"])
+    good = compose(rub, ordinati, cfg["max"])
 
     # il pool dei giorni prima: tutto cio' che e' passato la soglia, per "ti sei perso"
     persi = []
@@ -523,6 +526,9 @@ def choose(rub, items, hist, pool, day, debug=False, rare=frozenset(), altri=())
             persi.append(q)
             if len(good) + len(persi) >= MIN_TOP:
                 break
+    # la rosa per il redattore delle schede (agente `schede`, Opus): piu' larga della scelta,
+    # perche' sia lui a decidere le dieci leggendo gli articoli
+    choose.candidati = ordinati[:CANDIDATI]
     return good, persi, groups
 
 
@@ -665,6 +671,8 @@ def shape(rub, g, tr, top):
         it["gruppo"] = "gta" if g.get("_gta") else ("playstation" if PS_RX.search(orig) else "generico")
     if g["source"] in LANG_IT or g.get("_it"):
         it["lingua"] = "it"
+    if g.get("_links"):
+        it["extra_links"] = g["_links"]
     if g.get("_n", 1) > 1:
         it["testate"] = g["_n"]
     if g.get("_continua"):
@@ -687,7 +695,7 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
     arts = [gn_prepara(dict(a, _origine=a.get("source"))) for a in arts]
     rare = rari([a.get("title", "") for a in arts])
     result, plan, newpool = {}, {}, []
-    gta = []
+    gta, rosa = [], {}
     for rub in KEYS:
         items = [dict(a, orig=a["title"]) for a in arts if a.get("tier") == rub]
         if rub == "games":
@@ -697,6 +705,7 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
         # il titolo che cerchiamo e' quello originale, che resta
         good, persi, groups = choose(rub, items, hist, pool, day, debug, rare, arts)
         plan[rub] = (good, persi)
+        rosa[rub] = list(choose.candidati)
         for g in groups:
             if g["_s"] >= RUBRICHE[rub]["soglia"] - 1:
                 newpool.append({"rub": rub, "title": g["title"], "orig": g["orig"], "link": g["link"],
@@ -713,6 +722,9 @@ def run(raw_path, day, dry=False, debug=False, tradurre=True):
         print("  Gemini non ha risposto: titoli e note restano nella lingua della fonte "
               "(chiudi.py prepara riprova con rubriche.py --traduci).", file=sys.stderr)
     result["_traduzione"] = dict(esiti, il=datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    # la rosa, non tradotta: la scrive l'agente `schede` (vedi merge)
+    result["candidati"] = {rub: [dict(shape(rub, g, {}, top=False), summary=(g.get("summary") or "")[:500])
+                                 for g in rosa[rub]] for rub in KEYS}
     for rub in KEYS:
         good, persi = plan[rub]
         rows = [shape(rub, g, by_id.get(id(g), {}), top=i < 3) for i, g in enumerate(good)]
@@ -790,6 +802,58 @@ def traduci_mancanti(day):
     return 0 if not rest else 2
 
 
+def scritte_opus(day, d):
+    """La prosa dell'agente `schede` (Opus), se c'e': data/rubriche/<giorno>-scritte.json.
+
+    L'agente sceglie fra i candidati per id, nell'ordine in cui li vuole, e scrive titolo e
+    riga in italiano dall'articolo letto. Puo' unire due candidati che raccontano lo stesso
+    fatto (`anche`: gli id degli altri), anche in lingue diverse: i loro link diventano
+    extra_links e contano come testate. Tutto il resto (link, fonte, ore, disciplina, gruppo)
+    viene dal candidato: l'agente non lo riscrive. Torna {scheda: lista} o {}."""
+    p = os.path.join(DIR, f"{day}-scritte.json")
+    if not os.path.exists(p):
+        return {}
+    try:
+        w = C.load_json(p)
+    except ValueError:
+        print("  scritte di Opus illeggibili: resta la scelta dello script", file=sys.stderr)
+        return {}
+    cand = d.get("candidati") or {}
+    out = {}
+    for k in KEYS:
+        if not isinstance(w.get(k), list):
+            continue
+        pool = {c["id"]: c for c in (cand.get(k) or []) + (d.get(k) or []) if c.get("id")}
+        lista = []
+        for i, v in enumerate(w[k]):
+            base = dict(pool.get(v.get("id")) or {})
+            if not base or not (v.get("title") or "").strip():
+                continue
+            base.pop("summary", None)
+            if not base.get("orig") and base.get("lingua") != "it":
+                base["orig"] = base["title"]          # l'originale resta, in piccolo
+            base["title"] = v["title"].strip()
+            base["nota"] = (v.get("nota") or "").strip()
+            if v.get("gruppo") in ("playstation", "generico"):
+                base["gruppo"] = v["gruppo"]
+            if v.get("disciplina"):
+                base["disciplina"] = v["disciplina"]
+            extra = list(base.get("extra_links") or [])
+            for a in v.get("anche") or []:
+                o = pool.get(a)
+                if o and o.get("link") and o["link"] not in extra:
+                    extra.append(o["link"])
+            if extra:
+                base["extra_links"] = extra[:6]
+            if v.get("anche"):
+                base["testate"] = max(base.get("testate") or 1, 1) + len(v["anche"])
+            base["top"] = i < 3 or None
+            base["scritta"] = "opus"
+            lista.append({kk: vv for kk, vv in base.items() if vv is not None})
+        out[k] = lista[:RUBRICHE[k]["max"]]
+    return out
+
+
 def merge(day):
     """Ricopia le liste dentro l'edizione del giorno. Idempotente.
 
@@ -805,7 +869,10 @@ def merge(day):
         return False
     d, b = (C.load_json(src) if os.path.exists(src) else {}), C.load_json(dst)
     changed = False
+    scritte = scritte_opus(day, d)
     for k, dst_key in [(k, k) for k in KEYS] + [("gta", "gta_notizie")]:
+        if k in scritte:
+            d = dict(d, **{k: scritte[k]})
         if k not in d:
             continue
         images = {it["id"]: it["image"] for it in b.get(dst_key) or [] if it.get("image")}

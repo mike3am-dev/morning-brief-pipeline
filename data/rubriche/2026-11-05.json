@@ -1,82 +1,606 @@
 {
  "_traduzione": {
   "games": {
-   "esito": "ok",
-   "modello": "claude-opus-5-5 (a mano, Gemini in 503)",
-   "voci": 8,
-   "tradotte": 8
+   "esito": "saltata",
+   "modello": null
   },
   "spazio": {
-   "esito": "ok",
-   "modello": "gemini-3.5-flash",
-   "voci": 8,
-   "tradotte": 8
+   "esito": "saltata",
+   "modello": null
   },
-  "il": "2026-11-05T15:32:55+00:00"
+  "il": "2026-11-05T15:38:53+00:00"
+ },
+ "candidati": {
+  "games": [
+   {
+    "id": "9a61e768",
+    "title": "PS5 Exclusive Marvel's Wolverine Off to a Soft Start, 2.4 Million Copies Sold to Date",
+    "nota": "",
+    "source": "Push Square",
+    "link": "https://www.pushsquare.com/news/2026/11/ps5-exclusive-marvels-wolverine-off-to-a-soft-start-2-4-million-copies-sold-to-date",
+    "ore": 3,
+    "score": 16.1,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://insider-gaming.com/marvels-wolverine-sells-2-4-million-units-in-first-50-days/",
+     "https://www.gematsu.com/2026/11/ps5-shipments-top-97-9-million-marvels-wolverine-tops-2-4-million"
+    ],
+    "testate": 4,
+    "summary": "\"I'm no hero\". Sony has officially confirmed sales figures for Marvel's Wolverine for the first time, as part of its recent financial update . According to the report, the PS5 exclusive superhero action adventure has sold 2.4 million units as of 4th November, 2026. Read the full article on pushsquare.com"
+   },
+   {
+    "id": "19b49c0c",
+    "title": "Nintendo says it is not considering a Switch 2 price hike",
+    "nota": "",
+    "source": "VGC",
+    "link": "https://www.videogameschronicle.com/news/nintendo-says-it-is-not-considering-a-switch-2-price-hike/",
+    "ore": 0,
+    "score": 15.3,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://kotaku.com/nintendo-fans-are-crashing-out-after-amazon-suddenly-delays-tons-of-zelda-ocarina-of-time-remake-pre-orders-2000754143",
+     "https://www.videogameschronicle.com/guide/zelda-ocarina-of-time-empty-bottle-locations/",
+     "https://www.videogameschronicle.com/guide/zelda-ocarina-of-time-great-fairy-fountain-locations/",
+     "https://www.videogameschronicle.com/guide/zelda-oot-biggorons-sword-trade-sequence-quest/"
+    ],
+    "testate": 19,
+    "summary": "Nintendo says it has enough memory and doesn't need to up the Switch 2's price"
+   },
+   {
+    "id": "0f76e0d8",
+    "title": "God of War Laufey delayed three months to May 2027, as Sony Santa Monica escapes a packed February",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/god-of-war-laufey-delayed-may-three-months",
+    "ore": 21,
+    "score": 14.5,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.pushsquare.com/news/2026/11/ps5-exclusive-god-of-war-laufey-has-officially-been-delayed-by-three-months",
+     "https://kotaku.com/god-of-war-laufey-delay-ps5-new-release-date-santa-monica-2000753374",
+     "https://www.gamesradar.com/games/god-of-war/god-of-war-laufey-delayed-sony-santa-monica-says-we-appreciate-your-patience-as-ps5s-early-2027-hitter-slips/",
+     "https://www.gematsu.com/2026/11/god-of-war-laufey-delayed-to-may-20-2027"
+    ],
+    "testate": 7,
+    "summary": "God of War Laufey has been delayed. Sony Santa Monica's PS5 exclusive is now dodging the crowded month of February and will instead come out on 20th May, 2027. Read more"
+   },
+   {
+    "id": "cb9702b0",
+    "title": "PlayStation sees record high player numbers and increased revenue for Q2 2026, and a lot of that success is down to Marvel's Wolverine",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/sony-playstation-fy-2026-wolverine-sales",
+    "ore": 4,
+    "score": 13.8,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.gamespot.com/articles/marvels-wolverine-has-lost-its-momentum-and-sonys-numbers-show-it/"
+    ],
+    "testate": 3,
+    "summary": "As part of today's (Thursday 5th November, 2026) financial results, Sony has confirmed that monthly active users, referred to as MAU, across both PlayStation 4 and 5, reached 127 million in September. This represents a seven percent growth year-on-year for the company, and sets a new record high. Read more"
+   },
+   {
+    "id": "5fce1438",
+    "title": "Arkane union says closing the studio \"would probably be more expensive\" for Xbox than simply finishing Marvel's Blade",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/arkane-union-xbox-more-expensive-marvels-blade",
+    "ore": 18,
+    "score": 13.1,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://www.gamesindustry.biz/arkane-union-accuses-microsoft-of-sabotaging-marvels-blade-with-19-month-hiring-freeze",
+     "https://www.rockpapershotgun.com/arkane-is-profitable-say-marvels-blade-developers-in-fiery-new-statement-just-not-profitable-enough-for-microsoft",
+     "https://www.everyeye.it/notizie/sviluppo-marvel-s-blade-sabotato-xbox-sindacato-arkane-accusa-microsoft-909852.html",
+     "https://www.gamesradar.com/games/microsoft-chose-to-close-arkane-by-sabotaging-the-game-it-funded-workers-claim-in-damning-letter-we-want-to-finish-blade-and-release-it-to-the-players/"
+    ],
+    "testate": 6,
+    "summary": "Xbox would probably spend more money shutting down Arkane Lyon than it would trying to finish and release Marvel's Blade, according to a union representing workers from the beloved imsim studio. Read more"
+   },
+   {
+    "id": "0b942779",
+    "title": "The Elder Scrolls 6 Sentinel uscirà anche su PS5 e PS6 o sarà esclusiva Xbox/PC?",
+    "nota": "Microsoft potrebbe rendere esclusive Xbox e PC le prossime IP Bethesda, con uscite su altre piattaforme solo in seguito.",
+    "source": "Everyeye",
+    "link": "https://www.everyeye.it/notizie/the-elder-scrolls-6-sentinel-uscir-ps5-ps6-sar-esclusiva-xbox-pc-909916.html",
+    "ore": 3,
+    "score": 12.9,
+    "gruppo": "playstation",
+    "lingua": "it",
+    "extra_links": [
+     "https://www.pushsquare.com/news/2026/11/bethesda-will-sell-you-elder-scrolls-6-sentinel-t-shirts-and-hoodies-even-though-it-hasnt-shown-the-game",
+     "https://www.gamesradar.com/games/the-elder-scrolls/bethesda-wants-you-to-show-off-your-excitement-for-the-elder-scrolls-6-sentinel-by-spending-usd35-on-a-t-shirt/",
+     "https://www.eurogamer.net/the-elder-scrolls-6-sentinel-story-speculation",
+     "https://www.everyeye.it/notizie/the-elder-scrolls-6-sentinel-viaggi-tempo-teorie-fan-teaser-trailer-909847.html"
+    ],
+    "testate": 6,
+    "summary": "Microsoft potrebbe rendere esclusive Xbox e PC le prossime IP Bethesda, con uscite su altre piattaforme solo in seguito. Decisioni attese. La domanda che molti hanno iniziato a porsi con costanza da quando Microsoft ha acquisito il colosso Bethesda è se le sue IP usciranno in esclusiva su Xbox o continueranno ad essere disponibili anche su PlayStation . Prosegui la lettura"
+   },
+   {
+    "id": "bebb8525",
+    "title": "Pokémon Pokopia Celebrates Fall with Apple-Themed Event",
+    "nota": "",
+    "source": "Polygon",
+    "link": "https://www.polygon.com/pokemon-pokopia-apples-for-applin-event-announced/",
+    "ore": 4,
+    "score": 12.9,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://www.nintendolife.com/news/2026/11/pokemon-pokopias-limited-time-apples-to-applin-event-begins-this-month",
+     "https://www.nintendolife.com/news/2026/11/pokemon-pokopias-second-dlc-wave-launches-next-month",
+     "https://gameinformer.com/2026/11/04/pokemon-pokopia-expansion-pass-part-2-dazzling-decorations-arrives-next-month-with-new",
+     "https://nintendoeverything.com/pokemon-pokopia-dazzling-decorations-dlc-gets-release-date-new-event-announced/"
+    ],
+    "testate": 5,
+    "summary": "Applin and its evolutions join the roster of Pokémon available in Pokopia in the next in-game event, featuring lots of thematic decorative items."
+   },
+   {
+    "id": "161a2a1d",
+    "title": "Rivoluzione per Xbox Cloud Gaming: si potrà usare il telefono come controller",
+    "nota": "Pare che Microsoft stia per pubblicare un grosso aggiornamento che rivoluziona i controlli di Xbox Cloud Gaming.",
+    "source": "Everyeye",
+    "link": "https://www.everyeye.it/notizie/rivoluzione-xbox-cloud-gaming-potr-usare-telefono-come-controller-909918.html",
+    "ore": 5,
+    "score": 12.9,
+    "gruppo": "generico",
+    "lingua": "it",
+    "testate": 4,
+    "summary": "Pare che Microsoft stia per pubblicare un grosso aggiornamento che rivoluziona i controlli di Xbox Cloud Gaming. Microsoft sta continuando ad aggiornare il suo Xbox Cloud Gaming , servizio che negli ultimi tempi sta attraversando numerosi cambiamenti come quello relativo alle ore di gioco da acquistare in pacchetti sullo store . La novità in arrivo, però, è di quelle che potrebbero far piacere a molti utenti. Prosegui la lettura"
+   },
+   {
+    "id": "8dd03b31",
+    "title": "Mass Effect petition has enough signatures for the Canadian Government to potentially save BioWare",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/bioware-canada-house-of-commons-petition-save-mass-effect",
+    "ore": 2,
+    "score": 12.5,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://www.rockpapershotgun.com/biowares-closure-represents-an-immense-loss-to-and-possibly-a-targeted-attack-on-canadas-cultural-legacy-argues-petition-calling-on-canadian-government-to-step-in",
+     "https://kotaku.com/mass-effect-petitions-bioware-canadian-government-house-of-commons-2000753458",
+     "https://www.gamesradar.com/games/mass-effect/bioware-co-founder-wants-to-get-some-of-the-band-back-amid-save-mass-effect-movement-says-big-rpgs-can-still-deliver-and-baldurs-gate-3-may-have-had-an-effect-on-the-genre/"
+    ],
+    "testate": 5,
+    "summary": "Following news of EA's decision to shut down iconic RPG studio BioWare , Canadian fans of the studio have escalated their grievances to the governmental level, calling on the Canadian Government to step in and save the Canadian studio from closure, seemingly after Canada's New Democratic Party leader Avi Lewis called on the government to do so . Read more"
+   },
+   {
+    "id": "bcfafe0f",
+    "title": "World of Warcraft: Forever is off to a great start with Blizzard's smoothest launch in memory",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/world-of-warcraft-forever-launch-smooth",
+    "ore": 5,
+    "score": 12.5,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://www.polygon.com/wow-world-of-warcraft-forever-launch-problems-horde-pvp/",
+     "https://www.ign.com/articles/world-of-warcraft-forever-launch-live-blog",
+     "https://kotaku.com/old-school-runescape-is-following-world-of-warcraft-classic-and-adding-a-permadeath-hardcore-mode-2000752446",
+     "https://www.gamespot.com/articles/wow-forevers-launch-is-going-surprisingly-smooth/"
+    ],
+    "testate": 6,
+    "summary": "World of Warcraft: Forever came out last night. Those who stayed up were prepared for the usual from major WoW releases: long queues, disconnects, and server lag. However, save for a few minor hiccups here and there, things went off without a hitch. Read more"
+   },
+   {
+    "id": "0245f52f",
+    "title": "First Phantom Blade Zero PS5 Update Makes an Early, Deadly Boss Easier",
+    "nota": "",
+    "source": "Push Square",
+    "link": "https://www.pushsquare.com/news/2026/11/first-phantom-blade-zero-ps5-update-makes-an-early-deadly-boss-easier",
+    "ore": 25,
+    "score": 12.1,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.pushsquare.com/features/poll-is-phantom-blade-zero-too-hard",
+     "https://www.everyeye.it/notizie/phantom-blade-zero-evolve-novita-update-909831.html"
+    ],
+    "testate": 4,
+    "summary": "Hua, Deadly Betrothed nerfed in PS5 patch. S-GAME has today published the first major Phantom Blade Zero update for PS5 and PC, available to download now on both platforms. It's a relatively normal list of updates and tweaks, comprising bug fixes and adjustments — until you see that one of the game's earlier bosses has been nerfed a touch. Hua, Deadly Bethrothed, an optional boss fight in the first main Weeping Creek Valley region, has had her grab attacks made less frequent. Read the full artic"
+   },
+   {
+    "id": "093d7229",
+    "title": "Claude Code dice no ai cloni: stretta di Anthropic contro la copia dei videogiochi",
+    "nota": "Anthropic aggiorna le regole di Claude Opus per limitare cloni videoludici AI e porting non autorizzati, contrastando un fenomeno in crescita.",
+    "source": "Everyeye",
+    "link": "https://www.everyeye.it/notizie/claude-code-cloni-stretta-anthropic-copia-videogiochi-909963.html",
+    "ore": 2,
+    "score": 11.3,
+    "gruppo": "generico",
+    "lingua": "it",
+    "testate": 4,
+    "summary": "Anthropic aggiorna le regole di Claude Opus per limitare cloni videoludici AI e porting non autorizzati, contrastando un fenomeno in crescita. Nelle ultime settimane, il fenomeno dei giochi clonati e dei porting non autorizzati fatti con l' IA stava decisamente sfuggendo di mano. Sembrerebbe però che qualcosa si stia muovendo e un primo provvedimento contro questa tendenza è finalmente arrivato da parte di uno dei colossi dell' intelligenza artificiale . Prosegui la lettura"
+   },
+   {
+    "id": "0fb04927",
+    "title": "Star Wars Actor Officially Confirms the Hunt for Ben Solo Is Dead — and That's a Good Thing.",
+    "nota": "",
+    "source": "Polygon",
+    "link": "https://www.polygon.com/star-wars-adam-driver-the-hunt-for-ben-solo-dead/",
+    "ore": 4,
+    "score": 11.3,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://www.gamesradar.com/entertainment/star-wars-movies/adam-driver-says-the-hunt-for-ben-solo-script-was-really-good-but-he-thinks-the-ship-has-sailed-on-his-star-wars-return/",
+     "https://www.ign.com/articles/adam-driver-says-hes-done-playing-kylo-ren-but-would-return-if-someone-revived-his-canceled-solo-film"
+    ],
+    "testate": 4,
+    "summary": "Adam Driver, who played Star Wars' Kylo Ren, confirms that 'The Hunt for Ben Solo' is officially dead. Maybe that's for the best."
+   },
+   {
+    "id": "8da55e4d",
+    "title": "Assassin’s Creed Valhalla: new update brings New Game+, upgraded PSSR support for PS5 Pro today",
+    "nota": "",
+    "source": "PlayStation Blog",
+    "link": "https://blog.playstation.com/2026/11/05/assassins-creed-valhalla-new-update-brings-new-game-upgraded-pssr-support-for-ps5-pro-today/",
+    "ore": 0,
+    "score": 10.9,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.pushsquare.com/news/2026/11/assassins-creed-valhalla-new-gameplus-patch-is-way-bigger-than-anticipated-adds-ps5-pro-support"
+    ],
+    "testate": 2,
+    "summary": "Assassin’s Creed Valhalla: The Most Requested Update, a free update bringing several player-requested and quality-of-life features to the game, is live today on PlayStation 5 and PlayStation 5 Pro. The update has new content, a progression update, and more, including: The new PSSR update is exclusive to PlayStation 5 Pro players, giving them an even […]"
+   },
+   {
+    "id": "10bd7120",
+    "title": "Despite hardware worries and rising costs, Sony says PlayStation 6 development is on track and \"progressing as scheduled\"",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/playstation-6-sony-financials-2026-hardware",
+    "ore": 5,
+    "score": 10.5,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.gamesradar.com/hardware/ps6-development-is-progressing-as-scheduled-sony-assures-even-if-playstation-is-battling-against-the-ram-shortage-and-balancing-memory-procurement/"
+    ],
+    "testate": 2,
+    "summary": "Today, Thursday 5th November, 2026, Sony shared its latest financial results, reporting on the second quarter of financial year 2026 for the company. In a wide-ranging set of statements, we learned that the company's overall profits have been charged by the box office success of Spider-Man: Brand New Day, and that its annual profit outlook has been raised following a particularly successful quarter. Read more"
+   },
+   {
+    "id": "c813dd83",
+    "title": "After Final Fantasy 7 Revelation, lead says Square Enix is \"more likely to invest in new titles and new games\"",
+    "nota": "",
+    "source": "GamesRadar",
+    "link": "https://www.gamesradar.com/games/final-fantasy/after-final-fantasy-7-revelation-series-lead-says-square-enix-is-more-likely-to-invest-in-new-titles-and-new-games-than-more-jrpg-remakes/",
+    "ore": 2,
+    "score": 10.4,
+    "gruppo": "generico",
+    "extra_links": [
+     "https://insider-gaming.com/final-fantasys-yoshinori-kitase-doesnt-rule-out-more-remakes/",
+     "https://www.everyeye.it/notizie/square-enix-final-fantasy-futuro-ff7-revelation-kitase-parla-remake-progetti-909837.html"
+    ],
+    "testate": 3,
+    "summary": "Revisiting other entries seems to be on the cards, just don't hold your breathe"
+   },
+   {
+    "id": "8c97ab4b",
+    "title": "Meg’s Monster coming to PS5 on March 1, 2027",
+    "nota": "",
+    "source": "Gematsu",
+    "link": "https://www.gematsu.com/2026/11/megs-monster-coming-to-ps5-on-march-1-2027",
+    "ore": 21,
+    "score": 9.8,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://www.pushsquare.com/reviews/ps5/godzilla-destroy-all-monsters-melee-remastered",
+     "https://www.ign.com/articles/gentle-monster-review"
+    ],
+    "testate": 3,
+    "summary": "Odencat will release a PlayStation 5 version of RPG adventure game Meg’s Monster on March …"
+   },
+   {
+    "id": "cf44555c",
+    "title": "Dragon's Dogma 2 gets a timed collaboration with beloved anime and manga series Delicious in Dungeon, and it's out right now on PC, PlayStation and Xbox",
+    "nota": "",
+    "source": "Eurogamer",
+    "link": "https://www.eurogamer.net/dragons-dogma-2-dungeon-meshi-collaboration-out-now",
+    "ore": 28,
+    "score": 9.7,
+    "gruppo": "playstation",
+    "extra_links": [
+     "https://kotaku.com/dragons-dogma-2-drops-surprise-delicious-in-dungeon-collab-2000753287"
+    ],
+    "testate": 2,
+    "summary": "Have you ever seen - or read - the wonderful Dungeon Meshi (known in English as 'Delicious in Dungeon')? It's a phenomenal manga series written and illustrated by Ryoko Kui, which was adapted into an anime series produced by Trigger in 2024. Long story short, it's about a group of adventurers in a fantasy world who lose an encounter with a dragon - who eats one of the party. What follows is a quest to revive the fallen party member (who happens to be the sister of one of the main characters), wi"
+   }
+  ],
+  "spazio": [
+   {
+    "id": "53f78f88",
+    "title": "A NASA Telescope Has Crashed Back to Earth",
+    "nota": "",
+    "source": "NYT Science",
+    "link": "https://www.nytimes.com/2026/11/03/science/nasa-swift-reentry-crash.html",
+    "ore": 18,
+    "score": 11.0,
+    "disciplina": "spazio",
+    "extra_links": [
+     "https://www.scientificamerican.com/article/nasas-swift-telescope-plunges-back-to-earth/"
+    ],
+    "testate": 3,
+    "summary": "The space agency estimated that there was a one-in-2,100 chance that debris from the Neil Gehrels Swift Observatory could injure someone on the ground."
+   },
+   {
+    "id": "a3a39ef0",
+    "title": "E’ rientrato a Terra il telescopio spaziale Swift, bruciato nell’atmosfera",
+    "nota": "Quando era sopra l’Indonesia, era stato lanciato nel 2004 per studiare i lampi",
+    "source": "ANSA Scienza",
+    "link": "https://www.ansa.it/canale_scienza/notizie/spazio_astronomia/2026/11/05/e-rientrato-a-terra-il-telescopio-spaziale-swift-bruciato-nellatmosfera_3f75e765-a64d-49ce-965c-4af86de2c423.html",
+    "ore": 4,
+    "score": 8.9,
+    "disciplina": "spazio",
+    "lingua": "it",
+    "extra_links": [
+     "https://www.ilpost.it/2026/11/04/nasa-swfit-osservatorio-ritorno-terra/"
+    ],
+    "testate": 2,
+    "summary": "Quando era sopra l’Indonesia, era stato lanciato nel 2004 per studiare i lampi gamma"
+   },
+   {
+    "id": "7e1b7b44",
+    "title": "Tiny Chihuahuas Hold a Big Surprise: A Sliver of Coyote DNA",
+    "nota": "",
+    "source": "NYT Science",
+    "link": "https://www.nytimes.com/2026/11/05/science/chihuahuas-coyote-dna.html",
+    "ore": 4,
+    "score": 8.4,
+    "disciplina": "natura",
+    "summary": "The breed is descended from indigenous canines, which may have been intentionally mixed with wild coyotes long before Europeans arrived in the Americas."
+   },
+   {
+    "id": "c6795390",
+    "title": "Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
+    "nota": "",
+    "source": "Wired Science",
+    "link": "https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/",
+    "ore": 4,
+    "score": 8.0,
+    "disciplina": "fisica",
+    "summary": "An extremely rare matter-decay event opens up new possibilities for researching the physical world on scales 100 billion times smaller than an atom."
+   },
+   {
+    "id": "b02175b4",
+    "title": "European orbiter detects hints of volcanic activity on Mars",
+    "nota": "",
+    "source": "ESA",
+    "link": "https://new.esa.int/articles/news-media/news/european-orbiter-detects-hints-of-volcanic-activity-on-mars",
+    "ore": 1,
+    "score": 7.6,
+    "disciplina": "spazio",
+    "summary": "New evidence from gas seeping above volcanic rifts suggests Mars is not geologically dead deep inside, but merely sleeping."
+   },
+   {
+    "id": "9f6d16ac",
+    "title": "C'è un legame inatteso tra tumore del colon-retto nei giovani e placenta",
+    "nota": "Vengono riattivati programmi molecolari dello sviluppo, la scoperta apre a nuove",
+    "source": "ANSA Scienza",
+    "link": "https://www.ansa.it/canale_scienza/notizie/biotech/2026/11/05/ce-un-legame-inatteso-tra-tumore-del-colon-retto-nei-giovani-e-placenta_370140db-e89d-44d4-92b4-68ce9e60dbf9.html",
+    "ore": 7,
+    "score": 7.6,
+    "disciplina": "medicina",
+    "lingua": "it",
+    "summary": "Vengono riattivati programmi molecolari dello sviluppo, la scoperta apre a nuove terapie"
+   },
+   {
+    "id": "3b2ef923",
+    "title": "Uranium cubes reveal why the German nuclear project failed",
+    "nota": "",
+    "source": "Ars Technica Scienza",
+    "link": "https://arstechnica.com/science/2026/11/uranium-cubes-reveal-why-the-german-nuclear-project-failed/",
+    "ore": 16,
+    "score": 7.6,
+    "disciplina": "fisica",
+    "summary": "\"Our calculations suggest Heisenberg significantly underestimated the materials required.\""
+   },
+   {
+    "id": "f7f1db88",
+    "title": "NASA’s James Webb Space Telescope is wobbly—scientists have a fix that could reveal new alien worlds",
+    "nota": "",
+    "source": "Scientific American",
+    "link": "https://www.scientificamerican.com/article/nasas-james-webb-space-telescope-is-wobbly-scientists-have-a-fix-that-could-reveal-new-alien-worlds/",
+    "ore": 22,
+    "score": 7.0,
+    "disciplina": "spazio",
+    "summary": "By modeling the James Webb Space Telescope’s tiny movements, a new technique can reveal up to 15 times fainter alien worlds"
+   },
+   {
+    "id": "d482c20d",
+    "title": "A barbarian tribe’s mythic origin story is true, ancient DNA reveals",
+    "nota": "",
+    "source": "Science",
+    "link": "https://www.science.org/content/article/barbarian-tribe-s-mythic-origin-story-true-ancient-dna-reveals",
+    "ore": 27,
+    "score": 6.7,
+    "disciplina": "storia",
+    "summary": "Skeletons across Europe confirm the Goths surged out of Scandinavia before sacking Rome"
+   },
+   {
+    "id": "7e93c730",
+    "title": "La rivoluzione quantistica, una sfida per l’Italia",
+    "nota": "L’evento ANSA per fare il punto con alcuni dei maggiori esperti del",
+    "source": "ANSA Scienza",
+    "link": "https://www.ansa.it/canale_scienza/notizie/biotech/2026/11/05/la-rivoluzione-quantistica-una-sfida-per-litalia-_617cc43e-e771-41ba-9f1b-e1df2b68dd89.html",
+    "ore": 0,
+    "score": 6.4,
+    "disciplina": "fisica",
+    "lingua": "it",
+    "summary": "L’evento ANSA per fare il punto con alcuni dei maggiori esperti del settore"
+   },
+   {
+    "id": "fde457b6",
+    "title": "Recuperato il sangue di un dinosauro, da ossa di 115 milioni di anni fa",
+    "nota": "Dimostrata per la prima volta la presenza dei globuli",
+    "source": "ANSA Scienza",
+    "link": "https://www.ansa.it/canale_scienza/notizie/ragazzi/news/2026/11/05/recuperato-il-sangue-di-un-dinosauro-da-ossa-di-115-milioni-di-anni-fa_451543dd-1081-44ed-a27f-8f903afff4cf.html",
+    "ore": 8,
+    "score": 6.4,
+    "disciplina": "natura",
+    "lingua": "it",
+    "summary": "Dimostrata per la prima volta la presenza dei globuli rossi"
+   },
+   {
+    "id": "e199d2bf",
+    "title": "Hubble Reveals Cosmic Mystery",
+    "nota": "",
+    "source": "NASA",
+    "link": "https://www.nasa.gov/image-article/hubble-reveals-cosmic-mystery/",
+    "ore": 22,
+    "score": 6.2,
+    "disciplina": "spazio",
+    "summary": "This photo released on Nov. 2, 2026, showcases NGC 4449, a dwarf irregular. Researchers using NASA’s Hubble Space Telescope studied 37 nearby dwarf galaxies — small galaxies containing a few thousand to hundreds of millions of stars — including NGC 4449 and found that much of the oxygen they expected to see is missing. Read […]"
+   },
+   {
+    "id": "4c5ce045",
+    "title": "The Not-So-Hidden Galaxy, IC 342",
+    "nota": "",
+    "source": "NASA APOD",
+    "link": "https://science.nasa.gov/image-article/apod-2026-november-4-the-not-so-hidden-galaxy-ic-342/",
+    "ore": 26,
+    "score": 6.2,
+    "disciplina": "spazio",
+    "summary": "“I see” IC 342, the Hidden Galaxy! Today’s image peers through the plane of the Milky Way, through all its gas, dust and stars, to unveil this spiral galaxy"
+   },
+   {
+    "id": "57674f80",
+    "title": "US prosecutors drop criminal charges against scientist detained over frog embryos",
+    "nota": "",
+    "source": "Guardian Science",
+    "link": "https://www.theguardian.com/us-news/2026/nov/04/kseniia-petrova-harvard-frog-embryos",
+    "ore": 17,
+    "score": 6.0,
+    "disciplina": "scienza",
+    "summary": "Kseniia Petrova was detained for four months after arrest with research samples, and feared deportation to Russia Federal prosecutors have dropped all criminal charges against a Russian scientist who spent four months in immigration detention after flying into Boston with frog embryos intended for cancer research at Harvard Medical School. Kseniia Petrova, 31, was arrested in March 2025 after returning from a vacation in France, where she had visited a laboratory specializing in cutting extremel"
+   },
+   {
+    "id": "df5dd8c3",
+    "title": "World’s wettest rainstorms are getting wetter, affecting flood and drought risk",
+    "nota": "",
+    "source": "Guardian Environment",
+    "link": "https://www.theguardian.com/news/2026/nov/05/worlds-wettest-rainstorms-getting-worse-flood-drought-risk",
+    "ore": 8,
+    "score": 5.6,
+    "disciplina": "terra",
+    "summary": "Events that deliver about half of global rainfall are getting shorter but more intense, with wide-ranging implications The world’s wettest rainstorms produce about half of the global annual rainfall. Now a study shows that these intense downpours have become shorter in duration and fewer in number, compressing the same amount of rain into quicker and more extreme events, with implications for flood and drought risk. Chiyuan Miao and colleagues from Beijing Normal University in China analysed dai"
+   },
+   {
+    "id": "1d342b24",
+    "title": "Hubble Learns Galactic History From Stars",
+    "nota": "",
+    "source": "NASA",
+    "link": "https://science.nasa.gov/missions/hubble/hubble-learns-galactic-history-from-stars/",
+    "ore": 1,
+    "score": 5.4,
+    "disciplina": "spazio",
+    "summary": "This Hubble image features the sparkling collection of stars named Messier 30 (M30), also called NGC 7099."
+   },
+   {
+    "id": "80354335",
+    "title": "Why a US-funded vaccine trial on babies was cancelled in Guinea-Bissau",
+    "nota": "",
+    "source": "BBC Health",
+    "link": "https://www.bbc.co.uk/news/articles/cm0rlxq08ejko?at_medium=RSS&at_campaign=rss",
+    "ore": 14,
+    "score": 5.4,
+    "disciplina": "medicina",
+    "summary": "The trial was condemned as \"unethical\" and \"neocolonial\" because half of the babies would not be given the vaccine."
+   },
+   {
+    "id": "ac1dc3f6",
+    "title": "Swapping from dairy to plant-based milk, cheese and yoghurt ‘could lead to micronutrient deficiencies’",
+    "nota": "",
+    "source": "Guardian Science",
+    "link": "https://www.theguardian.com/science/2026/nov/04/swapping-dairy-milk-cheese-yoghurt-plant-based-vegan-alternatives-deficiencies-micronutrients-iodine",
+    "ore": 15,
+    "score": 5.4,
+    "disciplina": "medicina",
+    "summary": "Young people and women most at risk, study finds, as researchers call for vegan products to be fortified with iodine in particular Switching from dairy products to plant-based alternatives could lead to deficiencies in vital micronutrients, especially among young people and women, a study has found. Even moving partly to vegan alternatives to milk, cheese and yoghurt could lead to falls in iodine, calcium, riboflavin and vitamin B12 if the substitutes, often based on soya, almonds or oats, are n"
+   }
+  ]
  },
  "games": [
   {
    "id": "9a61e768",
-   "title": "Wolverine parte piano: 2,4 milioni di copie vendute finora",
-   "nota": "Sony dà per la prima volta i numeri dell'esclusiva PS5: 2,4 milioni di copie al 4 novembre.",
+   "title": "PS5 Exclusive Marvel's Wolverine Off to a Soft Start, 2.4 Million Copies Sold to Date",
+   "nota": "",
    "source": "Push Square",
    "link": "https://www.pushsquare.com/news/2026/11/ps5-exclusive-marvels-wolverine-off-to-a-soft-start-2-4-million-copies-sold-to-date",
    "ore": 3,
    "score": 16.1,
    "gruppo": "playstation",
+   "extra_links": [
+    "https://insider-gaming.com/marvels-wolverine-sells-2-4-million-units-in-first-50-days/",
+    "https://www.gematsu.com/2026/11/ps5-shipments-top-97-9-million-marvels-wolverine-tops-2-4-million"
+   ],
    "testate": 4,
-   "top": true,
-   "orig": "PS5 Exclusive Marvel's Wolverine Off to a Soft Start, 2.4 Million Copies Sold to Date"
+   "top": true
   },
   {
    "id": "19b49c0c",
-   "title": "Nintendo: nessun aumento di prezzo per Switch 2",
-   "nota": "Nintendo dice di avere memoria a sufficienza e di non dover alzare il prezzo della console.",
+   "title": "Nintendo says it is not considering a Switch 2 price hike",
+   "nota": "",
    "source": "VGC",
    "link": "https://www.videogameschronicle.com/news/nintendo-says-it-is-not-considering-a-switch-2-price-hike/",
    "ore": 0,
    "score": 15.3,
    "gruppo": "generico",
+   "extra_links": [
+    "https://kotaku.com/nintendo-fans-are-crashing-out-after-amazon-suddenly-delays-tons-of-zelda-ocarina-of-time-remake-pre-orders-2000754143",
+    "https://www.videogameschronicle.com/guide/zelda-ocarina-of-time-empty-bottle-locations/",
+    "https://www.videogameschronicle.com/guide/zelda-ocarina-of-time-great-fairy-fountain-locations/",
+    "https://www.videogameschronicle.com/guide/zelda-oot-biggorons-sword-trade-sequence-quest/"
+   ],
    "testate": 19,
-   "top": true,
-   "orig": "Nintendo says it is not considering a Switch 2 price hike"
+   "top": true
   },
   {
    "id": "0f76e0d8",
-   "title": "God of War Laufey slitta di tre mesi: esce il 20 maggio 2027",
-   "nota": "Sony Santa Monica evita un febbraio affollato: l'esclusiva PS5 passa al 20 maggio 2027.",
+   "title": "God of War Laufey delayed three months to May 2027, as Sony Santa Monica escapes a packed February",
+   "nota": "",
    "source": "Eurogamer",
    "link": "https://www.eurogamer.net/god-of-war-laufey-delayed-may-three-months",
    "ore": 21,
    "score": 14.5,
    "gruppo": "playstation",
+   "extra_links": [
+    "https://www.pushsquare.com/news/2026/11/ps5-exclusive-god-of-war-laufey-has-officially-been-delayed-by-three-months",
+    "https://kotaku.com/god-of-war-laufey-delay-ps5-new-release-date-santa-monica-2000753374",
+    "https://www.gamesradar.com/games/god-of-war/god-of-war-laufey-delayed-sony-santa-monica-says-we-appreciate-your-patience-as-ps5s-early-2027-hitter-slips/",
+    "https://www.gematsu.com/2026/11/god-of-war-laufey-delayed-to-may-20-2027"
+   ],
    "testate": 7,
-   "top": true,
-   "orig": "God of War Laufey delayed three months to May 2027, as Sony Santa Monica escapes a packed February"
+   "top": true
   },
   {
    "id": "cb9702b0",
-   "title": "PlayStation, record di giocatori nel trimestre: merito anche di Wolverine",
-   "nota": "A settembre 127 milioni di utenti attivi al mese fra PS4 e PS5, il 7% in più in un anno: è il massimo storico.",
+   "title": "PlayStation sees record high player numbers and increased revenue for Q2 2026, and a lot of that success is down to Marvel's Wolverine",
+   "nota": "",
    "source": "Eurogamer",
    "link": "https://www.eurogamer.net/sony-playstation-fy-2026-wolverine-sales",
    "ore": 4,
    "score": 13.8,
    "gruppo": "playstation",
-   "testate": 3,
-   "orig": "PlayStation sees record high player numbers and increased revenue for Q2 2026, and a lot of that success is down to Marvel's Wolverine"
+   "extra_links": [
+    "https://www.gamespot.com/articles/marvels-wolverine-has-lost-its-momentum-and-sonys-numbers-show-it/"
+   ],
+   "testate": 3
   },
   {
    "id": "5fce1438",
-   "title": "Il sindacato di Arkane: chiudere lo studio costerebbe a Xbox più che finire Blade",
-   "nota": "Secondo i lavoratori di Arkane Lyon, chiuderlo costerebbe più che completare e pubblicare Marvel's Blade.",
+   "title": "Arkane union says closing the studio \"would probably be more expensive\" for Xbox than simply finishing Marvel's Blade",
+   "nota": "",
    "source": "Eurogamer",
    "link": "https://www.eurogamer.net/arkane-union-xbox-more-expensive-marvels-blade",
    "ore": 18,
    "score": 13.1,
    "gruppo": "generico",
-   "testate": 6,
-   "orig": "Arkane union says closing the studio \"would probably be more expensive\" for Xbox than simply finishing Marvel's Blade"
+   "extra_links": [
+    "https://www.gamesindustry.biz/arkane-union-accuses-microsoft-of-sabotaging-marvels-blade-with-19-month-hiring-freeze",
+    "https://www.rockpapershotgun.com/arkane-is-profitable-say-marvels-blade-developers-in-fiery-new-statement-just-not-profitable-enough-for-microsoft",
+    "https://www.everyeye.it/notizie/sviluppo-marvel-s-blade-sabotato-xbox-sindacato-arkane-accusa-microsoft-909852.html",
+    "https://www.gamesradar.com/games/microsoft-chose-to-close-arkane-by-sabotaging-the-game-it-funded-workers-claim-in-damning-letter-we-want-to-finish-blade-and-release-it-to-the-players/"
+   ],
+   "testate": 6
   },
   {
    "id": "0b942779",
@@ -88,19 +612,30 @@
    "score": 12.9,
    "gruppo": "playstation",
    "lingua": "it",
+   "extra_links": [
+    "https://www.pushsquare.com/news/2026/11/bethesda-will-sell-you-elder-scrolls-6-sentinel-t-shirts-and-hoodies-even-though-it-hasnt-shown-the-game",
+    "https://www.gamesradar.com/games/the-elder-scrolls/bethesda-wants-you-to-show-off-your-excitement-for-the-elder-scrolls-6-sentinel-by-spending-usd35-on-a-t-shirt/",
+    "https://www.eurogamer.net/the-elder-scrolls-6-sentinel-story-speculation",
+    "https://www.everyeye.it/notizie/the-elder-scrolls-6-sentinel-viaggi-tempo-teorie-fan-teaser-trailer-909847.html"
+   ],
    "testate": 6
   },
   {
    "id": "bebb8525",
-   "title": "Pokémon Pokopia festeggia l'autunno con un evento a tema mele",
-   "nota": "Applin e le sue evoluzioni entrano in Pokopia con il prossimo evento, insieme a molti oggetti decorativi a tema.",
+   "title": "Pokémon Pokopia Celebrates Fall with Apple-Themed Event",
+   "nota": "",
    "source": "Polygon",
    "link": "https://www.polygon.com/pokemon-pokopia-apples-for-applin-event-announced/",
    "ore": 4,
    "score": 12.9,
    "gruppo": "generico",
-   "testate": 5,
-   "orig": "Pokémon Pokopia Celebrates Fall with Apple-Themed Event"
+   "extra_links": [
+    "https://www.nintendolife.com/news/2026/11/pokemon-pokopias-limited-time-apples-to-applin-event-begins-this-month",
+    "https://www.nintendolife.com/news/2026/11/pokemon-pokopias-second-dlc-wave-launches-next-month",
+    "https://gameinformer.com/2026/11/04/pokemon-pokopia-expansion-pass-part-2-dazzling-decorations-arrives-next-month-with-new",
+    "https://nintendoeverything.com/pokemon-pokopia-dazzling-decorations-dlc-gets-release-date-new-event-announced/"
+   ],
+   "testate": 5
   },
   {
    "id": "161a2a1d",
@@ -116,27 +651,36 @@
   },
   {
    "id": "8dd03b31",
-   "title": "Mass Effect, la petizione per salvare BioWare arriva al governo canadese",
-   "nota": "Dopo la chiusura decisa da EA, le firme bastano perché il governo del Canada debba rispondere sullo studio.",
+   "title": "Mass Effect petition has enough signatures for the Canadian Government to potentially save BioWare",
+   "nota": "",
    "source": "Eurogamer",
    "link": "https://www.eurogamer.net/bioware-canada-house-of-commons-petition-save-mass-effect",
    "ore": 2,
    "score": 12.5,
    "gruppo": "generico",
-   "testate": 5,
-   "orig": "Mass Effect petition has enough signatures for the Canadian Government to potentially save BioWare"
+   "extra_links": [
+    "https://www.rockpapershotgun.com/biowares-closure-represents-an-immense-loss-to-and-possibly-a-targeted-attack-on-canadas-cultural-legacy-argues-petition-calling-on-canadian-government-to-step-in",
+    "https://kotaku.com/mass-effect-petitions-bioware-canadian-government-house-of-commons-2000753458",
+    "https://www.gamesradar.com/games/mass-effect/bioware-co-founder-wants-to-get-some-of-the-band-back-amid-save-mass-effect-movement-says-big-rpgs-can-still-deliver-and-baldurs-gate-3-may-have-had-an-effect-on-the-genre/"
+   ],
+   "testate": 5
   },
   {
    "id": "bcfafe0f",
-   "title": "World of Warcraft: Forever, il lancio più liscio di Blizzard da anni",
-   "nota": "Uscito ieri sera senza le solite code, disconnessioni e server in affanno: solo qualche intoppo minore.",
+   "title": "World of Warcraft: Forever is off to a great start with Blizzard's smoothest launch in memory",
+   "nota": "",
    "source": "Eurogamer",
    "link": "https://www.eurogamer.net/world-of-warcraft-forever-launch-smooth",
    "ore": 5,
    "score": 12.5,
    "gruppo": "generico",
-   "testate": 6,
-   "orig": "World of Warcraft: Forever is off to a great start with Blizzard's smoothest launch in memory"
+   "extra_links": [
+    "https://www.polygon.com/wow-world-of-warcraft-forever-launch-problems-horde-pvp/",
+    "https://www.ign.com/articles/world-of-warcraft-forever-launch-live-blog",
+    "https://kotaku.com/old-school-runescape-is-following-world-of-warcraft-classic-and-adding-a-permadeath-hardcore-mode-2000752446",
+    "https://www.gamespot.com/articles/wow-forevers-launch-is-going-surprisingly-smooth/"
+   ],
+   "testate": 6
   }
  ],
  "gta": [
@@ -149,6 +693,12 @@
    "ore": 0,
    "score": 13.7,
    "gruppo": "gta",
+   "extra_links": [
+    "https://news.google.com/rss/articles/CBMipAFBVV95cUxNVzdyU3hCaWNvc2RjM2VTOW1fY0RTZm8yU0IyN09YOWZtOHBWYXlEX1g5d28xN2tROFJvOWJYQnZtdFoyRnlYMmpzTjBuVUpxR0x1NF9HaG9EdXp1ZENsd0dldldBMG9VaERoSzg4Z2k5aWxRNE5ZbXRrdGhjSkhPczZZTzYtOTVtTnNkRGtYVDJEQVNEMlNzMDUyTWlMUUNiTnlCaQ?oc=5",
+    "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPSHQ1S1QzTHc2N3hQZXZtRXhBRGtudHVXMTZhRnJYN1pRV1lXbGVDekQ0NF92anBabklDTFk2WExWNEpNSmlvaFpDNUQ2dnREQWxxT3JZdHhWWXd0djVDa1E1VTBYVFNHVWdxQ3lKaWNEcEpkNjhLWlczYU9tdEZsRzBDZWtNZGdQeXpF?oc=5",
+    "https://news.google.com/rss/articles/CBMiggFBVV95cUxPT3dCS1RlTHF2bWNIWkhtd0JBdy1FOUlPV1lzaGRtVENVeWV2SHpTNmZOTEtaZ1hMbXk0SGU5S0tEeGRmWS1pUmxVbWZndm5RUjVkZ2ExdnFyM21DcnJoY0Exb2Fjd2tWdDdSV3lua1VlcUZPaU5qbnU2elFoVnhyQ01n?oc=5",
+    "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1tZExTRUVnb1k3MVhZRk05OFBNdDJVYTUzdDUtQmxoSUstNHMzYVNSd2hmMEhlZUdUWkliNTNTZl9QeHJ0TDI2OFA5bHBXYUpkRldWUjFIMlpTUDZhSjVyZkEtTmpJQQ?oc=5"
+   ],
    "testate": 21
   },
   {
@@ -160,6 +710,12 @@
    "ore": 3,
    "score": 12.5,
    "gruppo": "gta",
+   "extra_links": [
+    "https://www.everyeye.it/notizie/gta-6-misteri-indizi-rockstar-playstation-pronte-svelare-migliorie-ps5-pro-909908.html",
+    "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9aZmx2a1hWcVMyNTRYdTV1ZzU3LW9BRDd2U0lJUDViQThHdllyUXBaZkY3TkNrRWFjQ2d1ekRjbWJUdVgzd0tzRXM4VFV3OFE5TWxqWHZVbWh2SEloWHJhSg?oc=5",
+    "https://news.google.com/rss/articles/CBMilAFBVV95cUxQVGdqQ2Q3aVBhOWR5YmU4c3BVTTM2b0Jmek80c2d1VWJubzd0MVdnaUVkLTk5T2hTa3NRaHg2SVUwNGVnUmhOMlhlM1RZY0I3MVhPTG9oXzlCaVdISnlHeGlfMG5WS0QxTWxEcXFEWTFhdU5qRzJDcllhVm9udzdGUnk1SlBvVnpqN0xxRlJrN1BWQ2c5?oc=5",
+    "https://news.google.com/rss/articles/CBMipwFBVV95cUxNR0pSQUp6bU5tYklrX0FHdjJBdXNLSkpiZzEzbjRlWUczRXo1VHl2Q1VoU0czM2t4cFlycHRocnR3LUJNbExySnV5RWFxZHYzaE5fcUpFUWd0ZGhEVDZyUGlSdGs2cHViNlFZajdVQXdaMFlPUVRjOWN6ZnhqS3RJeUZ6bTBXbFFRTU5nbjhueWZybHdaNWJqeUc0X3pNY0lKRUotZFdUQQ?oc=5"
+   ],
    "testate": 18
   },
   {
@@ -172,6 +728,12 @@
    "score": 10.0,
    "gruppo": "gta",
    "lingua": "it",
+   "extra_links": [
+    "https://news.google.com/rss/articles/CBMisAFBVV95cUxORVNQSW1ueGZSMmRKVEtBbG5WbWdNamVvRWxrNXV0WEJDNzZ0QW4xZkNVME1LeHRZazlZRlM3VHZ1bHQ0dy1nZGkwc1dvY1h4Y1UtZmFqV0lCcTNCOGphQ19lVmdBYU5wWVpjOHZzbVdmTHN2ck85SzNFRkg4dG1HWDdIQmt0U3pxMFY0Ri01d0E0WXZDTzRKWmdhcnI0R0g0d0tkaDIyVGgwV1NGU1l0Vw?oc=5",
+    "https://news.google.com/rss/articles/CBMiZkFVX3lxTE01c2dhQ3JxS0ZpdDgydVJSSDBxY2JJWGZSX21ScHBWclV2NTRUajZWZzE0SUdra3ZLSVRCR3NaYmkwRENKNjg4WnZKQlpjZ0V1Q3VpTUJKWEwxNTduWnZOOEJnTnF4Zw?oc=5",
+    "https://news.google.com/rss/articles/CBMiggFBVV95cUxNdlFsMGVYX25HZW44eDlhTmhBdUVxdFRLZnJrUEVUNU5yci1NNTFvVW5CSHBkMEhaQTZiVXcyV2FZT2FQQy1xbHV0LXlhdmZ1R285V2c4WFpTWmRnY1dlckx4R24tVnJPR1I2bHdMNE1aTmc5VldZbDhubzBKVnluNnln?oc=5",
+    "https://news.google.com/rss/articles/CBMinAFBVV95cUxNOVU3SU0xWXIwc0hNYzJ2WFRSQ2NhWGl4d1Vud3N5M21uUm9FUTYzTFNJMWJCb2ZHZlpieTFBTmNPNXBKblhaUXdxZEdzZGpMWjB3eUVLQlR6Z3ZZWVBCd2VnWVlrSHhHRkJPUG9wRXpsaDVJVHlWVVp1am52UEIxaXotY3hiUlFKOFMzR3JxUHplUm1QMTAwSFQ2Nzc?oc=5"
+   ],
    "testate": 3
   },
   {
@@ -183,6 +745,10 @@
    "ore": 2,
    "score": 9.0,
    "gruppo": "gta",
+   "extra_links": [
+    "https://kotaku.com/gta-6-has-already-sold-nearly-8-million-copies-one-data-firm-claims-2000753423",
+    "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQNDRTZEozRzJvNDZjMHhSeFAzZEN2eUpBSkZfb0c0RlZCNWViYUVfTWdLWHY5ZGdFNGNUSmE2ZW1RcmV1X1hJUmlpT3lxdjlzWWR3R2xJSFJYd0h4QjBiNUZ6c18zOFJOelN4Q1JOMURDZ3BoX2JBNzd6MjZuX1RGQXpDaXpQcDAwM0pr?oc=5"
+   ],
    "testate": 3
   },
   {
@@ -194,20 +760,26 @@
    "ore": 4,
    "score": 9.0,
    "gruppo": "gta",
+   "extra_links": [
+    "https://news.google.com/rss/articles/CBMikwFBVV95cUxNbk8tZnQ0OUlFaXk5ZVZqbG8yaGF0S1BOUmh2cU5yUmxYNnFoZDE5UHdzQkZXSmNFazJHMGxVZ0hSQ2pUV0FsYzZqaXQ2Q0prS3N3R0tBR2dIMVgxX3d3YlRYUDJ6VndrTGxOWVF5N2E2MkF5RGVZdExnWXZNV3J3eUZlYktvREtKRVBFVVNvQTFJZjQ?oc=5",
+    "https://news.google.com/rss/articles/CBMitgFBVV95cUxQR3p1NkpuTk41LXFEWEZ6bWV0VEgyWkxPd2tUQTg4TlIzRjdaTG1WQTNLWUo1TVVjaVBCY3FGaEhOYXRJSXZOVm9KeHRhTDlGOGJNU0F3YUFEOTRGa0pZRmpzNFIwTjM4Um5CSkt3S3BuaXBETEd0OWFtRkp3anl5TkQ4RHV1eEVvUG9HSUVCQnlSMmFrRjZ2NXRmYjFlV3V1OXhvNG9mQ28xWVpUMldRZ2FXbG9Hdw?oc=5"
+   ],
    "testate": 3
   }
  ],
  "spazio": [
   {
    "id": "53f78f88",
-   "title": "Un telescopio della NASA è precipitato sulla Terra",
-   "orig": "A NASA Telescope Has Crashed Back to Earth",
-   "nota": "La NASA ha stimato una probabilità su 2.100 che i detriti del Neil Gehrels Swift Observatory ferissero qualcuno a terra.",
+   "title": "A NASA Telescope Has Crashed Back to Earth",
+   "nota": "",
    "source": "NYT Science",
    "link": "https://www.nytimes.com/2026/11/03/science/nasa-swift-reentry-crash.html",
    "ore": 18,
    "score": 11.0,
    "disciplina": "spazio",
+   "extra_links": [
+    "https://www.scientificamerican.com/article/nasas-swift-telescope-plunges-back-to-earth/"
+   ],
    "testate": 3,
    "top": true
   },
@@ -221,14 +793,16 @@
    "score": 8.9,
    "disciplina": "spazio",
    "lingua": "it",
+   "extra_links": [
+    "https://www.ilpost.it/2026/11/04/nasa-swfit-osservatorio-ritorno-terra/"
+   ],
    "testate": 2,
    "top": true
   },
   {
    "id": "7e1b7b44",
-   "title": "I piccoli chihuahua nascondono una grande sorpresa: un frammento di DNA di coyote",
-   "orig": "Tiny Chihuahuas Hold a Big Surprise: A Sliver of Coyote DNA",
-   "nota": "La razza discende da canidi indigeni, incrociati con coyote selvatici prima dell'arrivo degli europei nelle Americhe.",
+   "title": "Tiny Chihuahuas Hold a Big Surprise: A Sliver of Coyote DNA",
+   "nota": "",
    "source": "NYT Science",
    "link": "https://www.nytimes.com/2026/11/05/science/chihuahuas-coyote-dna.html",
    "ore": 4,
@@ -238,9 +812,8 @@
   },
   {
    "id": "c6795390",
-   "title": "I fisici delle particelle vedono per la prima volta lo \"Zeptoverso\"",
-   "orig": "Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
-   "nota": "Un raro evento di decadimento della materia apre nuove possibilità di ricerca su scale 100 miliardi di volte più piccole di un atomo.",
+   "title": "Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
+   "nota": "",
    "source": "Wired Science",
    "link": "https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/",
    "ore": 4,
@@ -249,9 +822,8 @@
   },
   {
    "id": "b02175b4",
-   "title": "Un orbiter europeo rileva indizi di attività vulcanica su Marte",
-   "orig": "European orbiter detects hints of volcanic activity on Mars",
-   "nota": "Nuove prove legate ai gas sopra le fratture vulcaniche suggeriscono che Marte non sia del tutto morto geologicamente.",
+   "title": "European orbiter detects hints of volcanic activity on Mars",
+   "nota": "",
    "source": "ESA",
    "link": "https://new.esa.int/articles/news-media/news/european-orbiter-detects-hints-of-volcanic-activity-on-mars",
    "ore": 1,
@@ -271,9 +843,8 @@
   },
   {
    "id": "3b2ef923",
-   "title": "Cubi di uranio rivelano perché il progetto nucleare tedesco ha fallito",
-   "orig": "Uranium cubes reveal why the German nuclear project failed",
-   "nota": "I calcoli suggeriscono che Heisenberg abbia sottovalutato notevolmente i materiali necessari.",
+   "title": "Uranium cubes reveal why the German nuclear project failed",
+   "nota": "",
    "source": "Ars Technica Scienza",
    "link": "https://arstechnica.com/science/2026/11/uranium-cubes-reveal-why-the-german-nuclear-project-failed/",
    "ore": 16,
@@ -282,9 +853,8 @@
   },
   {
    "id": "d482c20d",
-   "title": "Il mito sull'origine di una tribù barbara è vero, lo rivela il DNA antico",
-   "orig": "A barbarian tribe’s mythic origin story is true, ancient DNA reveals",
-   "nota": "Scheletri in tutta Europa confermano che i Goti arrivarono dalla Scandinavia prima di saccheggiare Roma.",
+   "title": "A barbarian tribe’s mythic origin story is true, ancient DNA reveals",
+   "nota": "",
    "source": "Science",
    "link": "https://www.science.org/content/article/barbarian-tribe-s-mythic-origin-story-true-ancient-dna-reveals",
    "ore": 27,
@@ -293,9 +863,8 @@
   },
   {
    "id": "57674f80",
-   "title": "I pm USA fanno cadere le accuse contro la scienziata fermata per embrioni di rana",
-   "orig": "US prosecutors drop criminal charges against scientist detained over frog embryos",
-   "nota": "I pm federali hanno archiviato le accuse penali contro una scienziata russa fermata negli USA con embrioni di rana per ricerche sul cancro.",
+   "title": "US prosecutors drop criminal charges against scientist detained over frog embryos",
+   "nota": "",
    "source": "Guardian Science",
    "link": "https://www.theguardian.com/us-news/2026/nov/04/kseniia-petrova-harvard-frog-embryos",
    "ore": 17,
@@ -304,9 +873,8 @@
   },
   {
    "id": "df5dd8c3",
-   "title": "I temporali più intensi del mondo si rafforzano, con rischi per alluvioni e siccità",
-   "orig": "World’s wettest rainstorms are getting wetter, affecting flood and drought risk",
-   "nota": "I temporali più intensi diventano più brevi ed estremi, concentrando la stessa quantità di pioggia in eventi più rapidi.",
+   "title": "World’s wettest rainstorms are getting wetter, affecting flood and drought risk",
+   "nota": "",
    "source": "Guardian Environment",
    "link": "https://www.theguardian.com/news/2026/nov/05/worlds-wettest-rainstorms-getting-worse-flood-drought-risk",
    "ore": 8,
