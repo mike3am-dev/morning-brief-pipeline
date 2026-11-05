@@ -47,7 +47,8 @@ BANCO_MIN, BANCO_MAX = 3, 5
 BANCO_KINDS = {"recensione", "video", "confronto", "curiosità", "guida"}
 RECAP_MAX = 2
 AI_MIN, AI_MAX = 6, 12
-AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "robot", "altri"}
+AI_LABS = {"anthropic", "openai", "google", "meta", "apple", "aperti", "robot", "altri"}
+MODELLO_FAMIGLIE = {"punta", "veloce", "aperto"}
 # cronaca: cosa fanno i laboratori. LAB: cosa ci fa la gente.
 AI_CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
 AI_LAB = {"uso", "demo", "trucco", "sapevi"}
@@ -168,12 +169,23 @@ def check_shape(brief, r):
             # la foto del LAB e' il risultato: senza, l'occhio non si ferma
             r.warn("ai", f"voce LAB senza foto (lancia images.py, o scegli un link "
                          f"che mostri il risultato): {titolo}")
-        elif kind in AI_CRONACA and not v.get("apple"):
-            r.warn("ai", f"cronaca senza la riga su Apple (anche «niente, per ora»): {titolo}")
         elif kind not in AI_CRONACA | AI_LAB:
             r.warn("ai", f"genere non ammesso ({v.get('kind')!r}): {titolo}")
         if not v.get("link"):
             r.error("ai", f"voce senza link: {titolo}")
+        # «E Apple?» sta una volta sola in cima alla scheda (5 novembre 2026): la riga si
+        # scrive solo quando c'entra davvero, mai «niente, per ora» (69 voci su 138 lo dicevano)
+        if re.match(r"(?i)\s*niente", v.get("apple") or ""):
+            r.warn("ai", f"riga apple «niente…»: lasciala vuota, il riquadro «E Apple?» la salta: {titolo}")
+        # il fronte mostra il nome breve del modello, non il titolo
+        if kind == "modello":
+            m = v.get("modello") or {}
+            if not m.get("nome"):
+                r.warn("ai", f"modello senza `modello.nome` (il nome breve per il fronte): {titolo}")
+            elif len(m["nome"]) > 22:
+                r.warn("ai", f"nome del modello di {len(m['nome'])} caratteri: nel fronte ne stanno 22: {titolo}")
+            if m.get("famiglia") and m["famiglia"] not in MODELLO_FAMIGLIE:
+                r.error("ai", f"famiglia {m['famiglia']!r} (ammesse: punta, veloce, aperto): {titolo}")
         # la riga che si legge a voce chiusa: una frase intera, mai un
         # troncamento. Sulla cronaca e' obbligatoria; sul LAB fa il lavoro
         # la riga "prova".

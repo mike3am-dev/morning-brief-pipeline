@@ -669,8 +669,9 @@ benissimo così.
  "link": "…", "source": "Reddit r/ClaudeAI"}
 ```
 
-`lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `robot` · `altri`
-(`robot`: umanoidi, braccia, Boston Dynamics — i robot vivono nella scheda AI).
+`lab` ∈ `anthropic` · `openai` · `google` · `meta` · `apple` · `aperti` · `robot` · `altri`
+(`robot`: umanoidi, braccia, Boston Dynamics — i robot vivono nella scheda AI; `aperti`: i
+laboratori dei pesi aperti, Mistral, Kimi, Qwen, DeepSeek, che prima finivano in `altri`).
 `kind` decide lo strato: **cronaca** = `modello` · `funzione` · `affari` · `regole` ·
 `ricerca`; `modello` è **solo per i modelli di punta**, quelli che cambiano il fronte — un
 modello per la musica, il meteo o la voce è `funzione` o `ricerca`; **LAB** = `uso` (qualcuno risolve una cosa vera) · `demo` (una cosa
@@ -682,16 +683,42 @@ sta in piedi da sola, con il dato che conta — mai un troncamento con i puntini
 lint segnala. **`prova` è la sezione** sul LAB: ogni voce LAB deve dire come lo provi tu,
 in una riga — nella galleria è la riga gialla sotto il titolo, sempre visibile.
 
-Nella scheda AI dell'app ci sono due schede, **Notizie** e **LAB**: Mike tocca una delle
-due e scorre. Niente filtri per laboratorio: i pollici decidono chi pesa di più.
-Senza è una curiosità, con quella è lo sblocco; il lint la respinge come errore. Sulla
-cronaca la riga `apple` è attesa (anche «niente, per ora»): è il motivo per cui l'AI sta
-in una rassegna Apple.
+**Nella Magazine la scheda AI è un feed solo** (5 novembre 2026; le due schede Notizie/LAB
+restano nella Classica): la testatina rossa; **«In apertura»**, la prima voce di cronaca nell'ordine
+dell'edizione, solo tipografica sul rosso (le foto della cronaca sono illustrazioni generiche);
+**il fronte come tabellone** (vedi sotto); **«E Apple?»**, una volta sola, con le voci la cui riga
+`apple` dice qualcosa; **«Cosa puoi provare»**, il LAB con la foto del risultato e il
+**foglietto giallo «Prova»**; il **dispaccio**, il resto della cronaca in righe con la miniatura.
+Il codice è `renderAIMag` in `pipeline/template.html`. Niente filtri per laboratorio: i segnali
+decidono chi pesa di più. Senza `prova` una voce LAB è una curiosità; il lint la respinge.
 
-**Il fronte.** L'app mostra in testa alla scheda AI l'ultimo modello di ogni laboratorio:
-lo ricava da sola dalle voci `kind: "modello"` dell'archivio, la più recente per `lab`.
-Quindi **ogni modello nuovo va scritto come voce `modello` con il nome del modello nel
-titolo**, altrimenti il fronte resta indietro. Niente registro a parte.
+**La riga `apple` si scrive solo quando c'entra davvero** (5 novembre 2026): 69 voci su 138
+dicevano «niente, per ora», e ripetuta su ogni riga non diceva niente. Ora sta una volta sola in
+cima, nel riquadro «E Apple?», e la voce che non tocca Apple la lascia vuota (il lint avvisa
+su un «niente…»).
+
+**Il foglietto «Prova»** sulle voci LAB: oltre a `prova` (la riga, sempre), quando l'autore
+li ha pubblicati, `prompt` (il prompt vero, letterale, nella lingua originale, con
+`prompt_lingua`: nell'app è in monospazio col tasto **Copia**), `strumento` («Codex + Blender
+MCP»), `costo` («4 $ di API»), `segnale` («1,2 milioni di visualizzazioni su X»). **Mai un
+prompt ricostruito**: se l'autore non l'ha scritto, il campo non c'è.
+
+**Il fronte.** L'app mostra nella scheda AI **un tabellone nero**, una colonna per laboratorio
+(Anthropic · OpenAI · Google · Meta · Apple · Aperti · Altri · Robot): il **nome breve** del
+modello in condensato pesante, i pallini delle settimane in carica, e la colonna di chi ha
+rilasciato oggi in rosso; sotto, **la settimana dei laboratori** (sette giorni, un segno per
+voce: pieno modello, anello funzione, quadrato affari). Lo ricava da solo dalle voci
+`kind: "modello"` dell'archivio: per ogni laboratorio **il più recente di punta**, non il più
+recente e basta (prima Anthropic mostrava Haiku); se l'ultimo che conosce non è di punta, la
+colonna lo dice («veloce»). Quindi ogni modello nuovo va scritto come voce `modello` con:
+
+```json
+"modello": {"nome": "GPT-6.1 Terra", "famiglia": "punta"}
+```
+
+`nome` è il nome breve, entro 22 caratteri (mai una frase); `famiglia` ∈ `punta` · `veloce` ·
+`aperto`. Il lint avvisa se manca il nome. Per le voci vecchie senza il campo, l'app ricava il
+nome dal titolo. Niente registro a parte.
 
 Da dove viene: la cronaca dal girone `ai` del grezzo; il LAB da `lab.py`
 (Reddit, Show HN, le fonti `lab`, i tuoi appunti da X in `manual.md`). Quello che cattura

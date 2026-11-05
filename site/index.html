@@ -1643,6 +1643,81 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 :root[data-theme="dark"] .rub-mag .card-src .disc{color:#9DB0FF}
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .rub-mag .card-src .disc{color:#9DB0FF} }
 
+
+/* ---- AI nella Magazine (5 novembre 2026) ---- */
+.rubm-ai{background-color:var(--red); color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size:18px 18px}
+.rubm-ai .rubm-dots i:nth-child(1){background:#fff}
+.rubm-ai .rubm-dots i:nth-child(3){background:var(--yellow)}
+/* «In apertura»: solo tipografica, sul rosso */
+.ai-hero{background:var(--red); color:#fff; border-radius:4px; padding:1.2rem 1.2rem .6rem; cursor:pointer; display:flex; flex-direction:column; gap:.55rem}
+.ai-hero:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.ai-hero-meta{display:flex; gap:.6rem; align-items:baseline; font-size:.6rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase}
+.ai-hero-meta b{font-family:var(--display); font-size:1.05rem; letter-spacing:.01em; text-transform:none}
+.ai-hero h3{font-family:var(--display); font-weight:800; font-size:clamp(1.7rem, 7.2cqi, 2.6rem); line-height:1.02; text-wrap:balance}
+.ai-hero-dek{font-size:1rem; line-height:1.45; color:rgba(255,255,255,.92); text-wrap:pretty}
+.ai-foot{display:flex; align-items:center; gap:.6rem; font-size:.74rem; padding:.2rem 0 0; color:rgba(255,255,255,.8)}
+.ai-hero .card-btn{color:rgba(255,255,255,.8)} .ai-hero .card-star.on{color:var(--yellow)}
+/* il fronte: un tabellone nero, una colonna per laboratorio */
+.fronte-tab{background:#111214; color:#F1EEE8; border-radius:4px; padding:.9rem 0 .8rem; margin:.4rem 0}
+.fr-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .7rem; padding:0 1rem .7rem}
+.fr-head > span:first-child{font-family:var(--display); font-weight:800; font-size:1.35rem; text-transform:uppercase; letter-spacing:.02em}
+.fr-sub{font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(241,238,232,.6)}
+.fr-board{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(7.4rem, 1fr); overflow-x:auto; scroll-snap-type:x proximity;
+  border-top:1px solid rgba(255,255,255,.14); border-bottom:1px solid rgba(255,255,255,.14); scrollbar-width:none}
+.fr-board::-webkit-scrollbar{display:none}
+.fr-col{display:flex; flex-direction:column; gap:.35rem; padding:.75rem .8rem .7rem; border-right:1px solid rgba(255,255,255,.14);
+  scroll-snap-align:start; cursor:pointer; min-width:0}
+.fr-col:last-child{border-right:0}
+.fr-col.oggi{background:var(--red)}
+.fr-lab{font-size:.56rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:rgba(241,238,232,.62)}
+.fr-col.oggi .fr-lab{color:#fff}
+.fr-nome{font-family:var(--display); font-weight:800; font-size:1.18rem; line-height:1.02; text-transform:uppercase; letter-spacing:.005em;
+  overflow-wrap:anywhere}
+.fr-fam{align-self:flex-start; font-size:.55rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:#111214; background:rgba(241,238,232,.75); padding:.08rem .35rem; border-radius:2px}
+.fr-dots{display:flex; gap:3px}
+.fr-dots i{width:6px; height:6px; border-radius:50%; box-shadow:inset 0 0 0 1.2px rgba(241,238,232,.35)}
+.fr-dots i.on{background:var(--yellow); box-shadow:none}
+.fr-when{font-size:.66rem; color:rgba(241,238,232,.7)}
+.fr-col.oggi .fr-when{color:#fff; font-weight:700}
+.fr-week{display:grid; gap:.3rem; padding:.8rem 1rem 0}
+.fr-wrow{display:grid; grid-template-columns:5.2rem repeat(7, 1fr); align-items:center; gap:.2rem}
+.fr-wrow span{display:flex; justify-content:center; font-size:.56rem; font-weight:700; letter-spacing:.1em; color:rgba(241,238,232,.5)}
+.fr-wrow .fr-wlab{justify-content:flex-start; color:rgba(241,238,232,.82); letter-spacing:.06em; text-transform:uppercase}
+.fr-week i, .fr-leg i{display:inline-block; width:9px; height:9px}
+.k-m{border-radius:50%; background:var(--red)}
+.k-f{border-radius:50%; box-shadow:inset 0 0 0 2px var(--yellow)}
+.k-a{background:var(--blue); border-radius:1px}
+.k-r{border-radius:50%; background:rgba(241,238,232,.5); transform:scale(.55)}
+.fr-leg{padding:.6rem 1rem 0; font-size:.62rem; color:rgba(241,238,232,.6); display:flex; flex-wrap:wrap; align-items:center; gap:.25rem .4rem}
+/* «E Apple?» */
+.ai-apple{background:var(--paper); border-radius:4px; padding:.9rem 1.1rem .4rem; box-shadow:inset 4px 0 0 var(--orange)}
+.ai-apple h3{display:flex; align-items:center; gap:.5rem; font-family:var(--display); font-weight:800; font-size:1.25rem; text-transform:uppercase; margin-bottom:.4rem}
+.ai-apple h3 i{width:10px; height:10px; border-radius:50%; background:var(--orange)}
+.ai-apple-row{padding:.55rem 0 .65rem; border-top:1px solid var(--rule); cursor:pointer}
+.ai-apple-t{display:block; font-weight:700; font-size:.95rem; line-height:1.3}
+.ai-apple-row p{font-size:.9rem; line-height:1.45; color:var(--ink-2); margin-top:.2rem}
+/* LAB: la foto e' il risultato, poi il foglietto «Prova» */
+.ai-labgrid{align-items:start}
+.ai-lab{position:relative; display:flex; flex-direction:column; background:var(--paper); border-radius:18px; overflow:hidden; cursor:pointer;
+  box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
+.ai-lab .card-img{aspect-ratio:16/9}
+.ai-lab .card-body{padding:1rem 1.1rem 0}
+.ai-k{color:var(--yellow-ink) !important}
+.ai-prova{margin:.35rem 0 .2rem; background:color-mix(in srgb, var(--yellow) 26%, var(--paper)); border-radius:3px; padding:.65rem .75rem .6rem;
+  display:flex; flex-direction:column; gap:.4rem; transform:rotate(-.4deg)}
+.ai-prova-k{font-family:var(--display); font-weight:800; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--yellow-ink)}
+.ai-prova p{font-size:.93rem; line-height:1.45; color:var(--ink)}
+.ai-prompt{position:relative}
+.ai-prompt pre{margin:0; white-space:pre-wrap; font:500 .8rem/1.45 ui-monospace, "SF Mono", Menlo, monospace; background:rgba(23,24,27,.07);
+  padding:.55rem .6rem 1.9rem; border-radius:3px; color:var(--ink); max-height:12rem; overflow:auto}
+.ai-copia{position:absolute; right:.4rem; bottom:.35rem; border:0; border-radius:999px; background:var(--ink); color:var(--bone);
+  font-size:.7rem; font-weight:700; padding:.25rem .7rem}
+.ai-prova-meta{font-size:.7rem; color:var(--ink-2); font-weight:600}
+.ai-wire .row h4{font-family:var(--body); font-weight:700; font-size:1rem; line-height:1.28}
+
 /* ---- GTA VI: i colori di Vice City, campiture piatte (5 novembre 2026) ----
    rosa neon, arancio tramonto, viola notte, turchese. Niente logo: solo i colori. */
 .gta{--g-pink:#FF3D8B; --g-orange:#FF8A3D; --g-purple:#2A0B4D; --g-teal:#19D3C5; --g-yellow:#FFD84A;
@@ -7395,7 +7470,7 @@ function aiFoot(date, a, extra){
 }
 
 /* una riga del dispaccio: laboratorio, titolo e la miniatura; il resto al tocco */
-function wireRow(date, a){
+function wireRow(date, a, senzaApple){
   const li = el("li", {id:"a-" + a.id});
   const row = el("div", {class:"row"}, [
     el("div", {class:"rowtext"}, [
@@ -7408,7 +7483,7 @@ function wireRow(date, a){
   ]);
   const body = el("div", {class:"body", hidden:"hidden"});
   if(a.note) body.appendChild(el("p", {text:a.note}));
-  if(a.apple) body.appendChild(el("p", {class:"apple", text:a.apple}));
+  if(a.apple && !senzaApple) body.appendChild(el("p", {class:"apple", text:a.apple}));
   const f = aiFoot(date, a, a.kind ? el("span", {class:"sources", text:a.kind}) : null);
   body.appendChild(f.foot);
   if(f.panel) body.appendChild(f.panel);
@@ -7491,6 +7566,7 @@ function aiMarkSeen(date, a){
 }
 
 function renderAI(){
+  if(magazine()) return renderAIMag();
   const root = document.getElementById("view-ai");
   root.innerHTML = "";
   const col = el("div", {class:"col-main"});
@@ -7558,6 +7634,218 @@ function renderAI(){
   if(seen){ save(); queueSync(); refreshCounts(); }
 }
 
+
+/* ================= AI nella Magazine (5 novembre 2026) =================
+   Un feed solo, senza le due schede Notizie/LAB: la testatina, il fronte come un
+   tabellone, «In apertura» tipografica sul rosso (le foto della cronaca sono
+   illustrazioni generiche), «E Apple?» una volta sola, «Cosa puoi provare» con la foto
+   del risultato e il foglietto «Prova», e il dispaccio in righe. */
+const FRONTE_COL = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],
+                    ["apple","Apple"],["aperti","Aperti"],["altri","Altri"],["robot","Robot"]];
+const NON_PUNTA = /\b(haiku|sonnet|mini|nano|flash|lite|small|spark|live|veloce)\b/i;
+const LAB_PAROLE = /^(anthropic|openai|google|deepmind|google deepmind|meta|apple|xai|liberai|runway|agility robotics|moonshot|black forest labs|reflection ai|typesafe ai)\s+/i;
+/* il nome breve: dal campo `modello.nome`; per le voci vecchie, dal titolo — il primo
+   gruppo di parole con una cifra («GPT-6.1 Terra», «Claude Opus 5.5»), o la prima serie di
+   maiuscole dopo il nome del laboratorio («Muse Wonder Full») */
+function nomeModello(a){
+  if(a.modello && a.modello.nome) return a.modello.nome;
+  const t = String(a.title || "").split(/[:,;—–]| - /)[0];
+  const parti = t.match(/(?:[A-Z][\w.\-]*|\d[\w.\-]*|"[^"]+"|«[^»]+»)(?:\s+(?:[A-Z][\w.\-]*|\d[\w.\-]*|"[^"]+"|«[^»]+»))*/g) || [];
+  let n = parti.filter(function(x){ return /\d/.test(x); })[0] || parti.filter(function(x){ return !LAB_PAROLE.test(x + " ") || x.split(" ").length > 1; })[0] || "";
+  n = n.replace(LAB_PAROLE, "").replace(/["«»]/g, "").trim();
+  return n.length > 22 ? n.slice(0, 21) + "…" : n;
+}
+function fronteTab(date){
+  const ultimi = {};
+  BRIEFS.filter(function(b){ return b.date <= date; }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).forEach(function(b){
+    (b.ai || []).forEach(function(a){
+      if(String(a.kind || "").toLowerCase() !== "modello") return;
+      const l = String(a.lab || "altri").toLowerCase();
+      const punta = a.modello && a.modello.famiglia ? a.modello.famiglia === "punta" : !NON_PUNTA.test(nomeModello(a));
+      const cur = ultimi[l];
+      /* «ultimo» non e' «di punta» (Anthropic mostrava Haiku): vince il piu' recente di punta */
+      if(!cur || (!cur.punta && punta)) ultimi[l] = {a:a, date:b.date, punta:punta};
+    });
+  });
+  return FRONTE_COL.map(function(x){ return ultimi[x[0]] ? {lab:x[1], m:ultimi[x[0]]} : null; }).filter(Boolean);
+}
+function giorniFra(a, b){ return Math.round((new Date(b + "T12:00:00") - new Date(a + "T12:00:00")) / 86400000); }
+function fronteNode(brief){
+  const cols = fronteTab(brief.date);
+  if(cols.length < 2) return null;
+  const board = el("div", {class:"fr-board", role:"list"});
+  cols.forEach(function(c){
+    const d = giorniFra(c.m.date, brief.date), oggi = d === 0, sett = Math.min(8, Math.floor(d / 7));
+    const u = safeUrl(c.m.a.link);
+    const dots = el("span", {class:"fr-dots", title:oggi ? "uscito oggi" : "in carica da " + d + " giorni"});
+    for(let i = 0; i < 8; i++) dots.appendChild(el("i", {class:i < sett ? "on" : ""}));
+    const cell = el("div", {class:"fr-col" + (oggi ? " oggi" : ""), role:"listitem", tabindex:u ? "0" : null}, [
+      el("span", {class:"fr-lab", text:c.lab}),
+      el("b", {class:"fr-nome", text:nomeModello(c.m.a)}),
+      /* se l'ultimo del laboratorio non e' di punta, lo si dice invece di farlo passare per tale */
+      c.m.punta ? null : el("span", {class:"fr-fam", text:(c.m.a.modello && c.m.a.modello.famiglia === "aperto") ? "aperto" : "veloce"}),
+      dots,
+      el("span", {class:"fr-when", text:oggi ? "oggi" : d < 7 ? d + (d === 1 ? " giorno" : " giorni") : sett + (sett === 1 ? " settimana" : " settimane")})
+    ]);
+    if(u) cell.addEventListener("click", function(){ window.open(u, "_blank", "noopener"); });
+    board.appendChild(oggi ? Motion.once(cell, "rise") : cell);
+  });
+  /* la settimana dei laboratori: sette giorni, un segno per voce
+     (pieno = modello, anello = funzione, quadrato = affari, punto = il resto) */
+  const giorni = [];
+  for(let i = 6; i >= 0; i--){
+    const d = new Date(brief.date + "T12:00:00"); d.setDate(d.getDate() - i);
+    giorni.push(d.toISOString().slice(0, 10));
+  }
+  const per = {};
+  BRIEFS.forEach(function(b){
+    if(giorni.indexOf(b.date) < 0) return;
+    (b.ai || []).forEach(function(a){
+      if(isLab(a)) return;
+      const l = String(a.lab || "altri").toLowerCase();
+      ((per[l] = per[l] || {})[b.date] = per[l][b.date] || []).push(String(a.kind || "").toLowerCase());
+    });
+  });
+  const week = el("div", {class:"fr-week"});
+  week.appendChild(el("div", {class:"fr-wrow fr-whead"}, [el("span")].concat(giorni.map(function(g){
+    return el("span", {text:"lmmgvsd".charAt((new Date(g + "T12:00:00").getDay() + 6) % 7).toUpperCase()});
+  }))));
+  FRONTE_COL.forEach(function(x){
+    if(!per[x[0]]) return;
+    week.appendChild(el("div", {class:"fr-wrow"}, [el("span", {class:"fr-wlab", text:x[1]})].concat(giorni.map(function(g){
+      const ks = per[x[0]][g] || [];
+      const k = ks.indexOf("modello") >= 0 ? "m" : ks.indexOf("funzione") >= 0 ? "f" : ks.indexOf("affari") >= 0 ? "a" : ks.length ? "r" : "";
+      return el("span", {}, [k ? el("i", {class:"k-" + k}) : null]);
+    }))));
+  });
+  return el("section", {class:"fronte-tab", "aria-label":"Il fronte"}, [
+    el("div", {class:"fr-head"}, [el("span", {text:"Il fronte"}), el("span", {class:"fr-sub", text:"l'ultimo modello di punta di ogni laboratorio"})]),
+    board,
+    Object.keys(per).length ? week : null,
+    Object.keys(per).length ? el("p", {class:"fr-leg", html:"<i class='k-m'></i> modello <i class='k-f'></i> funzione <i class='k-a'></i> affari <i class='k-r'></i> altro · ultimi sette giorni"}) : null
+  ]);
+}
+function aiStar(date, a){
+  const k = aiKey(date, a);
+  const star = el("button", {type:"button", class:"card-btn card-star", "aria-label":"Leggi più tardi", title:"Leggi più tardi", html:I_STAR});
+  const paint = function(){ const on = !!(mk(k) && mk(k).starred_at); star.classList.toggle("on", on); star.setAttribute("aria-pressed", on ? "true" : "false"); };
+  paint();
+  star.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    if(!NOTES) return;
+    const m = mark(k); m.starred_at = m.starred_at ? null : new Date().toISOString();
+    paint(); touched(k); refreshCounts();
+    if(m.starred_at){ Motion.burst(star); Motion.fly(star); }
+    toast(m.starred_at ? "Da leggere più tardi" : "Tolta da Più tardi");
+  });
+  return NOTES && a.id ? star : null;
+}
+function aiOpen(node, date, a){
+  const u = safeUrl(a.link);
+  const go = function(){ if(!u) return; Sig.bump(aiKey(date, a), "o"); Sig.bump(aiKey(date, a), "l"); window.open(u, "_blank", "noopener"); };
+  node.addEventListener("click", go);
+  node.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
+}
+/* «In apertura»: la notizia piu' forte, solo tipografica, sul rosso */
+function aiHero(date, a){
+  const card = el("article", {class:"ai-hero", tabindex:"0"}, [
+    el("div", {class:"ai-hero-meta"}, [el("b", {text:labName(String(a.lab || "altri").toLowerCase())}),
+                                        el("span", {text:String(a.kind || "")})]),
+    el("h3", {text:a.title}),
+    a.sintesi ? el("p", {class:"ai-hero-dek", text:a.sintesi}) : null,
+    el("div", {class:"ai-foot tools", "data-sig":aiKey(date, a)}, [el("span", {text:a.source || ""}), el("span", {class:"card-gap"}), aiStar(date, a)])
+  ]);
+  aiOpen(card, date, a);
+  return Motion.once(card, "rise");
+}
+/* «E Apple?»: le voci che toccano Apple davvero, una volta sola */
+function aiApple(date, items){
+  const tocca = items.filter(function(a){ return a.apple && !/^\s*niente/i.test(a.apple); });
+  if(!tocca.length) return null;
+  const box = el("section", {class:"ai-apple", "aria-label":"E Apple?"}, [el("h3", {}, [el("i"), document.createTextNode("E Apple?")])]);
+  tocca.slice(0, 3).forEach(function(a){
+    const r = el("div", {class:"ai-apple-row", tabindex:"0"}, [
+      el("span", {class:"ai-apple-t", text:a.title}),
+      el("p", {text:a.apple})
+    ]);
+    aiOpen(r, date, a);
+    box.appendChild(r);
+  });
+  return Motion.once(box, "rise");
+}
+/* una scheda LAB: la foto e' il risultato; sotto, il foglietto «Prova» col prompt vero */
+function aiLabCard(date, a){
+  const meta = [a.strumento, a.costo, a.segnale].filter(Boolean).join(" · ");
+  const prova = el("div", {class:"ai-prova"}, [
+    el("span", {class:"ai-prova-k", text:"Prova"}),
+    a.prova ? el("p", {text:a.prova}) : null,
+    a.prompt ? (function(){
+      const pre = el("pre", {lang:a.prompt_lingua || "en", text:a.prompt});
+      const btn = el("button", {type:"button", class:"ai-copia", text:"Copia"});
+      btn.addEventListener("click", function(ev){
+        ev.stopPropagation();
+        const fatto = function(){ btn.textContent = "Copiato"; setTimeout(function(){ btn.textContent = "Copia"; }, 1600); };
+        try{ navigator.clipboard.writeText(a.prompt).then(fatto, function(){ toast("Copia non riuscita"); }); }catch(e){ toast("Copia non riuscita"); }
+      });
+      return el("div", {class:"ai-prompt"}, [pre, btn]);
+    })() : null,
+    meta ? el("span", {class:"ai-prova-meta", text:meta}) : null
+  ]);
+  const card = el("article", {class:"ai-lab" + (a.image ? " has-img" : ""), tabindex:"0"}, [
+    a.image ? el("img", {class:"card-img", src:a.image, alt:"", loading:"lazy", decoding:"async"}) : null,
+    el("div", {class:"card-body"}, [
+      el("div", {class:"card-src"}, [el("b", {text:a.source || labName(String(a.lab || "altri").toLowerCase())}),
+                                     el("span", {class:"ai-k", text:"LAB · " + String(a.kind || "")})]),
+      el("h3", {class:"card-title", text:a.title}),
+      prova
+    ]),
+    el("div", {class:"card-foot tools", "data-sig":aiKey(date, a)}, [el("span", {class:"card-gap"}), aiStar(date, a)])
+  ]);
+  aiOpen(card, date, a);
+  return Motion.once(card, "rise");
+}
+function renderAIMag(){
+  const root = document.getElementById("view-ai");
+  root.innerHTML = "";
+  const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
+  const items = (brief && brief.ai) || [];
+  const col = el("div", {class:"col-main rub-mag ai-mag"});
+  const d = brief ? new Date(brief.date + "T12:00:00") : null;
+  col.appendChild(Motion.once(el("header", {class:"rubm-head rubm-ai"}, [
+    el("div", {class:"rubm-name"}, [el("h2", {text:"AI"}), el("p", {class:"rubm-sub", text:"Cosa fanno i laboratori, cosa ci fa la gente"})]),
+    d ? el("div", {class:"rubm-stamp"}, [el("b", {text:String(d.getDate())}), el("span", {text:MESI[d.getMonth()].slice(0, 3)}),
+                                       el("small", {text:items.length === 1 ? "1 voce" : items.length + " voci"})]) : null,
+    el("span", {class:"rubm-dots", "aria-hidden":"true"}, [el("i"), el("i"), el("i")])
+  ]), "dots"));
+  if(!items.length){
+    col.appendChild(el("div", {class:"empty", html:"<b>Niente AI in questa edizione</b>Le altre giornate si raggiungono dall'archivio."}));
+    root.appendChild(col); return;
+  }
+  const cron = items.filter(function(a){ return !isLab(a); }), lab = items.filter(isLab);
+  const feed = el("div", {class:"mag"});
+  if(cron[0]){ feed.appendChild(magSection("ai-apertura", "In apertura", null, "--red")); feed.appendChild(aiHero(brief.date, cron[0])); }
+  const fr = fronteNode(brief);
+  if(fr) feed.appendChild(fr);
+  const ap = aiApple(brief.date, items);
+  if(ap) feed.appendChild(ap);
+  if(lab.length){
+    feed.appendChild(magSection("ai-lab", "Cosa puoi provare", null, "--yellow"));
+    const g = el("div", {class:"mag-row ai-labgrid" + (lab.length > 1 ? " two" : "")});
+    lab.forEach(function(a){ g.appendChild(aiLabCard(brief.date, a)); });
+    feed.appendChild(g);
+  }
+  if(cron.length > 1){
+    feed.appendChild(magSection("ai-dispaccio", "Dispaccio", null, "--ink"));
+    const ul = el("ul", {class:"wire ai-wire"});
+    cron.slice(1).forEach(function(a){ ul.appendChild(wireRow(brief.date, a, true)); });
+    feed.appendChild(ul);
+  }
+  col.appendChild(feed);
+  root.appendChild(col);
+  let seen = 0;
+  items.forEach(function(a){ if(aiMarkSeen(brief.date, a)) seen++; });
+  if(seen){ save(); queueSync(); refreshCounts(); }
+}
 
 /* ================= GAMES, TECH, SCIENZA =================
    Tre schede alla pari con APPLE e AI (2 ottobre 2026). Le compone
