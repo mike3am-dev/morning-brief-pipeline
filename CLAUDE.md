@@ -221,12 +221,12 @@ girato, l'app mostra come ripiego le notizie GTA che `rubriche.py` ha trovato
 (`gta_notizie`).
 
 **Nella Magazine** (5 novembre 2026) le due schede hanno la grammatica delle notizie Apple
-(`renderRubricaMag` in `pipeline/template.html`): in testa la testatina piatta della scheda,
-nel suo colore e col suo disegno — pixel gialli per Games, **cielo blu notte con l'accento
-giallo per Scienza** (`--night`) — con il giorno e i tre pallini della sigla; poi, in Games, la
-sezione GTA VI (`renderGta`: sfondo da tramonto di Vice City, «GTA VI» col VI in sfumatura
+(`renderRubricaMag` in `pipeline/template.html`). **Niente testatina né data in cima** (5
+novembre 2026, Mike: «siamo già dentro, è una ripetizione»): la scheda parte come Apple. In
+Games prima la sezione GTA VI (`renderGta`: sfondo da tramonto di Vice City, «GTA VI» col VI in sfumatura
 gialla-arancio-rosa, il conto alla rovescia turchese, ogni voce con il filo del colore del suo
-tipo); poi la prima voce grande, due affiancate, i gruppi in schede brevi, «Dalla settimana».
+tipo); poi «In apertura» con la prima voce grande, due affiancate, i gruppi in schede brevi,
+«Dalla settimana».
 Ogni scheda: testata, disciplina (in Scienza), titolo, la riga, l'originale in corsivo, il
 piede con il tempo, quanto gira e la stellina. Il tocco apre l'articolo (segnali `o` e `l`).
 
@@ -693,12 +693,14 @@ sta in piedi da sola, con il dato che conta — mai un troncamento con i puntini
 lint segnala. **`prova` è la sezione** sul LAB: ogni voce LAB deve dire come lo provi tu,
 in una riga — nella galleria è la riga gialla sotto il titolo, sempre visibile.
 
-**Nella Magazine la scheda AI è un feed solo** (5 novembre 2026; le due schede Notizie/LAB
-restano nella Classica): la testatina rossa; **«In apertura»**, la prima voce di cronaca nell'ordine
-dell'edizione, solo tipografica sul rosso (le foto della cronaca sono illustrazioni generiche);
-**il fronte come tabellone** (vedi sotto); **«E Apple?»**, una volta sola, con le voci la cui riga
-`apple` dice qualcosa; **«Cosa puoi provare»**, il LAB con la foto del risultato e il
-**foglietto giallo «Prova»**; il **dispaccio**, il resto della cronaca in righe con la miniatura.
+**Nella Magazine la scheda AI è un feed solo, con la grammatica di Apple** (5 novembre 2026;
+le due schede Notizie/LAB restano nella Classica; la prima versione, con l'apertura sul rosso
+pieno e il dispaccio nel condensato, Mike l'ha bocciata: «non leggo, e sotto è morto»): niente
+testatina; **«In apertura»** con la prima voce di cronaca in una scheda grande su carta (il
+laboratorio come testata, il genere, il titolo, la riga intera), due affiancate; **il fronte come
+tabellone** (vedi sotto); **«E Apple?»**, una volta sola, con le voci la cui riga `apple` dice
+qualcosa; **«Cosa puoi provare»**, il LAB con la foto del risultato e il **foglietto giallo
+«Prova»**; **«In breve»**, il resto della cronaca in schede brevi a due colonne.
 Il codice è `renderAIMag` in `pipeline/template.html`. Niente filtri per laboratorio: i segnali
 decidono chi pesa di più. Senza `prova` una voce LAB è una curiosità; il lint la respinge.
 
@@ -1625,7 +1627,8 @@ la data, una volta sola; poi una riga nera spessa. Prima la Magazine sembrava ch
 barra che resta in cima compare allora il marchio piccolo e le sezioni si spostano.
 
 **Le sezioni sono pillole** col pallino del loro colore (Apple arancione, AI rosso, Games
-giallo, Scienza blu notte con la stella gialla, Più tardi la stellina), e una **pillola nera scivola**
+viola, Scienza azzurro, Più tardi la stellina: un colore per scheda, mai due simili — 5
+novembre 2026, Mike: l'arancione di Apple e il giallo di Games si confondevano), e una **pillola nera scivola**
 sotto quella attiva; nella barra stretta si rimpiccioliscono. A destra tre pulsanti: la
 **vista** (Classica / Magazine, con la sua icona — un elenco puntato o quattro quadrati), la
 **lente**, e **il menu** di vetro col pallino della sincronizzazione: Tema, Archivio, Diario,

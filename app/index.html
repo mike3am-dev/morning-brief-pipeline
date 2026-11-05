@@ -41,6 +41,8 @@
   --brand:#E0AB00;
   /* il blu notte di Scienza (5 novembre 2026): */
   --night:#14204A;
+  /* il viola di Games (5 novembre 2026): l'arancione di Apple e il giallo si confondevano */
+  --violet:#7B4BE0;
 
   --yellow-ink:#7A5F00;
   --orange-ink:#93490A;
@@ -66,7 +68,7 @@
     --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
     --rule:#2B2E35; --rule-strong:#414550;
     --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
-    --brand:#F7CE3C; --night:#22346E;
+    --brand:#F7CE3C; --night:#22346E; --violet:#A07CFF;
     --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
     --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
     --shadow:0 2px 4px rgba(0,0,0,.5), 0 16px 38px -24px rgba(0,0,0,.9);
@@ -77,7 +79,7 @@
   --ink:#F1EEE8; --ink-2:#B5B3AD; --ink-3:#84868D;
   --rule:#2B2E35; --rule-strong:#414550;
   --yellow:#F7CE3C; --orange:#F8963A; --red:#F0435C; --blue:#35B6EC; --pl-su:#13863C; --pl-giu:#C8102E;
-  --brand:#F7CE3C; --night:#22346E;
+  --brand:#F7CE3C; --night:#22346E; --violet:#A07CFF;
   --yellow-ink:#F7CE3C; --orange-ink:#F8963A; --red-ink:#F0435C; --blue-ink:#35B6EC;
   --accent:#F8963A; --accent-ink:#F8963A; --on-fill:#131418; --ok:#6FBF87;
   --shadow:0 2px 4px rgba(0,0,0,.5), 0 16px 38px -24px rgba(0,0,0,.9);
@@ -87,7 +89,7 @@
   --ink:#17181B; --ink-2:#4B4D53; --ink-3:#7C7F87;
   --rule:#D7D2C7; --rule-strong:#BDB7AA;
   --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8; --pl-su:#3DDC84; --pl-giu:#FF6B7D;
-  --brand:#E0AB00; --night:#14204A;
+  --brand:#E0AB00; --night:#14204A; --violet:#7B4BE0;
   --yellow-ink:#7A5F00; --orange-ink:#93490A; --red-ink:#A5122A; --blue-ink:#0A5E82;
   --accent:#F0821E; --accent-ink:#93490A; --on-fill:#17181B; --ok:#2C7A46;
   --shadow:0 2px 3px rgba(23,24,27,.05), 0 14px 34px -22px rgba(23,24,27,.45);
@@ -522,9 +524,8 @@ html.vista-magazine .masthead .tab::before{content:""; width:9px; height:9px; bo
   transition:transform .3s ease}
 html.vista-magazine .masthead .tab[data-view="oggi"]{--tc:var(--orange)}
 html.vista-magazine .masthead .tab[data-view="ai"]{--tc:var(--red)}
-html.vista-magazine .masthead .tab[data-view="games"]{--tc:var(--yellow)}
-html.vista-magazine .masthead .tab[data-view="spazio"]{--tc:var(--night)}
-html.vista-magazine .masthead .tab[data-view="spazio"]::before{background:radial-gradient(circle, var(--yellow) 0 30%, var(--night) 36%)}
+html.vista-magazine .masthead .tab[data-view="games"]{--tc:var(--violet)}
+html.vista-magazine .masthead .tab[data-view="spazio"]{--tc:var(--blue)}
 html.vista-magazine .masthead .tab-dopo::before{content:"★"; width:auto; height:auto; background:none; color:var(--yellow); font-size:.85rem; line-height:1}
 html.vista-magazine .masthead .tab:hover{color:var(--ink)}
 html.vista-magazine .masthead .tab[aria-current="true"]{color:var(--bone)}
@@ -952,8 +953,8 @@ nav.tabs.more-left:not(.more-right){
 .tab.more{display:inline-block; font-size:1.25rem; line-height:1; padding:.22rem .1rem .45rem; margin-right:0; margin-left:auto}
 /* ogni scheda ha il suo colore sotto la voce attiva */
 .tab[data-view="ai"][aria-current="true"]::after{background:var(--red)}
-.tab[data-view="games"][aria-current="true"]::after{background:var(--yellow)}
-.tab[data-view="spazio"][aria-current="true"]::after{background:var(--night)}
+.tab[data-view="games"][aria-current="true"]::after{background:var(--violet)}
+.tab[data-view="spazio"][aria-current="true"]::after{background:var(--blue)}
 .masthead-inner{position:relative}
 .tabmenu{
   position:absolute; right:var(--gutter); top:100%; z-index:20; min-width:11rem;
@@ -1639,9 +1640,7 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .rubm-spazio .rubm-dots i:nth-child(1){background:var(--yellow)}
 .rub-mag .mag{padding-top:.4rem}
 /* l'occhiello della disciplina in Scienza */
-.rub-mag .card-src .disc{color:var(--night); font-weight:800}
-:root[data-theme="dark"] .rub-mag .card-src .disc{color:#9DB0FF}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .rub-mag .card-src .disc{color:#9DB0FF} }
+.rub-mag .card-src .disc{color:var(--blue-ink); font-weight:800}
 
 
 /* ---- AI nella Magazine (5 novembre 2026) ---- */
@@ -1716,7 +1715,8 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .ai-copia{position:absolute; right:.4rem; bottom:.35rem; border:0; border-radius:999px; background:var(--ink); color:var(--bone);
   font-size:.7rem; font-weight:700; padding:.25rem .7rem}
 .ai-prova-meta{font-size:.7rem; color:var(--ink-2); font-weight:600}
-.ai-wire .row h4{font-family:var(--body); font-weight:700; font-size:1rem; line-height:1.28}
+.ai-mag .card-src .ai-genere{color:var(--red-ink)}
+.ai-mag .fronte-tab{margin-top:0}
 
 /* ---- GTA VI: i colori di Vice City, campiture piatte (5 novembre 2026) ----
    rosa neon, arancio tramonto, viola notte, turchese. Niente logo: solo i colori. */
@@ -7452,7 +7452,7 @@ function renderSearch(){
 
 /* ================= AI ================= */
 const AI_LAB = {uso:1, demo:1, trucco:1, sapevi:1};
-const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["robot","Robot"],["altri","Altri"]];
+const AI_LABS = [["anthropic","Anthropic"],["openai","OpenAI"],["google","Google"],["meta","Meta"],["apple","Apple"],["aperti","Aperti"],["robot","Robot"],["altri","Altri"]];
 function labName(l){ const m = AI_LABS.filter(function(x){ return x[0] === l; })[0]; return m ? m[1] : (l || "Altri"); }
 function isLab(a){ return !!AI_LAB[String(a.kind || "").toLowerCase()]; }
 
@@ -7719,7 +7719,7 @@ function fronteNode(brief){
     }))));
   });
   return el("section", {class:"fronte-tab", "aria-label":"Il fronte"}, [
-    el("div", {class:"fr-head"}, [el("span", {text:"Il fronte"}), el("span", {class:"fr-sub", text:"l'ultimo modello di punta di ogni laboratorio"})]),
+    el("div", {class:"fr-head"}, [el("span", {class:"fr-sub", text:"l'ultimo modello di punta di ogni laboratorio"})]),
     board,
     Object.keys(per).length ? week : null,
     Object.keys(per).length ? el("p", {class:"fr-leg", html:"<i class='k-m'></i> modello <i class='k-f'></i> funzione <i class='k-a'></i> affari <i class='k-r'></i> altro · ultimi sette giorni"}) : null
@@ -7745,18 +7745,6 @@ function aiOpen(node, date, a){
   const go = function(){ if(!u) return; Sig.bump(aiKey(date, a), "o"); Sig.bump(aiKey(date, a), "l"); window.open(u, "_blank", "noopener"); };
   node.addEventListener("click", go);
   node.addEventListener("keydown", function(ev){ if(ev.key === "Enter") go(); });
-}
-/* «In apertura»: la notizia piu' forte, solo tipografica, sul rosso */
-function aiHero(date, a){
-  const card = el("article", {class:"ai-hero", tabindex:"0"}, [
-    el("div", {class:"ai-hero-meta"}, [el("b", {text:labName(String(a.lab || "altri").toLowerCase())}),
-                                        el("span", {text:String(a.kind || "")})]),
-    el("h3", {text:a.title}),
-    a.sintesi ? el("p", {class:"ai-hero-dek", text:a.sintesi}) : null,
-    el("div", {class:"ai-foot tools", "data-sig":aiKey(date, a)}, [el("span", {text:a.source || ""}), el("span", {class:"card-gap"}), aiStar(date, a)])
-  ]);
-  aiOpen(card, date, a);
-  return Motion.once(card, "rise");
 }
 /* «E Apple?»: le voci che toccano Apple davvero, una volta sola */
 function aiApple(date, items){
@@ -7804,28 +7792,55 @@ function aiLabCard(date, a){
   aiOpen(card, date, a);
   return Motion.once(card, "rise");
 }
+/* una voce AI con la grammatica delle notizie Apple: il laboratorio come testata, il
+   genere, il titolo, la riga intera, il piede con la fonte e la stellina (5 novembre 2026:
+   il blocco rosso «non lo leggo», e la lista sotto era nel condensato che avevamo abolito) */
+const AI_GENERI = {modello:"modello", funzione:"funzione", affari:"affari", regole:"regole", ricerca:"ricerca",
+                   uso:"LAB · uso", demo:"LAB · demo", trucco:"LAB · trucco", sapevi:"LAB · sai che"};
+function aiMagCard(date, a, i, form){
+  const k = aiKey(date, a);
+  const img = form === "brief" ? null : (a.image || null);
+  const genere = AI_GENERI[String(a.kind || "").toLowerCase()] || String(a.kind || "");
+  /* «Altri» come testata non dice niente: li' va la fonte, e il piede resta vuoto */
+  const altri = String(a.lab || "altri").toLowerCase() === "altri" && a.source;
+  const card = el("article", {class:"card c-" + form + (img ? " has-img" : ""), tabindex:"0"}, [
+    img ? el("img", {class:"card-img", src:img, alt:"", loading:i < 3 ? "eager" : "lazy", decoding:"async"}) : null,
+    el("div", {class:"card-body"}, [
+      el("div", {class:"card-src"}, [el("b", {text:altri ? a.source : labName(String(a.lab || "altri").toLowerCase())}),
+                                     genere ? el("span", {class:"ai-genere", text:genere}) : null]),
+      el("h3", {class:"card-title", text:a.title}),
+      (a.sintesi || a.note) ? el("p", {class:"card-dek", text:a.sintesi || a.note}) : null
+    ]),
+    el("div", {class:"card-foot tools", "data-sig":k}, [
+      a.source && !altri ? el("span", {class:"card-when", text:a.source}) : null, el("span", {class:"card-gap"}), aiStar(date, a)
+    ])
+  ]);
+  aiOpen(card, date, a);
+  return Motion.once(card, "rise");
+}
 function renderAIMag(){
   const root = document.getElementById("view-ai");
   root.innerHTML = "";
   const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   const items = (brief && brief.ai) || [];
+  /* niente testatina ne' data: la scheda parte come Apple, da «In apertura» */
   const col = el("div", {class:"col-main rub-mag ai-mag"});
-  const d = brief ? new Date(brief.date + "T12:00:00") : null;
-  col.appendChild(Motion.once(el("header", {class:"rubm-head rubm-ai"}, [
-    el("div", {class:"rubm-name"}, [el("h2", {text:"AI"}), el("p", {class:"rubm-sub", text:"Cosa fanno i laboratori, cosa ci fa la gente"})]),
-    d ? el("div", {class:"rubm-stamp"}, [el("b", {text:String(d.getDate())}), el("span", {text:MESI[d.getMonth()].slice(0, 3)}),
-                                       el("small", {text:items.length === 1 ? "1 voce" : items.length + " voci"})]) : null,
-    el("span", {class:"rubm-dots", "aria-hidden":"true"}, [el("i"), el("i"), el("i")])
-  ]), "dots"));
   if(!items.length){
     col.appendChild(el("div", {class:"empty", html:"<b>Niente AI in questa edizione</b>Le altre giornate si raggiungono dall'archivio."}));
     root.appendChild(col); return;
   }
   const cron = items.filter(function(a){ return !isLab(a); }), lab = items.filter(isLab);
   const feed = el("div", {class:"mag"});
-  if(cron[0]){ feed.appendChild(magSection("ai-apertura", "In apertura", null, "--red")); feed.appendChild(aiHero(brief.date, cron[0])); }
+  let i = 0;
+  if(cron[0]){
+    feed.appendChild(magSection("ai-apertura", "In apertura", null, "--red"));
+    feed.appendChild(aiMagCard(brief.date, cron[0], i++, "hero"));
+  }
+  if(cron[1] || cron[2]) feed.appendChild(el("div", {class:"mag-row two"}, cron.slice(1, 3).map(function(a){
+    return aiMagCard(brief.date, a, i++, "std");
+  })));
   const fr = fronteNode(brief);
-  if(fr) feed.appendChild(fr);
+  if(fr){ feed.appendChild(magSection("ai-fronte", "Il fronte", null, "--ink")); feed.appendChild(fr); }
   const ap = aiApple(brief.date, items);
   if(ap) feed.appendChild(ap);
   if(lab.length){
@@ -7834,11 +7849,11 @@ function renderAIMag(){
     lab.forEach(function(a){ g.appendChild(aiLabCard(brief.date, a)); });
     feed.appendChild(g);
   }
-  if(cron.length > 1){
-    feed.appendChild(magSection("ai-dispaccio", "Dispaccio", null, "--ink"));
-    const ul = el("ul", {class:"wire ai-wire"});
-    cron.slice(1).forEach(function(a){ ul.appendChild(wireRow(brief.date, a, true)); });
-    feed.appendChild(ul);
+  if(cron.length > 3){
+    feed.appendChild(magSection("ai-breve", "In breve", null, "--red"));
+    const list = el("div", {class:"mag-brevi"});
+    cron.slice(3).forEach(function(a){ list.appendChild(aiMagCard(brief.date, a, i++, "brief")); });
+    feed.appendChild(list);
   }
   col.appendChild(feed);
   root.appendChild(col);
@@ -8119,7 +8134,8 @@ function renderRubricaMag(kind){
   const brief = BRIEFS.filter(function(b){ return b.date === currentDate; })[0] || BRIEFS[0];
   const items = (brief && brief[kind]) || [];
   const col = el("div", {class:"col-main rub-mag"});
-  col.appendChild(rubMagHead(kind, brief, items));
+  /* niente testatina ne' data (Mike, 5 novembre 2026: «siamo gia' dentro, e' una
+     ripetizione»): la scheda parte come Apple, da «In apertura» */
   if(!items.length){
     col.appendChild(el("div", {class:"empty", html:"<b>Oggi niente che valga la tua attenzione</b>Meglio una scheda vuota che una piena di riempitivi. Le altre giornate sono nell'archivio."}));
     root.appendChild(col); return;
@@ -8129,11 +8145,14 @@ function renderRubricaMag(kind){
   const tops = good.filter(function(it){ return it.top; });
   const rest = good.filter(function(it){ return !it.top; });
   const feed = el("div", {class:"mag"});
-  const pip = "--" + ({games:"yellow", spazio:"night"}[kind] || "orange");
+  const pip = "--" + ({games:"violet", spazio:"blue"}[kind] || "orange");
   let i = 0;
   /* GTA VI ha la sua sezione, in cima a Games, coi colori di GTA */
   if(kind === "games"){ const g = renderGta(brief); if(g) feed.appendChild(g); }
-  if(tops[0]) feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
+  if(tops[0]){
+    feed.appendChild(magSection(kind + "-apertura", "In apertura", null, pip));
+    feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
+  }
   if(tops[1] || tops[2]) feed.appendChild(el("div", {class:"mag-row two"}, tops.slice(1, 3).map(function(it){
     return rubMagCard(brief.date, kind, it, i++, "std");
   })));
@@ -8192,7 +8211,7 @@ function show(name){
 }
 /* la lineetta sotto la scheda attiva scivola da una scheda all'altra, e
    prende il colore della scheda (arancione APPLE, rosso AI, giallo GAMES…) */
-const TAB_INK = {ai:"--red", games:"--yellow", spazio:"--night"};
+const TAB_INK = {ai:"--red", games:"--violet", spazio:"--blue"};
 function tabInk(){
   const nav = document.querySelector("nav.tabs");
   if(!nav || STILL) return;
