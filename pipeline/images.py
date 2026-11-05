@@ -75,6 +75,12 @@ SQUARE_PX, SQUARE_Q = 240, 62
 # e va larga), quadrata per la riga di cronaca
 WIDE = (THUMB_PX, THUMB_Q, 16 / 9)
 SQUARE = (SQUARE_PX, SQUARE_Q, 1.0)
+# Le schede della Magazine (AI, Games, Scienza, GTA VI) mostrano la foto larga quanto la colonna:
+# 800 pixel, come le notizie dalla seconda alla quinta. Il 5 novembre 2026 le foto della scheda AI
+# erano miniature quadrate da 240 pixel tirate a tutta larghezza: «sgranatissime» (Mike).
+CARD = (CARD_PX, CARD_Q, 16 / 9)
+# e una foto che all'origine e' piu' stretta di cosi' non entra: meglio nessuna foto che una sgranata
+MIN_SCHEDE = 640
 
 OG_PATTERNS = (
     r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
@@ -107,7 +113,7 @@ def find_image_url(page_url):
     # YouTube: la miniatura ha un indirizzo fisso, niente da cercare
     m = re.search(r"youtube\.com/watch\?(?:.*&)?v=([A-Za-z0-9_-]{6,})", page_url)
     if m:
-        return f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
+        return f"https://i.ytimg.com/vi/{m.group(1)}/maxresdefault.jpg"
     if re.search(r"https?://(www\.)?(x|twitter)\.com/", page_url):
         return x_image(page_url)
     # Reddit: al browser non da' l'og:image, ma l'anteprima ufficiale del post
@@ -175,6 +181,13 @@ def candidate(page, src=None):
     src = src or find_image_url(page)
     raw = fetch(src) if src else b""
     dims = size_of(raw) if raw else None
+    # YouTube: la miniatura grande (1280) non c'e' per tutti i video; allora la 640, poi la 480
+    for ripiego in ("sddefault", "hqdefault"):
+        if dims or not src or "maxresdefault" not in src:
+            break
+        src2 = src.replace("maxresdefault", ripiego)
+        raw = fetch(src2)
+        dims = size_of(raw) if raw else None
     if not dims:
         return None
     return raw, dims[0], max(watermark_of(page), watermark_of(src)), page
@@ -215,11 +228,15 @@ def harvest(job):
         c, note = best_photo(item, need)
     else:
         c, note = candidate(item.get("link", ""), item.get("image_src")), ""
-        # le schede e GTA: se la testata principale non da' la foto (il NYT ai bot), le altre
-        # testate della stessa voce
+        if c and c[1] < MIN_SCHEDE:
+            c = None              # troppo stretta all'origine: sarebbe sgranata
+        # le schede e GTA: se la testata principale non da' la foto (il NYT ai bot), o la da'
+        # troppo piccola, le altre testate della stessa voce
         for alt in ([] if c else (item.get("extra_links") or [])[:3]):
             alt = alt.get("url") if isinstance(alt, dict) else alt
             c = candidate(alt) if alt else None
+            if c and c[1] < MIN_SCHEDE:
+                c = None
             if c:
                 break
     if not c:
@@ -245,12 +262,12 @@ def enrich(path, refresh=False):
     # e' una miniatura quadrata di fianco al titolo, come in un lettore di feed:
     # non racconta il fatto, tiene l'occhio su una colonna di soli titoli.
     LAB = {"uso", "demo", "trucco", "sapevi"}
-    ai_jobs = [(i, a, WIDE if (a.get("kind") or "").lower() in LAB else SQUARE)
+    ai_jobs = [(i, a, CARD)
                for i, a in enumerate(brief.get("ai", []))
                if refresh or not a.get("image")]
     # GAMES, TECH, SPAZIO (rubriche.py): la foto solo alle tre voci grandi di
     # ognuna. Le righe sotto restano di testo, come in un lettore di feed.
-    rub_jobs = [(k, i, it, WIDE) for k in RUBRICHE
+    rub_jobs = [(k, i, it, CARD) for k in RUBRICHE
                 for i, it in enumerate(brief.get(k, []))
                 if it.get("top") and (refresh or not it.get("image"))]
     # GTA VI (agente `gta`): la foto alle prime voci che ne hanno bisogno, mai oltre quattro
@@ -286,7 +303,7 @@ def enrich(path, refresh=False):
             print(f"  {k}/{it['id']:17} {'immagine acquisita' if thumb else 'nessuna immagine'}")
 
         for (i, it), (_, thumb, _, _) in zip(
-                gta_jobs, pool.map(harvest, [(3000 + n, it, WIDE) for n, (i, it) in enumerate(gta_jobs)])):
+                gta_jobs, pool.map(harvest, [(3000 + n, it, CARD) for n, (i, it) in enumerate(gta_jobs)])):
             if thumb:
                 it["image"] = thumb
                 got += 1

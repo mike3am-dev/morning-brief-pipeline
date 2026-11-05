@@ -89,17 +89,11 @@ nel dubbio, niente. Un elemento senza dati non esce, e va bene così.
   "link": "…"}]`. Altrimenti non c'è.
 
 **Scienza**
-- `scala`: `{"metri": 1e-5, "etichetta": "un globulo rosso"}` — l'ordine di grandezza della cosa di
-  cui parla la notizia (una particella, una cellula, un animale, un telescopio, un pianeta, una
-  galassia), etichetta di 2–3 parole. Solo se la cosa ha una taglia evidente; la potenza di dieci
-  basta, non serve la misura precisa. Il righello esce con almeno tre voci.
 - `prova`: solo sulle voci che raccontano **uno studio**: `{"livello": "osservazione|modello|preprint|
   rivista|cellule|animali|persone|approvato", "rivista": "PNAS", "campione": "24 topi"}` — il
   livello più alto che l'articolo **dichiara** (una simulazione è `modello`, uno studio pubblicato
   su animali è `animali`). Mai sulle notizie che non sono uno studio. Una voce `cellule` o `animali`
   non va in apertura.
-- `tempo`: `{"anni_fa": 115000000, "etichetta": "Aratasaurus"}` quando la notizia guarda al passato
-  e l'articolo dà il quando (un fossile, un popolo, un evento storico, un dato raccolto dal 1980).
 
 ## Cosa scrivi, e dove
 

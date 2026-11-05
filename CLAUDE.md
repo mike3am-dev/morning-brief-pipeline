@@ -250,10 +250,14 @@ articoli, solo se l'articolo li dà.
 | Games | Il verdetto | un pallino per recensione sulla riga 0–10, e la media | `verdetto`, solo con 3 voti dichiarati (schema.org nelle pagine, letti da `schede.py`) |
 | GTA VI | Le tappe del lancio | la striscia turchese, la tappa di oggi rosa che si accende | `gta.tappe` (agente `gta`), solo date verificate |
 | GTA VI | Il registro dei problemi | dall'uscita: segnalato, riconosciuto, corretto | `gta.problemi` (`gta`) |
-| Scienza | La tavola delle discipline | sette caselle come la tavola periodica, col numero di voci; le assenti vuote | `disciplina` |
-| Scienza | La scala di oggi | il righello delle potenze di dieci, un cursore accende le voci al loro ordine di grandezza | `scala: {metri, etichetta}` (`schede`), almeno tre voci |
 | Scienza | Il cilindro della prova | il liquido sale fino alla tacca della prova, con rivista e campione | `prova: {livello, rivista, campione}` (`schede`) |
-| Scienza | Quanto in fondo | la carota del tempo, dai dati di ieri ai fossili | `tempo: {anni_fa, etichetta}` (`schede`), almeno due voci |
+
+**Tolte la sera stessa** (Mike, 5 novembre 2026): in Scienza la tavola delle discipline, la scala
+delle cose e la carota del tempo («inutili»: resta solo la provetta accanto alla notizia); in AI la
+settimana dei laboratori a cubetti sotto il fronte («incomprensibile»: restano i modelli con le
+settimane in carica). Le foto delle schede si prendono a 800 pixel, e una foto più stretta di 640
+all'origine non entra (`MIN_SCHEDE` in `images.py`): le foto AI erano miniature da 240 tirate a
+tutta larghezza, «sgranatissime».
 
 Il lint controlla i valori ammessi (`check_chicche`). Il codice è nel blocco «LE CHICCHE DELLE
 SCHEDE» di `pipeline/template.html`.
@@ -746,8 +750,7 @@ prompt ricostruito**: se l'autore non l'ha scritto, il campo non c'è.
 **Il fronte.** L'app mostra nella scheda AI **un tabellone nero**, una colonna per laboratorio
 (Anthropic · OpenAI · Google · Meta · Apple · Aperti · Altri · Robot): il **nome breve** del
 modello in condensato pesante, i pallini delle settimane in carica, e la colonna di chi ha
-rilasciato oggi in rosso; sotto, **la settimana dei laboratori** (sette giorni, un segno per
-voce: pieno modello, anello funzione, quadrato affari). Lo ricava da solo dalle voci
+rilasciato oggi in rosso. Lo ricava da solo dalle voci
 `kind: "modello"` dell'archivio: per ogni laboratorio **il più recente di punta**, non il più
 recente e basta (prima Anthropic mostrava Haiku); se l'ultimo che conosce non è di punta, la
 colonna lo dice («veloce»). Quindi ogni modello nuovo va scritto come voce `modello` con:

@@ -1681,16 +1681,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .fr-dots i.on{background:var(--yellow); box-shadow:none}
 .fr-when{font-size:.66rem; color:rgba(241,238,232,.7)}
 .fr-col.oggi .fr-when{color:#fff; font-weight:700}
-.fr-week{display:grid; gap:.3rem; padding:.8rem 1rem 0}
-.fr-wrow{display:grid; grid-template-columns:5.2rem repeat(7, 1fr); align-items:center; gap:.2rem}
-.fr-wrow span{display:flex; justify-content:center; font-size:.56rem; font-weight:700; letter-spacing:.1em; color:rgba(241,238,232,.5)}
-.fr-wrow .fr-wlab{justify-content:flex-start; color:rgba(241,238,232,.82); letter-spacing:.06em; text-transform:uppercase}
-.fr-week i, .fr-leg i{display:inline-block; width:9px; height:9px}
-.k-m{border-radius:50%; background:var(--red)}
-.k-f{border-radius:50%; box-shadow:inset 0 0 0 2px var(--yellow)}
-.k-a{background:var(--blue); border-radius:1px}
-.k-r{border-radius:50%; background:rgba(241,238,232,.5); transform:scale(.55)}
-.fr-leg{padding:.6rem 1rem 0; font-size:.62rem; color:rgba(241,238,232,.6); display:flex; flex-wrap:wrap; align-items:center; gap:.25rem .4rem}
 /* «E Apple?» */
 .ai-apple{background:var(--paper); border-radius:4px; padding:.9rem 1.1rem .4rem; box-shadow:inset 4px 0 0 var(--orange)}
 .ai-apple h3{display:flex; align-items:center; gap:.5rem; font-family:var(--display); font-weight:800; font-size:1.25rem; text-transform:uppercase; margin-bottom:.4rem}
@@ -1834,42 +1824,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .gta-problemi.go .problema-st span.s0{background:var(--g-pink)} .gta-problemi.go .problema-st span.s1{background:var(--g-yellow)}
 .gta-problemi.go .problema-st span.s2{background:var(--g-teal)}
 .problema-seg{font-size:.72rem; color:rgba(255,255,255,.65)}
-/* Scienza · la tavola delle discipline */
-.tavola{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:4px; margin-top:.4rem}
-.tav-cella{position:relative; aspect-ratio:1; border-radius:3px; background:var(--blue); color:#fff; display:flex; flex-direction:column;
-  justify-content:center; align-items:center}
-/* le caselle ci sono sempre; quando arrivi si accendono una dopo l'altra */
-.tavola.go .tav-cella:not(.vuota){animation:tav-accendi .45s cubic-bezier(.2,1.4,.4,1) both; animation-delay:calc(var(--i) * 70ms)}
-@keyframes tav-accendi{from{transform:scale(.82); filter:saturate(0) brightness(1.3)} to{transform:none; filter:none}}
-.tav-cella b{font-family:var(--display); font-weight:800; font-size:clamp(1.05rem, 5cqi, 1.6rem); line-height:1}
-.tav-n{position:absolute; top:3px; left:5px; font-size:.62rem; font-weight:800}
-.tav-nome{font-size:.48rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.85; margin-top:.15rem}
-.tav-cella.vuota{background:none; color:var(--ink-3); box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
-/* Scienza · la scala delle cose */
-.scala{background:var(--paper); border-radius:18px; padding:1rem .9rem .8rem; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
-.scala-riga{position:relative; height:118px; margin:0 .5rem; border-bottom:0}
-.scala-riga::before{content:""; position:absolute; left:0; right:0; top:58px; height:2px; background:var(--ink)}
-.scala-tic{position:absolute; top:54px; width:1px; height:10px; background:var(--ink-3)}
-.scala-tic.lungo{top:50px; height:18px; background:var(--ink)}
-.scala-rif{position:absolute; top:70px; transform:translateX(-50%); font-size:.5rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--ink-3); white-space:nowrap}
-.scala-pt{position:absolute; top:0; transform:translateX(-50%); background:none; border:0; padding:0; display:flex; flex-direction:column;
-  align-items:center; gap:3px; cursor:pointer; max-width:6.5rem}
-.scala-pt i{order:2; width:11px; height:11px; border-radius:50%; background:var(--paper-2); box-shadow:inset 0 0 0 2px var(--blue);
-  transition:background .2s ease var(--d), transform .3s cubic-bezier(.2,1.6,.4,1) var(--d)}
-.scala-pt span{order:1; font-size:.62rem; font-weight:700; line-height:1.15; text-align:center; color:var(--ink-2)}
-.scala-pt.su{top:2px} .scala-pt.su i{margin-top:auto}
-.scala-pt.bordo-sx{transform:translateX(-6px); align-items:flex-start}
-.scala-pt.bordo-dx{transform:translateX(calc(-100% + 6px)); align-items:flex-end}
-.scala-pt.bordo-sx span{text-align:left} .scala-pt.bordo-dx span{text-align:right}
-.scala-pt.su{height:62px; justify-content:flex-end}
-.scala-pt.giu{top:53px; height:62px; justify-content:flex-start; padding-top:0} .scala-pt.giu i{order:1} .scala-pt.giu span{order:2; margin-top:22px}
-.scala.go .scala-pt i, .still .scala-pt i{background:var(--blue); transform:scale(1.25)}
-.scala-cursore{position:absolute; top:44px; left:100%; width:14px; height:30px; margin-left:-7px; border-radius:3px;
-  box-shadow:inset 0 0 0 2px var(--blue); background:color-mix(in srgb, var(--blue) 18%, transparent); opacity:0}
-.scala.go .scala-cursore{animation:scala-corsa 2.2s cubic-bezier(.5,0,.5,1) forwards}
-@keyframes scala-corsa{0%{left:100%; opacity:1} 92%{opacity:1} 100%{left:0; opacity:0}}
-.scala-nota{margin:.4rem .5rem 0; font-size:.78rem; color:var(--ink-2)}
 /* Scienza · il cilindro della prova */
 .cilindro{display:flex; align-items:flex-end; gap:.55rem; margin:.2rem 0 .1rem}
 .cil-vetro{position:relative; width:22px; height:58px; border-radius:0 0 6px 6px; box-shadow:inset 0 0 0 1.6px var(--ink); overflow:hidden; flex:none}
@@ -1880,21 +1834,6 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 .cil-et{display:flex; flex-direction:column; gap:.1rem; font-size:.74rem; color:var(--ink-3); line-height:1.3}
 .cil-et b{font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-ink)}
 .cilindro.piccolo .cil-vetro{width:14px; height:34px}
-/* Scienza · la carota */
-.carota{background:var(--paper); border-radius:18px; padding:1rem 1.1rem; box-shadow:0 1px 2px rgba(23,24,27,.05), 0 12px 30px -22px rgba(23,24,27,.4)}
-.carota-core{position:relative; height:380px; margin-left:4.6rem; width:34px; border-radius:4px;
-  background:repeating-linear-gradient(180deg, #D9E6EE 0 7px, #C4D6E2 7px 9px, #E7EEF2 9px 15px, #B7CBD9 15px 16px)}
-.carota-rif{position:absolute; right:calc(100% + .5rem); transform:translateY(-50%); font-size:.55rem; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
-.carota-pt{position:absolute; left:50%; transform:translate(-6px, -6px); background:none; border:0; padding:0; display:flex; align-items:flex-start;
-  gap:.6rem; cursor:pointer; white-space:nowrap}
-.carota-pt i{width:12px; height:12px; border-radius:50%; background:#fff; box-shadow:inset 0 0 0 2px var(--blue); flex:none;
-  transition:background .2s ease var(--d), transform .3s cubic-bezier(.2,1.6,.4,1) var(--d)}
-.carota-pt span{font-size:.78rem; font-weight:700; line-height:12px; color:var(--ink); position:relative; left:14px; top:var(--dy, 0)}
-.carota.go .carota-pt i, .still .carota-pt i{background:var(--blue); transform:scale(1.2)}
-/* la carota viene estratta: sale di poco, senza mai sparire */
-.carota.go .carota-core{animation:carota-estratta .8s cubic-bezier(.2,.7,.2,1)}
-@keyframes carota-estratta{from{transform:translateY(26px)} to{transform:none}}
 
 /* ---- GTA VI: i colori di Vice City, campiture piatte (5 novembre 2026) ----
    rosa neon, arancio tramonto, viola notte, turchese. Niente logo: solo i colori. */
@@ -7871,39 +7810,11 @@ function fronteNode(brief){
     if(u) cell.addEventListener("click", function(){ window.open(u, "_blank", "noopener"); });
     board.appendChild(oggi ? Motion.once(cell, "rise") : cell);
   });
-  /* la settimana dei laboratori: sette giorni, un segno per voce
-     (pieno = modello, anello = funzione, quadrato = affari, punto = il resto) */
-  const giorni = [];
-  for(let i = 6; i >= 0; i--){
-    const d = new Date(brief.date + "T12:00:00"); d.setDate(d.getDate() - i);
-    giorni.push(d.toISOString().slice(0, 10));
-  }
-  const per = {};
-  BRIEFS.forEach(function(b){
-    if(giorni.indexOf(b.date) < 0) return;
-    (b.ai || []).forEach(function(a){
-      if(isLab(a)) return;
-      const l = String(a.lab || "altri").toLowerCase();
-      ((per[l] = per[l] || {})[b.date] = per[l][b.date] || []).push(String(a.kind || "").toLowerCase());
-    });
-  });
-  const week = el("div", {class:"fr-week"});
-  week.appendChild(el("div", {class:"fr-wrow fr-whead"}, [el("span")].concat(giorni.map(function(g){
-    return el("span", {text:"lmmgvsd".charAt((new Date(g + "T12:00:00").getDay() + 6) % 7).toUpperCase()});
-  }))));
-  FRONTE_COL.forEach(function(x){
-    if(!per[x[0]]) return;
-    week.appendChild(el("div", {class:"fr-wrow"}, [el("span", {class:"fr-wlab", text:x[1]})].concat(giorni.map(function(g){
-      const ks = per[x[0]][g] || [];
-      const k = ks.indexOf("modello") >= 0 ? "m" : ks.indexOf("funzione") >= 0 ? "f" : ks.indexOf("affari") >= 0 ? "a" : ks.length ? "r" : "";
-      return el("span", {}, [k ? el("i", {class:"k-" + k}) : null]);
-    }))));
-  });
   return el("section", {class:"fronte-tab", "aria-label":"Il fronte"}, [
     el("div", {class:"fr-head"}, [el("span", {class:"fr-sub", text:"l'ultimo modello di punta di ogni laboratorio"})]),
-    board,
-    Object.keys(per).length ? week : null,
-    Object.keys(per).length ? el("p", {class:"fr-leg", html:"<i class='k-m'></i> modello <i class='k-f'></i> funzione <i class='k-a'></i> affari <i class='k-r'></i> altro · ultimi sette giorni"}) : null
+    board
+    /* la settimana dei laboratori a cubetti sotto il tabellone e' stata tolta il 5 novembre
+       2026: «grafico incomprensibile» (Mike). Restano i modelli con le settimane in carica */
   ]);
 }
 function aiStar(date, a){
@@ -8344,12 +8255,8 @@ function renderRubricaMag(kind){
     const ca = gamesCaricamento(brief);
     if(ca){ feed.appendChild(magSection("games-caricamento", "In caricamento", null, "--violet")); feed.appendChild(ca); }
   }
-  if(kind === "spazio"){
-    const tv = scienzaTavola(items);
-    if(tv) feed.appendChild(tv);
-    const sc = scienzaScala(brief.date, items);
-    if(sc){ feed.appendChild(magSection("spazio-scala", "La scala di oggi", null, "--blue")); feed.appendChild(sc); }
-  }
+  /* Scienza: la tavola delle discipline, la scala delle cose e la carota sono state tolte il 5
+     novembre 2026 («inutili», Mike). Resta il cilindro della prova accanto alla notizia */
   if(tops[0]){
     feed.appendChild(magSection(kind + "-apertura", "In apertura", null, pip));
     feed.appendChild(rubMagCard(brief.date, kind, tops[0], i++, "hero"));
@@ -8374,10 +8281,6 @@ function renderRubricaMag(kind){
   if(kind === "games"){
     const st = gamesSettimana(brief);
     if(st){ feed.appendChild(magSection("games-uscite", "Questa settimana esce", null, "--violet")); feed.appendChild(st); }
-  }
-  if(kind === "spazio"){
-    const ct = scienzaCarota(brief.date, items);
-    if(ct){ feed.appendChild(magSection("spazio-carota", "Quanto in fondo", null, "--blue")); feed.appendChild(ct); }
   }
   if(persi.length){
     feed.appendChild(magSection(kind + "-settimana", "Dalla settimana", "la più calda dei giorni scorsi", "--orange"));
@@ -8627,52 +8530,6 @@ function gtaProblemi(g){
   return box;
 }
 
-/* --- Scienza · la tavola delle discipline: quante voci per disciplina, oggi --- */
-const DISC = [["spazio","Sp"],["medicina","Md"],["natura","Na"],["fisica","Fi"],["terra","Te"],["tecnica","Tc"],["storia","St"]];
-function scienzaTavola(items){
-  if(items.filter(function(it){ return it.disciplina; }).length < 3) return null;
-  const t = el("div", {class:"tavola", "aria-label":"Le discipline di oggi"});
-  DISC.forEach(function(d, i){
-    const n = items.filter(function(it){ return it.disciplina === d[0] && !it.perso; }).length;
-    const c = el("div", {class:"tav-cella" + (n ? "" : " vuota")}, [el("span", {class:"tav-n", text:n ? String(n) : ""}),
-      el("b", {text:d[1]}), el("span", {class:"tav-nome", text:d[0]})]);
-    c.style.setProperty("--i", i);
-    t.appendChild(c);
-  });
-  alArrivo(t, function(){ t.classList.add("go"); });
-  return t;
-}
-
-/* --- Scienza · la scala delle cose: dallo zeptometro alle galassie --- */
-const SCALA_MIN = -21, SCALA_MAX = 26;
-/* pochi riferimenti e ben distanziati: a 390 punti nove si accavallavano */
-const SCALA_RIF = [[-15, "nucleo"], [0, "persona"], [7.1, "Terra"], [21, "Via Lattea"]];
-function scienzaScala(date, items){
-  const voci = items.filter(function(it){ return it.scala && it.scala.metri > 0; });
-  if(voci.length < 3) return null;
-  const x = function(e){ return Math.max(0, Math.min(100, (e - SCALA_MIN) / (SCALA_MAX - SCALA_MIN) * 100)); };
-  const riga = el("div", {class:"scala-riga"});
-  for(let e = SCALA_MIN; e <= SCALA_MAX; e++){ const t = el("i", {class:"scala-tic" + (e % 5 === 0 ? " lungo" : "")}); t.style.left = x(e) + "%"; riga.appendChild(t); }
-  SCALA_RIF.forEach(function(r){ const l = el("span", {class:"scala-rif", text:r[1]}); l.style.left = x(r[0]) + "%"; riga.appendChild(l); });
-  voci.map(function(it){ return {it:it, e:Math.log10(it.scala.metri)}; }).sort(function(a, b){ return a.e - b.e; }).forEach(function(v, i){
-    const p = el("button", {type:"button", class:"scala-pt " + (i % 2 ? "giu" : "su"), title:v.it.title}, [el("i"), el("span", {text:v.it.scala.etichetta})]);
-    p.style.left = x(v.e) + "%";
-    /* le etichette agli estremi si appoggiano al bordo invece di uscire */
-    if(x(v.e) < 14) p.classList.add("bordo-sx"); else if(x(v.e) > 86) p.classList.add("bordo-dx");
-    p.style.setProperty("--d", ((100 - x(v.e)) / 100 * 2.2).toFixed(2) + "s");
-    const u = safeUrl(v.it.link);
-    p.addEventListener("click", function(){ if(u) window.open(u, "_blank", "noopener"); });
-    riga.appendChild(p);
-  });
-  riga.appendChild(el("span", {class:"scala-cursore", "aria-hidden":"true"}));
-  const box = el("div", {class:"scala"}, [riga,
-    el("p", {class:"scala-nota", text:"Oggi la scheda va da " + voci.map(function(v){ return v.scala; }).sort(function(a, b){ return a.metri - b.metri; })[0].etichetta +
-      " a " + voci.map(function(v){ return v.scala; }).sort(function(a, b){ return b.metri - a.metri; })[0].etichetta + ": " +
-      Math.round(Math.log10(Math.max.apply(null, voci.map(function(v){ return v.scala.metri; }))) - Math.log10(Math.min.apply(null, voci.map(function(v){ return v.scala.metri; })))) + " ordini di grandezza."})]);
-  alArrivo(box, function(){ box.classList.add("go"); });
-  return box;
-}
-
 /* --- Scienza · il cilindro della prova: fin dove arriva lo studio --- */
 const PROVA_LIV = ["osservazione", "modello", "preprint", "rivista", "cellule", "animali", "persone", "approvato"];
 function cilindro(pr, form){
@@ -8689,33 +8546,6 @@ function cilindro(pr, form){
   return box;
 }
 
-/* --- Scienza · la carota: quanto in fondo scava la scienza di oggi --- */
-const CAROTA_RIF = [[0, "oggi"], [10, "10 anni"], [100, "un secolo"], [1000, "mille anni"], [1e6, "un milione"],
-                    [1e8, "100 milioni"], [4.5e9, "la Terra"], [1.38e10, "Big Bang"]];
-function scienzaCarota(date, items){
-  const voci = items.filter(function(it){ return it.tempo && it.tempo.anni_fa >= 0; });
-  if(voci.length < 2) return null;
-  const y = function(a){ return Math.log10(a + 1) / Math.log10(1.38e10 + 1) * 100; };
-  const core = el("div", {class:"carota-core"});
-  CAROTA_RIF.forEach(function(r){ const l = el("span", {class:"carota-rif", text:r[1]}); l.style.top = y(r[0]) + "%"; core.appendChild(l); });
-  let ultimo = -99, scarto = 0;
-  voci.sort(function(a, b){ return a.tempo.anni_fa - b.tempo.anni_fa; }).forEach(function(it){
-    const p = el("button", {type:"button", class:"carota-pt", title:it.title}, [el("i"), el("span", {text:it.tempo.etichetta})]);
-    const yy = y(it.tempo.anni_fa);
-    /* due voci vicine nel tempo: l'etichetta della seconda scende di una riga */
-    scarto = yy - ultimo < 6 ? scarto + 1 : 0;
-    ultimo = yy;
-    p.style.setProperty("--dy", (scarto * 15) + "px");
-    p.style.top = yy + "%";
-    p.style.setProperty("--d", (0.3 + y(it.tempo.anni_fa) / 100 * 1.8).toFixed(2) + "s");
-    const u = safeUrl(it.link);
-    p.addEventListener("click", function(){ if(u) window.open(u, "_blank", "noopener"); });
-    core.appendChild(p);
-  });
-  const box = el("div", {class:"carota"}, [core]);
-  alArrivo(box, function(){ box.classList.add("go"); });
-  return box;
-}
 
 /* ================= navigazione ================= */
 const views = ["oggi","ai","games","spazio","archivio","salvati","diario","cerca"];
