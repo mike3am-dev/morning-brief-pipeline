@@ -418,5 +418,114 @@
   "sessione": "f6e44220-dcd0-5895-8288-4c6cc74b844e",
   "inizio": "2026-11-05T04:44:20+00:00",
   "minuti": 37
+ },
+ {
+  "nuovi": 295,
+  "in_cache": 22850610,
+  "scritti_cache": 1161340,
+  "scritti": 213552,
+  "risposte": 148,
+  "ricerche_web": 0,
+  "giorno": "2026-11-06",
+  "sessione": "adc57555-665d-577a-870f-712997a07cf6",
+  "inizio": "2026-11-06T04:44:15+00:00",
+  "minuti": 30,
+  "registri": [
+   {
+    "nuovi": 125,
+    "in_cache": 12656973,
+    "scritti_cache": 226391,
+    "scritti": 48828,
+    "risposte": 63,
+    "ricerche_web": 0,
+    "nome": "principale",
+    "minuti": 30,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 10,
+    "in_cache": 344284,
+    "scritti_cache": 102691,
+    "scritti": 21552,
+    "risposte": 5,
+    "ricerche_web": 0,
+    "nome": "visualista: Scrive le visualizzazioni degli approfondimenti",
+    "minuti": 4,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 78,
+    "in_cache": 6436264,
+    "scritti_cache": 233817,
+    "scritti": 57618,
+    "risposte": 39,
+    "ricerche_web": 0,
+    "nome": "general-purpose: Delega lettura e selezione notizie Apple",
+    "minuti": 12,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 18,
+    "in_cache": 825750,
+    "scritti_cache": 277318,
+    "scritti": 57107,
+    "risposte": 9,
+    "ricerche_web": 0,
+    "nome": "redattore: Scrive la prosa dell'edizione",
+    "minuti": 8,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 30,
+    "in_cache": 1266939,
+    "scritti_cache": 110869,
+    "scritti": 12269,
+    "risposte": 15,
+    "ricerche_web": 0,
+    "nome": "ai: Scrive la sezione AI dell'edizione di oggi",
+    "minuti": 2,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 10,
+    "in_cache": 322246,
+    "scritti_cache": 101979,
+    "scritti": 7865,
+    "risposte": 5,
+    "ricerche_web": 0,
+    "nome": "schede: Scrive le schede Games e Scienza",
+    "minuti": 1,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 24,
+    "in_cache": 998154,
+    "scritti_cache": 108275,
+    "scritti": 8313,
+    "risposte": 12,
+    "ricerche_web": 0,
+    "nome": "gta: Scrive la sezione GTA VI",
+    "minuti": 2,
+    "modello": "Opus"
+   }
+  ],
+  "modelli": {
+   "Sonnet": {
+    "nuovi": 213,
+    "in_cache": 19437521,
+    "scritti_cache": 562899,
+    "scritti": 127998,
+    "risposte": 107,
+    "ricerche_web": 0
+   },
+   "Opus": {
+    "nuovi": 82,
+    "in_cache": 3413089,
+    "scritti_cache": 598441,
+    "scritti": 85554,
+    "risposte": 41,
+    "ricerche_web": 0
+   }
+  }
  }
 ]
