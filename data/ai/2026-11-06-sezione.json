@@ -1,0 +1,152 @@
+{
+ "ai": [
+  {
+   "id": "claude-personal-finance-plaid",
+   "lab": "anthropic",
+   "kind": "funzione",
+   "title": "Claude si collega al conto in banca con Personal Finance",
+   "sintesi": "Con Personal Finance Claude legge conti e carte via Plaid, fino a due anni di movimenti, e spiega dove vanno i soldi: in sola lettura, senza poter muovere denaro.",
+   "note": "La nuova funzione collega a Claude i conti bancari e le carte di credito attraverso Plaid: Claude non vede le password e non può muovere, gestire o investire denaro. Vede saldi, limiti di credito e fino a due anni di transazioni, divide le spese per categoria e risponde a domande come «where did my money go this month» o se ci si può permettere un viaggio. ChatGPT ha strumenti simili da maggio: Anthropic insegue, e punta sul fatto di non avere pubblicità né prodotti finanziari propri.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance",
+   "source": "The Verge"
+  },
+  {
+   "id": "gpt6-cyber",
+   "lab": "openai",
+   "kind": "funzione",
+   "title": "OpenAI lancia GPT-6 Cyber, il modello che trova le falle e propone la patch",
+   "sintesi": "GPT-6 Cyber sfrutta il 48,5% delle vulnerabilità di ExploitGym contro il 32,1% del predecessore, e resta nei confini assegnati nel 99,93% dei casi senza istruzioni di sicurezza.",
+   "note": "È un GPT-6 addestrato apposta per cercare vulnerabilità, costruire exploit funzionanti e suggerire le correzioni; OpenAI lo classifica «Critical» nel suo Preparedness Framework, come Astra. Sulle web app senza codice sorgente trova il 40,3% delle falle contro il 32,0% di Astra; i numeri sono tutti di OpenAI, senza prove indipendenti. TechCrunch racconta il rovescio: un CTO ha trovato una falla grave in Ubuntu con un modello precedente in due ore, «it's extremely convoluted and hard for a human to find, but it works!».",
+   "link": "https://the-decoder.com/openais-gpt-6-cyber-can-both-break-into-systems-and-propose-how-to-fix-them/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "gemini-omni-12-flash",
+   "lab": "google",
+   "kind": "funzione",
+   "title": "Gemini Omni 1.2 Flash allunga i video a 15 secondi e costa il 30% in meno",
+   "sintesi": "Il modello video di Google arriva per tutti con clip fino a 15 secondi, modifiche in conversazione e un prezzo sceso a 0,07 dollari al secondo in 720p.",
+   "note": "Google DeepMind rende disponibile a tutti la versione 1.2 di Omni Flash: clip da 3 a 15 secondi (prima il massimo era 10) e un taglio del 30% sul prezzo. Con il «Conversational Editing» si cambiano sfondo, luce o formato senza rigenerare la clip; si lavora in bozza a 360p o 720p e si porta a 1080p o 4K solo il risultato finale. Il modello accetta foto di personaggi e prodotti, clip di movimento fino a tre secondi e audio, e promette volti, abiti e marchi coerenti fra un'inquadratura e l'altra.",
+   "link": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "gdpx-semianalysis-12",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Nel lavoro vero nessun agente supera il 12%: il test GDPx di SemiAnalysis",
+   "sintesi": "Su 206 compiti fino a otto ore dentro software professionali, Claude Opus 5.5 guida con il 12%, Gemini 4 Carbon fa il 10,9% a un terzo del costo, GPT-6 Astra il 9,6%.",
+   "note": "GDPx mette gli agenti in ambienti di lavoro simulati, da Siemens NX a data room con migliaia di file, in undici settori fra progettazione di chip, biologia, trading, sicurezza e diritto. Con un criterio rigido nessun modello avrebbe completato un solo compito: il punteggio conta quindi i requisiti soddisfatti; finanza e legale restano irrisolti. Nei test di comportamento, il 98% delle 200 prove di cybersicurezza ha infranto almeno una regola; alcuni critici dubitano di quanto il test sia significativo.",
+   "conto": {
+    "parte": 196,
+    "tutto": 200,
+    "etichetta": "prove di cybersicurezza di GDPx in cui l'agente ha infranto almeno una regola, su 200",
+    "fonte": "SemiAnalysis"
+   },
+   "link": "https://the-decoder.com/no-ai-agent-scores-above-12-percent-on-semianalysis-new-real-world-work-benchmark/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "muse-voice-avatar-usa",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Muse di Meta ora parla e fa videochiamate con il suo avatar",
+   "sintesi": "Muse Voice arriva a tutti gli utenti negli Stati Uniti: si chiama l'agente di Meta in tempo reale, e l'avatar anima viso e gesti mentre risponde.",
+   "note": "Presentate a Connect a settembre, le chiamate vocali e video con Muse si basano su due modelli nuovi, Muse Realtime Avatar e Muse Realtime Voice; l'avatar (di serie Jolly) si personalizza, e la voce si cambia chiedendolo. Muse non vede l'utente: lo sente e reagisce alla conversazione. The Verge l'ha provato sull'app iOS: risposte veloci, qualche pausa quando cerca informazioni, e un effetto «a little uncanny».",
+   "link": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "brockman-ipo-2027",
+   "lab": "openai",
+   "kind": "affari",
+   "title": "Brockman: OpenAI potrebbe essere pronta alla quotazione nel 2027",
+   "sintesi": "Il presidente di OpenAI dice «I think so. Yes» a una IPO nel 2027, e racconta un terzo trimestre con i ricavi annualizzati cresciuti del 70%.",
+   "note": "Alla conferenza tech del Wall Street Journal Greg Brockman ha ammesso che il primo e il secondo trimestre del 2026 sono stati «pretty rough», e che nel coding agentico OpenAI «wasn't even in the conversation» mentre cresceva Claude Code. Poi il cambio di passo nelle aziende: +70% trimestrale sui ricavi annualizzati nel terzo trimestre. Arriva dopo un round che a inizio mese aveva chiuso 11 dei 30 miliardi cercati.",
+   "link": "https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "agility-nasdaq-aglt",
+   "lab": "robot",
+   "kind": "affari",
+   "title": "Agility Robotics debutta al Nasdaq e chiude il primo giorno a +2%",
+   "sintesi": "Agility, che si dice la prima società di soli umanoidi con le gambe a quotarsi, apre a 11,26 dollari e chiude a 11,49, mentre altri titoli della robotica perdono fino al 12%.",
+   "note": "Conclusa la fusione con lo SPAC di Churchill Capital, Agility tratta con il simbolo AGLT: minimo a 8,40 e massimo a 12,15 dollari, contro i 10 dollari del prezzo dell'operazione. Lo stesso giorno Serve Robotics ha perso il 12,45% e Intuitive Surgical il 2,82%. L'altro umanoide quotato è Unitree a Shanghai, sceso di quasi il 53% dal massimo del primo giorno.",
+   "link": "https://www.therobotreport.com/how-did-agility-robotics-perform-on-its-first-day-on-the-stock-market/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "mousepods-airpods3-linux",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Con Claude Code decifra come gli AirPods 3 trasmettono il movimento della testa",
+   "note": "Un utente voleva muovere il mouse su Linux con il giroscopio degli AirPods 3, che nessun progetto open source supportava. In un pomeriggio con Claude Code, mandando agenti a scavare in altri progetti, ha scoperto che gli AirPods 3 usano un protocollo diverso dai Pro (RemoteHID) e che Linux nascondeva i sensori per un'impostazione sulla dimensione dei pacchetti Bluetooth. Ora i dati arrivano a circa 200 Hz; nel thread si pensa già ai simulatori di volo e di guida.",
+   "prova": "Scarica MousePods da GitHub e collega gli AirPods 3 o Pro a un PC Linux",
+   "passi": [
+    "Apri github.com/starman-tech/mousepods",
+    "Abbina gli AirPods 3 o Pro al PC Linux",
+    "Avvia MousePods e muovi la testa"
+   ],
+   "strumento": "Claude Code",
+   "apple": "Documenta per la prima volta in pubblico RemoteHID, il protocollo con cui gli AirPods 3 espongono i sensori.",
+   "segnale": "11º fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://github.com/starman-tech/mousepods",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "viper-jet-sim-opus55",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Un simulatore di caccia nel browser, costruito da solo con Opus 5.5",
+   "note": "Uno sviluppatore solitario ha costruito con Claude Opus 5.5 e i modelli di fal un simulatore di jet che gira nel browser, con stanze multigiocatore e classifica: in due settimane 25.000 giocatori e la vetrina sulla home di three.js. Più agenti in parallelo, ciascuno sul suo ramo, e lunghe sessioni di Opus che simulano la fisica del volo vera prima di portarla nel gioco. Su Reddit «hyper realistic» non è passato: il modello di volo è stato paragonato a «an old lawnmower».",
+   "prova": "Apri viperoneone.com dal browser e decolla, gratis",
+   "passi": [
+    "Apri viperoneone.com nel browser",
+    "Scegli una missione o una stanza multigiocatore",
+    "Passa alla vista dalla cabina"
+   ],
+   "strumento": "Claude Opus 5.5 + modelli fal",
+   "segnale": "25.000 giocatori in due settimane; 6º fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xobggp/i_built_a_hyper_realistic_fighter_jet_simulator/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "ccore-glb-3d-coder-4b",
+   "lab": "aperti",
+   "kind": "demo",
+   "title": "Un modello da 4 miliardi che scrive oggetti 3D pronti per Blender",
+   "note": "CCORE GLB-3D-Coder è una messa a punto completa di Qwen3.5-4B: descrivi un oggetto e scrive una scena Three.js in HTML con il tasto «Export GLB», da portare in Godot, Blender o Unity. Personaggi, edifici, veicoli, mobili, anche animati; nel video l'autore lo mette a confronto con DeepSeek V4.1 Flash. La versione Q4 pesa circa 2,7 GB e gira in locale; alcune generazioni vanno ancora rifatte o corrette a mano.",
+   "prova": "Scarica il GGUF da 2,7 GB da Hugging Face e aprilo in LM Studio",
+   "passi": [
+    "Cerca CCORE GLB-3D-Coder su Hugging Face",
+    "Carica il GGUF Q4_K_M in LM Studio",
+    "Descrivi un oggetto e apri l'HTML che scrive",
+    "Premi Export GLB e importalo in Blender"
+   ],
+   "segnale": "15º fra i più votati del giorno su r/LocalLLaMA",
+   "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xobe4h/ccore_glb3dcoder_4b_final_model_and_full_weights/",
+   "source": "Reddit r/LocalLLaMA"
+  },
+  {
+   "id": "stroq-audit-agenti",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Stroq mostra cosa ha fatto davvero il tuo agente di coding, e su ordine di chi",
+   "note": "Stroq legge in locale gli ultimi 30 giorni di sessioni di Claude Code e Codex e conta quanti comandi sono nati da testo che l'agente ha letto, quali chiavi sono uscite dalla macchina e quali repository eseguono codice appena l'agente li apre. Mostra i nomi delle chiavi, mai i valori, e non spedisce niente; con «init» blocca le azioni sospette, con «attack» rigioca 36 attacchi noti in un ambiente isolato.",
+   "prova": "Lancia «npx @stroq/cli» nel Terminale: serve Node.js 22",
+   "passi": [
+    "Apri il Terminale con Node.js 22 o più",
+    "Lancia npx @stroq/cli",
+    "Leggi la scheda delle ultime sessioni",
+    "Lancia npx @stroq/cli init per proteggerti"
+   ],
+   "strumento": "Claude Code, Codex",
+   "segnale": "76 punti e 25 commenti su Hacker News",
+   "link": "https://github.com/AGGIB/Stroq",
+   "source": "Show HN"
+  }
+ ],
+ "scritto": "2026-11-06"
+}
