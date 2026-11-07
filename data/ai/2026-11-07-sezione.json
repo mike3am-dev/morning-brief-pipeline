@@ -1,0 +1,148 @@
+{
+ "ai": [
+  {
+   "id": "inkling-2-small",
+   "lab": "aperti",
+   "kind": "modello",
+   "modello": {
+    "nome": "Inkling 2 Small",
+    "famiglia": "aperto"
+   },
+   "title": "Thinking Machines lancia Inkling 2 Small, il modello aperto occidentale più forte",
+   "sintesi": "Il modello di Mira Murati ha 594 miliardi di parametri, 17 attivi, e segna 31 sull'indice di Artificial Analysis: 18 punti sopra il predecessore, alla pari con Gemini 3.8 Flash.",
+   "note": "È la seconda generazione di Thinking Machines, la startup dell'ex CTO di OpenAI: un mixture-of-experts che legge testo e immagini, pensato come base per il fine-tuning; i pesi arrivano la settimana prossima. Sugli agenti il salto è netto (AutomationBench-AA da 5 a 46%), ma consuma circa 150.000 token per compito, quattro volte il predecessore, e le allucinazioni scendono dal 61 al 27% soprattutto perché risponde a meno domande. Per ZDNet è il primo modello occidentale che insidia davvero il primato cinese sui pesi aperti.",
+   "link": "https://the-decoder.com/thinking-machines-inkling-2-small-claims-top-spot-among-western-open-weight-models/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-1250-miliardi",
+   "lab": "openai",
+   "kind": "affari",
+   "title": "OpenAI raccoglie altri 11 miliardi a una valutazione di 1.250 miliardi di dollari",
+   "sintesi": "Secondo Bloomberg il nuovo giro, ancora aperto, potrebbe arrivare a 20 miliardi: meno dei 30 sperati a settembre a 1.400 miliardi, prima del calo dei titoli tech.",
+   "note": "A marzo OpenAI aveva raccolto 122 miliardi a una valutazione di 852: il salto resta enorme, ma il round si è ridimensionato dopo la svendita tecnologica seguita alle elezioni di metà mandato. Il giro dovrebbe chiudersi nelle prossime settimane; OpenAI non ha commentato. La quotazione resta attesa per il 2027.",
+   "link": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "anthropic-ipo-resistenze",
+   "lab": "anthropic",
+   "kind": "affari",
+   "title": "La IPO di Anthropic frena: gli investitori non vogliono pagare 1.500 miliardi",
+   "sintesi": "Secondo Reuters e Bloomberg alcuni acquirenti guardano a una valutazione fra 1.000 e 1.100 miliardi, contro i 2.000 attesi un mese fa, e il roadshow della prossima settimana è in dubbio.",
+   "note": "Gli investitori chiedono uno sconto perché Anthropic perde ancora soldi e nell'S-1 aggiornato mancano i ricavi di ottobre; i referendum contro i data center passati in diversi stati hanno innescato la vendita più forte sul tech da un anno. Sullo sfondo i dati Ramp: a agosto e settembre la spesa delle aziende in token è cresciuta dell'1,5%, contro il +42% di luglio, mentre i volumi salgono. Un rinvio dell'offerta, stimata fino a 100 miliardi, peserebbe su tutto il settore.",
+   "link": "https://the-decoder.com/anthropics-1-5-trillion-ipo-hits-resistance-as-investors-balk-at-valuation/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "metr-anthropic-accelerazione",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "METR: Anthropic potrebbe aver superato a luglio la sua soglia d'allarme sull'accelerazione",
+   "sintesi": "Dopo undici settimane dentro i dati interni, METR conclude che il ritmo dei modelli Anthropic è circa raddoppiato e che l'80% dell'accelerazione viene dall'AI usata nella ricerca.",
+   "note": "Il raddoppio dovuto alla ricerca automatizzata è proprio l'indicatore che la Responsible Scaling Policy di Anthropic tratta come livello d'allarme. Dal 12 agosto al 29 ottobre METR ha visto benchmark di modelli non usciti, metriche di addestramento e una quindicina di interviste, senza prendere soldi da Anthropic. Ma le prove più informative sono state oscurate, e il pubblico deve fidarsi del giudizio di METR «much more than would be ideal».",
+   "link": "https://the-decoder.com/metr-finds-anthropic-may-have-crossed-its-own-ai-acceleration-warning-threshold-back-in-july/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "muse-spaces",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Meta porta gli Spaces in Muse: l'agente si costruisce le sue mini-app",
+   "sintesi": "Descrivi un'idea e Muse crea uno spazio, un planner o una lista regali, che si aggiorna da solo pescando da Gmail, Google Calendar, OpenTable e Notion.",
+   "note": "Dopo la voce e le videochiamate con l'avatar di ieri, Muse aggiunge gli Spaces: schede nella barra laterale dove l'agente lavora a un obiettivo, con elementi da spuntare e annotare, e che si possono programmare (il planner nei giorni feriali, i piani del weekend al sabato). Arrivano anche Active Memory e Active Focus dal modello Muse Wonder. È l'idea dell'app generata su misura, dentro l'assistente invece che sull'App Store.",
+   "link": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
+   "source": "The Verge"
+  },
+  {
+   "id": "perplexity-teammates",
+   "lab": "altri",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Perplexity lancia Teammates, agenti sempre accesi su una macchina virtuale propria",
+   "sintesi": "Ogni Teammate lavora giorno e notte su un progetto con desktop e browser suoi, si segue da Slack e costa il piano Max da 200 dollari al mese.",
+   "note": "Perplexity Computer eseguiva compiti singoli; i Teammates portano avanti lavori lunghi da soli. Entrano in un mercato affollato: Grok Bots di SpaceX, Muse di Meta, Dots di OpenAI da 100 dollari e Duet di Anthropic da 20, anche se i piani più economici finiscono presto i limiti d'uso. Perplexity ad agosto superava i 750 milioni di ricavi annualizzati.",
+   "link": "https://the-decoder.com/perplexity-now-has-its-own-always-on-ai-agent/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "stretch-gen2",
+   "lab": "robot",
+   "kind": "funzione",
+   "title": "Boston Dynamics presenta Stretch Gen 2, il robot che svuota i camion",
+   "sintesi": "Il nuovo Stretch scarica fino a 1.000 colli l'ora, ha una batteria da due turni e torna al 90% in circa 75 minuti, dopo 100.000 ore di lavoro della prima versione.",
+   "note": "Due anni e mezzo di lavoro per semplificarlo: parti modulari da sostituire «plug and play», luci a bordo per i rimorchi bui, presa multipla e una visione già addestrata. Brian Donnelly, che guida la logistica di Boston Dynamics, ammette che il primo Stretch «was not the easiest to manufacture». La resa reale dipende da peso e ordine dei colli.",
+   "link": "https://www.therobotreport.com/boston-dynamics-built-stretch-gen-2-for-reliable-consistent-performance/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "regata-modelli-claude-code",
+   "lab": "google",
+   "kind": "demo",
+   "title": "Un simulatore di vela costruito con Claude Code, e i modelli di punta in regata",
+   "note": "Un utente ha fatto scrivere a Claude Code fisica della barca, vento, mare e costa in 3D, poi ha messo in gara Opus, GPT-6 Astra, Gemini 4 Argon e, per gioco, Qwen 3.5 9B. Ogni 5 secondi ogni modello riceve 23 numeri (rotta, velocità, vento, boa) e regola timone e vele, senza consigli di vela. Ha vinto Argon, cinque volte più economico di Astra; Opus è andato male, nonostante il gioco l'avesse scritto Claude.",
+   "prova": "Rifai la gara: dai a più modelli lo stesso stato in numeri a intervalli fissi e confronta le scelte",
+   "passi": [
+    "Apri il thread su r/ClaudeAI e guarda il video",
+    "Leggi le regole: 23 numeri ogni 5 secondi",
+    "Ripeti la prova con i tuoi modelli via API"
+   ],
+   "strumento": "Claude Code",
+   "costo": "0,78 $ a regata con Argon, 3,58 $ con Astra",
+   "segnale": "2º post più votato del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xpij9t/i_built_a_sailing_sim_with_claude_code_and_made/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "holyarrs-15mb",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Sei app del media server sostituite da una sola, stile Netflix, da 15 MB, scritta con Claude",
+   "note": "Al posto di Sonarr, Radarr, Lidarr e compagnia (110–140 MB di RAM ciascuna a riposo) l'autore ha costruito holyarrs: 15 MB da scaricare, circa 70 MB di RAM con 12.800 film e serie. Il metodo: fissare prima i limiti (memoria, avvio, peso) perché «claude doesnt care about size at all», e misurare due versioni della stessa home da 10.000 locandine. Sarà open source in Docker, la beta non è ancora uscita.",
+   "prova": "Prima di chiedere codice a Claude, scrivi i limiti: RAM a riposo, tempo d'avvio, peso massimo",
+   "passi": [
+    "Scrivi tre limiti numerici prima del primo prompt",
+    "Chiedi a Claude due versioni della stessa schermata",
+    "Misurale e tieni la più leggera"
+   ],
+   "strumento": "Claude",
+   "segnale": "7º post più votato del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xp76q1/i_built_a_netflixstyle_app_for_my_media_server/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "torre-agenti-100-aziende",
+   "lab": "openai",
+   "kind": "demo",
+   "title": "Una torre 3D di agenti con l'ordine di aprire cento aziende: 2.000 dollari di pubblicità, zero incassi",
+   "note": "L'autore ha dato agli agenti un piano di un grattacielo in 3D, con scrivanie e sala riunioni, e un solo obiettivo: aprire cento aziende, senza intervenire. Ne sono uscite cose strane e vere, da Again (la nonna che riscrive su WhatsApp, 19 dollari al mese: «Cancel anytime. She dies again.») a un pentest SOC 2 da 20 dollari. A 30 piani la torre era piena e gli agenti ne hanno aperta una seconda; ricavi, finora, zero.",
+   "prova": "Apri una delle aziende degli agenti, per esempio sunday.towers.app, e guarda cosa hanno costruito",
+   "passi": [
+    "Apri il thread su r/ChatGPT",
+    "Visita sunday.towers.app o pentrail.towers.app",
+    "Confronta prodotto, prezzo e pagina di pagamento"
+   ],
+   "costo": "2.000 $ di pubblicità",
+   "segnale": "12º post più votato del giorno su r/ChatGPT",
+   "link": "https://www.reddit.com/r/ChatGPT/comments/1xpjcle/i_gave_gpt6_astra_an_office_tower_and_told_it_to/",
+   "source": "Reddit r/ChatGPT"
+  },
+  {
+   "id": "underdog-woof-32mb",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Woof, la voce sintetica da 32 MB che parla e suona nel browser, senza rete",
+   "note": "Underdog ha pubblicato un gioco costruito sul suo modello vocale Woof: una stanza retrò con macchina da scrivere e monitor CRT, dove quello che scrivi viene letto ad alta voce e una manopola genera musica. Il modello ha 31 milioni di parametri, gira sulla maggior parte dei dispositivi senza internet e si può scaricare. Dopo Bark, il riconoscimento vocale da 167 MB, è un altro passo verso l'assistente che vive sul telefono.",
+   "prova": "Apri la demo di Underdog nel browser e scrivi una frase sulla macchina da scrivere",
+   "passi": [
+    "Apri la demo di Woof dal pezzo di TechCrunch",
+    "Scrivi una frase sulla macchina da scrivere",
+    "Gira la manopola per generare musica"
+   ],
+   "link": "https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/",
+   "source": "TechCrunch"
+  }
+ ],
+ "scritto": "2026-11-07"
+}
