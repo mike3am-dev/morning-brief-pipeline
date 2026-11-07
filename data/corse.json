@@ -527,5 +527,125 @@
     "ricerche_web": 0
    }
   }
+ },
+ {
+  "nuovi": 500,
+  "in_cache": 38945374,
+  "scritti_cache": 1284655,
+  "scritti": 265522,
+  "risposte": 251,
+  "ricerche_web": 0,
+  "giorno": "2026-11-07",
+  "sessione": "e330aad3-714d-5402-9fed-a66ba4af1b34",
+  "inizio": "2026-11-07T04:34:45+00:00",
+  "minuti": 40,
+  "registri": [
+   {
+    "nuovi": 150,
+    "in_cache": 15399193,
+    "scritti_cache": 236927,
+    "scritti": 60468,
+    "risposte": 76,
+    "ricerche_web": 0,
+    "nome": "principale",
+    "minuti": 40,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 14,
+    "in_cache": 536892,
+    "scritti_cache": 100207,
+    "scritti": 19395,
+    "risposte": 7,
+    "ricerche_web": 0,
+    "nome": "visualista: Scegli le visualizzazioni dei primi 5 approfondimenti",
+    "minuti": 4,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 30,
+    "in_cache": 1289784,
+    "scritti_cache": 118668,
+    "scritti": 13910,
+    "risposte": 15,
+    "ricerche_web": 0,
+    "nome": "ai: Scrivi la sezione AI dell'edizione del 7 novembre",
+    "minuti": 2,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 30,
+    "in_cache": 1293396,
+    "scritti_cache": 115221,
+    "scritti": 15721,
+    "risposte": 15,
+    "ricerche_web": 0,
+    "nome": "gta: Scrivi la sezione GTA VI del 7 novembre",
+    "minuti": 3,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 124,
+    "in_cache": 11029753,
+    "scritti_cache": 267571,
+    "scritti": 66920,
+    "risposte": 62,
+    "ricerche_web": 0,
+    "nome": "general-purpose: Lettura e verifica notizie Apple del 7 novembre",
+    "minuti": 18,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 118,
+    "in_cache": 7847417,
+    "scritti_cache": 182416,
+    "scritti": 29145,
+    "risposte": 59,
+    "ricerche_web": 0,
+    "nome": "general-purpose: Rafforza fonti e voci delle prime 5 notizie",
+    "minuti": 7,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 24,
+    "in_cache": 1217536,
+    "scritti_cache": 155392,
+    "scritti": 48323,
+    "risposte": 12,
+    "ricerche_web": 0,
+    "nome": "redattore: Scrivi la prosa dell'edizione del 7 novembre",
+    "minuti": 7,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 10,
+    "in_cache": 331403,
+    "scritti_cache": 108253,
+    "scritti": 11640,
+    "risposte": 5,
+    "ricerche_web": 0,
+    "nome": "schede: Scrivi le schede Games e Scienza del 7 novembre",
+    "minuti": 2,
+    "modello": "Opus"
+   }
+  ],
+  "modelli": {
+   "Sonnet": {
+    "nuovi": 406,
+    "in_cache": 34813255,
+    "scritti_cache": 787121,
+    "scritti": 175928,
+    "risposte": 204,
+    "ricerche_web": 0
+   },
+   "Opus": {
+    "nuovi": 94,
+    "in_cache": 4132119,
+    "scritti_cache": 497534,
+    "scritti": 89594,
+    "risposte": 47,
+    "ricerche_web": 0
+   }
+  }
  }
 ]
