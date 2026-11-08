@@ -151,6 +151,7 @@ def check_shape(brief, r):
             r.error("banco", f"voce senza link: {titolo}")
 
     check_recap(brief, r)
+    check_italiano(brief, r)
 
     ai = brief.get("ai") or []
     if ai and not (AI_MIN <= len(ai) <= AI_MAX):
@@ -253,6 +254,38 @@ def archivio():
 # Le schede che hanno una casa per il loro materiale: quello che spetta a
 # loro non va nel radar, altrimenti la stessa cosa esce due volte.
 OTHER_HOMES = {"ai": "AI", "games": "GAMES", "spazio": "SCIENZA"}
+
+
+# Le parole che tradiscono un titolo rimasto in inglese, e quelle che lo smentiscono. L'8
+# novembre 2026 due voci del banco sono uscite col titolo originale («The AirPods 5 blew me
+# away, but Android users should beware»): l'esempio di questo file ne aveva uno in inglese.
+EN_FUNZIONE = set("the a an and but or of to for with your you my me our their this that these "
+                  "how why what when who is are was were be been has have had it its there's "
+                  "here's should can will would could not no just from at by on into about "
+                  "users review vs".split())
+IT_FUNZIONE = set("il lo la i gli le di da del dello della dei degli delle che per con non è un "
+                  "una uno su nel nella al alla ai sono come più chi ma anche ancora ecco perché "
+                  "già fra tra".split())
+
+
+def inglese(titolo):
+    """Vero se il titolo sembra rimasto in inglese: almeno tre parole funzionali inglesi e
+    nessuna italiana. I nomi di prodotto («iPhone», «Galaxy Z Fold») non contano."""
+    parole = re.findall(r"[a-zà-ù']+", (titolo or "").lower())
+    en = sum(p in EN_FUNZIONE for p in parole)
+    it = sum(p in IT_FUNZIONE for p in parole)
+    return en >= 3 and it == 0
+
+
+def check_italiano(brief, r):
+    """I titoli che scrive la corsa sono in italiano; l'originale, se serve, va in `orig`.
+    Errore, non avviso: tradurre un titolo costa un passo, e un titolo inglese in mezzo
+    all'edizione Mike lo vede subito."""
+    for sec in ("news", "banco", "radar", "social", "recap"):
+        for v in brief.get(sec) or []:
+            t = v.get("title") or ""
+            if inglese(t):
+                r.error(sec, f"titolo in inglese, va tradotto (l'originale in \"orig\"): {t[:60]}")
 
 
 def check_radar_home(brief, radar, r):

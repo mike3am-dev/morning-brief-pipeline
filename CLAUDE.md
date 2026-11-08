@@ -817,11 +817,17 @@ lavoro, non rassegna: **3–5 voci** fra recensioni, video e confronti della con
 
 ```json
 {"id": "fold8-mkbhd", "kind": "video", "topic": "pieghevoli",
- "title": "Galaxy Z Fold 8 Review: Honeymoon's Over",
+ "title": "Galaxy Z Fold 8 alla prova: la luna di miele è finita",
+ "orig": "Galaxy Z Fold 8 Review: Honeymoon's Over",
  "note": "Cosa dice il pezzo, due righe.",
  "perche": "È il video che ha visto il cliente che entra a chiedere del pieghevole.",
  "link": "…", "source": "MKBHD"}
 ```
+
+**Il titolo è sempre in italiano**, anche quando la recensione o il video sono in inglese:
+l'originale va in `orig`. Vale per tutto quello che scrive la regia (banco, radar, discussioni,
+ripescaggio). L'8 novembre 2026 due voci del banco sono uscite col titolo inglese, perché
+questo esempio ne aveva uno: ora il lint lo blocca come errore (`check_italiano`).
 
 `kind` è `recensione` · `video` · `confronto` · `curiosità` · `guida`, e determina il
 colore della pastiglia. **`perche` è la sezione**: senza quella riga è una recensione

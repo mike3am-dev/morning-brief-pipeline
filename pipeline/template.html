@@ -7062,6 +7062,8 @@ function drawEdition(root){
                              text:b.kind}) : null,
         el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:b.title})
                         : el("span", {text:b.title})]),
+        // il titolo è tradotto: l'originale in piccolo sotto, come nelle schede Games e Scienza
+        b.orig ? el("p", {class:"rub-orig", text:b.orig}) : null,
         b.note ? el("p", {text:b.note}) : null,
         b.perche ? el("p", {class:"why", text:b.perche}) : null,
         foot,
