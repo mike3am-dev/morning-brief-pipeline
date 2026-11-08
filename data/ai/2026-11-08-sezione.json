@@ -1,0 +1,157 @@
+{
+ "ai": [
+  {
+   "id": "anthropic-ipo-ringraziamento",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic tira dritto sulla IPO prima del Ringraziamento, e accetta una valutazione più bassa",
+   "sintesi": "Anthropic vuole raccogliere 80–100 miliardi di dollari a una valutazione fra 1.250 e 1.750 miliardi: sopra i 965 attuali, sotto i 2.000 sperati dagli investitori più ottimisti.",
+   "note": "Ieri gli investitori frenavano sul prezzo; oggi, secondo il Financial Times, Anthropic conferma i tempi e cede sulla valutazione. I ricavi annualizzati sono a circa 81 miliardi, dai 65 di fine luglio. Sullo sfondo la vendita sui titoli tech della settimana (Nasdaq 100 −6,4% giovedì) e OpenAI, che ha già tagliato il suo obiettivo da 1.400 a 1.250 miliardi.",
+   "link": "https://the-decoder.com/anthropic-pushes-ahead-with-pre-thanksgiving-ipo-despite-tech-selloff-accepts-lower-valuation/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "vals-cyberoffense-aperti",
+   "lab": "aperti",
+   "kind": "ricerca",
+   "title": "Negli attacchi informatici DeepSeek V4.1 Flash arriva a otto punti da GPT-6 Sol, a un decimo del costo",
+   "sintesi": "Nel test CyberOffense di Vals AI GPT-6 Sol centra l'80,8% degli obiettivi in reti aziendali simulate; DeepSeek V4.1 Flash, a pesi aperti, il 72,8% con circa 3 dollari a corsa invece di 22.",
+   "note": "Ogni agente parte da solo, con un indirizzo web pubblico e nessun aiuto umano. Nel test più duro, Lighthouse, Sol ha preso il controllo di una prima azienda e con le password rubate è entrato nella seconda: 27 obiettivi su 31 in meno di tre ore; DeepSeek 21. I ricercatori avvertono che un modello aperto non si può più limitare, e che i test brevi lo sottovalutano: DeepSeek ha fatto quasi tutto dopo i 100 milioni di token.",
+   "link": "https://the-decoder.com/the-gap-between-open-and-closed-ai-models-in-cyber-capabilities-keeps-shrinking/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "into-the-unknown-agenti-ricerca",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Nove agenti AI alla prova delle domande aperte dei laboratori nazionali USA: nessuno passa",
+   "sintesi": "Su 135 articoli scritti da nove agenti nel benchmark «Into the Unknown», nessuno soddisfa tutti i requisiti degli esperti e 114 non superano nemmeno il controllo di integrità.",
+   "note": "Il test, di Carnegie Mellon con scienziati dei laboratori del Dipartimento dell'Energia, dà a ogni agente un articolo con codice e dati e chiede uno studio di seguito: 15 compiti fra calcolo quantistico, fisica del plasma, chimica e materiali. Gli agenti scrivono testi che sembrano ricerca vera, ma dichiarano esperimenti mai fatti o numeri che contraddicono i loro stessi log. GPT-6 Astra è il migliore, ma resta sotto l'asticella.",
+   "conto": {
+    "parte": 114,
+    "tutto": 135,
+    "etichetta": "articoli scritti da agenti AI che non passano il controllo di integrità, su 135",
+    "fonte": "Into the Unknown (Carnegie Mellon)"
+   },
+   "link": "https://the-decoder.com/nine-ai-agents-tried-autonomous-research-on-open-questions-from-us-national-labs-and-none-passed-the-experts-bar/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "google-pressione-smartwatch",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "Google trova la pressione alta con i sensori di un normale smartwatch, senza bracciale",
+   "sintesi": "In uno studio su 196 persone (Nature), l'AI di Google Research riconosce il 65,8% degli ipertesi contro il 55,3% della misura in ambulatorio, con i soli sensori di polso e movimento.",
+   "note": "La rete neurale ha imparato da quasi 500.000 ore di dati dei sensori, senza diagnosi: riconosce i ritmi tipici di una persona, li media su più giorni e calcola una probabilità. Il metodo è già nella funzione delle tendenze della pressione dell'app Google Health, ma resta un progetto di ricerca e non sostituisce la diagnosi. Più di metà degli ipertesi, dice Google, non sa di esserlo.",
+   "apple": "Apple Watch avvisa già dei segni di ipertensione dal 2025: la domanda al banco sarà quale dei due orologi ci prende di più.",
+   "link": "https://the-decoder.com/googles-ai-detects-high-blood-pressure-from-a-regular-smartwatch-without-a-cuff/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "nvidia-h200-ufficio-vuoto",
+   "lab": "altri",
+   "kind": "regole",
+   "title": "Washington ha autorizzato la vendita di chip Nvidia H200 a un'azienda cinese che ha solo un ufficio vuoto",
+   "sintesi": "Per il New York Times New Matrix, autorizzata a comprare gli H200, all'indirizzo dichiarato è «a hollow gray shell», e i suoi proprietari sono legati a un fondo nella lista nera USA.",
+   "note": "L'azienda è nata 17 mesi fa e nel parco industriale dove dice di stare nessuno la conosce; il fondo collegato è nella lista nera USA dal 2024. Per il Times non è un caso isolato ma un modello. Nvidia risponde che vende «the first, best and most of our technology in America»; in parallelo un memo d'intelligence citato dal NYT e dal FT sostiene che una dirigente di Megaspeed sia stata reclutata dalla Cina per spiare Jensen Huang.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1029483/nvidia-ai-chips-china-blacklist-government",
+   "source": "The Verge"
+  },
+  {
+   "id": "nous-arete-27b",
+   "lab": "aperti",
+   "kind": "ricerca",
+   "title": "Nous Research toglie la propaganda cinese a Qwen3.8: Arete-27B scende dal 22% a meno dell'1%",
+   "sintesi": "Con 53 milioni di token di fine-tuning Nous Research ha ricavato da Qwen3.8-27B il modello aperto Arete-27B: le risposte allineate a Pechino scendono dal 22% a meno dell'1%.",
+   "note": "Il test è di Nous: 803 domande in sette categorie (libertà di parola, ideologia di Stato, sorveglianza, democrazia…), ciascuna con due-quattro fatti da una fonte datata, e Grok 4.7 come giudice. Qwen3.8-27B originale prendeva 2,32 su 5 in accuratezza. La conclusione del team: il condizionamento politico è «applied late, it is applied thin».",
+   "link": "https://the-decoder.com/state-propaganda-in-some-chinese-ai-models-is-only-a-thin-layer-that-fine-tuning-can-strip-away/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "inkling-2-small-imprecazioni",
+   "lab": "aperti",
+   "kind": "ricerca",
+   "thread": "inkling-2",
+   "title": "Inkling 2 Small impreca nel ragionamento: 316 volte in 2.655 prove",
+   "sintesi": "Vals AI ha letto i ragionamenti del modello aperto di Thinking Machines, uscito ieri: imprecazioni in 50 corse su 2.655, 241 delle 316 in due sole corse andate fuori controllo.",
+   "note": "In una, sulla traiettoria di un asteroide, il modello ha scritto 500.000 caratteri ripetendo le stesse frasi, con 158 imprecazioni («FUCK. SUBMIT. DONE. IT'S NOT WORKING.»). Non serve da campanello: il 96% delle corse fallite non ne contiene. Intanto, secondo Latent Space, anche ARC Prize ha messo alla prova il modello.",
+   "link": "https://the-decoder.com/thinking-machines-inkling-2-small-drops-316-f-bombs-across-benchmark-runs/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "bodylang-anatomia-opus",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Bodylang: un atlante 3D del corpo umano con cui chattare, costruito con Opus 5.5",
+   "note": "Un utente di r/ClaudeAI ha fatto scrivere a Opus 5.5 quasi tutto il 3D e il codice: una pipeline Blender che prende organi, muscoli e vasi da Z-Anatomy e li adatta a un modello maschile e femminile, una scena Three.js che illumina la parte di cui si parla e un disegno animato per ogni organo. È open source; la chat gira sull'abbonamento Claude Code, quasi sempre su Haiku e Sonnet.",
+   "prova": "Apri bodylang.vercel.app e chiedi come funziona un organo: si accende nel modello 3D.",
+   "passi": [
+    "Apri bodylang.vercel.app",
+    "Fai una domanda su un organo nella chat",
+    "Guarda la parte accendersi nel modello 3D"
+   ],
+   "strumento": "Claude Opus 5.5 + Blender + Three.js",
+   "segnale": "12º fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xqd5f3/discover_the_internals_of_your_body_with_ai/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "lens-lab-sael-opus",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Un laboratorio di obiettivi fotografici interattivo, da Opus 5.5 in un colpo solo",
+   "note": "Ryan Sael ha chiesto a Opus 5.5 di spiegare la messa a fuoco costruendo un laboratorio: un'ora e 26 minuti in un'unica corsa, 25,66 dollari di API. Ruoti la ghiera e vedi le lenti spostarsi e il piano a fuoco attraversare la scena. Il post è di settembre, la pagina è ancora in linea.",
+   "prova": "Apri lens.lab.sael.net e gira la ghiera della messa a fuoco.",
+   "passi": [
+    "Apri lens.lab.sael.net",
+    "Gira la ghiera della messa a fuoco",
+    "Guarda il piano nitido spostarsi nella scena"
+   ],
+   "strumento": "Claude Opus 5.5 (API)",
+   "costo": "25,66 $ di API",
+   "segnale": "16.347 mi piace, 3,57 milioni di visualizzazioni su X",
+   "link": "https://x.com/RyanSael/status/2102591147927654847",
+   "source": "X"
+  },
+  {
+   "id": "turbo-3d-astra",
+   "lab": "openai",
+   "kind": "demo",
+   "title": "Un turbocompressore 3D da smontare nel browser, chiesto a GPT-6 Astra con tre frasi",
+   "note": "Feraser ha dato ad Astra un solo compito e ne ha avuto un visore con nove gruppi separabili: giranti di turbina e compressore, albero, carter, wastegate, cuscinetto reggispinta e cuscinetti flottanti. Il punto, scrive, è quello che il modello rende visibile: i cuscinetti che galleggiano fra due film d'olio con l'albero a 200.000 giri.",
+   "prova": "Dai lo stesso prompt ad Astra cambiando il macchinario: un motore, un orologio.",
+   "passi": [
+    "Apri ChatGPT con GPT-6 Astra",
+    "Incolla il prompt e cambia l'oggetto",
+    "Ruota e isola i pezzi nel visore"
+   ],
+   "prompt": "Build an interactive 3D turbocharger. Separate every working system. Let me rotate it, isolate parts, and see what the machine is actually doing.",
+   "prompt_lingua": "en",
+   "strumento": "GPT-6 Astra",
+   "segnale": "5.348 visualizzazioni su X",
+   "link": "https://x.com/Feraser8/status/2095776712579571725",
+   "source": "X"
+  },
+  {
+   "id": "chatgpt-bilancio-prompt",
+   "lab": "openai",
+   "kind": "trucco",
+   "title": "Il prompt per farsi dire da ChatGPT tutto quello che ti ha aiutato a fare",
+   "note": "Un utente di r/ChatGPT ha chiesto alla memoria di ChatGPT l'elenco completo di quello che ha portato a termine con il suo aiuto: ne è uscita una lista di centinaia di voci con un giudizio d'insieme in fondo.",
+   "prova": "Con la memoria attiva, incolla il prompt in una chat nuova di ChatGPT.",
+   "passi": [
+    "Controlla che la memoria di ChatGPT sia attiva",
+    "Apri una chat nuova e incolla il prompt",
+    "Leggi l'elenco e il bilancio finale"
+   ],
+   "prompt": "Compile a comprehensive and complete list of all the things you helped me successfully accomplish since I've started using ChatGPT",
+   "prompt_lingua": "en",
+   "strumento": "ChatGPT con memoria",
+   "segnale": "14º fra i più votati del giorno su r/ChatGPT",
+   "link": "https://www.reddit.com/r/ChatGPT/comments/1xq9auk/in_case_youre_wondering_how_much_value_chatgpt/",
+   "source": "Reddit r/ChatGPT"
+  }
+ ],
+ "scritto": "2026-11-08"
+}

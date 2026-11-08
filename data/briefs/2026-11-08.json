@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-08",
+  "title": "The Morning Brief – 8 novembre 2026",
+  "generated_at": null,
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 0,
+    "notizie_selezionate": 0
+  },
+  "feed_notes": [
+    "AI Explained: html-not-feed, nessuna data leggibile",
+    "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "MKBHD: html-not-feed, nessuna data leggibile",
+    "Matt Wolfe: html-not-feed, nessuna data leggibile",
+    "One Useful Thing: ultimo articolo 444.6h fa",
+    "The Verge: ultimo articolo 35.2h fa",
+    "feed troncato BGR: 20 voci, la più vecchia di 9.8h su una finestra di 26h",
+    "feed troncato Tom's Hardware IT: 20 voci, la più vecchia di 14.4h su una finestra di 26h",
+    "feed troncato Engadget: 20 voci, la più vecchia di 8.3h su una finestra di 26h",
+    "feed troncato Polygon: 10 voci, la più vecchia di 7.6h su una finestra di 26h"
+  ],
+  "radar": [
+    {
+      "id": "kindle-base-ridisegnato-ipad-mini",
+      "topic": "apple-contorno",
+      "title": "Il nuovo Kindle base di Amazon costa di più, ma convince senza fronzoli",
+      "note": "Il modello base ridisegnato è più leggero e ha un display migliore del predecessore, anche se il prezzo sale: resta, nella sua fascia, il concorrente diretto dell'iPad mini come lettore tascabile.",
+      "link": "https://techcrunch.com/2026/11/07/amazons-new-basic-kindle-proves-you-dont-need-all-the-bells-and-whistles/",
+      "source": "TechCrunch"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-mac-family-classifier",
+      "origine": "nuovo",
+      "title": "Su Hacker News si scopre un classificatore non documentato che su Mac distingue chi è \"famiglia\" da chi è \"amico\"",
+      "note": "Il thread più discusso del giorno (644 punti, 358 commenti) smonta due modelli XGBoost nascosti nel grafo delle conoscenze di Apple Intelligence, EntityTagging_Family e EntityTagging_FamilyAndFriends: usano 144 segnali su identità, comunicazioni e foto per assegnare diciassette etichette di relazione, da \"family\" a \"mother\" a \"coworker\", ricalcolate ogni giorno. Gli autori dicono di aver trovato un modello vero dietro solo due di quelle diciassette colonne, e di non essere riusciti a capire come si riempiano le altre quindici.",
+      "link": "https://8rank.ai/game/apple-intelligence-personal-knowledge-graph",
+      "source": "Hacker News"
+    },
+    {
+      "id": "social-iphone18-batteria-4430mah",
+      "origine": "nuovo",
+      "title": "Su r/iphone si discute una voce sulla batteria dell'iPhone 18: 4.430 mAh, più della versione Pro",
+      "note": "Il secondo thread più votato del giorno sul forum sostiene che il prossimo iPhone 18 base monterà una batteria da 4.430 mAh, superiore ai 4.288 mAh indicati per il 18 Pro: nel post non è citata nessuna fonte, solo la cifra.",
+      "link": "https://www.reddit.com/r/iphone/comments/1xq7kvr/iphone_18_could_be_released_with_a_4430mah_bigger/",
+      "source": "Reddit r/iphone"
+    },
+    {
+      "id": "social-applewatch-battito-cena-tesa",
+      "origine": "nuovo",
+      "title": "Su r/AppleWatch un utente racconta: l'orologio ha segnalato il battito alto per tutta una cena tesa in famiglia",
+      "note": "Nel post, sesto più votato del giorno sul forum, l'autore scrive che l'Apple Watch ha continuato ad avvisarlo di un battito cardiaco elevato durante una cena con una persona che lo aveva minacciato 17 anni prima, cosa che non gli era mai successo prima: un aneddoto di un utente, non una funzione nuova.",
+      "link": "https://www.reddit.com/r/AppleWatch/comments/1xqj0gv/i_had_to_eat_a_family_dinner_today_with_someone/",
+      "source": "Reddit r/AppleWatch"
+    },
+    {
+      "id": "social-visionpro-cyberpunk2077-standalone",
+      "origine": "nuovo",
+      "title": "Su r/VisionPro un test fa girare Cyberpunk 2077 in standalone su Vision Pro M2, con hand tracking e 37,1 fps di media",
+      "note": "L'utente pubblica un video in cui controlla il gioco a mani libere invece che con i controller, misurando una media di 37,1 fotogrammi al secondo: nessuna conferma ufficiale, solo la prova di chi l'ha fatto girare.",
+      "link": "https://www.reddit.com/r/VisionPro/comments/1xqf74n/cyberpunk_2077_on_standalone_m2_vision_pro_hand/",
+      "source": "Reddit r/VisionPro"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-airpods5-android",
+      "kind": "recensione",
+      "topic": "audio",
+      "title": "The AirPods 5 blew me away, but Android users should beware",
+      "note": "Android Authority trova nelle AirPods 5 una cancellazione del rumore eccellente, ma segnala compromessi netti per chi le usa con un telefono Android, con un aggiramento parziale per alcune funzioni.",
+      "perche": "È la domanda di chi ha Android e vuole comunque le AirPods: cosa perde davvero, e cosa si può recuperare con un workaround.",
+      "link": "https://www.androidauthority.com/airpods-5-android-experience-3731256/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-google-find-hub-dove",
+      "kind": "confronto",
+      "topic": "accessori",
+      "title": "Google Find Hub come Apple Dov'è: arrivano gli avvisi per oggetti dimenticati",
+      "note": "Find Hub di Google aggiunge gli avvisi per gli oggetti dimenticati, la stessa funzione che Dov'è offre da tempo su iPhone, in vista del lancio del suo tracker Pixel Tag.",
+      "perche": "Chi valuta un AirTag si sentirà dire che \"ora lo fa anche Google\": utile sapere che la funzione arriva solo ora, dopo Apple.",
+      "link": "https://www.hdblog.it/smartphone/articoli/n676210/google-find-hub-avvisi-tag-dimenticati/",
+      "source": "HDblog"
+    },
+    {
+      "id": "banco-occhiali-android-xr-gemini",
+      "kind": "curiosità",
+      "topic": "visori",
+      "title": "Occhiali Android XR con Gemini: confermato il lancio a dicembre",
+      "note": "Gentle Monster conferma che i primi occhiali Android XR con Gemini, nati dal progetto Google con Samsung, arriveranno sul mercato a dicembre 2026.",
+      "perche": "Se arriva la domanda sugli occhiali smart \"come quelli di Meta\", da dicembre c'è anche la risposta di Google da poter citare.",
+      "link": "https://www.hdblog.it/indossabili/articoli/n676263/occhiali-android-xr-google-dicembre-2026/",
+      "source": "HDblog"
+    },
+    {
+      "id": "banco-ios27-hdmi-bug",
+      "kind": "curiosità",
+      "topic": "ios",
+      "title": "iOS 27 users report HDMI output issues and there's no fix in sight",
+      "note": "Dopo l'ultimo aggiornamento alcuni iPhone perdono l'uscita video via HDMI, segnalano molti utenti su Reddit, e Apple non ha ancora un correttivo: lo stesso aggiornamento porta anche il problema, già noto, dei 15 GB occupati da Apple Intelligence pure dove non è disponibile.",
+      "perche": "È il reclamo che arriva dritto al banco dopo l'ultimo aggiornamento: utile sapere che per l'HDMI non c'è ancora una soluzione, solo un aggiramento per lo spazio occupato.",
+      "link": "https://www.gsmarena.com/ios_27_users_report_hdmi_output_issues_and_theres_no_fix_in_sight-news-75385.php",
+      "source": "GSMArena"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-macbookpro-proled-xdr-negozio",
+      "when": "2026-11-06",
+      "ref": {
+        "date": "2026-11-06",
+        "id": "macbook-pro-proled-recensioni-negozio"
+      },
+      "title": "MacBook Pro PROLED XDR in negozio da oggi: per le recensioni lo schermo vale più del touch",
+      "note": "Le prime prove concordavano: il pannello OLED tandem da 2.000 nit era il vero salto, il touch un'aggiunta secondaria e la Apple Pencil non funzionava sullo schermo. Il 14 pollici partiva da 2.899 dollari.",
+      "signal": "43 testate, 1 seguito nei giorni dopo",
+      "link": "https://9to5mac.com/2026/11/05/macbook-pro-with-proled-xdr-display-touch-review/",
+      "source": "9to5Mac"
+    },
+    {
+      "id": "persa-instagram-edits-mac",
+      "when": "2026-11-06",
+      "ref": {
+        "date": "2026-11-06",
+        "id": "instagram-edits-mac"
+      },
+      "title": "Instagram porta Edits sul Mac: montaggio a più tracce, esportazioni 4K gratis e agenti AI via MCP",
+      "note": "Edits, l'editor video di Instagram, è arrivato gratis sui Mac Apple silicon con più tracce ed export 4K senza filigrana; un agente come Meta Muse può usarne gli strumenti via MCP.",
+      "signal": "24 testate",
+      "link": "https://www.iClarified.com/103303/instagram-launches-free-edits-app-for-mac-with-4k-exports-and-ai-agent-support",
+      "source": "Instagram"
+    }
+  ]
+}
