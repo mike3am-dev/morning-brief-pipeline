@@ -1505,7 +1505,8 @@ pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li t
 pipeline/borsa.py        la chiusura di AAPL per la plancia della Magazine (Yahoo Finance)  ->  `borsa`
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
 pipeline/images.py       og:image  ->  data URI incorporati nell'edizione
-pipeline/icon.py         disegna app/icon.png (monogramma + pallini). --check la prova piccola
+pipeline/icon.py         disegnava app/icon.png (monogramma + pallini); dall'8 nov 2026 l'icona è
+                         l'alba di Mike, in app/icone/ (chiara, scura, e il monogramma di prima)
 pipeline/publish_site.py app  ->  site/index.html  ->  GitHub Pages (API Contents, GITHUB_TOKEN)
 pipeline/build.py        archivio  →  app/index.html (cloud). Genera anche app/artifact.html,
                          che però non si pubblica più: resta un file locale.
