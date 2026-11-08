@@ -12,6 +12,11 @@ su entrambi. Niente sfumature e niente angoli arrotondati: la maschera la
 mette iOS, e se la disegnassimo noi verrebbe tagliata due volte.
 
 build.py incorpora il file come apple-touch-icon dentro l'app.
+
+Dall'8 novembre 2026 l'icona non la disegna più questo script: è l'alba di Mike (il sole
+a strisce sopra la falce azzurra), in app/icone/ nelle versioni chiara e scura, con il
+monogramma di prima salvato accanto. app/icon.png è la chiara a 512px. Lanciare questo
+script la sovrascrive col monogramma: farlo solo se Mike vuole tornare indietro.
 """
 
 import argparse
