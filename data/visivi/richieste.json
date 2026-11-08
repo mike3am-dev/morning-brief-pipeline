@@ -494,5 +494,21 @@
   "interazione": "un cursore o un confronto affiancato del livello di nero fra le due tecnologie, senza inventare la cifra del mini-LED",
   "dati": "solo il contrasto OLED (10.000.000:1, Apple/Computerworld) e ~200 commenti Reddit; esploso è già stato usato ieri (6 nov) sullo stesso stack dello schermo ProLED",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-08",
+  "notizia": "siri-recap-live-rewind-leggi-usa",
+  "idea": "Il buffer di Live Rewind: ascolto continuo, finestra di 15 secondi, sparisce dopo 30 secondi se non salvato",
+  "interazione": "un timer/finestra scorrevole che mostra l'audio che entra e scade, col punto in cui diventerebbe una registrazione se salvato",
+  "dati": "15 secondi di finestra (Macitynet), 30 secondi prima che sparisca se non salvato (Macitynet); nessun confronto numerico fra stati USA",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-08",
+  "notizia": "backglow-logo-macbook-pro",
+  "idea": "Il logo che pulsa in modi diversi secondo la modalità di Backglow (Breathe, Agents, reattivo alla musica)",
+  "interazione": "un interruttore fra le modalità che fa vedere il logo animarsi in modo diverso",
+  "dati": "i nomi delle modalità (Breathe, Agents) e il fatto che reagiscono a musica o allo stato di un agente come Claude Code; nessun dato tecnico su timing o luminosità",
+  "stato": "aperta"
  }
 ]
