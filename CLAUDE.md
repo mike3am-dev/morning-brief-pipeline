@@ -831,9 +831,16 @@ questo esempio ne aveva uno: ora il lint lo blocca come errore (`check_italiano`
 
 `kind` è `recensione` · `video` · `confronto` · `curiosità` · `guida`, e determina il
 colore della pastiglia. **`perche` è la sezione**: senza quella riga è una recensione
-qualsiasi, e il lint la respinge come errore. Deve dire perché quella cosa serve *al
-banco* — la domanda che arriverà, il confronto che ti chiederanno, il dettaglio che non
-sai. Non "è interessante".
+qualsiasi, e il lint la respinge come errore.
+
+**Nell'app la sezione si chiama «Di cosa si parla» e il foglietto giallo «La risposta»**
+(8 novembre 2026, Mike: «Sul banco» non si capiva; nella barra di vetro è «Se ne parla»). Il
+campo resta `perche`, ma da allora è **la risposta pronta da dare al cliente**, fra
+virgolette, in seconda persona di cortesia, riparafrasata dall'articolo: «Sì, adesso lo fa
+anche Google, in vista del suo Pixel Tag. Con iPhone e AirTag gli avvisi per gli oggetti
+dimenticati ci sono già da tempo.» Non più il perché serve a te («È la domanda di chi ha
+Android…»). **Solo i fatti dell'articolo**: se il pezzo non dice quali funzioni mancano, la
+risposta non le elenca; niente procedure o rimedi che l'articolo non dà.
 
 Il materiale arriva dal girone `banco` del file grezzo (`"tier": "banco"`): DDay.it,
 HDblog, GSMArena, Android Authority e i due canali YouTube, Andrea Galeazzi e MKBHD.
