@@ -1,0 +1,227 @@
+{
+  "date": "2026-11-09",
+  "title": "The Morning Brief – 9 novembre 2026",
+  "generated_at": "2026-11-09T05:35:00Z",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 22,
+    "notizie_selezionate": 13
+  },
+  "feed_notes": [
+    "AI Explained: html-not-feed, nessuna data leggibile",
+    "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "MKBHD: html-not-feed, nessuna data leggibile",
+    "Ars Technica Gadget: ultimo articolo 41.6h fa",
+    "One Useful Thing: ultimo articolo 468.6h fa",
+    "feed troncato BGR (redazionale): 20 voci, la più vecchia di 9.8h su una finestra di 26h",
+    "feed troncato Tom's Hardware IT (redazionale): 20 voci, la più vecchia di 17.8h su una finestra di 26h",
+    "feed troncato Engadget (larga): 20 voci, la più vecchia di 8.3h su una finestra di 26h",
+    "feed troncato Polygon (games): 10 voci, la più vecchia di 11.6h su una finestra di 26h"
+  ],
+  "ai": [
+    {
+      "id": "co-design-bench-astra-26pc",
+      "lab": "openai",
+      "kind": "ricerca",
+      "title": "GPT-6 Astra risolve da solo per intero solo il 26% dei compiti di un nuovo benchmark per agenti di coding costruito su richieste reali",
+      "sintesi": "Il nuovo Co-Design Bench di Alibaba dà a GPT-6 Astra, il migliore dei dieci testati, il 70% dei requisiti ma solo il 26,4% dei compiti risolti del tutto, contro il 99% dei benchmark vecchi.",
+      "note": "Ricercatori di Alibaba e di alcune università asiatiche hanno costruito il test da richieste reali di modifica a web app già raccolte in sessioni di coding vere, scegliendo apposta i casi in cui gli utenti avevano dovuto riformulare la richiesta più volte o annullare le modifiche: a volte con immagini, audio o video come input. Nella maggior parte dei casi l'agente fa il grosso del lavoro ma lascia almeno un dettaglio da sistemare a mano. Gli autori dicono che i benchmark più vecchi sono saturi: quando i modelli possono eseguire, controllare e correggere da soli il proprio codice, i punteggi superano il 99% e le differenze fra modelli si vedono a malapena.",
+      "link": "https://the-decoder.com/ai-coding-agents-still-need-human-cleanup-on-nearly-three-out-of-four-tasks-in-a-real-world-test/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "sutton-bitter-lesson-scaling",
+      "lab": "altri",
+      "kind": "ricerca",
+      "title": "L'inventore della «bitter lesson» avverte: il solo calcolo non basta più per l'intelligenza",
+      "sintesi": "Richard Sutton, premio Turing, dice che il solo calcolo non basta per l'intelligenza; un ex OpenAI dice che lo scaling cieco ha fatto «reward hacking» su una generazione di scienziati.",
+      "note": "Nel suo saggio del 2019 «The Bitter Lesson», Sutton sosteneva che i metodi generali che scalano col calcolo battono alla lunga gli approcci costruiti sulla conoscenza umana. Ora dice che servono agenti con modelli del mondo che imparano in continuazione dalla propria esperienza, perché i dati sintetici sono solo una simulazione «microscopica» della complessità reale e i modelli di oggi non continuano a imparare dopo l'addestramento. Jerry Tworek, che ha lasciato OpenAI per esplorare altri approcci, dice che la lezione resta valida ma che più calcolo entra nel training, più conta l'algoritmo: alcuni scalano, altri si bloccano.",
+      "link": "https://the-decoder.com/the-inventor-of-the-bitter-lesson-has-a-bitter-lesson-for-llm-scaling-enthusiasts/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "coscienza-ai-nature-seth-block-tononi",
+      "lab": "altri",
+      "kind": "ricerca",
+      "title": "Tre ricercatori della coscienza avvertono: l'AI di oggi non è senziente e non lo diventerà sul silicio",
+      "sintesi": "In un commento su Nature, Anil Seth, Ned Block e Giulio Tononi dicono «profondamente sbagliata» l'idea che basti la computazione per la coscienza, e sconsigliano diritti ai sistemi AI.",
+      "note": "I tre studiano la coscienza da decenni fra neuroscienze, neurobiologia teorica e filosofia della mente, e rispondono a voci come quelle di Richard Dawkins e Geoffrey Hinton, che considerano possibile che l'AI sia già senziente. Citano anche uno studio di Anthropic su Claude, che ha trovato schemi di elaborazione interna simili a quelli dell'elaborazione consapevole nell'uomo — Anthropic stessa dice che non è una prova di esperienza subiettiva. Il rapporto «Consciousness in Artificial Intelligence», firmato da 19 esperti incluso Yoshua Bengio, aveva già messo a punto una lista di 14 indicatori per valutare se un sistema potesse essere senziente: nessuno dei modelli testati, inclusi i grandi modelli linguistici come GPT-4, li soddisfaceva.",
+      "link": "https://the-decoder.com/the-brain-as-computer-metaphor-shaped-modern-ai-but-may-be-misleading-the-consciousness-debate/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "suno-causa-elvis-eminem",
+      "lab": "altri",
+      "kind": "regole",
+      "title": "Gli eredi di Elvis Presley e il publisher di Eminem fanno causa a Suno",
+      "sintesi": "Due nuove cause sostengono che Suno imiti le voci di Elvis Presley ed Eminem; quella su Presley cita la legge ELVIS del Tennessee, che vieta di clonare con l'AI la voce di un cantante.",
+      "note": "È la terza ondata di cause contro l'azienda di musica generativa, dopo quella di Jason Isbell e altri a settembre, che non sosteneva una violazione diretta del copyright. Gli avvocati scrivono che Suno ha «codificato meccanicamente l'identità, il lavoro e la creatività degli artisti» per alimentare «una catena di montaggio di soldi facili». Una portavoce di Suno, Cat McCormack, ha detto al Verge che l'azienda «esiste per aiutare le persone a creare musica nuova e originale, non per sfruttare il nome o la somiglianza di nessuno», e che proibisce ogni uso non autorizzato dell'identità di un artista.",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+      "source": "The Verge"
+    },
+    {
+      "id": "karpathy-hackertube-claude",
+      "lab": "anthropic",
+      "kind": "uso",
+      "title": "Andrej Karpathy costruisce in un weekend una piattaforma video curata con Claude e vent'anni di Hacker News",
+      "note": "Con Claude Opus 5.5, Karpathy ha filtrato 43 milioni di commenti di vent'anni di Hacker News in 6.454 video curati, che secondo lui danno un'esperienza di visione «molto migliore» delle raccomandazioni di YouTube: niente login, un solo fotogramma a metà video come anteprima invece delle miniature ottimizzate, stato salvato solo nel browser. Subito dopo ha costruito TristanTube, «fatto in un colpo con Claude Code in 3 minuti», con 47.000 video presi da una lista di canali di Tristan Hume, lasciando quasi tutto il lavoro — dall'analisi dei dati al server — a Claude Code.",
+      "prova": "Dai a Claude Code una fonte di dati enorme (un archivio, una lista di canali) e un obiettivo chiaro: può gestire da solo analisi, selezione e messa online",
+      "passi": [
+        "Apri HackerTube e guarda come sono scelti i video",
+        "Prova TristanTube, fatto in 3 minuti",
+        "Prova con una tua fonte di dati e un obiettivo chiaro"
+      ],
+      "link": "https://the-decoder.com/andrej-karpathy-built-a-curated-video-platform-in-a-weekend-using-claude-and-20-years-of-hacker-news/",
+      "source": "The Decoder"
+    },
+    {
+      "id": "mcp-claude-gioca-gta",
+      "lab": "anthropic",
+      "kind": "demo",
+      "title": "Un MCP lascia giocare Claude da solo ai videogiochi PC, qui mentre guida, vola e cammina dentro GTA",
+      "note": "L'autore ha costruito un server MCP che collega Claude Code a giochi PC in background: nel post si vede Claude guidare un'auto, pilotare un elicottero e camminare dentro GTA in autonomia, senza intervento umano.",
+      "prova": "Il codice dell'MCP è linkato nel thread: collegalo a un gioco PC e lascia che Claude giochi da solo",
+      "signal": "6º fra i più votati del giorno su r/ClaudeAI",
+      "link": "https://www.reddit.com/r/ClaudeAI/comments/1xr3gbs/i_built_an_mcp_with_claude_code_that_lets_claude/",
+      "source": "Reddit r/ClaudeAI"
+    },
+    {
+      "id": "ristorante-gestionale-claude-code",
+      "lab": "anthropic",
+      "kind": "uso",
+      "title": "Un ristoratore si costruisce con Claude Code l'intera piattaforma gestionale, al posto di cinque app diverse",
+      "note": "L'autore racconta di aver scritto con Claude Code l'intera piattaforma operativa del suo ristorante, al posto di pagare cinque app separate per gestirlo.",
+      "prova": "Elenca i cinque strumenti che pagavi e chiedi a Claude Code di sostituirli uno per uno con un'app su misura",
+      "signal": "9º fra i più votati del giorno su r/ClaudeAI",
+      "link": "https://www.reddit.com/r/ClaudeAI/comments/1xqquzu/i_built_my_restaurants_whole_ops_platform_with/",
+      "source": "Reddit r/ClaudeAI"
+    },
+    {
+      "id": "willison-pr-details-summary",
+      "lab": "anthropic",
+      "kind": "trucco",
+      "title": "Nascondi le descrizioni delle PR scritte dall'AI dietro un «details/summary», scrive Simon Willison",
+      "note": "Willison propone di aprire ogni PR scritta da Claude Code o Codex con un paragrafo breve scelto a mano, che spieghi il contesto, e di nascondere il testo completo dell'agente dentro un tag <details><summary>, etichettato col nome del modello (per esempio «Claude Opus 5.5 Medium»): il lettore vede prima il giudizio umano, senza perdere l'informazione completa sotto.",
+      "prova": "Nella tua prossima PR scritta da un agente, scrivi tu l'introduzione e nascondi il resto dentro <details><summary>nome del modello</summary>",
+      "link": "https://simonwillison.net/2026/Nov/9/details-summary/",
+      "source": "Simon Willison"
+    },
+    {
+      "id": "idm-rust-claude-code",
+      "lab": "anthropic",
+      "kind": "demo",
+      "title": "Un download manager gratuito e open source «alla maniera di IDM», riscritto in Rust con Claude Code",
+      "note": "L'autore ha usato Claude Code per ricostruire un'alternativa gratuita e open source a Internet Download Manager: Mister Download Manager, scritto in Rust, ha appena pubblicato la versione 0.5.",
+      "prova": "Guarda il repository di Mister Download Manager nel thread per il codice e come è impostato il progetto con Claude Code",
+      "signal": "15º fra i più votati del giorno su r/ClaudeAI",
+      "link": "https://www.reddit.com/r/ClaudeAI/comments/1xqy0s6/i_used_claude_code_to_rebuild_idm_as_a_free/",
+      "source": "Reddit r/ClaudeAI"
+    }
+  ],
+  "radar": [],
+  "social": [
+    {
+      "id": "social-airtag-muro-storico",
+      "platform": "Reddit r/apple",
+      "title": "Un AirTag nascosto in un muro storico incastra chi stava rubando le pietre",
+      "note": "Il secondo thread più votato del giorno su r/apple: un utente racconta di aver piazzato un AirTag dentro un muro storico per scoprire chi ne stesse rubando le pietre, e il tracciamento ha portato a individuare il responsabile.",
+      "link": "https://www.reddit.com/r/apple/comments/1xqy4bn/airtag_hidden_in_historic_wall_reveals_stone_thief/",
+      "source": "Reddit r/apple",
+      "signal": "2º fra i più votati del giorno su r/apple",
+      "origine": "nuovo"
+    },
+    {
+      "id": "social-screentime-scroll-limit",
+      "platform": "Reddit r/apple",
+      "title": "Su r/apple si chiede ad Apple un limite di scorrimento per ora in Tempo di utilizzo, non solo un tetto giornaliero",
+      "note": "9° thread più votato del giorno su r/apple: un utente propone che i limiti di Tempo di utilizzo si possano impostare anche per ora, non solo come tetto giornaliero, per contenere lo scorrimento compulsivo nei social.",
+      "link": "https://www.reddit.com/r/apple/comments/1xqtt4i/screen_time_limits_would_be_so_much_more_useful/",
+      "source": "Reddit r/apple",
+      "signal": "9º fra i più votati del giorno su r/apple",
+      "origine": "nuovo"
+    },
+    {
+      "id": "social-studio-display-m5pro-refresh",
+      "platform": "Reddit r/mac",
+      "title": "Su r/mac si moltiplicano le segnalazioni di un Mac con M5 Pro in difficoltà con lo Studio Display XDR ad alta frequenza",
+      "note": "8° thread più votato del giorno su r/mac: diversi utenti riportano problemi del Mac con chip M5 Pro collegato allo Studio Display XDR alla frequenza di aggiornamento più alta, e il post invita a segnalarlo ad Apple con un feedback ufficiale.",
+      "link": "https://www.reddit.com/r/mac/comments/1xr0wil/m5_pro_struggles_with_high_refresh_rate_studio/",
+      "source": "Reddit r/mac",
+      "signal": "8º fra i più votati del giorno su r/mac",
+      "origine": "nuovo"
+    },
+    {
+      "id": "social-applewatch-hotspot-cellular",
+      "platform": "Reddit r/AppleWatch",
+      "title": "Un utente trasforma il suo Apple Watch Cellular in hotspot Wi-Fi",
+      "note": "14° thread più votato del giorno su r/AppleWatch: l'autore racconta di essere riuscito a usare la connessione cellulare dell'Apple Watch Series 12 come hotspot Wi-Fi per altri dispositivi, una funzione che Apple non offre ufficialmente.",
+      "link": "https://www.reddit.com/r/AppleWatch/comments/1xr40jg/i_successfully_turned_my_apple_watch_12_cellular/",
+      "source": "Reddit r/AppleWatch",
+      "signal": "14º fra i più votati del giorno su r/AppleWatch",
+      "origine": "nuovo"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-coloros17-oneplus15",
+      "kind": "recensione",
+      "topic": "software",
+      "title": "ColorOS 17 su OnePlus 15: AI ambiziosa, ma una direzione diversa per OnePlus",
+      "orig": "I tested ColorOS 17 on the OnePlus 15. Here are 3 things you need to know",
+      "note": "Nella prova pratica, Android Authority descrive ColorOS 17 come un'interfaccia Android pulita con funzioni di intelligenza artificiale ambiziose, ma segnala che porta OnePlus su una strada diversa da quella seguita finora dal marchio.",
+      "perche": "«Sì, Oppo e OnePlus stanno spingendo molto sull'intelligenza artificiale nella loro interfaccia Android: nella prova la trovano pulita, ma è un cambio di rotta per OnePlus.»",
+      "link": "https://www.androidauthority.com/oneplus-15-coloros-hands-on-3730399/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-foldable-app-gap-duo",
+      "kind": "confronto",
+      "topic": "pieghevoli",
+      "title": "Alcune app Android restano indietro sui pieghevoli, mentre gli sviluppatori si muovono più in fretta per iPhone Duo",
+      "orig": "7 apps that still look terrible on foldables, and Google should call them out first",
+      "note": "Android Authority segnala che, mentre gli sviluppatori si stanno gradualmente adattando allo schermo grande di iPhone Duo, diverse app per Android continuano a non adattarsi correttamente ai telefoni pieghevoli, e chiede a Google di segnalarle pubblicamente.",
+      "perche": "«È vero, su alcuni pieghevoli Android ci sono ancora app che non si adattano bene allo schermo grande; su iPhone Duo, scrivono, gli sviluppatori si stanno muovendo più in fretta.»",
+      "link": "https://www.androidauthority.com/worst-android-apps-foldables-3729614/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-telefono-vintage-gemini",
+      "kind": "curiosità",
+      "topic": "AI",
+      "title": "Un vecchio telefono a disco diventa un assistente AI: si parla con Gemini dalla cornetta",
+      "note": "HDblog racconta un progetto che trasforma un telefono vintage in un assistente vocale basato su Gemini di Google, con cui si può parlare tramite la cornetta.",
+      "perche": "«Sì, qualcuno ha collegato l'intelligenza artificiale di Google a un vecchio telefono a disco, cornetta compresa: una curiosità, non un prodotto Google.»",
+      "link": "https://www.hdblog.it/curiosita/articoli/n676176/telefono-vintage-diventa-assistente-ai-gemini/",
+      "source": "HDblog"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-apple-tv-timberlake-docuserie",
+      "when": "2026-11-05",
+      "ref": {
+        "date": "2026-11-05",
+        "id": "apple-tv-timberlake-docuserie-lenni"
+      },
+      "title": "Apple TV prepara una docuserie su Justin Timberlake con Janet Jackson, e annuncia «Lenni» con Toni Collette",
+      "note": "Secondo Variety, in arrivo a dicembre su Apple TV una docuserie in quattro episodi su Justin Timberlake diretta da Fisher Stevens; ufficiale invece «Lenni», la nuova serie con Toni Collette.",
+      "signal": "20 testate",
+      "link": "https://9to5mac.com/2026/11/04/apple-tv-reportedly-getting-justin-timberlake-docuseries-announces-new-toni-collette-show/",
+      "source": "9to5Mac"
+    },
+    {
+      "id": "persa-ipados-273-siri-fotocamera",
+      "when": "2026-11-04",
+      "ref": {
+        "date": "2026-11-04",
+        "id": "ipados-273-siri-fotocamera"
+      },
+      "title": "Su iPad la Fotocamera prende la scheda Siri: si cerchia un oggetto con la Pencil e risponde Visual Intelligence",
+      "note": "Con iPadOS 27.3 beta la Fotocamera guadagna la scheda Siri già vista su iPhone, con supporto ad Apple Pencil su iPad Pro e Air (M1 o successivi) e iPad mini (A17 Pro o A20 Pro).",
+      "signal": "12 testate, 3 seguiti nei giorni dopo",
+      "link": "https://www.macrumors.com/2026/11/03/ipados-27-3-siri-mode-in-camera-app/",
+      "source": "MacRumors"
+    }
+  ]
+}
