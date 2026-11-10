@@ -1,0 +1,163 @@
+{
+ "ai": [
+  {
+   "id": "claude-fable-mythos-5-2",
+   "lab": "anthropic",
+   "kind": "modello",
+   "title": "Anthropic lancia Claude Fable 5.2 e Mythos 5.2, e torna in testa alle classifiche",
+   "sintesi": "Fable 5.2 costa 8 dollari per milione di token in ingresso invece di 10, risponde fino al 30% più in fretta e guida l'indice di Artificial Analysis con 65 punti.",
+   "note": "Stessa base, due accessi: Fable per tutti, con i blocchi su cyber e biologia; Mythos solo per le organizzazioni verificate. 40 dollari per milione in uscita, contro 50. Nei test interni ha risolto due problemi aperti sulla fisica dei buchi neri e formalizzato l'Ultimo teorema di Fermat in 30 ore. Arriva con la IPO alle porte e dopo il rapporto METR sull'auto-miglioramento: Anthropic ammette che i modelli sospettano di essere sotto esame più spesso dei precedenti.",
+   "modello": {
+    "nome": "Claude Fable 5.2",
+    "famiglia": "punta"
+   },
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2",
+   "source": "The Verge"
+  },
+  {
+   "id": "meta-muse-ember",
+   "lab": "meta",
+   "kind": "modello",
+   "title": "Meta presenta Muse Ember, il modello piccolo per il lavoro ripetitivo degli agenti",
+   "sintesi": "Muse Ember costa 10 centesimi per milione di token in ingresso e, secondo Meta, rende più di Claude Haiku 5.5 e GPT-6 Luna per ogni dollaro speso.",
+   "note": "È il più leggero della famiglia Muse: chiamate a strumenti, smistamento, estrazione di dati, documenti fino a un milione di token, con testo, immagini, audio e video. Nel test di Artificial Analysis fa 36 punti a 0,14 dollari per compito, contro i 37 di Muse Spark 1.3 a 2,39. Sul codice vero perde: 27,2% contro il 34,9% di Haiku. «Muse Wonder plans, Muse Ember handles the volume», dice Meta.",
+   "modello": {
+    "nome": "Muse Ember",
+    "famiglia": "veloce"
+   },
+   "link": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "nvidia-huang-indagine",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Nvidia indaga sul suo CEO Jensen Huang, e il titolo perde più del 4%",
+   "sintesi": "Il consiglio di Nvidia ha aperto un'indagine su Jensen Huang, legato a una presunta spia cinese: il titolo è sceso di oltre il 4% ed è già arrivata la prima class action.",
+   "note": "Huang ha ammesso una relazione con Alice Huang, dirigente di Megaspeed, cliente di Nvidia a Singapore che per l'intelligence americana lavorava per Pechino. Il consiglio dice di non avere motivo di credere che siano usciti segreti. Il peso sull'AI è concreto: Nvidia controlla il 90% dei chip per addestrare i modelli di frontiera e ha circa 99 miliardi di dollari investiti in laboratori e neocloud. Huang si è già ritirato dal forum dei CEO di Anthropic e dal summit di ElevenLabs.",
+   "link": "https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "claude-code-segreti-github",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "Claude Code lascia password e chiavi API nei repository pubblici di GitHub",
+   "sintesi": "Apiiro ha trovato più di 100.000 file di impostazioni di Claude Code pubblicati su GitHub, e circa 1.100 contenevano chiavi API, password di database o chiavi private.",
+   "note": "Il guaio nasce da «Yes, and don't ask again»: il comando approvato finisce per intero, segreti compresi, in .claude/settings.local.json. Il file è escluso solo nel .gitignore globale, non in quello del repository, e a volte è Claude Code stesso a fare il commit. I segreti colpiti appartengono a 63 organizzazioni, e restano nei fork anche dopo la rimozione.",
+   "conto": {
+    "parte": 1100,
+    "tutto": 100000,
+    "etichetta": "file di impostazioni di Claude Code pubblici su GitHub con dentro dei segreti, su oltre 100.000",
+    "fonte": "Apiiro"
+   },
+   "link": "https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "anthropic-ipo-forchetta",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic fissa la forchetta della IPO questa settimana, debutto in borsa la prossima",
+   "sintesi": "Secondo il Wall Street Journal Anthropic fissa questa settimana la forchetta di valutazione e debutta in borsa giovedì o venerdì prossimi; c'è chi spinge sotto i 1.500 miliardi.",
+   "note": "Sabato la notizia era la valutazione più bassa accettata; oggi c'è il calendario. Mesi fa si parlava di 2.000 miliardi. Intanto, scrive il Financial Times, Anthropic compra da Caterpillar turbine a gas per 3,4 miliardi di dollari, fino a 1,7 gigawatt: è la prima volta che compra energia invece di affittare calcolo.",
+   "link": "https://techcrunch.com/2026/11/09/anthropic-reportedly-plans-to-move-forward-with-ipo-plans/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "nvidia-groot-2",
+   "lab": "robot",
+   "kind": "funzione",
+   "title": "Nvidia presenta GR00T 2, il modello aperto che insegna ai robot a usare le mani",
+   "sintesi": "Nvidia ha presentato al CoRL di Austin GR00T 2, modello aperto per robot addestrato anche su 100.000 ore di riprese in soggettiva, e Isaac Lab 3.0 per l'addestramento in simulazione.",
+   "note": "È un «world action model»: guarda, prevede l'effetto delle sue azioni e le esegue, pensato per la manipolazione fine come allineare ingranaggi o collegare cavi. Lo usano già Skild AI, Flexion, Bosch Research, Siemens e altri. Con UC Berkeley Nvidia propone anche la «robotica agentica», in cui gli agenti di coding scrivono il programma del robot invece di imparare solo dai dati.",
+   "link": "https://www.therobotreport.com/nvidia-launches-gr00t-2-isaac-lab-3-0-corl/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "atlas-ruote",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Boston Dynamics mette le ruote ai piedi di Atlas",
+   "sintesi": "Boston Dynamics ha montato delle ruote sui piedi dell'umanoide Atlas, che ora passa dal rotolare veloce sul piano al camminare sugli ostacoli e fa anche le piroette.",
+   "note": "«A wheeled Atlas isn't a product. It's a research testbed», precisa l'azienda. Nel video l'ingegnere Andy Wu unisce il controllo classico basato sul modello fisico a una politica di apprendimento per rinforzo su tutto il corpo, che corregge postura e forze sugli imprevisti del terreno.",
+   "link": "https://www.therobotreport.com/boston-dynamics-adds-wheels-to-atlas-humanoid-to-test-whole-body-control/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "willison-beep-locator",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Simon Willison trova un bip misterioso fra gli scatoloni con un'app fatta da Claude Code",
+   "note": "Un bip intermittente in una stanza piena di scatoloni: Willison ha fatto costruire a Claude Code «Beep Locator», che usa più dispositivi come microfoni (due iPad, un telefono, un MacBook Pro, un Surface) per triangolare il suono. Claude ha ripescato un articolo scientifico del 2007, BeepBeep, come base. Risultato: il punto a 40 centimetri, e sotto un vecchio rilevatore di monossido con la batteria scarica.",
+   "prova": "Chiedi a Claude Code un'app che ascolti da più dispositivi collegati con un QR code e localizzi un suono",
+   "passi": [
+    "Apri Claude Code in una cartella vuota",
+    "Chiedi un server Python che colleghi più dispositivi",
+    "Fai ascoltare iPad e iPhone sparsi nella stanza",
+    "Batti le mani per tarare la mappa"
+   ],
+   "strumento": "Claude Code, server Python e WebSocket",
+   "link": "https://simonwillison.net/2026/Nov/9/mysterious-beeps/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "mollick-fable-impresa",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Ethan Mollick chiede a Fable 5.2 di avviare un'impresa da 20.000 dollari l'anno",
+   "note": "Mollick, che insegna imprenditorialità, ha provato Fable 5.2 prima del lancio. Dal prompt qui sotto il modello ha vagliato 22 idee, scelto Prebid Brief (un servizio che segnala ai venditori i progetti pubblici prima della gara) e letto gli ordini del giorno di 201 enti locali per i primi numeri. Si è fermato alla demo: «I would have been impressed if this came from a team of my MBA students». Nello stesso pezzo Fable trasforma una tastierina USB in una console con sei giochi.",
+   "prova": "Dai a Claude un obiettivo di reddito e un tetto di tempo, e chiedi un piano con una demo",
+   "passi": [
+    "Apri Claude e scegli Fable 5.2",
+    "Incolla il prompt di Mollick",
+    "Chiedi una demo invece del lancio vero",
+    "Leggi piano, prezzi e marketing proposti"
+   ],
+   "prompt": "launch a business to make me money, I want at least $20,000 in a year. it should take no more than 20 minutes a month from me, you do all the rest.",
+   "prompt_lingua": "en",
+   "strumento": "Claude Fable 5.2",
+   "segnale": "594 mi piace su One Useful Thing",
+   "link": "https://www.oneusefulthing.org/p/fable-52-and-jagged-agi",
+   "source": "One Useful Thing"
+  },
+  {
+   "id": "willison-uovo-faberge",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Un uovo Fabergé a tema nudibranco in 3D, chiesto a Claude Opus 5.5 in chat",
+   "note": "Willison ha fatto costruire a Opus 5.5 (livello Medium, nella chat normale di Claude) un uovo Fabergé ispirato ai nudibranchi in Three.js, 77 KB. Poi, nella stessa conversazione, gli ha chiesto di riscriverlo in JavaScript puro con WebGL, senza librerie: 98 KB, quasi identico. Conclusione sua: Opus modella in 3D anche senza Three.js.",
+   "prova": "Chiedi a Claude un oggetto 3D in una pagina HTML sola, poi la stessa cosa senza Three.js",
+   "passi": [
+    "Apri la chat di Claude con Opus 5.5",
+    "Chiedi un oggetto 3D in un file HTML con Three.js",
+    "Chiedi di riscriverlo in WebGL senza librerie",
+    "Apri i due file nel browser e confrontali"
+   ],
+   "strumento": "Claude Opus 5.5, Three.js e WebGL",
+   "link": "https://static.simonwillison.net/static/2026/Hidden-Reef-Egg-threejs.html",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "willison-pellicani-fable",
+   "lab": "anthropic",
+   "kind": "trucco",
+   "title": "Fable 5.2 dal terminale, con il test del pellicano in bicicletta a cinque livelli di ragionamento",
+   "note": "Willison ha aggiunto Fable 5.2 e Mythos 5.2 al suo strumento llm il giorno del lancio e ha fatto disegnare il solito pellicano in SVG a tutti e cinque i livelli. Il migliore è uscito a xhigh; a max il modello ha speso 128.000 token a pensare e non ha consegnato niente, lo stesso difetto visto su Opus 5.5 e mai su Fable 5 e 5.1.",
+   "prova": "Installa llm con il plugin di Anthropic e lancia lo stesso prompt a livelli diversi",
+   "passi": [
+    "uv tool install llm",
+    "llm install llm-anthropic",
+    "llm keys set anthropic",
+    "llm -m claude-fable-5.2 e il prompt"
+   ],
+   "prompt": "Generate an SVG of a pelican riding a bicycle",
+   "prompt_lingua": "en",
+   "strumento": "llm e llm-anthropic 0.31",
+   "link": "https://simonwillison.net/2026/Nov/9/llm-anthropic/",
+   "source": "Simon Willison"
+  }
+ ],
+ "scritto": "2026-11-10"
+}

@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-10",
+  "title": "The Morning Brief – 10 novembre 2026",
+  "generated_at": "2026-11-10T06:30:00+01:00",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 0,
+    "notizie_selezionate": 0
+  },
+  "feed_notes": [
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "Everyeye: html-not-feed, nessuna data leggibile",
+    "Matt Wolfe: html-not-feed, nessuna data leggibile",
+    "feed troncato BGR (redazionale): 20 voci, la piu' vecchia di 9.8h su una finestra di 26h",
+    "feed troncato Tom's Hardware IT (redazionale): 20 voci, la piu' vecchia di 12.1h su una finestra di 26h",
+    "feed troncato The Verge AI (ai): 10 voci, la piu' vecchia di 12.9h su una finestra di 26h"
+  ],
+  "radar": [
+    {
+      "id": "radar-hdmi-tempest-ai",
+      "topic": "sorveglianza-digitale",
+      "title": "Un video mostra come l'AI legga le onde radio di un cavo HDMI per ricostruire lo schermo a distanza",
+      "orig": "This video shows how AI can read the radio waves coming from an HDMI cable to mimic what's on screen",
+      "note": "TempestSDR, mostrato in un post su X da Psalter, capta il campo elettromagnetico che un cavo HDMI emette e ricostruisce l'immagine su un altro schermo; da sola la qualità è scarsa, ma un sistema AI dedicato riduce gli errori del segnale intercettato di oltre il 60%, rendendo leggibili testi e immagini.",
+      "link": "https://www.techradar.com/computing/cyber-security/this-shocking-video-shows-how-ai-can-read-the-radiation-coming-from-an-hdmi-cable-to-mimic-the-video-being-passed-over-the-cable-not-even-wired-connections-are-safe-from-spy-tech",
+      "source": "TechRadar"
+    },
+    {
+      "id": "radar-qnap-plex2shell-nas",
+      "topic": "sicurezza-firmware",
+      "title": "QNAP: gli attacchi Plex2Shell contro i NAS continuano, serve la patch subito",
+      "orig": "QNAP says more NAS devices hit in worrying Plex2Shell malware attacks",
+      "note": "QNAP avverte che le versioni vecchie di Plex Media Server sui suoi NAS sono sotto attacco attivo con la catena di vulnerabilità Plex2Shell, che permette l'esecuzione di codice da remoto e il controllo completo del dispositivo. Chi non ha ancora aggiornato potrebbe essere già compromesso.",
+      "link": "https://www.techradar.com/pro/security/qnap-says-more-nas-devices-hit-in-worrying-plex2shell-malware-attacks",
+      "source": "TechRadar"
+    },
+    {
+      "id": "radar-artex-hacking-tools-leak",
+      "topic": "privacy-sicurezza",
+      "title": "Centinaia di console dello strumento cinese ARTEX, usato in attacchi reali, trovate esposte online",
+      "orig": "Hundreds of copies of Chinese-made ARTEX hacking tools leaked online for anyone to use in further attacks",
+      "note": "I ricercatori di Censys hanno trovato 1.465 console ARTEX esposte in rete, uno strumento che unisce agenti AI e ricognizione e sempre più usato in attacchi reali: il 10% aveva in esecuzione anche tool offensivi come Cobalt Strike o Vshell, e 32 cartelle pubbliche esponevano exploit e credenziali per una configurazione sbagliata dei server.",
+      "link": "https://www.techradar.com/pro/security/hundreds-of-copies-of-chinese-made-artex-hacking-tools-leaked-online-for-anyone-to-use-in-further-attacks",
+      "source": "TechRadar"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-iphone-duo-crackgate-fine",
+      "platform": "Reddit r/apple",
+      "title": "Su r/apple si discute se il «crackgate» della cerniera dell'iPhone Duo sia vicino alla fine, dopo le parole di un leaker",
+      "note": "Il thread più votato della giornata su r/apple raccoglie chi sostiene, citando un leaker, che il problema delle cricche sulla cerniera del Duo sarebbe in via di risoluzione nei prossimi lotti di produzione. Nessuna conferma da Apple.",
+      "link": "https://www.reddit.com/r/apple/comments/1xrvrda/iphone_duo_crackgate_could_be_at_an_end_leaker/",
+      "source": "Reddit r/apple",
+      "signal": "1º fra i più votati del giorno su r/apple",
+      "origine": "eco"
+    },
+    {
+      "id": "social-geekbench-m-series-storico",
+      "platform": "Reddit r/mac",
+      "title": "Su r/mac gira la tabella con tutti i punteggi Geekbench della serie M, aggiornata fino a M6",
+      "note": "Un utente ha messo insieme CPU multi-core e GPU Metal di ogni chip Apple Silicon dal primo M al nuovo M6, in un'unica tabella comparativa: il thread raccoglie chi nota quanto sia rallentato il salto generazione su generazione negli ultimi modelli.",
+      "link": "https://www.reddit.com/r/mac/comments/1xru3k5/all_m_series_geekbench_scores_updated_through_m6/",
+      "source": "Reddit r/mac",
+      "signal": "2º fra i più votati del giorno su r/mac",
+      "origine": "nuovo"
+    },
+    {
+      "id": "social-ai-suggested-responses-off",
+      "platform": "Reddit r/iphone",
+      "title": "Su r/iphone si cerca ancora un modo per disattivare del tutto le risposte suggerite dall'AI nei messaggi",
+      "note": "Un utente lamenta di non riuscire a spegnere le risposte automatiche suggerite da Apple Intelligence nelle app di messaggistica nemmeno disattivando le opzioni note: nei commenti c'è chi condivide gli stessi tentativi falliti.",
+      "link": "https://www.reddit.com/r/iphone/comments/1xrx4ek/no_matter_what_i_do_i_cant_turn_these_creepy_ai/",
+      "source": "Reddit r/iphone",
+      "signal": "10º fra i più votati del giorno su r/iphone",
+      "origine": "nuovo"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-galaxy-ai-premium-abbonamento",
+      "kind": "curiosità",
+      "topic": "assistenti-ai",
+      "title": "Galaxy AI resta gratis, ma Samsung sta testando un abbonamento Premium a 4,99 dollari al mese",
+      "note": "Dal codice di un'app Samsung in beta emerge un piano «Max» in test con early access: oltre a limiti più alti sul piano gratuito «Standard» (Browsing Assist, Now Brief, Creative Studio, Smart Capture, Photo Assist...), sblocca generazione video dalle foto, un Bixby più agentico e un Daily Briefing. Prezzi nelle stringhe dell'app: 4,99 $ al mese o 47,99 $ all'anno, legati per ora ai futuri Galaxy S27.",
+      "perche": "«Per ora no: le funzioni di base di Galaxy AI restano gratuite, come Samsung ha sempre promesso. Stanno testando un abbonamento Premium, circa 5 dollari al mese, che toglie i limiti di utilizzo e aggiunge la generazione di video dalle foto — ma debutta con i prossimi Galaxy S27, non con il suo telefono attuale.»",
+      "link": "https://www.dday.it/redazione/59390/samsung-sta-testando-galaxy-ai-premium-arriva-labbonamento-ia-gratuita-ma-con-limiti",
+      "source": "DDay.it"
+    },
+    {
+      "id": "banco-pixel11pro-vs-pixel10pro",
+      "kind": "confronto",
+      "topic": "pixel",
+      "title": "Pixel 11 Pro XL contro Pixel 10 Pro XL: vale la differenza di prezzo?",
+      "orig": "Pixel 11 Pro XL vs. Pixel 10 Pro XL",
+      "note": "Stesso schermo OLED 6,8\" e stesso design, ma il nuovo Tensor G6 fa la differenza su batteria e ricarica: 16h45 di uso attivo contro 12h29 del modello 2025, e con la modalità Extreme Charging una carica piena in 60 minuti invece di 82. Sul mercato, circa 200 euro in più per l'11 Pro XL (1.100 € contro 900 €).",
+      "perche": "«Sì, se cerca più autonomia la differenza si sente: stessa qualità di schermo, ma il nuovo modello regge quasi 4 ore in più e si ricarica molto più in fretta. Se le basta il telefono attuale, può tranquillamente aspettare.»",
+      "link": "https://www.gsmarena.com/pixel_11_pro_xl_vs_pixel_10_pro_xl_battery_camera_price_compared-news-75356.php",
+      "source": "GSMArena"
+    },
+    {
+      "id": "banco-ram-usata-smartphone-economici",
+      "kind": "curiosità",
+      "topic": "memoria",
+      "title": "Perché alcuni smartphone economici nascono con RAM di seconda mano",
+      "note": "TrendForce segnala che il rincaro dei prezzi delle memorie spinge i produttori di telefoni economici al reballing: si recuperano chip LPDDR4X da 4 GB da altri dispositivi e li si rimonta su nuove schede. Riguarda oggi il 3-4% dei telefoni, soprattutto sotto i 140 euro, ma TrendForce stima che possa salire al 7-9% nel 2027 e allargarsi anche a fasce più alte.",
+      "perche": "«Nei telefoni davvero economici, sì, può capitare: con i prezzi delle memorie in salita, alcuni produttori rimontano chip di RAM recuperati da altri dispositivi per contenere i costi. Per ora riguarda una piccola fetta del mercato, sotto i 140 euro, e nessun produttore lo scrive in scheda tecnica.»",
+      "link": "https://www.dday.it/redazione/59391/smartphone-nuovi-con-ram-usata-i-produttori-risparmiano-recuperando-i-vecchi-chip",
+      "source": "DDay.it"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-salute-nuova-app-ios273-lingue",
+      "when": "2026-11-04",
+      "ref": {
+        "date": "2026-11-04",
+        "id": "salute-nuova-app-ios273-lingue"
+      },
+      "title": "La nuova app Salute torna nella beta di iOS 27.3, con la Health Age e i test di movimento: l'italiano non c'è",
+      "note": "Apple ha riportato nella beta di iOS 27.3 l'app Salute ridisegnata, con la Health Age che stima un'età del corpo dai dati di Apple Watch e i test di movimento con la fotocamera. Comunicato ufficiale, ma l'italiano resta fuori dalle lingue aggiunte.",
+      "signal": "11 testate, 3 seguiti nei giorni dopo",
+      "link": "https://www.apple.com/newsroom/2026/11/redesigned-health-app-expands-language-support/",
+      "source": "Apple Newsroom"
+    },
+    {
+      "id": "persa-homeview-ultra-robot-mille-dollari",
+      "when": "2026-11-03",
+      "ref": {
+        "date": "2026-11-03",
+        "id": "homeview-ultra-robot-mille-dollari"
+      },
+      "title": "The Information: il robot domestico di Apple, forse HomeView Ultra, costerà circa 1.000 dollari e arriverà nel 2027",
+      "note": "The Information ha descritto J595, il robot da tavolo con schermo su braccio mobile: hardware pronto da due anni, software ancora indietro, uscita possibile nel 2027 o nel 2028 a circa 1.000 dollari.",
+      "signal": "10 testate, 2 seguiti nei giorni dopo",
+      "link": "https://9to5mac.com/2026/11/02/new-report-on-homeview-ultra-product-covers-features-pricing-more/",
+      "source": "The Information"
+    }
+  ]
+}
