@@ -480,7 +480,35 @@
             "perche": "I rimandi ai documenti di sicurezza, sistema per sistema"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "catena",
+            "titolo": "La finestra tra la patch e il rischio vero",
+            "didascalia": "iOS 27.2.1 chiude nove falle 13 giorni dopo iOS 27.2: il pericolo comincia quando Apple pubblica i dettagli di ogni falla, non prima.",
+            "passi": [
+              {
+                "titolo": "27.2.1 esce",
+                "nota": "Chiude nove falle fra iMessage, AirPlay e Bluetooth, 13 giorni dopo iOS 27.2."
+              },
+              {
+                "titolo": "Il documento di sicurezza arriva",
+                "nota": "Ore dopo l'update, Apple pubblica la descrizione di ogni falla e chi l'ha segnalata."
+              },
+              {
+                "titolo": "I dettagli diventano pubblici",
+                "nota": "Chiunque può leggerli, compreso chi vuole sfruttarli su chi non ha aggiornato."
+              }
+            ],
+            "rottura": {
+              "dopo": "la pubblicazione del documento di sicurezza",
+              "senza": "l'aggiornamento installato",
+              "etichetta": "Finestra di rischio aperta",
+              "nota": "L'iPhone resta esposto a falle ora descritte nei dettagli."
+            },
+            "azione": "Aggiorna subito a iOS 27.2.1",
+            "fonte": "Apple / 9to5Mac"
+          }
+        ],
         "scritto": "2026-11-10"
       },
       "rank": 2,
@@ -697,7 +725,31 @@
             "perche": "Il modem C2 e il calendario di primavera 2027"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "barre",
+            "titolo": "Chi guadagna più batteria non è il modello economico",
+            "unita": "mAh",
+            "voci": [
+              {
+                "etichetta": "iPhone 18",
+                "min": 3671,
+                "max": 4430,
+                "colore": "arancione",
+                "nota": "+20%, perde il vano della SIM fisica"
+              },
+              {
+                "etichetta": "iPhone 18e",
+                "min": 4005,
+                "max": 4430,
+                "colore": "grigio",
+                "nota": "+10%"
+              }
+            ],
+            "didascalia": "Secondo il diagramma di iThinkDifferent l'iPhone 18 cresce il doppio dell'18e. Dati non confermati da Apple.",
+            "fonte": "iThinkDifferent"
+          }
+        ],
         "scritto": "2026-11-10"
       },
       "rank": 4,
@@ -801,7 +853,26 @@
             "perche": "Il conto prima e dopo l'imposta integrativa OCSE"
           }
         ],
-        "visivi": [],
+        "visivi": [
+          {
+            "tipo": "flusso",
+            "titolo": "Il risparmio che la tassa minima ha tagliato quasi a metà",
+            "didascalia": "Schema di quanto Apple risparmia oggi a Singapore con la tassa minima OCSE, contro quanto avrebbe risparmiato senza.",
+            "oggi": {
+              "etichetta": "Con la tassa minima (oggi)",
+              "centro": "Singapore",
+              "incassa": "circa 2,98 mld $ di risparmio netto",
+              "nota": "L'imposta integrativa OCSE si porta via 2,51 mld $, quasi metà del risparmio possibile."
+            },
+            "agente": {
+              "etichetta": "Senza la tassa minima (ipotesi)",
+              "centro": "Singapore",
+              "incassa": "5,49 mld $ di risparmio pieno",
+              "nota": "Ipotesi: quanto la bassa fiscalità di Singapore avrebbe fatto risparmiare ad Apple senza la riforma OCSE."
+            },
+            "fonte": "MacRumors"
+          }
+        ],
         "scritto": "2026-11-10"
       },
       "rank": 5,
