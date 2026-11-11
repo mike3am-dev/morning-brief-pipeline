@@ -158,10 +158,10 @@ Un **articolo che va oltre la notizia senza ripeterla**: non un modulo a schede.
 ```
 
 - `titolo` ≤ 80: è un **angolo**, non il titolo della notizia detto in altro modo.
-- `punto` ≤ 200: apre l'angolo, non riassume. **Non affermare nel sommario ciò che il testo
+- `punto` ≤ 300: apre l'angolo, non riassume. **Non affermare nel sommario ciò che il testo
   poi declassa a ipotesi**: se il testo dice «è un'ipotesi», il sommario non può darla per
   fatto.
-- `sotto`: 2–3 paragrafi, ciascuno ≤ 450. Partono da dove finisce la descrizione: meccanismo,
+- `sotto`: 2–3 paragrafi, ciascuno ≤ 650. Partono da dove finisce la descrizione: meccanismo,
   precedente, confronto, domande che restano. Dove non c'è un dato, dillo («per ora non è
   noto»); il contesto generale si dichiara con «in genere». Evita di annunciare contraddizioni
   che il lettore non ha ancora visto.

@@ -411,7 +411,7 @@ Poi scrivi `data/briefs/YYYY-MM-DD.json` seguendo esattamente lo schema di
 `data/briefs/2026-08-08.json`. **Scrivi `sintesi`, `descrizione` e i campi
 dell'`approfondimento` già dentro le misure che `lint.py` controlla** (vedi le tabelle
 `SINTESI_MAX`/`DEEP_MAX` in `pipeline/lint.py`: sintesi ≤200 caratteri nelle notizie e ≤190
-nell'AI, `punto` ≤220, ogni paragrafo di `sotto` ≤450, ogni `tappa`/voce di `dopo` ≤90) —
+nell'AI, `punto` ≤300, ogni paragrafo di `sotto` ≤650, ogni `tappa`/voce di `dopo` ≤90) —
 contare i caratteri mentre scrivi costa niente, riscrivere tutto dopo un giro di lint costa un
 passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole editoriali:
 
@@ -1016,11 +1016,15 @@ letture. L'esempio completo è l'edizione del 1 novembre 2026.
 | Campo | Massimo |
 |---|---|
 | `titolo` | 80 caratteri |
-| `punto` | 200 caratteri |
-| `sotto` | 3 paragrafi da 450 |
+| `punto` | 300 caratteri |
+| `sotto` | 3 paragrafi da 650 |
 | `numeri` | 3 |
 | `voci` | 4, da 240 caratteri |
 | `approfondire` | 3 voci, `perche` entro 70 |
+
+Sommario e paragrafi sono stati allargati l'11 novembre 2026 (da 200 e 450): Mike vuole una
+prosa che scorra come un articolo, e i limiti stretti spingevano a comprimere fino al telegrafico.
+Il resto delle misure non cambia.
 
 Accorciare non autorizza ad arrotondare: «poco sopra il 60%» non diventa «al 60%», e la
 stima della fonte di Jiemian non diventa la stima di Jiemian. **Non inventare nulla**, qui

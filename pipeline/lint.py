@@ -458,7 +458,7 @@ DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # le misure dell'approfondimento sul telefono: oltre, si scorre troppo
 # (30 settembre 2026, "scorro scorro tante sezioni"). Dal 1 novembre 2026 e'
 # un articolo: titolo suo, sommario, numeri, testo, voci degli altri, letture.
-DEEP_MAX = {"titolo": 80, "punto": 200, "sotto_par": 3, "sotto_len": 450, "numeri": 3,
+DEEP_MAX = {"titolo": 80, "punto": 300, "sotto_par": 3, "sotto_len": 650, "numeri": 3,
             "voci": 4, "voce_len": 240, "letture": 3, "perche_len": 70}
 DEEP_VOCI = {"analista", "testata", "apple", "social", "storia", "esperto"}
 # il titolo dell'approfondimento che somiglia a quello della notizia la ripete
