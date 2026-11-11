@@ -381,6 +381,14 @@ cancellando una riga dal prompt della routine. La regia resta alla sessione prin
 3. il **redattore** aggiunge `news`, `top3`, `intro`, gli approfondimenti, `citazione`,
    `editoriale`, `prossimo`, senza cancellare niente di quello che c'è;
 4. se non consegna, la regia scrive le notizie da sé: un'edizione in Sonnet batte nessuna.
+5. **dall'11 novembre 2026, la seconda mano**: appena il redattore consegna, la regia chiama il
+   sottoagente **`revisore`** (`.claude/agents/revisore.md`, Opus) con una chiamata normale, non in
+   background, passandogli la data, l'edizione e la lettura. Rilegge notizie, approfondimenti,
+   `intro` e «Il punto» e li corregge secondo `docs/stile/linee-editoriali.md`, cambiando le parole
+   e mai i fatti (`pipeline/revisione.py` lo controlla). Tetto 10 minuti; se non consegna,
+   l'edizione esce con la prosa del redattore. **Questo passo va fatto anche se il prompt della
+   routine non lo nomina**: il prompt su claude.ai si aggiorna a mano, e `routine/prompt.md` è la
+   versione giusta da incollarci.
 
 Il resto della procedura (verify, immagini, lint, push, visualista) non cambia. Le regole di
 scrittura che seguono valgono per il redattore; stanno anche, in forma breve, nel suo file.
