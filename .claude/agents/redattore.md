@@ -118,6 +118,28 @@ l'elenco **completo**:
 - Una novità grossa può avere anche la sua notizia: l'elenco completo c'è sempre lo stesso.
 - Il lint avvisa se nel grezzo c'è un rilascio e nessuna delle prime cinque ha `novita`.
 
+## Come suona — un articolo, non un confronto scritto a tavolino
+
+11 novembre 2026, Mike, sull'approfondimento di Apple TV e la lingua dei segni: «il testo sembra
+costruito per contrapposizioni successive: Prime fa questo, Netflix fa quello, Apple invece… È
+corretto, ma poco naturale. Il lettore deve avere la sensazione di leggere un articolo».
+
+- **Frasi intere, collegate.** Ogni frase porta alla successiva con un passaggio naturale
+  («invece», «per questo», «c'è poi»), non con una raffica di affermazioni brevi e due punti.
+- **Niente contrapposizioni in serie.** Non «A fa X, B fa Y, Apple invece Z» come struttura del
+  paragrafo: racconta prima il contesto, poi la scelta, con il tempo che serve.
+- **Spiega, non alludere.** Se una cosa «non si spegne», di' perché: «l'interprete è già
+  presente nell'immagine e non può essere rimosso». Se un'estensione di Chrome esclude
+  televisore e telefono, scrivi che funziona «soltanto attraverso Chrome su computer».
+- **Niente frasi sul testo.** Mai «X spiega la scelta meglio del comunicato», «la seconda scelta
+  è la più costosa»: sono annunci, non fatti. Di' il fatto.
+- **Niente chiuse a effetto** («si accende e si spegne»). Il paragrafo finisce sull'ultima
+  informazione utile.
+- **Parole di tutti.** Non «versione segnata»: «versione con l'interprete».
+
+Il modello di riferimento è l'approfondimento di `apple-tv-lingua-segni` nell'edizione del
+2026-11-11, riscritto da Mike.
+
 ## L'approfondimento (prime cinque notizie)
 
 Un **articolo che va oltre la notizia senza ripeterla**: non un modulo a schede.

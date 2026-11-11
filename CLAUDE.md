@@ -428,6 +428,11 @@ passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole e
 - **Sintesi**: una riga. **Descrizione**: 3–4 righe con dati concreti, virgolette dove ci sono
   dichiarazioni, contesto utile.
 - **Tono**: giornalistico, asciutto, tipo Bloomberg. Niente hype, niente entusiasmo da creator.
+- **Un articolo, non un confronto scritto a tavolino** (11 novembre 2026, Mike: «il testo sembra
+  costruito per contrapposizioni successive… è corretto, ma poco naturale»). Frasi intere e
+  collegate, niente serie «A fa X, B fa Y, Apple invece Z», niente frasi che commentano il testo
+  («spiega meglio del comunicato») né chiuse a effetto; se una cosa va spiegata, si spiega. Le
+  regole e il modello stanno in `.claude/agents/redattore.md`, *Come suona*.
 - **Gli accenti sono accenti**: «metà», «già», «perché», «è» — mai «meta'», «gia'», «perche'».
   Il 2 novembre 2026 l'edizione è uscita con gli apostrofi al posto degli accenti, apertura
   compresa. Il lint lo blocca come errore; `python3 pipeline/accenti.py --fix` corregge.
