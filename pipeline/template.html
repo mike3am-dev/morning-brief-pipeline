@@ -5589,7 +5589,11 @@ function storyNode(brief, n, index){
   }
 
   const body = el("div", {class:"story-body", hidden:"hidden"});
-  body.appendChild(el("p", {text:n.descrizione || ""}));
+  /* la descrizione puo' avere piu' paragrafi, separati da una riga vuota (11 novembre 2026:
+     Mike riscrive le notizie con due tempi, «c'e' gia'» e «arriva il…») */
+  String(n.descrizione || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean)
+    .forEach(t => body.appendChild(el("p", {text:t})));
+  if(!body.firstChild) body.appendChild(el("p", {text:""}));
   const nums = numbersNode(n.facts);
   if(nums) body.appendChild(nums);
   /* il rilascio di un sistema: l'elenco completo, prima dell'approfondimento */

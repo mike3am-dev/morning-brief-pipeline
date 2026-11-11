@@ -52,6 +52,12 @@ elettorale, le opinioni travestite da notizia, i tutorial generici, le liste.
 
 ## Come scrivi
 
+**Lo standard è `docs/stile/linee-editoriali.md`** (11 novembre 2026, valido per tutto il
+progetto): scritto da un giornalista bravo, non da un generatore di testi. Per le tue voci conta
+soprattutto la parte sulle **voci brevi**: la notizia chiara e un dettaglio interessante; titolo
+descrittivo, senza slogan né calchi dall'inglese; date esatte; chi è chi; niente giudizi
+sbrigativi; niente formule da AI. Leggi almeno gli esempi 3, 6 e 7 prima di scrivere.
+
 - **`title`**: in italiano, il fatto, con il nome che conta; asciutto, senza punto finale.
 - **`sintesi`** (obbligatoria sulla cronaca, entro 190 caratteri): **una frase intera** che sta
   in piedi da sola, con il dato che conta. Mai i puntini.

@@ -289,7 +289,7 @@ html.vista-magazine #view-oggi .banco li > p:not(.why){font-size:.94rem; line-he
 html.vista-magazine #view-oggi .banco .why{margin:.15rem 0 0; background:color-mix(in srgb, var(--yellow) 14%, transparent);
   color:var(--ink); box-shadow:inset 3px 0 0 var(--yellow); border-radius:0 10px 10px 0; padding:.6rem .8rem .65rem .95rem;
   font-size:.9rem; line-height:1.45}
-html.vista-magazine #view-oggi .banco .why::before{content:"Al banco"; display:block; margin-bottom:.2rem;
+html.vista-magazine #view-oggi .banco .why::before{content:"La risposta"; display:block; margin-bottom:.2rem;
   font-family:var(--body); font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--yellow-ink)}
 html.vista-magazine #view-oggi .banco .foot{margin-top:.1rem; justify-content:space-between}
 html.vista-magazine #view-oggi .banco .tools{padding-top:0; gap:.1rem; margin-left:auto}
@@ -1509,7 +1509,7 @@ textarea.note:focus{box-shadow:inset 0 0 0 2px var(--blue); outline:none}
 #view-oggi.duo .banco .why{grid-area:why; align-self:start; margin:0;
   background:var(--yellow); color:#17181B; box-shadow:none; border-radius:3px;
   padding:.85rem 1rem 1rem; font-size:.95rem; line-height:1.45}
-#view-oggi.duo .banco .why::before{content:"Al banco"; display:block; margin-bottom:.45rem;
+#view-oggi.duo .banco .why::before{content:"La risposta"; display:block; margin-bottom:.45rem;
   font-family:var(--display); font-weight:700; font-size:.82rem; letter-spacing:.06em;
   text-transform:uppercase}
 
@@ -3291,7 +3291,7 @@ function indexAll(){
     (b.news || []).forEach(function(n){ ALL.push({brief:b, news:n, k:key(b.date, n.id)}); });
     /* radar, banco e recap non sono notizie ma si salvano lo stesso: un video
        da guardare dopo deve ricomparire fra i salvati come tutto il resto */
-    [["radar", "Radar"], ["banco", "Sul banco"], ["recap", "Se te lo fossi perso"],
+    [["radar", "Radar"], ["banco", "Di cosa si parla"], ["recap", "Se te lo fossi perso"],
      ["games", "Games"], ["tech", "Tech"], ["spazio", "Scienza"], ["gta", "GTA VI"]]
       .forEach(function(sez){
         (sez[0] === "gta" ? ((b.gta && b.gta.voci) || b.gta_notizie || []) : (b[sez[0]] || [])).forEach(function(it){
@@ -5607,7 +5607,11 @@ function storyNode(brief, n, index){
   }
 
   const body = el("div", {class:"story-body", hidden:"hidden"});
-  body.appendChild(el("p", {text:n.descrizione || ""}));
+  /* la descrizione puo' avere piu' paragrafi, separati da una riga vuota (11 novembre 2026:
+     Mike riscrive le notizie con due tempi, «c'e' gia'» e «arriva il…») */
+  String(n.descrizione || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean)
+    .forEach(t => body.appendChild(el("p", {text:t})));
+  if(!body.firstChild) body.appendChild(el("p", {text:""}));
   const nums = numbersNode(n.facts);
   if(nums) body.appendChild(nums);
   /* il rilascio di un sistema: l'elenco completo, prima dell'approfondimento */
@@ -6553,7 +6557,7 @@ const MagNav = (function(){
     nav = el("nav", {class:"mag-nav glass", "aria-label":"Sezioni dell'edizione"});
     secs.forEach(function(h){
       const label = h.dataset.label || (h.querySelector("h2") || {}).textContent || "";
-      const b = el("button", {type:"button", text:label.replace(/^Se te lo fossi perso$/, "Perso").replace(/^Nelle discussioni$/, "Discussioni")});
+      const b = el("button", {type:"button", text:label.replace(/^Se te lo fossi perso$/, "Perso").replace(/^Nelle discussioni$/, "Discussioni").replace(/^Di cosa si parla$/, "Se ne parla")});
       b.addEventListener("click", function(){ h.scrollIntoView({behavior:"smooth", block:"start"}); });
       b._h = h;
       nav.appendChild(b);
@@ -7061,7 +7065,7 @@ function drawEdition(root){
   if(brief.banco && brief.banco.length){
     const pipY = el("span", {class:"pip"}); pipY.style.background = "var(--yellow)";
     col.appendChild(el("div", {class:"section-head"}, [
-      pipY, el("h2", {text:"Sul banco"}),
+      pipY, el("h2", {text:"Di cosa si parla"}),
       el("span", {class:"eyebrow hint chiosa", text:"la concorrenza, e chi la prova"})
     ]));
     const ul = el("ul", {class:"banco"});
@@ -7080,6 +7084,8 @@ function drawEdition(root){
                              text:b.kind}) : null,
         el("h4", {}, [u ? el("a", {href:u, target:"_blank", rel:"noopener noreferrer", text:b.title})
                         : el("span", {text:b.title})]),
+        // il titolo è tradotto: l'originale in piccolo sotto, come nelle schede Games e Scienza
+        b.orig ? el("p", {class:"rub-orig", text:b.orig}) : null,
         b.note ? el("p", {text:b.note}) : null,
         b.perche ? el("p", {class:"why", text:b.perche}) : null,
         foot,
@@ -7360,7 +7366,7 @@ function renderStarred(){
   if(!picked.length){
     col.appendChild(el("div", {class:"empty", html:mag
       ? "<b>Niente da riprendere</b>La stellina su una notizia la mette qui, per quando hai tempo di leggerla."
-      : "<b>Ancora niente qui</b>La stella in fondo a una notizia, a una voce del radar o a un video sul banco la mette da parte qui."}));
+      : "<b>Ancora niente qui</b>La stella in fondo a una notizia, a una voce del radar o a una voce di «Di cosa si parla» la mette da parte qui."}));
   } else if(mag){
     /* nella Magazine le notizie messe da parte sono schede, e si aprono a tutto schermo */
     const shelf = el("div", {class:"story-shelf", hidden:"hidden"});

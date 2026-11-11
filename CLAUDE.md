@@ -24,7 +24,8 @@ in `data/corse.json` (`costo.py --storia` per l'andamento; `costo.py --fasi` sco
 corsa di oggi passo per passo, con i buchi di tempo fra un comando e il successivo e la
 durata di ogni sottoagente — usalo se una corsa va oltre il tetto sotto per capire dove).
 
-**Il tetto è 30 minuti, dalla raccolta alla pubblicazione su Supabase.** Il 2 ottobre 2026
+**Il tetto è 30 minuti, dalla raccolta alla pubblicazione su Supabase**; dall'11 novembre 2026,
+con il revisore, **45 al massimo** (Mike: «ok se sfora i 30 minuti, purché non superi i 45»). Il 2 ottobre 2026
 la corsa ne ha presi 98: 23 erano il visualista (risolto, vedi *Il visualista* più sotto,
 che ora viene dopo `push.py` e non blocca più la pubblicazione), il resto si è perso fra
 letture di articoli una alla volta e una prima stesura fuori misura rifatta dopo il lint.
@@ -428,11 +429,21 @@ passaggio intero. Il lint resta il collaudo finale, non la prima bozza. Regole e
 - **Sintesi**: una riga. **Descrizione**: 3–4 righe con dati concreti, virgolette dove ci sono
   dichiarazioni, contesto utile.
 - **Tono**: giornalistico, asciutto, tipo Bloomberg. Niente hype, niente entusiasmo da creator.
-- **Un articolo, non un confronto scritto a tavolino** (11 novembre 2026, Mike: «il testo sembra
-  costruito per contrapposizioni successive… è corretto, ma poco naturale»). Frasi intere e
-  collegate, niente serie «A fa X, B fa Y, Apple invece Z», niente frasi che commentano il testo
-  («spiega meglio del comunicato») né chiuse a effetto; se una cosa va spiegata, si spiega. Le
-  regole e il modello stanno in `.claude/agents/redattore.md`, *Come suona*.
+- **Le linee editoriali: `docs/stile/linee-editoriali.md`** (11 novembre 2026, Mike, dopo aver
+  riscritto a mano otto pezzi: «non vogliamo un testo che sembri scritto bene, vogliamo un testo
+  che sembri scritto da un giornalista bravo»). Valgono per tutto il progetto: redattore,
+  revisore, agenti `ai`, `schede`, `gta`, e la regia quando scrive radar, discussioni e
+  ripescaggio. In breve: scrivere come una persona (niente contrapposizioni in serie, frasi
+  simmetriche, formule da AI, chiuse a effetto); ogni frase si guadagna il posto; gerarchia
+  delle informazioni; chiarezza prima della terminologia, senza calchi; raccontare, non
+  compilare; registro diverso per notizia, approfondimento, commento e voce breve; non
+  inventare intenzioni o conseguenze. Il lettore è chi usa i prodotti: mai «al banco» nella
+  prosa, che resta solo nella sezione «Di cosa si parla».
+- **Due mani** (dall'11 novembre 2026): il redattore scrive, il **revisore**
+  (`.claude/agents/revisore.md`, Opus) rilegge e corregge le parole secondo le linee, mai i
+  fatti. `pipeline/revisione.py prima` fotografa i testi, `controlla` ripristina i campi
+  protetti, segnala i numeri comparsi e le formule vietate rimaste. La `descrizione` può avere
+  più paragrafi separati da una riga vuota, fino a 1.100 caratteri.
 - **Gli accenti sono accenti**: «metà», «già», «perché», «è» — mai «meta'», «gia'», «perche'».
   Il 2 novembre 2026 l'edizione è uscita con gli apostrofi al posto degli accenti, apertura
   compresa. Il lint lo blocca come errore; `python3 pipeline/accenti.py --fix` corregge.
@@ -1106,9 +1117,10 @@ Classica non mostra, e la corsa li scrive ogni mattina:
   `notizia` è l'id della notizia in cui porta: al tocco l'app apre quell'approfondimento
   dritto sulle voci. `contesto` è la riga che lo dice («Perché HomeView…»).
 - **`editoriale`** — «Il punto», il commento della redazione: lo scrive Claude, e l'app lo
-  firma come commento. **Non è un riassunto**: è il filo che tiene insieme le notizie del
-  giorno e dice al lettore cosa significano — per chi compra, e per chi sta al banco.
-  Titolo in graziato entro 70 caratteri, 2–3 paragrafi entro 480, `notizie` con gli id che
+  firma come commento. **Non è un riassunto**: collega fatti distinti e propone una chiave di
+  lettura, partendo da una domanda e non da una tesi, con empatia e senza forzare conclusioni
+  (11 novembre 2026, Mike: «meno cronaca, più osservazione»). Si scrive per chi legge, non dal
+  banco del negozio. Titolo in graziato entro 70 caratteri, 2–3 paragrafi entro 650, `notizie` con gli id che
   collega (almeno due). Ogni fatto viene dall'edizione; l'opinione si dichiara come tale.
   Se l'edizione non ha un filo che valga un commento, non si scrive: meglio niente che un
   riempitivo.
@@ -1487,6 +1499,11 @@ Lo script salta il caricamento se online c'è già lo stesso file, e distingue g
 401 token scaduto, 403 permessi mancanti. In ogni caso il ripiego è il caricamento dal
 browser (Add file → Upload files). `--local` copia in `site/` senza toccare la rete.
 
+**Da una sessione in cloud** l'API Contents è bloccata dal proxy (403 «Write access to this GitHub
+API path is not permitted»): si clona `mike3am-dev/morning-brief`, si copia `site/index.html` in
+`index.html` e si spinge su `main` con git, firmando il commit `Claude <noreply@anthropic.com>`,
+mai con l'email di Mike (11 novembre 2026).
+
 Le edizioni quotidiane **non** richiedono niente di tutto questo: viaggiano sul database.
 
 ### Perché non Supabase
@@ -1523,6 +1540,9 @@ pipeline/eco.py          quanto gira una notizia fuori dalle nostre testate (Goo
                          chi l'ha data per prima, e gli altri articoli da leggere (--leggi)
 pipeline/audio.py        gli approfondimenti letti ad alta voce (Piper) -> Supabase Storage
 pipeline/lint.py         il collaudo dell'edizione contro le regole di questo file
+pipeline/revisione.py    la guardia del revisore: fotografa la prosa, ripristina i campi protetti, segnala
+                         numeri nuovi e formule vietate
+docs/stile/              le linee editoriali di Mike, con gli esempi del prima e del dopo
 pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li trova, --fix li corregge
 pipeline/borsa.py        la chiusura di AAPL per la plancia della Magazine (Yahoo Finance)  ->  `borsa`
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove

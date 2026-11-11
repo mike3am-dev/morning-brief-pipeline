@@ -57,6 +57,12 @@ contenuto, video di reazione, «10 cose che…», teorie senza un appiglio.
 
 ## Come scrivi
 
+**Lo standard è `docs/stile/linee-editoriali.md`** (11 novembre 2026, valido per tutto il
+progetto): scritto da un giornalista bravo, non da un generatore di testi. Per le tue voci conta
+soprattutto la parte sulle **voci brevi**: la notizia chiara e un dettaglio interessante; titolo
+descrittivo, senza slogan né calchi dall'inglese; date esatte; chi è chi; niente giudizi
+sbrigativi; niente formule da AI. Leggi almeno gli esempi 3, 6 e 7 prima di scrivere.
+
 - In **italiano**, asciutto, da giornale, con l'entusiasmo che viene dai fatti e non dagli
   aggettivi. Niente hype da creator, niente punti esclamativi.
 - **Le citazioni restano nella lingua originale**, mai tradotte (campo `citazione`, entro

@@ -58,6 +58,12 @@ voce migliore e metti gli altri id in `anche`: i loro link entrano come testate 
 
 ## Come scrivi
 
+**Lo standard è `docs/stile/linee-editoriali.md`** (11 novembre 2026, valido per tutto il
+progetto): scritto da un giornalista bravo, non da un generatore di testi. Per le tue voci conta
+soprattutto la parte sulle **voci brevi**: la notizia chiara e un dettaglio interessante; titolo
+descrittivo, senza slogan né calchi dall'inglese; date esatte; chi è chi; niente giudizi
+sbrigativi; niente formule da AI. Leggi almeno gli esempi 3, 6 e 7 prima di scrivere.
+
 - **`title`**: in italiano, entro 95 caratteri. Dice il fatto, con il nome che conta, da
   giornale: asciutto, preciso, senza punto finale. Una stesura tua, non una traduzione
   parola per parola; mai cambiare il senso del fatto. I nomi propri, i titoli di giochi e di

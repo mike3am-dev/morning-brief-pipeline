@@ -56,7 +56,7 @@ AI_LAB = {"uso", "demo", "trucco", "sapevi"}
 # ieri, oltre il mese non se l'e' perso, l'ha dimenticato
 RECAP_MIN_AGE, RECAP_MAX_AGE = 2, 10
 SINTESI_MAX = 200
-DESCR_MIN, DESCR_MAX = 200, 950
+DESCR_MIN, DESCR_MAX = 200, 1100
 INTRO_MIN, INTRO_MAX = 180, 700
 
 # due titoli oltre questa somiglianza raccontano la stessa cosa
@@ -625,8 +625,8 @@ def check_magazine(brief, r):
         if not e.get("titolo") or not e.get("testo"):
             r.error("editoriale", "senza titolo o senza testo")
         testo = e.get("testo") or []
-        if len(testo) > 3 or any(len(x) > 480 for x in testo):
-            r.warn("editoriale", "al massimo 3 paragrafi da 480 caratteri")
+        if len(testo) > 3 or any(len(x) > 650 for x in testo):
+            r.warn("editoriale", "al massimo 3 paragrafi da 650 caratteri")
         if len(e.get("titolo") or "") > 70:
             r.warn("editoriale", f"titolo di {len(e['titolo'])} caratteri, massimo 70")
         mancanti = [x for x in e.get("notizie") or [] if x not in ids]
