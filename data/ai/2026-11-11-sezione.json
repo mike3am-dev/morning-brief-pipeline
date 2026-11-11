@@ -1,0 +1,172 @@
+{
+ "ai": [
+  {
+   "id": "gemini-4-carbon-per-tutti",
+   "lab": "google",
+   "kind": "modello",
+   "thread": "gemini-4-carbon",
+   "title": "Gemini 4 Carbon esce per tutti, a un quarto del prezzo di Fable 5.2",
+   "sintesi": "Dopo due settimane riservate ai difensori informatici, Google apre Gemini 4 Carbon a tutti: primo su CursorBench 4.0, a 2 dollari per milione di token in ingresso.",
+   "note": "Il 29 ottobre Carbon era uscito solo per un gruppo di esperti di sicurezza; da ieri lo usano sviluppatori, aziende e utenti. Google lo dichiara primo su CursorBench 4.0, WANDR e AutomationBench, con un costo per compito più che dimezzato rispetto al miglior modello esterno. Il prezzo di lancio, 2 e 10 dollari per milione di token, è secondo The Verge un quarto di Fable 5.2 e un quinto di GPT-6 Astra; il listino pieno sarà di 4 e 20. Con Carbon arriva in anteprima /swarm su Antigravity: un prompt solo diventa una squadra di agenti.",
+   "modello": {
+    "nome": "Gemini 4 Carbon",
+    "famiglia": "punta"
+   },
+   "link": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "claude-meetings-sheets-whiteboards",
+   "lab": "anthropic",
+   "kind": "funzione",
+   "title": "Anthropic fa di Claude una suite da ufficio: Meetings, Sheets e Whiteboards",
+   "sintesi": "Claude entra nelle videochiamate come partecipante visibile e lavora mentre si parla; con lui arrivano fogli di calcolo e lavagne condivise, in beta sui piani a pagamento.",
+   "note": "Presentati a San Francisco: Claude Meetings scrive il piano mentre la riunione è in corso, disegna la linea del tempo sulla lavagna e pesca i numeri dalle app collegate. Sheets e Whiteboards sono in beta per tutti i piani a pagamento, Meetings per Teams ed Enterprise. Arrivano anche gli Interactive Connectors, con cui Adobe, Atlassian e Salesforce portano le loro app dentro Claude: la sfida è a Microsoft e Google, a pochi giorni dalla quotazione.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now",
+   "source": "The Verge"
+  },
+  {
+   "id": "anthropic-ipo-forchetta-1400-miliardi",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic fissa la forchetta: fino a 1.400 miliardi, debutto al Nasdaq come «ANT»",
+   "sintesi": "Il prezzo della IPO di Anthropic va da 70 a 78 dollari per azione, una valutazione fino a 1.400 miliardi contro i 2.000 attesi; i sette fondatori incassano circa 250 milioni a testa.",
+   "note": "Ieri c'era la settimana, oggi c'è il prezzo: secondo il New York Times la forchetta porta Anthropic fino a 1.400 miliardi, sopra i 1.250 di OpenAI ma sotto i 2.000 di cui parlava Reuters. Il prospetto dice che ciascuno dei sette fondatori vende 3.378.378 azioni, circa 250 milioni a metà forchetta, e Reed Hastings vuole comprarne per 300 milioni. Le contrattazioni, per il Wall Street Journal, partono giovedì o venerdì della prossima settimana.",
+   "link": "https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "fable-52-remote-labor-index",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "Fable 5.2 porta a termine il 41% dei lavori freelance veri, un anno fa il record era il 2,5%",
+   "sintesi": "Sul Remote Labor Index di Scale e CAIS Fable 5.2 completa a qualità professionale il 41,3% dei lavori freelance reali, più del doppio di Opus 5.5 e GPT-6 Astra.",
+   "note": "Il test misura quante volte un agente consegna un lavoro che un cliente pagante accetterebbe. Al debutto, un anno fa, il migliore era Manus con il 2,5%; a luglio Fable 5 era al 16%, Fable 5.1 resta sotto il 18%. Restano deboli il design di prodotto e l'animazione.",
+   "conto": {
+    "parte": 41.3,
+    "tutto": 100,
+    "etichetta": "lavori freelance veri consegnati da Fable 5.2 a qualità professionale, su 100",
+    "fonte": "Remote Labor Index (Scale Labs, CAIS)"
+   },
+   "link": "https://the-decoder.com/anthropics-fable-5-2-completes-41-percent-of-real-freelance-jobs-up-from-2-5-percent-a-year-ago/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "chatgpt-business-agents",
+   "lab": "openai",
+   "kind": "funzione",
+   "title": "ChatGPT apre ai negozi: profili verificati e «Business Agents» che rispondono ai clienti",
+   "sintesi": "Con Business Hub le aziende rivendicano il profilo in ChatGPT e, negli Stati Uniti, creano agenti che parlano coi clienti in chat: la risposta di OpenAI a Google My Business.",
+   "note": "In beta da ieri: le aziende verificate aggiornano informazioni e cataloghi con prezzi e disponibilità e vedono quante volte vengono nominate nelle conversazioni. I Business Agents, per ora solo per l'e-commerce americano, confrontano prodotti in una chat separata ed etichettata, e possono essere la destinazione delle pubblicità di ChatGPT; i negozi Shopify si collegano direttamente. OpenAI dice che le conversazioni non vengono passate alle aziende, e conta 1,2 miliardi di utenti a settimana.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
+   "source": "The Verge"
+  },
+  {
+   "id": "gemini-robotics-25-mercedes",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Gemini Robotics 2.5 smista i pezzi alla Mercedes con il 96% di successo",
+   "sintesi": "Il nuovo modello di DeepMind per il controllo dei robot ha guidato l'umanoide Apollo 2 di Apptronik sulle linee Mercedes in Ungheria e Germania, riuscendo nel 96% dei casi.",
+   "note": "Su oltre 200 compiti di laboratorio, dalle pinze per servire il cibo alle pipette, Gemini Robotics 2.5 riesce dal 30 al 100% più spesso della versione precedente ed è più veloce del 20–30%; Apollo 2 ora sa fare un fiocco con un nastro. A Kecskemét e Sindelfingen ha preparato i kit di pezzi metallici per ogni auto in linea. Ars Technica nota che il 96% è un ottimo risultato per un robot, ma probabilmente non basta ancora a una fabbrica.",
+   "link": "https://the-decoder.com/google-deepminds-gemini-robotics-2-5-scores-96-percent-sorting-metal-parts-in-a-mercedes-benz-assembly-pilot/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "grok-build-35000-app-aperte",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Grok Build lascia aperte 35.000 app, comprese quelle interne di SpaceXSI",
+   "sintesi": "La società di sicurezza Claroc ha trovato 35.000 app create con l'agente Grok Build leggibili da chiunque, con dati di aziende Fortune 500 e di un appaltatore della difesa.",
+   "note": "I link di condivisione erano casuali, ma un errore di progettazione permetteva di elencarli tutti. Fra i dati esposti c'erano 24 app della stessa SpaceXSI, che le ha tolte poche ore dopo le domande di Ars Technica; le altre al momento della pubblicazione restavano aperte. «Built with AI, it went live open to anyone with the link», scrive Claroc. Il giorno prima era toccato ai file di Claude Code su GitHub.",
+   "link": "https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "muse-apple-watch",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Muse di Meta arriva su Apple Watch e Wear OS",
+   "sintesi": "L'agente di Meta si usa ora dal polso, con chiamate vocali, messaggi e dettatura, un mese dopo l'app dedicata per iPad.",
+   "note": "Dopo le videochiamate con l'avatar e gli Spaces della settimana scorsa, Muse si allarga agli orologi: dallo smartwatch si parla, si scrive o si detta all'agente che gestisce posta, appuntamenti, prenotazioni e spesa. Lo stesso giorno The Verge racconta che eBay sembra aver chiuso la porta agli agenti come Muse: è il limite di tutta la corsa.",
+   "apple": "Un agente concorrente di Siri si installa su Apple Watch, dopo iPhone e iPad.",
+   "link": "https://techcrunch.com/2026/11/10/metas-ai-agent-muse-lands-on-apple-watch-and-wear-os/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "kindle-cruscotto-claude",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Un vecchio Kindle diventa un cruscotto a inchiostro elettronico, programmato da Claude",
+   "note": "Un utente ha sbloccato un Kindle di settima generazione e ha dato a Claude un'immagine di come voleva lo schermo: il resto, applicazione compresa, l'ha scritto il modello. I dati arrivano via Wi-Fi una volta l'ora, il Wi-Fi si accende solo per scaricare e di notte tutto dorme: la batteria cala del 10% a settimana. Nei commenti decine di lettori mostrano i loro cruscotti, e l'autore ha promesso il codice su GitHub.",
+   "prova": "Sblocca il Kindle con la guida del post, installa KUAL e passa a Claude il disegno dello schermo che vuoi.",
+   "passi": [
+    "Sblocca il Kindle con la guida linkata nel post",
+    "Installa KUAL, il lanciatore di app del Kindle",
+    "Dai a Claude un'immagine dello schermo che vuoi",
+    "Chiedi aggiornamenti orari e Wi-Fi spento fra uno e l'altro"
+   ],
+   "strumento": "Claude + Kindle sbloccato con KUAL",
+   "segnale": "2º post più votato del giorno su r/ClaudeAI, oltre 100 commenti",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xsk5k9/instead_of_collecting_dust_claude_makes_your_old/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "lot-map-claude-code",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Una mappa dal vivo di cosa sta facendo Claude Code, al posto della lista delle chiamate",
+   "note": "Stanco di scorrere le chiamate agli strumenti, alexeyw si è fatto costruire da Claude Code un pannello accanto alla chat: l'agente al centro, dieci stazioni intorno (file, shell, rete, browser, sottoagenti…) e un impulso per ogni azione, rosso sugli errori. Un anello si riempie con la finestra di contesto e diventa ambra al 70%, rosso al 90%: è la parte che i commenti hanno amato di più. La prima versione l'ha scritta Opus 5.5, Fable 5.2 l'ha rifatta il giorno dopo; è gratuita, licenza MIT, provata solo su macOS.",
+   "prova": "In Claude Code lancia «/plugin install lot-map --marketplace alexeyw/lot-map».",
+   "passi": [
+    "Apri Claude Code su macOS",
+    "Lancia /plugin install lot-map --marketplace alexeyw/lot-map",
+    "Dai un compito e guarda gli impulsi sulla mappa",
+    "Tieni d'occhio l'anello del contesto: rosso al 90%"
+   ],
+   "strumento": "Claude Code (Opus 5.5, poi Fable 5.2)",
+   "costo": "gratis, MIT",
+   "segnale": "7º post più votato del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xst2qe/i_made_a_claude_code_mod_that_draws_a_live_map_of/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "yonkers-rises-fable",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Yonkers si alza come un robot gigante e cammina su New York, da un prompt a Fable 5.2",
+   "note": "Simon Willison non sapeva dove fosse Yonkers e, per fissarselo in testa e mettere alla prova il 3D di Fable 5.2, ha chiesto al modello un'animazione: il profilo della città diventa un mech che si alza e attraversa Manhattan, Brooklyn, Queens e il Bronx, con i palazzi schiacciati sotto i piedi e un contatore dei passi. Il prompt aveva un refuso della tastiera, «átomos» per «stomps», e il modello l'ha capito da solo.",
+   "prova": "Chiedi a Fable 5.2 un'animazione three.js con i dati di OpenStreetMap di un posto che conosci.",
+   "passi": [
+    "Apri Claude e scegli Fable 5.2",
+    "Incolla il prompt di Willison cambiando la città",
+    "Apri l'artefatto e guarda l'animazione"
+   ],
+   "prompt": "Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and átomos around manhattan and queens and Brooklyn, use openstreetmap mapping data",
+   "prompt_lingua": "en",
+   "strumento": "Claude Fable 5.2 Medium, three.js, OpenStreetMap",
+   "link": "https://simonwillison.net/2026/Nov/10/yonkers-rises/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "tiny-valencia-pixel-art",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Tiny València: tutta la città in pixel art isometrica, come in SimCity",
+   "note": "Ogni edificio di Valencia è quello vero, ripreso dall'alto con la stessa angolazione, dalla huerta all'Albufera. I dati 3D della città vengono resi da una camera isometrica fissa e un modello di immagini addestrato su uno stile pixel art scelto a mano li ridipinge riquadro per riquadro, ognuno in continuità con i vicini. È gratuito, senza pubblicità, e si regge su Patreon per pagare le GPU.",
+   "prova": "Apri tinyvalencia.com e premi R per finire in un punto a caso della città.",
+   "passi": [
+    "Apri tinyvalencia.com",
+    "Trascina per muoverti, pizzica per lo zoom",
+    "Premi R per un punto a caso, / per cercare"
+   ],
+   "strumento": "Catasto e foto aeree IGN, OpenStreetMap, un modello di immagini addestrato sulla pixel art",
+   "costo": "gratis",
+   "segnale": "210 punti e 53 commenti su Hacker News",
+   "link": "https://tinyvalencia.com/",
+   "source": "Show HN"
+  }
+ ],
+ "scritto": "2026-11-11"
+}
