@@ -542,5 +542,21 @@
   "interazione": "un prima/dopo che mostra su quale dispositivo sta il tasto nei due casi",
   "dati": "3 mesi di prova Apple TV con iPhone nuovo, 4 clienti su 10 con abbonamento attivato in un sondaggio interno agli addetti (9to5Mac/MacRumors); nessun dato su rimborsi o verifiche passate",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-11",
+  "notizia": "tata-hosur-tre-morti",
+  "idea": "Linea del tempo degli incidenti allo stabilimento Tata di Hosur: incendio nell'area chimica (2024), attacco informatico (2026), indagine sulle acque chiesta dagli agricoltori (giugno 2026), le tre morti (novembre 2026)",
+  "interazione": "scorri la linea e ogni incidente si accende con la sua data",
+  "dati": "le quattro date e la fonte di ciascuna (MacRumors, Reuters) sono negli articoli letti; serve un tipo per una sequenza di incidenti su più anni, non il quadrante di un anno singolo come 'anno'",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-11",
+  "notizia": "icloud-blackout-novembre",
+  "idea": "Le due ondate del blackout iCloud (prima Mail, Calendario e Contatti, poi Foto e l'accesso account) nelle 2h29 fino al 'tutto risolto', con il momento in cui la pagina di stato Apple diceva ancora tutto verde mentre il guasto era già in corso",
+  "interazione": "tocca un punto della linea e vedi quale servizio era giù in quel momento, e cosa diceva la pagina di stato",
+  "dati": "durata (2h29), 8 servizi elencati, orari delle due ondate sono nell'articolo di 9to5Mac e iClarified; serve un tipo per un incidente breve a più fasi con uno stato ufficiale che non corrisponde ai fatti, non c'è nel kit",
+  "stato": "aperta"
  }
 ]
