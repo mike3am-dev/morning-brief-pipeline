@@ -1,0 +1,147 @@
+{
+ "ai": [
+  {
+   "id": "nvidia-huang-consiglio",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "Il consiglio di Nvidia si prepara a licenziare Jensen Huang",
+   "sintesi": "Dopo una seconda relazione extraconiugale rivelata dal New York Times, il consiglio di Nvidia valuta l'uscita di Huang: il titolo ha perso l'8% dopo la chiusura.",
+   "note": "Domenica Huang aveva ammesso una relazione con Alice Huang, dirigente di Megaspeed che l'intelligence statunitense sospetta di spionaggio per la Cina. Mercoledì il New York Times ha scritto di una seconda relazione, con Kimberly Powell, vicepresidente per la sanità di Nvidia, che risponde a lui. Secondo il Wall Street Journal il consiglio si riunisce già mercoledì per decidere; Bloomberg scrive che Nvidia lavora con una società esterna per trovare un successore, che oggi non c'è.\n\nHuang guida l'azienda da 33 anni e ha una sessantina di collaboratori diretti. Il titolo ha perso circa l'11% in cinque giorni, e alla Camera i repubblicani preparano una citazione se non accetterà di riferire a porte chiuse.",
+   "link": "https://www.theverge.com/tech/1031652/jensen-huang-rumor",
+   "source": "The Verge"
+  },
+  {
+   "id": "alphaproof-code-signal",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "DeepMind verifica in quattro settimane il nucleo crittografico di Signal",
+   "sintesi": "AlphaProof Code ha dimostrato matematicamente che il codice crittografico di Signal rispetta le sue specifiche di sicurezza, in quattro settimane invece di anni.",
+   "note": "AlphaProof Code è un sistema di Google DeepMind per la verifica formale: dimostra con la matematica che un programma fa quello che deve. Gli esperti hanno scritto i requisiti di sicurezza, gli agenti costruiti su Gemini Carbon hanno prodotto oltre sei milioni di righe di dimostrazioni nel linguaggio Lean e segnalato circa l'1% del codice alla revisione umana; i due errori inseriti apposta per la prova sono stati trovati subito.\n\nLe verifiche precedenti si fermavano al progetto teorico, questa riguarda il codice che gira sui telefoni. Non copre però l'intera app, e il ricercatore Swarat Chaudhuri lo dice ad Ars Technica: «there is a long distance to go before we are able to scale this to all the software of the world».",
+   "link": "https://the-decoder.com/google-deepminds-alphaproof-code-verified-signals-cryptographic-core-in-four-weeks-instead-of-years/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "anthropic-amd-tre-giorni",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic porta Claude sui chip AMD in tre giorni, facendo lavorare Mythos",
+   "sintesi": "Nella presentazione agli investitori Anthropic dice che Mythos ha scritto quasi tutto il software per far girare Claude su AMD: tre giorni, contro i mesi di decine di ingegneri.",
+   "note": "Lo racconta Tom Brown, cofondatore e responsabile del calcolo, nel video della presentazione per la quotazione: Anthropic addestra e fa girare Claude su tutte e quattro le grandi famiglie di chip. Quest'anno ha usato per la prima volta le GPU di AMD e ha affidato il lavoro al suo modello di punta, Mythos, che ha adattato o scritto quasi il 100% dei kernel, i programmi che fanno i calcoli sul chip, con un intervento umano minimo.\n\nIl vantaggio di Nvidia sta anche in CUDA, il software che lega gli sviluppatori ai suoi chip: se i numeri sono esatti, cambiare fornitore costa molto meno di prima.",
+   "link": "https://the-decoder.com/anthropic-says-ai-is-eroding-nvidias-cuda-lead-cutting-an-amd-chip-switch-from-months-to-three-days/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "tsmc-anthropic-openai-miliardo",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "TSMC investe un miliardo di dollari in Anthropic e OpenAI",
+   "sintesi": "Il consiglio di TSMC ha approvato fino a 500 milioni in azioni privilegiate di OpenAI e altri 500 milioni in azioni Anthropic, comprate al prezzo della quotazione.",
+   "note": "TSMC produce la gran parte dei chip di Nvidia per i data center, e Anthropic e OpenAI comprano enormi quantità di quell'hardware: è il finanziamento circolare fra fornitori, clienti e investitori che, scrive il Wall Street Journal, rende difficile misurare la domanda reale. La notizia viene da Reuters.\n\nL'azienda taiwanese ha chiuso sei trimestri di fila con l'utile record, e la quota in Anthropic arriva alla vigilia del debutto in borsa.",
+   "apple": "TSMC fabbrica anche quasi tutti i chip progettati da Apple, per iPhone e Mac.",
+   "link": "https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "openai-ricavi-10-miliardi",
+   "lab": "openai",
+   "kind": "affari",
+   "title": "OpenAI supera per la prima volta i 10 miliardi di ricavi in un trimestre",
+   "sintesi": "Secondo Bloomberg nel terzo trimestre OpenAI ha incassato oltre 10 miliardi di dollari, quasi il 50% in più dei 6,7 miliardi del secondo.",
+   "note": "La crescita fra primo e secondo trimestre era stata del 18%. Bloomberg, che cita fonti anonime, dà anche il margine operativo rettificato: da -150% a -109%, quindi in perdita ma meno di prima. Il ritmo annuo dei ricavi arriva a 50 miliardi.\n\nSecondo TechCrunch hanno pesato i modelli recenti, prezzi più stretti e i prodotti per le aziende, il mercato dove finora Anthropic cresceva più in fretta.",
+   "link": "https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "gemini-decision-1",
+   "lab": "google",
+   "kind": "funzione",
+   "title": "Google lancia Gemini Decision 1, il modello che risponde sì o no a mille domande insieme",
+   "sintesi": "Gemini Decision 1 valuta fino a mille domande chiuse in un passaggio, su testo, immagini, audio e video, e risponde in 150-250 millisecondi a 0,10 dollari per milione di token.",
+   "note": "È un modello per le decisioni chiuse: sì o no, scelta multipla, voto su una scala, con la probabilità di ogni risposta. Google lo usa già per smistare le richieste fra i modelli in Gemini Notebook e per i controlli di sicurezza in Search; non fa pagare i token in uscita ed è circa cinque volte meno caro di Gemini 3.5 Flash-Lite.\n\nLa categoria l'ha aperta la startup Jev, seguita da OpenAI, Cloudflare e Microsoft. Simon Willison nota che l'interfaccia è quasi identica a quella di Jev, fino al nome «Noul» per le domande sì o no.",
+   "link": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+   "source": "Google"
+  },
+  {
+   "id": "united-agenti-biglietti",
+   "lab": "altri",
+   "kind": "regole",
+   "thread": "agenti-personali",
+   "title": "United non lascia comprare i biglietti agli assistenti AI",
+   "sintesi": "La compagnia aerea United blocca gli agenti AI personali all'acquisto: possono mostrare i voli, ma non chiudere la prenotazione per conto del passeggero.",
+   "note": "Lo ha scritto il Wall Street Journal. United teme che un agente esponga i dati dei clienti o compri qualcosa che non volevano, e che salti obblighi federali, come la dichiarazione del passeggero di non avere esplosivi nel bagaglio. Il CEO Scott Kirby: «To be honest, I don't want to create another middleman».\n\nPer ora, dice la compagnia, pochi ci hanno provato. Ma la stessa scelta, presa anche da altri, limita assistenti come Muse di Meta e Dots di OpenAI.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents",
+   "source": "The Verge"
+  },
+  {
+   "id": "widget-uso-claude-windows",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Un widget nella barra di Windows mostra quanto resta del limite di Claude, costruito con Claude Code",
+   "note": "L'utente abdosarmini92 controllava di continuo l'uso dal sito, e si è fatto scrivere da Claude Code (Opus) un widget che mette accanto all'orologio i consumi delle cinque ore e della settimana: arancione all'80%, rosso al 95%. Claude ha scelto la strada tecnica, una finestra trasparente dentro la barra scritta in Rust, ha trovato da dove prende i dati il comando /usage e ha controllato il risultato con le schermate.\n\nNe è uscito un eseguibile da circa 450 KB, gratuito e open source, senza installazione.",
+   "prova": "Scarica l'eseguibile dall'ultima release su GitHub e aprilo con un doppio clic.",
+   "passi": [
+    "Apri il repository claude-usage-widget su GitHub",
+    "Scarica l'exe dall'ultima release",
+    "Aprilo con un doppio clic: compare accanto all'orologio"
+   ],
+   "strumento": "Claude Code (Opus), Rust",
+   "segnale": "10º fra i post più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xte9be/i_built_a_tiny_windows_taskbar_widget_with_claude/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "klad-pittura-agente",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Klad, l'app di pittura in cui l'agente disegna con gli stessi pennelli tuoi",
+   "note": "Klad è un'app di disegno e animazione 2D per Mac: tu dipingi con la penna, un agente come Claude Code o Codex dipinge dalla riga di comando sulla stessa tela. Non c'è un modello di immagini: ogni pennellata resta un dato, e una foglia sbagliata si corregge da sola invece di rigenerare tutto.\n\nGli esempi del progetto li ha dipinti Claude Fable 5.2: una creaturina per un videogioco in 4.344 tratti, poi animata con 205 chiavi, una scena notturna e dodici oggetti di gioco.",
+   "prova": "Compila Klad dal sorgente su un Mac e chiedi al tuo agente di disegnare dalla riga di comando.",
+   "passi": [
+    "Apri il repository klad-app/klad su GitHub",
+    "Compila l'app seguendo «From source»",
+    "Chiedi al tuo agente di dipingere con il comando klad"
+   ],
+   "strumento": "Claude Fable 5.2 + riga di comando klad",
+   "costo": "Gratis per uso personale e per aziende sotto i 500.000 euro l'anno",
+   "segnale": "75 punti e 30 commenti su Hacker News",
+   "link": "https://github.com/klad-app/klad",
+   "source": "Hacker News"
+  },
+  {
+   "id": "willison-strumenti-tag",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Simon Willison usa i crediti avanzati di Fable 5.2 per mettere in ordine i suoi 244 strumenti",
+   "note": "Willison raccoglie su tools.simonwillison.net le piccole applicazioni che si è fatto scrivere dai modelli, 244 finora. Con i crediti di Fable 5.2 rimasti prima del rinnovo settimanale ha chiesto al modello di analizzare il codice di ognuna con tree-sitter, uno strumento che legge la struttura dei programmi, e di estrarre le interfacce JavaScript, le librerie e i servizi web che usa.\n\nLa pagina iniziale ora ha nuvole di etichette per sfogliare gli strumenti per ciascuna di queste categorie.",
+   "prova": "Apri tools.simonwillison.net e sfoglia gli strumenti per libreria o servizio usato.",
+   "passi": [
+    "Apri tools.simonwillison.net",
+    "Scegli un'etichetta nelle nuvole della pagina iniziale",
+    "Apri uno strumento e guardane il codice"
+   ],
+   "strumento": "Claude Fable 5.2, tree-sitter",
+   "link": "https://simonwillison.net/2026/Nov/11/tools-tags/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "yogurt-appunti-riunioni",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Yogurt, gli appunti AI delle riunioni gratis e senza un bot nella chiamata",
+   "note": "Yogurt è un'alternativa gratuita e open source (licenza MIT) a Granola, l'app che prende appunti durante le chiamate: registra la riunione senza aggiungere un partecipante automatico e si presenta come privata. L'ha pubblicata Frigade.\n\nGira su Mac con Apple Silicon e macOS 14.4 o successivo, su Windows e su Linux, con almeno 8 GB di memoria.",
+   "prova": "Scaricala da yogurt.so per Mac e prova a registrare la prossima chiamata.",
+   "passi": [
+    "Apri yogurt.so",
+    "Scarica la versione per Mac",
+    "Avviala all'inizio della prossima chiamata"
+   ],
+   "segnale": "203 punti e 90 commenti su Hacker News",
+   "link": "https://github.com/FrigadeHQ/yogurt",
+   "source": "Hacker News"
+  }
+ ],
+ "scritto": "2026-11-12"
+}
