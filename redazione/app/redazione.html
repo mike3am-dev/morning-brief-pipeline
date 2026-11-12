@@ -1,0 +1,712 @@
+<title>La redazione di TMB</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Una stanza sola, in 3D, a tutto schermo; sopra, poche scritte nello stile dell'app. */
+:root{
+  --bone:#EDEAE3; --paper:#F8F6F2; --ink:#17181B; --ink-2:#4B4D53; --ink-3:#7C7F87; --rule:#D7D2C7;
+  --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8;
+  --fondo:#EFEBE3; --fondo-2:#DCD5C8; --testo:#17181B; --testo-2:#4B4D53;
+  --display:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Helvetica Neue",Arial,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+}
+html[data-luce="alba"]{--fondo:#F6E3CF; --fondo-2:#E9BF9E}
+html[data-luce="sera"]{--fondo:#3A3B5C; --fondo-2:#1F2038; --testo:#F1EEE8; --testo-2:#C9C6BF}
+html[data-luce="notte"]{--fondo:#1B1D30; --fondo-2:#0D0E1A; --testo:#F1EEE8; --testo-2:#B5B3AD}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2)); color:var(--testo);
+  font-family:var(--body); font-size:14px; overflow:hidden}
+#app{position:relative; height:100%; overflow:hidden}
+#scena{position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab}
+#scena.presa{cursor:grabbing}
+
+.marchio{position:absolute; top:18px; left:max(22px,env(safe-area-inset-left,0px)); display:flex; flex-direction:column; gap:6px; pointer-events:none}
+.pallini{display:flex; gap:6px}
+.pallini i{width:11px; height:11px; border-radius:50%; display:block}
+.marchio h1{font-family:var(--display); font-weight:800; font-size:34px; line-height:.92; letter-spacing:.01em; text-transform:uppercase; margin:0}
+.marchio p{margin:0; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--testo-2)}
+
+.luci{position:absolute; top:18px; right:max(22px,env(safe-area-inset-right,0px)); display:flex; gap:2px; padding:3px;
+  background:color-mix(in srgb, var(--paper) 88%, transparent); border-radius:999px; box-shadow:0 1px 0 rgba(23,24,27,.14)}
+.luci button{font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:.05em; text-transform:uppercase;
+  border:0; background:none; color:var(--ink-2); padding:5px 14px; border-radius:999px; cursor:pointer}
+.luci button[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.luci button:focus-visible, .tag:focus-visible, .chiudi:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
+
+.tag{position:absolute; left:0; top:0; transform:translate(-50%,-100%); border:0; cursor:pointer; white-space:nowrap;
+  display:flex; align-items:center; gap:7px; padding:5px 12px 5px 9px; border-radius:999px;
+  background:var(--paper); color:var(--ink); font:600 12.5px var(--body); box-shadow:0 2px 0 rgba(23,24,27,.16); will-change:transform}
+.tag b{width:9px; height:9px; border-radius:50%; display:block}
+.tag span{color:var(--ink-3); font-weight:500}
+.tag em{font-style:normal; font-family:var(--display); font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  background:var(--ink); color:var(--paper); padding:2px 8px; border-radius:999px; margin-left:2px}
+
+.nota{position:absolute; left:max(22px,env(safe-area-inset-left,0px)); bottom:16px; margin:0; max-width:46ch; font-size:12.5px; line-height:1.45; color:var(--testo-2)}
+.nota b{color:var(--testo)}
+
+#pannello{position:absolute; top:16px; right:max(16px,env(safe-area-inset-right,0px)); bottom:16px; width:min(360px, calc(100% - 32px));
+  background:var(--paper); color:var(--ink); border-radius:16px; box-shadow:0 10px 40px rgba(10,12,20,.22), 0 1px 0 rgba(23,24,27,.1);
+  padding:20px 20px 18px; display:flex; flex-direction:column; gap:16px; overflow:auto}
+.testa{display:flex; align-items:center; gap:12px}
+.avatar{width:46px; height:46px; border-radius:50%; flex:none; display:grid; place-items:center; color:#fff;
+  font-family:var(--display); font-weight:800; font-size:24px}
+.testa h2{font-family:var(--display); font-weight:800; font-size:30px; line-height:.95; text-transform:uppercase; margin:0}
+.testa p{margin:2px 0 0; font-size:12.5px; color:var(--ink-2)}
+.chiudi{margin-left:auto; border:0; background:var(--bone); color:var(--ink); width:32px; height:32px; border-radius:50%; font-size:18px; line-height:1; cursor:pointer}
+.blocco{display:flex; flex-direction:column; gap:7px}
+.blocco h3{font-family:var(--display); font-weight:700; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0}
+.blocco p{margin:0; line-height:1.45}
+.numeri{display:flex; gap:8px; flex-wrap:wrap}
+.numeri div{background:var(--bone); border-radius:10px; padding:8px 12px; min-width:0}
+.numeri strong{display:block; font-family:var(--display); font-weight:800; font-size:26px; line-height:1; font-variant-numeric:tabular-nums}
+.numeri span{font-size:11.5px; color:var(--ink-2)}
+.cambio{border-left:3px solid var(--red); padding-left:10px; display:flex; flex-direction:column; gap:3px}
+.cambio del{color:var(--ink-3); text-decoration-color:var(--red); text-decoration-thickness:2px; font-size:13px; line-height:1.35}
+.cambio ins{text-decoration:none; font-weight:600; line-height:1.35}
+.titoli{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px}
+.titoli li{display:flex; gap:8px; line-height:1.35}
+.titoli li i{flex:none; width:8px; height:8px; border-radius:50%; margin-top:6px; background:var(--orange)}
+.piede{margin-top:auto; font-size:12px; color:var(--ink-3); line-height:1.4}
+#errore{position:absolute; inset:0; display:grid; place-items:center; padding:24px; text-align:center}
+</style>
+
+<div id="app">
+  <canvas id="scena" aria-label="Un angolo della redazione di The Morning Brief, in 3D"></canvas>
+  <div id="etichette"></div>
+
+  <div class="marchio">
+    <span class="pallini"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
+    <h1>La redazione</h1>
+    <p>Prova di look · un angolo</p>
+  </div>
+
+  <div class="luci" role="group" aria-label="La luce della stanza">
+    <button type="button" data-luce="alba" aria-pressed="false">Alba</button>
+    <button type="button" data-luce="giorno" aria-pressed="true">Giorno</button>
+    <button type="button" data-luce="sera" aria-pressed="false">Sera</button>
+    <button type="button" data-luce="notte" aria-pressed="false">Notte</button>
+  </div>
+
+  <p class="nota"><b>Tocca Ettore o Ivo.</b> Rotella per avvicinarti, trascina per spostarti, doppio clic per tornare. Tutto quello che si legge viene dall'edizione di giovedì 12 novembre.</p>
+
+  <aside id="pannello" hidden aria-live="polite"></aside>
+  <div id="errore" hidden></div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+            "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+/* ------------------------------------------------------------------ i dati veri (12 novembre 2026)
+   Da redazione/stato/2026-11-12.json: l'edizione, la corsa, le correzioni di Ivo. */
+const DATI = {
+  dataBreve: 'GIO 12 NOV', inOnda: '05:56',
+  corsa: { inizio: '05:34', fine: '06:00', minuti: 26 },
+  menabo: [
+    { t: 'Scadono i resi dei primi iPhone Duo. Chi lo restituisce e perché', rep: 'iPhone' },
+    { t: 'Gemini arriva su CarPlay con un\'app sua. Era l\'ultimo grande assistente che mancava', rep: 'AI' },
+    { t: 'iPhone 18 Pro Max primo nel test di autonomia di CNET su 32 telefoni', rep: 'iPhone' },
+    { t: 'Un fornitore cinese dice di lavorare agli occhiali AI e agli AirPods con fotocamera di Apple', rep: 'Accessori' },
+    { t: 'Nel nuovo MacBook Pro l\'aria calda esce dalla cerniera, non più dallo schermo', rep: 'Mac' },
+  ],
+  punto: 'Si può restituire un telefono, meno un\'abitudine',
+  primePagine: [
+    { data: 'MER 11 NOV', t: 'Apple TV porta gli interpreti in lingua dei segni nei suoi film', c: '#0E9CD8' },
+    { data: 'MAR 10 NOV', t: 'Apple mette un prezzo all\'AI: 49,99 dollari per altro uso in Logic Pro', c: '#F0821E' },
+  ],
+  persone: {
+    ettore: { nome: 'Ettore', mestiere: 'redattore', modello: 'Opus', colore: '#F0821E', minuti: 9,
+      notizie: 15, approfondimenti: 5 },
+    ivo: { nome: 'Ivo', mestiere: 'revisore', modello: 'Opus', colore: '#E01F3D', minuti: 1, riscritti: 11,
+      cambi: [
+        { prima: 'iPhone Duo, si chiude la finestra dei resi: chi lo restituisce e perché',
+          dopo: 'Scadono i resi dei primi iPhone Duo. Chi lo restituisce e perché' },
+        { prima: 'Google porta l\'app Gemini su CarPlay, l\'ultimo grande assistente che mancava',
+          dopo: 'Gemini arriva su CarPlay con un\'app sua. Era l\'ultimo grande assistente che mancava' },
+        { prima: 'Nel nuovo MacBook Pro il calore esce dalla cerniera, non più dallo schermo: lo mostra la prova del fumo',
+          dopo: 'Nel nuovo MacBook Pro l\'aria calda esce dalla cerniera, non più dallo schermo' },
+      ] },
+  },
+};
+
+const C = { bone: '#EDEAE3', paper: '#F8F6F2', ink: '#17181B', ink2: '#4B4D53', ink3: '#7C7F87',
+  yellow: '#F5C518', orange: '#F0821E', red: '#E01F3D', blue: '#0E9CD8' };
+const DISPLAY = '"Avenir Next Condensed","HelveticaNeue-CondensedBold","Helvetica Neue",Arial,sans-serif';
+const SISTEMA = '-apple-system,"SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif';
+const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+try { avvia(); } catch (e) { guasto(e); }
+function guasto(e) {
+  const el = document.getElementById('errore'); el.hidden = false;
+  el.textContent = 'La stanza non si è accesa: ' + (e && e.message ? e.message : e);
+  console.error(e);
+}
+
+function avvia() {
+  const canvas = document.getElementById('scena');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.autoUpdate = false;
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  /* ---------------------------------------------------------------- mattoni */
+  const M = (color, o = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.82, metalness: 0, ...o });
+  const ombra = (m, getta = true) => { m.castShadow = getta; m.receiveShadow = true; return m; };
+  const box = (w, h, d, mat, r = 0.02) =>
+    ombra(new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 4, Math.min(r, w / 2.01, h / 2.01, d / 2.01)), mat));
+  const cyl = (rt, rb, h, mat, seg = 28) => ombra(new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), mat));
+  const sph = (r, mat, w = 24, hh = 18) => ombra(new THREE.Mesh(new THREE.SphereGeometry(r, w, hh), mat));
+  const cap = (r, l, mat) => ombra(new THREE.Mesh(new THREE.CapsuleGeometry(r, l, 8, 18), mat));
+  const at = (o, x, y, z) => { o.position.set(x, y, z); return o; };
+  const gruppo = (...figli) => { const g = new THREE.Group(); figli.forEach(f => f && g.add(f)); return g; };
+
+  function tela(w, h, disegna) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    disegna(c.getContext('2d'), w, h);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t;
+  }
+  const schermo = (w, h, tex) => new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+    new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  const stampa = (w, h, tex) => ombra(new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+    new THREE.MeshStandardMaterial({ map: tex, roughness: 0.9 })), false);
+
+  function aCapo(x, testo, maxW, maxRighe = 9) {
+    const parole = testo.split(' '), righe = []; let r = '';
+    for (const p of parole) {
+      const prova = r ? r + ' ' + p : p;
+      if (x.measureText(prova).width > maxW && r) { righe.push(r); r = p; } else r = prova;
+    }
+    if (r) righe.push(r);
+    if (righe.length > maxRighe) { righe.length = maxRighe; righe[maxRighe - 1] = righe[maxRighe - 1].replace(/\s+\S*$/, '') + '…'; }
+    return righe;
+  }
+  function spazia(x, em, px) { try { x.letterSpacing = (em * px) + 'px'; } catch (e) { /* non c'è: pazienza */ } }
+
+  /* Il marchio, ricalcato sulla testata dell'app: THE e BRIEF grandi metà di MORNING,
+     la O è il sole, davanti la falce azzurra dell'orizzonte. */
+  function marchio(x, x0, y0, S, inchiostro = C.ink) {
+    const s = S * 0.47; x.save(); x.textBaseline = 'alphabetic'; x.fillStyle = inchiostro;
+    x.font = `900 ${s}px ${SISTEMA}`; spazia(x, -0.01, s);
+    const yThe = y0 + s * 0.73; x.fillText('THE', x0, yThe);
+    const y = yThe + S * 0.80;
+    x.font = `900 ${S}px ${SISTEMA}`; spazia(x, -0.035, S);
+    const wM = x.measureText('M').width; x.fillText('M', x0, y);
+    const d = S * 0.92, cx = x0 + wM + S * 0.01 + d / 2, cy = y - S * 0.33;
+    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, d / 2, 0, Math.PI * 2); x.fill();
+    x.fillStyle = inchiostro; const xr = x0 + wM + S * 0.03 + d; x.fillText('RNING', xr, y);
+    const W = xr + x.measureText('RNING').width - x0;
+    const ax = x0 - W * 0.03, aw = W * 0.72, ay = y - S * 0.12, ah = S * 0.30;
+    const g = x.createLinearGradient(ax, 0, ax + aw, 0);
+    g.addColorStop(0, '#1A5FAF'); g.addColorStop(0.48, '#7CC6F2'); g.addColorStop(1, '#1A5FAF');
+    const X = u => ax + aw * u / 100, Y = v => ay + ah * v / 14;
+    x.fillStyle = g; x.beginPath(); x.moveTo(X(0), Y(13.6)); x.quadraticCurveTo(X(48), Y(-5), X(100), Y(13.6));
+    x.quadraticCurveTo(X(48), Y(4.2), X(0), Y(13.6)); x.fill();
+    x.fillStyle = inchiostro; x.font = `900 ${s}px ${SISTEMA}`; spazia(x, -0.01, s);
+    const yBrief = y + S * 0.21 + s * 0.73; x.fillText('BRIEF', x0, yBrief);
+    x.restore(); return { w: W, h: yBrief - y0 };
+  }
+  function sole(x, cx, cy, r) {   // il sole con la falce: la versione piccola, per tazze e adesivi
+    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
+    const g = x.createLinearGradient(cx - r * 1.5, 0, cx + r * 1.5, 0);
+    g.addColorStop(0, '#1A5FAF'); g.addColorStop(0.5, '#7CC6F2'); g.addColorStop(1, '#1A5FAF');
+    x.fillStyle = g; x.beginPath(); x.moveTo(cx - r * 1.5, cy + r * 1.0);
+    x.quadraticCurveTo(cx, cy - r * 0.15, cx + r * 1.5, cy + r * 1.0);
+    x.quadraticCurveTo(cx, cy + r * 0.55, cx - r * 1.5, cy + r * 1.0); x.fill();
+  }
+
+  /* ---------------------------------------------------------------- le tele */
+  const texSchermone = tela(2048, 976, (x, w, h) => {
+    x.fillStyle = C.bone; x.fillRect(0, 0, w, h);
+    marchio(x, 96, 92, 205);
+    // a destra: i tre pallini, la data, in onda
+    const rx = w - 96; x.textAlign = 'right';
+    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(rx - 24 - (2 - i) * 66, 138, 24, 0, 7); x.fill(); });
+    x.fillStyle = C.ink; x.font = `800 158px ${DISPLAY}`; x.fillText(DATI.dataBreve, rx, 336);
+    x.fillStyle = C.ink2; x.font = `700 60px ${DISPLAY}`; spazia(x, 0.08, 60);
+    const scritta = 'IN ONDA DALLE ' + DATI.inOnda, ws = x.measureText(scritta).width; x.fillText(scritta, rx, 436);
+    x.fillStyle = C.red; x.beginPath(); x.arc(rx - ws - 30, 416, 15, 0, 7); x.fill();
+    spazia(x, 0, 1);
+    // il sottopancia: fascia gialla, titolo su nero
+    x.textAlign = 'left'; const by = 620;
+    x.fillStyle = C.ink; x.fillRect(0, by, w, h - by);
+    x.fillStyle = C.yellow; x.fillRect(96, by - 44, 470, 88);
+    x.fillStyle = C.ink; x.font = `800 60px ${DISPLAY}`; spazia(x, 0.06, 60); x.fillText('IN APERTURA', 126, by + 20); spazia(x, 0, 1);
+    x.fillStyle = C.paper; x.font = `700 92px ${SISTEMA}`;
+    aCapo(x, DATI.menabo[0].t, w - 192, 2).forEach((r, i) => x.fillText(r, 96, by + 160 + i * 108));
+  });
+
+  const texMonitorEttore = tela(640, 400, (x, w, h) => {
+    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
+    x.fillStyle = C.ink; x.fillRect(0, 0, w, 44);
+    [C.red, C.yellow, C.blue].forEach((c, i) => { x.fillStyle = c; x.beginPath(); x.arc(26 + i * 24, 22, 7, 0, 7); x.fill(); });
+    x.fillStyle = C.orange; x.font = `800 30px ${DISPLAY}`; spazia(x, 0.1, 30); x.fillText('IPHONE · IN APERTURA', 36, 96); spazia(x, 0, 1);
+    x.fillStyle = C.ink; x.font = `800 42px ${SISTEMA}`;
+    let y = 150; aCapo(x, DATI.menabo[0].t, w - 72, 3).forEach(r => { x.fillText(r, 36, y); y += 50; });
+    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 4; i++) x.fillRect(36, y + 4 + i * 26, i === 3 ? 300 : w - 72, 11);
+    x.fillStyle = C.orange; x.fillRect(346, y + 4 + 3 * 26 - 6, 4, 24);
+  });
+
+  const texMonitorIvo = tela(640, 400, (x, w, h) => {
+    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
+    x.fillStyle = C.ink; x.fillRect(0, 0, w, 44);
+    x.fillStyle = C.paper; x.font = `700 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('REVISIONE · 11 TESTI RISCRITTI', 22, 31); spazia(x, 0, 1);
+    const c = DATI.persone.ivo.cambi[1];
+    x.fillStyle = C.ink3; x.font = `500 30px ${SISTEMA}`; let y = 104;
+    aCapo(x, c.prima, w - 72, 3).forEach(r => { x.fillText(r, 36, y); const m = x.measureText(r).width;
+      x.strokeStyle = C.red; x.lineWidth = 4; x.beginPath(); x.moveTo(34, y - 10); x.lineTo(38 + m, y - 11); x.stroke(); y += 40; });
+    y += 22; x.fillStyle = C.ink; x.font = `800 36px ${SISTEMA}`;
+    aCapo(x, c.dopo, w - 72, 4).forEach(r => { x.fillText(r, 36, y); y += 44; });
+  });
+
+  function foglio(seme) {   // una bozza stampata, con le correzioni a penna rossa
+    return tela(300, 420, (x, w, h) => {
+      x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, w, h);
+      x.fillStyle = C.ink; x.fillRect(28, 30, 190, 16); x.fillRect(28, 54, 120, 16);
+      let k = seme;
+      const caso = () => (k = (k * 9301 + 49297) % 233280) / 233280;
+      for (let i = 0; i < 13; i++) {
+        const y = 100 + i * 23, l = 150 + caso() * 94;
+        x.fillStyle = '#B9B6AE'; x.fillRect(28, y, l, 8);
+        if (caso() < 0.3) { x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); const a = 40 + caso() * 60, b = a + 50 + caso() * 70;
+          x.moveTo(a, y + 4); x.lineTo(b, y + 3); x.stroke();
+          x.beginPath(); x.moveTo(b + 6, y - 2); x.lineTo(w - 36, y - 10 + caso() * 6); x.stroke(); }
+      }
+      x.strokeStyle = C.red; x.lineWidth = 3; x.beginPath(); x.ellipse(120, 48, 108, 30, -0.04, 0, 6.6); x.stroke();
+    });
+  }
+
+  const texMenabo = tela(1100, 660, (x, w, h) => {
+    x.fillStyle = '#FDFDFB'; x.fillRect(0, 0, w, h);
+    x.fillStyle = C.ink; x.font = `800 84px ${DISPLAY}`; x.fillText('MENABÒ', 44, 100);
+    x.fillStyle = C.ink3; x.font = `700 40px ${DISPLAY}`; spazia(x, 0.08, 40); x.fillText(DATI.dataBreve, 330, 98); spazia(x, 0, 1);
+    x.fillStyle = C.ink; x.fillRect(44, 122, 700, 6);
+    const col = { iPhone: C.orange, AI: C.red, Accessori: C.blue, Mac: C.yellow };
+    DATI.menabo.forEach((n, i) => {
+      const y = 190 + i * 96;
+      x.fillStyle = col[n.rep] || C.ink; x.beginPath(); x.arc(70, y - 12, 20, 0, 7); x.fill();
+      x.fillStyle = n.rep === 'Mac' ? C.ink : '#fff'; x.font = `800 28px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(String(i + 1), 70, y - 2); x.textAlign = 'left';
+      x.fillStyle = C.ink; x.font = `${i === 0 ? 700 : 500} 32px ${SISTEMA}`;
+      aCapo(x, n.t, 620, 2).forEach((r, j) => x.fillText(r, 110, y + j * 38));
+    });
+    // l'apertura cerchiata a pennarello
+    x.strokeStyle = C.red; x.lineWidth = 7; x.lineCap = 'round';
+    x.beginPath(); x.ellipse(400, 196, 372, 62, -0.012, 0.3, 6.75); x.stroke();
+  });
+
+  const texPagina = p => tela(420, 560, (x, w, h) => {
+    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
+    marchio(x, 28, 24, 62);
+    x.fillStyle = C.ink3; x.font = `700 22px ${DISPLAY}`; x.textAlign = 'right'; x.fillText(p.data, w - 28, 50); x.textAlign = 'left';
+    x.fillStyle = C.ink; x.fillRect(28, 158, w - 56, 5);
+    x.fillStyle = p.c; x.fillRect(28, 182, w - 56, 150);
+    x.fillStyle = 'rgba(255,255,255,.9)'; x.beginPath(); x.arc(w - 92, 258, 40, 0, 7); x.fill();
+    x.fillStyle = C.ink; x.font = `800 31px ${SISTEMA}`; let y = 376;
+    aCapo(x, p.t, w - 56, 4).forEach(r => { x.fillText(r, 28, y); y += 36; });
+    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 3 && y + i * 20 < h - 30; i++) x.fillRect(28, y + 2 + i * 20, w - 56 - (i === 2 ? 120 : 0), 8);
+  });
+
+  const texTazza = colore => tela(512, 160, (x, w, h) => {
+    x.fillStyle = colore; x.fillRect(0, 0, w, h);
+    x.fillStyle = C.paper; x.beginPath(); x.arc(w / 2, h / 2, 62, 0, 7); x.fill();
+    x.save(); x.beginPath(); x.arc(w / 2, h / 2, 62, 0, 7); x.clip(); sole(x, w / 2, h / 2 - 4, 30); x.restore();
+  });
+
+  const texOrologio = tela(256, 256, (x, w) => {
+    x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(128, 128, 128, 0, 7); x.fill();
+    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, g = i % 3 === 0;
+      x.fillStyle = C.ink; x.beginPath(); x.arc(128 + Math.sin(a) * 102, 128 - Math.cos(a) * 102, g ? 8 : 4, 0, 7); x.fill(); }
+  });
+
+  const texInOnda = tela(256, 80, (x, w, h) => {
+    x.fillStyle = C.red; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#fff'; x.font = `800 54px ${DISPLAY}`; x.textAlign = 'center'; spazia(x, 0.08, 54); x.fillText('IN ONDA', w / 2 + 2, 59);
+  });
+
+  const cieli = {};
+  for (const [nome, [alto, basso]] of Object.entries({ alba: ['#8FB8E8', '#FFC38A'], giorno: ['#8CCBF5', '#DDF0FB'],
+    sera: ['#27306B', '#F08A5D'], notte: ['#0B1030', '#1D2755'] })) {
+    cieli[nome] = tela(64, 256, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, alto); g.addColorStop(1, basso); x.fillStyle = g; x.fillRect(0, 0, w, h);
+      if (nome === 'notte') { x.fillStyle = '#F8F6F2'; x.beginPath(); x.arc(44, 60, 9, 0, 7); x.fill(); } });
+  }
+
+  /* ---------------------------------------------------------------- i colori dei materiali */
+  const legno = M(0xE6BB86, { roughness: 0.7 }), legnoScuro = M(0xC9955C, { roughness: 0.75 });
+  const pavimento = M(0xF1EADF, { roughness: 0.95 }), muro = M(0xFAF6EE, { roughness: 0.95 });
+  const nero = M(0x202125, { roughness: 0.55 }), grigio = M(0xDAD6CE), bianco = M(0xFBFAF7, { roughness: 0.6 });
+  const verdi = [M(0x3F8F5A), M(0x4FA368), M(0x2F7A4C)];
+
+  const stanza = new THREE.Group(); scene.add(stanza);
+  const LARGA = 7.2, FONDA = 5.4, ALTA = 3.0;
+
+  /* ---------------------------------------------------------------- pavimento e pareti */
+  stanza.add(at(box(LARGA + 0.5, 0.36, FONDA + 0.5, pavimento, 0.07), LARGA / 2 - 0.05, -0.18, FONDA / 2 - 0.05));
+  const muroA = at(box(LARGA + 0.5, ALTA, 0.26, muro, 0.03), LARGA / 2 - 0.05, ALTA / 2, -0.13); muroA.castShadow = false;
+  const muroB = at(box(0.26, ALTA, FONDA + 0.5, muro, 0.03), -0.13, ALTA / 2, FONDA / 2 - 0.05); muroB.castShadow = false;
+  stanza.add(muroA, muroB);
+  stanza.add(at(box(LARGA, 0.1, 0.03, legnoScuro, 0.01), LARGA / 2, 0.05, 0.015), at(box(0.03, 0.1, FONDA, legnoScuro, 0.01), 0.015, 0.05, FONDA / 2));
+  // il tappeto: il sole del marchio, sotto la scrivania
+  const tappeto = at(cyl(1.5, 1.5, 0.03, M(0xF0C445, { roughness: 1 }), 64), 2.62, 0.016, 3.3); tappeto.castShadow = false; stanza.add(tappeto);
+
+  /* ---------------------------------------------------------------- la parete di fondo */
+  // lo schermo gigante
+  const sx = 3.3, sy = 1.82, sw = 3.6, sh = sw * 976 / 2048;
+  stanza.add(at(box(sw + 0.14, sh + 0.14, 0.08, nero, 0.03), sx, sy, 0.05));
+  stanza.add(at(schermo(sw, sh, texSchermone), sx, sy, 0.093));
+  const spia = at(box(0.62, 0.2, 0.07, M(0xE01F3D, { emissive: 0xE01F3D, emissiveIntensity: 0.25 }), 0.03), sx - sw / 2 + 0.31, sy + sh / 2 + 0.2, 0.05);
+  stanza.add(spia, at(schermo(0.56, 0.175, texInOnda), sx - sw / 2 + 0.31, sy + sh / 2 + 0.2, 0.088));
+  // la credenza con il merchandising
+  const credenza = gruppo(at(box(3.0, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
+    ...[-1.3, 1.3].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.16, legnoScuro, 12), dx, 0.08, dz))),
+    ...[-0.75, 0, 0.75].map(dx => at(box(0.012, 0.44, 0.01, legnoScuro, 0.004), dx, 0.42, 0.232)));
+  at(credenza, sx, 0, 0.3); stanza.add(credenza);
+  function tazza(colore) {
+    const g = gruppo(), mat = new THREE.MeshStandardMaterial({ map: texTazza(colore), roughness: 0.45 });
+    const corpo = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.045, 0.105, 32, 1, true), mat)); corpo.position.y = 0.0525;
+    const fondo = at(cyl(0.046, 0.045, 0.01, M(colore, { roughness: 0.45 })), 0, 0.005, 0);
+    const dentro = at(cyl(0.044, 0.044, 0.004, M(0x3a2a22, { roughness: 0.3 })), 0, 0.092, 0); dentro.castShadow = false;
+    const manico = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.009, 10, 20), M(colore, { roughness: 0.45 })));
+    manico.position.set(0, 0.055, 0.058); manico.rotation.y = Math.PI / 2;
+    g.add(corpo, fondo, dentro, manico); g.rotation.y = -Math.PI * 0.75; return g;   // il disegno guarda chi guarda
+  }
+  [C.yellow, C.orange, C.blue, C.red].forEach((c, i) => stanza.add(at(tazza(c), sx - 1.2 + i * 0.2, 0.68, 0.36)));
+  // la macchina del caffè
+  const caffe = gruppo(at(box(0.28, 0.36, 0.3, nero, 0.04), 0, 0.18, 0), at(box(0.2, 0.03, 0.12, M(0x9a9aa0, { metalness: 0.6, roughness: 0.35 }), 0.01), 0, 0.03, 0.2),
+    at(sph(0.014, M(0xF5C518, { emissive: 0xF5C518, emissiveIntensity: 0.8 })), 0.08, 0.3, 0.152), at(cyl(0.028, 0.024, 0.05, bianco, 16), 0, 0.07, 0.2));
+  stanza.add(at(caffe, sx + 1.1, 0.68, 0.3));
+  // le edizioni stampate e il cappellino
+  const pila = gruppo(...[0, 1, 2, 3, 4].map(i => { const f = at(box(0.3, 0.014, 0.22, i % 2 ? bianco : M(0xEFEBE2), 0.004), 0, 0.007 + i * 0.015, 0); f.rotation.y = (i - 2) * 0.05; return f; }));
+  stanza.add(at(pila, sx + 0.3, 0.68, 0.32));
+  const cappello = gruppo(ombra(new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), M(0xF5C518, { roughness: 0.9 }))),
+    (() => { const v = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.012, 24, 1, false, -Math.PI / 2, Math.PI), M(0x17181B))); v.position.set(0, 0.006, 0.02); v.scale.z = 1.25; return v; })());
+  cappello.rotation.y = Math.PI / 4; stanza.add(at(cappello, sx - 0.25, 0.68, 0.3));
+  // le prime pagine incorniciate, e l'orologio che segna l'ora vera
+  DATI.primePagine.forEach((p, i) => {
+    const fx = 5.92 + i * 0.78;
+    stanza.add(at(box(0.66, 0.86, 0.04, nero, 0.012), fx, 1.5, 0.025), at(stampa(0.6, 0.8, texPagina(p)), fx, 1.5, 0.047));
+  });
+  const orologio = gruppo(); at(orologio, 6.31, 2.44, 0.03);
+  const cassa = cyl(0.27, 0.27, 0.05, nero, 48); cassa.rotation.x = Math.PI / 2;
+  const quadrante = at(new THREE.Mesh(new THREE.CircleGeometry(0.245, 48), new THREE.MeshStandardMaterial({ map: texOrologio, roughness: 0.6 })), 0, 0, 0.027);
+  const lancetta = (l, s, col) => { const p = gruppo(); const m = at(box(s, l, 0.008, M(col), 0.003), 0, l / 2 - 0.02, 0); m.castShadow = false; p.add(m); p.position.z = 0.034; return p; };
+  const ore = lancetta(0.13, 0.022, 0x17181B), minuti = lancetta(0.2, 0.016, 0x17181B), secondi = lancetta(0.22, 0.007, 0xE01F3D);
+  orologio.add(cassa, quadrante, ore, minuti, secondi); stanza.add(orologio);
+
+  /* ---------------------------------------------------------------- la parete di sinistra */
+  // la finestra
+  const cielo = new THREE.MeshBasicMaterial({ map: cieli.giorno, toneMapped: false });
+  const vetro = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.4), cielo); vetro.rotation.y = Math.PI / 2; at(vetro, 0.006, 1.75, 1.75);
+  const telaio = M(0xFFFFFF, { roughness: 0.5 });
+  stanza.add(vetro, at(box(0.07, 0.07, 1.64, telaio), 0.035, 2.48, 1.75), at(box(0.1, 0.06, 1.72, telaio), 0.05, 1.02, 1.75),
+    at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 0.965), at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 2.535), at(box(0.04, 1.4, 0.04, telaio), 0.02, 1.75, 1.75));
+  // il menabò, con i post-it
+  const bz = 3.85;
+  const lavagna = stampa(2.2, 1.32, texMenabo); lavagna.rotation.y = Math.PI / 2; at(lavagna, 0.047, 1.62, bz);
+  stanza.add(at(box(0.04, 1.42, 2.3, grigio, 0.015), 0.022, 1.62, bz), lavagna, at(box(0.08, 0.03, 1.6, grigio, 0.01), 0.07, 0.93, bz));
+  [[C.yellow, 4.62, 2.02, 0.05], [C.orange, 4.62, 1.72, -0.06], [C.blue, 4.38, 1.4, 0.04], [C.yellow, 4.66, 1.36, -0.03], ['#FF8FA3', 4.4, 1.12, 0.07]]
+    .forEach(([c, z, y, r]) => { const p = at(box(0.012, 0.2, 0.2, M(c, { roughness: 0.95 }), 0.004), 0.056, y, z); p.rotation.x = r; p.castShadow = false; stanza.add(p); });
+  stanza.add(at(box(0.03, 0.03, 0.14, M(0xE01F3D), 0.01), 0.075, 0.96, bz - 0.4), at(box(0.03, 0.03, 0.14, M(0x17181B), 0.01), 0.075, 0.96, bz - 0.2));
+
+  /* ---------------------------------------------------------------- piante e lampade */
+  function piantaGrande() {
+    const g = gruppo(at(cyl(0.27, 0.2, 0.44, bianco, 32), 0, 0.22, 0), at(cyl(0.245, 0.245, 0.02, M(0x4a3a2e, { roughness: 1 }), 24), 0, 0.435, 0), at(cyl(0.022, 0.03, 1.0, M(0x7a5a3c), 10), 0, 0.92, 0));
+    const N = 11;
+    for (let i = 0; i < N; i++) {
+      const a = i * 2.4, h = 0.75 + (i / N) * 0.95, perno = gruppo(); perno.position.set(0, h, 0); perno.rotation.y = a;
+      const f = sph(0.2, verdi[i % 3], 18, 12); f.scale.set(0.62, 0.1, 1.15); f.position.set(0, 0.05, 0.3); f.rotation.x = -0.55 + (i / N) * 0.3;
+      perno.add(f); g.add(perno);
+    }
+    return g;
+  }
+  function sansevieria() {
+    const g = gruppo(at(cyl(0.2, 0.15, 0.3, M(0xD9825B, { roughness: 0.9 }), 28), 0, 0.15, 0), at(cyl(0.18, 0.18, 0.02, M(0x4a3a2e, { roughness: 1 }), 20), 0, 0.295, 0));
+    for (let i = 0; i < 9; i++) {
+      const a = i * 2.4, l = 0.55 + ((i * 7) % 5) * 0.11, perno = gruppo(); perno.position.y = 0.28; perno.rotation.y = a;
+      const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07;
+      perno.add(f); g.add(perno);
+    }
+    return g;
+  }
+  stanza.add(at(piantaGrande(), 0.62, 0, 0.62), at(sansevieria(), 6.55, 0, 4.75));
+  const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, sx + 0.72, 0.68, 0.3));
+
+  const lampade = [];   // le luci che si accendono la sera
+  function punto(colore, forza, x, y, z, raggio = 5) { const l = new THREE.PointLight(colore, 0, raggio, 1.6); l.position.set(x, y, z); l.userData.max = forza; lampade.push(l); stanza.add(l); return l; }
+  const paralumi = [];
+  const paralume = M(0xFFF3D6, { roughness: 0.9, emissive: 0xFFD9A0, emissiveIntensity: 0 }); paralumi.push(paralume);
+  const piantana = gruppo(at(cyl(0.16, 0.18, 0.03, nero, 24), 0, 0.015, 0), at(cyl(0.014, 0.014, 1.55, nero, 10), 0, 0.8, 0),
+    (() => { const p = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.23, 0.3, 28, 1, true), paralume)); p.material.side = THREE.DoubleSide; p.position.y = 1.62; return p; })());
+  stanza.add(at(piantana, 5.42, 0, 0.5)); punto(0xFFC27A, 9, 5.42, 1.6, 0.6, 6);
+  punto(0xF2ECDF, 4.5, 3.3, 1.7, 1.3, 5.5);   // il chiarore dello schermo gigante, che la sera si vede
+
+  /* ---------------------------------------------------------------- scrivanie, sedie, monitor */
+  function scrivania(largh = 1.8, prof = 0.85) {
+    const g = gruppo(at(box(largh, 0.06, prof, legno, 0.025), 0, 0.745, 0));
+    for (const dx of [-1, 1]) for (const dz of [-1, 1]) {
+      const z = cyl(0.03, 0.022, 0.72, legnoScuro, 12); z.position.set(dx * (largh / 2 - 0.12), 0.36, dz * (prof / 2 - 0.1)); g.add(z);
+    }
+    return g;
+  }
+  function monitor(tex) {
+    return gruppo(at(box(0.7, 0.45, 0.035, nero, 0.02), 0, 0.33, 0), at(schermo(0.65, 0.4, tex), 0, 0.33, 0.019),
+      at(cyl(0.02, 0.02, 0.14, nero, 12), 0, 0.07, -0.02), at(cyl(0.12, 0.13, 0.014, nero, 28), 0, 0.007, -0.02));
+  }
+  function sedia() {
+    const g = gruppo(at(box(0.46, 0.08, 0.46, nero, 0.035), 0, 0.42, 0), at(cyl(0.028, 0.028, 0.3, M(0x8d8e94, { metalness: 0.5, roughness: 0.4 }), 12), 0, 0.24, 0),
+      at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
+    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, 0.78, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
+    for (let i = 0; i < 5; i++) { const a = i * Math.PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
+      raggio.position.set(Math.sin(a) * 0.135, 0.06, Math.cos(a) * 0.135); raggio.rotation.y = a; g.add(raggio, at(sph(0.035, M(0x101013)), Math.sin(a) * 0.26, 0.035, Math.cos(a) * 0.26)); }
+    return g;
+  }
+  const tastiera = () => gruppo(at(box(0.42, 0.018, 0.14, bianco, 0.008), 0, 0.009, 0), at(box(0.38, 0.006, 0.1, grigio, 0.002), 0, 0.02, 0));
+  const mouse = () => { const m = sph(0.032, bianco, 16, 12); m.scale.set(0.8, 0.5, 1.2); return m; };
+
+  /* ---------------------------------------------------------------- le persone */
+  const SCURO = 0x1B1C20;
+  function persona(o) {
+    const g = gruppo(); g.userData.id = o.id;
+    const pelle = M(o.pelle, { roughness: 0.65 }), maglia = M(o.maglia, { roughness: 0.85 }), calzoni = M(0x2C3554, { roughness: 0.9 }), capelli = M(o.capelli, { roughness: 0.95 });
+    const corpo = gruppo(); g.add(corpo);   // l'origine è ai fianchi
+    const torso = cap(0.2, 0.22, maglia); torso.position.y = 0.31; torso.scale.z = 0.86; corpo.add(torso);
+    const testa = gruppo(); testa.position.y = 0.81; corpo.add(testa);
+    testa.add(sph(0.25, pelle, 32, 24));
+    const calotta = ombra(new THREE.Mesh(new THREE.SphereGeometry(0.262, 32, 16, 0, Math.PI * 2, 0, Math.PI * (o.fronte || 0.44)), capelli)); calotta.rotation.x = -0.52; calotta.position.y = 0.008; testa.add(calotta);
+    if (o.ciuffo) { const c = sph(0.1, capelli, 16, 12); c.scale.set(1.5, 0.7, 1); testa.add(at(c, 0.02, 0.2, 0.1)); }
+    if (o.baffi) { const b = sph(0.06, capelli, 16, 10); b.scale.set(1.5, 0.42, 0.6); b.castShadow = false; testa.add(at(b, 0, -0.085, 0.228)); }
+    for (const lato of [-1, 1]) { const occhio = at(sph(0.027, M(SCURO, { roughness: 0.3 }), 12, 10), lato * 0.09, -0.012, 0.228); occhio.castShadow = false; testa.add(occhio); }
+    if (o.occhiali) for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.0055, 8, 28), M(SCURO)); l.position.set(lato * 0.092, -0.012, 0.234); l.rotation.y = lato * 0.32; testa.add(l); }
+    if (o.occhiali) testa.add(at(box(0.05, 0.007, 0.007, M(SCURO), 0.002), 0, -0.004, 0.252));
+    const braccio = lato => { const p = gruppo(); p.position.set(lato * 0.238, 0.47, 0);
+      p.add(at(cap(0.062, 0.2, maglia), 0, -0.14, 0), at(sph(0.066, pelle, 16, 12), 0, -0.3, 0)); corpo.add(p); return p; };
+    const bs = braccio(-1), bd = braccio(1);
+    const scarpa = () => box(0.125, 0.08, 0.21, M(0xF4F1EA, { roughness: 0.7 }), 0.03);
+    if (o.seduto) {
+      for (const lato of [-1, 1]) {
+        const coscia = cap(0.085, 0.2, calzoni); coscia.rotation.x = Math.PI / 2; coscia.position.set(lato * 0.1, 0, 0.17);
+        const stinco = at(cap(0.078, 0.2, calzoni), lato * 0.1, -0.2, 0.36);
+        corpo.add(coscia, stinco, at(scarpa(), lato * 0.1, -0.43, 0.4));
+      }
+      corpo.position.y = 0.5;
+    } else {
+      for (const lato of [-1, 1]) corpo.add(at(cap(0.085, 0.3, calzoni), lato * 0.1, -0.24, 0), at(scarpa(), lato * 0.1, -0.5, 0.035));
+      corpo.position.y = 0.55;
+    }
+    g.userData.parti = { corpo, testa, bs, bd };
+    g.userData.altezza = corpo.position.y + 0.81 + 0.27;
+    return g;
+  }
+
+  // Ettore, il redattore: alla scrivania, scrive
+  const postoEttore = gruppo(); at(postoEttore, 2.6, 0, 2.9); stanza.add(postoEttore);
+  postoEttore.add(scrivania(), at(monitor(texMonitorEttore), 0.05, 0.775, -0.2), at(tastiera(), 0.05, 0.775, 0.2), at(mouse(), 0.42, 0.79, 0.22));
+  postoEttore.add(at(tazza(C.orange), -0.62, 0.775, 0.12));
+  const bozze = gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; }));
+  postoEttore.add(at(bozze, 0.66, 0.775, -0.12));
+  // la lampada da tavolo, gialla come il sole del marchio
+  const cappa = M(0xF5C518, { roughness: 0.5, emissive: 0xFFB400, emissiveIntensity: 0 }); paralumi.push(cappa);
+  const lampada = gruppo(at(cyl(0.07, 0.08, 0.02, M(0xF5C518, { roughness: 0.5 }), 20), 0, 0.01, 0), at(cyl(0.01, 0.01, 0.34, nero, 8), 0, 0.18, 0),
+    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })());
+  postoEttore.add(at(lampada, -0.7, 0.775, -0.25)); punto(0xFFC860, 5, 2.6 - 0.6, 1.2, 2.9 - 0.15, 3.2);
+  const sediaEttore = sedia(); sediaEttore.rotation.y = Math.PI; postoEttore.add(at(sediaEttore, 0.05, 0, 0.82));
+  const ettore = persona({ id: 'ettore', pelle: 0xF0C3A0, maglia: 0xF0821E, capelli: 0x3A2A22, seduto: true, occhiali: true, ciuffo: true });
+  ettore.rotation.y = Math.PI; at(ettore, 2.65, 0, 3.74); stanza.add(ettore);
+
+  // Ivo, il revisore: in piedi, con le bozze di Ettore corrette a penna rossa
+  const postoIvo = gruppo(); at(postoIvo, 5.95, 0, 2.0); stanza.add(postoIvo);
+  postoIvo.add(scrivania(1.6, 0.8), at(monitor(texMonitorIvo), -0.1, 0.775, -0.18), at(tastiera(), -0.1, 0.775, 0.18), at(tazza(C.red), 0.6, 0.775, 0.2));
+  [[-0.58, 0.02, 0.2, 11], [-0.5, 0.1, -0.15, 23]].forEach(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-Math.PI / 2, 0, r); postoIvo.add(at(f, x, 0.777 + i * 0.002, z)); });
+  const sediaIvo = sedia(); sediaIvo.rotation.y = Math.PI - 0.7; postoIvo.add(at(sediaIvo, 0.25, 0, 0.95));
+  const ivo = persona({ id: 'ivo', pelle: 0xD9A27E, maglia: 0xE01F3D, capelli: 0xB4B4BA, occhiali: true, baffi: true, fronte: 0.4 });
+  ivo.rotation.y = Math.PI / 4; at(ivo, 4.75, 0, 3.55); stanza.add(ivo);
+  { const p = ivo.userData.parti;
+    const bozza = stampa(0.27, 0.37, foglio(5)); bozza.material.side = THREE.DoubleSide; bozza.rotation.set(-0.75, 0.25, 0); p.bd.add(at(bozza, -0.13, -0.4, 0.1));
+    const penna = cyl(0.011, 0.011, 0.15, M(0xE01F3D, { roughness: 0.4 }), 10); penna.rotation.set(0.5, 0, 0.3); p.bs.add(at(penna, 0.01, -0.34, 0.03)); }
+  const persone = { ettore, ivo };
+
+  /* ---------------------------------------------------------------- le luci */
+  const emisfero = new THREE.HemisphereLight(0xffffff, 0xd9cdb8, 1); scene.add(emisfero);
+  const solare = new THREE.DirectionalLight(0xffffff, 2.5); scene.add(solare, solare.target);
+  const centro = new THREE.Vector3(3.4, 0.9, 2.6); solare.target.position.copy(centro);
+  solare.castShadow = true; solare.shadow.mapSize.set(4096, 4096);
+  Object.assign(solare.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 40 });
+  solare.shadow.camera.updateProjectionMatrix();
+  solare.shadow.bias = -0.0004; solare.shadow.normalBias = 0.03; solare.shadow.radius = 11;
+  const LUCI = {
+    alba:   { da: [-7, 4.4, 6], sole: 0xFFAE6E, soleI: 2.7, cielo: 0xFFDDBB, terra: 0xD8B596, emiI: 0.56, env: 0.22, lampade: 0.3, ombra: 0.6, esp: 1.0 },
+    giorno: { da: [-4.5, 9, 6.5], sole: 0xFFF4E2, soleI: 2.4, cielo: 0xFFFFFF, terra: 0xDCD0BC, emiI: 0.55, env: 0.3, lampade: 0, ombra: 0.6, esp: 1.0 },
+    sera:   { da: [5, 6, 7], sole: 0x8E9BE8, soleI: 0.55, cielo: 0x8C92D6, terra: 0x4A456B, emiI: 0.3, env: 0.1, lampade: 1, ombra: 0.5, esp: 1.0 },
+    notte:  { da: [4, 9, 6], sole: 0x6F86D6, soleI: 0.3, cielo: 0x4A5AA8, terra: 0x23264A, emiI: 0.25, env: 0.06, lampade: 1, ombra: 0.45, esp: 1.0 },
+  };
+  let sporca = true;
+  function luce(nome) {
+    const L = LUCI[nome]; document.documentElement.dataset.luce = nome;
+    solare.color.set(L.sole); solare.intensity = L.soleI; solare.position.copy(centro).add(new THREE.Vector3(...L.da));
+    solare.shadow.intensity = L.ombra;
+    emisfero.color.set(L.cielo); emisfero.groundColor.set(L.terra); emisfero.intensity = L.emiI;
+    scene.environmentIntensity = L.env; renderer.toneMappingExposure = L.esp;
+    lampade.forEach(l => { l.intensity = l.userData.max * L.lampade; });
+    paralumi.forEach(m => { m.emissiveIntensity = 1.6 * L.lampade; });
+    cielo.map = cieli[nome]; cielo.needsUpdate = true;
+    document.querySelectorAll('.luci button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.luce === nome)));
+    renderer.shadowMap.needsUpdate = true; sporca = true;
+  }
+  document.querySelectorAll('.luci button').forEach(b => b.addEventListener('click', () => luce(b.dataset.luce)));
+
+  /* ---------------------------------------------------------------- la camera: isometrica, ferma */
+  const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 120);
+  const DIR = new THREE.Vector3(1, 0.8, 1).normalize();
+  cam.position.copy(centro).addScaledVector(DIR, 40); cam.lookAt(centro); cam.updateMatrixWorld();
+  const DESTRA = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), SU = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+  const sulPiano = p => { const d = p.clone().sub(centro); return [d.dot(DESTRA), d.dot(SU)]; };
+  // quanto è grande la stanza vista da qui
+  const scatola = new THREE.Box3().setFromObject(stanza); let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+  for (const x of [scatola.min.x, scatola.max.x]) for (const y of [scatola.min.y, scatola.max.y]) for (const z of [scatola.min.z, scatola.max.z]) {
+    const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); minX = Math.min(minX, a); maxX = Math.max(maxX, a); minY = Math.min(minY, b); maxY = Math.max(maxY, b); }
+  const CASA = { x: (minX + maxX) / 2, y: (minY + maxY) / 2, zoom: 1 }, AMPIA = maxX - minX, ALTEZZA = maxY - minY;
+  const vista = { ...CASA }, meta = { ...CASA }; let mezza = 5, ppu = 100;
+  function inquadra() {
+    cam.position.copy(centro).addScaledVector(DIR, 40).addScaledVector(DESTRA, vista.x).addScaledVector(SU, vista.y);
+    cam.zoom = vista.zoom; cam.updateProjectionMatrix(); sporca = true;
+  }
+  function misura() {
+    const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); const asp = w / h;
+    mezza = Math.max(ALTEZZA / 2 * 1.16, AMPIA / 2 / asp * 1.06); ppu = h / (2 * mezza);
+    cam.left = -mezza * asp; cam.right = mezza * asp; cam.top = mezza; cam.bottom = -mezza; inquadra();
+  }
+  new ResizeObserver(misura).observe(canvas); misura();
+
+  /* ---------------------------------------------------------------- etichette e pannello */
+  const strato = document.getElementById('etichette'), tags = {};
+  for (const [id, p] of Object.entries(DATI.persone)) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'tag';
+    const pallino = document.createElement('b'); pallino.style.background = p.colore;
+    const ruolo = document.createElement('span'); ruolo.textContent = p.mestiere;
+    const guarda = document.createElement('em'); guarda.textContent = 'Guarda ▸';
+    b.append(pallino, document.createTextNode(p.nome), ruolo, guarda);
+    b.setAttribute('aria-label', `${p.nome}, ${p.mestiere}: apri la scheda`);
+    b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
+  }
+  const v3 = new THREE.Vector3();
+  function etichette() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    for (const [id, g] of Object.entries(persone)) {
+      v3.set(0, g.userData.altezza + 0.1, 0); g.localToWorld(v3); v3.project(cam);
+      tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`;
+    }
+  }
+
+  const pannello = document.getElementById('pannello'); let aperto = null;
+  const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
+  function apri(id) {
+    const p = DATI.persone[id]; aperto = id; pannello.textContent = '';
+    const testa = el('div', 'testa'), av = el('div', 'avatar', p.nome[0]); av.style.background = p.colore;
+    const chi = el('div'); chi.append(el('h2', null, p.nome), el('p', null, `${p.mestiere} · ${p.modello}`));
+    const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
+    testa.append(av, chi, x); pannello.append(testa);
+    const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, n), el('span', null, cosa)); numeri.append(d); };
+    const stamattina = el('div', 'blocco'); stamattina.append(el('h3', null, 'Stamattina'));
+    if (id === 'ettore') {
+      numero(String(p.notizie), 'notizie scritte'); numero(String(p.approfondimenti), 'approfondimenti'); numero(p.minuti + ' min', 'di lavoro');
+      stamattina.append(numeri, el('p', null, `Ha scritto la prosa dell'edizione durante la corsa delle ${DATI.corsa.inizio}. L'edizione è andata in onda alle ${DATI.inOnda}.`));
+      const b = el('div', 'blocco'); b.append(el('h3', null, 'Sul suo schermo: le prime tre'));
+      const ul = el('ul', 'titoli'); DATI.menabo.slice(0, 3).forEach(n => { const li = el('li'); li.append(el('i'), el('span', null, n.t)); ul.append(li); }); b.append(ul);
+      const c = el('div', 'blocco'); c.append(el('h3', null, '«Il punto» di oggi'), el('p', null, DATI.punto));
+      pannello.append(stamattina, b, c);
+    } else {
+      numero(String(p.riscritti), 'testi riscritti'); numero(p.minuti + ' min', 'di lavoro');
+      stamattina.append(numeri, el('p', null, `Ha riletto la prosa di Ettore prima della pubblicazione delle ${DATI.inOnda}. Era il suo primo giorno.`));
+      const b = el('div', 'blocco'); b.append(el('h3', null, 'Sulla scrivania: tre titoli corretti'));
+      p.cambi.forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
+      pannello.append(stamattina, b);
+    }
+    pannello.append(el('p', 'piede', 'In questa prova la scheda mostra solo i fatti di oggi. La conversazione arriva con il prossimo passo.'));
+    pannello.hidden = false; x.focus({ preventScroll: true });
+    // la camera si avvicina alla sua scrivania, lasciando posto alla scheda
+    const g = persone[id]; v3.set(0, 0.75, 0); g.localToWorld(v3); const [a, b] = sulPiano(v3), z = 2.1;
+    const larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0;
+    meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
+  }
+  function chiudi() { if (!aperto) return; const t = tags[aperto]; aperto = null; pannello.hidden = true; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
+  addEventListener('keydown', e => { if (e.key === 'Escape') chiudi(); });
+
+  /* ---------------------------------------------------------------- rotella, trascinamento, clic */
+  const raggio = new THREE.Raycaster(), ndc = new THREE.Vector2(); let presa = null;
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault(); const r = canvas.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width / 2) / ppu, dy = -(e.clientY - r.top - r.height / 2) / ppu;
+    const z0 = meta.zoom, z1 = Math.min(4.5, Math.max(1, z0 * Math.exp(-e.deltaY * 0.0016)));
+    meta.x += dx / z0 - dx / z1; meta.y += dy / z0 - dy / z1; meta.zoom = z1;
+    if (z1 === 1) { meta.x = CASA.x; meta.y = CASA.y; }
+  }, { passive: false });
+  canvas.addEventListener('pointerdown', e => { presa = { x: e.clientX, y: e.clientY, mosso: 0 }; canvas.setPointerCapture(e.pointerId); canvas.classList.add('presa'); });
+  canvas.addEventListener('pointermove', e => { if (!presa) return; const dx = e.clientX - presa.x, dy = e.clientY - presa.y; presa.mosso += Math.abs(dx) + Math.abs(dy);
+    presa.x = e.clientX; presa.y = e.clientY; meta.x -= dx / (ppu * vista.zoom); meta.y += dy / (ppu * vista.zoom); vista.x = meta.x; vista.y = meta.y; inquadra(); });
+  canvas.addEventListener('pointerup', e => {
+    canvas.classList.remove('presa'); const p = presa; presa = null; if (!p || p.mosso > 6) return;
+    const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    raggio.setFromCamera(ndc, cam); const colpi = raggio.intersectObjects(Object.values(persone), true);
+    if (colpi.length) { let o = colpi[0].object; while (o && !o.userData.id) o = o.parent; if (o) return apri(o.userData.id); }
+    if (aperto) chiudi();
+  });
+  canvas.addEventListener('dblclick', () => { if (aperto) chiudi(); else Object.assign(meta, CASA); });
+
+  /* ---------------------------------------------------------------- la vita: piccoli gesti */
+  const dolce = t => t * t * (3 - 2 * t);
+  function anima(s) {
+    { const p = ettore.userData.parti, batte = Math.sin(s * 0.45) > -0.35 ? 1 : 0;   // scrive a raffiche
+      p.bs.rotation.x = -1.18 + batte * Math.sin(s * 15) * 0.06; p.bd.rotation.x = -1.18 + batte * Math.sin(s * 15 + 2.1) * 0.06;
+      p.bs.rotation.z = 0.2; p.bd.rotation.z = -0.2;
+      const f = s % 16, gira = f > 12 ? dolce(Math.min(1, (f - 12) / 0.7)) * (f > 15 ? dolce(Math.max(0, 1 - (f - 15) / 0.7)) : 1) : 0;
+      p.testa.rotation.y = -gira * 1.15; p.testa.rotation.x = 0.14 * (1 - gira) + Math.sin(s * 1.1) * 0.02; }
+    { const p = ivo.userData.parti;   // legge le bozze, poi alza gli occhi
+      const f = s % 11, su = f > 7 ? dolce(Math.min(1, (f - 7) / 0.6)) * (f > 10 ? dolce(Math.max(0, 1 - (f - 10) / 0.6)) : 1) : 0;
+      p.testa.rotation.x = 0.42 * (1 - su); p.testa.rotation.y = -0.25 * (1 - su);
+      p.bd.rotation.x = -1.0 - su * 0.1; p.bd.rotation.z = -0.22; p.bs.rotation.x = -0.9 + Math.sin(s * 0.9) * 0.03; p.bs.rotation.z = 0.42;
+      p.corpo.rotation.y = Math.sin(s * 0.5) * 0.04; p.corpo.position.y = 0.55 + Math.sin(s * 1.6) * 0.004; }
+  }
+  function ora() {
+    const d = new Date(), sec = d.getSeconds() + d.getMilliseconds() / 1000, min = d.getMinutes() + sec / 60, h = (d.getHours() % 12) + min / 60;
+    secondi.rotation.z = -sec * Math.PI / 30; minuti.rotation.z = -min * Math.PI / 30; ore.rotation.z = -h * Math.PI / 6;
+  }
+
+  luce('giorno'); anima(3); ora();
+  let prima = 0;
+  function giro(t) {
+    requestAnimationFrame(giro);
+    if (document.hidden || t - prima < 1000 / 31) return; prima = t;
+    const k = 0.16; let muove = false;
+    for (const c of ['x', 'y', 'zoom']) { const d = meta[c] - vista[c]; if (Math.abs(d) > 0.0005) { vista[c] += d * k; muove = true; } else vista[c] = meta[c]; }
+    if (muove) inquadra();
+    if (!fermo) { anima(t / 1000); ora(); sporca = true; }
+    if (!sporca) return; sporca = false;
+    renderer.render(scene, cam); etichette();
+  }
+  requestAnimationFrame(giro);
+  if (fermo) setInterval(() => { ora(); sporca = true; }, 15000);
+  // una maniglia per le prove: redazione.guarda(x, y, z, zoom) porta la camera su un punto della stanza
+  window.redazione = { THREE, renderer, scene, solare, emisfero, luce, apri, chiudi, ridisegna() { renderer.shadowMap.needsUpdate = true; sporca = true; }, guarda(x, y, z, zoom = 3) { const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(vista, meta); inquadra(); } };
+  canvas.addEventListener('webglcontextlost', e => e.preventDefault());
+  canvas.addEventListener('webglcontextrestored', () => { renderer.shadowMap.needsUpdate = true; sporca = true; });
+}
+</script>
+<script>
+/* Se le librerie 3D non arrivano il modulo qui sopra non parte nemmeno: lo si dice, invece di lasciare una pagina vuota. */
+setTimeout(function () {
+  if (window.redazione) return;
+  var e = document.getElementById('errore');
+  if (e && e.hidden) { e.hidden = false; e.textContent = 'La stanza non si è caricata: le librerie 3D non sono arrivate. Ricarica la pagina.'; }
+}, 9000);
+</script>
