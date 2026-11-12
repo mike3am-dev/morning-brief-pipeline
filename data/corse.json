@@ -1072,5 +1072,125 @@
     "ricerche_web": 0
    }
   }
+ },
+ {
+  "nuovi": 324,
+  "in_cache": 22759505,
+  "scritti_cache": 1225389,
+  "scritti": 198588,
+  "risposte": 163,
+  "ricerche_web": 0,
+  "giorno": "2026-11-12",
+  "sessione": "f4fcc7d4-1be0-565d-950f-1a09f45881d5",
+  "inizio": "2026-11-12T04:34:46+00:00",
+  "minuti": 26,
+  "registri": [
+   {
+    "nuovi": 142,
+    "in_cache": 13875631,
+    "scritti_cache": 200512,
+    "scritti": 40780,
+    "risposte": 72,
+    "ricerche_web": 0,
+    "nome": "principale",
+    "minuti": 26,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 40,
+    "in_cache": 1752089,
+    "scritti_cache": 122221,
+    "scritti": 14550,
+    "risposte": 20,
+    "ricerche_web": 0,
+    "nome": "ai: Scrivi sezione AI dell'edizione",
+    "minuti": 3,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 24,
+    "in_cache": 961742,
+    "scritti_cache": 103411,
+    "scritti": 8719,
+    "risposte": 12,
+    "ricerche_web": 0,
+    "nome": "gta: Scrivi la sezione GTA VI",
+    "minuti": 2,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 10,
+    "in_cache": 317359,
+    "scritti_cache": 86273,
+    "scritti": 6273,
+    "risposte": 5,
+    "ricerche_web": 0,
+    "nome": "revisore: Revisione della prosa dell'edizione",
+    "minuti": 1,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 24,
+    "in_cache": 1180372,
+    "scritti_cache": 311084,
+    "scritti": 59927,
+    "risposte": 12,
+    "ricerche_web": 0,
+    "nome": "redattore: Scrivi la prosa dell'edizione",
+    "minuti": 9,
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 56,
+    "in_cache": 3620511,
+    "scritti_cache": 190295,
+    "scritti": 42609,
+    "risposte": 28,
+    "ricerche_web": 0,
+    "nome": "general-purpose: Lettura e verifica notizie Apple del giorno",
+    "minuti": 8,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 16,
+    "in_cache": 613322,
+    "scritti_cache": 100844,
+    "scritti": 17554,
+    "risposte": 8,
+    "ricerche_web": 0,
+    "nome": "visualista: Scegli le visualizzazioni degli approfondimenti",
+    "minuti": 4,
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 12,
+    "in_cache": 438479,
+    "scritti_cache": 110749,
+    "scritti": 8176,
+    "risposte": 6,
+    "ricerche_web": 0,
+    "nome": "schede: Scrivi le schede Games e Scienza",
+    "minuti": 2,
+    "modello": "Opus"
+   }
+  ],
+  "modelli": {
+   "Sonnet": {
+    "nuovi": 214,
+    "in_cache": 18109464,
+    "scritti_cache": 491651,
+    "scritti": 100943,
+    "risposte": 108,
+    "ricerche_web": 0
+   },
+   "Opus": {
+    "nuovi": 110,
+    "in_cache": 4650041,
+    "scritti_cache": 733738,
+    "scritti": 97645,
+    "risposte": 55,
+    "ricerche_web": 0
+   }
+  }
  }
 ]
