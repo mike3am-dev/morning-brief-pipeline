@@ -11,3 +11,6 @@ voci-prova/
 # il lucchetto delle attività pianificate di Claude Code: cambia a ogni corsa e
 # faceva scattare l'hook di Stop del cloud («modifiche non salvate»)
 .claude/scheduled_tasks.lock
+
+# la redazione di TMB: lo stato del giorno si rigenera con redazione/stato.py
+redazione/stato/

@@ -16,6 +16,11 @@ tiene onesto:
   è il segno di un'aggiunta, e un'aggiunta il revisore non la può fare;
 - segnala le formule da evitare rimaste (la lista è in `FORMULE`).
 Esce sempre con 0: è un rapporto, non un cancello (il cancello resta lint.py).
+
+Dal 13 novembre 2026 il prima e il dopo restano anche in `data/revisione/<giorno>.json` (solo le
+parole, niente immagini), con il rapporto: la redazione di TMB (docs/redazione/) li mostra sulla
+scrivania del revisore, come il testo del redattore con le correzioni a penna rossa. È un archivio
+in più: se non si riesce a scriverlo si stampa una riga e la corsa va avanti.
 """
 import copy
 import datetime as dt
@@ -26,6 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 FOTO = Path("/tmp/corsa")
+ARCHIVIO = ROOT / "data" / "revisione"
 
 # I campi di prosa che il revisore può riscrivere.
 NEWS_TESTO = ("title", "sintesi", "descrizione")
@@ -76,6 +82,32 @@ def testi(d):
     return out
 
 
+def prosa(d):
+    """Solo le parole che il revisore può riscrivere: per l'archivio del prima e del dopo."""
+    out = {"intro": d.get("intro"), "top3": d.get("top3"), "editoriale": d.get("editoriale"),
+           "news": {}}
+    for n in d.get("news", []):
+        x = {k: n.get(k) for k in NEWS_TESTO}
+        a = n.get("approfondimento")
+        if a:
+            x["approfondimento"] = {k: a.get(k) for k in DEEP_TESTO}
+        out["news"][n.get("id")] = x
+    return out
+
+
+def archivia(g, **voci):
+    """Aggiunge voci a data/revisione/<g>.json. Non deve mai fermare la corsa."""
+    try:
+        ARCHIVIO.mkdir(parents=True, exist_ok=True)
+        f = ARCHIVIO / f"{g}.json"
+        doc = json.loads(f.read_text()) if f.exists() else {}
+        doc["giorno"] = g
+        doc.update(voci)
+        f.write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
+    except Exception as e:  # un archivio in più non vale un'edizione in ritardo
+        print(f"(archivio della revisione non scritto: {e})")
+
+
 def piatto(v):
     if v is None:
         return ""
@@ -92,6 +124,7 @@ def prima(g):
     FOTO.mkdir(parents=True, exist_ok=True)
     f = FOTO / f"revisione-{g}.json"
     f.write_text(json.dumps(testi(carica(g)), ensure_ascii=False))
+    archivia(g, prima=prosa(carica(g)))
     n = len(carica(g).get("news", []))
     print(f"fotografia della prosa salvata: {f} ({n} notizie)")
 
@@ -183,6 +216,9 @@ def controlla(g):
             print(f"   {dove}: /{pat}/")
     if not (ripristinati or nuovi_num or rimaste):
         print("niente da segnalare")
+    archivia(g, dopo=prosa(d), rapporto={
+        "riscritti": cambiati, "ripristinati": ripristinati, "numeri_nuovi": nuovi_num,
+        "formule": [dove for dove, _ in rimaste]})
 
 
 def main():

@@ -1524,6 +1524,18 @@ Un controllo fatto solo con curl dà un falso positivo. La Edge Function `app` e
 
 ---
 
+## La redazione di TMB (non fa parte della corsa)
+
+Dal 12 novembre 2026 si costruisce **la redazione virtuale**: una stanza in 3D dove gli agenti della
+corsa hanno una scrivania e un nome (Olivia la regia, Tobia il lettore, Ettore il redattore, Ivo il
+revisore, Lea la visualista, Ada, Rita, Vito, Zeno) e Mike, il direttore creativo, entra dal Mac,
+guarda e parla con loro. È un'interfaccia sul lavoro della corsa: **la corsa non la lancia, non la
+legge e non la aspetta**. Tutto sta in `docs/redazione/` (si parte da `progetto.md`) e in
+`redazione/`. Per lei la corsa lascia due cose in più, senza costo: `pipeline/revisione.py` archivia
+il testo prima e dopo il revisore in `data/revisione/<giorno>.json`, e `pipeline/costo.py` salva in
+`data/corse.json` l'inizio e la fine di ogni agente e l'ora dei passi. Se uno dei due archivi non si
+riesce a scrivere, la corsa va avanti.
+
 ## Struttura
 
 ```
@@ -1575,6 +1587,9 @@ supabase/schema.sql      tabelle e regole di sicurezza (già eseguito una volta)
 supabase/config.json     url + anon key. Pubblici, ma non versionarli per abitudine.
 .env.local               SUPABASE_SERVICE_KEY + GITHUB_TOKEN. Segreti, restano solo sul Mac.
 data/raw/                scarichi grezzi per data
+data/revisione/          il testo del redattore prima e dopo il revisore, per giorno (per la redazione)
+redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato dai file della corsa (sola lettura)
+docs/redazione/          la redazione virtuale: progetto, mappa dei dati, ricerca, prove
 data/briefs/             le edizioni scritte — l'archivio locale, fonte di verità per push.py
 data/threads.json        il registro dei fili: slug, etichetta, nota, apertura, chiusura
 data/facts.json          il registro delle metriche: chiave, etichetta, unità, nota

@@ -245,6 +245,9 @@ def tally(files, main_file=None):
         if primi and ultimi:
             r["minuti"] = round((datetime.fromisoformat(ultimi.replace("Z", "+00:00")) -
                                  datetime.fromisoformat(primi.replace("Z", "+00:00"))).total_seconds() / 60)
+            # dal 13 novembre 2026 restano anche i due orari (UTC): la redazione di TMB
+            # (docs/redazione/) ci timbra il cartellino di ogni agente
+            r["inizio"], r["fine"] = primi, ultimi
         r["modello"] = "+".join(r.pop("modelli")) or "?"
         if r["risposte"]:
             registri.append(r)
@@ -370,6 +373,10 @@ def main():
     r = dict(t, giorno=C.today(), sessione=sid, inizio=start.isoformat(timespec="seconds"),
              minuti=round((datetime.now(timezone.utc) - start).total_seconds() / 60),
              registri=registri, modelli=modelli)
+    try:   # quando è partito ogni passo della regia (ora UTC), per la redazione di TMB
+        r["passi"] = [{"ora_utc": o, "passo": n} for o, n, _ in fasi_main(main_file)]
+    except Exception:
+        pass
     print(line(r))
     print("\n".join(dettaglio(r)))
     if not args.dry:

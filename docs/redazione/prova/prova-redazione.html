@@ -1,0 +1,235 @@
+<title>Prova redazione TMB</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Una pagina di prova: tre scrivanie in fila, sotto la conversazione, in fondo le decisioni. */
+:root{
+  --osso:#efe8da; --carta:#fbf8f1; --nero:#16140f; --grigio:#6d675b;
+  --giallo:#f6c21c; --arancio:#ef6a1f; --blu:#1f5fd6; --rosso:#d8312a; --verde:#2f8a4a;
+  --riga:#d9d0bf;
+  --cond:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --testo:"Inter",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --osso:#17150f; --carta:#211e17; --nero:#f2ecdf; --grigio:#a59e8f; --riga:#3a352b; color-scheme:dark}}
+:root[data-theme="dark"]{--osso:#17150f; --carta:#211e17; --nero:#f2ecdf; --grigio:#a59e8f; --riga:#3a352b; color-scheme:dark}
+body{background:var(--osso);color:var(--nero);font-family:var(--testo);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-direction:column;gap:6px;border-bottom:4px solid var(--nero);padding-bottom:12px}
+.dots{display:flex;gap:6px}.dots i{width:12px;height:12px;border-radius:50%;display:block}
+h1{font-family:var(--cond);font-weight:800;font-size:clamp(34px,7vw,52px);line-height:.95;margin:0;letter-spacing:.01em;text-transform:uppercase}
+.sub{color:var(--grigio);margin:0;font-size:14px}
+.stato{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;
+  padding:3px 10px;border-radius:3px;background:var(--carta);border:1px solid var(--riga);display:flex;align-items:center;gap:6px}
+.chip b{width:9px;height:9px;border-radius:50%;background:var(--grigio);display:block}
+.chip.ok b{background:var(--verde)}.chip.no b{background:var(--rosso)}
+h2{font-family:var(--cond);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.03em;margin:0}
+.scrivanie{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.scrivanie{grid-template-columns:1fr}}
+.desk{all:unset;cursor:pointer;background:var(--carta);border:2px solid var(--riga);border-radius:4px;padding:12px;
+  display:flex;flex-direction:column;gap:4px;min-width:0}
+.desk:focus-visible{outline:3px solid var(--blu);outline-offset:2px}
+.desk[aria-pressed="true"]{border-color:var(--nero);box-shadow:inset 0 -6px 0 var(--c)}
+.desk .nome{font-family:var(--cond);font-weight:800;font-size:24px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.desk .nome i{width:12px;height:12px;border-radius:50%;background:var(--c);display:block}
+.desk .dato{font-size:13px;color:var(--grigio);font-variant-numeric:tabular-nums}
+.chat{background:var(--carta);border:2px solid var(--nero);border-radius:4px;display:flex;flex-direction:column}
+.chat .testa{padding:10px 14px;border-bottom:1px solid var(--riga);font-family:var(--cond);font-weight:800;font-size:18px;text-transform:uppercase}
+.msgs{padding:14px;display:flex;flex-direction:column;gap:12px;min-height:120px}
+.m{max-width:88%;padding:9px 12px;border-radius:4px;white-space:pre-wrap;min-width:0;overflow-wrap:anywhere}
+.m.tu{align-self:flex-end;background:var(--giallo);color:#16140f}
+.m.ag{align-self:flex-start;background:var(--osso);border-left:4px solid var(--c)}
+.m .salva{all:unset;cursor:pointer;display:inline-block;margin-top:8px;font-family:var(--cond);font-weight:600;font-size:14px;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--blu)}
+.m .salva:focus-visible{outline:2px solid var(--blu)}
+.vuoto{color:var(--grigio);font-size:14px}
+form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--riga)}
+textarea{flex:1;min-width:0;font:inherit;resize:vertical;min-height:44px;padding:9px 10px;border:1px solid var(--riga);border-radius:4px;background:var(--osso);color:var(--nero)}
+.btn{font-family:var(--cond);font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:.03em;border:0;border-radius:4px;
+  padding:0 16px;background:var(--nero);color:var(--osso);cursor:pointer}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.stop{background:var(--rosso);color:#fff}
+.decisioni{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.decisioni li{background:var(--carta);border:1px solid var(--riga);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.decisioni .chi{font-family:var(--cond);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--grigio)}
+.nota{font-size:13px;color:var(--grigio);margin:0}
+@media (prefers-reduced-motion:no-preference){.m{animation:su .25s ease-out}@keyframes su{from{transform:translateY(6px);opacity:.4}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="dots"><i style="background:var(--giallo)"></i><i style="background:var(--arancio)"></i><i style="background:var(--blu)"></i><i style="background:var(--rosso)"></i></div>
+    <h1>La redazione · prova</h1>
+    <p class="sub">Una pagina per capire due cose: se da qui gli agenti ti rispondono, e se le decisioni restano salvate. Niente grafica, solo il funzionamento. Dati veri della corsa dell'11 novembre.</p>
+    <div class="stato" aria-live="polite">
+      <span class="chip" id="st-claude"><b></b>Claude: in attesa</span>
+      <span class="chip" id="st-db"><b></b>Archivio: in attesa</span>
+    </div>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2>Scegli una scrivania</h2>
+    <div class="scrivanie" id="scrivanie"></div>
+  </section>
+
+  <section class="chat" id="chat">
+    <div class="testa" id="chat-testa">Redattore</div>
+    <div class="msgs" id="msgs"></div>
+    <form id="f">
+      <textarea id="domanda" rows="2" placeholder="Scrivi all'agente… per esempio: com'è andata stamattina?"></textarea>
+      <button class="btn" id="invia" type="submit">Invia</button>
+    </form>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2>Le decisioni</h2>
+    <p class="nota">Tocca «Salva come decisione» sotto una risposta. Se dopo aver ricaricato la pagina la ritrovi qui, l'archivio funziona.</p>
+    <ul class="decisioni" id="decisioni"><li class="vuoto">Ancora nessuna decisione salvata.</li></ul>
+  </section>
+</div>
+
+<script>
+// I dati veri della corsa dell'11 novembre 2026 (data/corse.json e data/briefs/2026-11-11.json).
+const CORSA = {
+  giorno: "11 novembre 2026", minuti: 26,
+  passi: [
+    {chi:"regia", modello:"Sonnet", minuti:25},
+    {chi:"lettura", modello:"Sonnet", minuti:10},
+    {chi:"redattore", modello:"Opus", minuti:7},
+    {chi:"visualista", modello:"Sonnet", minuti:4},
+    {chi:"ai", modello:"Opus", minuti:4},
+    {chi:"gta", modello:"Opus", minuti:2},
+    {chi:"schede", modello:"Opus", minuti:1}
+  ],
+  apertura: [
+    "Apple TV mette gli interpreti in lingua dei segni dentro i suoi film, diretti da persone e non dall'AI",
+    "Tre operai muoiono intossicati nella fabbrica Tata di Hosur che produce componenti per iPhone",
+    "iCloud va in tilt martedì sera in due fasi",
+    "Claris prova Harbor, un'app che trasforma uno o più Mac in un server privato per l'AI",
+    "iFixit smonta il MacBook Pro touch: quattro LED per il logo e riparabilità a 5 su 10"
+  ],
+  punto: "Il supporto Apple si sposta fuori da Apple, e passa dai negozi",
+  ultime4: "8 nov 25 min, 9 nov 29 min, 10 nov 27 min, 11 nov 26 min"
+};
+
+const AGENTI = {
+  redattore: {nome:"Redattore", colore:"var(--arancio)",
+    dato:"Opus · 7 minuti stamattina",
+    chi:"Sei il redattore di The Morning Brief, la rassegna Apple del mattino. Scrivi la prosa: le notizie Apple, gli approfondimenti delle prime cinque, il quadro della giornata, «L'ultima parola» e «Il punto». Lo standard: un testo che sembri scritto da un giornalista bravo, asciutto, senza hype né formule da AI, italiano senza calchi."},
+  revisore: {nome:"Revisore", colore:"var(--rosso)",
+    dato:"Opus · debutta domattina",
+    chi:"Sei il revisore di The Morning Brief: la seconda mano, con la penna rossa. Rileggi la prosa del redattore e la correggi secondo le linee editoriali di Mike, cambiando le parole e mai i fatti. Sei entrato in squadra l'11 novembre sera: la corsa di quella mattina non ti ha ancora visto lavorare, la prima sarà il 12 novembre."},
+  visualista: {nome:"Visualista", colore:"var(--blu)",
+    dato:"Sonnet · 4 minuti stamattina",
+    chi:"Sei il visualista di The Morning Brief: scegli le visualizzazioni interattive degli approfondimenti delle prime cinque notizie, sempre diverse e adatte a far capire quello che il testo spiega. L'11 novembre ti sei dato 5 su 10: passo per passo ripetuto, scelte forzate, metà delle aperture senza grafico perché nel kit mancano i tipi."}
+};
+
+let attivo = "redattore";
+const storie = {redattore:[], revisore:[], visualista:[]};
+let sample = null, db = null, ctl = null, inCorso = false;
+
+const $ = id => document.getElementById(id);
+function chip(id, stato, testo){ const c=$(id); c.className="chip "+stato; c.lastChild.textContent=testo; }
+
+function disegnaScrivanie(){
+  const box=$("scrivanie"); box.textContent="";
+  for(const [k,a] of Object.entries(AGENTI)){
+    const b=document.createElement("button"); b.className="desk"; b.type="button";
+    b.style.setProperty("--c",a.colore); b.setAttribute("aria-pressed", String(k===attivo));
+    const n=document.createElement("span"); n.className="nome"; const i=document.createElement("i"); n.append(i, a.nome);
+    const d=document.createElement("span"); d.className="dato"; d.textContent=a.dato;
+    b.append(n,d); b.onclick=()=>{ if(inCorso) return; attivo=k; disegnaScrivanie(); disegnaChat(); };
+    box.append(b);
+  }
+}
+
+function disegnaChat(){
+  const a=AGENTI[attivo]; $("chat").style.setProperty("--c",a.colore); $("chat-testa").textContent=a.nome;
+  const box=$("msgs"); box.textContent="";
+  if(!storie[attivo].length){ const p=document.createElement("p"); p.className="vuoto"; p.textContent="Scrivi qualcosa al "+a.nome.toLowerCase()+". Ti risponde con i dati veri della corsa di stamattina."; box.append(p); }
+  storie[attivo].forEach((m,idx)=>box.append(bolla(m, idx)));
+}
+
+function bolla(m, idx){
+  const d=document.createElement("div"); d.className="m "+(m.role==="user"?"tu":"ag"); d.textContent=m.content;
+  if(m.role==="assistant" && m.content && db && !m.parziale){
+    const s=document.createElement("button"); s.type="button"; s.className="salva"; s.textContent= m.salvata ? "Salvata ✓" : "Salva come decisione";
+    s.disabled=!!m.salvata;
+    s.onclick=()=>salva(m, s);
+    d.append(document.createElement("br"), s);
+  }
+  return d;
+}
+
+function prompt(){
+  const a=AGENTI[attivo];
+  const dati = "La corsa del "+CORSA.giorno+": "+CORSA.minuti+" minuti in tutto, dalla raccolta alla pubblicazione. Passi: "+
+    CORSA.passi.map(p=>p.chi+" ("+p.modello+", "+p.minuti+" min)").join(", ")+". Le ultime quattro corse: "+CORSA.ultime4+
+    ". Le prime cinque notizie: "+CORSA.apertura.map((t,i)=>(i+1)+") "+t).join("; ")+". «Il punto» di oggi: "+CORSA.punto+".";
+  const regole = a.chi+"\n\nStai parlando con Mike, il direttore e proprietario della rassegna: in redazione lo chiamate il CEO. "+
+    "Rispondi in italiano, in modo semplice e diretto, come un collega in carne e ossa, in poche frasi. "+
+    "Usa solo i fatti qui sotto; se Mike chiede qualcosa che non sai, dillo senza inventare. "+
+    "Non puoi modificare codice né l'edizione: se Mike ti chiede un cambiamento, rispondi con una proposta concreta che lui può salvare come decisione.\n\nDATI DI OGGI\n"+dati;
+  const turni = storie[attivo].filter(m=>!m.parziale).map(m=>({role:m.role, content:m.content}));
+  turni[0] = {role:"user", content: regole+"\n\n---\n\nMike: "+turni[0].content};
+  return turni;
+}
+
+async function invia(e){
+  e.preventDefault();
+  if(inCorso){ ctl?.abort(); return; }
+  const t=$("domanda").value.trim(); if(!t || !sample) return;
+  storie[attivo].push({role:"user", content:t}); $("domanda").value="";
+  const r={role:"assistant", content:"Ci penso…", parziale:true}; storie[attivo].push(r); disegnaChat();
+  inCorso=true; $("invia").textContent="Stop"; $("invia").classList.add("stop");
+  ctl=new AbortController();
+  try{
+    const input=prompt();
+    const {text}=await sample(input,{signal:ctl.signal, cache:false, onText:({text})=>{ r.content=text; const ultimo=$("msgs").lastChild; if(ultimo) ultimo.firstChild.textContent=text; }});
+    r.content=text; r.parziale=false; chip("st-claude","ok","Claude: risponde");
+  }catch(err){
+    const code=err&&err.code;
+    if(code==="cancelled"){ r.content=(err.text||"")+" [fermato]"; r.parziale=false; }
+    else{ storie[attivo].pop(); storie[attivo].pop();
+      const msg = code==="not_granted" ? "Claude: permesso negato" : code==="rate_limited" ? "Claude: troppe richieste, aspetta un minuto" : "Claude: errore ("+(code||"sconosciuto")+")";
+      chip("st-claude","no",msg); }
+  }finally{
+    inCorso=false; $("invia").textContent="Invia"; $("invia").classList.remove("stop"); disegnaChat();
+  }
+}
+
+async function salva(m, btn){
+  btn.disabled=true; btn.textContent="Salvo…";
+  try{
+    await db.collection("decisioni").add({agente:attivo, testo:m.content.slice(0,2000), quando:new Date().toISOString()});
+    m.salvata=true; btn.textContent="Salvata ✓";
+  }catch(err){ btn.disabled=false; btn.textContent="Non salvata, riprova"; chip("st-db","no","Archivio: errore ("+(err&&err.code||"?")+")"); }
+}
+
+function ascoltaDecisioni(){
+  const box=$("decisioni");
+  const timer=setTimeout(()=>chip("st-db","no","Archivio: non risponde"),10000);
+  db.collection("decisioni").orderBy("quando","desc").limit(30).onSnapshot(snap=>{
+    clearTimeout(timer); chip("st-db","ok","Archivio: collegato");
+    box.textContent="";
+    if(!snap.docs.length){ const li=document.createElement("li"); li.className="vuoto"; li.textContent="Ancora nessuna decisione salvata."; box.append(li); return; }
+    for(const d of snap.docs){ const x=d.data()||{}; const li=document.createElement("li");
+      const c=document.createElement("span"); c.className="chi";
+      const q=x.quando?new Date(x.quando):null;
+      c.textContent=(AGENTI[x.agente]?.nome||x.agente||"?")+(q?" · "+q.toLocaleString("it-IT",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"");
+      const p=document.createElement("span"); p.textContent=x.testo||""; li.append(c,p); box.append(li); }
+  }, err=>{ clearTimeout(timer); chip("st-db","no","Archivio: errore ("+(err&&err.code||"?")+")"); });
+}
+
+disegnaScrivanie(); disegnaChat();
+$("f").addEventListener("submit", invia);
+$("domanda").addEventListener("keydown", e=>{ if(e.key==="Enter" && (e.metaKey||e.ctrlKey)) $("f").requestSubmit(); });
+
+(async()=>{
+  if(!window.claude){ chip("st-claude","no","Claude: fuori da claude.ai"); chip("st-db","no","Archivio: fuori da claude.ai"); return; }
+  claude.use("sample").then(s=>{ sample=s; chip("st-claude", s?"":"no", s?"Claude: pronto (chiede il permesso al primo messaggio)":"Claude: non disponibile qui"); if(!s) $("invia").disabled=true; });
+  claude.use("db").then(d=>{ db=d; if(d){ ascoltaDecisioni(); disegnaChat(); } else chip("st-db","no","Archivio: non disponibile qui"); });
+})();
+</script>
