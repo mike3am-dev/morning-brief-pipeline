@@ -382,9 +382,10 @@ Cosa può fare un agente nella conversazione, e cosa no:
 
 **Costruito al 13 novembre 2026 (sera):** la stanza intera con tutti e nove, i dati veri del giorno
 su schermi, lavagna e bacheca, la giornata di ognuno in un giro di cinque minuti, le schede con il
-primo piano dal vivo. Dove sta ogni cosa nella stanza costruita, e come è fatta: `diario.md`,
-«la quarta prova». Mancano, in quest'ordine: la conversazione (§10), l'archivio delle decisioni
-(§8), la pagina che si ricompone da sola ogni mattina, le riunioni (§6).
+primo piano dal vivo, e **la conversazione con ognuno** (§10: ogni agente risponde dalle sue carte
+del giorno). Come è fatta ogni cosa: `diario.md`, «la quarta prova» e «la quinta prova». Mancano,
+in quest'ordine: l'archivio delle decisioni (§8), la pagina che si ricompone da sola ogni mattina,
+le riunioni (§6).
 
 **Ancora da chiedere, quando servirà:**
 

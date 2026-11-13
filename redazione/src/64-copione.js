@@ -3,8 +3,8 @@
   function attore(id, base, nota) { const c = { id, chi: persone[id], p: posti[id], tr: new Traccia(), base, nota0: nota, note: [[0, nota]], qui: posti[id].seduta, yaw: posti[id].yaw }; cx[id] = c; return c; }
   const dice = (c, testo) => { c.note.push([c.tr.t, testo]); };
   function alPosto(c, T) {   // resta al suo posto fino al secondo T, con il gesto di sempre
-    c.tr.fino(T, (u, dt, t, manca) => { const P = c.base(t); guardaChi(c, P, t); const k = fra(dt, 0, 1.2) * fra(manca, 0, 1.2);
-      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw + (P.giro || 0) * k); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
+    c.tr.fino(T, (u, dt, t, manca) => { const P = c.base(t); guardaChi(c, P, t); const k = fra(dt, 0, 1.2) * fra(manca, 0, 1.2), mike = versoMike(c, P, t) * k;
+      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw + (P.giro || 0) * k + mike); posa(c.chi, P); sediaFuori(c.p, 0); if (mike && c.p.sedia) c.p.sedia.rotation.y = PI + mike; return P; }); }
   function alPostoCon(c, dur, fn) { c.tr.poi(dur, (u, dt, t) => { const P = fn(t, u, dt); metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
   function alzaSiedi(c, senso) {   // 1: si alza; -1: si siede
     if (c.p.inPiedi) return;

@@ -519,11 +519,19 @@ def stato(giorno):
                    "citazione": {"testo": cit.get("testo"), "chi": cit.get("chi")} if cit else None,
                    "prossimo": prossimi[0] if prossimi else None}
 
-    return {"giorno": giorno, "scritto": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-            "corsa": c, "agenti": agenti, "macchine": macchine, "lavagna": lavagna,
-            "schermo": schermo, "postit": pi, "revisione": rev, "letture": letture(giorno),
-            "gta": ({"uscita": gta_file["uscita"], "giorni": (data(gta_file["uscita"]) - data(giorno)).days}
-                    if gta_file and gta_file.get("uscita") else None)}
+    s = {"giorno": giorno, "scritto": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+         "corsa": c, "agenti": agenti, "macchine": macchine, "lavagna": lavagna,
+         "schermo": schermo, "postit": pi, "revisione": rev, "letture": letture(giorno),
+         "gta": ({"uscita": gta_file["uscita"], "giorni": (data(gta_file["uscita"]) - data(giorno)).days}
+                 if gta_file and gta_file.get("uscita") else None)}
+    # le carte sulla scrivania di ognuno: il materiale per quando Mike gli parla (redazione/carte.py)
+    try:
+        import carte as _carte
+        s["carte"] = _carte.carte(giorno, ROOT, brief, rev, s)
+    except Exception as e:   # le carte non devono mai fermare lo stato
+        s["carte"] = {}
+        print("carte non composte:", e, file=sys.stderr)
+    return s
 
 
 # ---------------------------------------------------------------- main

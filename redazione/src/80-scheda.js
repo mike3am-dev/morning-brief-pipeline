@@ -55,7 +55,7 @@
     d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p))); return d; }
   const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi' };
   function apri(id) {
-    aperto = id; rigaAdesso = null; pannello.textContent = '';
+    aperto = id; rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
     const testa = el('div', 'testa'), chi = el('div'), a = AGENTI[id];
     if (id === 'bacheca') {
@@ -67,31 +67,33 @@
       const av = el('div', 'avatar', a.nome[0]); av.style.background = TINTA[id] || C.orange;
       chi.append(el('h2', null, a.nome), el('p', null, a.mestiere + (a.modello ? ' · ' + a.modello : ''))); testa.append(av, chi, x);
       if (persone[id]) pannello.append(telaRitratto); pannello.append(testa);
-      const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); pannello.append(blocco('In questo momento', riga));
+      const corpo = el('div', 'corpo'); pannello.append(corpo);
+      const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); corpo.append(blocco('In questo momento', riga));
       if (a.minuti != null) {
         const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, String(n)), el('span', null, cosa)); numeri.append(d); };
         if (id === 'revisore' && STATO.revisione.fatta) numero(STATO.revisione.riscritti, 'testi riscritti');
         if (id === 'redattore' || id === 'regia') numero(STATO.lavagna.length, 'notizie');
         numero(a.minuti + ' min', 'di lavoro'); numero(oraCorta(a.entrata) + '–' + oraCorta(a.uscita), 'stamattina');
-        pannello.append(blocco('Per l\'edizione delle ' + oraCorta(USCITA), numeri, el('p', null, a.consegna ? 'Ha consegnato: ' + a.consegna + '.' : a.ruolo)));
-      } else pannello.append(blocco('Il suo lavoro', el('p', null, a.consegna ? a.consegna[0].toUpperCase() + a.consegna.slice(1) + '.' : a.ruolo)));
-      if (id === 'regia') pannello.append(blocco('La scaletta: le prime cinque', elenco(STATO.lavagna.slice(0, 5).map(n => n.reparto + ' · ' + n.titolo))));
+        corpo.append(blocco('Per l\'edizione delle ' + oraCorta(USCITA), numeri, el('p', null, a.consegna ? 'Ha consegnato: ' + a.consegna + '.' : a.ruolo)));
+      } else corpo.append(blocco('Il suo lavoro', el('p', null, a.consegna ? a.consegna[0].toUpperCase() + a.consegna.slice(1) + '.' : a.ruolo)));
+      if (id === 'regia') corpo.append(blocco('La scaletta: le prime cinque', elenco(STATO.lavagna.slice(0, 5).map(n => n.reparto + ' · ' + n.titolo))));
       else if (id === 'revisore' && TITOLI.length) { const b = blocco('Sulla scrivania: i titoli corretti'); TITOLI.slice(0, 4).forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
-        const altri = STATO.revisione.riscritti - Math.min(4, TITOLI.length); if (altri > 0) b.append(el('p', 'piccolo', `E altri ${altri} testi, fra descrizioni, approfondimenti e «Il punto».`)); pannello.append(b); }
-      else if ((a.dettagli || []).length && TITOLO_LAVORO[id]) pannello.append(blocco(TITOLO_LAVORO[id], elenco(a.dettagli.slice(0, 6), TINTA[id])));
+        const altri = STATO.revisione.riscritti - Math.min(4, TITOLI.length); if (altri > 0) b.append(el('p', 'piccolo', `E altri ${altri} testi, fra descrizioni, approfondimenti e «Il punto».`)); corpo.append(b); }
+      else if ((a.dettagli || []).length && TITOLO_LAVORO[id]) corpo.append(blocco(TITOLO_LAVORO[id], elenco(a.dettagli.slice(0, 6), TINTA[id])));
       const suoi = (STATO.postit || []).filter(p => p.da === id);
-      if (suoi.length) { const b = blocco(persone[id] ? 'Ha qualcosa per te' : 'Ti ha lasciato questi appunti'); suoi.slice(0, 5).forEach(p => b.append(biglietto(p))); pannello.append(b); }
-      pannello.append(el('p', 'piede', persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'
+      if (suoi.length) { const b = blocco(persone[id] ? 'Ha qualcosa per te' : 'Ti ha lasciato questi appunti'); suoi.slice(0, 5).forEach(p => b.append(biglietto(p))); corpo.append(b); }
+      corpo.append(el('p', 'piede', persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina.'
         : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi davanti agli schedari.'));
+      montaParla(id, corpo, testa);
     }
     pannello.hidden = false; pannello.scrollTop = 0; x.focus({ preventScroll: true }); segui(); primoPiano();
   }
   function segui() {   // la camera resta su chi hai aperto, anche mentre cammina
     if (!aperto) return; const g = persone[aperto]; if (g) v3.set(g.position.x, 0.85, g.position.z); else v3.copy(ancore[aperto]).setY(1.2);
     const [a, b] = sulPiano(v3), z = g ? 3.1 : 2.4, larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
-    if (rigaAdesso) rigaAdesso.textContent = adessoDi(aperto, tempoGiro());
+    if (rigaAdesso) rigaAdesso.textContent = scenaDi(aperto);
   }
-  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; return t; }   // chiude la scheda, la camera resta dov'è
+  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; return t; }   // chiude la scheda, la camera resta dov'è
   function chiudi() { const t = lascia(); if (!t) return; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
   addEventListener('keydown', e => { if (e.key === 'Escape') chiudi(); });
 

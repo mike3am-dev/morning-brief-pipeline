@@ -207,3 +207,45 @@ dentro un mobile e chi si pesta i piedi**: deve tornare vuoto. Schermate: `prova
 
 **Quanto pesa.** Circa un milione di triangoli e 860 chiamate; si accende in due secondi. Sul Mac
 va; se un giorno servisse alleggerire, le chiome a risoluzione 56 e l'ombra a 2048.
+
+## 13 novembre 2026, sera — la quinta prova: si parla con la redazione
+
+Mike: «Sì, la conversazione». La pagina (versione 5, stesso indirizzo) dichiara la capacità
+`sample` e nella scheda di ognuno c'è **«Parla con …»**.
+
+**Le carte** (`redazione/carte.py`, chiamato da `stato.py`, campo `carte` dello stato): per ogni
+agente un testo semplice con il suo lavoro vero del giorno. Olivia: la corsa, la scaletta, le sue
+sezioni, le macchine, le letture di Mike. Tobia: per ogni notizia quante testate, quali lette, da
+dove viene. Ettore: i suoi pezzi (righe, descrizioni delle prime cinque, «Il punto») e cosa gli ha
+corretto Ivo. **Ivo: le correzioni parola per parola** (`ritocchi`: `difflib` sulle parole, il
+cambio fra parentesi quadre con cinque parole intorno; per i titoli anche il prima e il dopo
+interi). Lea: i grafici di oggi, le notizie senza, le richieste aperte. Ada, Rita (con le voci
+scartate dalla rosa), Vito: le loro voci. Zeno: l'ultimo rapporto. Al massimo 14.000 caratteri a
+testa. Si legge soltanto, e se le carte non si compongono lo stato esce lo stesso.
+
+**La conversazione** (`src/82-parla.js`). Claude non ricorda niente fra un messaggio e l'altro: a
+ogni domanda la pagina manda un primo turno con `regole(id)` (chi è, il carattere, il suo incarico
+vero dal file dell'agente, l'ora, cosa ha consegnato, cosa sta facendo in scena, le carte, i suoi
+post-it, come rispondere) e poi gli ultimi 16 turni. Le regole che contano: solo i fatti delle
+carte, «non lo so» è una risposta; **non ricorda cosa pensava stamattina**, ragiona adesso sulle
+carte e lo dice; non può cambiare l'edizione né promettere che domani sarà diverso; un'indicazione
+di Mike per ora resta nella conversazione. Per far vedere un testo cambiato scrive due righe
+«PRIMA:» e «DOPO:», che la pagina mostra come una correzione (`scriviIn`).
+
+- Livello del modello: `modelTier: 'default'` per tutti (Mike non ha ancora scelto; si cambia lì).
+- Le conversazioni del giorno restano nel browser (`localStorage`, chiave col giorno): comodità di
+  chi guarda, non un archivio. L'archivio delle decisioni (collezione `db`) è il passo dopo.
+- Fuori da claude.ai la conversazione non c'è e la scheda lo dice. **Per provare la scheda in
+  locale: `?finto=1`**, risponde un pappagallo (anche con un PRIMA/DOPO).
+- Gli errori hanno ciascuno la sua frase (`SCUSA`); quelli definitivi spengono il campo.
+- Zeno, quando non c'è, non risponde: «gli parli lunedì».
+
+**In scena** (`versoMike` in `62-gesti.js`, `ascolto`): chi è al suo posto e viene interpellato
+gira la sedia verso di noi (chi è in piedi si volta), toglie le mani dalla tastiera; mentre
+aspetta la risposta porta la mano al mento («Ci pensa»), mentre arriva gesticola («Ti risponde»).
+Se è in giro per la stanza continua quello che fa e la scheda dice «ti risponde da lì».
+
+**Provato e non provato.** In locale, col pappagallo: apertura, spunti, invio, risposta che
+arriva a pezzi, «Ferma», ripresa dopo aver ricaricato, PRIMA/DOPO, le pose. **Non provata la
+risposta vera di Claude**: si può fare solo aprendo la pagina su claude.ai (al primo messaggio
+chiede il permesso). Lo stato del giorno ora pesa 87 KB, la pagina 261.

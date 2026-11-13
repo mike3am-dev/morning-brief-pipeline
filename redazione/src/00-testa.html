@@ -16,7 +16,8 @@ html[data-luce="notte"]{--fondo:#1B1D30; --fondo-2:#0D0E1A; --testo:#F1EEE8; --t
 html,body{height:100%}
 body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2)); color:var(--testo);
   font-family:var(--body); font-size:14px; overflow:hidden}
-#app{position:relative; height:100%; overflow:hidden}
+#app{position:relative; height:100%; overflow:hidden; overflow:clip}
+#etichette{position:absolute; inset:0; overflow:hidden; overflow:clip; pointer-events:none}
 #scena{position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab}
 #scena.presa{cursor:grabbing}
 #scena.mano{cursor:pointer}
@@ -34,7 +35,7 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .luci button:focus-visible, .tag:focus-visible, .chiudi:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
 
 /* le etichette: un nome piccolo sopra la testa; il resto compare solo quando ci passi sopra */
-.tag{position:absolute; left:0; top:0; transform:translate(-50%,-100%); border:0; cursor:pointer; white-space:nowrap;
+.tag{position:absolute; left:0; top:0; transform:translate(-50%,-100%); border:0; cursor:pointer; white-space:nowrap; pointer-events:auto;
   display:flex; align-items:center; gap:5px; padding:2px 8px 2px 6px; border-radius:999px;
   background:color-mix(in srgb, var(--paper) 90%, transparent); color:var(--ink); font:600 11px var(--body);
   box-shadow:0 1px 0 rgba(23,24,27,.16); will-change:transform}
@@ -79,6 +80,34 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .postit span{font-size:12.5px; line-height:1.4; color:var(--ink-2)}
 .postit small{font-size:11px; color:var(--ink-3)}
 .piccolo{font-size:12.5px; color:var(--ink-2)}
+.corpo{display:flex; flex-direction:column; gap:16px; flex:1}
+.parla-apri{border:0; border-radius:12px; background:var(--ink); color:var(--paper); padding:11px 14px; cursor:pointer; text-align:left;
+  font-family:var(--display); font-weight:800; font-size:16px; letter-spacing:.05em; text-transform:uppercase}
+.parla-apri:hover{background:#2b2d33}
+.parla-apri:disabled{background:var(--bone); color:var(--ink-3); cursor:default}
+#pannello.conversa{width:min(420px, calc(100% - 32px)); overflow:hidden; gap:12px}
+#pannello.conversa .ritratto{aspect-ratio:2.1}
+.parla{flex:1; min-height:0; display:flex; flex-direction:column; gap:10px}
+.parla-barra{display:flex; justify-content:space-between}
+.parla-indietro{border:0; background:none; color:var(--ink-2); font:600 12.5px var(--body); padding:2px 0; cursor:pointer}
+.parla-indietro:hover{color:var(--ink)}
+.messaggi{flex:1; min-height:90px; overflow:auto; display:flex; flex-direction:column; gap:8px; padding-right:2px}
+.bolla{max-width:90%; padding:9px 12px; border-radius:14px; line-height:1.45; font-size:13.5px; overflow-wrap:anywhere}
+.bolla p{margin:0} .bolla p + p, .bolla p + .cambio, .bolla .cambio + p, .bolla .cambio + .cambio{margin-top:8px}
+.bolla.mia{align-self:flex-end; background:var(--ink); color:var(--paper); border-bottom-right-radius:4px; white-space:pre-wrap}
+.bolla.sua{align-self:flex-start; background:var(--bone); border-bottom-left-radius:4px}
+.bolla.attesa{color:var(--ink-3); font-style:italic}
+.parla-vuoto{margin:0; color:var(--ink-2); font-size:13px; line-height:1.45}
+.spunti{display:flex; flex-wrap:wrap; gap:6px}
+.spunti button{border:1px solid var(--rule); background:var(--paper); color:var(--ink); border-radius:999px; padding:5px 11px; font:500 12.5px var(--body); cursor:pointer; text-align:left}
+.spunti button:hover{background:var(--bone)}
+.parla-avviso{margin:0; font-size:12.5px; line-height:1.4; color:var(--ink-2); background:color-mix(in srgb, var(--yellow) 22%, var(--paper)); border-radius:10px; padding:8px 11px}
+.parla-form{display:flex; gap:8px; align-items:flex-end}
+.parla-form textarea{flex:1; resize:none; border:1px solid var(--rule); border-radius:12px; padding:9px 11px; font:14px/1.4 var(--body); color:var(--ink); background:#fff; min-height:44px}
+.parla-form textarea:disabled{background:var(--bone)}
+.parla-invia{border:0; border-radius:12px; background:var(--orange); color:#fff; padding:0 16px; height:44px; cursor:pointer; font-family:var(--display); font-weight:800; font-size:15px; letter-spacing:.06em; text-transform:uppercase}
+.parla-invia:disabled{background:var(--rule); cursor:default}
+.parla-apri:focus-visible, .parla-indietro:focus-visible, .spunti button:focus-visible, .parla-invia:focus-visible, .parla-form textarea:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
 .adesso{display:flex; gap:8px; align-items:center; font-weight:600}
 .adesso i{width:9px; height:9px; border-radius:50%; background:#2f8a4a; flex:none}
 .ritratto{display:block; width:100%; aspect-ratio:1.6; border-radius:12px; background:var(--bone)}

@@ -29,6 +29,21 @@
   const sfoglia = t => { const o = Math.sin(t * 3.2), P = { ...IN_PIEDI, lean: 0.22, hx: 0.3 }; cassetti[0].visible = true;   // Zeno: davanti allo schedario aperto
     P.sD = [-0.75, 0.1 + 0.12 * o]; P.gD = -0.9 - 0.15 * o; P.sS = [-0.75, -0.1 + 0.12 * o]; P.gS = -0.9 + 0.15 * o; return P; };
 
+  /* quando Mike parla con qualcuno che è al suo posto, quello si gira verso di lui (cioè verso di noi): la sedia ruota,
+     le mani lasciano la tastiera; mentre ci pensa porta la mano al mento, mentre risponde gesticola */
+  const ascolto = { chi: null, vivo: false, k: 0, fase: '' };
+  function versoMike(c, P, t) {
+    if (ascolto.chi !== c.id || ascolto.k < 0.002) return 0;
+    const k = dolce(ascolto.k), ora = c.p.yaw + (P.giro || 0), d = angolo(ora, PI / 4, 1) - ora, giro = c.p.inPiedi ? d : stretto(d, -2.3, 2.3) * 0.8, resto = d - giro;
+    const R = c.p.inPiedi ? { ...IN_PIEDI, sS: P.sS, gS: P.gS } : { ...SEDUTO, sD: [-0.25, -0.05], gD: -1.25, sS: [-0.25, 0.05], gS: -1.25, lean: -0.03 };
+    R.hy = stretto(resto * 0.7, -0.9, 0.9); R.twist = stretto(resto * 0.3, -0.4, 0.4); R.hx = -0.1;
+    if (ascolto.fase === 'pensa') { R.hx = -0.22; R.hy += Math.sin(t * 0.9) * 0.12; R.sD = [-0.95, 0.28]; R.gD = -2.25; }
+    if (ascolto.fase === 'parla') { R.hx += Math.sin(t * 7) * 0.05; R.sD = [-0.6 + Math.sin(t * 3.1) * 0.12, -0.15]; R.gD = -1.5 + Math.sin(t * 4.3) * 0.2; }
+    const g0 = P.giro; delete P.giro; Object.assign(P, mix(P, R, k)); if (g0 != null) P.giro = g0;
+    if (c.id === 'gta' && k > 0.4) gamepad.visible = false;
+    return giro * k;
+  }
+
   /* chi sta lavorando alza gli occhi quando qualcuno gli si avvicina */
   const sguardi = {};
   const guardami = (id, t0, t1, dove) => (sguardi[id] = sguardi[id] || []).push({ t0, t1, dove });
