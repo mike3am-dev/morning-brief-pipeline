@@ -1,7 +1,7 @@
 <title>La redazione di TMB</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Una stanza sola, in 3D, a tutto schermo; sopra, poche scritte nello stile dell'app. */
+/* Una stanza sola, in 3D, a tutto schermo; sopra, pochissime scritte nello stile dell'app. */
 :root{
   --bone:#EDEAE3; --paper:#F8F6F2; --ink:#17181B; --ink-2:#4B4D53; --ink-3:#7C7F87; --rule:#D7D2C7;
   --yellow:#F5C518; --orange:#F0821E; --red:#E01F3D; --blue:#0E9CD8;
@@ -19,32 +19,35 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 #app{position:relative; height:100%; overflow:hidden}
 #scena{position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab}
 #scena.presa{cursor:grabbing}
+#scena.mano{cursor:pointer}
 
-.marchio{position:absolute; top:18px; left:max(22px,env(safe-area-inset-left,0px)); display:flex; flex-direction:column; gap:6px; pointer-events:none}
-.pallini{display:flex; gap:6px}
-.pallini i{width:11px; height:11px; border-radius:50%; display:block}
-.marchio h1{font-family:var(--display); font-weight:800; font-size:34px; line-height:.92; letter-spacing:.01em; text-transform:uppercase; margin:0}
-.marchio p{margin:0; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--testo-2)}
+.marchio{position:absolute; top:16px; left:max(20px,env(safe-area-inset-left,0px)); display:flex; align-items:center; gap:9px; pointer-events:none}
+.pallini{display:flex; gap:4px}
+.pallini i{width:8px; height:8px; border-radius:50%; display:block}
+.marchio h1{font-family:var(--display); font-weight:800; font-size:19px; line-height:1; letter-spacing:.04em; text-transform:uppercase; margin:0}
 
-.luci{position:absolute; top:18px; right:max(22px,env(safe-area-inset-right,0px)); display:flex; gap:2px; padding:3px;
-  background:color-mix(in srgb, var(--paper) 88%, transparent); border-radius:999px; box-shadow:0 1px 0 rgba(23,24,27,.14)}
-.luci button{font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:.05em; text-transform:uppercase;
-  border:0; background:none; color:var(--ink-2); padding:5px 14px; border-radius:999px; cursor:pointer}
+.luci{position:absolute; top:12px; right:max(18px,env(safe-area-inset-right,0px)); display:flex; gap:1px; padding:3px;
+  background:color-mix(in srgb, var(--paper) 86%, transparent); border-radius:999px; box-shadow:0 1px 0 rgba(23,24,27,.14)}
+.luci button{font-family:var(--display); font-weight:700; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+  border:0; background:none; color:var(--ink-2); padding:3px 10px; border-radius:999px; cursor:pointer}
 .luci button[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
 .luci button:focus-visible, .tag:focus-visible, .chiudi:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
 
+/* le etichette: un nome piccolo sopra la testa; il resto compare solo quando ci passi sopra */
 .tag{position:absolute; left:0; top:0; transform:translate(-50%,-100%); border:0; cursor:pointer; white-space:nowrap;
-  display:flex; align-items:center; gap:7px; padding:5px 12px 5px 9px; border-radius:999px;
-  background:var(--paper); color:var(--ink); font:600 12.5px var(--body); box-shadow:0 2px 0 rgba(23,24,27,.16); will-change:transform}
-.tag b{width:9px; height:9px; border-radius:50%; display:block}
-.tag span{color:var(--ink-3); font-weight:500}
-.tag em{font-style:normal; font-family:var(--display); font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
-  background:var(--ink); color:var(--paper); padding:2px 8px; border-radius:999px; margin-left:2px}
+  display:flex; align-items:center; gap:5px; padding:2px 8px 2px 6px; border-radius:999px;
+  background:color-mix(in srgb, var(--paper) 90%, transparent); color:var(--ink); font:600 11px var(--body);
+  box-shadow:0 1px 0 rgba(23,24,27,.16); will-change:transform}
+.tag b{width:6px; height:6px; border-radius:50%; display:block}
+.tag .piu{display:none; align-items:center; gap:6px; color:var(--ink-3); font-weight:500}
+.tag .piu em{font-style:normal; font-family:var(--display); font-weight:700; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+  background:var(--ink); color:var(--paper); padding:1px 7px; border-radius:999px}
+.tag:hover .piu, .tag:focus-visible .piu, .tag.vicino .piu{display:inline-flex}
+.tag:hover, .tag.vicino{background:var(--paper)}
 
-.nota{position:absolute; left:max(22px,env(safe-area-inset-left,0px)); bottom:16px; margin:0; max-width:46ch; font-size:12.5px; line-height:1.45; color:var(--testo-2)}
-.nota b{color:var(--testo)}
+.nota{position:absolute; left:max(20px,env(safe-area-inset-left,0px)); bottom:12px; margin:0; font-size:11.5px; color:var(--testo-2); pointer-events:none}
 
-#pannello{position:absolute; top:16px; right:max(16px,env(safe-area-inset-right,0px)); bottom:16px; width:min(360px, calc(100% - 32px));
+#pannello{position:absolute; top:16px; right:max(16px,env(safe-area-inset-right,0px)); bottom:16px; width:min(340px, calc(100% - 32px));
   background:var(--paper); color:var(--ink); border-radius:16px; box-shadow:0 10px 40px rgba(10,12,20,.22), 0 1px 0 rgba(23,24,27,.1);
   padding:20px 20px 18px; display:flex; flex-direction:column; gap:16px; overflow:auto}
 .testa{display:flex; align-items:center; gap:12px}
@@ -66,28 +69,30 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .titoli{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px}
 .titoli li{display:flex; gap:8px; line-height:1.35}
 .titoli li i{flex:none; width:8px; height:8px; border-radius:50%; margin-top:6px; background:var(--orange)}
+.adesso{display:flex; gap:8px; align-items:center; font-weight:600}
+.adesso i{width:9px; height:9px; border-radius:50%; background:#2f8a4a; flex:none}
 .piede{margin-top:auto; font-size:12px; color:var(--ink-3); line-height:1.4}
 #errore{position:absolute; inset:0; display:grid; place-items:center; padding:24px; text-align:center}
 </style>
 
 <div id="app">
-  <canvas id="scena" aria-label="Un angolo della redazione di The Morning Brief, in 3D"></canvas>
+  <canvas id="scena" aria-label="La redazione di The Morning Brief, in 3D"></canvas>
   <div id="etichette"></div>
 
   <div class="marchio">
     <span class="pallini"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></span>
     <h1>La redazione</h1>
-    <p>Prova di look · un angolo</p>
   </div>
 
   <div class="luci" role="group" aria-label="La luce della stanza">
+    <button type="button" data-luce="adesso" aria-pressed="true">Adesso</button>
     <button type="button" data-luce="alba" aria-pressed="false">Alba</button>
-    <button type="button" data-luce="giorno" aria-pressed="true">Giorno</button>
+    <button type="button" data-luce="giorno" aria-pressed="false">Giorno</button>
     <button type="button" data-luce="sera" aria-pressed="false">Sera</button>
     <button type="button" data-luce="notte" aria-pressed="false">Notte</button>
   </div>
 
-  <p class="nota"><b>Tocca Ettore o Ivo.</b> Rotella per avvicinarti, trascina per spostarti, doppio clic per tornare. Tutto quello che si legge viene dall'edizione di giovedì 12 novembre.</p>
+  <p class="nota">Tocca una persona · rotella per avvicinarti · trascina per spostarti · doppio clic per tornare</p>
 
   <aside id="pannello" hidden aria-live="polite"></aside>
   <div id="errore" hidden></div>
@@ -102,34 +107,32 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-/* ------------------------------------------------------------------ i dati veri (12 novembre 2026)
-   Da redazione/stato/2026-11-12.json: l'edizione, la corsa, le correzioni di Ivo. */
+/* ------------------------------------------------------------------ i dati veri (13 novembre 2026)
+   Da redazione/stato/2026-11-13.json: l'edizione, la corsa, le correzioni di Ivo, le letture di Mike. */
 const DATI = {
-  dataBreve: 'GIO 12 NOV', inOnda: '05:56',
-  corsa: { inizio: '05:34', fine: '06:00', minuti: 26 },
+  uscita: '06:00', prossimaUscita: [6, 0],
+  corsa: { inizio: '05:34', minuti: 30, tetto: 45, ultime: [40, 25, 29, 27, 26, 26, 30], giorni: ['S', 'D', 'L', 'M', 'M', 'G', 'V'] },
   menabo: [
-    { t: 'Scadono i resi dei primi iPhone Duo. Chi lo restituisce e perché', rep: 'iPhone' },
-    { t: 'Gemini arriva su CarPlay con un\'app sua. Era l\'ultimo grande assistente che mancava', rep: 'AI' },
-    { t: 'iPhone 18 Pro Max primo nel test di autonomia di CNET su 32 telefoni', rep: 'iPhone' },
-    { t: 'Un fornitore cinese dice di lavorare agli occhiali AI e agli AirPods con fotocamera di Apple', rep: 'Accessori' },
-    { t: 'Nel nuovo MacBook Pro l\'aria calda esce dalla cerniera, non più dallo schermo', rep: 'Mac' },
+    { t: 'HomeView arriva nei negozi. Le recensioni promuovono l\'oggetto e si dividono su Siri', breve: 'HomeView nei negozi' },
+    { t: 'Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple', breve: 'Huang lascia Nvidia' },
+    { t: 'Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi', breve: 'iPhone Duo: 16 milioni' },
+    { t: 'Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo surround fatto di HomePod', breve: 'Apple TV 4K alla prova' },
+    { t: 'Il primo aggiornamento di HomeView chiude nove falle. Siri aprirà la porta solo a dicembre', breve: 'HomeView: 9 falle chiuse' },
   ],
-  punto: 'Si può restituire un telefono, meno un\'abitudine',
-  primePagine: [
-    { data: 'MER 11 NOV', t: 'Apple TV porta gli interpreti in lingua dei segni nei suoi film', c: '#0E9CD8' },
-    { data: 'MAR 10 NOV', t: 'Apple mette un prezzo all\'AI: 49,99 dollari per altro uso in Logic Pro', c: '#F0821E' },
-  ],
+  punto: 'Da chi deve proteggerci uno schermo in cucina?',
+  letture: [['S', 5], ['D', 2], ['L', 3], ['M', 5], ['M', 7], ['G', 1]],   // voci aperte da Mike, edizioni dal 7 al 12 novembre
+  richiesteLea: 76, feedMuti: 6, gtaGiorni: 6,
   persone: {
-    ettore: { nome: 'Ettore', mestiere: 'redattore', modello: 'Opus', colore: '#F0821E', minuti: 9,
+    ettore: { nome: 'Ettore', mestiere: 'redattore', modello: 'Opus', colore: '#F0821E', dalle: '05:50', alle: '05:58', minuti: 8,
       notizie: 15, approfondimenti: 5 },
-    ivo: { nome: 'Ivo', mestiere: 'revisore', modello: 'Opus', colore: '#E01F3D', minuti: 1, riscritti: 11,
+    ivo: { nome: 'Ivo', mestiere: 'revisore', modello: 'Opus', colore: '#E01F3D', dalle: '05:58', alle: '05:59', minuti: 1, riscritti: 10,
       cambi: [
-        { prima: 'iPhone Duo, si chiude la finestra dei resi: chi lo restituisce e perché',
-          dopo: 'Scadono i resi dei primi iPhone Duo. Chi lo restituisce e perché' },
-        { prima: 'Google porta l\'app Gemini su CarPlay, l\'ultimo grande assistente che mancava',
-          dopo: 'Gemini arriva su CarPlay con un\'app sua. Era l\'ultimo grande assistente che mancava' },
-        { prima: 'Nel nuovo MacBook Pro il calore esce dalla cerniera, non più dallo schermo: lo mostra la prova del fumo',
-          dopo: 'Nel nuovo MacBook Pro l\'aria calda esce dalla cerniera, non più dallo schermo' },
+        { prima: 'Huang lascia Nvidia, e fra i nomi per la successione ci sono due dirigenti Apple',
+          dopo: 'Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple' },
+        { prima: 'Bloomberg Intelligence alza a 16 milioni le vendite di iPhone Duo nel primo anno, nonostante i resi',
+          dopo: 'Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi' },
+        { prima: 'Apple accetta per la prima volta i pieghevoli Samsung in permuta, fino a 410 dollari per il Fold7',
+          dopo: 'Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per il Fold7 fino a 410 dollari' },
       ] },
   },
 };
@@ -138,7 +141,12 @@ const C = { bone: '#EDEAE3', paper: '#F8F6F2', ink: '#17181B', ink2: '#4B4D53', 
   yellow: '#F5C518', orange: '#F0821E', red: '#E01F3D', blue: '#0E9CD8' };
 const DISPLAY = '"Avenir Next Condensed","HelveticaNeue-CondensedBold","Helvetica Neue",Arial,sans-serif';
 const SISTEMA = '-apple-system,"SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif';
+const PENNARELLO = '"Marker Felt","Chalkboard SE","Comic Sans MS",sans-serif';
+const A_MANO = '"Bradley Hand","Noteworthy","Marker Felt",cursive';
+const GRAZIE = '"Apple Garamond","Garamond","Baskerville","Times New Roman",serif';
+const CORSIVO = '"Snell Roundhand","Apple Chancery","Brush Script MT",cursive';
 const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PI = Math.PI;
 
 try { avvia(); } catch (e) { guasto(e); }
 function guasto(e) {
@@ -154,22 +162,25 @@ function avvia() {
   renderer.toneMapping = THREE.NeutralToneMapping;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
-  renderer.shadowMap.autoUpdate = false;
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-  /* ---------------------------------------------------------------- mattoni */
+  /* ================================================================ mattoni */
   const M = (color, o = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.82, metalness: 0, ...o });
   const ombra = (m, getta = true) => { m.castShadow = getta; m.receiveShadow = true; return m; };
   const box = (w, h, d, mat, r = 0.02) =>
     ombra(new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 4, Math.min(r, w / 2.01, h / 2.01, d / 2.01)), mat));
   const cyl = (rt, rb, h, mat, seg = 28) => ombra(new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), mat));
   const sph = (r, mat, w = 24, hh = 18) => ombra(new THREE.Mesh(new THREE.SphereGeometry(r, w, hh), mat));
-  const cap = (r, l, mat) => ombra(new THREE.Mesh(new THREE.CapsuleGeometry(r, l, 8, 18), mat));
+  const ell = (r, sx, sy, sz, mat) => { const m = sph(r, mat); m.scale.set(sx, sy, sz); return m; };
+  const caps = (r, l, mat) => ombra(new THREE.Mesh(new THREE.CapsuleGeometry(r, l, 8, 18), mat));
   const at = (o, x, y, z) => { o.position.set(x, y, z); return o; };
   const gruppo = (...figli) => { const g = new THREE.Group(); figli.forEach(f => f && g.add(f)); return g; };
+  const dolce = t => { t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t); };
+  const fra = (u, a, b) => dolce((u - a) / (b - a));                       // 0 prima di a, 1 dopo b
+  const campana = (u, a, b, c, d) => fra(u, a, b) * (1 - fra(u, c, d));   // sale fra a e b, scende fra c e d
 
   function tela(w, h, disegna) {
     const c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -177,25 +188,29 @@ function avvia() {
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t;
   }
-  const schermo = (w, h, tex) => new THREE.Mesh(new THREE.PlaneGeometry(w, h),
-    new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
-  const stampa = (w, h, tex) => ombra(new THREE.Mesh(new THREE.PlaneGeometry(w, h),
-    new THREE.MeshStandardMaterial({ map: tex, roughness: 0.9 })), false);
+  const schermo = (w, h, tex) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  const stampa = (w, h, tex) => ombra(new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.9 })), false);
 
   function aCapo(x, testo, maxW, maxRighe = 9) {
     const parole = testo.split(' '), righe = []; let r = '';
-    for (const p of parole) {
-      const prova = r ? r + ' ' + p : p;
-      if (x.measureText(prova).width > maxW && r) { righe.push(r); r = p; } else r = prova;
-    }
+    for (const p of parole) { const prova = r ? r + ' ' + p : p; if (x.measureText(prova).width > maxW && r) { righe.push(r); r = p; } else r = prova; }
     if (r) righe.push(r);
     if (righe.length > maxRighe) { righe.length = maxRighe; righe[maxRighe - 1] = righe[maxRighe - 1].replace(/\s+\S*$/, '') + '…'; }
     return righe;
   }
   function spazia(x, em, px) { try { x.letterSpacing = (em * px) + 'px'; } catch (e) { /* non c'è: pazienza */ } }
+  const rr = (x, a, b, w, h, r) => { x.beginPath(); x.roundRect(a, b, w, h, r); };
+  function casuale(seme) { let k = seme; return () => (k = (k * 16807) % 2147483647) / 2147483647; }
 
   /* Il marchio, ricalcato sulla testata dell'app: THE e BRIEF grandi metà di MORNING,
      la O è il sole, davanti la falce azzurra dell'orizzonte. */
+  function falce(x, ax, ay, aw, ah) {
+    const g = x.createLinearGradient(ax, 0, ax + aw, 0);
+    g.addColorStop(0, '#1A5FAF'); g.addColorStop(0.48, '#7CC6F2'); g.addColorStop(1, '#1A5FAF');
+    const X = u => ax + aw * u / 100, Y = v => ay + ah * v / 14;
+    x.fillStyle = g; x.beginPath(); x.moveTo(X(0), Y(13.6)); x.quadraticCurveTo(X(48), Y(-5), X(100), Y(13.6));
+    x.quadraticCurveTo(X(48), Y(4.2), X(0), Y(13.6)); x.fill();
+  }
   function marchio(x, x0, y0, S, inchiostro = C.ink) {
     const s = S * 0.47; x.save(); x.textBaseline = 'alphabetic'; x.fillStyle = inchiostro;
     x.font = `900 ${s}px ${SISTEMA}`; spazia(x, -0.01, s);
@@ -204,502 +219,810 @@ function avvia() {
     x.font = `900 ${S}px ${SISTEMA}`; spazia(x, -0.035, S);
     const wM = x.measureText('M').width; x.fillText('M', x0, y);
     const d = S * 0.92, cx = x0 + wM + S * 0.01 + d / 2, cy = y - S * 0.33;
-    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, d / 2, 0, Math.PI * 2); x.fill();
+    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, d / 2, 0, PI * 2); x.fill();
     x.fillStyle = inchiostro; const xr = x0 + wM + S * 0.03 + d; x.fillText('RNING', xr, y);
     const W = xr + x.measureText('RNING').width - x0;
-    const ax = x0 - W * 0.03, aw = W * 0.72, ay = y - S * 0.12, ah = S * 0.30;
-    const g = x.createLinearGradient(ax, 0, ax + aw, 0);
-    g.addColorStop(0, '#1A5FAF'); g.addColorStop(0.48, '#7CC6F2'); g.addColorStop(1, '#1A5FAF');
-    const X = u => ax + aw * u / 100, Y = v => ay + ah * v / 14;
-    x.fillStyle = g; x.beginPath(); x.moveTo(X(0), Y(13.6)); x.quadraticCurveTo(X(48), Y(-5), X(100), Y(13.6));
-    x.quadraticCurveTo(X(48), Y(4.2), X(0), Y(13.6)); x.fill();
+    falce(x, x0 - W * 0.03, y - S * 0.12, W * 0.72, S * 0.30);
     x.fillStyle = inchiostro; x.font = `900 ${s}px ${SISTEMA}`; spazia(x, -0.01, s);
     const yBrief = y + S * 0.21 + s * 0.73; x.fillText('BRIEF', x0, yBrief);
     x.restore(); return { w: W, h: yBrief - y0 };
   }
-  function sole(x, cx, cy, r) {   // il sole con la falce: la versione piccola, per tazze e adesivi
-    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
-    const g = x.createLinearGradient(cx - r * 1.5, 0, cx + r * 1.5, 0);
-    g.addColorStop(0, '#1A5FAF'); g.addColorStop(0.5, '#7CC6F2'); g.addColorStop(1, '#1A5FAF');
-    x.fillStyle = g; x.beginPath(); x.moveTo(cx - r * 1.5, cy + r * 1.0);
-    x.quadraticCurveTo(cx, cy - r * 0.15, cx + r * 1.5, cy + r * 1.0);
-    x.quadraticCurveTo(cx, cy + r * 0.55, cx - r * 1.5, cy + r * 1.0); x.fill();
+  function sole(x, cx, cy, r) {   // il sole con la falce: la versione piccola, per le tazze
+    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, r, 0, PI * 2); x.fill();
+    falce(x, cx - r * 1.5, cy + r * 0.05, r * 3, r * 1.0);
   }
 
-  /* ---------------------------------------------------------------- le tele */
-  const texSchermone = tela(2048, 976, (x, w, h) => {
+  /* ================================================================ le tele */
+  // Il fondale: solo il marchio e il visual della testata, come dietro alle trasmissioni del mattino.
+  const texFondale = tela(2048, 943, (x, w, h) => {
     x.fillStyle = C.bone; x.fillRect(0, 0, w, h);
-    marchio(x, 96, 92, 205);
-    // a destra: i tre pallini, la data, in onda
-    const rx = w - 96; x.textAlign = 'right';
-    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(rx - 24 - (2 - i) * 66, 138, 24, 0, 7); x.fill(); });
-    x.fillStyle = C.ink; x.font = `800 158px ${DISPLAY}`; x.fillText(DATI.dataBreve, rx, 336);
-    x.fillStyle = C.ink2; x.font = `700 60px ${DISPLAY}`; spazia(x, 0.08, 60);
-    const scritta = 'IN ONDA DALLE ' + DATI.inOnda, ws = x.measureText(scritta).width; x.fillText(scritta, rx, 436);
-    x.fillStyle = C.red; x.beginPath(); x.arc(rx - ws - 30, 416, 15, 0, 7); x.fill();
-    spazia(x, 0, 1);
-    // il sottopancia: fascia gialla, titolo su nero
-    x.textAlign = 'left'; const by = 620;
-    x.fillStyle = C.ink; x.fillRect(0, by, w, h - by);
-    x.fillStyle = C.yellow; x.fillRect(96, by - 44, 470, 88);
-    x.fillStyle = C.ink; x.font = `800 60px ${DISPLAY}`; spazia(x, 0.06, 60); x.fillText('IN APERTURA', 126, by + 20); spazia(x, 0, 1);
-    x.fillStyle = C.paper; x.font = `700 92px ${SISTEMA}`;
-    aCapo(x, DATI.menabo[0].t, w - 192, 2).forEach((r, i) => x.fillText(r, 96, by + 160 + i * 108));
+    const cx = 1620, cy = 800, R = 430;
+    for (let r = 0, gy = 26; gy < h; gy += 44, r++) for (let gx = 26 + (r % 2) * 22; gx < w; gx += 44) {   // il campo di pallini
+      const d = Math.hypot(gx - cx, gy - cy), rag = 13.5 * (1 - (d - R) / 760) * Math.min(1, Math.max(0, (gx - 1090) / 360));
+      if (d > R + 6 && rag > 1.2) { x.fillStyle = d < R + 330 ? C.orange : C.red; x.beginPath(); x.arc(gx, gy, Math.min(13.5, rag), 0, 7); x.fill(); }
+    }
+    x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, R, 0, 7); x.fill();
+    falce(x, 540, 560, 2300, 420);
+    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(140 + i * 60, 124, 21, 0, 7); x.fill(); });
+    marchio(x, 118, 196, 200);
   });
 
+  function finestra(titolo) {   // la cornice di una finestra del Mac, per gli schermi
+    return (x, w, h) => {
+      x.fillStyle = '#DCD9D2'; x.fillRect(0, 0, w, h);
+      x.fillStyle = 'rgba(255,255,255,.7)'; x.fillRect(0, 0, w, 26);
+      x.fillStyle = C.ink; x.font = `600 15px ${SISTEMA}`; x.fillText('', 12, 19); x.font = `700 14px ${SISTEMA}`; x.fillText('TMB', 38, 19);
+      x.font = `400 14px ${SISTEMA}`; x.fillStyle = C.ink2; x.fillText('File   Modifica   Vista', 82, 19);
+      x.fillStyle = C.paper; rr(x, 22, 40, w - 44, h - 54, 12); x.fill();
+      [['#FF5F57', 0], ['#FEBC2E', 1], ['#28C840', 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(44 + i * 20, 60, 6.5, 0, 7); x.fill(); });
+      x.fillStyle = C.ink3; x.font = `600 14px ${SISTEMA}`; x.textAlign = 'center'; x.fillText(titolo, w / 2, 65); x.textAlign = 'left';
+    };
+  }
   const texMonitorEttore = tela(640, 400, (x, w, h) => {
-    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
-    x.fillStyle = C.ink; x.fillRect(0, 0, w, 44);
-    [C.red, C.yellow, C.blue].forEach((c, i) => { x.fillStyle = c; x.beginPath(); x.arc(26 + i * 24, 22, 7, 0, 7); x.fill(); });
-    x.fillStyle = C.orange; x.font = `800 30px ${DISPLAY}`; spazia(x, 0.1, 30); x.fillText('IPHONE · IN APERTURA', 36, 96); spazia(x, 0, 1);
-    x.fillStyle = C.ink; x.font = `800 42px ${SISTEMA}`;
-    let y = 150; aCapo(x, DATI.menabo[0].t, w - 72, 3).forEach(r => { x.fillText(r, 36, y); y += 50; });
-    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 4; i++) x.fillRect(36, y + 4 + i * 26, i === 3 ? 300 : w - 72, 11);
-    x.fillStyle = C.orange; x.fillRect(346, y + 4 + 3 * 26 - 6, 4, 24);
+    finestra('edizione del 13 novembre')(x, w, h);
+    x.fillStyle = C.orange; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('CASA · IN APERTURA', 48, 112); spazia(x, 0, 1);
+    x.fillStyle = C.ink; x.font = `800 34px ${SISTEMA}`;
+    let y = 154; aCapo(x, DATI.menabo[0].t, w - 96, 3).forEach(r => { x.fillText(r, 48, y); y += 41; });
+    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 4 && y + i * 24 < h - 34; i++) x.fillRect(48, y + 2 + i * 24, i === 3 ? 260 : w - 96, 10);
   });
-
   const texMonitorIvo = tela(640, 400, (x, w, h) => {
-    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
-    x.fillStyle = C.ink; x.fillRect(0, 0, w, 44);
-    x.fillStyle = C.paper; x.font = `700 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('REVISIONE · 11 TESTI RISCRITTI', 22, 31); spazia(x, 0, 1);
+    finestra('revisione · 10 testi riscritti')(x, w, h);
     const c = DATI.persone.ivo.cambi[1];
-    x.fillStyle = C.ink3; x.font = `500 30px ${SISTEMA}`; let y = 104;
-    aCapo(x, c.prima, w - 72, 3).forEach(r => { x.fillText(r, 36, y); const m = x.measureText(r).width;
-      x.strokeStyle = C.red; x.lineWidth = 4; x.beginPath(); x.moveTo(34, y - 10); x.lineTo(38 + m, y - 11); x.stroke(); y += 40; });
-    y += 22; x.fillStyle = C.ink; x.font = `800 36px ${SISTEMA}`;
-    aCapo(x, c.dopo, w - 72, 4).forEach(r => { x.fillText(r, 36, y); y += 44; });
+    x.fillStyle = C.ink3; x.font = `500 25px ${SISTEMA}`; let y = 118;
+    aCapo(x, c.prima, w - 96, 3).forEach(r => { x.fillText(r, 48, y); const m = x.measureText(r).width;
+      x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); x.moveTo(46, y - 8); x.lineTo(50 + m, y - 9); x.stroke(); y += 33; });
+    y += 20; x.fillStyle = C.ink; x.font = `800 30px ${SISTEMA}`;
+    aCapo(x, c.dopo, w - 96, 4).forEach(r => { x.fillText(r, 48, y); y += 37; });
   });
 
-  function foglio(seme) {   // una bozza stampata, con le correzioni a penna rossa
+  function foglio(seme, pulito = false) {   // una bozza stampata; quelle di Ivo hanno le correzioni a penna rossa
     return tela(300, 420, (x, w, h) => {
       x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, w, h);
       x.fillStyle = C.ink; x.fillRect(28, 30, 190, 16); x.fillRect(28, 54, 120, 16);
-      let k = seme;
-      const caso = () => (k = (k * 9301 + 49297) % 233280) / 233280;
+      const caso = casuale(seme);
       for (let i = 0; i < 13; i++) {
         const y = 100 + i * 23, l = 150 + caso() * 94;
         x.fillStyle = '#B9B6AE'; x.fillRect(28, y, l, 8);
-        if (caso() < 0.3) { x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); const a = 40 + caso() * 60, b = a + 50 + caso() * 70;
-          x.moveTo(a, y + 4); x.lineTo(b, y + 3); x.stroke();
-          x.beginPath(); x.moveTo(b + 6, y - 2); x.lineTo(w - 36, y - 10 + caso() * 6); x.stroke(); }
+        if (!pulito && caso() < 0.3) { x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); const a = 40 + caso() * 60, b = a + 50 + caso() * 70;
+          x.moveTo(a, y + 4); x.lineTo(b, y + 3); x.stroke(); x.beginPath(); x.moveTo(b + 6, y - 2); x.lineTo(w - 36, y - 10 + caso() * 6); x.stroke(); }
       }
-      x.strokeStyle = C.red; x.lineWidth = 3; x.beginPath(); x.ellipse(120, 48, 108, 30, -0.04, 0, 6.6); x.stroke();
+      if (!pulito) { x.strokeStyle = C.red; x.lineWidth = 3; x.beginPath(); x.ellipse(120, 48, 108, 30, -0.04, 0, 6.6); x.stroke(); }
     });
   }
 
-  const texMenabo = tela(1100, 660, (x, w, h) => {
-    x.fillStyle = '#FDFDFB'; x.fillRect(0, 0, w, h);
-    x.fillStyle = C.ink; x.font = `800 84px ${DISPLAY}`; x.fillText('MENABÒ', 44, 100);
-    x.fillStyle = C.ink3; x.font = `700 40px ${DISPLAY}`; spazia(x, 0.08, 40); x.fillText(DATI.dataBreve, 330, 98); spazia(x, 0, 1);
-    x.fillStyle = C.ink; x.fillRect(44, 122, 700, 6);
-    const col = { iPhone: C.orange, AI: C.red, Accessori: C.blue, Mac: C.yellow };
-    DATI.menabo.forEach((n, i) => {
-      const y = 190 + i * 96;
-      x.fillStyle = col[n.rep] || C.ink; x.beginPath(); x.arc(70, y - 12, 20, 0, 7); x.fill();
-      x.fillStyle = n.rep === 'Mac' ? C.ink : '#fff'; x.font = `800 28px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(String(i + 1), 70, y - 2); x.textAlign = 'left';
-      x.fillStyle = C.ink; x.font = `${i === 0 ? 700 : 500} 32px ${SISTEMA}`;
-      aCapo(x, n.t, 620, 2).forEach((r, j) => x.fillText(r, 110, y + j * 38));
-    });
-    // l'apertura cerchiata a pennarello
-    x.strokeStyle = C.red; x.lineWidth = 7; x.lineCap = 'round';
-    x.beginPath(); x.ellipse(400, 196, 372, 62, -0.012, 0.3, 6.75); x.stroke();
+  /* La lavagna: uno studio in corso, scritto a mano. Ogni numero è vero. */
+  const texLavagna = tela(1400, 820, (x, w, h) => {
+    const caso = casuale(41), VERDE = '#1F7A3F';
+    x.fillStyle = '#FCFCFA'; x.fillRect(0, 0, w, h);
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    for (let i = 0; i < 9; i++) { x.strokeStyle = 'rgba(40,50,70,.035)'; x.lineWidth = 26 + caso() * 30; x.beginPath();   // le cancellature di ieri
+      const a = caso() * w, b = caso() * h; x.moveTo(a, b); x.lineTo(a + 120 + caso() * 260, b + (caso() - 0.5) * 80); x.stroke(); }
+    const tratto = (pts, col = C.ink, lw = 4) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath();
+      pts.forEach(([a, b], i) => { const dx = (caso() - 0.5) * 2.4, dy = (caso() - 0.5) * 2.4; if (i) x.lineTo(a + dx, b + dy); else x.moveTo(a + dx, b + dy); }); x.stroke(); };
+    const scrivi = (t, a, b, px, col = C.ink, f = A_MANO, rot = 0) => { x.save(); x.translate(a, b); x.rotate(rot); x.fillStyle = col; x.font = `700 ${px}px ${f}`; x.fillText(t, 0, 0); x.restore(); };
+    const freccia = (a, b, c, d, col = C.ink) => { tratto([[a, b], [c, d]], col, 4); const an = Math.atan2(d - b, c - a);
+      tratto([[c - 16 * Math.cos(an - 0.5), d - 16 * Math.sin(an - 0.5)], [c, d], [c - 16 * Math.cos(an + 0.5), d - 16 * Math.sin(an + 0.5)]], col, 4); };
+    const cerchio = (cx, cy, rx, ry, col = C.red, lw = 5) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath(); x.ellipse(cx, cy, rx, ry, -0.03, 0.25, 6.85); x.stroke(); };
+
+    // in alto a sinistra: il giorno e l'uscita
+    scrivi('VEN 13', 40, 84, 70, C.ink, PENNARELLO, -0.02);
+    tratto([[40, 98], [120, 104], [200, 97], [262, 103]], C.red, 5);
+    scrivi('uscita alle 6:00', 290, 62, 34, VERDE); scrivi('✓', 520, 66, 44, VERDE, PENNARELLO);
+
+    // a sinistra: l'apertura, con una correzione di Ivo
+    scrivi('APERTURA', 40, 168, 40, C.blue, PENNARELLO);
+    DATI.menabo.forEach((n, i) => { scrivi((i + 1) + '.', 44, 222 + i * 50, 34, C.ink3); scrivi(n.breve, 86, 222 + i * 50, 36, C.ink); });
+    cerchio(232, 210, 214, 31); scrivi('!!', 456, 224, 44, C.red, PENNARELLO);
+    scrivi('«alza a»', 96, 500, 30, C.ink2); tratto([[92, 490], [150, 487], [214, 491]], C.red, 5);
+    scrivi('→ «stima»', 232, 500, 30, C.red); scrivi('(Ivo)', 392, 500, 26, C.ink3);
+    freccia(120, 468, 104, 340, C.red);
+
+    // al centro in alto: i minuti della corsa, a barre
+    scrivi('LA CORSA', 610, 74, 38, C.blue, PENNARELLO); scrivi('minuti', 790, 72, 28, C.ink3);
+    const bx = 620, by = 330, bw = 44, sc = 4.4;
+    tratto([[bx - 14, 96], [bx - 14, by], [bx + 392, by]], C.ink, 4);
+    x.setLineDash([12, 10]); tratto([[bx - 14, by - DATI.corsa.tetto * sc], [bx + 392, by - DATI.corsa.tetto * sc]], C.red, 3); x.setLineDash([]);
+    scrivi('tetto 45', bx + 290, by - DATI.corsa.tetto * sc - 10, 26, C.red);
+    DATI.corsa.ultime.forEach((m, i) => { const a = bx + i * 56, alto = m * sc, oggi = i === DATI.corsa.ultime.length - 1;
+      x.strokeStyle = oggi ? C.orange : C.ink2; x.lineWidth = 3;
+      for (let k = 0; k < alto; k += 9) { x.beginPath(); x.moveTo(a + 2, by - k - 3); x.lineTo(a + bw - 2, by - Math.min(alto, k + 8) - 1); x.stroke(); }
+      tratto([[a, by], [a, by - alto], [a + bw, by - alto], [a + bw, by]], oggi ? C.orange : C.ink, 4);
+      scrivi(String(m), a + 6, by - alto - 10, 28, oggi ? C.orange : C.ink); scrivi(DATI.corsa.giorni[i], a + 12, by + 34, 28, C.ink3); });
+
+    // in alto a destra: due foto appuntate
+    const foto = (a, b, rot, col, sotto, disegno) => { x.save(); x.translate(a, b); x.rotate(rot);
+      x.shadowColor = 'rgba(0,0,0,.18)'; x.shadowBlur = 10; x.shadowOffsetY = 4; x.fillStyle = '#fff'; x.fillRect(-82, -92, 164, 200); x.shadowColor = 'transparent';
+      x.fillStyle = col; x.fillRect(-70, -80, 140, 138); disegno(); scrivi(sotto, -66, 96, 26, C.ink);
+      x.fillStyle = 'rgba(245,197,24,.75)'; x.fillRect(-30, -104, 60, 22); x.restore(); };
+    foto(1110, 170, -0.06, '#DCEAF2', 'HomeView', () => { x.fillStyle = C.ink; rr(x, -48, -58, 96, 70, 8); x.fill(); x.fillStyle = '#7CC6F2'; rr(x, -42, -52, 84, 58, 5); x.fill();
+      x.fillStyle = '#C9CCD1'; x.beginPath(); x.arc(0, 44, 32, PI, 0); x.fill(); x.fillRect(-5, 10, 10, 12); });
+    foto(1290, 196, 0.05, '#E9F0D8', 'Nvidia', () => { x.fillStyle = '#2F7A3F'; rr(x, -38, -50, 76, 76, 6); x.fill(); x.fillStyle = '#8FCB6B'; rr(x, -22, -34, 44, 44, 4); x.fill();
+      x.strokeStyle = C.ink; x.lineWidth = 4; for (let i = -3; i <= 3; i++) { x.beginPath(); x.moveTo(i * 11, -50); x.lineTo(i * 11, -62); x.moveTo(i * 11, 26); x.lineTo(i * 11, 38); x.stroke(); } });
+    freccia(1010, 214, 470, 206, C.ink3);
+
+    // in basso a sinistra: chi passa le carte a chi, con gli orari veri
+    const riquadro = (a, b, l, t, col = C.ink) => { tratto([[a, b], [a + l, b], [a + l, b + 62], [a, b + 62], [a, b]], col, 4); scrivi(t, a + 14, b + 42, 30, col); };
+    scrivi('STAMATTINA', 40, 590, 36, C.blue, PENNARELLO);
+    riquadro(40, 616, 128, 'Tobia'); riquadro(214, 616, 136, 'Ettore'); riquadro(396, 616, 96, 'Ivo', C.red);
+    freccia(172, 647, 208, 647); freccia(354, 647, 390, 647); freccia(496, 647, 540, 647, VERDE);
+    scrivi('5:35', 66, 712, 26, C.ink3); scrivi('5:50', 248, 712, 26, C.ink3); scrivi('5:58', 414, 712, 26, C.ink3);
+    scrivi('ESCE', 548, 642, 30, VERDE, PENNARELLO); scrivi('6:00', 548, 674, 30, VERDE, PENNARELLO);
+    tratto([[40, 734], [300, 740], [520, 733]], C.ink3, 3);
+    scrivi('Ada · Rita · Vito intanto, in parallelo', 46, 776, 28, C.ink2);
+
+    // al centro in basso: cosa ha aperto Mike
+    scrivi('LETTE DA MIKE', 640, 440, 38, C.blue, PENNARELLO); scrivi('voci aperte per edizione', 640, 474, 26, C.ink3);
+    tratto([[640, 730], [1000, 733]], C.ink, 4);
+    DATI.letture.forEach(([g, n], i) => { const a = 668 + i * 58;
+      for (let k = 0; k < n; k++) { x.fillStyle = n === 7 ? C.orange : C.ink; x.beginPath(); x.arc(a, 708 - k * 30, 11, 0, 7); x.fill(); }
+      scrivi(g, a - 9, 768, 28, C.ink3); });
+    cerchio(668 + 4 * 58, 618, 30, 116, C.red, 4); scrivi('7!', 936, 524, 36, C.red, PENNARELLO); scrivi('solo 1 ?', 990, 704, 28, C.red);
+
+    // a destra in basso: i post-it
+    const postit = (a, b, rot, col, righe) => { x.save(); x.translate(a, b); x.rotate(rot); x.shadowColor = 'rgba(0,0,0,.2)'; x.shadowBlur = 9; x.shadowOffsetY = 4;
+      x.fillStyle = col; x.fillRect(-78, -78, 156, 156); x.shadowColor = 'transparent'; x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(-78, -78, 156, 20);
+      righe.forEach((r, i) => scrivi(r, -66, -22 + i * 36, 30, C.ink)); x.restore(); };
+    postit(1132, 470, -0.05, '#FFE45C', [DATI.richiesteLea + ' richieste', 'di Lea !!']);
+    postit(1304, 492, 0.06, '#FF9DB0', ['GTA VI', '− ' + DATI.gtaGiorni + ' giorni']);
+    postit(1126, 668, 0.04, '#8FD3F4', [DATI.feedMuti + ' feed', 'muti']);
+    postit(1300, 684, -0.04, '#FFB46B', ['lunedì:', 'le fonti', '(Zeno)']);
   });
 
-  const texPagina = p => tela(420, 560, (x, w, h) => {
-    x.fillStyle = C.paper; x.fillRect(0, 0, w, h);
-    marchio(x, 28, 24, 62);
-    x.fillStyle = C.ink3; x.font = `700 22px ${DISPLAY}`; x.textAlign = 'right'; x.fillText(p.data, w - 28, 50); x.textAlign = 'left';
-    x.fillStyle = C.ink; x.fillRect(28, 158, w - 56, 5);
-    x.fillStyle = p.c; x.fillRect(28, 182, w - 56, 150);
-    x.fillStyle = 'rgba(255,255,255,.9)'; x.beginPath(); x.arc(w - 92, 258, 40, 0, 7); x.fill();
-    x.fillStyle = C.ink; x.font = `800 31px ${SISTEMA}`; let y = 376;
-    aCapo(x, p.t, w - 56, 4).forEach(r => { x.fillText(r, 28, y); y += 36; });
-    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 3 && y + i * 20 < h - 30; i++) x.fillRect(28, y + 2 + i * 20, w - 56 - (i === 2 ? 120 : 0), 8);
-  });
+  /* La storia di Apple, in sei manifesti disegnati da noi. */
+  const sotto = (x, anno, riga, chiaro) => { x.fillStyle = chiaro ? '#FFFFFF' : C.ink; x.font = `800 58px ${DISPLAY}`; x.fillText(anno, 26, 462);
+    x.font = `600 17px ${SISTEMA}`; x.globalAlpha = 0.8; x.fillText(riga, 28, 486); x.globalAlpha = 1; };
+  const manifesti = [
+    (x, w, h) => { x.fillStyle = '#E9E1CE'; x.fillRect(0, 0, w, h);   // Macintosh, 1984
+      x.fillStyle = '#CFC4AB'; rr(x, 92, 62, 216, 300, 16); x.fill(); x.fillStyle = '#DDD3BC'; rr(x, 92, 62, 216, 286, 16); x.fill();
+      x.fillStyle = '#34424A'; rr(x, 118, 88, 164, 128, 10); x.fill();
+      x.fillStyle = '#F2F5F2'; x.font = `italic 46px ${CORSIVO}`; x.textAlign = 'center'; x.fillText('hello', 200, 166); x.textAlign = 'left';
+      x.fillStyle = '#8D846F'; x.fillRect(214, 262, 66, 7); x.fillStyle = '#C3B89F'; rr(x, 104, 348, 192, 24, 6); x.fill();
+      sotto(x, '1984', 'Macintosh · 24 gennaio'); },
+    (x, w, h) => { x.fillStyle = '#111214'; x.fillRect(0, 0, w, h);   // Think different, 1997
+      const o = document.createElement('canvas'); o.width = 120; o.height = 130; const y = o.getContext('2d');
+      y.font = `110px ${SISTEMA}`; y.textAlign = 'center'; y.fillStyle = '#fff'; y.fillText('', 60, 104); y.globalCompositeOperation = 'source-atop';
+      ['#61BB46', '#FDB827', '#F5821F', '#E03A3E', '#963D97', '#009DDC'].forEach((c, i) => { y.fillStyle = c; y.fillRect(0, 22 + i * 15.5, 120, 16); });
+      x.drawImage(o, 140, 96);
+      x.fillStyle = '#FFFFFF'; x.font = `400 42px ${GRAZIE}`; x.textAlign = 'center'; x.fillText('Think different.', 200, 300); x.textAlign = 'left';
+      sotto(x, '1997', 'La campagna del ritorno', true); },
+    (x, w, h) => { x.fillStyle = '#C6E9E6'; x.fillRect(0, 0, w, h);   // iMac, 1998
+      x.fillStyle = '#128FA3'; x.beginPath(); x.ellipse(200, 222, 132, 142, 0, 0, 7); x.fill();
+      x.fillStyle = '#E4F1F0'; rr(x, 96, 92, 208, 222, 34); x.fill();
+      x.fillStyle = '#2D3A43'; rr(x, 120, 114, 160, 124, 18); x.fill();
+      x.fillStyle = '#F2F5F2'; x.font = `italic 27px ${CORSIVO}`; x.textAlign = 'center'; x.fillText('hello (again)', 200, 184); x.textAlign = 'left';
+      x.fillStyle = '#128FA3'; x.beginPath(); x.arc(140, 276, 15, 0, 7); x.arc(260, 276, 15, 0, 7); x.fill(); x.fillStyle = '#9FB7B8'; x.fillRect(176, 270, 48, 9);
+      x.fillStyle = '#0E7D8F'; x.beginPath(); x.moveTo(120, 348); x.lineTo(280, 348); x.lineTo(300, 382); x.lineTo(100, 382); x.fill();
+      sotto(x, '1998', 'iMac · 15 agosto'); },
+    (x, w, h) => { x.fillStyle = '#B4D335'; x.fillRect(0, 0, w, h);   // iPod, 2001
+      x.fillStyle = '#0B0B0C'; x.strokeStyle = '#0B0B0C'; x.lineCap = 'round'; x.lineJoin = 'round';
+      x.beginPath(); x.arc(214, 108, 36, 0, 7); x.fill();
+      x.beginPath(); x.moveTo(176, 150); x.lineTo(252, 152); x.lineTo(240, 268); x.lineTo(170, 262); x.fill();
+      x.lineWidth = 30; x.beginPath(); x.moveTo(186, 164); x.lineTo(126, 118); x.lineTo(104, 54); x.stroke();
+      x.beginPath(); x.moveTo(246, 166); x.lineTo(304, 214); x.lineTo(332, 170); x.stroke();
+      x.lineWidth = 36; x.beginPath(); x.moveTo(186, 262); x.lineTo(140, 336); x.lineTo(98, 392); x.stroke();
+      x.beginPath(); x.moveTo(228, 264); x.lineTo(276, 330); x.lineTo(330, 372); x.stroke();
+      x.fillStyle = '#FFFFFF'; rr(x, 84, 16, 38, 56, 6); x.fill(); x.fillStyle = '#B4D335'; x.fillRect(90, 22, 26, 18);
+      x.strokeStyle = '#FFFFFF'; x.lineWidth = 3.5; x.beginPath(); x.moveTo(104, 72); x.bezierCurveTo(120, 150, 170, 150, 190, 104); x.stroke();
+      x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(191, 102, 6, 0, 7); x.fill();
+      sotto(x, '2001', 'iPod · 23 ottobre'); },
+    (x, w, h) => { x.fillStyle = '#1B2029'; x.fillRect(0, 0, w, h);   // il primo Apple Store, 2001
+      x.fillStyle = '#0B0C0F'; x.fillRect(34, 104, 332, 262);
+      const g = x.createLinearGradient(0, 150, 0, 366); g.addColorStop(0, '#FFF7DE'); g.addColorStop(1, '#F3D9A0'); x.fillStyle = g; x.fillRect(54, 150, 292, 216);
+      x.fillStyle = '#FFFFFF'; rr(x, 168, 62, 64, 64, 6); x.fill();
+      x.fillStyle = '#0B0C0F'; x.font = `44px ${SISTEMA}`; x.textAlign = 'center'; x.fillText('', 200, 110); x.textAlign = 'left';
+      x.fillStyle = 'rgba(11,12,15,.14)'; x.fillRect(196, 150, 8, 216);
+      x.fillStyle = '#0B0C0F'; const caso = casuale(9);
+      for (let i = 0; i < 11; i++) { const a = 62 + i * 27 + caso() * 8, alto = 54 + caso() * 16; x.beginPath(); x.arc(a, 366 - alto, 9, 0, 7); x.fill(); rr(x, a - 10, 366 - alto + 8, 20, alto - 8, 8); x.fill(); }
+      x.fillStyle = '#2A313D'; x.fillRect(0, 366, w, 30);
+      sotto(x, '2001', 'Il primo Apple Store · 19 maggio', true); },
+    (x, w, h) => { x.fillStyle = '#101114'; x.fillRect(0, 0, w, h);   // iPhone, 2007
+      x.fillStyle = '#C9CCD1'; rr(x, 128, 44, 144, 330, 26); x.fill(); x.fillStyle = '#0A0A0B'; rr(x, 134, 50, 132, 318, 22); x.fill();
+      const g = x.createLinearGradient(0, 86, 0, 318); g.addColorStop(0, '#1D2A4A'); g.addColorStop(1, '#0E1424'); x.fillStyle = g; x.fillRect(144, 86, 112, 232);
+      const col = ['#35C759', '#0E9CD8', '#F5C518', '#E01F3D', '#F0821E', '#7B4BE0', '#34AADC', '#8E8E93', '#FF9500', '#5AC8FA', '#FFCC00', '#FF3B30', '#4CD964', '#007AFF', '#FF2D55', '#C7C7CC'];
+      for (let i = 0; i < 16; i++) { x.fillStyle = col[i]; rr(x, 152 + (i % 4) * 26, 96 + Math.floor(i / 4) * 34, 20, 20, 5); x.fill(); }
+      x.fillStyle = 'rgba(255,255,255,.16)'; x.fillRect(144, 282, 112, 36);
+      ['#35C759', '#0E9CD8', '#F0821E', '#C7C7CC'].forEach((c, i) => { x.fillStyle = c; rr(x, 152 + i * 26, 290, 20, 20, 5); x.fill(); });
+      x.strokeStyle = '#3A3B40'; x.lineWidth = 2.5; x.beginPath(); x.arc(200, 344, 13, 0, 7); x.stroke(); rr(x, 195, 339, 10, 10, 2.5); x.stroke();
+      x.fillStyle = '#2B2C30'; rr(x, 184, 64, 32, 5, 2.5); x.fill();
+      sotto(x, '2007', 'iPhone · 9 gennaio', true); },
+  ].map(f => tela(400, 500, f));
 
   const texTazza = colore => tela(512, 160, (x, w, h) => {
     x.fillStyle = colore; x.fillRect(0, 0, w, h);
     x.fillStyle = C.paper; x.beginPath(); x.arc(w / 2, h / 2, 62, 0, 7); x.fill();
     x.save(); x.beginPath(); x.arc(w / 2, h / 2, 62, 0, 7); x.clip(); sole(x, w / 2, h / 2 - 4, 30); x.restore();
   });
-
-  const texOrologio = tela(256, 256, (x, w) => {
+  const texOrologio = tela(256, 256, x => {
     x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(128, 128, 128, 0, 7); x.fill();
-    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, g = i % 3 === 0;
-      x.fillStyle = C.ink; x.beginPath(); x.arc(128 + Math.sin(a) * 102, 128 - Math.cos(a) * 102, g ? 8 : 4, 0, 7); x.fill(); }
+    for (let i = 0; i < 12; i++) { const a = i * PI / 6; x.fillStyle = C.ink; x.beginPath(); x.arc(128 + Math.sin(a) * 102, 128 - Math.cos(a) * 102, i % 3 === 0 ? 8 : 4, 0, 7); x.fill(); }
+  });
+  const texTasti = tela(580, 230, (x, w, h) => {
+    x.fillStyle = '#D9DADD'; x.fillRect(0, 0, w, h); x.fillStyle = '#FAFAFA';
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 14; c++) { if (r === 4 && c > 2 && c < 9) continue; rr(x, 14 + c * 39.6, 14 + r * 41.5, 34, 35, 6); x.fill(); }
+    rr(x, 14 + 3 * 39.6, 14 + 4 * 41.5, 39.6 * 6 - 5.6, 35, 6); x.fill();
   });
 
-  const texInOnda = tela(256, 80, (x, w, h) => {
-    x.fillStyle = C.red; x.fillRect(0, 0, w, h);
-    x.fillStyle = '#fff'; x.font = `800 54px ${DISPLAY}`; x.textAlign = 'center'; spazia(x, 0.08, 54); x.fillText('IN ONDA', w / 2 + 2, 59);
-  });
-
-  const cieli = {};
-  for (const [nome, [alto, basso]] of Object.entries({ alba: ['#8FB8E8', '#FFC38A'], giorno: ['#8CCBF5', '#DDF0FB'],
-    sera: ['#27306B', '#F08A5D'], notte: ['#0B1030', '#1D2755'] })) {
-    cieli[nome] = tela(64, 256, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, alto); g.addColorStop(1, basso); x.fillStyle = g; x.fillRect(0, 0, w, h);
-      if (nome === 'notte') { x.fillStyle = '#F8F6F2'; x.beginPath(); x.arc(44, 60, 9, 0, 7); x.fill(); } });
+  /* New York fuori dalla finestra, a quattro ore del giorno. */
+  function cielo(nome) {
+    const S = { alba: { a: '#86AEE0', b: '#FFC89C', lontani: '#C3A0A8', vicini: '#77667F', luci: 0.1, astro: ['#FFE9B8', 150, 372, 44] },
+      giorno: { a: '#62B0EE', b: '#DCEFFB', lontani: '#A3C0DA', vicini: '#6585A3', luci: 0 },
+      sera: { a: '#1C2760', b: '#F28C52', lontani: '#5A4878', vicini: '#221F40', luci: 0.5 },
+      notte: { a: '#060A22', b: '#172050', lontani: '#161D42', vicini: '#090C20', luci: 0.3, astro: ['#F4F1E6', 420, 90, 26] } }[nome];
+    return tela(536, 500, (x, w, h) => {
+      const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, S.a); g.addColorStop(0.86, S.b); x.fillStyle = g; x.fillRect(0, 0, w, h);
+      if (S.astro) { x.fillStyle = S.astro[0]; x.beginPath(); x.arc(S.astro[1], S.astro[2], S.astro[3], 0, 7); x.fill(); }
+      if (nome === 'notte') { const c = casuale(3); x.fillStyle = '#FFFFFF'; for (let i = 0; i < 40; i++) x.fillRect(c() * w, c() * 220, 2, 2); }
+      const caso = casuale(17);
+      const finestre = (a, b, l, alto, forza) => { for (let fy = b + 7; fy < b + alto - 4; fy += 9) for (let fx = a + 4; fx < a + l - 5; fx += 7) {
+        if (S.luci) { if (caso() < S.luci * forza) { x.fillStyle = caso() < 0.8 ? '#FFD98A' : '#BFE3FF'; x.fillRect(fx, fy, 3, 5); } }
+        else if (caso() < 0.5) { x.fillStyle = 'rgba(255,255,255,.2)'; x.fillRect(fx, fy, 3, 5); } } };
+      const palazzo = (a, l, alto, col, forza) => { x.fillStyle = col; x.fillRect(a, h - alto, l, alto); finestre(a, h - alto, l, alto, forza); };
+      const guglia = (cx, larga, alta, gradoni, ago) => { let l = larga, y = h; const passo = alta / (gradoni + 2);
+        for (let i = 0; i < gradoni; i++) { const hh = i === 0 ? passo * 3 : passo * 0.6; x.fillStyle = S.lontani; x.fillRect(cx - l / 2, y - hh, l, hh); finestre(cx - l / 2, y - hh, l, hh, 0.7); y -= hh; l *= 0.74; }
+        x.fillStyle = S.lontani; x.beginPath(); x.moveTo(cx - l / 2, y); x.lineTo(cx, y - passo); x.lineTo(cx + l / 2, y); x.fill(); x.fillRect(cx - 1.5, y - passo - ago, 3, ago + 2); };
+      // i palazzi lontani, e tre profili che si riconoscono
+      for (let a = -12; a < w;) { const l = 30 + caso() * 40; palazzo(a, l, 150 + caso() * 130, S.lontani, 0.55); a += l - 2; }
+      guglia(176, 74, 330, 5, 58);                                           // l'Empire State
+      guglia(330, 46, 286, 7, 36);                                           // il Chrysler
+      x.fillStyle = S.lontani; x.beginPath(); x.moveTo(424, h); x.lineTo(436, h - 392); x.lineTo(476, h - 392); x.lineTo(488, h); x.fill();   // il One World Trade Center
+      finestre(430, h - 386, 52, 386, 0.7); x.fillStyle = S.lontani; x.fillRect(454.5, h - 452, 3, 62);
+      // i palazzi vicini, con le cisterne sui tetti
+      for (let a = -20; a < w;) { const l = 44 + caso() * 56, alto = 70 + caso() * 110; palazzo(a, l, alto, S.vicini, 1);
+        if (caso() < 0.45) { const cxx = a + 12 + caso() * (l - 24); x.fillStyle = S.vicini; x.fillRect(cxx - 7, h - alto - 20, 14, 14); x.beginPath(); x.moveTo(cxx - 9, h - alto - 20); x.lineTo(cxx, h - alto - 30); x.lineTo(cxx + 9, h - alto - 20); x.fill();
+          x.fillRect(cxx - 6, h - alto - 6, 2, 6); x.fillRect(cxx + 4, h - alto - 6, 2, 6); }
+        a += l + 1; }
+    });
   }
+  const cieli = { alba: cielo('alba'), giorno: cielo('giorno'), sera: cielo('sera'), notte: cielo('notte') };
 
-  /* ---------------------------------------------------------------- i colori dei materiali */
+  /* ================================================================ i materiali */
   const legno = M(0xE6BB86, { roughness: 0.7 }), legnoScuro = M(0xC9955C, { roughness: 0.75 });
   const pavimento = M(0xF1EADF, { roughness: 0.95 }), muro = M(0xFAF6EE, { roughness: 0.95 });
   const nero = M(0x202125, { roughness: 0.55 }), grigio = M(0xDAD6CE), bianco = M(0xFBFAF7, { roughness: 0.6 });
+  const alluminio = M(0xD5D7DB, { metalness: 0.55, roughness: 0.35 });
   const verdi = [M(0x3F8F5A), M(0x4FA368), M(0x2F7A4C)];
 
   const stanza = new THREE.Group(); scene.add(stanza);
   const LARGA = 7.2, FONDA = 5.4, ALTA = 3.0;
 
-  /* ---------------------------------------------------------------- pavimento e pareti */
+  /* ================================================================ pavimento e pareti */
   stanza.add(at(box(LARGA + 0.5, 0.36, FONDA + 0.5, pavimento, 0.07), LARGA / 2 - 0.05, -0.18, FONDA / 2 - 0.05));
   const muroA = at(box(LARGA + 0.5, ALTA, 0.26, muro, 0.03), LARGA / 2 - 0.05, ALTA / 2, -0.13); muroA.castShadow = false;
   const muroB = at(box(0.26, ALTA, FONDA + 0.5, muro, 0.03), -0.13, ALTA / 2, FONDA / 2 - 0.05); muroB.castShadow = false;
   stanza.add(muroA, muroB);
   stanza.add(at(box(LARGA, 0.1, 0.03, legnoScuro, 0.01), LARGA / 2, 0.05, 0.015), at(box(0.03, 0.1, FONDA, legnoScuro, 0.01), 0.015, 0.05, FONDA / 2));
-  // il tappeto: il sole del marchio, sotto la scrivania
   const tappeto = at(cyl(1.5, 1.5, 0.03, M(0xF0C445, { roughness: 1 }), 64), 2.62, 0.016, 3.3); tappeto.castShadow = false; stanza.add(tappeto);
 
-  /* ---------------------------------------------------------------- la parete di fondo */
-  // lo schermo gigante
-  const sx = 3.3, sy = 1.82, sw = 3.6, sh = sw * 976 / 2048;
-  stanza.add(at(box(sw + 0.14, sh + 0.14, 0.08, nero, 0.03), sx, sy, 0.05));
-  stanza.add(at(schermo(sw, sh, texSchermone), sx, sy, 0.093));
-  const spia = at(box(0.62, 0.2, 0.07, M(0xE01F3D, { emissive: 0xE01F3D, emissiveIntensity: 0.25 }), 0.03), sx - sw / 2 + 0.31, sy + sh / 2 + 0.2, 0.05);
-  stanza.add(spia, at(schermo(0.56, 0.175, texInOnda), sx - sw / 2 + 0.31, sy + sh / 2 + 0.2, 0.088));
+  /* ================================================================ la parete di fondo */
+  // il fondale
+  const fx = 2.95, fy = 1.8, fw = 3.8, fh = fw * 943 / 2048;
+  stanza.add(at(box(fw + 0.1, fh + 0.1, 0.07, nero, 0.02), fx, fy, 0.045), at(schermo(fw, fh, texFondale), fx, fy, 0.082));
   // la credenza con il merchandising
   const credenza = gruppo(at(box(3.0, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
     ...[-1.3, 1.3].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.16, legnoScuro, 12), dx, 0.08, dz))),
     ...[-0.75, 0, 0.75].map(dx => at(box(0.012, 0.44, 0.01, legnoScuro, 0.004), dx, 0.42, 0.232)));
-  at(credenza, sx, 0, 0.3); stanza.add(credenza);
-  function tazza(colore) {
+  at(credenza, fx, 0, 0.3); stanza.add(credenza);
+  function tazza(colore, giro = -PI * 0.75) {
     const g = gruppo(), mat = new THREE.MeshStandardMaterial({ map: texTazza(colore), roughness: 0.45 });
     const corpo = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.045, 0.105, 32, 1, true), mat)); corpo.position.y = 0.0525;
-    const fondo = at(cyl(0.046, 0.045, 0.01, M(colore, { roughness: 0.45 })), 0, 0.005, 0);
-    const dentro = at(cyl(0.044, 0.044, 0.004, M(0x3a2a22, { roughness: 0.3 })), 0, 0.092, 0); dentro.castShadow = false;
     const manico = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.009, 10, 20), M(colore, { roughness: 0.45 })));
-    manico.position.set(0, 0.055, 0.058); manico.rotation.y = Math.PI / 2;
-    g.add(corpo, fondo, dentro, manico); g.rotation.y = -Math.PI * 0.75; return g;   // il disegno guarda chi guarda
+    manico.position.set(0, 0.055, 0.058); manico.rotation.y = PI / 2;
+    const dentro = at(cyl(0.044, 0.044, 0.004, M(0x3a2a22, { roughness: 0.3 })), 0, 0.092, 0); dentro.castShadow = false;
+    g.add(corpo, at(cyl(0.046, 0.045, 0.01, M(colore, { roughness: 0.45 })), 0, 0.005, 0), dentro, manico); g.rotation.y = giro; return g;
   }
-  [C.yellow, C.orange, C.blue, C.red].forEach((c, i) => stanza.add(at(tazza(c), sx - 1.2 + i * 0.2, 0.68, 0.36)));
-  // la macchina del caffè
-  const caffe = gruppo(at(box(0.28, 0.36, 0.3, nero, 0.04), 0, 0.18, 0), at(box(0.2, 0.03, 0.12, M(0x9a9aa0, { metalness: 0.6, roughness: 0.35 }), 0.01), 0, 0.03, 0.2),
-    at(sph(0.014, M(0xF5C518, { emissive: 0xF5C518, emissiveIntensity: 0.8 })), 0.08, 0.3, 0.152), at(cyl(0.028, 0.024, 0.05, bianco, 16), 0, 0.07, 0.2));
-  stanza.add(at(caffe, sx + 1.1, 0.68, 0.3));
-  // le edizioni stampate e il cappellino
+  [C.yellow, C.blue, C.red].forEach((c, i) => stanza.add(at(tazza(c), fx - 1.2 + i * 0.2, 0.68, 0.36)));
+  const spiaCaffe = M(0xF5C518, { emissive: 0xF5C518, emissiveIntensity: 0.6 });
+  const CAFFE = [fx + 1.15, 0.3];
+  stanza.add(at(gruppo(at(box(0.28, 0.36, 0.3, nero, 0.04), 0, 0.18, 0), at(box(0.2, 0.03, 0.12, alluminio, 0.01), 0, 0.03, 0.2),
+    at(box(0.07, 0.05, 0.07, nero, 0.01), 0, 0.26, 0.17), at(sph(0.014, spiaCaffe), 0.09, 0.3, 0.152)), CAFFE[0], 0.68, CAFFE[1]));
   const pila = gruppo(...[0, 1, 2, 3, 4].map(i => { const f = at(box(0.3, 0.014, 0.22, i % 2 ? bianco : M(0xEFEBE2), 0.004), 0, 0.007 + i * 0.015, 0); f.rotation.y = (i - 2) * 0.05; return f; }));
-  stanza.add(at(pila, sx + 0.3, 0.68, 0.32));
-  const cappello = gruppo(ombra(new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), M(0xF5C518, { roughness: 0.9 }))),
-    (() => { const v = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.012, 24, 1, false, -Math.PI / 2, Math.PI), M(0x17181B))); v.position.set(0, 0.006, 0.02); v.scale.z = 1.25; return v; })());
-  cappello.rotation.y = Math.PI / 4; stanza.add(at(cappello, sx - 0.25, 0.68, 0.3));
-  // le prime pagine incorniciate, e l'orologio che segna l'ora vera
-  DATI.primePagine.forEach((p, i) => {
-    const fx = 5.92 + i * 0.78;
-    stanza.add(at(box(0.66, 0.86, 0.04, nero, 0.012), fx, 1.5, 0.025), at(stampa(0.6, 0.8, texPagina(p)), fx, 1.5, 0.047));
-  });
-  const orologio = gruppo(); at(orologio, 6.31, 2.44, 0.03);
-  const cassa = cyl(0.27, 0.27, 0.05, nero, 48); cassa.rotation.x = Math.PI / 2;
-  const quadrante = at(new THREE.Mesh(new THREE.CircleGeometry(0.245, 48), new THREE.MeshStandardMaterial({ map: texOrologio, roughness: 0.6 })), 0, 0, 0.027);
-  const lancetta = (l, s, col) => { const p = gruppo(); const m = at(box(s, l, 0.008, M(col), 0.003), 0, l / 2 - 0.02, 0); m.castShadow = false; p.add(m); p.position.z = 0.034; return p; };
-  const ore = lancetta(0.13, 0.022, 0x17181B), minuti = lancetta(0.2, 0.016, 0x17181B), secondi = lancetta(0.22, 0.007, 0xE01F3D);
-  orologio.add(cassa, quadrante, ore, minuti, secondi); stanza.add(orologio);
+  stanza.add(at(pila, fx + 0.25, 0.68, 0.32));
+  const cappello = gruppo(ombra(new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 12, 0, PI * 2, 0, PI / 2), M(0xF5C518, { roughness: 0.9 }))),
+    (() => { const v = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.012, 24, 1, false, -PI / 2, PI), M(0x17181B))); v.position.set(0, 0.006, 0.02); v.scale.z = 1.25; return v; })());
+  cappello.rotation.y = PI / 4; stanza.add(at(cappello, fx - 0.35, 0.68, 0.3));
 
-  /* ---------------------------------------------------------------- la parete di sinistra */
-  // la finestra
-  const cielo = new THREE.MeshBasicMaterial({ map: cieli.giorno, toneMapped: false });
-  const vetro = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.4), cielo); vetro.rotation.y = Math.PI / 2; at(vetro, 0.006, 1.75, 1.75);
+  // la storia di Apple, incorniciata
+  [5.35, 6.05, 6.75].forEach((cx, c) => [1.92, 1.12].forEach((cy, r) => {
+    stanza.add(at(box(0.56, 0.7, 0.035, nero, 0.012), cx, cy, 0.022), at(stampa(0.5, 0.625, manifesti[r * 3 + c]), cx, cy, 0.0405));
+  }));
+  // il conto alla rovescia verso la prossima edizione
+  const telaConto = document.createElement('canvas'); telaConto.width = 760; telaConto.height = 176;
+  const texConto = new THREE.CanvasTexture(telaConto); texConto.colorSpace = THREE.SRGBColorSpace; texConto.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  stanza.add(at(box(1.96, 0.47, 0.06, nero, 0.02), 6.05, 2.63, 0.035), at(schermo(1.86, 1.86 * 176 / 760, texConto), 6.05, 2.63, 0.067));
+  let ultimoConto = '';
+  function conto() {
+    const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(new Date());
+    const v = k => +p.find(q => q.type === k).value, adesso = (v('hour') % 24) * 3600 + v('minute') * 60 + v('second');
+    const manca = ((DATI.prossimaUscita[0] * 3600 + DATI.prossimaUscita[1] * 60 - adesso) % 86400 + 86400) % 86400;
+    const cifre = [Math.floor(manca / 3600), Math.floor(manca / 60) % 60, manca % 60].map(n => String(n).padStart(2, '0')), chiave = cifre.join(':');
+    if (chiave === ultimoConto) return false; ultimoConto = chiave;
+    const x = telaConto.getContext('2d'), w = 760, h = 176, chiude = manca <= 1800;
+    x.fillStyle = '#111214'; x.fillRect(0, 0, w, h);
+    x.fillStyle = chiude ? C.red : C.yellow; x.font = `800 31px ${DISPLAY}`; spazia(x, 0.07, 31);
+    x.fillText(chiude ? 'SI CHIUDE' : 'ALLA PROSSIMA', 30, 62); x.fillText(chiude ? 'L\'EDIZIONE' : 'EDIZIONE', 30, 98);
+    x.fillStyle = '#9EA0A6'; x.font = `700 23px ${DISPLAY}`; x.fillText('ESCE ALLE ' + DATI.prossimaUscita[0] + ':' + String(DATI.prossimaUscita[1]).padStart(2, '0'), 30, 138); spazia(x, 0, 1);
+    let a = 262; cifre.forEach((c, i) => { for (const ch of c) { x.fillStyle = '#2A2B30'; rr(x, a, 26, 66, 110, 9); x.fill(); x.fillStyle = '#111214'; x.fillRect(a, 80, 66, 2.5);
+        x.fillStyle = chiude ? '#FF6B7D' : '#FFFFFF'; x.font = `800 92px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(ch, a + 33, 113); x.textAlign = 'left'; a += 72; }
+      if (i < 2) { x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(a + 8, 62, 5.5, 0, 7); x.arc(a + 8, 100, 5.5, 0, 7); x.fill(); a += 24; } });
+    x.fillStyle = '#9EA0A6'; x.font = `700 17px ${DISPLAY}`; spazia(x, 0.12, 17); ['ORE', 'MIN', 'SEC'].forEach((t, i) => x.fillText(t, 262 + 48 + i * 168, 160)); spazia(x, 0, 1);
+    texConto.needsUpdate = true; return true;
+  }
+  // il mobiletto con la stampante
+  const STAMPANTE = [6.55, 0.3];
+  const spiaStampa = M(0x35C759, { emissive: 0x35C759, emissiveIntensity: 0.5 });
+  stanza.add(at(gruppo(at(box(1.0, 0.44, 0.44, legno, 0.03), 0, 0.36, 0), ...[-0.4, 0.4].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.14, legnoScuro, 12), dx, 0.07, dz))),
+    at(box(0.44, 0.2, 0.38, bianco, 0.03), 0, 0.68, 0), at(box(0.36, 0.012, 0.3, nero, 0.005), 0, 0.786, -0.01), at(box(0.3, 0.02, 0.02, nero, 0.004), 0, 0.66, 0.191),
+    at(box(0.3, 0.012, 0.16, grigio, 0.005), 0, 0.615, 0.26), at(sph(0.009, spiaStampa), 0.17, 0.72, 0.192)), STAMPANTE[0], 0, STAMPANTE[1]));
+  const foglioStampante = stampa(0.21, 0.297, foglio(31, true)); foglioStampante.rotation.x = -PI / 2; foglioStampante.visible = false; stanza.add(foglioStampante);
+
+  /* ================================================================ la parete di sinistra */
+  // la finestra su New York
+  const vista = new THREE.MeshBasicMaterial({ map: cieli.giorno, toneMapped: false });
+  const vetro = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.4), vista); vetro.rotation.y = PI / 2; at(vetro, 0.006, 1.75, 1.75);
   const telaio = M(0xFFFFFF, { roughness: 0.5 });
   stanza.add(vetro, at(box(0.07, 0.07, 1.64, telaio), 0.035, 2.48, 1.75), at(box(0.1, 0.06, 1.72, telaio), 0.05, 1.02, 1.75),
     at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 0.965), at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 2.535), at(box(0.04, 1.4, 0.04, telaio), 0.02, 1.75, 1.75));
-  // il menabò, con i post-it
-  const bz = 3.85;
-  const lavagna = stampa(2.2, 1.32, texMenabo); lavagna.rotation.y = Math.PI / 2; at(lavagna, 0.047, 1.62, bz);
-  stanza.add(at(box(0.04, 1.42, 2.3, grigio, 0.015), 0.022, 1.62, bz), lavagna, at(box(0.08, 0.03, 1.6, grigio, 0.01), 0.07, 0.93, bz));
-  [[C.yellow, 4.62, 2.02, 0.05], [C.orange, 4.62, 1.72, -0.06], [C.blue, 4.38, 1.4, 0.04], [C.yellow, 4.66, 1.36, -0.03], ['#FF8FA3', 4.4, 1.12, 0.07]]
-    .forEach(([c, z, y, r]) => { const p = at(box(0.012, 0.2, 0.2, M(c, { roughness: 0.95 }), 0.004), 0.056, y, z); p.rotation.x = r; p.castShadow = false; stanza.add(p); });
-  stanza.add(at(box(0.03, 0.03, 0.14, M(0xE01F3D), 0.01), 0.075, 0.96, bz - 0.4), at(box(0.03, 0.03, 0.14, M(0x17181B), 0.01), 0.075, 0.96, bz - 0.2));
+  // la lavagna
+  const bz = 4.0;
+  const lavagna = stampa(2.5, 2.5 * 820 / 1400, texLavagna); lavagna.rotation.y = PI / 2; at(lavagna, 0.047, 1.6, bz);
+  stanza.add(at(box(0.04, 1.56, 2.6, grigio, 0.015), 0.022, 1.6, bz), lavagna, at(box(0.08, 0.03, 1.8, grigio, 0.01), 0.07, 0.85, bz));
+  [[0xE01F3D, -0.5], [0x17181B, -0.3], [0x0E9CD8, -0.1]].forEach(([c, dz]) => stanza.add(at(box(0.03, 0.03, 0.14, M(c), 0.01), 0.075, 0.88, bz + dz)));
+  // l'orologio, sopra la lavagna: segna l'ora vera
+  const orologio = gruppo(); orologio.rotation.y = PI / 2; at(orologio, 0.03, 2.67, bz);
+  const cassa = cyl(0.25, 0.25, 0.05, nero, 48); cassa.rotation.x = PI / 2;
+  const quadrante = at(new THREE.Mesh(new THREE.CircleGeometry(0.227, 48), new THREE.MeshStandardMaterial({ map: texOrologio, roughness: 0.6 })), 0, 0, 0.027);
+  const lancetta = (l, s, col) => { const p = gruppo(); const m = at(box(s, l, 0.008, M(col), 0.003), 0, l / 2 - 0.02, 0); m.castShadow = false; p.add(m); p.position.z = 0.034; return p; };
+  const ore = lancetta(0.12, 0.02, 0x17181B), minuti = lancetta(0.185, 0.015, 0x17181B), secondi = lancetta(0.2, 0.007, 0xE01F3D);
+  orologio.add(cassa, quadrante, ore, minuti, secondi); stanza.add(orologio);
 
-  /* ---------------------------------------------------------------- piante e lampade */
+  /* ================================================================ piante, lampade, cestino, annaffiatoio */
+  const PIANTA = [0.62, 0.62];
   function piantaGrande() {
     const g = gruppo(at(cyl(0.27, 0.2, 0.44, bianco, 32), 0, 0.22, 0), at(cyl(0.245, 0.245, 0.02, M(0x4a3a2e, { roughness: 1 }), 24), 0, 0.435, 0), at(cyl(0.022, 0.03, 1.0, M(0x7a5a3c), 10), 0, 0.92, 0));
-    const N = 11;
-    for (let i = 0; i < N; i++) {
-      const a = i * 2.4, h = 0.75 + (i / N) * 0.95, perno = gruppo(); perno.position.set(0, h, 0); perno.rotation.y = a;
-      const f = sph(0.2, verdi[i % 3], 18, 12); f.scale.set(0.62, 0.1, 1.15); f.position.set(0, 0.05, 0.3); f.rotation.x = -0.55 + (i / N) * 0.3;
-      perno.add(f); g.add(perno);
-    }
+    for (let i = 0; i < 11; i++) { const perno = gruppo(); perno.position.set(0, 0.75 + (i / 11) * 0.95, 0); perno.rotation.y = i * 2.4;
+      const f = sph(0.2, verdi[i % 3], 18, 12); f.scale.set(0.62, 0.1, 1.15); f.position.set(0, 0.05, 0.3); f.rotation.x = -0.55 + (i / 11) * 0.3; perno.add(f); g.add(perno); }
     return g;
   }
   function sansevieria() {
     const g = gruppo(at(cyl(0.2, 0.15, 0.3, M(0xD9825B, { roughness: 0.9 }), 28), 0, 0.15, 0), at(cyl(0.18, 0.18, 0.02, M(0x4a3a2e, { roughness: 1 }), 20), 0, 0.295, 0));
-    for (let i = 0; i < 9; i++) {
-      const a = i * 2.4, l = 0.55 + ((i * 7) % 5) * 0.11, perno = gruppo(); perno.position.y = 0.28; perno.rotation.y = a;
-      const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07;
-      perno.add(f); g.add(perno);
-    }
+    for (let i = 0; i < 9; i++) { const l = 0.55 + ((i * 7) % 5) * 0.11, perno = gruppo(); perno.position.y = 0.28; perno.rotation.y = i * 2.4;
+      const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07; perno.add(f); g.add(perno); }
     return g;
   }
-  stanza.add(at(piantaGrande(), 0.62, 0, 0.62), at(sansevieria(), 6.55, 0, 4.75));
-  const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, sx + 0.72, 0.68, 0.3));
+  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 6.6, 0, 4.8));
+  const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, fx + 0.7, 0.68, 0.3));
 
-  const lampade = [];   // le luci che si accendono la sera
+  const lampade = [], paralumi = [];
   function punto(colore, forza, x, y, z, raggio = 5) { const l = new THREE.PointLight(colore, 0, raggio, 1.6); l.position.set(x, y, z); l.userData.max = forza; lampade.push(l); stanza.add(l); return l; }
-  const paralumi = [];
   const paralume = M(0xFFF3D6, { roughness: 0.9, emissive: 0xFFD9A0, emissiveIntensity: 0 }); paralumi.push(paralume);
   const piantana = gruppo(at(cyl(0.16, 0.18, 0.03, nero, 24), 0, 0.015, 0), at(cyl(0.014, 0.014, 1.55, nero, 10), 0, 0.8, 0),
     (() => { const p = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.23, 0.3, 28, 1, true), paralume)); p.material.side = THREE.DoubleSide; p.position.y = 1.62; return p; })());
-  stanza.add(at(piantana, 5.42, 0, 0.5)); punto(0xFFC27A, 9, 5.42, 1.6, 0.6, 6);
-  punto(0xF2ECDF, 4.5, 3.3, 1.7, 1.3, 5.5);   // il chiarore dello schermo gigante, che la sera si vede
+  stanza.add(at(piantana, 0.32, 0, 2.64)); punto(0xFFC27A, 9, 0.55, 1.6, 2.7, 6);   // fra la finestra e la lavagna
+  punto(0xFFC27A, 4, 6.4, 1.5, 3.2, 4.5);   // e un po' di luce calda dalle parti di Ivo
+  punto(0xF2ECDF, 5, fx, 1.7, 1.3, 5.5);   // il chiarore del fondale, che la sera si vede
 
-  /* ---------------------------------------------------------------- scrivanie, sedie, monitor */
-  function scrivania(largh = 1.8, prof = 0.85) {
-    const g = gruppo(at(box(largh, 0.06, prof, legno, 0.025), 0, 0.745, 0));
-    for (const dx of [-1, 1]) for (const dz of [-1, 1]) {
-      const z = cyl(0.03, 0.022, 0.72, legnoScuro, 12); z.position.set(dx * (largh / 2 - 0.12), 0.36, dz * (prof / 2 - 0.1)); g.add(z);
-    }
+  const CESTINO = [3.78, 2.6];
+  const cestino = gruppo((() => { const c = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.3, 24, 1, true), M(0x3A3B40, { roughness: 0.6 }))); c.material.side = THREE.DoubleSide; c.position.y = 0.15; return c; })(),
+    at(cyl(0.11, 0.11, 0.012, M(0x3A3B40), 20), 0, 0.006, 0), at(ell(0.045, 1, 0.8, 1.1, bianco), 0.03, 0.05, -0.02));
+  stanza.add(at(cestino, CESTINO[0], 0, CESTINO[1]));
+  const pallinaNelCestino = at(ell(0.042, 1.1, 0.85, 1, bianco), -0.03, 0.1, 0.03); pallinaNelCestino.visible = false; cestino.add(pallinaNelCestino);
+  const pallina = ell(0.04, 1.1, 0.85, 1, bianco); pallina.visible = false; stanza.add(pallina);
+
+  function annaffiatoio() {
+    const blu = M(0x0E9CD8, { roughness: 0.45 }), g = gruppo(at(cyl(0.065, 0.07, 0.12, blu, 24), 0, 0.06, 0));
+    const becco = cyl(0.011, 0.016, 0.19, blu, 10); becco.position.set(0, 0.085, 0.12); becco.rotation.x = 1.0; g.add(becco, at(cyl(0.02, 0.011, 0.02, blu, 10), 0, 0.137, 0.2));
+    const manico = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.009, 8, 16, PI), blu)); manico.position.set(0, 0.07, -0.06); manico.rotation.set(0, PI / 2, -PI / 2); g.add(manico);
     return g;
   }
-  function monitor(tex) {
-    return gruppo(at(box(0.7, 0.45, 0.035, nero, 0.02), 0, 0.33, 0), at(schermo(0.65, 0.4, tex), 0, 0.33, 0.019),
-      at(cyl(0.02, 0.02, 0.14, nero, 12), 0, 0.07, -0.02), at(cyl(0.12, 0.13, 0.014, nero, 28), 0, 0.007, -0.02));
+  const CAN = [1.1, 1.36];
+  const canTerra = at(annaffiatoio(), CAN[0], 0, CAN[1]); canTerra.rotation.y = -2.3; stanza.add(canTerra);
+  const gocce = [0, 1, 2].map(() => { const g = sph(0.012, M(0x7CC6F2, { roughness: 0.2 }), 8, 6); g.castShadow = false; g.visible = false; stanza.add(g); return g; });
+
+  /* ================================================================ scrivanie, sedie, iMac */
+  function scrivania(largh, prof) {
+    const g = gruppo(at(box(largh, 0.06, prof, legno, 0.025), 0, 0.745, 0));
+    for (const dx of [-1, 1]) for (const dz of [-1, 1]) g.add(at(cyl(0.03, 0.022, 0.72, legnoScuro, 12), dx * (largh / 2 - 0.12), 0.36, dz * (prof / 2 - 0.1)));
+    return g;
   }
+  function imac(tex, mento, retro) {   // l'iMac: la lastra sottile, il mento colorato, il piede di alluminio
+    const g = gruppo(at(box(0.55, 0.455, 0.012, M(retro, { roughness: 0.4 }), 0.006), 0, 0.3175, -0.003), at(box(0.548, 0.36, 0.004, bianco, 0.002), 0, 0.364, 0.0045),
+      at(box(0.548, 0.094, 0.004, M(mento, { roughness: 0.5 }), 0.002), 0, 0.138, 0.0045), at(schermo(0.5, 0.3125, tex), 0, 0.364, 0.0072),
+      at(box(0.17, 0.008, 0.16, alluminio, 0.003), 0, 0.004, -0.02));
+    const collo = box(0.13, 0.2, 0.01, alluminio, 0.004); collo.position.set(0, 0.1, -0.05); collo.rotation.x = 0.28; g.add(collo);
+    return g;
+  }
+  const tastiera = () => { const t = stampa(0.275, 0.108, texTasti); t.rotation.x = -PI / 2; return gruppo(at(box(0.285, 0.008, 0.115, alluminio, 0.004), 0, 0.004, 0), at(t, 0, 0.0086, 0)); };
+  const mouse = () => ell(0.03, 0.95, 0.38, 1.85, bianco);
   function sedia() {
-    const g = gruppo(at(box(0.46, 0.08, 0.46, nero, 0.035), 0, 0.42, 0), at(cyl(0.028, 0.028, 0.3, M(0x8d8e94, { metalness: 0.5, roughness: 0.4 }), 12), 0, 0.24, 0),
-      at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
-    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, 0.78, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
-    for (let i = 0; i < 5; i++) { const a = i * Math.PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
+    const g = gruppo(at(box(0.46, 0.07, 0.46, nero, 0.03), 0, 0.395, 0), at(cyl(0.028, 0.028, 0.28, alluminio, 12), 0, 0.23, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
+    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, 0.74, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
+    for (let i = 0; i < 5; i++) { const a = i * PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
       raggio.position.set(Math.sin(a) * 0.135, 0.06, Math.cos(a) * 0.135); raggio.rotation.y = a; g.add(raggio, at(sph(0.035, M(0x101013)), Math.sin(a) * 0.26, 0.035, Math.cos(a) * 0.26)); }
     return g;
   }
-  const tastiera = () => gruppo(at(box(0.42, 0.018, 0.14, bianco, 0.008), 0, 0.009, 0), at(box(0.38, 0.006, 0.1, grigio, 0.002), 0, 0.02, 0));
-  const mouse = () => { const m = sph(0.032, bianco, 16, 12); m.scale.set(0.8, 0.5, 1.2); return m; };
-
-  /* ---------------------------------------------------------------- le persone */
-  const SCURO = 0x1B1C20;
-  function persona(o) {
-    const g = gruppo(); g.userData.id = o.id;
-    const pelle = M(o.pelle, { roughness: 0.65 }), maglia = M(o.maglia, { roughness: 0.85 }), calzoni = M(0x2C3554, { roughness: 0.9 }), capelli = M(o.capelli, { roughness: 0.95 });
-    const corpo = gruppo(); g.add(corpo);   // l'origine è ai fianchi
-    const torso = cap(0.2, 0.22, maglia); torso.position.y = 0.31; torso.scale.z = 0.86; corpo.add(torso);
-    const testa = gruppo(); testa.position.y = 0.81; corpo.add(testa);
-    testa.add(sph(0.25, pelle, 32, 24));
-    const calotta = ombra(new THREE.Mesh(new THREE.SphereGeometry(0.262, 32, 16, 0, Math.PI * 2, 0, Math.PI * (o.fronte || 0.44)), capelli)); calotta.rotation.x = -0.52; calotta.position.y = 0.008; testa.add(calotta);
-    if (o.ciuffo) { const c = sph(0.1, capelli, 16, 12); c.scale.set(1.5, 0.7, 1); testa.add(at(c, 0.02, 0.2, 0.1)); }
-    if (o.baffi) { const b = sph(0.06, capelli, 16, 10); b.scale.set(1.5, 0.42, 0.6); b.castShadow = false; testa.add(at(b, 0, -0.085, 0.228)); }
-    for (const lato of [-1, 1]) { const occhio = at(sph(0.027, M(SCURO, { roughness: 0.3 }), 12, 10), lato * 0.09, -0.012, 0.228); occhio.castShadow = false; testa.add(occhio); }
-    if (o.occhiali) for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.0055, 8, 28), M(SCURO)); l.position.set(lato * 0.092, -0.012, 0.234); l.rotation.y = lato * 0.32; testa.add(l); }
-    if (o.occhiali) testa.add(at(box(0.05, 0.007, 0.007, M(SCURO), 0.002), 0, -0.004, 0.252));
-    const braccio = lato => { const p = gruppo(); p.position.set(lato * 0.238, 0.47, 0);
-      p.add(at(cap(0.062, 0.2, maglia), 0, -0.14, 0), at(sph(0.066, pelle, 16, 12), 0, -0.3, 0)); corpo.add(p); return p; };
-    const bs = braccio(-1), bd = braccio(1);
-    const scarpa = () => box(0.125, 0.08, 0.21, M(0xF4F1EA, { roughness: 0.7 }), 0.03);
-    if (o.seduto) {
-      for (const lato of [-1, 1]) {
-        const coscia = cap(0.085, 0.2, calzoni); coscia.rotation.x = Math.PI / 2; coscia.position.set(lato * 0.1, 0, 0.17);
-        const stinco = at(cap(0.078, 0.2, calzoni), lato * 0.1, -0.2, 0.36);
-        corpo.add(coscia, stinco, at(scarpa(), lato * 0.1, -0.43, 0.4));
-      }
-      corpo.position.y = 0.5;
-    } else {
-      for (const lato of [-1, 1]) corpo.add(at(cap(0.085, 0.3, calzoni), lato * 0.1, -0.24, 0), at(scarpa(), lato * 0.1, -0.5, 0.035));
-      corpo.position.y = 0.55;
-    }
-    g.userData.parti = { corpo, testa, bs, bd };
-    g.userData.altezza = corpo.position.y + 0.81 + 0.27;
-    return g;
+  function posto(o) {
+    const g = gruppo(); at(g, o.x, 0, o.z); stanza.add(g);
+    g.add(scrivania(o.w, o.d), at(imac(o.tex, o.mento, o.retro), 0, 0.775, -0.18), at(tastiera(), 0, 0.775, 0.24), at(mouse(), 0.27, 0.786, 0.25));
+    const s = sedia(), zs = o.d / 2 + 0.2; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
+    return { g, sedia: s, zs, seduta: [o.x, o.z + zs] };
   }
 
-  // Ettore, il redattore: alla scrivania, scrive
-  const postoEttore = gruppo(); at(postoEttore, 2.6, 0, 2.9); stanza.add(postoEttore);
-  postoEttore.add(scrivania(), at(monitor(texMonitorEttore), 0.05, 0.775, -0.2), at(tastiera(), 0.05, 0.775, 0.2), at(mouse(), 0.42, 0.79, 0.22));
-  postoEttore.add(at(tazza(C.orange), -0.62, 0.775, 0.12));
-  const bozze = gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; }));
-  postoEttore.add(at(bozze, 0.66, 0.775, -0.12));
-  // la lampada da tavolo, gialla come il sole del marchio
+  /* ================================================================ le persone
+     Proporzioni adulte, giunture vere: spalla e gomito, anca e ginocchio. */
+  const SCURO = 0x1B1C20, H0 = 0.8575;
+  // il busto è un solido tornito: fianchi, vita, petto, spalle che scendono verso il collo
+  const BUSTO = new THREE.LatheGeometry(new THREE.SplineCurve([[0, 0.035], [0.1, 0.036], [0.148, 0.06], [0.15, 0.12], [0.143, 0.19], [0.158, 0.28], [0.176, 0.37], [0.18, 0.43],
+    [0.16, 0.482], [0.105, 0.522], [0.05, 0.545], [0, 0.55]].map(([r, y]) => new THREE.Vector2(r, y))).getPoints(34), 32);
+  function persona(o) {
+    const g = gruppo(); g.userData.id = o.id;
+    const pelle = M(o.pelle, { roughness: 0.6 }), maglia = M(o.maglia, { roughness: 0.92 }), calzoni = M(o.calzoni || 0x2C3554, { roughness: 0.92 }),
+      capelli = M(o.capelli, { roughness: 1 }), scarpe = M(o.scarpe || 0xF4F1EA, { roughness: 0.7 });
+    const bacino = gruppo(), busto = gruppo(), testa = gruppo(); g.add(bacino); bacino.add(busto);
+    bacino.add(at(ell(0.155, 1, 0.62, 0.68, calzoni), 0, 0.02, 0));
+    const torso = ombra(new THREE.Mesh(BUSTO, maglia)); torso.scale.set(1.08, 1, 0.64);
+    busto.add(torso, at(cyl(0.04, 0.046, 0.1, pelle, 14), 0, 0.57, 0));
+    testa.position.y = 0.70; busto.add(testa);
+    testa.add(ell(0.115, 0.94, 1.1, 1, pelle));
+    const chioma = ombra(new THREE.Mesh(new THREE.SphereGeometry(0.121, 28, 16, 0, PI * 2, 0, PI * (o.chioma || 0.6)), capelli));
+    chioma.scale.set(0.96, 1.1, 1.03); chioma.rotation.x = -(o.indietro || 0.55); chioma.position.y = 0.004; testa.add(chioma);
+    for (const lato of [-1, 1]) { testa.add(at(ell(0.02, 0.6, 1, 0.8, pelle), lato * 0.107, -0.005, 0)); const occhio = at(sph(0.0105, M(SCURO, { roughness: 0.3 }), 8, 6), lato * 0.04, 0.012, 0.105); occhio.castShadow = false; testa.add(occhio); }
+    testa.add(at(sph(0.014, pelle, 10, 8), 0, -0.014, 0.113));
+    if (o.occhiali) { for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.029, 0.0035, 6, 20), M(SCURO)); l.position.set(lato * 0.04, 0.012, 0.109); l.rotation.y = lato * 0.3; testa.add(l); }
+      testa.add(at(box(0.024, 0.004, 0.004, M(SCURO), 0.001), 0, 0.016, 0.118)); }
+    if (o.baffi) { const b = ell(0.03, 1.5, 0.4, 0.6, capelli); b.castShadow = false; testa.add(at(b, 0, -0.04, 0.106)); }
+    const braccio = lato => { const s = gruppo(); s.position.set(lato * 0.212, 0.47, 0); s.add(sph(0.05, maglia, 16, 12), at(caps(0.041, 0.2, maglia), 0, -0.14, 0));
+      const gm = gruppo(); gm.position.y = -0.28; s.add(gm); gm.add(sph(0.039, maglia, 12, 10), at(caps(0.035, 0.17, maglia), 0, -0.12, 0));
+      const m = gruppo(); m.position.y = -0.255; m.add(ell(0.042, 0.9, 1.15, 0.72, pelle)); gm.add(m); busto.add(s); return { s, g: gm, m }; };
+    const gamba = lato => { const a = gruppo(); a.position.set(lato * 0.088, 0, 0); a.add(at(caps(0.064, 0.29, calzoni), 0, -0.21, 0));
+      const k = gruppo(); k.position.y = -0.42; a.add(k); k.add(sph(0.052, calzoni, 12, 10), at(caps(0.048, 0.29, calzoni), 0, -0.2, 0), at(box(0.095, 0.075, 0.24, scarpe, 0.03), 0, -0.4, 0.05));
+      bacino.add(a); return { a, k }; };
+    const D = braccio(-1), S = braccio(1), gaD = gamba(-1), gaS = gamba(1);   // D è la destra di chi cammina
+    g.userData.j = { bacino, busto, testa, sD: D.s, gD: D.g, mD: D.m, sS: S.s, gS: S.g, mS: S.m, aD: gaD.a, kD: gaD.k, aS: gaS.a, kS: gaS.k };
+    return g;
+  }
+  // una posa è un elenco di angoli; fra due pose si sfuma
+  const IN_PIEDI = { h: H0, lean: 0, twist: 0, hx: 0, hy: 0, sD: [0, -0.07], gD: -0.12, sS: [0, 0.07], gS: -0.12, aD: 0, kD: 0, aS: 0, kS: 0 };
+  const SEDUTO = { ...IN_PIEDI, h: 0.5, lean: 0.05, aD: -1.45, kD: 1.45, aS: -1.45, kS: 1.45, sD: [-0.4, -0.1], gD: -1.55, sS: [-0.4, 0.1], gS: -1.55 };
+  const mix = (A, B, u) => { const P = {}; for (const k in A) P[k] = Array.isArray(A[k]) ? [A[k][0] + (B[k][0] - A[k][0]) * u, A[k][1] + (B[k][1] - A[k][1]) * u] : A[k] + (B[k] - A[k]) * u; return P; };
+  function posa(g, P) {
+    const j = g.userData.j; j.bacino.position.y = P.h; j.busto.rotation.set(P.lean, P.twist, 0); j.testa.rotation.set(P.hx, P.hy, 0);
+    j.sD.rotation.set(P.sD[0], 0, P.sD[1]); j.gD.rotation.x = P.gD; j.sS.rotation.set(P.sS[0], 0, P.sS[1]); j.gS.rotation.x = P.gS;
+    j.aD.rotation.x = P.aD; j.kD.rotation.x = P.kD; j.aS.rotation.x = P.aS; j.kS.rotation.x = P.kS;
+  }
+  function passo(f, k = 1, porta = false) {   // il passo: le gambe a tempo, le braccia al contrario
+    const sn = Math.sin(f) * k, cs = Math.cos(f);
+    const P = { ...IN_PIEDI, h: H0 - 0.016 * k * (1 - Math.abs(cs)), lean: 0.05 * k, aD: 0.5 * sn, kD: 0.85 * k * Math.max(0, -cs), aS: -0.5 * sn, kS: 0.85 * k * Math.max(0, cs),
+      sD: [-0.45 * sn, -0.07], gD: -0.3, sS: [0.45 * sn, 0.07], gS: -0.3 };
+    if (porta) { P.sD = [-0.22, -0.08]; P.gD = -1.3; }
+    return P;
+  }
+
+  const pE = posto({ x: 2.6, z: 2.9, w: 1.8, d: 0.85, tex: texMonitorEttore, mento: 0xF9D2B0, retro: 0xF0821E });
+  const pI = posto({ x: 5.95, z: 2.0, w: 1.6, d: 0.8, tex: texMonitorIvo, mento: 0xF6C7CF, retro: 0xE2385A });
+  // sulla scrivania di Ettore: la tazza, le bozze, la lampada gialla
+  const tazzaE = at(tazza(C.orange, PI * 0.2), -0.62, 0.775, 0.1); pE.g.add(tazzaE);
+  pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.66, 0.775, -0.12));
+  const foglioDaIvo = stampa(0.21, 0.297, foglio(5)); foglioDaIvo.rotation.set(-PI / 2, 0, -0.25); foglioDaIvo.visible = false; pE.g.add(at(foglioDaIvo, 0.62, 0.795, 0.2));
   const cappa = M(0xF5C518, { roughness: 0.5, emissive: 0xFFB400, emissiveIntensity: 0 }); paralumi.push(cappa);
-  const lampada = gruppo(at(cyl(0.07, 0.08, 0.02, M(0xF5C518, { roughness: 0.5 }), 20), 0, 0.01, 0), at(cyl(0.01, 0.01, 0.34, nero, 8), 0, 0.18, 0),
-    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })());
-  postoEttore.add(at(lampada, -0.7, 0.775, -0.25)); punto(0xFFC860, 5, 2.6 - 0.6, 1.2, 2.9 - 0.15, 3.2);
-  const sediaEttore = sedia(); sediaEttore.rotation.y = Math.PI; postoEttore.add(at(sediaEttore, 0.05, 0, 0.82));
-  const ettore = persona({ id: 'ettore', pelle: 0xF0C3A0, maglia: 0xF0821E, capelli: 0x3A2A22, seduto: true, occhiali: true, ciuffo: true });
-  ettore.rotation.y = Math.PI; at(ettore, 2.65, 0, 3.74); stanza.add(ettore);
+  pE.g.add(at(gruppo(at(cyl(0.07, 0.08, 0.02, M(0xF5C518, { roughness: 0.5 }), 20), 0, 0.01, 0), at(cyl(0.01, 0.01, 0.34, nero, 8), 0, 0.18, 0),
+    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })()), -0.72, 0.775, -0.26));
+  punto(0xFFC860, 5, 2.0, 1.2, 2.75, 3.2);
+  // sulla scrivania di Ivo: la tazza rossa e le bozze di Ettore corrette a penna
+  pI.g.add(at(tazza(C.red, PI * 0.2), 0.62, 0.775, 0.12));
+  const bozzeIvo = [[-0.5, 0.06, 0.28, 11], [-0.46, 0.1, -0.2, 23], [-0.56, 0.02, 0.5, 37]].map(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-PI / 2, 0, r); f.userData.r = r; pI.g.add(at(f, x, 0.777 + i * 0.002, z)); return f; });
 
-  // Ivo, il revisore: in piedi, con le bozze di Ettore corrette a penna rossa
-  const postoIvo = gruppo(); at(postoIvo, 5.95, 0, 2.0); stanza.add(postoIvo);
-  postoIvo.add(scrivania(1.6, 0.8), at(monitor(texMonitorIvo), -0.1, 0.775, -0.18), at(tastiera(), -0.1, 0.775, 0.18), at(tazza(C.red), 0.6, 0.775, 0.2));
-  [[-0.58, 0.02, 0.2, 11], [-0.5, 0.1, -0.15, 23]].forEach(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-Math.PI / 2, 0, r); postoIvo.add(at(f, x, 0.777 + i * 0.002, z)); });
-  const sediaIvo = sedia(); sediaIvo.rotation.y = Math.PI - 0.7; postoIvo.add(at(sediaIvo, 0.25, 0, 0.95));
-  const ivo = persona({ id: 'ivo', pelle: 0xD9A27E, maglia: 0xE01F3D, capelli: 0xB4B4BA, occhiali: true, baffi: true, fronte: 0.4 });
-  ivo.rotation.y = Math.PI / 4; at(ivo, 4.75, 0, 3.55); stanza.add(ivo);
-  { const p = ivo.userData.parti;
-    const bozza = stampa(0.27, 0.37, foglio(5)); bozza.material.side = THREE.DoubleSide; bozza.rotation.set(-0.75, 0.25, 0); p.bd.add(at(bozza, -0.13, -0.4, 0.1));
-    const penna = cyl(0.011, 0.011, 0.15, M(0xE01F3D, { roughness: 0.4 }), 10); penna.rotation.set(0.5, 0, 0.3); p.bs.add(at(penna, 0.01, -0.34, 0.03)); }
+  const ettore = persona({ id: 'ettore', pelle: 0xEFC2A0, maglia: 0xF0821E, capelli: 0x3A2A22, chioma: 0.62, indietro: 0.5 });
+  const ivo = persona({ id: 'ivo', pelle: 0xD9A27E, maglia: 0xE01F3D, capelli: 0xB9B9BF, calzoni: 0x3A3B40, occhiali: true, baffi: true, chioma: 0.56, indietro: 0.95 });
+  stanza.add(ettore, ivo);
   const persone = { ettore, ivo };
+  // gli oggetti che passano di mano
+  const tazzaMano = tazza(C.orange, 0); tazzaMano.visible = false; ettore.userData.j.mD.add(at(tazzaMano, 0, -0.07, 0.05));
+  const penna = cyl(0.007, 0.007, 0.14, M(0xE01F3D, { roughness: 0.4 }), 8); penna.rotation.x = 1.9; ivo.userData.j.mD.add(at(penna, 0, -0.02, 0.05));
+  const foglioMano = stampa(0.21, 0.297, foglio(5)); foglioMano.material.side = THREE.DoubleSide; foglioMano.visible = false; ivo.userData.j.mD.add(at(foglioMano, 0, -0.05, 0.12));
+  const canMano = annaffiatoio(); canMano.visible = false; ivo.userData.j.mD.add(at(canMano, 0, -0.14, 0.02));
 
-  /* ---------------------------------------------------------------- le luci */
+  /* ================================================================ la vita: una giornata in piccolo, che si ripete
+     Tutto dipende dall'orologio: riaprendo la pagina nello stesso secondo si vede la stessa scena. */
+  const V = 0.95, PASSO = 1.2, GIRO = 168;
+  const angolo = (a, b, u) => a + ((((b - a) % (2 * PI)) + 3 * PI) % (2 * PI) - PI) * u;
+  function percorso(punti) { const seg = []; let L = 0;
+    for (let i = 1; i < punti.length; i++) { const l = Math.hypot(punti[i][0] - punti[i - 1][0], punti[i][1] - punti[i - 1][1]); seg.push({ a: punti[i - 1], b: punti[i], l, da: L }); L += l; }
+    return { seg, L }; }
+  function lungo(p, d) { d = Math.max(0, Math.min(p.L, d)); let s = p.seg[p.seg.length - 1]; for (const q of p.seg) if (d <= q.da + q.l) { s = q; break; }
+    const u = s.l ? (d - s.da) / s.l : 0; return [s.a[0] + (s.b[0] - s.a[0]) * u, s.a[1] + (s.b[1] - s.a[1]) * u]; }
+  class Traccia {
+    constructor() { this.s = []; this.t = 0; }
+    poi(dur, fn) { this.s.push({ t0: this.t, t1: this.t + dur, fn }); this.t += dur; return this; }
+    fino(T, fn) { return T > this.t + 0.01 ? this.poi(T - this.t, fn) : this; }
+    a(t) { for (const s of this.s) if (t < s.t1) return s.fn((t - s.t0) / (s.t1 - s.t0), t - s.t0, t); const s = this.s[this.s.length - 1]; return s.fn(1, s.t1 - s.t0, t); }
+  }
+  const metti = (g, x, z, yaw) => { g.position.set(x, 0, z); g.rotation.y = yaw; };
+  const sediaFuori = (p, k) => { p.sedia.position.z = p.zs + 0.42 * k; p.sedia.rotation.y = PI + 0.35 * k; };
+  // tiene dritto (o inclina) un oggetto in mano, qualunque sia la posa del braccio
+  const inMano = (o, P, inclina = 0) => { o.visible = true; o.rotation.x = -(P.sD[0] + P.gD + P.lean) + inclina; };
+
+  function alza(tr, chi, p, verso = 1) {   // verso 1: si alza; -1: si siede
+    tr.poi(1.3, u => { const k = verso > 0 ? dolce(u) : 1 - dolce(u); const P = mix(SEDUTO, IN_PIEDI, k); P.lean += 0.42 * Math.sin(PI * k);
+      metti(chi, p.seduta[0], p.seduta[1], PI); posa(chi, P); sediaFuori(p, k); return P; });
+  }
+  function va(tr, chi, p, punti, yaw0, yaw1, porta) {
+    const c = percorso(punti);
+    tr.poi(c.L / V, u => { const d = u * c.L, [x, z] = lungo(c, d), [x0, z0] = lungo(c, d - 0.2), [x1, z1] = lungo(c, d + 0.2);
+      let yaw = Math.atan2(x1 - x0, z1 - z0); yaw = angolo(yaw0, yaw, fra(d, 0, 0.45)); yaw = angolo(yaw, yaw1, fra(d, c.L - 0.45, c.L));
+      const P = passo(d * 2 * PI / PASSO, Math.min(1, d / 0.3, (c.L - d) / 0.3), !!porta);
+      metti(chi, x, z, yaw); posa(chi, P); sediaFuori(p, 1); if (porta) porta(P); return P; });
+  }
+  function sta(tr, dur, chi, p, x, z, yaw, fn) { tr.poi(dur, (u, dt, t) => { const P = fn(u, dt, t); metti(chi, x, z, typeof yaw === 'function' ? yaw(u) : yaw); posa(chi, P); sediaFuori(p, 1); return P; }); }
+  function seduto(tr, T, chi, p, fn) { tr.fino(T, (u, dt, t) => { const P = fn(t, u, dt); metti(chi, p.seduta[0], p.seduta[1], PI); posa(chi, P); sediaFuori(p, 0); return P; }); }
+
+  // i posti dove si va
+  const pCaffe = [CAFFE[0] - 0.05, 1.02], pLavagna = [0.74, 3.8], pStampa = [STAMPANTE[0], 1.04], pDaEttore = [4.0, 3.0], pPianta = [0.75, 1.52];
+  const versoPianta = PI;
+  const E_CAFFE = [pE.seduta, [3.9, 3.62], [4.2, 2.9], [4.2, 1.6], pCaffe];
+  const E_LAVAGNA = [pE.seduta, [3.75, 3.64], [3.75, 4.58], [1.25, 4.58], pLavagna];
+  const I_STAMPA = [pI.seduta, [7.0, 2.72], [7.0, 1.3], pStampa];
+  const STAMPA_ETTORE = [pStampa, [5.0, 1.08], [4.35, 2.0], pDaEttore];
+  const ETTORE_I = [pDaEttore, [4.9, 2.72], pI.seduta];
+  const I_PIANTA = [pI.seduta, [4.9, 2.72], [4.45, 1.45], [1.75, 1.25], pPianta];
+  const rovescio = a => a.slice().reverse();
+
+  // i gesti da seduti
+  const scrive = t => { const P = { ...SEDUTO }, raffica = Math.sin(t * 0.45) > -0.35 ? 1 : 0;
+    P.gD += Math.sin(t * 15) * 0.045 * raffica; P.gS += Math.sin(t * 15 + 2.1) * 0.045 * raffica; P.hx = 0.1 + Math.sin(t * 1.1) * 0.02;
+    const pausa = campana((t % 19) / 19, 0.7, 0.76, 0.9, 0.96); P.hy = -0.5 * pausa; P.twist = -0.12 * pausa; return P; };   // ogni tanto guarda le bozze
+  const segna = t => { const P = { ...SEDUTO, sS: [-0.35, 0.18], gS: -1.5, hx: 0.34, hy: 0.22, twist: 0.1 };
+    const legge = campana((t % 13) / 13, 0.62, 0.7, 0.88, 0.96);
+    P.sD = [-0.42 + Math.sin(t * 5.1) * 0.035 * (1 - legge), 0.1 + Math.sin(t * 1.7) * 0.06]; P.gD = -1.5 + Math.sin(t * 7.3) * 0.05 * (1 - legge) - 0.4 * legge; P.gS -= 0.4 * legge; P.hx -= 0.2 * legge; return P; };
+
+  let tConsegna = 0, tRiordino = 0, tLancio = 0, tAnnaffia = 0;
+  const trI = new Traccia(), trE = new Traccia();
+  // ---- Ivo: segna le bozze, stampa, porta le correzioni a Ettore, riordina, annaffia la pianta
+  seduto(trI, 44, ivo, pI, segna);
+  alza(trI, ivo, pI);
+  va(trI, ivo, pI, I_STAMPA, PI, PI);
+  sta(trI, 5.2, ivo, pI, pStampa[0], pStampa[1], PI, u => {
+    const prende = campana(u, 0.52, 0.66, 0.72, 0.86), P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-0.95, 0], gD: -0.55, lean: 0.22, hx: 0.3 }, prende);
+    const guarda = fra(u, 0.78, 0.95); P.sD[0] -= 0.22 * guarda; P.gD -= 1.2 * guarda; P.hx += 0.25 * guarda;
+    spiaStampa.emissiveIntensity = u < 0.6 ? 0.6 + 1.6 * (Math.sin(u * 60) > 0 ? 1 : 0) : 0.5;
+    if (u < 0.68) { const k = fra(u, 0.08, 0.5); foglioStampante.visible = true; foglioStampante.position.set(STAMPANTE[0], 0.665 - 0.04 * k, STAMPANTE[1] + 0.06 + 0.2 * k); }
+    else inMano(foglioMano, P, -1.1);
+    return P; });
+  const portaFoglio = P => inMano(foglioMano, P, -1.1);
+  va(trI, ivo, pI, STAMPA_ETTORE, PI, -PI / 2, portaFoglio);
+  tConsegna = trI.t;
+  sta(trI, 6, ivo, pI, pDaEttore[0], pDaEttore[1], -PI / 2, u => {
+    const porge = campana(u, 0.12, 0.34, 0.5, 0.66), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.25, 0.15], gD: -0.25, lean: 0.12, hx: 0.12 }, porge);
+    const parla = fra(u, 0.6, 0.7) * (1 - fra(u, 0.92, 1)); P.hx += Math.sin(u * 46) * 0.07 * parla; P.sS = [-0.5 * parla, 0.07 + 0.25 * parla]; P.gS = -0.12 - 1.2 * parla;
+    if (u < 0.48) inMano(foglioMano, P, -1.1 + 0.7 * porge); return P; });
+  va(trI, ivo, pI, ETTORE_I, -PI / 2, PI);
+  alza(trI, ivo, pI, -1);
+  tRiordino = trI.t;
+  seduto(trI, trI.t + 7, ivo, pI, (t, u) => { const P = { ...SEDUTO, hx: 0.3, hy: 0.25, twist: 0.12 }, o = Math.sin(u * 22);
+    P.sD = [-0.62, -0.05 + 0.28 * o]; P.sS = [-0.62, 0.3 - 0.2 * o]; P.gD = -1.25; P.gS = -1.25; return P; });
+  seduto(trI, 128, ivo, pI, segna);
+  alza(trI, ivo, pI);
+  va(trI, ivo, pI, I_PIANTA, PI, versoPianta);
+  const china = u => mix(IN_PIEDI, { ...IN_PIEDI, h: H0 - 0.2, lean: 0.75, aD: -0.75, kD: 1.2, aS: -0.75, kS: 1.2, sD: [-0.45, -0.1], gD: -0.2, hx: 0.2 }, u);
+  const versoCan = u => angolo(versoPianta, versoPianta - 0.8, campana(u, 0, 0.4, 0.6, 1));
+  sta(trI, 1.6, ivo, pI, pPianta[0], pPianta[1], versoCan, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u > 0.5) inMano(canMano, P); return P; });
+  tAnnaffia = trI.t;
+  sta(trI, 5.4, ivo, pI, pPianta[0], pPianta[1], versoPianta, (u, dt) => { const k = campana(u, 0, 0.2, 0.85, 1), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.95, 0.1], gD: -0.5, lean: 0.14, hx: 0.3 }, k);
+    inMano(canMano, P, 0.75 * k + Math.sin(dt * 3) * 0.05 * k); return P; });
+  sta(trI, 1.4, ivo, pI, pPianta[0], pPianta[1], versoCan, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u < 0.5) inMano(canMano, P); return P; });
+  va(trI, ivo, pI, rovescio(I_PIANTA), versoPianta, PI);
+  alza(trI, ivo, pI, -1);
+  const tIvoTorna = trI.t;
+  seduto(trI, GIRO, ivo, pI, segna);
+
+  // ---- Ettore: scrive, va a prendere il caffè, butta una carta, riceve le correzioni, va alla lavagna
+  const portaTazza = P => inMano(tazzaMano, P);
+  seduto(trE, 20, ettore, pE, scrive);
+  alza(trE, ettore, pE);
+  va(trE, ettore, pE, E_CAFFE, PI, PI, portaTazza);
+  sta(trE, 6, ettore, pE, pCaffe[0], pCaffe[1], PI, u => { const k = campana(u, 0.05, 0.22, 0.78, 0.95), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.0, 0.05], gD: -0.45, lean: 0.1, hx: 0.2 }, k);
+    spiaCaffe.emissiveIntensity = u > 0.2 && u < 0.8 ? 0.4 + 2 * (Math.sin(u * 50) > 0 ? 1 : 0) : 0.6; inMano(tazzaMano, P); return P; });
+  const versoStanza = 0.75;
+  sta(trE, 3.6, ettore, pE, pCaffe[0], pCaffe[1], u => angolo(PI, versoStanza, fra(u, 0, 0.35)), u => { const k = campana(u, 0.4, 0.55, 0.78, 0.92), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.85, 0.2], gD: -2.15, hx: -0.16 }, k);
+    inMano(tazzaMano, P, 0.6 * k); return P; });
+  va(trE, ettore, pE, rovescio(E_CAFFE), versoStanza, PI, portaTazza);
+  alza(trE, ettore, pE, -1);
+  const tCaffeFine = trE.t;
+  seduto(trE, 47, ettore, pE, scrive);
+  tLancio = trE.t;
+  seduto(trE, trE.t + 3.4, ettore, pE, (t, u) => {   // appallottola una bozza e la butta nel cestino
+    const stringe = campana(u, 0, 0.1, 0.36, 0.44), carica = campana(u, 0.36, 0.46, 0.5, 0.56), lancia = campana(u, 0.5, 0.58, 0.72, 0.9);
+    let P = mix(scrive(t), { ...SEDUTO, sD: [-0.9, 0.3], gD: -1.7, sS: [-0.9, -0.3], gS: -1.7, hx: 0.3 }, stringe);
+    P = mix(P, { ...SEDUTO, sD: [0.35, -0.5], gD: -1.5, twist: -0.3, hy: -0.5 }, carica); P = mix(P, { ...SEDUTO, sD: [-1.5, -0.55], gD: -0.2, twist: -0.25, hy: -0.6, lean: 0.14 }, lancia);
+    const da = [3.02, 1.18, 3.32], a = [CESTINO[0], 0.3, CESTINO[1]], v = (u - 0.55) / 0.27;
+    if (u > 0.08 && v < 0) { pallina.visible = true; ettore.userData.j.mD.getWorldPosition(pallina.position); }
+    else if (v >= 0 && v < 1) { pallina.visible = true; pallina.position.set(da[0] + (a[0] - da[0]) * v, da[1] + (a[1] - da[1]) * v + 0.5 * Math.sin(PI * v), da[2] + (a[2] - da[2]) * v); }
+    return P; });
+  seduto(trE, tConsegna, ettore, pE, scrive);
+  seduto(trE, tConsegna + 6, ettore, pE, (t, u) => {   // si gira verso Ivo e prende il foglio
+    const gira = campana(u, 0.05, 0.22, 0.68, 0.84), prende = campana(u, 0.26, 0.42, 0.52, 0.66);
+    let P = mix(scrive(t), { ...SEDUTO, twist: -0.55, hy: -0.7, hx: -0.05 }, gira); P = mix(P, { ...P, sD: [-0.7, -1.0], gD: -0.35 }, prende); return P; });
+  seduto(trE, 98, ettore, pE, scrive);
+  alza(trE, ettore, pE);
+  va(trE, ettore, pE, E_LAVAGNA, PI, -PI / 2);
+  sta(trE, 10, ettore, pE, pLavagna[0], pLavagna[1], -PI / 2, (u, dt) => {   // scrive alla lavagna, poi ci pensa su
+    const scriveSu = campana(u, 0.02, 0.1, 0.42, 0.5), pensa = fra(u, 0.52, 0.62) * (1 - fra(u, 0.93, 1));
+    let P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-2.05 + Math.sin(dt * 6) * 0.07, -0.1 + Math.sin(dt * 2.3) * 0.12], gD: -0.5 + Math.sin(dt * 7) * 0.08, hx: -0.18 }, scriveSu);
+    P = mix(P, { ...IN_PIEDI, sD: [-0.55, 0.25], gD: -2.25, sS: [-0.3, -0.35], gS: -1.5, hx: -0.05, hy: Math.sin(dt * 0.9) * 0.3, lean: -0.04 }, pensa); return P; });
+  va(trE, ettore, pE, rovescio(E_LAVAGNA), -PI / 2, PI);
+  alza(trE, ettore, pE, -1);
+  const tLavagnaFine = trE.t;
+  seduto(trE, GIRO, ettore, pE, scrive);
+
+  const ADESSO = {   // cosa sta facendo, detto a parole nella scheda: lo stesso orologio della scena
+    ettore: t => t < 20 ? 'Scrive' : t < tCaffeFine ? 'È andato a prendere un caffè' : t < tLancio ? 'Scrive' : t < tLancio + 3.4 ? 'Butta una bozza nel cestino' : t < tConsegna ? 'Scrive'
+      : t < tConsegna + 6 ? 'Riceve le correzioni di Ivo' : t < 98 ? 'Scrive' : t < tLavagnaFine ? 'È alla lavagna' : 'Scrive',
+    ivo: t => t < 44 ? 'Segna le bozze a penna rossa' : t < tConsegna ? 'Stampa le correzioni' : t < tConsegna + 6 ? 'Porta le correzioni a Ettore' : t < tRiordino ? 'Torna alla scrivania'
+      : t < tRiordino + 7 ? 'Riordina la scrivania' : t < 128 ? 'Segna le bozze a penna rossa' : t < tIvoTorna ? 'Annaffia la pianta' : 'Segna le bozze a penna rossa',
+  };
+
+  let tempoFermo = fermo ? 8 : null;
+  const tempoGiro = () => tempoFermo != null ? tempoFermo : (Date.now() / 1000) % GIRO;
+  function vita(T) {
+    // lo stato delle cose, prima dei gesti: ogni gesto poi sposta quello che tocca
+    tazzaMano.visible = false; foglioMano.visible = false; canMano.visible = false; pallina.visible = false; foglioStampante.visible = false;
+    spiaCaffe.emissiveIntensity = 0.6; spiaStampa.emissiveIntensity = 0.5;
+    trE.a(T); trI.a(T);
+    tazzaE.visible = !tazzaMano.visible; canTerra.visible = !canMano.visible;
+    penna.visible = T < 44 || (T > tRiordino + 7 && T < 128) || T > tIvoTorna;
+    foglioDaIvo.visible = T > tConsegna + 3.4; pallinaNelCestino.visible = T > tLancio + 2.9;
+    const ordine = dolce((T - tRiordino) / 6); bozzeIvo.forEach(f => { f.rotation.z = f.userData.r * (1 - ordine); });
+    const versa = T > tAnnaffia + 1.2 && T < tAnnaffia + 4.4;
+    gocce.forEach((g, i) => { g.visible = versa; if (versa) { const u = (T * 1.7 + i / 3) % 1; g.position.set(pPianta[0] + 0.17 - 0.1 * u, 1.0 - 0.45 * u * u - 0.08 * u, pPianta[1] - 0.52 - 0.14 * u); } });
+  }
+
+  /* ================================================================ le luci */
   const emisfero = new THREE.HemisphereLight(0xffffff, 0xd9cdb8, 1); scene.add(emisfero);
   const solare = new THREE.DirectionalLight(0xffffff, 2.5); scene.add(solare, solare.target);
   const centro = new THREE.Vector3(3.4, 0.9, 2.6); solare.target.position.copy(centro);
-  solare.castShadow = true; solare.shadow.mapSize.set(4096, 4096);
-  Object.assign(solare.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 40 });
-  solare.shadow.camera.updateProjectionMatrix();
-  solare.shadow.bias = -0.0004; solare.shadow.normalBias = 0.03; solare.shadow.radius = 11;
+  solare.castShadow = true; solare.shadow.mapSize.set(2048, 2048);
+  Object.assign(solare.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 40 }); solare.shadow.camera.updateProjectionMatrix();
+  solare.shadow.bias = -0.0005; solare.shadow.normalBias = 0.035; solare.shadow.radius = 6;
   const LUCI = {
-    alba:   { da: [-7, 4.4, 6], sole: 0xFFAE6E, soleI: 2.7, cielo: 0xFFDDBB, terra: 0xD8B596, emiI: 0.56, env: 0.22, lampade: 0.3, ombra: 0.6, esp: 1.0 },
-    giorno: { da: [-4.5, 9, 6.5], sole: 0xFFF4E2, soleI: 2.4, cielo: 0xFFFFFF, terra: 0xDCD0BC, emiI: 0.55, env: 0.3, lampade: 0, ombra: 0.6, esp: 1.0 },
-    sera:   { da: [5, 6, 7], sole: 0x8E9BE8, soleI: 0.55, cielo: 0x8C92D6, terra: 0x4A456B, emiI: 0.3, env: 0.1, lampade: 1, ombra: 0.5, esp: 1.0 },
-    notte:  { da: [4, 9, 6], sole: 0x6F86D6, soleI: 0.3, cielo: 0x4A5AA8, terra: 0x23264A, emiI: 0.25, env: 0.06, lampade: 1, ombra: 0.45, esp: 1.0 },
+    alba:   { da: [-7, 4.4, 6], sole: 0xFFAE6E, soleI: 2.7, cielo: 0xFFDDBB, terra: 0xD8B596, emiI: 0.56, env: 0.22, lampade: 0.3, ombra: 0.6 },
+    giorno: { da: [-4.5, 9, 6.5], sole: 0xFFF4E2, soleI: 2.4, cielo: 0xFFFFFF, terra: 0xDCD0BC, emiI: 0.55, env: 0.3, lampade: 0, ombra: 0.6 },
+    sera:   { da: [5, 6, 7], sole: 0x8E9BE8, soleI: 0.55, cielo: 0x8C92D6, terra: 0x4A456B, emiI: 0.3, env: 0.1, lampade: 1, ombra: 0.5 },
+    notte:  { da: [4, 9, 6], sole: 0x6F86D6, soleI: 0.3, cielo: 0x4A5AA8, terra: 0x23264A, emiI: 0.25, env: 0.06, lampade: 1, ombra: 0.45 },
   };
-  let sporca = true;
-  function luce(nome) {
-    const L = LUCI[nome]; document.documentElement.dataset.luce = nome;
-    solare.color.set(L.sole); solare.intensity = L.soleI; solare.position.copy(centro).add(new THREE.Vector3(...L.da));
-    solare.shadow.intensity = L.ombra;
-    emisfero.color.set(L.cielo); emisfero.groundColor.set(L.terra); emisfero.intensity = L.emiI;
-    scene.environmentIntensity = L.env; renderer.toneMappingExposure = L.esp;
-    lampade.forEach(l => { l.intensity = l.userData.max * L.lampade; });
-    paralumi.forEach(m => { m.emissiveIntensity = 1.6 * L.lampade; });
-    cielo.map = cieli[nome]; cielo.needsUpdate = true;
-    document.querySelectorAll('.luci button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.luce === nome)));
-    renderer.shadowMap.needsUpdate = true; sporca = true;
+  let sporca = true, scelta = 'adesso';
+  function oraDiRoma() { const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    return (+p.find(q => q.type === 'hour').value % 24) + (+p.find(q => q.type === 'minute').value) / 60; }
+  const luceDiAdesso = () => { const h = oraDiRoma(); return h < 6.3 ? 'notte' : h < 8 ? 'alba' : h < 16.4 ? 'giorno' : h < 19 ? 'sera' : 'notte'; };
+  function luce(quale) {
+    scelta = quale; const nome = quale === 'adesso' ? luceDiAdesso() : quale, L = LUCI[nome]; document.documentElement.dataset.luce = nome;
+    solare.color.set(L.sole); solare.intensity = L.soleI; solare.position.copy(centro).add(new THREE.Vector3(...L.da)); solare.shadow.intensity = L.ombra;
+    emisfero.color.set(L.cielo); emisfero.groundColor.set(L.terra); emisfero.intensity = L.emiI; scene.environmentIntensity = L.env;
+    lampade.forEach(l => { l.intensity = l.userData.max * L.lampade; }); paralumi.forEach(m => { m.emissiveIntensity = 1.6 * L.lampade; });
+    vista.map = cieli[nome]; vista.needsUpdate = true;
+    document.querySelectorAll('.luci button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.luce === quale))); sporca = true;
   }
   document.querySelectorAll('.luci button').forEach(b => b.addEventListener('click', () => luce(b.dataset.luce)));
+  setInterval(() => { if (scelta === 'adesso' && document.documentElement.dataset.luce !== luceDiAdesso()) luce('adesso'); }, 60000);
 
-  /* ---------------------------------------------------------------- la camera: isometrica, ferma */
+  /* ================================================================ la camera: isometrica, ferma */
   const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 120);
   const DIR = new THREE.Vector3(1, 0.8, 1).normalize();
   cam.position.copy(centro).addScaledVector(DIR, 40); cam.lookAt(centro); cam.updateMatrixWorld();
   const DESTRA = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), SU = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
   const sulPiano = p => { const d = p.clone().sub(centro); return [d.dot(DESTRA), d.dot(SU)]; };
-  // quanto è grande la stanza vista da qui
-  const scatola = new THREE.Box3().setFromObject(stanza); let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
-  for (const x of [scatola.min.x, scatola.max.x]) for (const y of [scatola.min.y, scatola.max.y]) for (const z of [scatola.min.z, scatola.max.z]) {
+  vita(8);
+  const ingombro = new THREE.Box3().setFromObject(stanza); let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+  for (const x of [ingombro.min.x, ingombro.max.x]) for (const y of [ingombro.min.y, ingombro.max.y]) for (const z of [ingombro.min.z, ingombro.max.z]) {
     const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); minX = Math.min(minX, a); maxX = Math.max(maxX, a); minY = Math.min(minY, b); maxY = Math.max(maxY, b); }
   const CASA = { x: (minX + maxX) / 2, y: (minY + maxY) / 2, zoom: 1 }, AMPIA = maxX - minX, ALTEZZA = maxY - minY;
-  const vista = { ...CASA }, meta = { ...CASA }; let mezza = 5, ppu = 100;
-  function inquadra() {
-    cam.position.copy(centro).addScaledVector(DIR, 40).addScaledVector(DESTRA, vista.x).addScaledVector(SU, vista.y);
-    cam.zoom = vista.zoom; cam.updateProjectionMatrix(); sporca = true;
-  }
+  const inq = { ...CASA }, meta = { ...CASA }; let mezza = 5, ppu = 100, pronta = false;
+  function inquadra() { cam.position.copy(centro).addScaledVector(DIR, 40).addScaledVector(DESTRA, inq.x).addScaledVector(SU, inq.y); cam.zoom = inq.zoom; cam.updateProjectionMatrix(); sporca = true; }
   function misura() {
     const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
     renderer.setSize(w, h, false); const asp = w / h;
-    mezza = Math.max(ALTEZZA / 2 * 1.16, AMPIA / 2 / asp * 1.06); ppu = h / (2 * mezza);
+    mezza = Math.max(ALTEZZA / 2 * 1.1, AMPIA / 2 / asp * 1.04); ppu = h / (2 * mezza);
     cam.left = -mezza * asp; cam.right = mezza * asp; cam.top = mezza; cam.bottom = -mezza; inquadra();
+    if (pronta) { renderer.render(scene, cam); etichette(); sporca = false; }
   }
   new ResizeObserver(misura).observe(canvas); misura();
 
-  /* ---------------------------------------------------------------- etichette e pannello */
+  /* ================================================================ etichette e scheda */
   const strato = document.getElementById('etichette'), tags = {};
+  const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
   for (const [id, p] of Object.entries(DATI.persone)) {
-    const b = document.createElement('button'); b.type = 'button'; b.className = 'tag';
-    const pallino = document.createElement('b'); pallino.style.background = p.colore;
-    const ruolo = document.createElement('span'); ruolo.textContent = p.mestiere;
-    const guarda = document.createElement('em'); guarda.textContent = 'Guarda ▸';
-    b.append(pallino, document.createTextNode(p.nome), ruolo, guarda);
-    b.setAttribute('aria-label', `${p.nome}, ${p.mestiere}: apri la scheda`);
+    const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = p.colore;
+    const piu = el('span', 'piu'); piu.append(document.createTextNode(p.mestiere), el('em', null, 'Guarda ▸'));
+    b.append(pallino, document.createTextNode(p.nome), piu); b.setAttribute('aria-label', `${p.nome}, ${p.mestiere}: apri la scheda`);
     b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
   }
   const v3 = new THREE.Vector3();
   function etichette() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
     for (const [id, g] of Object.entries(persone)) {
-      v3.set(0, g.userData.altezza + 0.1, 0); g.localToWorld(v3); v3.project(cam);
+      g.userData.j.testa.getWorldPosition(v3); v3.y += 0.2; v3.project(cam);
       tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`;
     }
   }
 
-  const pannello = document.getElementById('pannello'); let aperto = null;
-  const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
+  const pannello = document.getElementById('pannello'); let aperto = null, rigaAdesso = null;
   function apri(id) {
     const p = DATI.persone[id]; aperto = id; pannello.textContent = '';
     const testa = el('div', 'testa'), av = el('div', 'avatar', p.nome[0]); av.style.background = p.colore;
     const chi = el('div'); chi.append(el('h2', null, p.nome), el('p', null, `${p.mestiere} · ${p.modello}`));
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
     testa.append(av, chi, x); pannello.append(testa);
+    const momento = el('div', 'blocco'), riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); momento.append(el('h3', null, 'In questo momento'), riga); pannello.append(momento);
     const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, n), el('span', null, cosa)); numeri.append(d); };
-    const stamattina = el('div', 'blocco'); stamattina.append(el('h3', null, 'Stamattina'));
+    const stamattina = el('div', 'blocco'); stamattina.append(el('h3', null, 'Stamattina, per l\'edizione delle ' + DATI.uscita));
     if (id === 'ettore') {
       numero(String(p.notizie), 'notizie scritte'); numero(String(p.approfondimenti), 'approfondimenti'); numero(p.minuti + ' min', 'di lavoro');
-      stamattina.append(numeri, el('p', null, `Ha scritto la prosa dell'edizione durante la corsa delle ${DATI.corsa.inizio}. L'edizione è andata in onda alle ${DATI.inOnda}.`));
+      stamattina.append(numeri, el('p', null, `Ha scritto la prosa dalle ${p.dalle} alle ${p.alle}. L'edizione è uscita alle ${DATI.uscita}.`));
       const b = el('div', 'blocco'); b.append(el('h3', null, 'Sul suo schermo: le prime tre'));
       const ul = el('ul', 'titoli'); DATI.menabo.slice(0, 3).forEach(n => { const li = el('li'); li.append(el('i'), el('span', null, n.t)); ul.append(li); }); b.append(ul);
       const c = el('div', 'blocco'); c.append(el('h3', null, '«Il punto» di oggi'), el('p', null, DATI.punto));
       pannello.append(stamattina, b, c);
     } else {
       numero(String(p.riscritti), 'testi riscritti'); numero(p.minuti + ' min', 'di lavoro');
-      stamattina.append(numeri, el('p', null, `Ha riletto la prosa di Ettore prima della pubblicazione delle ${DATI.inOnda}. Era il suo primo giorno.`));
+      stamattina.append(numeri, el('p', null, `Ha riletto la prosa di Ettore dalle ${p.dalle} alle ${p.alle}, subito prima dell'uscita.`));
       const b = el('div', 'blocco'); b.append(el('h3', null, 'Sulla scrivania: tre titoli corretti'));
       p.cambi.forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
       pannello.append(stamattina, b);
     }
-    pannello.append(el('p', 'piede', 'In questa prova la scheda mostra solo i fatti di oggi. La conversazione arriva con il prossimo passo.'));
-    pannello.hidden = false; x.focus({ preventScroll: true });
-    // la camera si avvicina alla sua scrivania, lasciando posto alla scheda
-    const g = persone[id]; v3.set(0, 0.75, 0); g.localToWorld(v3); const [a, b] = sulPiano(v3), z = 2.1;
-    const larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0;
-    meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
+    pannello.append(el('p', 'piede', 'I gesti in scena sono una giornata tipo. I numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'));
+    pannello.hidden = false; x.focus({ preventScroll: true }); segui();
   }
-  function chiudi() { if (!aperto) return; const t = tags[aperto]; aperto = null; pannello.hidden = true; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
+  function segui() {   // la camera resta sulla persona aperta, anche mentre cammina
+    if (!aperto) return; const g = persone[aperto]; v3.set(g.position.x, 0.95, g.position.z); const [a, b] = sulPiano(v3), z = 2.1;
+    const larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
+    if (rigaAdesso) rigaAdesso.textContent = ADESSO[aperto](tempoGiro());
+  }
+  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; return t; }   // chiude la scheda, la camera resta dov'è
+  function chiudi() { const t = lascia(); if (!t) return; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
   addEventListener('keydown', e => { if (e.key === 'Escape') chiudi(); });
 
-  /* ---------------------------------------------------------------- rotella, trascinamento, clic */
+  /* ================================================================ rotella, trascinamento, clic */
   const raggio = new THREE.Raycaster(), ndc = new THREE.Vector2(); let presa = null;
+  const chiSotto = e => { const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    raggio.setFromCamera(ndc, cam); const colpi = raggio.intersectObjects(Object.values(persone), true); if (!colpi.length) return null;
+    let o = colpi[0].object; while (o && !o.userData.id) o = o.parent; return o ? o.userData.id : null; };
   canvas.addEventListener('wheel', e => {
-    e.preventDefault(); const r = canvas.getBoundingClientRect();
+    e.preventDefault(); lascia(); const r = canvas.getBoundingClientRect();
     const dx = (e.clientX - r.left - r.width / 2) / ppu, dy = -(e.clientY - r.top - r.height / 2) / ppu;
-    const z0 = meta.zoom, z1 = Math.min(4.5, Math.max(1, z0 * Math.exp(-e.deltaY * 0.0016)));
+    const z0 = meta.zoom, z1 = Math.min(5, Math.max(1, z0 * Math.exp(-e.deltaY * 0.0016)));
     meta.x += dx / z0 - dx / z1; meta.y += dy / z0 - dy / z1; meta.zoom = z1;
     if (z1 === 1) { meta.x = CASA.x; meta.y = CASA.y; }
   }, { passive: false });
-  canvas.addEventListener('pointerdown', e => { presa = { x: e.clientX, y: e.clientY, mosso: 0 }; canvas.setPointerCapture(e.pointerId); canvas.classList.add('presa'); });
-  canvas.addEventListener('pointermove', e => { if (!presa) return; const dx = e.clientX - presa.x, dy = e.clientY - presa.y; presa.mosso += Math.abs(dx) + Math.abs(dy);
-    presa.x = e.clientX; presa.y = e.clientY; meta.x -= dx / (ppu * vista.zoom); meta.y += dy / (ppu * vista.zoom); vista.x = meta.x; vista.y = meta.y; inquadra(); });
-  canvas.addEventListener('pointerup', e => {
-    canvas.classList.remove('presa'); const p = presa; presa = null; if (!p || p.mosso > 6) return;
-    const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
-    raggio.setFromCamera(ndc, cam); const colpi = raggio.intersectObjects(Object.values(persone), true);
-    if (colpi.length) { let o = colpi[0].object; while (o && !o.userData.id) o = o.parent; if (o) return apri(o.userData.id); }
-    if (aperto) chiudi();
-  });
+  canvas.addEventListener('pointerdown', e => { presa = { x: e.clientX, y: e.clientY, mosso: 0 }; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', e => {
+    if (!presa) { const id = chiSotto(e); canvas.classList.toggle('mano', !!id); for (const k in tags) tags[k].classList.toggle('vicino', k === id); return; }
+    const dx = e.clientX - presa.x, dy = e.clientY - presa.y; presa.mosso += Math.abs(dx) + Math.abs(dy); if (presa.mosso > 6) { canvas.classList.add('presa'); lascia(); }
+    presa.x = e.clientX; presa.y = e.clientY; meta.x -= dx / (ppu * inq.zoom); meta.y += dy / (ppu * inq.zoom); inq.x = meta.x; inq.y = meta.y; inquadra(); });
+  canvas.addEventListener('pointerup', e => { canvas.classList.remove('presa'); const p = presa; presa = null; if (!p || p.mosso > 6) return; const id = chiSotto(e); if (id) apri(id); else if (aperto) chiudi(); });
   canvas.addEventListener('dblclick', () => { if (aperto) chiudi(); else Object.assign(meta, CASA); });
 
-  /* ---------------------------------------------------------------- la vita: piccoli gesti */
-  const dolce = t => t * t * (3 - 2 * t);
-  function anima(s) {
-    { const p = ettore.userData.parti, batte = Math.sin(s * 0.45) > -0.35 ? 1 : 0;   // scrive a raffiche
-      p.bs.rotation.x = -1.18 + batte * Math.sin(s * 15) * 0.06; p.bd.rotation.x = -1.18 + batte * Math.sin(s * 15 + 2.1) * 0.06;
-      p.bs.rotation.z = 0.2; p.bd.rotation.z = -0.2;
-      const f = s % 16, gira = f > 12 ? dolce(Math.min(1, (f - 12) / 0.7)) * (f > 15 ? dolce(Math.max(0, 1 - (f - 15) / 0.7)) : 1) : 0;
-      p.testa.rotation.y = -gira * 1.15; p.testa.rotation.x = 0.14 * (1 - gira) + Math.sin(s * 1.1) * 0.02; }
-    { const p = ivo.userData.parti;   // legge le bozze, poi alza gli occhi
-      const f = s % 11, su = f > 7 ? dolce(Math.min(1, (f - 7) / 0.6)) * (f > 10 ? dolce(Math.max(0, 1 - (f - 10) / 0.6)) : 1) : 0;
-      p.testa.rotation.x = 0.42 * (1 - su); p.testa.rotation.y = -0.25 * (1 - su);
-      p.bd.rotation.x = -1.0 - su * 0.1; p.bd.rotation.z = -0.22; p.bs.rotation.x = -0.9 + Math.sin(s * 0.9) * 0.03; p.bs.rotation.z = 0.42;
-      p.corpo.rotation.y = Math.sin(s * 0.5) * 0.04; p.corpo.position.y = 0.55 + Math.sin(s * 1.6) * 0.004; }
-  }
-  function ora() {
-    const d = new Date(), sec = d.getSeconds() + d.getMilliseconds() / 1000, min = d.getMinutes() + sec / 60, h = (d.getHours() % 12) + min / 60;
-    secondi.rotation.z = -sec * Math.PI / 30; minuti.rotation.z = -min * Math.PI / 30; ore.rotation.z = -h * Math.PI / 6;
-  }
-
-  luce('giorno'); anima(3); ora();
+  /* ================================================================ il giro */
+  function ora() { const d = new Date(), sec = d.getSeconds() + d.getMilliseconds() / 1000, min = d.getMinutes() + sec / 60, h = (d.getHours() % 12) + min / 60;
+    secondi.rotation.z = -sec * PI / 30; minuti.rotation.z = -min * PI / 30; ore.rotation.z = -h * PI / 6; }
+  luce('adesso'); ora(); conto(); vita(tempoGiro());
+  pronta = true; renderer.render(scene, cam); etichette();
   let prima = 0;
   function giro(t) {
     requestAnimationFrame(giro);
     if (document.hidden || t - prima < 1000 / 31) return; prima = t;
-    const k = 0.16; let muove = false;
-    for (const c of ['x', 'y', 'zoom']) { const d = meta[c] - vista[c]; if (Math.abs(d) > 0.0005) { vista[c] += d * k; muove = true; } else vista[c] = meta[c]; }
+    if (!fermo) { vita(tempoGiro()); ora(); sporca = true; }
+    if (conto()) sporca = true;
+    segui();
+    let muove = false; for (const c of ['x', 'y', 'zoom']) { const d = meta[c] - inq[c]; if (Math.abs(d) > 0.0005) { inq[c] += d * 0.16; muove = true; } else inq[c] = meta[c]; }
     if (muove) inquadra();
-    if (!fermo) { anima(t / 1000); ora(); sporca = true; }
     if (!sporca) return; sporca = false;
     renderer.render(scene, cam); etichette();
   }
   requestAnimationFrame(giro);
-  if (fermo) setInterval(() => { ora(); sporca = true; }, 15000);
-  // una maniglia per le prove: redazione.guarda(x, y, z, zoom) porta la camera su un punto della stanza
-  window.redazione = { THREE, renderer, scene, solare, emisfero, luce, apri, chiudi, ridisegna() { renderer.shadowMap.needsUpdate = true; sporca = true; }, guarda(x, y, z, zoom = 3) { const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(vista, meta); inquadra(); } };
+  // una maniglia per le prove: redazione.tempo(52) ferma la scena a quel secondo del giro, redazione.tempo(null) la fa ripartire
+  window.redazione = { THREE, renderer, scene, solare, luce, apri, chiudi, GIRO, adesso: ADESSO, tempi: () => ({ tCaffeFine, tLancio, tConsegna, tRiordino, tLavagnaFine, tAnnaffia, tIvoTorna }),
+    tempo(t) { tempoFermo = t; vita(tempoGiro()); sporca = true; },
+    guarda(x, y, z, zoom = 3) { lascia(); const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(inq, meta); inquadra(); } };
   canvas.addEventListener('webglcontextlost', e => e.preventDefault());
-  canvas.addEventListener('webglcontextrestored', () => { renderer.shadowMap.needsUpdate = true; sporca = true; });
+  canvas.addEventListener('webglcontextrestored', () => { sporca = true; });
 }
 </script>
 <script>

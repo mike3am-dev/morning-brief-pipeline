@@ -59,3 +59,52 @@ corsa (`revisione.py` archivia in `data/revisione/`, `costo.py` salva gli orari)
 **Il passo dopo** (quando Mike ha detto cosa cambiare del look): la stanza intera con tutti e nove,
 i dati dallo stato del giorno, la frase di benvenuto, la conversazione con gli agenti («come una
 persona vera», `progetto.md` §9) e la giornata di 24 ore (§5).
+
+## 13 novembre 2026 — la seconda prova, dopo gli appunti di Mike
+
+La corsa del mattino è andata bene con le due aggiunte del 12 sera: 30 minuti, edizione uscita alle
+6:00, `data/revisione/2026-11-13.json` scritto dalla corsa (10 testi riscritti), `inizio` e `fine`
+di ogni agente e `passi` in `corse.json`.
+
+**La pagina** (stesso indirizzo, versione 2) è stata riscritta sugli appunti di Mike (`progetto.md`
+§3). Sempre un angolo, con Ettore e Ivo:
+
+- **il fondale**: solo marchio e visual (il sole dietro la falce, il campo di pallini), niente data
+  né notizie; via la spia «in onda»;
+- **il conto alla rovescia** verso le 6:00 (ora di Roma), a tessere; nell'ultima mezz'ora diventa
+  rosso e dice «si chiude l'edizione». L'ora di uscita è `DATI.prossimaUscita`;
+- **New York** dalla finestra, disegnata per alba, giorno, sera e notte (Empire State, Chrysler, One
+  World Trade Center, le cisterne sui tetti, le finestre accese);
+- **la lavagna** come studio in corso, scritta a mano: l'apertura cerchiata, una correzione vera di
+  Ivo, i minuti delle ultime sette corse col tetto, le voci aperte da Mike per edizione
+  (`data/taste.json`), chi passa le carte a chi con gli orari veri, due foto appuntate, quattro
+  post-it con numeri veri;
+- **sei manifesti** sulla storia di Apple, disegnati in canvas: Macintosh 1984, Think different
+  1997, iMac 1998, iPod 2001, il primo Apple Store 2001, iPhone 2007;
+- **gli iMac** con tastiera e mouse; il mobiletto con la stampante; il cestino; l'annaffiatoio;
+- **le persone** rifatte con proporzioni adulte e giunture (spalla, gomito, anca, ginocchio), il
+  busto è un solido tornito (`LatheGeometry`);
+- **le etichette** sono piccole (solo il nome) e si allargano al passaggio del mouse;
+- **la luce «Adesso»** segue l'ora di Roma; restano i quattro pulsanti per provare le altre.
+
+**La vita.** Un giro di 168 secondi, legato all'orologio (`Date.now() % GIRO`): ricaricando si vede
+la stessa scena. Ettore scrive, va a prendere il caffè con la sua tazza, butta una bozza nel
+cestino, riceve le correzioni, va alla lavagna. Ivo segna le bozze, stampa, porta il foglio a
+Ettore, riordina la scrivania, annaffia la pianta. La scheda dice «In questo momento» con le stesse
+parole dell'orologio della scena.
+
+Come è fatto: ogni persona ha una `Traccia` di segmenti (`seduto`, `alza`, `va`, `sta`); ogni
+segmento, dato il tempo, mette la persona al suo posto e in posa, senza stato: si può saltare a
+qualunque secondo. Una posa è un elenco di angoli (`IN_PIEDI`, `SEDUTO`, `passo()`), e fra due pose
+si sfuma con `mix`. `inMano()` tiene dritti gli oggetti portati. Per aggiungere un gesto: un
+percorso (punti `[x, z]` che girano intorno ai mobili) e un segmento nella traccia, controllando che
+i due non si incrocino negli stessi secondi.
+
+**Per le prove**: `redazione.tempo(52)` ferma la scena a quel secondo del giro (`null` la fa
+ripartire), `redazione.tempi()` dà i secondi degli eventi, `redazione.guarda(x, y, z, zoom)` sposta
+la camera.
+
+**Due cose imparate.** Con `globalCompositeOperation = 'source-in'` ogni riempimento cancella il
+resto della tela: per colorare a strisce una sagoma serve `source-atop`. E il browser di prova,
+quando il pannello è nascosto, non fa girare `requestAnimationFrame`: la pagina ora disegna subito
+il primo fotogramma, e ridisegna subito dopo un ridimensionamento.

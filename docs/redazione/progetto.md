@@ -130,6 +130,29 @@ sopra diventano le magliette dei personaggi, le lampade e gli accenti degli arre
 I pannelli, i fumetti e le scritte sopra la scena restano nello stile dell'app (condensato, pallini).
 Bocciato lo «stile Claude» dei cruscotti: card generiche, vetro ovunque.
 
+**Gli appunti di Mike sulla prima prova di look (13 novembre 2026).** Approvati: l'arredamento, il
+tappeto, l'effetto 3D («bel lavoro»). Da cambiare, e vale per tutta la stanza:
+
+- **È la redazione di un giornale, non una radio né una TV**: mai «in onda». L'edizione «esce».
+- **Il fondale**: al posto dello schermo con data e notizie, un grande pannello con **solo il logo e
+  il visual** della testata, come i fondali delle trasmissioni del mattino: sempre uguale,
+  riconoscibile, iconico.
+- **Un conto alla rovescia** verso l'uscita della prossima edizione, in vista per tutti.
+- **Fuori dalla finestra, lo skyline di New York.**
+- **La lavagna è uno studio in corso**, non un elenco di notizie: scritta a mano, post-it, cose
+  cerchiate in rosso, cose cancellate, appunti, foto, e anche grafici e diagrammi (i dati di lettura,
+  i tempi della corsa). Tutto con dati veri.
+- **I quadri**: la storia di Apple (Macintosh 1984, «Think different» 1997, iMac 1998, iPod 2001, il
+  primo Apple Store 2001, iPhone 2007), non le prime pagine. Disegnati da noi, come omaggi: niente
+  foto o pubblicità originali copiate.
+- **I computer sono iMac**, con tastiera e mouse Apple.
+- **Gli omini**: «ci siamo quasi», ma **meno Mii di Nintendo, meno bambinesco, più 3D fatto con
+  Blender**: proporzioni adulte, testa più piccola, braccia e gambe con le giunture.
+- **Le scritte non devono occupare la scena**: etichette piccole, che si allargano solo quando ci
+  passi sopra.
+- **Più vita**: è irrealistico che stiano fermi. Si alzano a prendere il caffè, buttano la carta,
+  stampano, sistemano la scrivania, annaffiano la pianta, vanno alla lavagna.
+
 ## 4. Gli stati di un agente
 
 Ogni agente è sempre in uno stato solo, ricavato dai dati (§8 dice da quali campi):
