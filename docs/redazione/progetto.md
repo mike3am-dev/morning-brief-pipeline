@@ -153,6 +153,23 @@ tappeto, l'effetto 3D («bel lavoro»). Da cambiare, e vale per tutta la stanza:
 - **Più vita**: è irrealistico che stiano fermi. Si alzano a prendere il caffè, buttano la carta,
   stampano, sistemano la scrivania, annaffiano la pianta, vanno alla lavagna.
 
+**I personaggi: il riferimento di Mike (13 novembre 2026, pomeriggio).** Ha mandato una tavola di
+nove statuine 3D da redazione (direttore, grafica, inviato, copywriter, impaginatrice, videomaker,
+correttrice di bozze, fotoreporter, social media editor): «ambisco a questo genere di character».
+L'immagine è in `docs/redazione/riferimenti/personaggi-riferimento.jpg` (solo sul Mac). Cosa
+vuol dire, in pratica: **testa grande** (tre teste e mezza di altezza), **occhi neri lucidi con due
+riflessi**, sopracciglia, sorriso, guance rosate, **capelli scolpiti a volumi** con i solchi del
+pettine, **vestiti con i dettagli** (camicia a quadri, cardigan, colletto, bottoni) e **l'oggetto
+del mestiere in mano**. Quando aveva detto «meno Mii» intendeva meno povero di dettagli, non
+proporzioni adulte.
+
+Come ci si avvicina (dal 13 novembre): teste e capelli **scolpiti** fondendo forme fra loro
+(campi di distanza e «marching cubes»), viso a pezzi veri, vestito disegnato sul busto, scrivanie
+e sedie abbassate a misura delle statuine, e nella scheda **il primo piano dal vivo** della persona
+aperta. Ogni personaggio è una ricetta: `chioma`, `vestito`, colori, occhiali, baffi. Per andare
+ancora più vicino al riferimento servirebbero modelli scolpiti a mano o generati da quell'immagine
+(file GLB con ossatura), da caricare al posto di questi: la pagina è già fatta per sostituirli.
+
 ## 4. Gli stati di un agente
 
 Ogni agente è sempre in uno stato solo, ricavato dai dati (§8 dice da quali campi):

@@ -71,6 +71,7 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .titoli li i{flex:none; width:8px; height:8px; border-radius:50%; margin-top:6px; background:var(--orange)}
 .adesso{display:flex; gap:8px; align-items:center; font-weight:600}
 .adesso i{width:9px; height:9px; border-radius:50%; background:#2f8a4a; flex:none}
+.ritratto{display:block; width:100%; aspect-ratio:1.6; border-radius:12px; background:var(--bone)}
 .piede{margin-top:auto; font-size:12px; color:var(--ink-3); line-height:1.4}
 #errore{position:absolute; inset:0; display:grid; place-items:center; padding:24px; text-align:center}
 </style>
@@ -106,6 +107,7 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
 
 /* ------------------------------------------------------------------ i dati veri (13 novembre 2026)
    Da redazione/stato/2026-11-13.json: l'edizione, la corsa, le correzioni di Ivo, le letture di Mike. */
@@ -601,7 +603,7 @@ function avvia() {
   punto(0xFFC27A, 4, 6.4, 1.5, 3.2, 4.5);   // e un po' di luce calda dalle parti di Ivo
   punto(0xF2ECDF, 5, fx, 1.7, 1.3, 5.5);   // il chiarore del fondale, che la sera si vede
 
-  const CESTINO = [3.78, 2.6];
+  const CESTINO = [3.7, 2.35];
   const cestino = gruppo((() => { const c = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.3, 24, 1, true), M(0x3A3B40, { roughness: 0.6 }))); c.material.side = THREE.DoubleSide; c.position.y = 0.15; return c; })(),
     at(cyl(0.11, 0.11, 0.012, M(0x3A3B40), 20), 0, 0.006, 0), at(ell(0.045, 1, 0.8, 1.1, bianco), 0.03, 0.05, -0.02));
   stanza.add(at(cestino, CESTINO[0], 0, CESTINO[1]));
@@ -619,9 +621,10 @@ function avvia() {
   const gocce = [0, 1, 2].map(() => { const g = sph(0.012, M(0x7CC6F2, { roughness: 0.2 }), 8, 6); g.castShadow = false; g.visible = false; stanza.add(g); return g; });
 
   /* ================================================================ scrivanie, sedie, iMac */
+  const TAV = 0.70, SED = 0.415;   // il piano delle scrivanie e la seduta, a misura delle statuine
   function scrivania(largh, prof) {
-    const g = gruppo(at(box(largh, 0.06, prof, legno, 0.025), 0, 0.745, 0));
-    for (const dx of [-1, 1]) for (const dz of [-1, 1]) g.add(at(cyl(0.03, 0.022, 0.72, legnoScuro, 12), dx * (largh / 2 - 0.12), 0.36, dz * (prof / 2 - 0.1)));
+    const g = gruppo(at(box(largh, 0.06, prof, legno, 0.025), 0, TAV - 0.03, 0));
+    for (const dx of [-1, 1]) for (const dz of [-1, 1]) g.add(at(cyl(0.03, 0.022, TAV - 0.06, legnoScuro, 12), dx * (largh / 2 - 0.12), (TAV - 0.06) / 2, dz * (prof / 2 - 0.1)));
     return g;
   }
   function imac(tex, mento, retro) {   // l'iMac: la lastra sottile, il mento colorato, il piede di alluminio
@@ -634,55 +637,159 @@ function avvia() {
   const tastiera = () => { const t = stampa(0.275, 0.108, texTasti); t.rotation.x = -PI / 2; return gruppo(at(box(0.285, 0.008, 0.115, alluminio, 0.004), 0, 0.004, 0), at(t, 0, 0.0086, 0)); };
   const mouse = () => ell(0.03, 0.95, 0.38, 1.85, bianco);
   function sedia() {
-    const g = gruppo(at(box(0.46, 0.07, 0.46, nero, 0.03), 0, 0.395, 0), at(cyl(0.028, 0.028, 0.28, alluminio, 12), 0, 0.23, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
-    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, 0.74, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
+    const g = gruppo(at(box(0.46, 0.07, 0.46, nero, 0.03), 0, SED - 0.035, 0), at(cyl(0.028, 0.028, 0.25, alluminio, 12), 0, 0.215, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
+    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, SED + 0.31, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
     for (let i = 0; i < 5; i++) { const a = i * PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
       raggio.position.set(Math.sin(a) * 0.135, 0.06, Math.cos(a) * 0.135); raggio.rotation.y = a; g.add(raggio, at(sph(0.035, M(0x101013)), Math.sin(a) * 0.26, 0.035, Math.cos(a) * 0.26)); }
     return g;
   }
   function posto(o) {
     const g = gruppo(); at(g, o.x, 0, o.z); stanza.add(g);
-    g.add(scrivania(o.w, o.d), at(imac(o.tex, o.mento, o.retro), 0, 0.775, -0.18), at(tastiera(), 0, 0.775, 0.24), at(mouse(), 0.27, 0.786, 0.25));
-    const s = sedia(), zs = o.d / 2 + 0.2; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
+    g.add(scrivania(o.w, o.d), at(imac(o.tex, o.mento, o.retro), 0, TAV, -0.18), at(tastiera(), 0, TAV, o.d / 2 - 0.12), at(mouse(), 0.27, TAV + 0.011, o.d / 2 - 0.11));
+    const s = sedia(), zs = o.d / 2 + 0.17; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
     return { g, sedia: s, zs, seduta: [o.x, o.z + zs] };
   }
 
   /* ================================================================ le persone
-     Proporzioni adulte, giunture vere: spalla e gomito, anca e ginocchio. */
-  const SCURO = 0x1B1C20, H0 = 0.8575;
-  // il busto è un solido tornito: fianchi, vita, petto, spalle che scendono verso il collo
-  const BUSTO = new THREE.LatheGeometry(new THREE.SplineCurve([[0, 0.035], [0.1, 0.036], [0.148, 0.06], [0.15, 0.12], [0.143, 0.19], [0.158, 0.28], [0.176, 0.37], [0.18, 0.43],
-    [0.16, 0.482], [0.105, 0.522], [0.05, 0.545], [0, 0.55]].map(([r, y]) => new THREE.Vector2(r, y))).getPoints(34), 32);
+     Statuine da scrivania: testa grande, capelli scolpiti, occhi lucidi, vestiti disegnati addosso.
+     Teste e capelli non sono sfere accostate: sono forme fuse fra loro, come creta, e poi
+     trasformate in superficie (campi di distanza e «marching cubes»). */
+  const SCURO = 0x16171A, H0 = 0.725, TESTA = 1.12;
+  const fondi = (a, b, k) => { const h = Math.max(k - Math.abs(a - b), 0) / k; return Math.min(a, b) - h * h * k * 0.25; };   // unisce due forme, arrotondando la giuntura
+  const scava = (a, b, k) => -fondi(-a, b, k);                                                                                 // toglie la seconda dalla prima
+  const uovo = (x, y, z, cx, cy, cz, rx, ry, rz) => { const dx = x - cx, dy = y - cy, dz = z - cz, k0 = Math.hypot(dx / rx, dy / ry, dz / rz), k1 = Math.hypot(dx / (rx * rx), dy / (ry * ry), dz / (rz * rz));
+    return k1 > 1e-9 ? k0 * (k0 - 1) / k1 : -Math.min(rx, ry, rz); };
+  const tubo = (x, y, z, ax, ay, az, bx, by, bz, r) => { const px = x - ax, py = y - ay, pz = z - az, vx = bx - ax, vy = by - ay, vz = bz - az,
+    h = Math.max(0, Math.min(1, (px * vx + py * vy + pz * vz) / (vx * vx + vy * vy + vz * vz))); return Math.hypot(px - vx * h, py - vy * h, pz - vz * h) - r; };
+  const cubetti = new MarchingCubes(72, new THREE.MeshBasicMaterial(), false, false, 140000);
+  function scolpisci(sdf, centro, mezzo) {   // dalla forma (una funzione di distanza, in metri) alla superficie
+    const n = cubetti.size, h = n / 2, campo = cubetti.field; cubetti.reset(); cubetti.isolation = 0; let i = 0;
+    for (let z = 0; z < n; z++) { const pz = centro[2] + (z - h) / h * mezzo;
+      for (let y = 0; y < n; y++) { const py = centro[1] + (y - h) / h * mezzo;
+        for (let x = 0; x < n; x++) campo[i++] = -sdf(centro[0] + (x - h) / h * mezzo, py, pz); } }
+    cubetti.update();
+    const quanti = cubetti.count * 3, pos = cubetti.positionArray.slice(0, quanti), nor = cubetti.normalArray.slice(0, quanti);
+    for (let k = 0; k < quanti; k += 3) { pos[k] = centro[0] + pos[k] * mezzo; pos[k + 1] = centro[1] + pos[k + 1] * mezzo; pos[k + 2] = centro[2] + pos[k + 2] * mezzo;
+      const l = Math.hypot(nor[k], nor[k + 1], nor[k + 2]) || 1; nor[k] /= l; nor[k + 1] /= l; nor[k + 2] /= l; }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); return g;
+  }
+  // la testa: il cranio, la mandibola, le guance piene, le orecchie, il naso, il collo
+  const cranio = (x, y, z) => { const ax = Math.abs(x);
+    let d = fondi(uovo(x, y, z, 0, 0.02, 0, 0.172, 0.168, 0.165), uovo(x, y, z, 0, -0.068, 0.012, 0.148, 0.115, 0.14), 0.06);
+    d = fondi(d, uovo(ax, y, z, 0.082, -0.058, 0.082, 0.06, 0.052, 0.05), 0.05);
+    d = fondi(d, uovo(ax, y, z, 0.172, -0.012, -0.008, 0.02, 0.04, 0.028), 0.018);
+    d = fondi(d, uovo(x, y, z, 0, -0.03, 0.166, 0.017, 0.016, 0.018), 0.022);
+    return fondi(d, tubo(x, y, z, 0, -0.14, -0.012, 0, -0.27, -0.014, 0.05), 0.04); };
+  const GEO_TESTA = scolpisci(cranio, [0, -0.04, 0], 0.26);
+  // i capelli: una calotta intorno al cranio, i volumi sopra, il viso e le orecchie scavati via, i solchi del pettine
+  const CHIOME = {
+    onda(x, y, z) {   // corti, con la riga da una parte e il ciuffo che gira
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.035, -0.012, 0.19, 0.184, 0.188);
+      d = fondi(d, uovo(x, y, z, 0.02, 0.178, 0.02, 0.14, 0.05, 0.15), 0.04);
+      d = fondi(d, uovo(x, y, z, 0.055, 0.15, 0.13, 0.095, 0.05, 0.06), 0.035);
+      d = scava(d, uovo(x, y, z, 0, -0.085, 0.13, 0.152, 0.17, 0.135), 0.025);
+      d = scava(d, uovo(ax, y, z, 0.2, -0.045, 0.0, 0.055, 0.075, 0.07), 0.02);
+      d = scava(d, uovo(x, y, z, 0, -0.2, -0.06, 0.22, 0.105, 0.22), 0.03);
+      d = scava(d, tubo(x, y, z, -0.088, 0.21, -0.13, -0.088, 0.205, 0.15, 0.008), 0.012);
+      for (let i = 0; i < 6; i++) { const zz = -0.12 + i * 0.05;
+        d = scava(d, tubo(x, y, z, -0.075, 0.222, zz, 0.06, 0.232, zz + 0.012, 0.0062), 0.011);
+        d = scava(d, tubo(x, y, z, 0.06, 0.232, zz + 0.012, 0.185, 0.13, zz + 0.03, 0.0062), 0.011); }
+      return d; },
+    stempiato(x, y, z) {   // grigi, alti sulla fronte, pieni ai lati
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.03, -0.015, 0.188, 0.18, 0.187);
+      d = fondi(d, uovo(ax, y, z, 0.16, 0.03, -0.03, 0.045, 0.08, 0.11), 0.03);
+      d = scava(d, uovo(x, y, z, 0, 0.0, 0.14, 0.14, 0.225, 0.15), 0.03);
+      d = scava(d, uovo(ax, y, z, 0.2, -0.05, 0.005, 0.055, 0.07, 0.07), 0.02);
+      d = scava(d, uovo(x, y, z, 0, -0.2, -0.06, 0.22, 0.11, 0.22), 0.03);
+      for (let i = 0; i < 4; i++) { const yy = 0.1 - i * 0.045;
+        d = scava(d, tubo(ax, y, z, 0.205, yy, 0.07, 0.185, yy - 0.02, -0.15, 0.006), 0.011); }
+      return d; },
+  };
+  const chiome = {}, chioma = s => chiome[s] || (chiome[s] = scolpisci(CHIOME[s], [0, 0.03, 0], 0.26));
+  const asta = (a, b, r, mat) => { const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b), m = cyl(r, r, A.distanceTo(B), mat, 8);
+    m.position.copy(A).add(B).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), B.clone().sub(A).normalize()); return m; };
+  const sfumo = tela(64, 64, (x, w) => { const g = x.createRadialGradient(32, 32, 2, 32, 32, 31); g.addColorStop(0, '#FFFFFF'); g.addColorStop(1, '#000000'); x.fillStyle = g; x.fillRect(0, 0, w, w); });
+  function viso(testa, o) {   // gli occhi lucidi con i due riflessi, le sopracciglia, il sorriso, le guance
+    const nerOcchi = M(SCURO, { roughness: 0.08 }), riflesso = new THREE.MeshBasicMaterial({ color: 0xFFFFFF }), peli = M(o.sopracciglia || o.capelli, { roughness: 0.9 }), occhi = [];
+    for (const lato of [-1, 1]) {
+      const occhio = gruppo(); at(occhio, lato * 0.064, 0.004, 0.148); occhio.rotation.y = lato * 0.36;
+      const pupilla = ell(0.036, 0.8, 1.18, 0.4, nerOcchi); pupilla.castShadow = false;
+      occhio.add(pupilla, at(new THREE.Mesh(new THREE.SphereGeometry(0.0095, 12, 8), riflesso), -0.009, 0.017, 0.0128), at(new THREE.Mesh(new THREE.SphereGeometry(0.0048, 8, 6), riflesso), 0.009, -0.015, 0.013));
+      testa.add(occhio); occhi.push(occhio);
+      const sopra = caps(0.0085, 0.04, peli); sopra.castShadow = false; sopra.rotation.z = PI / 2 + lato * 0.14;
+      const perno = gruppo(sopra); at(perno, lato * 0.066, 0.074, 0.143); perno.rotation.y = lato * 0.36; testa.add(perno);
+      const guancia = new THREE.Mesh(new THREE.CircleGeometry(0.03, 20), new THREE.MeshStandardMaterial({ color: 0xF07F86, alphaMap: sfumo, transparent: true, opacity: 0.42, depthWrite: false, roughness: 0.7 }));
+      at(guancia, lato * 0.1135, -0.052, 0.1285); guancia.rotation.y = lato * 0.45; testa.add(guancia);
+    }
+    const bocca = new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.0052, 8, 22, 1.5), M(0x5A2F27, { roughness: 0.6 })); bocca.castShadow = false;
+    bocca.rotation.z = -(PI / 2 + 0.75); bocca.rotation.x = -0.12; at(bocca, 0, -0.056, 0.1595); testa.add(bocca);
+    if (o.occhiali) { const mont = M(o.occhiali, { metalness: 0.5, roughness: 0.3 });
+      for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.0036, 8, 28), mont); at(l, lato * 0.064, 0.004, 0.169); l.rotation.y = lato * 0.3; testa.add(l);
+        testa.add(asta([lato * 0.112, 0.008, 0.153], [lato * 0.178, 0.012, 0.0], 0.003, mont)); }
+      testa.add(asta([-0.017, 0.012, 0.176], [0.017, 0.012, 0.176], 0.003, mont)); }
+    if (o.baffi) for (const lato of [-1, 1]) { const b = ell(0.03, 1.25, 0.42, 0.55, M(o.capelli, { roughness: 0.8 })); b.castShadow = false; b.rotation.z = lato * -0.25; testa.add(at(b, lato * 0.024, -0.048, 0.158)); }
+    return occhi;
+  }
+  // il busto è un solido tornito; il vestito ci è disegnato sopra (il davanti sta ai due bordi della tela)
+  const PROFILO = [[0, 0.02], [0.1, 0.022], [0.156, 0.05], [0.16, 0.11], [0.15, 0.19], [0.16, 0.27], [0.17, 0.33], [0.163, 0.372], [0.132, 0.408], [0.075, 0.432], [0, 0.44]];
+  const BUSTO = new THREE.LatheGeometry(new THREE.SplineCurve(PROFILO.map(([r, y]) => new THREE.Vector2(r, y))).getPoints(40), 44);
+  function vestito(disegna) {   // disegna(x, davanti, quota): davanti(du) riempie una fascia simmetrica intorno al centro del petto
+    return tela(512, 512, (x, w, h) => {
+      const quota = v => (1 - v) * h;
+      const davanti = (du0, du1, v0, v1) => { const y = quota(Math.max(v0, v1)), alto = Math.abs(v1 - v0) * h; x.fillRect(du0 * w, y, (du1 - du0) * w, alto); x.fillRect(w - du1 * w, y, (du1 - du0) * w, alto); };
+      const scollo = (punta, largo, cima) => { for (const s of [1, -1]) { x.beginPath(); const X = du => s > 0 ? du * w : w - du * w; x.moveTo(X(0), quota(punta)); x.lineTo(X(largo), quota(cima)); x.lineTo(X(largo), quota(1)); x.lineTo(X(0), quota(1)); x.closePath(); x.fill(); } };
+      const bordoScollo = (punta, largo, cima, spesso) => { x.lineWidth = spesso; x.lineCap = 'round'; for (const s of [1, -1]) { const X = du => s > 0 ? du * w : w - du * w; x.beginPath(); x.moveTo(X(0), quota(punta)); x.lineTo(X(largo), quota(cima)); x.lineTo(X(largo * 1.15), quota(1)); x.stroke(); } };
+      const bottone = (v, r) => { for (const cx of [0, w]) { x.beginPath(); x.arc(cx, quota(v), r, 0, 7); x.fill(); } };
+      disegna(x, w, h, { quota, davanti, scollo, bordoScollo, bottone });
+    });
+  }
+  const telaQuadri = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');   // la camicia a quadri
+    x.fillStyle = '#E0792B'; x.fillRect(0, 0, 128, 128);
+    x.fillStyle = 'rgba(120,52,14,.55)'; x.fillRect(0, 20, 128, 34); x.fillRect(20, 0, 34, 128);
+    x.fillStyle = 'rgba(120,52,14,.35)'; x.fillRect(0, 84, 128, 20); x.fillRect(84, 0, 20, 128);
+    x.fillStyle = 'rgba(255,236,196,.8)'; x.fillRect(0, 68, 128, 4); x.fillRect(68, 0, 4, 128); x.fillRect(0, 116, 128, 3); x.fillRect(116, 0, 3, 128); return c; })();
+  const mappa = (c, rx, ry) => { const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rx, ry); t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t; };
+  const VESTITI = {
+    quadri: { busto: vestito((x, w, h, a) => { x.fillStyle = x.createPattern(telaQuadri, 'repeat'); x.save(); x.scale(0.62, 0.62); x.fillRect(0, 0, w / 0.62, h / 0.62); x.restore();
+        x.fillStyle = '#FFFFFF'; a.scollo(0.74, 0.085, 0.9);                                    // la maglietta bianca sotto
+        x.strokeStyle = '#8A3F12'; a.bordoScollo(0.74, 0.085, 0.9, 9);
+        x.fillStyle = 'rgba(120,52,14,.5)'; a.davanti(0, 0.014, 0.06, 0.74);                     // l'abbottonatura
+        x.fillStyle = '#FFF4DC'; [0.22, 0.36, 0.5, 0.63].forEach(v => a.bottone(v, 6.5)); }),
+      manica: new THREE.MeshStandardMaterial({ map: mappa(telaQuadri, 3, 2), roughness: 0.9 }), polsino: 0xC1601E, colletto: 0xD26E26 },
+    cardigan: { busto: vestito((x, w, h, a) => { x.fillStyle = '#D92240'; x.fillRect(0, 0, w, h);
+        x.fillStyle = '#CFE2F3'; a.scollo(0.44, 0.115, 0.9);                                    // la camicia azzurra nello scollo
+        x.strokeStyle = '#A8162F'; a.bordoScollo(0.44, 0.115, 0.9, 16);                           // il bordo a coste
+        x.fillStyle = '#B81A34'; a.davanti(0, 0.03, 0.06, 0.44); a.davanti(0, 0.5, 0.14, 0.19);  // l'abbottonatura e il fondo a coste
+        x.fillStyle = '#F3DDB5'; [0.22, 0.31, 0.4].forEach(v => a.bottone(v, 8));
+        x.strokeStyle = '#A8162F'; x.lineWidth = 4; for (const cx of [0.17, 0.83]) x.strokeRect(cx * w - 26, a.quota(0.36), 52, 44); }),
+      manica: M(0xD92240, { roughness: 0.9 }), polsino: 0xA8162F, colletto: 0xCFE2F3 },
+  };
   function persona(o) {
-    const g = gruppo(); g.userData.id = o.id;
-    const pelle = M(o.pelle, { roughness: 0.6 }), maglia = M(o.maglia, { roughness: 0.92 }), calzoni = M(o.calzoni || 0x2C3554, { roughness: 0.92 }),
-      capelli = M(o.capelli, { roughness: 1 }), scarpe = M(o.scarpe || 0xF4F1EA, { roughness: 0.7 });
+    const g = gruppo(); g.userData.id = o.id; const v = VESTITI[o.vestito];
+    const pelle = M(o.pelle, { roughness: 0.55 }), capelli = M(o.capelli, { roughness: 0.72 }), calzoni = M(o.calzoni, { roughness: 0.92 }), scarpe = M(o.scarpe, { roughness: 0.6 }), suola = M(o.suola || 0xFFFFFF, { roughness: 0.7 }), polsino = M(v.polsino, { roughness: 0.88 });
     const bacino = gruppo(), busto = gruppo(), testa = gruppo(); g.add(bacino); bacino.add(busto);
-    bacino.add(at(ell(0.155, 1, 0.62, 0.68, calzoni), 0, 0.02, 0));
-    const torso = ombra(new THREE.Mesh(BUSTO, maglia)); torso.scale.set(1.08, 1, 0.64);
-    busto.add(torso, at(cyl(0.04, 0.046, 0.1, pelle, 14), 0, 0.57, 0));
-    testa.position.y = 0.70; busto.add(testa);
-    testa.add(ell(0.115, 0.94, 1.1, 1, pelle));
-    const chioma = ombra(new THREE.Mesh(new THREE.SphereGeometry(0.121, 28, 16, 0, PI * 2, 0, PI * (o.chioma || 0.6)), capelli));
-    chioma.scale.set(0.96, 1.1, 1.03); chioma.rotation.x = -(o.indietro || 0.55); chioma.position.y = 0.004; testa.add(chioma);
-    for (const lato of [-1, 1]) { testa.add(at(ell(0.02, 0.6, 1, 0.8, pelle), lato * 0.107, -0.005, 0)); const occhio = at(sph(0.0105, M(SCURO, { roughness: 0.3 }), 8, 6), lato * 0.04, 0.012, 0.105); occhio.castShadow = false; testa.add(occhio); }
-    testa.add(at(sph(0.014, pelle, 10, 8), 0, -0.014, 0.113));
-    if (o.occhiali) { for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.029, 0.0035, 6, 20), M(SCURO)); l.position.set(lato * 0.04, 0.012, 0.109); l.rotation.y = lato * 0.3; testa.add(l); }
-      testa.add(at(box(0.024, 0.004, 0.004, M(SCURO), 0.001), 0, 0.016, 0.118)); }
-    if (o.baffi) { const b = ell(0.03, 1.5, 0.4, 0.6, capelli); b.castShadow = false; testa.add(at(b, 0, -0.04, 0.106)); }
-    const braccio = lato => { const s = gruppo(); s.position.set(lato * 0.212, 0.47, 0); s.add(sph(0.05, maglia, 16, 12), at(caps(0.041, 0.2, maglia), 0, -0.14, 0));
-      const gm = gruppo(); gm.position.y = -0.28; s.add(gm); gm.add(sph(0.039, maglia, 12, 10), at(caps(0.035, 0.17, maglia), 0, -0.12, 0));
-      const m = gruppo(); m.position.y = -0.255; m.add(ell(0.042, 0.9, 1.15, 0.72, pelle)); gm.add(m); busto.add(s); return { s, g: gm, m }; };
-    const gamba = lato => { const a = gruppo(); a.position.set(lato * 0.088, 0, 0); a.add(at(caps(0.064, 0.29, calzoni), 0, -0.21, 0));
-      const k = gruppo(); k.position.y = -0.42; a.add(k); k.add(sph(0.052, calzoni, 12, 10), at(caps(0.048, 0.29, calzoni), 0, -0.2, 0), at(box(0.095, 0.075, 0.24, scarpe, 0.03), 0, -0.4, 0.05));
+    bacino.add(at(ell(0.165, 1.02, 0.6, 0.74, calzoni), 0, 0.02, 0));
+    const torso = ombra(new THREE.Mesh(BUSTO, new THREE.MeshStandardMaterial({ map: v.busto, roughness: 0.9 }))); torso.scale.set(1.1, 1, 0.72);
+    const colletto = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.021, 10, 28), M(v.colletto, { roughness: 0.85 }))); colletto.rotation.x = PI / 2; colletto.scale.set(1.08, 1, 0.6); colletto.position.set(0, 0.437, 0.004);
+    busto.add(torso, colletto);
+    testa.position.y = 0.66; testa.scale.setScalar(TESTA); busto.add(testa);
+    testa.add(ombra(new THREE.Mesh(GEO_TESTA, pelle)), ombra(new THREE.Mesh(chioma(o.chioma), capelli)));
+    g.userData.occhi = viso(testa, o);
+    const braccio = lato => { const s = gruppo(); s.position.set(lato * 0.185, 0.385, 0); s.add(sph(0.062, v.manica, 16, 12), at(caps(0.056, 0.11, v.manica), 0, -0.105, 0));
+      const gm = gruppo(); gm.position.y = -0.21; s.add(gm); gm.add(sph(0.054, v.manica, 14, 10), at(caps(0.05, 0.09, v.manica), 0, -0.09, 0), at(cyl(0.054, 0.054, 0.026, polsino, 18), 0, -0.165, 0));
+      const m = gruppo(); m.position.y = -0.215; m.add(ell(0.056, 0.95, 1.08, 0.8, pelle), at(sph(0.023, pelle, 10, 8), lato * -0.012, 0.004, 0.046)); gm.add(m); busto.add(s); return { s, g: gm, m }; };
+    const gamba = lato => { const a = gruppo(); a.position.set(lato * 0.085, 0, 0); a.add(at(caps(0.082, 0.17, calzoni), 0, -0.165, 0));
+      const k = gruppo(); k.position.y = -0.335; a.add(k); k.add(sph(0.072, calzoni, 14, 10), at(caps(0.07, 0.16, calzoni), 0, -0.155, 0), at(box(0.118, 0.09, 0.215, scarpe, 0.04), 0, -0.345, 0.045), at(box(0.122, 0.022, 0.22, suola, 0.01), 0, -0.381, 0.045));
       bacino.add(a); return { a, k }; };
     const D = braccio(-1), S = braccio(1), gaD = gamba(-1), gaS = gamba(1);   // D è la destra di chi cammina
     g.userData.j = { bacino, busto, testa, sD: D.s, gD: D.g, mD: D.m, sS: S.s, gS: S.g, mS: S.m, aD: gaD.a, kD: gaD.k, aS: gaS.a, kS: gaS.k };
     return g;
   }
   // una posa è un elenco di angoli; fra due pose si sfuma
-  const IN_PIEDI = { h: H0, lean: 0, twist: 0, hx: 0, hy: 0, sD: [0, -0.07], gD: -0.12, sS: [0, 0.07], gS: -0.12, aD: 0, kD: 0, aS: 0, kS: 0 };
-  const SEDUTO = { ...IN_PIEDI, h: 0.5, lean: 0.05, aD: -1.45, kD: 1.45, aS: -1.45, kS: 1.45, sD: [-0.4, -0.1], gD: -1.55, sS: [-0.4, 0.1], gS: -1.55 };
+  const IN_PIEDI = { h: H0, lean: 0, twist: 0, hx: 0, hy: 0, sD: [0, -0.1], gD: -0.15, sS: [0, 0.1], gS: -0.15, aD: 0, kD: 0, aS: 0, kS: 0 };
+  const SEDUTO = { ...IN_PIEDI, h: SED + 0.08, lean: 0.04, aD: -1.22, kD: 1.22, aS: -1.22, kS: 1.22, sD: [-0.35, -0.12], gD: -1.55, sS: [-0.35, 0.12], gS: -1.55 };
   const mix = (A, B, u) => { const P = {}; for (const k in A) P[k] = Array.isArray(A[k]) ? [A[k][0] + (B[k][0] - A[k][0]) * u, A[k][1] + (B[k][1] - A[k][1]) * u] : A[k] + (B[k] - A[k]) * u; return P; };
   function posa(g, P) {
     const j = g.userData.j; j.bacino.position.y = P.h; j.busto.rotation.set(P.lean, P.twist, 0); j.testa.rotation.set(P.hx, P.hy, 0);
@@ -691,39 +798,39 @@ function avvia() {
   }
   function passo(f, k = 1, porta = false) {   // il passo: le gambe a tempo, le braccia al contrario
     const sn = Math.sin(f) * k, cs = Math.cos(f);
-    const P = { ...IN_PIEDI, h: H0 - 0.016 * k * (1 - Math.abs(cs)), lean: 0.05 * k, aD: 0.5 * sn, kD: 0.85 * k * Math.max(0, -cs), aS: -0.5 * sn, kS: 0.85 * k * Math.max(0, cs),
-      sD: [-0.45 * sn, -0.07], gD: -0.3, sS: [0.45 * sn, 0.07], gS: -0.3 };
-    if (porta) { P.sD = [-0.22, -0.08]; P.gD = -1.3; }
+    const P = { ...IN_PIEDI, h: H0 - 0.014 * k * (1 - Math.abs(cs)), lean: 0.05 * k, aD: 0.52 * sn, kD: 0.85 * k * Math.max(0, -cs), aS: -0.52 * sn, kS: 0.85 * k * Math.max(0, cs),
+      sD: [-0.5 * sn, -0.1], gD: -0.3, sS: [0.5 * sn, 0.1], gS: -0.3 };
+    if (porta) { P.sD = [-0.22, -0.1]; P.gD = -1.3; }
     return P;
   }
 
   const pE = posto({ x: 2.6, z: 2.9, w: 1.8, d: 0.85, tex: texMonitorEttore, mento: 0xF9D2B0, retro: 0xF0821E });
   const pI = posto({ x: 5.95, z: 2.0, w: 1.6, d: 0.8, tex: texMonitorIvo, mento: 0xF6C7CF, retro: 0xE2385A });
   // sulla scrivania di Ettore: la tazza, le bozze, la lampada gialla
-  const tazzaE = at(tazza(C.orange, PI * 0.2), -0.62, 0.775, 0.1); pE.g.add(tazzaE);
-  pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.66, 0.775, -0.12));
-  const foglioDaIvo = stampa(0.21, 0.297, foglio(5)); foglioDaIvo.rotation.set(-PI / 2, 0, -0.25); foglioDaIvo.visible = false; pE.g.add(at(foglioDaIvo, 0.62, 0.795, 0.2));
+  const tazzaE = at(tazza(C.orange, PI * 0.2), -0.62, TAV, 0.1); pE.g.add(tazzaE);
+  pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.66, TAV, -0.12));
+  const foglioDaIvo = stampa(0.21, 0.297, foglio(5)); foglioDaIvo.rotation.set(-PI / 2, 0, -0.25); foglioDaIvo.visible = false; pE.g.add(at(foglioDaIvo, 0.62, TAV + 0.02, 0.2));
   const cappa = M(0xF5C518, { roughness: 0.5, emissive: 0xFFB400, emissiveIntensity: 0 }); paralumi.push(cappa);
   pE.g.add(at(gruppo(at(cyl(0.07, 0.08, 0.02, M(0xF5C518, { roughness: 0.5 }), 20), 0, 0.01, 0), at(cyl(0.01, 0.01, 0.34, nero, 8), 0, 0.18, 0),
-    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })()), -0.72, 0.775, -0.26));
+    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })()), -0.72, TAV, -0.26));
   punto(0xFFC860, 5, 2.0, 1.2, 2.75, 3.2);
   // sulla scrivania di Ivo: la tazza rossa e le bozze di Ettore corrette a penna
-  pI.g.add(at(tazza(C.red, PI * 0.2), 0.62, 0.775, 0.12));
-  const bozzeIvo = [[-0.5, 0.06, 0.28, 11], [-0.46, 0.1, -0.2, 23], [-0.56, 0.02, 0.5, 37]].map(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-PI / 2, 0, r); f.userData.r = r; pI.g.add(at(f, x, 0.777 + i * 0.002, z)); return f; });
+  pI.g.add(at(tazza(C.red, PI * 0.2), 0.62, TAV, 0.12));
+  const bozzeIvo = [[-0.5, 0.06, 0.28, 11], [-0.46, 0.1, -0.2, 23], [-0.56, 0.02, 0.5, 37]].map(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-PI / 2, 0, r); f.userData.r = r; pI.g.add(at(f, x, TAV + 0.002 + i * 0.002, z)); return f; });
 
-  const ettore = persona({ id: 'ettore', pelle: 0xEFC2A0, maglia: 0xF0821E, capelli: 0x3A2A22, chioma: 0.62, indietro: 0.5 });
-  const ivo = persona({ id: 'ivo', pelle: 0xD9A27E, maglia: 0xE01F3D, capelli: 0xB9B9BF, calzoni: 0x3A3B40, occhiali: true, baffi: true, chioma: 0.56, indietro: 0.95 });
+  const ettore = persona({ id: 'ettore', vestito: 'quadri', chioma: 'onda', pelle: 0xF2C6A6, capelli: 0x4A2F22, calzoni: 0x2C3554, scarpe: 0xF4F1EA });
+  const ivo = persona({ id: 'ivo', vestito: 'cardigan', chioma: 'stempiato', pelle: 0xE2AE8C, capelli: 0xC9C9CE, sopracciglia: 0x9A9AA0, calzoni: 0x4A4B52, scarpe: 0x6B4A32, suola: 0x2A2B30, occhiali: 0x8A6A2F, baffi: true });
   stanza.add(ettore, ivo);
   const persone = { ettore, ivo };
   // gli oggetti che passano di mano
-  const tazzaMano = tazza(C.orange, 0); tazzaMano.visible = false; ettore.userData.j.mD.add(at(tazzaMano, 0, -0.07, 0.05));
-  const penna = cyl(0.007, 0.007, 0.14, M(0xE01F3D, { roughness: 0.4 }), 8); penna.rotation.x = 1.9; ivo.userData.j.mD.add(at(penna, 0, -0.02, 0.05));
-  const foglioMano = stampa(0.21, 0.297, foglio(5)); foglioMano.material.side = THREE.DoubleSide; foglioMano.visible = false; ivo.userData.j.mD.add(at(foglioMano, 0, -0.05, 0.12));
-  const canMano = annaffiatoio(); canMano.visible = false; ivo.userData.j.mD.add(at(canMano, 0, -0.14, 0.02));
+  const tazzaMano = tazza(C.orange, 0); tazzaMano.visible = false; ettore.userData.j.mD.add(at(tazzaMano, 0, -0.085, 0.06));
+  const penna = cyl(0.007, 0.007, 0.14, M(0xE01F3D, { roughness: 0.4 }), 8); penna.rotation.x = 1.9; ivo.userData.j.mD.add(at(penna, 0, -0.03, 0.055));
+  const foglioMano = stampa(0.21, 0.297, foglio(5)); foglioMano.material.side = THREE.DoubleSide; foglioMano.visible = false; ivo.userData.j.mD.add(at(foglioMano, 0, -0.06, 0.13));
+  const canMano = annaffiatoio(); canMano.visible = false; ivo.userData.j.mD.add(at(canMano, 0, -0.15, 0.03));
 
   /* ================================================================ la vita: una giornata in piccolo, che si ripete
      Tutto dipende dall'orologio: riaprendo la pagina nello stesso secondo si vede la stessa scena. */
-  const V = 0.95, PASSO = 1.2, GIRO = 168;
+  const V = 0.8, PASSO = 1.0, GIRO = 168;
   const angolo = (a, b, u) => a + ((((b - a) % (2 * PI)) + 3 * PI) % (2 * PI) - PI) * u;
   function percorso(punti) { const seg = []; let L = 0;
     for (let i = 1; i < punti.length; i++) { const l = Math.hypot(punti[i][0] - punti[i - 1][0], punti[i][1] - punti[i - 1][1]); seg.push({ a: punti[i - 1], b: punti[i], l, da: L }); L += l; }
@@ -756,7 +863,7 @@ function avvia() {
   function seduto(tr, T, chi, p, fn) { tr.fino(T, (u, dt, t) => { const P = fn(t, u, dt); metti(chi, p.seduta[0], p.seduta[1], PI); posa(chi, P); sediaFuori(p, 0); return P; }); }
 
   // i posti dove si va
-  const pCaffe = [CAFFE[0] - 0.05, 1.02], pLavagna = [0.74, 3.8], pStampa = [STAMPANTE[0], 1.04], pDaEttore = [4.0, 3.0], pPianta = [0.75, 1.52];
+  const pCaffe = [CAFFE[0] - 0.05, 0.96], pLavagna = [0.62, 3.8], pStampa = [STAMPANTE[0], 0.98], pDaEttore = [3.72, 3.34], pPianta = [0.75, 1.48];
   const versoPianta = PI;
   const E_CAFFE = [pE.seduta, [3.9, 3.62], [4.2, 2.9], [4.2, 1.6], pCaffe];
   const E_LAVAGNA = [pE.seduta, [3.75, 3.64], [3.75, 4.58], [1.25, 4.58], pLavagna];
@@ -781,7 +888,7 @@ function avvia() {
   alza(trI, ivo, pI);
   va(trI, ivo, pI, I_STAMPA, PI, PI);
   sta(trI, 5.2, ivo, pI, pStampa[0], pStampa[1], PI, u => {
-    const prende = campana(u, 0.52, 0.66, 0.72, 0.86), P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-0.95, 0], gD: -0.55, lean: 0.22, hx: 0.3 }, prende);
+    const prende = campana(u, 0.52, 0.66, 0.72, 0.86), P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-0.5, 0], gD: -0.3, lean: 0.4, hx: 0.3 }, prende);
     const guarda = fra(u, 0.78, 0.95); P.sD[0] -= 0.22 * guarda; P.gD -= 1.2 * guarda; P.hx += 0.25 * guarda;
     spiaStampa.emissiveIntensity = u < 0.6 ? 0.6 + 1.6 * (Math.sin(u * 60) > 0 ? 1 : 0) : 0.5;
     if (u < 0.68) { const k = fra(u, 0.08, 0.5); foglioStampante.visible = true; foglioStampante.position.set(STAMPANTE[0], 0.665 - 0.04 * k, STAMPANTE[1] + 0.06 + 0.2 * k); }
@@ -833,7 +940,7 @@ function avvia() {
     const stringe = campana(u, 0, 0.1, 0.36, 0.44), carica = campana(u, 0.36, 0.46, 0.5, 0.56), lancia = campana(u, 0.5, 0.58, 0.72, 0.9);
     let P = mix(scrive(t), { ...SEDUTO, sD: [-0.9, 0.3], gD: -1.7, sS: [-0.9, -0.3], gS: -1.7, hx: 0.3 }, stringe);
     P = mix(P, { ...SEDUTO, sD: [0.35, -0.5], gD: -1.5, twist: -0.3, hy: -0.5 }, carica); P = mix(P, { ...SEDUTO, sD: [-1.5, -0.55], gD: -0.2, twist: -0.25, hy: -0.6, lean: 0.14 }, lancia);
-    const da = [3.02, 1.18, 3.32], a = [CESTINO[0], 0.3, CESTINO[1]], v = (u - 0.55) / 0.27;
+    const da = [2.95, 0.98, 3.3], a = [CESTINO[0], 0.3, CESTINO[1]], v = (u - 0.55) / 0.27;
     if (u > 0.08 && v < 0) { pallina.visible = true; ettore.userData.j.mD.getWorldPosition(pallina.position); }
     else if (v >= 0 && v < 1) { pallina.visible = true; pallina.position.set(da[0] + (a[0] - da[0]) * v, da[1] + (a[1] - da[1]) * v + 0.5 * Math.sin(PI * v), da[2] + (a[2] - da[2]) * v); }
     return P; });
@@ -867,12 +974,13 @@ function avvia() {
     tazzaMano.visible = false; foglioMano.visible = false; canMano.visible = false; pallina.visible = false; foglioStampante.visible = false;
     spiaCaffe.emissiveIntensity = 0.6; spiaStampa.emissiveIntensity = 0.5;
     trE.a(T); trI.a(T);
+    Object.values(persone).forEach((g, i) => { const chiusi = ((T + i * 1.7) % 3.9) < 0.14 ? 0.1 : 1; g.userData.occhi.forEach(o => { o.scale.y = chiusi; }); });   // battono le palpebre
     tazzaE.visible = !tazzaMano.visible; canTerra.visible = !canMano.visible;
     penna.visible = T < 44 || (T > tRiordino + 7 && T < 128) || T > tIvoTorna;
     foglioDaIvo.visible = T > tConsegna + 3.4; pallinaNelCestino.visible = T > tLancio + 2.9;
     const ordine = dolce((T - tRiordino) / 6); bozzeIvo.forEach(f => { f.rotation.z = f.userData.r * (1 - ordine); });
     const versa = T > tAnnaffia + 1.2 && T < tAnnaffia + 4.4;
-    gocce.forEach((g, i) => { g.visible = versa; if (versa) { const u = (T * 1.7 + i / 3) % 1; g.position.set(pPianta[0] + 0.17 - 0.1 * u, 1.0 - 0.45 * u * u - 0.08 * u, pPianta[1] - 0.52 - 0.14 * u); } });
+    gocce.forEach((g, i) => { g.visible = versa; if (versa) { const u = (T * 1.7 + i / 3) % 1; g.position.set(pPianta[0] + 0.15 - 0.08 * u, 0.86 - 0.4 * u * u - 0.06 * u, pPianta[1] - 0.5 - 0.12 * u); } });
   }
 
   /* ================================================================ le luci */
@@ -938,18 +1046,36 @@ function avvia() {
   function etichette() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
     for (const [id, g] of Object.entries(persone)) {
-      g.userData.j.testa.getWorldPosition(v3); v3.y += 0.2; v3.project(cam);
+      g.userData.j.testa.getWorldPosition(v3); v3.y += 0.3; v3.project(cam);
       tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`;
     }
   }
 
   const pannello = document.getElementById('pannello'); let aperto = null, rigaAdesso = null;
+  /* il primo piano: una seconda camera, vera, puntata su chi hai aperto. Si vede quello che fa, da vicino. */
+  const telaRitratto = el('canvas', 'ritratto'); telaRitratto.setAttribute('aria-hidden', 'true');
+  const cam2 = new THREE.PerspectiveCamera(22, 1.6, 0.2, 40), FONDI = { alba: new THREE.Color(0xF3DCC8), giorno: new THREE.Color(0xE9E3D9), sera: new THREE.Color(0x2F3050), notte: new THREE.Color(0x161829) };
+  let rend2 = null, env2 = null;
+  function primoPiano() {
+    if (!aperto) return;
+    if (!rend2) { rend2 = new THREE.WebGLRenderer({ canvas: telaRitratto, antialias: true }); rend2.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); rend2.setSize(320, 200, false);
+      rend2.toneMapping = THREE.NeutralToneMapping; rend2.shadowMap.enabled = true; rend2.shadowMap.type = THREE.PCFShadowMap; env2 = new THREE.PMREMGenerator(rend2).fromScene(new RoomEnvironment(), 0.04).texture; }
+    const g = persone[aperto]; g.userData.j.testa.getWorldPosition(v3);
+    const j = g.userData.j, yaw = g.rotation.y + j.busto.rotation.y + j.testa.rotation.y * 0.7; let dx = 0.8 * Math.sin(yaw) + 0.42, dz = 0.8 * Math.cos(yaw) + 0.42; const n = Math.hypot(dx, dz) || 1;
+    let cx = v3.x + dx / n * 2.0, cz = v3.z + dz / n * 2.0;
+    if (cx < 0.4 || cz < 0.4) {   // ha il viso contro una parete: lo si guarda di profilo, dal lato aperto della stanza
+      const fx2 = Math.sin(yaw), fz2 = Math.cos(yaw); let px = fz2, pz = -fx2; if (px + pz < 0) { px = -px; pz = -pz; }
+      cx = v3.x + px * 2.0 + fx2 * 0.5; cz = v3.z + pz * 2.0 + fz2 * 0.5; }
+    cam2.position.set(Math.max(0.4, cx), v3.y + 0.1, Math.max(0.4, cz)); cam2.lookAt(v3.x, v3.y - 0.2, v3.z);
+    const e = scene.environment, b = scene.background; scene.environment = env2; scene.background = FONDI[document.documentElement.dataset.luce] || FONDI.giorno;
+    rend2.render(scene, cam2); scene.environment = e; scene.background = b;
+  }
   function apri(id) {
     const p = DATI.persone[id]; aperto = id; pannello.textContent = '';
     const testa = el('div', 'testa'), av = el('div', 'avatar', p.nome[0]); av.style.background = p.colore;
     const chi = el('div'); chi.append(el('h2', null, p.nome), el('p', null, `${p.mestiere} · ${p.modello}`));
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
-    testa.append(av, chi, x); pannello.append(testa);
+    testa.append(av, chi, x); pannello.append(telaRitratto, testa);
     const momento = el('div', 'blocco'), riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); momento.append(el('h3', null, 'In questo momento'), riga); pannello.append(momento);
     const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, n), el('span', null, cosa)); numeri.append(d); };
     const stamattina = el('div', 'blocco'); stamattina.append(el('h3', null, 'Stamattina, per l\'edizione delle ' + DATI.uscita));
@@ -967,11 +1093,11 @@ function avvia() {
       p.cambi.forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
       pannello.append(stamattina, b);
     }
-    pannello.append(el('p', 'piede', 'I gesti in scena sono una giornata tipo. I numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'));
-    pannello.hidden = false; x.focus({ preventScroll: true }); segui();
+    pannello.append(el('p', 'piede', 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'));
+    pannello.hidden = false; x.focus({ preventScroll: true }); segui(); primoPiano();
   }
   function segui() {   // la camera resta sulla persona aperta, anche mentre cammina
-    if (!aperto) return; const g = persone[aperto]; v3.set(g.position.x, 0.95, g.position.z); const [a, b] = sulPiano(v3), z = 2.1;
+    if (!aperto) return; const g = persone[aperto]; v3.set(g.position.x, 0.85, g.position.z); const [a, b] = sulPiano(v3), z = 2.1;
     const larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
     if (rigaAdesso) rigaAdesso.textContent = ADESSO[aperto](tempoGiro());
   }
@@ -1014,7 +1140,7 @@ function avvia() {
     let muove = false; for (const c of ['x', 'y', 'zoom']) { const d = meta[c] - inq[c]; if (Math.abs(d) > 0.0005) { inq[c] += d * 0.16; muove = true; } else inq[c] = meta[c]; }
     if (muove) inquadra();
     if (!sporca) return; sporca = false;
-    renderer.render(scene, cam); etichette();
+    renderer.render(scene, cam); etichette(); primoPiano();
   }
   requestAnimationFrame(giro);
   // una maniglia per le prove: redazione.tempo(52) ferma la scena a quel secondo del giro, redazione.tempo(null) la fa ripartire

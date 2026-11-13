@@ -108,3 +108,39 @@ la camera.
 resto della tela: per colorare a strisce una sagoma serve `source-atop`. E il browser di prova,
 quando il pannello è nascosto, non fa girare `requestAnimationFrame`: la pagina ora disegna subito
 il primo fotogramma, e ridisegna subito dopo un ridimensionamento.
+
+## 13 novembre 2026, pomeriggio — la terza prova: i personaggi scolpiti
+
+Mike ha mandato una tavola di statuine 3D da redazione come traguardo per i personaggi
+(`progetto.md` §3; l'immagine è in `riferimenti/`, solo sul Mac). La pagina (versione 3, stesso
+indirizzo) li rifà così:
+
+- **lo scalpello**: `fondi`, `scava`, `uovo`, `tubo` sono funzioni di distanza; `scolpisci(sdf,
+  centro, mezzo)` riempie il campo di `MarchingCubes` (addon di three, risoluzione 72, usato solo
+  come calcolatore: non entra in scena) e ne ricava una geometria con le normali. Così la testa
+  (`cranio`: cranio, mandibola, guance, orecchie, naso, collo) e i capelli (`CHIOME.onda`,
+  `CHIOME.stempiato`: calotta, volumi, viso e orecchie scavati, solchi del pettine) sono forme
+  fuse, non sfere accostate. Una chioma si scolpisce una volta e si riusa;
+- **il viso** (`viso`): occhi neri lucidi con due riflessi, sopracciglia, sorriso, guance rosate
+  (un disco trasparente sfumato), occhiali e baffi a richiesta. Gli occhi battono le palpebre;
+- **il vestito** è disegnato sul busto tornito (`vestito`, `VESTITI`): il davanti del busto sta ai
+  due bordi della tela, quindi gli aiutanti `davanti`, `scollo`, `bordoScollo`, `bottone` disegnano
+  due volte, a specchio. Per ora: `quadri` (camicia a quadri su maglietta) e `cardigan` (con
+  camicia azzurra nello scollo);
+- **le proporzioni** da statuina (testa scalata 1,12, tre teste e mezza): per questo le scrivanie
+  sono a 0,70 (`TAV`) e le sedute a 0,415 (`SED`), il passo è più corto e i punti dove ci si ferma
+  sono più vicini ai mobili;
+- **il primo piano** nella scheda (`primoPiano`): un secondo `WebGLRenderer` su una tela piccola
+  disegna la stessa scena con una camera prospettica a tre quarti, dal lato aperto della stanza; se
+  la persona ha il viso contro una parete la riprende di profilo. Ha il suo ambiente (`env2`),
+  perché quello dell'altro renderer non si può condividere.
+
+**Un personaggio nuovo** è una riga: `persona({ id, vestito, chioma, pelle, capelli, calzoni,
+scarpe, occhiali?, baffi? })`. Servono una chioma (una funzione in `CHIOME`) e un vestito (una voce
+in `VESTITI`).
+
+**Quanto ci si avvicina.** Il riferimento è un'immagine finita, con luci e materiali da rendering;
+questi sono modelli che si muovono dal vivo, fatti in codice. Lo stile c'è (testa grande, occhi,
+capelli a volumi, vestiti riconoscibili); il dettaglio fine (pieghe dei tessuti, ciocche, mani con
+le dita) no. Per arrivarci servono modelli scolpiti veri in formato GLB, con l'ossatura: la pagina
+li può caricare come file accanto, al posto di `persona()`.
