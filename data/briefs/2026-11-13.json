@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-13",
+  "title": "The Morning Brief – 13 novembre 2026",
+  "generated_at": "2026-11-13T06:30:00+01:00",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 0,
+    "notizie_selezionate": 0
+  },
+  "feed_notes": [
+    "AI Explained: html-not-feed, nessuna data leggibile",
+    "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "Everyeye: html-not-feed, nessuna data leggibile",
+    "Interconnects: ultimo articolo 204.0h fa",
+    "MKBHD: html-not-feed, nessuna data leggibile",
+    "Matt Wolfe: html-not-feed, nessuna data leggibile",
+    "feed troncato BGR (redazionale): 20 voci, la piu' vecchia di 16.3h su una finestra di 26h",
+    "feed troncato Tom's Hardware IT (redazionale): 20 voci, la piu' vecchia di 12.8h su una finestra di 26h",
+    "feed troncato TechRadar (larga): 50 voci, la piu' vecchia di 16.8h su una finestra di 26h",
+    "feed troncato HDblog (banco): 60 voci, la piu' vecchia di 19.2h su una finestra di 26h, lette 3 pagine"
+  ],
+  "radar": [
+    {
+      "id": "huang-dimissioni-nvidia",
+      "topic": "spionaggio-chip",
+      "title": "Jensen Huang lascia la guida di Nvidia dopo lo scandalo delle relazioni e il caso della presunta spia cinese",
+      "note": "Il consiglio ha accettato le dimissioni l'11 novembre e le ha rese note il 12: Colette Kress, la direttrice finanziaria, guida Nvidia ad interim, con Harvey C. Jones primo presidente indipendente del board. Il titolo ha perso fino al 19% dall'inizio della vicenda, oltre 855 miliardi di capitalizzazione. Il board, nel comunicato: «Jensen's contributions to NVIDIA are profound».",
+      "link": "https://techcrunch.com/2026/11/12/nvidias-jensen-huang-resigns-chipmaker-names-cfo-colette-kress-as-interim-ceo/",
+      "source": "TechCrunch"
+    },
+    {
+      "id": "samsung-google-occhiali-iphone",
+      "topic": "hardware-indipendente",
+      "title": "Samsung e Google aprono i preordini degli occhiali smart con Gemini: funzionano anche con iPhone",
+      "note": "La collezione Intelligent Eyewear (Gentle Monster e Warby Parker, da 395 $) arriva nei negozi il 10 dicembre, solo negli USA e in Corea del Sud. Riconoscono l'iPhone 13 Pro e successivi, ma alcune funzioni — tra cui Gemini Guided Vision e l'assistenza visiva Aira — restano al lancio esclusive di chi le abbina a un telefono Android.",
+      "link": "https://www.androidauthority.com/samsung-google-smart-glasses-phone-compatibility-3734240/",
+      "source": "Android Authority"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-stela-apple-silicon-x86",
+      "origine": "nuovo",
+      "title": "Su Hacker News uno strato open source che fa girare macOS su Apple Silicon su PC con GPU NVIDIA",
+      "note": "Stela (142 punti e 57 commenti su Hacker News) traduce il codice arm64e in x86-64 al volo e porta un driver Metal sopra le GPU NVIDIA: si presenta al software come un Mac mini M2. Il progetto non include software Apple, e gli autori avvertono che è ancora lento e non parte su tutto l'hardware che dichiara di supportare.",
+      "link": "https://github.com/tylertms/Stela",
+      "source": "Hacker News"
+    },
+    {
+      "id": "social-app-review-sintetizzatori-ai",
+      "origine": "nuovo",
+      "title": "Gli sviluppatori di app per sintetizzatori: la revisione dell'App Store è diventata un incubo",
+      "note": "135 punti e 121 commenti su Hacker News su un pezzo che raccoglie i casi di AudioThing (25 giorni di attesa e un rifiuto), Unfiltered Audio (quattro rifiuti, uno per un software audio scambiato per una licenza richiesta) e CRUX Synth (quattro rifiuti per «design spam»). Un commento sostiene che l'esame sia ormai automatizzato: lo stato passa da «In Review» a «Rejected» in pochi secondi.",
+      "link": "https://synthanatomy.com/2026/11/ai-is-turning-apples-app-review-process-into-a-nightmare-for-developers.html",
+      "source": "Hacker News"
+    },
+    {
+      "id": "social-tastiera-mac-doppie-lettere",
+      "origine": "nuovo",
+      "title": "Su r/mac si moltiplicano le segnalazioni di un bug che duplica le lettere mentre si scrive",
+      "note": "Il thread, 7° fra i più votati del giorno su r/mac, raccoglie screenshot di testo con le lettere doppiate mentre si scrive veloce. Nei commenti più utenti confermano lo stesso comportamento su macOS recenti: per ora è una discussione, non una conferma di un difetto di sistema.",
+      "link": "https://www.reddit.com/r/mac/comments/1xu4h86/mmyy_mmaacc_iiss_ttyyppiinngg_22_lleetttteerrss/",
+      "source": "Reddit r/mac"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-samsung-google-intelligent-eyewear-preorder",
+      "kind": "curiosità",
+      "topic": "occhiali smart",
+      "title": "Samsung e Google aprono i preordini degli occhiali intelligenti con Gemini",
+      "orig": "You can finally pre-order Samsung's smart glasses with Android XR",
+      "note": "Montature Gentle Monster o Warby Parker da 395 $, con microfoni e fotocamera per interagire con Gemini. Nove ore di autonomia, custodia che ricarica fino a 7 volte. In vendita dal 10 dicembre, solo USA e Corea del Sud.",
+      "perche": "Sì, funzionano anche con iPhone — dall'iPhone 13 Pro in su — ma alcune funzioni, come la Guided Vision di Gemini e l'assistenza visiva Aira, al lancio restano solo per chi li abbina a un telefono Android.",
+      "link": "https://www.androidauthority.com/samsung-android-xr-smart-glass-pre-order-3734248/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-google-intelligent-eyewear-prova",
+      "kind": "recensione",
+      "topic": "occhiali smart",
+      "title": "Gli occhiali intelligenti di Google alla prova: belli, comodi, ma a che servono?",
+      "orig": "I tested Google's $395 Intelligent Eyewear smart glasses — I'm not sure why I'd buy them",
+      "note": "Fotocamera da 12 MP, video a 2K HDR, altoparlanti a conduzione che lasciano libero l'orecchio. Niente schermo, solo audio e Gemini. Dopo la prova il recensore non trova un'attività che gli occhiali facciano meglio di telefono, orologio o auricolari.",
+      "perche": "Gliene parlerà qualcuno in negozio: no, non hanno uno schermo come i prototipi mostrati da Google, e per ora restano un accessorio audio e fotografico, non un concorrente diretto del Vision Pro.",
+      "link": "https://www.androidauthority.com/google-intelligent-eyewear-hands-on-3734091/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-vivo-x500-pro-max-video",
+      "kind": "recensione",
+      "topic": "fotocamere",
+      "title": "vivo X500 Pro Max: il primo telefono con lo slow motion in 4K a 240 fotogrammi al secondo",
+      "orig": "The vivo X500 Pro Max is the most fun I've had with video capture on a phone",
+      "note": "Gli altri arrivano a 4K/120fps. Il Dual View registra con due fotocamere insieme senza dover passare dalla selfie, e il ritratto cinematografico in 4K/60fps supera, secondo la recensione, i 4K/30fps di iPhone e Samsung. Prezzo: 2.199 euro.",
+      "perche": "Se le chiedono se l'iPhone resta il migliore per i video: su slow motion e ritratto cinematografico questo vivo lo supera sulla carta, ma l'autore nota che Apple ha ancora la reputazione più solida su qualità video complessiva.",
+      "link": "https://www.androidauthority.com/vivo-x500-pro-max-favorite-video-capture-phone-3731185/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-samsung-pieghevoli-quota-mercato",
+      "kind": "curiosità",
+      "topic": "pieghevoli",
+      "title": "Samsung tiene due terzi del mercato mondiale dei pieghevoli, grazie al Galaxy Z Fold8",
+      "orig": "Analysts: Samsung held two-thirds of the global foldable market in Q3",
+      "note": "Gli analisti citati da GSMArena attribuiscono a Samsung circa il 66% delle vendite di smartphone pieghevoli nel terzo trimestre 2026, spinta dal Fold8 lanciato in estate.",
+      "perche": "Chi chiede se l'iPhone Duo abbia già una vera alternativa pieghevole: il Fold8 di Samsung resta il pieghevole più venduto al mondo, ma iPhone Duo (che si apre diversamente, senza una vera piega a libro) non compete nella stessa categoria di mercato.",
+      "link": "https://www.gsmarena.com/analysts_samsung_held_twothirds_of_the_global_foldable_market_in_q3_thanks_to_the_z_fold8-news-75455.php",
+      "source": "GSMArena"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-ios-27-2-1-sicurezza",
+      "when": "2026-11-10",
+      "ref": {
+        "date": "2026-11-10",
+        "id": "ios-27-2-1-sicurezza"
+      },
+      "title": "iOS 27.2.1 chiude nove falle fra iMessage, AirPlay e Bluetooth, e arriva fino a iOS 18",
+      "note": "Nove vulnerabilità corrette, quattro trovate da Apple stessa: un attaccante poteva leggere i messaggi di una chat di gruppo iMessage o abbinare un dispositivo Bluetooth malevolo senza alcuna azione dell'utente. L'aggiornamento è arrivato anche per iOS 26.7.3 e iOS 18.7.12.",
+      "signal": "19 testate, 3 seguiti nei giorni dopo, 2 discussioni",
+      "link": "https://www.macrumors.com/2026/11/09/ios-27-2-1-security-fixes/",
+      "source": "MacRumors"
+    },
+    {
+      "id": "persa-apple-tasse-irlanda-singapore",
+      "when": "2026-11-10",
+      "ref": {
+        "date": "2026-11-10",
+        "id": "apple-tasse-irlanda-singapore"
+      },
+      "title": "Le tasse di Apple paese per paese: 4,96 miliardi in Irlanda, 3,25 a Singapore",
+      "note": "Con le nuove regole USA, Apple ha dichiarato per la prima volta le imposte paese per paese: nel 2026 ha pagato 27 miliardi in tutto, contro i 33 dell'aliquota piena americana, grazie soprattutto al risparmio generato da Irlanda e Singapore.",
+      "signal": "18 testate",
+      "link": "https://9to5mac.com/2026/11/09/report-apple-saved-over-5-billion-in-taxes-through-singapore-and-ireland-in-2026/",
+      "source": "9to5Mac"
+    }
+  ]
+}

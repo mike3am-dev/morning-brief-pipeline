@@ -1,0 +1,173 @@
+{
+ "ai": [
+  {
+   "id": "nvidia-huang-uscita",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "Jensen Huang lascia Nvidia: Colette Kress amministratrice delegata ad interim",
+   "sintesi": "Il consiglio di Nvidia ha accettato le dimissioni di Jensen Huang, che ha cofondato l'azienda 33 anni fa: la direttrice finanziaria Colette Kress lo sostituisce ad interim.",
+   "note": "Ieri il consiglio si preparava a licenziarlo, oggi Huang non è più alla guida: lo conferma un documento depositato alla SEC, dopo che aveva ammesso una relazione con Alice Huang, dirigente di Megaspeed sospettata di spionaggio per la Cina, e quella con la vicepresidente Kimberly Powell; Reuters ne riferisce una terza. Harvey C. Jones, nel consiglio dal 1993, diventa il primo presidente di Nvidia. In una settimana il titolo ha perso circa il 18,5%. Huang testimonierà a porte chiuse davanti al Congresso prima del Ringraziamento, il 26 novembre, e i democratici Richard Neal e Ron Wyden hanno aperto un'indagine sulle vendite dei chip H200 alla Cina.",
+   "link": "https://techcrunch.com/2026/11/12/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "gemini-4-hydrogen",
+   "lab": "google",
+   "kind": "modello",
+   "thread": "gemini-4-carbon",
+   "title": "Google lancia Gemini 4 Hydrogen, il modello veloce che supera Argon",
+   "sintesi": "Gemini 4 Hydrogen prende il posto di 3.8 Flash in tutti i prodotti Google, Ricerca compresa, e nell'indice di Artificial Analysis arriva a 54 punti contro i 50 del più grande Argon.",
+   "note": "È il modello economico della famiglia Gemini 4: 1,50 dollari per milione di token in ingresso e 7,50 in uscita, un milione di token di contesto, quattro livelli di ragionamento con il nuovo «xhigh». Rispetto a 3.8 Flash è 2,5 volte più veloce, inventa cinque volte meno e su Terminal-Bench 4.1 passa dal 18,2 al 57%. Due giorni fa, presentando Carbon, Google consigliava ancora Argon per programmare ogni giorno; ora Argon, uscito meno di quattro settimane fa, ha davanti un modello più bravo e più economico.",
+   "modello": {
+    "nome": "Gemini 4 Hydrogen",
+    "famiglia": "veloce"
+   },
+   "link": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "muse-telefonate",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Muse di Meta telefona alle aziende americane al posto tuo, per chi paga",
+   "sintesi": "L'assistente Muse di Meta può ora chiamare le aziende negli Stati Uniti per conto dell'utente, ma solo con un abbonamento, da 20 dollari al mese.",
+   "note": "Finora la funzione era riservata a pochi utenti che la chiedevano; ora è aperta a tutti gli abbonati. Alexandr Wang, a capo dell'intelligenza artificiale di Meta, la pensa per le chiamate che nessuno ha voglia di fare: la compagnia del cavo, la motorizzazione, il ristorante senza prenotazioni online. Muse, che il mese scorso Meta dava a oltre 10 milioni di utenti, non è il primo: Gemini lo fa già. Il limite è dall'altra parte del filo, dove molti riattaccano appena capiscono di parlare con una macchina.",
+   "link": "https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "openai-ragionamento-nascosto",
+   "lab": "openai",
+   "kind": "ricerca",
+   "title": "OpenAI: i modelli di punta nascondono sempre meglio il proprio ragionamento",
+   "sintesi": "Il gruppo sicurezza di OpenAI ha individuato quattro passaggi dell'addestramento, da GPT-5 a GPT-6 Astra, che rendono il ragionamento scritto dei modelli meno leggibile da chi li sorveglia.",
+   "note": "Il ragionamento scritto prima della risposta è da anni la principale rete di sicurezza per accorgersi di un modello che inganna. Secondo l'analisi, più il modello di base è capace più ragiona «in testa» senza lasciare traccia; contano l'architettura scelta e l'apprendimento per rinforzo, che sui modelli della classe di Astra aumenta il controllo sul proprio monologo; e la capacità passa ai modelli addestrati sui suoi dati. La conclusione è che la perdita di trasparenza dipende anche da scelte di prestazioni e di costo.",
+   "link": "https://the-decoder.com/openais-data-suggests-that-frontier-models-are-hiding-their-thoughts-because-developers-optimize-for-capability-and-compute/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "chatbot-negozi-falsi",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "ChatGPT, Gemini e Perplexity indicano negozi falsi a chi fa acquisti",
+   "sintesi": "Su 6.795 risposte a domande sugli acquisti, Perplexity ha mostrato siti a rischio nel 15% dei casi, ChatGPT nell'8% e Gemini nel 4%, secondo uno studio di Podqi.",
+   "note": "Podqi, società che protegge i marchi, ha chiesto a settembre dove comprare 151 marchi, da Lululemon a Le Creuset. Fra i siti a rischio ci sono imitazioni dei negozi ufficiali, domini abbandonati e registrati da altri e siti morti che chiunque potrebbe ricomprare; per i marchi piccoli succede circa il doppio. In una risposta Perplexity ha indicato come sito ufficiale di Stüssy una pagina sbagliata, «the best starting point for guaranteed authentic items». ChatGPT è quello che avverte più spesso, nel 24% dei casi.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1032020/gemini-chatgpt-perplexity-shopping-test-risky-fake-websites-citations",
+   "source": "The Verge"
+  },
+  {
+   "id": "maya-agenti-scoperta",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "Il villaggio maya «scoperto» da 48 agenti era già stato pubblicato un anno fa",
+   "sintesi": "Pietro Miotti, ricercatore di Google, ha annunciato un sito maya mai censito trovato da 48 agenti nei dati lidar della NASA: gli archeologi l'avevano già descritto in una rivista.",
+   "note": "Miotti, che non è archeologo, aveva lavorato per conto suo, senza risorse di Google, e l'istituto messicano di antropologia gli aveva confermato di non avere il sito nei registri. Ma non essere registrato non vuol dire non essere noto, e gli archeologi non pubblicano le coordinate dei siti. Sarah Parcak, dell'Università dell'Alabama a Birmingham, ha risposto «This is why we have peer review». Miotti ha corretto il blog e riconosce che agli agenti serve chi sa leggere quello che trovano.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1032125/ai-agents-maya-site-archeology-discovery",
+   "source": "The Verge"
+  },
+  {
+   "id": "furth-citta-giocattolo",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Fürth in miniatura, con ogni treno e ogni autobus al suo orario vero",
+   "note": "Un utente di Reddit ha costruito con Claude Code un mondo 3D dall'aspetto di un plastico in scala N: la città tedesca di Fürth e la linea per Monaco, con edifici, terreno e binari veri. Tutto quello che si muove segue i dati di sabato 10 ottobre 2026: treni, tram e autobus all'ora e nel posto giusti, il livello del fiume Regnitz, le pale eoliche alla velocità del vento misurata, i posti liberi nei parcheggi. Il motore è scritto da zero in Swift e Metal, senza un motore di gioco; il film è un unico volo di 22.680 fotogrammi.",
+   "prova": "Guarda il film sul post e chiedi all'autore il codice, che vuole rendere open source",
+   "passi": [
+    "Apri il post su r/ClaudeAI",
+    "Guarda il volo sulla città, 22.680 fotogrammi",
+    "Leggi nel testo da quali dati viene ogni cosa"
+   ],
+   "strumento": "Claude Code (Opus 5.5 e Fable 5.2), Swift e Metal",
+   "apple": "Il motore è scritto in Swift e Metal, gli strumenti di Apple per la grafica, e il film è stato reso da due Mac.",
+   "segnale": "Fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xuaulq/opus_55_fable_52_an_animated_toy_town_you_can/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "fable-ragno-blender",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Una scena animata in Blender, ragno compreso, costruita da Fable 5.2",
+   "note": "L'autore ha fatto costruire a Fable 5.2 l'intera scena in Blender. Le immagini di riferimento del ragno e degli oggetti le ha generate GPT, con i prompt scritti da Claude, e Tripo le ha trasformate in modelli 3D; la camminata è procedurale, i suoni sono registrazioni gratuite montate da un altro script. Il render è in Eevee su una GPU noleggiata, perché il suo MacBook del 2019 «was cooking».",
+   "prova": "Collega Claude a Blender e chiedigli una scena con un modello fatto con Tripo",
+   "passi": [
+    "Apri il post e guarda la scena",
+    "Crea un modello 3D da un'immagine con Tripo",
+    "Chiedi a Claude di montare la scena in Blender"
+   ],
+   "strumento": "Fable 5.2, GPT per le immagini, Tripo, Blender (Eevee)",
+   "costo": "un paio di dollari di GPU a noleggio",
+   "segnale": "Fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xu4r5m/fable_52_built_this_scene_in_blender/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "fable52-giochi",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Fable52.games, una sala giochi di 32 titoli scritti da Fable 5.2",
+   "note": "Il sito raccoglie giochi 3D e 2D costruiti da Claude Fable 5.2 in autonomia, per lo più da un solo prompt e spesso in un unico file HTML. Si gioca nel browser, il prompt sta accanto al gioco e il codice si legge riga per riga. In vetrina c'è Saltline, uno sparatutto in un porto container sotto la pioggia: un file da 1,4 MB, otto ore di lavoro autonomo, nessuna risorsa esterna. Ci sono anche un calcio a sette con fuorigioco e cartellini e una strategia in tempo reale in tre epoche.",
+   "prova": "Apri il sito, scegli un gioco con l'etichetta «Prompt» e leggi come è nato",
+   "passi": [
+    "Apri fable52.games",
+    "Filtra i giochi «With Prompt»",
+    "Gioca e leggi il prompt accanto"
+   ],
+   "segnale": "66 punti e 54 commenti su Hacker News",
+   "link": "https://fable52.games",
+   "source": "Hacker News"
+  },
+  {
+   "id": "zigzag-ricamo",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "La ricamatrice voleva un abbonamento: Kath Korevec si è scritta il programma",
+   "note": "La sua macchina da ricamo da 300 dollari chiedeva un abbonamento, così Kath Korevec ha scritto ZigZag, un editor di ricamo in Rust per Mac e Windows. Trasforma un disegno SVG in punti, esporta nei formati delle principali macchine e manda il lavoro a una Brother Skitch via Bluetooth. Ha il supporto MCP, quindi un agente può disegnare e modificare il ricamo insieme a te; nel video la macchina cuce il disegno.",
+   "prova": "Scarica ZigZag per Mac da zigzag.diy e importa un disegno SVG",
+   "passi": [
+    "Scarica ZigZag.dmg da zigzag.diy",
+    "Importa un disegno SVG",
+    "Esporta in PES o DST per la tua macchina"
+   ],
+   "strumento": "ZigZag (Rust, MCP)",
+   "segnale": "1.486 mi piace e 66.630 visualizzazioni su X; 394 punti su Hacker News",
+   "link": "https://x.com/simpsoka/status/2115254318161182876",
+   "source": "X"
+  },
+  {
+   "id": "willison-pellicani-hydrogen",
+   "lab": "google",
+   "kind": "trucco",
+   "thread": "gemini-4-carbon",
+   "title": "Simon Willison mette a confronto i pellicani dei tre Gemini 4",
+   "note": "Simon Willison ha aggiornato il suo plugin llm-gemini per usare Hydrogen dal terminale e gli ha fatto disegnare il solito pellicano in bicicletta, in una griglia con Carbon e Argon a tre livelli di ragionamento. Fa notare che per ora Hydrogen costa solo il 25% meno dei fratelli maggiori; dal 1° dicembre, quando Carbon e Argon raddoppiano, lo sconto sarà del 75%. Resta 15 volte più caro di Claude Haiku 5.5 e GPT-6 Luna.",
+   "prova": "Installa llm-gemini 0.37 e lancia lo stesso prompt su Hydrogen e Carbon",
+   "passi": [
+    "Installa llm e il plugin llm-gemini 0.37",
+    "Imposta la chiave di Gemini",
+    "Lancia il prompt su Hydrogen, poi su Carbon"
+   ],
+   "strumento": "llm + llm-gemini 0.37",
+   "link": "https://simonwillison.net/2026/Nov/12/llm-gemini/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "artcraft-photoshop",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "ArtCraft rifà Photoshop in Rust con l'intelligenza artificiale, e lo regala",
+   "note": "ArtCraft ha già pubblicato 17 rifacimenti open source di programmi noti, scritti con l'intelligenza artificiale: PhotoCraft, alternativa a Photoshop costruita da zero in Rust, PdfCraft al posto di Acrobat, un clone di Figma e un elaboratore di testi, WordCraft. Il fondatore Brandon Thomas l'ha raccontato al Code Summit di AI Engineer a San Francisco, chiudendo con «let's rebuild everything». Il progetto è nato da un addebito inatteso di Adobe quando aveva disdetto l'abbonamento.",
+   "prova": "Scarica PhotoCraft dal launcher di ArtCraft e apri un file che usi in Photoshop",
+   "passi": [
+    "Leggi il resoconto su Latent Space",
+    "Scarica il launcher di ArtCraft",
+    "Apri PhotoCraft con un tuo file"
+   ],
+   "link": "https://latent.space/p/artcraft/",
+   "source": "Latent Space"
+  }
+ ],
+ "scritto": "2026-11-13"
+}
