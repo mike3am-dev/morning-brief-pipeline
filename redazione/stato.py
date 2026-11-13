@@ -311,6 +311,22 @@ def postit(giorno, brief):
     return out
 
 
+def letture(giorno, quante=6):
+    """Quante voci Mike ha aperto in ciascuna delle ultime edizioni (i segnali di lettura)."""
+    per = {}
+    for v in (carica(p("data", "taste.json")) or {}).get("votes") or []:
+        if v.get("how") != "lettura":
+            continue
+        d = (v.get("story") or "").split("/")[0]
+        if len(d) != 10 or d >= giorno:
+            continue
+        x = per.setdefault(d, {"viste": 0, "aperte": 0})
+        x["viste"] += 1
+        if (v.get("vote") or 0) > 0:
+            x["aperte"] += 1
+    return [{"giorno": d, **per[d]} for d in sorted(per)[-quante:]]
+
+
 # ---------------------------------------------------------------- lo stato del giorno
 
 def stato(giorno):
@@ -344,6 +360,8 @@ def stato(giorno):
              "token_milioni": round(token(corsa) / 1e6, 1),
              "fasi": fasi(giorno, raw, social, lab, missed),
              "ultime": [{"giorno": x["giorno"], "minuti": x.get("minuti")} for x in prima]}
+        uscita = next((f for f in c["fasi"] if f["cosa"] == "edizione pubblicata"), None)
+        c["ora_uscita"] = uscita["ora"] if uscita else c["ora_fine"]
 
     # --- le consegne, agente per agente
     lunedi = data(giorno).weekday() == 0
@@ -503,7 +521,9 @@ def stato(giorno):
 
     return {"giorno": giorno, "scritto": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
             "corsa": c, "agenti": agenti, "macchine": macchine, "lavagna": lavagna,
-            "schermo": schermo, "postit": pi, "revisione": rev}
+            "schermo": schermo, "postit": pi, "revisione": rev, "letture": letture(giorno),
+            "gta": ({"uscita": gta_file["uscita"], "giorni": (data(gta_file["uscita"]) - data(giorno)).days}
+                    if gta_file and gta_file.get("uscita") else None)}
 
 
 # ---------------------------------------------------------------- main

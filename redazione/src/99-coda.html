@@ -1,0 +1,9 @@
+</script>
+<script>
+/* Se le librerie 3D non arrivano il modulo qui sopra non parte nemmeno: lo si dice, invece di lasciare una pagina vuota. */
+setTimeout(function () {
+  if (window.redazione) return;
+  var e = document.getElementById('errore');
+  if (e && e.hidden) { e.hidden = false; e.textContent = 'La stanza non si è caricata: le librerie 3D non sono arrivate. Ricarica la pagina.'; }
+}, 9000);
+</script>

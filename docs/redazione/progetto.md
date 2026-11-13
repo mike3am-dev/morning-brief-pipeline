@@ -380,6 +380,12 @@ Cosa può fare un agente nella conversazione, e cosa no:
 - la corsa salva il testo prima della revisione e gli orari di ogni agente (due modifiche piccole,
   fatte il 12 novembre sera).
 
+**Costruito al 13 novembre 2026 (sera):** la stanza intera con tutti e nove, i dati veri del giorno
+su schermi, lavagna e bacheca, la giornata di ognuno in un giro di cinque minuti, le schede con il
+primo piano dal vivo. Dove sta ogni cosa nella stanza costruita, e come è fatta: `diario.md`,
+«la quarta prova». Mancano, in quest'ordine: la conversazione (§10), l'archivio delle decisioni
+(§8), la pagina che si ricompone da sola ogni mattina, le riunioni (§6).
+
 **Ancora da chiedere, quando servirà:**
 
 1. **Con quale modello parlano**: le conversazioni consumano i limiti del suo abbonamento. Opus per

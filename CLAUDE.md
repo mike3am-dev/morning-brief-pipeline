@@ -1589,6 +1589,8 @@ supabase/config.json     url + anon key. Pubblici, ma non versionarli per abitud
 data/raw/                scarichi grezzi per data
 data/revisione/          il testo del redattore prima e dopo il revisore, per giorno (per la redazione)
 redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato dai file della corsa (sola lettura)
+redazione/src/           la pagina della redazione, a pezzi; redazione/costruisci.py li compone in redazione/app/redazione.html
+                         con lo stato del giorno (mai modificare a mano il file composto)
 docs/redazione/          la redazione virtuale: progetto, mappa dei dati, ricerca, prove
 data/briefs/             le edizioni scritte — l'archivio locale, fonte di verità per push.py
 data/threads.json        il registro dei fili: slug, etichetta, nota, apertura, chiusura

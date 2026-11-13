@@ -45,6 +45,11 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .tag:hover .piu, .tag:focus-visible .piu, .tag.vicino .piu{display:inline-flex}
 .tag:hover, .tag.vicino{background:var(--paper)}
 
+.saluto{position:absolute; top:46px; left:max(20px,env(safe-area-inset-left,0px)); max-width:min(430px, calc(100% - 40px)); margin:0; padding:9px 13px;
+  background:color-mix(in srgb, var(--paper) 90%, transparent); color:var(--ink); border-radius:12px; box-shadow:0 1px 0 rgba(23,24,27,.14); font-size:13px; line-height:1.45}
+.saluto button{font:inherit; font-weight:700; color:var(--ink); border:0; padding:0 1px; background:linear-gradient(transparent 62%, var(--yellow) 62%); cursor:pointer; border-radius:2px}
+.saluto button:hover{background:var(--yellow)}
+.saluto button:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
 .nota{position:absolute; left:max(20px,env(safe-area-inset-left,0px)); bottom:12px; margin:0; font-size:11.5px; color:var(--testo-2); pointer-events:none}
 
 #pannello{position:absolute; top:16px; right:max(16px,env(safe-area-inset-right,0px)); bottom:16px; width:min(340px, calc(100% - 32px));
@@ -69,6 +74,11 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .titoli{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px}
 .titoli li{display:flex; gap:8px; line-height:1.35}
 .titoli li i{flex:none; width:8px; height:8px; border-radius:50%; margin-top:6px; background:var(--orange)}
+.postit{border-left:4px solid var(--yellow); background:var(--bone); border-radius:0 10px 10px 0; padding:8px 11px; display:flex; flex-direction:column; gap:3px}
+.postit strong{font-size:13.5px; line-height:1.3}
+.postit span{font-size:12.5px; line-height:1.4; color:var(--ink-2)}
+.postit small{font-size:11px; color:var(--ink-3)}
+.piccolo{font-size:12.5px; color:var(--ink-2)}
 .adesso{display:flex; gap:8px; align-items:center; font-weight:600}
 .adesso i{width:9px; height:9px; border-radius:50%; background:#2f8a4a; flex:none}
 .ritratto{display:block; width:100%; aspect-ratio:1.6; border-radius:12px; background:var(--bone)}
@@ -93,6 +103,7 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
     <button type="button" data-luce="notte" aria-pressed="false">Notte</button>
   </div>
 
+  <p class="saluto" id="saluto" hidden></p>
   <p class="nota">Tocca una persona · rotella per avvicinarti · trascina per spostarti · doppio clic per tornare</p>
 
   <aside id="pannello" hidden aria-live="polite"></aside>
@@ -109,35 +120,19 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
 
-/* ------------------------------------------------------------------ i dati veri (13 novembre 2026)
-   Da redazione/stato/2026-11-13.json: l'edizione, la corsa, le correzioni di Ivo, le letture di Mike. */
-const DATI = {
-  uscita: '06:00', prossimaUscita: [6, 0],
-  corsa: { inizio: '05:34', minuti: 30, tetto: 45, ultime: [40, 25, 29, 27, 26, 26, 30], giorni: ['S', 'D', 'L', 'M', 'M', 'G', 'V'] },
-  menabo: [
-    { t: 'HomeView arriva nei negozi. Le recensioni promuovono l\'oggetto e si dividono su Siri', breve: 'HomeView nei negozi' },
-    { t: 'Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple', breve: 'Huang lascia Nvidia' },
-    { t: 'Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi', breve: 'iPhone Duo: 16 milioni' },
-    { t: 'Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo surround fatto di HomePod', breve: 'Apple TV 4K alla prova' },
-    { t: 'Il primo aggiornamento di HomeView chiude nove falle. Siri aprirà la porta solo a dicembre', breve: 'HomeView: 9 falle chiuse' },
-  ],
-  punto: 'Da chi deve proteggerci uno schermo in cucina?',
-  letture: [['S', 5], ['D', 2], ['L', 3], ['M', 5], ['M', 7], ['G', 1]],   // voci aperte da Mike, edizioni dal 7 al 12 novembre
-  richiesteLea: 76, feedMuti: 6, gtaGiorni: 6,
-  persone: {
-    ettore: { nome: 'Ettore', mestiere: 'redattore', modello: 'Opus', colore: '#F0821E', dalle: '05:50', alle: '05:58', minuti: 8,
-      notizie: 15, approfondimenti: 5 },
-    ivo: { nome: 'Ivo', mestiere: 'revisore', modello: 'Opus', colore: '#E01F3D', dalle: '05:58', alle: '05:59', minuti: 1, riscritti: 10,
-      cambi: [
-        { prima: 'Huang lascia Nvidia, e fra i nomi per la successione ci sono due dirigenti Apple',
-          dopo: 'Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple' },
-        { prima: 'Bloomberg Intelligence alza a 16 milioni le vendite di iPhone Duo nel primo anno, nonostante i resi',
-          dopo: 'Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi' },
-        { prima: 'Apple accetta per la prima volta i pieghevoli Samsung in permuta, fino a 410 dollari per il Fold7',
-          dopo: 'Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per il Fold7 fino a 410 dollari' },
-      ] },
-  },
-};
+/* ------------------------------------------------------------------ i dati veri del giorno
+   Lo stato che redazione/stato.py ricava dai file della corsa: l'edizione, i tempi, le correzioni di Ivo, i post-it, le letture di Mike. */
+/* ------------------------------------------------------------------ i dati veri
+   Lo stato del giorno lo ricava redazione/stato.py dai file della corsa, e redazione/costruisci.py
+   lo mette qui sotto. Niente di quello che si legge in scena è scritto a mano. */
+const STATO = {"giorno":"2026-11-13","scritto":"2026-11-13T12:28:29+00:00","corsa":{"inizio":"2026-11-13T04:34:32+00:00","ora_inizio":"05:34","fine":"2026-11-13T05:04:32+00:00","ora_fine":"06:04","minuti":30,"tetto":45,"token_milioni":23.8,"fasi":[{"cosa":"raccolta degli articoli","quando":"2026-11-13T04:34:41.043958+00:00","ora":"05:34","fonte":"file"},{"cosa":"discussioni raccolte","quando":"2026-11-13T04:34:45.657681+00:00","ora":"05:34","fonte":"file"},{"cosa":"LAB raccolto","quando":"2026-11-13T04:34:46.519147+00:00","ora":"05:34","fonte":"file"},{"cosa":"ripescaggio preparato","quando":"2026-11-13T04:35:13","ora":"05:35","fonte":"file"},{"cosa":"sezioni della regia salvate","quando":"2026-11-13T04:39:30Z","ora":"05:39","fonte":"commit"},{"cosa":"edizione pubblicata","quando":"2026-11-13T05:00:47Z","ora":"06:00","fonte":"commit"},{"cosa":"fine corsa","quando":"2026-11-13T05:04:44Z","ora":"06:04","fonte":"commit"}],"ultime":[{"giorno":"2026-11-07","minuti":40},{"giorno":"2026-11-08","minuti":25},{"giorno":"2026-11-09","minuti":29},{"giorno":"2026-11-10","minuti":27},{"giorno":"2026-11-11","minuti":26},{"giorno":"2026-11-12","minuti":26},{"giorno":"2026-11-13","minuti":30}],"ora_uscita":"06:00"},"agenti":[{"id":"regia","nome":"Olivia","mestiere":"caporedattrice","ruolo":"la regia, al desk circolare","colore":"apple","modello":"Sonnet","minuti":30,"token_milioni":9.4,"entrata":"05:34","uscita":"06:04","chi":null,"consegna":"15 notizie in edizione; radar 2, banco 4, discussioni 3, ripescaggi 2","dettagli":[],"ti_aspetta":true,"stato":"consegnato"},{"id":"lettura","nome":"Tobia","mestiere":"lettore","ruolo":"legge gli articoli, notizia per notizia","colore":"apple","modello":"Sonnet","minuti":15,"token_milioni":8.0,"entrata":"05:35","uscita":"05:50","chi":null,"consegna":"1077 articoli letti","dettagli":["1. HomeView arriva nei negozi. Le recensioni promuovono l'oggetto e si dividono su Siri — 6 testate lette","2. Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple — 5 testate lette","3. Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi — 4 testate lette","4. Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo surround fatto di Home… — 3 testate lette","5. Il primo aggiornamento di HomeView chiude nove falle. Siri aprirà la porta solo a dicembre — 4 testate lette"],"ti_aspetta":false,"stato":"consegnato"},{"id":"redattore","nome":"Ettore","mestiere":"redattore","ruolo":"scrive la prosa dell'edizione","colore":"apple","modello":"Opus","minuti":8,"token_milioni":1.8,"entrata":"05:50","uscita":"05:58","chi":"Sei il redattore di The Morning Brief, la rassegna stampa Apple che Mike legge ogni mattina sull'iPhone. Mike lavora in un Apple Store, ma la rassegna **non si scrive dal suo punto di vista**: si scrive per chi legge e usa i prodotti, come una testata (mai «al banco», «al cliente» nella prosa: 11 novembre 2026). Scrivi la prosa: è la parte che legge davvero, e la ragione per cui questo lavoro gira su Opus.","consegna":"15 notizie scritte, 5 approfondimenti","dettagli":["HomeView arriva nei negozi, ma non in Europa","Huang lascia Nvidia: fra i nomi per il dopo, Cook e Srouji","Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno","Il punto: Da chi deve proteggerci uno schermo in cucina?"],"ti_aspetta":false,"stato":"consegnato"},{"id":"revisore","nome":"Ivo","mestiere":"revisore","ruolo":"rilegge e corregge le parole, mai i fatti","colore":"apple","modello":"Opus","minuti":1,"token_milioni":0.4,"entrata":"05:58","uscita":"05:59","chi":"Agisci come un giornalista e redattore di una testata tecnologica italiana. Il tuo compito è revisionare i testi che il redattore di The Morning Brief ha appena scritto, mantenendo uno stile umano, naturale, giornalistico e contemporaneo. **Il risultato deve sembrare scritto da un bravo giornalista italiano, non da un'intelligenza artificiale che imita il giornalismo.**","consegna":"10 testi riscritti a penna rossa","dettagli":["testo dell'approfondimento: HomeView arriva nei negozi. Le recensioni promuovono l'oggetto e si d…","titolo: Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirige…","descrizione: Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirige…","testo dell'approfondimento: Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirige…","titolo: Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno,…","testo dell'approfondimento: Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo su…","titolo: Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per…","titolo: Mount Thor raccoglie 45 milioni di dollari per data center di Mac al…"],"ti_aspetta":false,"stato":"consegnato"},{"id":"visualista","nome":"Lea","mestiere":"visualista","ruolo":"i grafici degli approfondimenti","colore":"apple","modello":"Sonnet","minuti":3,"token_milioni":0.7,"entrata":"06:00","uscita":"06:03","chi":"Sei il visualista di The Morning Brief: in questa redazione ti occupi di una cosa sola, le visualizzazioni interattive degli approfondimenti. Mike le guarda sull'iPhone (e da fine ottobre sul pieghevole) e vuole «un progetto visto anziché raccontato»: un grafico, un oggetto, una scena che con un tocco o un cursore fa capire in tre secondi quello che il testo spiega in tre righe.","consegna":"2 grafici sulle prime cinque, 3 senza","dettagli":["4. barre: Il prezzo di un salotto già Apple","5. catena: Cosa esce dal compartimento blindato"],"ti_aspetta":true,"stato":"consegnato"},{"id":"ai","nome":"Ada","mestiere":"cronista AI","ruolo":"la scheda AI: cronaca e LAB","colore":"ai","modello":"Opus","minuti":3,"token_milioni":1.8,"entrata":"05:35","uscita":"05:38","chi":"Sei il cronista della scheda AI di The Morning Brief, la rassegna che Mike legge ogni mattina sul telefono. Mike sta dietro il banco di un Apple Store: l'AI gli interessa per quello che fanno i laboratori e, soprattutto, per quello che la gente ci fa davvero. Dal 5 novembre 2026 la scheda la scrivi tu, su Opus («come scrive mi piace molto»).","consegna":"12 voci: 6 di cronaca, 6 LAB","dettagli":["Jensen Huang lascia Nvidia: Colette Kress amministratrice delegata ad interim","Google lancia Gemini 4 Hydrogen, il modello veloce che supera Argon","Muse di Meta telefona alle aziende americane al posto tuo, per chi paga","OpenAI: i modelli di punta nascondono sempre meglio il proprio ragionamento","ChatGPT, Gemini e Perplexity indicano negozi falsi a chi fa acquisti","Il villaggio maya «scoperto» da 48 agenti era già stato pubblicato un anno fa"],"ti_aspetta":false,"stato":"consegnato"},{"id":"schede","nome":"Rita","mestiere":"redattrice di Games e Scienza","ruolo":"le schede Games e Scienza","colore":"games-scienza","modello":"Opus","minuti":1,"token_milioni":0.5,"entrata":"05:50","uscita":"05:51","chi":"Sei il redattore delle schede Games e Scienza di The Morning Brief. Mike le legge la mattina sul telefono, dopo le notizie Apple. Fino al 5 novembre 2026 i titoli li traduceva Gemini dal solo sommario del feed; Mike ha chiesto che la prosa la scriva Opus («come scrive mi piace molto»). Scegli e scrivi tu.","consegna":"10 voci Games, 8 Scienza","dettagli":["Square Enix anticipa Romancing SaGa 3: Destinies United al 4 febbraio 2027","MachineGames conferma Wolfenstein 3: il gioco è in produzione","Halo: Campaign Evolved, torna la modalità Firefight con un aggiornamento gratui…","Euclid pubblica il primo grande catalogo: oltre 900 milioni di galassie","Tumore alla prostata, l'American Cancer Society raccomanda il PSA ogni due anni…","Ryugu potrebbe essere fra i primi corpi nati nel Sistema solare"],"ti_aspetta":false,"stato":"consegnato"},{"id":"gta","nome":"Vito","mestiere":"cronista di GTA VI","ruolo":"la sezione GTA VI","colore":"vice-city","modello":"Opus","minuti":2,"token_milioni":1.1,"entrata":"05:50","uscita":"05:52","chi":"Sei il cronista di GTA VI di The Morning Brief. Mike legge la rassegna ogni mattina sul telefono e GTA VI è la sua ossessione del momento: vuole **ogni giorno quello che la rete scova** — su Reddit, su X, nei forum, ufficiale e non — le chicche, le curiosità, i dettagli che solo chi gioca nota. L'esempio che ha fatto lui: «la radio di The Weeknd». Non un riassunto delle notizie dei siti: quello lo fanno già tutti.","consegna":"4 voci su GTA VI","dettagli":["A sei giorni dall'uscita la rete ha trovato la mappa piegata in una vetrina di Londra e il vero Rusty Anchor a Key Largo.","mancano 6 giorni all'uscita (2026-11-19)","La mappa di Leonida spunta piegata in una vetrina di Selfridges","Il Rusty Anchor esiste: a Key Largo il Caribbean Club ha l'insegna del gioco","Corea del Sud, i presunti atti della classificazione: «hanno chiesto le mappe p…","Copie fisiche, i primi guai: codici già riscattati o scatole senza codice"],"ti_aspetta":false,"stato":"consegnato"},{"id":"fonti","nome":"Zeno","mestiere":"archivista delle fonti","ruolo":"il controllo delle fonti, il lunedì","colore":"apple","modello":null,"minuti":null,"token_milioni":null,"entrata":null,"uscita":null,"chi":"Sei l'assistente che ogni lunedì controlla le fonti di The Morning Brief, la rassegna stampa Apple di Mike. Le istruzioni operative sono in CLAUDE.md alla radice del repository (ti arriva già nel contesto: non rileggerlo con Read); qui conta la sezione «Manutenzione delle fonti». Lavora da solo, senza chiedere conferme: nessuno legge in tempo reale. Il rapporto della settimana prima sta in docs/fonti/ (il file più recente): leggilo per sapere cosa era rimasto in sospeso e quali fonti sono in prova.","consegna":"lavora il lunedì; l'ultimo rapporto è del 2026-11-09","dettagli":[],"ti_aspetta":true,"stato":"non oggi"}],"macchine":{"telescrivente":{"articoli":1077,"ora":"05:34","finestra_ore":26.0},"feed":{"totale":92,"ok":86,"rotti":["AI Explained","Andrea Galeazzi","Anthropic cookbook","Everyeye","MKBHD","Matt Wolfe"]},"radio":{"discussioni":17,"lab":25},"telefono":{"notizie_chieste":93},"antenna":{"edizione":true}},"lavagna":[{"rank":1,"id":"homeview-arriva-recensioni","titolo":"HomeView arriva nei negozi. Le recensioni promuovono l'oggetto e si dividono su Siri","reparto":"Casa","tag":"CONFERMATO","origine":"Apple","testate":12,"approfondita":true,"visivo":null},{"rank":2,"id":"nvidia-huang-cook-srouji","titolo":"Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple","reparto":"Azienda","tag":"CONFERMATO","origine":"Nvidia","testate":68,"approfondita":true,"visivo":null},{"rank":3,"id":"iphone-duo-resi-stima-16-milioni","titolo":"Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi","reparto":"iPhone","tag":"DATI","origine":"Bloomberg Intelligence","testate":4,"approfondita":true,"visivo":null},{"rank":4,"id":"apple-tv-4k-recensioni","titolo":"Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo surround fatto di HomePod","reparto":"Casa","tag":"CONFERMATO","origine":"Apple","testate":10,"approfondita":true,"visivo":"barre"},{"rank":5,"id":"homeview-27-2-sicurezza-siri","titolo":"Il primo aggiornamento di HomeView chiude nove falle. Siri aprirà la porta solo a dicembre","reparto":"Software","tag":"CONFERMATO","origine":"Apple","testate":6,"approfondita":true,"visivo":"catena"},{"rank":6,"id":"home-collection-preordini","titolo":"Le prime telecamere e il videocitofono della Apple Home Collection si ordinano da oggi","reparto":"Casa","tag":"CONFERMATO","origine":"Apple","testate":7,"approfondita":false,"visivo":null},{"rank":7,"id":"trade-in-pieghevoli-samsung","titolo":"Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per il Fold7 fino a 410 dollari","reparto":"Mercato","tag":"CONFERMATO","origine":"Apple","testate":7,"approfondita":false,"visivo":null},{"rank":8,"id":"apple-tv-connector-brad-pitt","titolo":"Brad Pitt torna con Apple per «Connector», diretto dal regista di «Sound of Metal»","reparto":"Servizi","tag":"CONFERMATO","origine":"Deadline","testate":22,"approfondita":false,"visivo":null},{"rank":9,"id":"iphone-18-18e-a20-primavera","titolo":"Gurman: iPhone 18 e 18e arriveranno in primavera con l'A20","reparto":"iPhone","tag":"RUMOR","origine":"Bloomberg","testate":3,"approfondita":false,"visivo":null},{"rank":10,"id":"nintendo-accedi-con-apple","titolo":"Nintendo toglie «Accedi con Apple» dal Nintendo Account dal 26 gennaio 2027","reparto":"Servizi","tag":"CONFERMATO","origine":"Nintendo","testate":9,"approfondita":false,"visivo":null},{"rank":11,"id":"apple-sports-ufc","titolo":"Apple Sports aggiunge la UFC, round per round, da sabato","reparto":"Servizi","tag":"CONFERMATO","origine":"Apple","testate":8,"approfondita":false,"visivo":null},{"rank":12,"id":"mount-thor-data-center-mac","titolo":"Mount Thor raccoglie 45 milioni di dollari per data center di Mac al servizio degli agenti AI","reparto":"AI","tag":"CONTORNO","origine":"Mount Thor","testate":9,"approfondita":false,"visivo":null},{"rank":13,"id":"being-heumann-lingua-segni","titolo":"«Being Heumann» debutta su Apple TV ed è il primo film con l'interprete in lingua dei segni","reparto":"Servizi","tag":"CONFERMATO","origine":"Apple","testate":1,"approfondita":false,"visivo":null},{"rank":14,"id":"shes-fine-apple-tv","titolo":"Elizabeth Banks e Ted Danson nella nuova commedia di Apple TV, dal 27 gennaio","reparto":"Servizi","tag":"CONFERMATO","origine":"Apple","testate":22,"approfondita":false,"visivo":null},{"rank":15,"id":"elton-john-re-carlo-apple-music","titolo":"Re Carlo ospite di Elton John su Apple Music, sabato 14 novembre","reparto":"Servizi","tag":"CONFERMATO","origine":"Apple","testate":7,"approfondita":false,"visivo":null}],"schermo":{"top3":["HomeView arriva nei negozi, ma non in Europa","Huang lascia Nvidia: fra i nomi per il dopo, Cook e Srouji","Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno"],"intro":"Oggi HomeView e il nuovo Apple TV 4K arrivano nei negozi, e si aprono i preordini delle prime telecamere della Home Collection. Le recensioni promuovono l'hardware e sono più caute sul software, a cominciare da Siri AI, che in Europa non c'è e che dove c'è non sempre fa quello che promette. Intanto le dimissioni di Jensen Huang da Nvidia portano due dirigenti Apple fra i nomi per la successione.","punto":"Da chi deve proteggerci uno schermo in cucina?","citazione":{"testo":"NOW THAT Nvidia CEO JENSEN HUANG, who has done a fantastic job, has resigned, there is only one man to take his place - TIM COOK of Apple. A Legend replaces a Legend!","chi":"Donald Trump"},"prossimo":{"titolo":"HomeView","data":"2026-11-13","tipo":"lancio","notizia":"homeview-arriva-recensioni"}},"postit":[{"id":"visivi-mazzo","da":"visualista","titolo":"76 richieste di grafici nuovi, ancora aperte","testo":"La più vecchia è del 2026-10-02.","dal":"2026-10-02","giorni":42,"mazzo":76,"fonte":"data/visivi/richieste.json"},{"id":"visivi-2026-11-13-iphone-duo-resi-stima-16-milioni","da":"visualista","notizia":"iphone-duo-resi-stima-16-milioni","titolo":"Un grafico per: Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi","testo":"Due misuratori separati che si accendono uno alla volta con l'etichetta di cosa misurano davvero, per mostrare che non si combinano in un solo numero","dal":"2026-11-13","giorni":0,"fonte":"data/visivi/richieste.json"},{"id":"visivi-2026-11-13-nvidia-huang-cook-srouji","da":"visualista","notizia":"nvidia-huang-cook-srouji","titolo":"Un grafico per: Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple","testo":"Una linea che si scorre tappa per tappa, con la tappa quasi lasciava evidenziata","dal":"2026-11-13","giorni":0,"fonte":"data/visivi/richieste.json"},{"id":"visivi-2026-11-13-homeview-arriva-recensioni","da":"visualista","notizia":"homeview-arriva-recensioni","titolo":"Un grafico per: HomeView arriva nei negozi. Le recensioni promuovono l'oggetto e si dividono su Siri","testo":"Un interruttore chiuso/aperto che mostra quante app di terzi puoi aggiungere su ciascun hub","dal":"2026-11-13","giorni":0,"fonte":"data/visivi/richieste.json"},{"id":"fonti-2026-11-09-1","da":"fonti","titolo":"BGR resta troncato","testo":"BGR resta troncato (11,2 h di finestra su 26). La sitemap_index.xml provata questa settimana non è una mappa per Google News come quella di MacRumors: ha solo <loc> e <lastmod>, niente <news:title>/<news:publication_date>, quindi non entra in MAPPE senza scrivere un fetch-per-titolo apposito (fuori…","dal":"2026-11-09","giorni":4,"fonte":"docs/fonti/2026-11-09.md"},{"id":"fonti-2026-11-09-2","da":"fonti","titolo":"Apple World Today e iThinkDifferent","testo":"Apple World Today e iThinkDifferent arrivano prima di noi più di una volta a settimana (feedcheck.py --eco, vedi sotto), ma entrambi i siti hanno un certificato TLS non valido (self-signed / nome host non corrispondente): non li ho scaricati, nemmeno per verificare il feed, perché avrei dovuto disa…","dal":"2026-11-09","giorni":4,"fonte":"docs/fonti/2026-11-09.md"},{"id":"fonti-2026-11-09-3","da":"fonti","titolo":"iClarified e AppleInsider","testo":"iClarified e AppleInsider: il collaudo vero è al 19 novembre (due settimane da quando sono entrate). Oggi i numeri confermano quelli del 5 novembre (tabella sotto): nessuna azione da prendere ora, ma segnalo la scadenza perché non si perda.","dal":"2026-11-09","giorni":4,"fonte":"docs/fonti/2026-11-09.md"},{"id":"gusto-briefing","da":"regia","titolo":"Il briefing del gusto è scaduto","testo":"Ogni 14 giorni si guarda insieme cosa sta sparendo dalla rassegna e perché (taste.py report). L'ultimo è del 2026-09-14.","dal":"2026-09-28","giorni":46,"fonte":"data/taste.json"}],"revisione":{"fatta":true,"riscritti":10,"cambi":[{"dove":"homeview-arriva-recensioni/approfondimento/sotto","cosa":"testo dell'approfondimento","notizia":"HomeView arriva nei negozi. Le recensioni promuovono l'oggetto e si dividono su Siri","prima":"Le app di HomeView sono quindici, tutte di Apple. Il resto arriva dall'iPhone o dall'iPad sotto forma di widget a specchio, con un meccanismo che Engadget paragona a CarPlay. L'analogia tiene anche nei limiti: chi usa già Calendario, Promemoria e Messaggi trova tutto al suo posto, chi tiene le ricette in un'app di altri resta fuori. È successo a Jason Snell, che ha già tolto dalla cucina il suo schermo Google ma non può aprire su HomeView le ricette salvate in Mela, e che ha visto Siri mandare le richieste musicali a un'app audio non collegata finché non l'ha disinstallata.\n\nSix Colors vede in questa chiusura un pregio. Secondo Snell e Philip Michaels, HomeView funziona finché resta un oggetto semplice, e se Apple lo aprisse troppo alle app di terzi rischierebbe di diventare un altro schermo da fissare. Il mese scorso, prima del lancio, Adam Engst di TidBITS lo descriveva invece come una periferica in cerca di uno scopo, partendo da un video promozionale in cui le ricette non avevano nemmeno la lista degli ingredienti. Le prove di oggi gli danno torto sull'hardware più che sul software.\n\nApple arriva in questa categoria quasi dieci anni dopo Amazon e Google, e il codice lascia intendere che la porta non resterà chiusa a lungo: da settimane vi compare una categoria per le app conversazionali di terze parti, che per ora nessuna funzione usa. In Italia, intanto, la domanda è un'altra. HomeView arriverà quando arriverà Siri AI in Europa, e Apple per ora non ha dato una data.","dopo":"Le app di HomeView sono quindici, tutte di Apple. Il resto arriva dall'iPhone o dall'iPad sotto forma di widget a specchio, con un meccanismo che Engadget paragona a CarPlay. L'analogia tiene anche nei limiti: chi usa già Calendario, Promemoria e Messaggi trova tutto al suo posto, chi tiene le ricette in un'app di altri resta fuori. È successo a Jason Snell, che ha già tolto dalla cucina il suo schermo Google ma non può aprire su HomeView le ricette salvate in Mela, e che ha visto Siri mandare le richieste musicali a un'app audio non collegata finché non l'ha disinstallata.\n\nSix Colors vede in questa chiusura un pregio. Secondo Snell e Philip Michaels, HomeView funziona finché resta un oggetto semplice, e se Apple lo aprisse troppo alle app di terzi rischierebbe di diventare un altro schermo da fissare. Il mese scorso, prima del lancio, Adam Engst di TidBITS lo descriveva invece come una periferica in cerca di uno scopo, partendo da un video promozionale in cui le ricette non avevano nemmeno la lista degli ingredienti. Le prove di oggi gli danno torto sull'hardware più che sul software.\n\nApple arriva in questa categoria quasi dieci anni dopo Amazon e Google, e la porta potrebbe non restare chiusa a lungo: da settimane nel codice compare una categoria per le app conversazionali di terze parti, che per ora nessuna funzione usa. In Italia, intanto, la domanda è un'altra. HomeView arriverà quando arriverà Siri AI in Europa, e Apple per ora non ha dato una data."},{"dove":"nvidia-huang-cook-srouji/title","cosa":"titolo","notizia":"Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple","prima":"Huang lascia Nvidia, e fra i nomi per la successione ci sono due dirigenti Apple","dopo":"Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple"},{"dove":"nvidia-huang-cook-srouji/descrizione","cosa":"descrizione","notizia":"Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple","prima":"Il consiglio di Nvidia non ha dovuto licenziarlo: Jensen Huang si è dimesso ieri con effetto immediato, dopo settimane di rivelazioni su due relazioni extraconiugali, una con una donna che le autorità statunitensi sospettano legata allo spionaggio cinese, l'altra con una dirigente che dipendeva da lui. La direttrice finanziaria Colette Kress guida l'azienda ad interim, e Harvey Jones, ex amministratore delegato di Synopsys, diventa il primo presidente del consiglio di amministrazione nella storia di Nvidia. Il titolo, scrive iSpazio, ha perso oltre il 10% nella giornata.\n\nDue dei nomi che circolano per il dopo vengono da Apple. Donald Trump ha scritto su Truth Social che c'è «only one man to take his place - TIM COOK of Apple», e lo ha ripetuto nel podcast di Stephen A. Smith. Niente indica che Cook, presidente esecutivo di Apple dal 1° settembre, sia interessato. L'altro nome viene da Semafor: Nvidia starebbe valutando anche Johny Srouji, che ha guidato la nascita dei chip progettati da Apple.","dopo":"Jensen Huang si è dimesso ieri da Nvidia con effetto immediato, dopo settimane di rivelazioni su due relazioni extraconiugali, una con una donna che le autorità statunitensi sospettano legata allo spionaggio cinese, l'altra con una dirigente che dipendeva da lui. La direttrice finanziaria Colette Kress guida l'azienda ad interim, e Harvey Jones, ex amministratore delegato di Synopsys, diventa il primo presidente del consiglio di amministrazione nella storia di Nvidia. Il titolo, scrive iSpazio, ha perso oltre il 10% nella giornata.\n\nDue dei nomi che circolano per il dopo vengono da Apple. Donald Trump ha scritto su Truth Social che c'è «only one man to take his place - TIM COOK of Apple», e lo ha ripetuto nel podcast di Stephen A. Smith. Niente indica che Cook, presidente esecutivo di Apple dal 1° settembre, sia interessato. L'altro nome viene da Semafor: Nvidia starebbe valutando anche Johny Srouji, che ha guidato la nascita dei chip progettati da Apple."},{"dove":"nvidia-huang-cook-srouji/approfondimento/sotto","cosa":"testo dell'approfondimento","notizia":"Huang lascia Nvidia. Fra i nomi per la successione ci sono due dirigenti Apple","prima":"Srouji è entrato in Apple nel 2008 per costruire l'A4, il primo processore progettato in casa, arrivato sull'iPhone 4 nel 2010. Nel 2015 è diventato vicepresidente senior delle tecnologie hardware, dal 2021 l'intera organizzazione dell'hardware risponde a lui, e dal 1° settembre è Chief Hardware Officer: la promozione era stata annunciata ad aprile, lo stesso giorno in cui Apple indicava John Ternus come futuro amministratore delegato. Nel 2019 era già stato considerato per la guida di Intel, che poi andò a Bob Swan.\n\nNel dicembre 2025 Mark Gurman aveva raccontato che Srouji aveva detto a Cook di pensare seriamente a un'uscita, e che Cook aveva provato a trattenerlo con più compensi e più responsabilità; ai suoi collaboratori Srouji aveva poi detto che non pensava di andarsene a breve. La promozione di aprile si legge anche così. Non tutti lo vedono adatto a Nvidia: Jeff Benjamin, su 9to5Mac, ricorda che Huang era anche il volto pubblico e il venditore dell'azienda, un ruolo che Srouji non ha mai avuto, avendo lavorato sempre dentro il sistema chiuso di Apple.\n\nSu Cook il discorso è diverso. Trump lo ha proposto due volte, e The Verge ricorda i precedenti fra i due, dalla statuetta d'oro a 24 carati regalata da Cook l'anno scorso al post in cui Trump raccontava di essere stato chiamato dal capo di Apple dopo l'annuncio della successione. Per ora nessun segnale dice che Cook voglia il posto, e su Hacker News il thread dedicato alla proposta ha raccolto più ironia che discussione.","dopo":"Srouji è entrato in Apple nel 2008 per costruire l'A4, il primo processore progettato in casa, arrivato sull'iPhone 4 nel 2010. Nel 2015 è diventato vicepresidente senior delle tecnologie hardware, dal 2021 l'intera organizzazione dell'hardware risponde a lui, e dal 1° settembre è Chief Hardware Officer: la promozione era stata annunciata ad aprile, lo stesso giorno in cui Apple indicava John Ternus come futuro amministratore delegato. Nel 2019 era già stato considerato per la guida di Intel, che poi andò a Bob Swan.\n\nNel dicembre 2025 Mark Gurman aveva raccontato che Srouji aveva detto a Cook di pensare seriamente a un'uscita, e che Cook aveva provato a trattenerlo con più compensi e più responsabilità; ai suoi collaboratori Srouji aveva poi detto che non pensava di andarsene a breve. Anche la promozione di aprile si può leggere in questa luce. Non tutti lo vedono adatto a Nvidia: Jeff Benjamin, su 9to5Mac, ricorda che Huang era anche il volto pubblico e il venditore dell'azienda, un ruolo che Srouji non ha mai avuto, avendo lavorato sempre dentro il sistema chiuso di Apple.\n\nSu Cook il discorso è diverso. Trump lo ha proposto due volte, e The Verge ricorda i precedenti fra i due, dalla statuetta d'oro a 24 carati regalata da Cook l'anno scorso al post in cui Trump raccontava di essere stato chiamato dal capo di Apple dopo l'annuncio della successione. Per ora nessun segnale dice che Cook voglia il posto, e su Hacker News il thread dedicato alla proposta ha raccolto più ironia che discussione."},{"dove":"iphone-duo-resi-stima-16-milioni/title","cosa":"titolo","notizia":"Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi","prima":"Bloomberg Intelligence alza a 16 milioni le vendite di iPhone Duo nel primo anno, nonostante i resi","dopo":"Bloomberg Intelligence stima 16 milioni di iPhone Duo nel primo anno, nonostante i resi"},{"dove":"apple-tv-4k-recensioni/approfondimento/sotto","cosa":"testo dell'approfondimento","notizia":"Il nuovo Apple TV 4K alla prova: Siri senza telecomando e il primo surround fatto di HomePod","prima":"Sul prezzo le recensioni fanno confronti diversi, e conviene tenerli separati. PCMag parla di 170 dollari in più rispetto al lancio del 2022, quando il modello base costava 129 dollari. MacRumors scrive che costa il doppio di quanto costava il modello precedente un anno fa. In mezzo c'è il rincaro di luglio, quando il modello del 2022 era passato da 129 a 199 dollari e da 149 a 249, come aveva segnalato Engadget.\n\nPCMag gli ha dato il suo Editors' Choice come miglior lettore multimediale di fascia alta, mettendolo accanto al Roku Ultra, al Fire TV Cube e alle chiavette da 60-70 dollari. The Verge è più cauta: è una buona scelta per chi è dentro l'ecosistema Apple ed è disposto a spendere, molto meno per tutti gli altri. Lo stesso 9to5Mac, che lo giudica il migliore della categoria, lo considera soprattutto un acquisto per i prossimi anni di tvOS.\n\nLe condizioni spiegano la cautela. Per usare Siri AI chi configura l'Apple TV deve avere un iPhone o un iPad compatibile, e ogni persona della casa il suo, se vuole i consigli personali. Il surround chiede quattro HomePod di seconda generazione o HomePod mini 2. La ricerca precisa del telecomando funziona con iPhone Air, Duo e iPhone 17 o successivi, ma non con il 17e.","dopo":"Sul prezzo le recensioni fanno confronti diversi, che vanno tenuti distinti. PCMag parla di 170 dollari in più rispetto al lancio del 2022, quando il modello base costava 129 dollari. MacRumors scrive che costa il doppio di quanto costava il modello precedente un anno fa. In mezzo c'è il rincaro di luglio, quando il modello del 2022 era passato da 129 a 199 dollari e da 149 a 249, come aveva segnalato Engadget.\n\nPCMag gli ha dato il suo Editors' Choice come miglior lettore multimediale di fascia alta, mettendolo accanto al Roku Ultra, al Fire TV Cube e alle chiavette da 60-70 dollari. The Verge è più cauta: è una buona scelta per chi è dentro l'ecosistema Apple ed è disposto a spendere, molto meno per tutti gli altri. Lo stesso 9to5Mac, che lo giudica il migliore della categoria, lo considera soprattutto un acquisto per i prossimi anni di tvOS.\n\nLe condizioni spiegano la cautela. Per usare Siri AI chi configura l'Apple TV deve avere un iPhone o un iPad compatibile, e ogni persona della casa il suo, se vuole i consigli personali. Il surround chiede quattro HomePod di seconda generazione o HomePod mini 2. La ricerca precisa del telecomando funziona con iPhone Air, Duo e iPhone 17 o successivi, ma non con il 17e."},{"dove":"trade-in-pieghevoli-samsung/title","cosa":"titolo","notizia":"Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per il Fold7 fino a 410 dollari","prima":"Apple accetta per la prima volta i pieghevoli Samsung in permuta, fino a 410 dollari per il Fold7","dopo":"Apple accetta per la prima volta i pieghevoli Samsung in permuta. Per il Fold7 fino a 410 dollari"},{"dove":"mount-thor-data-center-mac/title","cosa":"titolo","notizia":"Mount Thor raccoglie 45 milioni di dollari per data center di Mac al servizio degli agenti AI","prima":"Mount Thor raccoglie 45 milioni di dollari per data center fatti di Mac, al servizio degli agenti AI","dopo":"Mount Thor raccoglie 45 milioni di dollari per data center di Mac al servizio degli agenti AI"},{"dove":"intro","cosa":"il quadro della giornata","notizia":null,"prima":"Oggi Apple entra in casa: HomeView e il nuovo Apple TV 4K arrivano nei negozi, e si aprono i preordini delle prime telecamere della Home Collection. Le recensioni raccontano un hardware riuscito e un software che deve ancora crescere, a cominciare da Siri AI, che in Europa non c'è e che dove c'è non sempre fa quello che promette. Fuori da Cupertino, l'uscita di Jensen Huang porta il nome di due dirigenti Apple nella corsa alla guida di Nvidia.","dopo":"Oggi HomeView e il nuovo Apple TV 4K arrivano nei negozi, e si aprono i preordini delle prime telecamere della Home Collection. Le recensioni promuovono l'hardware e sono più caute sul software, a cominciare da Siri AI, che in Europa non c'è e che dove c'è non sempre fa quello che promette. Intanto le dimissioni di Jensen Huang da Nvidia portano due dirigenti Apple fra i nomi per la successione."},{"dove":"editoriale","cosa":"«Il punto»","notizia":null,"prima":"Da chi deve proteggerci uno schermo in cucina?\n\nDa oggi HomeView entra nelle case di otto paesi. Riconosce fino a sei persone dal volto e dalla voce, e per farlo la sua fotocamera guarda sempre. Ieri Apple ha spiegato dove finiscono quelle immagini: in un compartimento chiuso del processore, da cui al resto del sistema arrivano solo un nome, una posizione e un grado di certezza. Negli stessi giorni si aprono i preordini delle telecamere della Home Collection, con video cifrati che, dice Apple, né lei né LG possono vedere.\n\nÈ una protezione costruita con cura contro chi sta fuori: un'app, un attaccante, l'azienda stessa. La recensione di The Verge racconta però un problema che nasce dentro casa. Su uno schermo condiviso compaiono messaggi e calendari personali, e l'autrice poteva leggere quelli della figlia quindicenne, che ha risolto la questione dicendo che usa solo il suo iPhone. Il riconoscimento serve proprio a mostrare a ciascuno le sue cose. Resta da capire quanto sia facile, in una cucina, vedere quelle degli altri.\n\nPer ora sapere chi ha davanti non basta nemmeno a Siri, che non apre la porta a voce: Apple promette di farlo a dicembre. È facile aspettarsi che ogni aggiornamento allarghi quello che lo schermo fa per conto di chi riconosce. Ogni famiglia dovrà decidere quanto di sé lasciare su un oggetto che non appartiene a nessuno in particolare, e la configurazione, il primo giorno, è il momento più semplice per farlo.","dopo":"Da chi deve proteggerci uno schermo in cucina?\n\nDa oggi HomeView entra nelle case di otto paesi. Riconosce fino a sei persone dal volto e dalla voce, e per farlo la sua fotocamera guarda sempre. Ieri Apple ha spiegato dove finiscono quelle immagini: in un compartimento chiuso del processore, da cui al resto del sistema arrivano solo un nome, una posizione e un grado di certezza. Negli stessi giorni si aprono i preordini delle telecamere della Home Collection, con video cifrati che, dice Apple, né lei né LG possono vedere.\n\nÈ una protezione costruita con cura contro chi sta fuori: un'app, un attaccante, l'azienda stessa. La recensione di The Verge racconta però un problema che nasce dentro casa. Su uno schermo condiviso compaiono messaggi e calendari personali, e l'autrice poteva leggere quelli della figlia quindicenne, che ha risolto la questione dicendo che usa solo il suo iPhone. Il riconoscimento serve proprio a mostrare a ciascuno le sue cose. Resta da capire quanto sia facile, in una cucina, vedere quelle degli altri.\n\nPer ora sapere chi ha davanti non basta nemmeno a Siri, che non apre la porta a voce: Apple promette di farlo a dicembre. È facile aspettarsi che ogni aggiornamento allarghi quello che lo schermo fa per conto di chi riconosce. Ogni famiglia dovrà decidere quanto di sé lasciare su un oggetto che non appartiene a nessuno in particolare, e conviene pensarci già al momento della configurazione."}],"ricostruito":null},"letture":[{"giorno":"2026-11-07","viste":51,"aperte":5},{"giorno":"2026-11-08","viste":50,"aperte":2},{"giorno":"2026-11-09","viste":6,"aperte":3},{"giorno":"2026-11-10","viste":54,"aperte":5},{"giorno":"2026-11-11","viste":54,"aperte":7},{"giorno":"2026-11-12","viste":54,"aperte":1}],"gta":{"uscita":"2026-11-19","giorni":6}};
+const GIORNI = ['DOM', 'LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB'];
+const GIORNI_LUNGHI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+const giornoDi = iso => new Date(iso + 'T12:00:00');
+const AGENTI = Object.fromEntries(STATO.agenti.map(a => [a.id, a]));
+const USCITA = (STATO.corsa && STATO.corsa.ora_uscita) || '06:00';
+const PROSSIMA = [6, 0];   // l'ora (di Roma) a cui punta il conto alla rovescia
+const corto = (t, n) => { t = (t || '').split(/[.:,;]/)[0].trim(); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(' ') > 8 ? c.lastIndexOf(' ') : n) + '…'; };
 
 const C = { bone: '#EDEAE3', paper: '#F8F6F2', ink: '#17181B', ink2: '#4B4D53', ink3: '#7C7F87',
   yellow: '#F5C518', orange: '#F0821E', red: '#E01F3D', blue: '#0E9CD8' };
@@ -260,22 +255,6 @@ function avvia() {
       x.fillStyle = C.ink3; x.font = `600 14px ${SISTEMA}`; x.textAlign = 'center'; x.fillText(titolo, w / 2, 65); x.textAlign = 'left';
     };
   }
-  const texMonitorEttore = tela(640, 400, (x, w, h) => {
-    finestra('edizione del 13 novembre')(x, w, h);
-    x.fillStyle = C.orange; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('CASA · IN APERTURA', 48, 112); spazia(x, 0, 1);
-    x.fillStyle = C.ink; x.font = `800 34px ${SISTEMA}`;
-    let y = 154; aCapo(x, DATI.menabo[0].t, w - 96, 3).forEach(r => { x.fillText(r, 48, y); y += 41; });
-    x.fillStyle = '#C9C5BB'; for (let i = 0; i < 4 && y + i * 24 < h - 34; i++) x.fillRect(48, y + 2 + i * 24, i === 3 ? 260 : w - 96, 10);
-  });
-  const texMonitorIvo = tela(640, 400, (x, w, h) => {
-    finestra('revisione · 10 testi riscritti')(x, w, h);
-    const c = DATI.persone.ivo.cambi[1];
-    x.fillStyle = C.ink3; x.font = `500 25px ${SISTEMA}`; let y = 118;
-    aCapo(x, c.prima, w - 96, 3).forEach(r => { x.fillText(r, 48, y); const m = x.measureText(r).width;
-      x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); x.moveTo(46, y - 8); x.lineTo(50 + m, y - 9); x.stroke(); y += 33; });
-    y += 20; x.fillStyle = C.ink; x.font = `800 30px ${SISTEMA}`;
-    aCapo(x, c.dopo, w - 96, 4).forEach(r => { x.fillText(r, 48, y); y += 37; });
-  });
 
   function foglio(seme, pulito = false) {   // una bozza stampata; quelle di Ivo hanno le correzioni a penna rossa
     return tela(300, 420, (x, w, h) => {
@@ -291,84 +270,6 @@ function avvia() {
       if (!pulito) { x.strokeStyle = C.red; x.lineWidth = 3; x.beginPath(); x.ellipse(120, 48, 108, 30, -0.04, 0, 6.6); x.stroke(); }
     });
   }
-
-  /* La lavagna: uno studio in corso, scritto a mano. Ogni numero è vero. */
-  const texLavagna = tela(1400, 820, (x, w, h) => {
-    const caso = casuale(41), VERDE = '#1F7A3F';
-    x.fillStyle = '#FCFCFA'; x.fillRect(0, 0, w, h);
-    x.lineCap = 'round'; x.lineJoin = 'round';
-    for (let i = 0; i < 9; i++) { x.strokeStyle = 'rgba(40,50,70,.035)'; x.lineWidth = 26 + caso() * 30; x.beginPath();   // le cancellature di ieri
-      const a = caso() * w, b = caso() * h; x.moveTo(a, b); x.lineTo(a + 120 + caso() * 260, b + (caso() - 0.5) * 80); x.stroke(); }
-    const tratto = (pts, col = C.ink, lw = 4) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath();
-      pts.forEach(([a, b], i) => { const dx = (caso() - 0.5) * 2.4, dy = (caso() - 0.5) * 2.4; if (i) x.lineTo(a + dx, b + dy); else x.moveTo(a + dx, b + dy); }); x.stroke(); };
-    const scrivi = (t, a, b, px, col = C.ink, f = A_MANO, rot = 0) => { x.save(); x.translate(a, b); x.rotate(rot); x.fillStyle = col; x.font = `700 ${px}px ${f}`; x.fillText(t, 0, 0); x.restore(); };
-    const freccia = (a, b, c, d, col = C.ink) => { tratto([[a, b], [c, d]], col, 4); const an = Math.atan2(d - b, c - a);
-      tratto([[c - 16 * Math.cos(an - 0.5), d - 16 * Math.sin(an - 0.5)], [c, d], [c - 16 * Math.cos(an + 0.5), d - 16 * Math.sin(an + 0.5)]], col, 4); };
-    const cerchio = (cx, cy, rx, ry, col = C.red, lw = 5) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath(); x.ellipse(cx, cy, rx, ry, -0.03, 0.25, 6.85); x.stroke(); };
-
-    // in alto a sinistra: il giorno e l'uscita
-    scrivi('VEN 13', 40, 84, 70, C.ink, PENNARELLO, -0.02);
-    tratto([[40, 98], [120, 104], [200, 97], [262, 103]], C.red, 5);
-    scrivi('uscita alle 6:00', 290, 62, 34, VERDE); scrivi('✓', 520, 66, 44, VERDE, PENNARELLO);
-
-    // a sinistra: l'apertura, con una correzione di Ivo
-    scrivi('APERTURA', 40, 168, 40, C.blue, PENNARELLO);
-    DATI.menabo.forEach((n, i) => { scrivi((i + 1) + '.', 44, 222 + i * 50, 34, C.ink3); scrivi(n.breve, 86, 222 + i * 50, 36, C.ink); });
-    cerchio(232, 210, 214, 31); scrivi('!!', 456, 224, 44, C.red, PENNARELLO);
-    scrivi('«alza a»', 96, 500, 30, C.ink2); tratto([[92, 490], [150, 487], [214, 491]], C.red, 5);
-    scrivi('→ «stima»', 232, 500, 30, C.red); scrivi('(Ivo)', 392, 500, 26, C.ink3);
-    freccia(120, 468, 104, 340, C.red);
-
-    // al centro in alto: i minuti della corsa, a barre
-    scrivi('LA CORSA', 610, 74, 38, C.blue, PENNARELLO); scrivi('minuti', 790, 72, 28, C.ink3);
-    const bx = 620, by = 330, bw = 44, sc = 4.4;
-    tratto([[bx - 14, 96], [bx - 14, by], [bx + 392, by]], C.ink, 4);
-    x.setLineDash([12, 10]); tratto([[bx - 14, by - DATI.corsa.tetto * sc], [bx + 392, by - DATI.corsa.tetto * sc]], C.red, 3); x.setLineDash([]);
-    scrivi('tetto 45', bx + 290, by - DATI.corsa.tetto * sc - 10, 26, C.red);
-    DATI.corsa.ultime.forEach((m, i) => { const a = bx + i * 56, alto = m * sc, oggi = i === DATI.corsa.ultime.length - 1;
-      x.strokeStyle = oggi ? C.orange : C.ink2; x.lineWidth = 3;
-      for (let k = 0; k < alto; k += 9) { x.beginPath(); x.moveTo(a + 2, by - k - 3); x.lineTo(a + bw - 2, by - Math.min(alto, k + 8) - 1); x.stroke(); }
-      tratto([[a, by], [a, by - alto], [a + bw, by - alto], [a + bw, by]], oggi ? C.orange : C.ink, 4);
-      scrivi(String(m), a + 6, by - alto - 10, 28, oggi ? C.orange : C.ink); scrivi(DATI.corsa.giorni[i], a + 12, by + 34, 28, C.ink3); });
-
-    // in alto a destra: due foto appuntate
-    const foto = (a, b, rot, col, sotto, disegno) => { x.save(); x.translate(a, b); x.rotate(rot);
-      x.shadowColor = 'rgba(0,0,0,.18)'; x.shadowBlur = 10; x.shadowOffsetY = 4; x.fillStyle = '#fff'; x.fillRect(-82, -92, 164, 200); x.shadowColor = 'transparent';
-      x.fillStyle = col; x.fillRect(-70, -80, 140, 138); disegno(); scrivi(sotto, -66, 96, 26, C.ink);
-      x.fillStyle = 'rgba(245,197,24,.75)'; x.fillRect(-30, -104, 60, 22); x.restore(); };
-    foto(1110, 170, -0.06, '#DCEAF2', 'HomeView', () => { x.fillStyle = C.ink; rr(x, -48, -58, 96, 70, 8); x.fill(); x.fillStyle = '#7CC6F2'; rr(x, -42, -52, 84, 58, 5); x.fill();
-      x.fillStyle = '#C9CCD1'; x.beginPath(); x.arc(0, 44, 32, PI, 0); x.fill(); x.fillRect(-5, 10, 10, 12); });
-    foto(1290, 196, 0.05, '#E9F0D8', 'Nvidia', () => { x.fillStyle = '#2F7A3F'; rr(x, -38, -50, 76, 76, 6); x.fill(); x.fillStyle = '#8FCB6B'; rr(x, -22, -34, 44, 44, 4); x.fill();
-      x.strokeStyle = C.ink; x.lineWidth = 4; for (let i = -3; i <= 3; i++) { x.beginPath(); x.moveTo(i * 11, -50); x.lineTo(i * 11, -62); x.moveTo(i * 11, 26); x.lineTo(i * 11, 38); x.stroke(); } });
-    freccia(1010, 214, 470, 206, C.ink3);
-
-    // in basso a sinistra: chi passa le carte a chi, con gli orari veri
-    const riquadro = (a, b, l, t, col = C.ink) => { tratto([[a, b], [a + l, b], [a + l, b + 62], [a, b + 62], [a, b]], col, 4); scrivi(t, a + 14, b + 42, 30, col); };
-    scrivi('STAMATTINA', 40, 590, 36, C.blue, PENNARELLO);
-    riquadro(40, 616, 128, 'Tobia'); riquadro(214, 616, 136, 'Ettore'); riquadro(396, 616, 96, 'Ivo', C.red);
-    freccia(172, 647, 208, 647); freccia(354, 647, 390, 647); freccia(496, 647, 540, 647, VERDE);
-    scrivi('5:35', 66, 712, 26, C.ink3); scrivi('5:50', 248, 712, 26, C.ink3); scrivi('5:58', 414, 712, 26, C.ink3);
-    scrivi('ESCE', 548, 642, 30, VERDE, PENNARELLO); scrivi('6:00', 548, 674, 30, VERDE, PENNARELLO);
-    tratto([[40, 734], [300, 740], [520, 733]], C.ink3, 3);
-    scrivi('Ada · Rita · Vito intanto, in parallelo', 46, 776, 28, C.ink2);
-
-    // al centro in basso: cosa ha aperto Mike
-    scrivi('LETTE DA MIKE', 640, 440, 38, C.blue, PENNARELLO); scrivi('voci aperte per edizione', 640, 474, 26, C.ink3);
-    tratto([[640, 730], [1000, 733]], C.ink, 4);
-    DATI.letture.forEach(([g, n], i) => { const a = 668 + i * 58;
-      for (let k = 0; k < n; k++) { x.fillStyle = n === 7 ? C.orange : C.ink; x.beginPath(); x.arc(a, 708 - k * 30, 11, 0, 7); x.fill(); }
-      scrivi(g, a - 9, 768, 28, C.ink3); });
-    cerchio(668 + 4 * 58, 618, 30, 116, C.red, 4); scrivi('7!', 936, 524, 36, C.red, PENNARELLO); scrivi('solo 1 ?', 990, 704, 28, C.red);
-
-    // a destra in basso: i post-it
-    const postit = (a, b, rot, col, righe) => { x.save(); x.translate(a, b); x.rotate(rot); x.shadowColor = 'rgba(0,0,0,.2)'; x.shadowBlur = 9; x.shadowOffsetY = 4;
-      x.fillStyle = col; x.fillRect(-78, -78, 156, 156); x.shadowColor = 'transparent'; x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(-78, -78, 156, 20);
-      righe.forEach((r, i) => scrivi(r, -66, -22 + i * 36, 30, C.ink)); x.restore(); };
-    postit(1132, 470, -0.05, '#FFE45C', [DATI.richiesteLea + ' richieste', 'di Lea !!']);
-    postit(1304, 492, 0.06, '#FF9DB0', ['GTA VI', '− ' + DATI.gtaGiorni + ' giorni']);
-    postit(1126, 668, 0.04, '#8FD3F4', [DATI.feedMuti + ' feed', 'muti']);
-    postit(1300, 684, -0.04, '#FFB46B', ['lunedì:', 'le fonti', '(Zeno)']);
-  });
 
   /* La storia di Apple, in sei manifesti disegnati da noi. */
   const sotto = (x, anno, riga, chiaro) => { x.fillStyle = chiaro ? '#FFFFFF' : C.ink; x.font = `800 58px ${DISPLAY}`; x.fillText(anno, 26, 462);
@@ -477,6 +378,226 @@ function avvia() {
   }
   const cieli = { alba: cielo('alba'), giorno: cielo('giorno'), sera: cielo('sera'), notte: cielo('notte') };
 
+  const OGGI = giornoDi(STATO.giorno), DATA_LUNGA = OGGI.toLocaleDateString('it-IT', { day: 'numeric', month: 'long' });
+  const TITOLI = STATO.revisione && STATO.revisione.fatta ? STATO.revisione.cambi.filter(c => c.cosa === 'titolo') : [];
+  const unaRiga = (x, t, maxW) => { t = t || ''; if (x.measureText(t).width <= maxW) return t; while (t.length > 4 && x.measureText(t + '…').width > maxW) t = t.slice(0, -1); return t.trimEnd() + '…'; };
+  function texSchermo(a) {   // lo schermo di ciascuno: quello che ha consegnato stamattina
+    return tela(640, 400, (x, w, h) => {
+      if (a.id === 'gta') {   // Vice City, e quanti giorni mancano all'uscita
+        const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#2B1055'); g.addColorStop(0.55, '#FF5DA2'); g.addColorStop(1, '#FFB347'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+        x.fillStyle = '#FFE066'; x.beginPath(); x.arc(w / 2, 300, 110, PI, 0); x.fill(); x.fillStyle = '#1B0B3A'; x.fillRect(0, 300, w, 100);
+        x.fillStyle = '#FFFFFF'; x.font = `800 86px ${DISPLAY}`; x.textAlign = 'center'; x.fillText('GTA VI', w / 2, 112);
+        if (STATO.gta) { x.fillStyle = '#3FE0D0'; x.font = `800 60px ${DISPLAY}`; x.fillText(STATO.gta.giorni > 0 ? '− ' + STATO.gta.giorni + ' GIORNI' : 'È USCITO', w / 2, 372); }
+        x.textAlign = 'left'; return; }
+      const L0 = STATO.lavagna[0];
+      if (a.id === 'redattore' && L0) {
+        finestra('edizione del ' + DATA_LUNGA)(x, w, h);
+        x.fillStyle = C.orange; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText((L0.reparto || '').toUpperCase() + ' · IN APERTURA', 48, 112); spazia(x, 0, 1);
+        x.fillStyle = C.ink; x.font = `800 34px ${SISTEMA}`; let y = 154; aCapo(x, L0.titolo, w - 96, 3).forEach(r => { x.fillText(r, 48, y); y += 41; });
+        x.fillStyle = '#C9C5BB'; for (let i = 0; i < 4 && y + i * 24 < h - 34; i++) x.fillRect(48, y + 2 + i * 24, i === 3 ? 260 : w - 96, 10);
+        return; }
+      if (a.id === 'revisore' && TITOLI.length) {
+        finestra('revisione · ' + STATO.revisione.riscritti + ' testi riscritti')(x, w, h); const c = TITOLI[0];
+        x.fillStyle = C.ink3; x.font = `500 25px ${SISTEMA}`; let y = 118;
+        aCapo(x, c.prima, w - 96, 3).forEach(r => { x.fillText(r, 48, y); const m = x.measureText(r).width; x.strokeStyle = C.red; x.lineWidth = 3.5; x.beginPath(); x.moveTo(46, y - 8); x.lineTo(50 + m, y - 9); x.stroke(); y += 33; });
+        y += 20; x.fillStyle = C.ink; x.font = `800 30px ${SISTEMA}`; aCapo(x, c.dopo, w - 96, 4).forEach(r => { x.fillText(r, 48, y); y += 37; });
+        return; }
+      finestra(a.mestiere)(x, w, h);
+      const tinta = { ai: C.red, schede: '#7B4BE0', visualista: C.blue, lettura: C.blue }[a.id] || C.orange;
+      x.fillStyle = tinta; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.08, 24); x.fillText(unaRiga(x, (a.consegna || a.ruolo || '').toUpperCase(), w - 96), 48, 112); spazia(x, 0, 1);
+      let y = 156;
+      if (a.id === 'visualista') { [70, 118, 92, 150, 104].forEach((alto, i) => { x.fillStyle = [C.blue, C.yellow, C.orange, C.red, C.blue][i]; x.fillRect(52 + i * 40, 320 - alto, 28, alto); }); x.fillStyle = C.ink; x.fillRect(48, 320, 210, 4); }
+      const x0 = a.id === 'visualista' ? 290 : 48;
+      x.font = `600 23px ${SISTEMA}`;
+      (a.dettagli || []).slice(0, a.id === 'visualista' ? 3 : 5).forEach(d => { x.fillStyle = tinta; x.beginPath(); x.arc(x0 + 7, y - 8, 6, 0, 7); x.fill();
+        x.fillStyle = C.ink; aCapo(x, d, w - x0 - 70, 2).forEach(r => { x.fillText(r, x0 + 24, y); y += 28; }); y += 10; });
+    });
+  }
+
+  // i tre schermi della regia che si vedono di fronte: l'edizione, la corsa, le macchine
+  const minutiDi = o => { const [h, m] = (o || '0:0').split(':').map(Number); return h * 60 + m; };
+  const oraCorta = o => (o || '').replace(/^0/, '');
+  const TINTA = { regia: C.orange, lettura: C.blue, redattore: C.orange, revisore: C.red, visualista: C.yellow, ai: C.red, schede: '#7B4BE0', gta: '#FF5DA2', fonti: '#2F7A4C' };
+  const texRegia = [
+    tela(640, 400, (x, w, h) => { finestra('l\'edizione del ' + DATA_LUNGA)(x, w, h);
+      x.fillStyle = C.orange; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.08, 24); x.fillText(STATO.lavagna.length + ' NOTIZIE · USCITA ALLE ' + oraCorta(USCITA), 48, 112); spazia(x, 0, 1);
+      let y = 156; (STATO.schermo.top3 || []).slice(0, 3).forEach((t, i) => { x.fillStyle = C.orange; x.font = `800 40px ${DISPLAY}`; x.fillText(String(i + 1), 48, y + 8);
+        x.fillStyle = C.ink; x.font = `700 24px ${SISTEMA}`; aCapo(x, t, w - 150, 2).forEach(r => { x.fillText(r, 84, y); y += 30; }); y += 16; }); }),
+    tela(640, 400, (x, w, h) => { finestra('la corsa · ' + STATO.corsa.minuti + ' minuti')(x, w, h);
+      const righe = STATO.agenti.filter(a => a.entrata && a.uscita && a.id !== 'regia'), t0 = minutiDi(STATO.corsa.ora_inizio), t1 = Math.max(t0 + 1, minutiDi(STATO.corsa.ora_fine));
+      const X = t => 170 + (w - 230) * Math.max(0, Math.min(1, (minutiDi(t) - t0) / (t1 - t0))), passo = Math.min(38, 270 / Math.max(1, righe.length));
+      x.strokeStyle = '#D7D2C7'; x.lineWidth = 2; for (let m = t0; m <= t1; m += 5) { const a = 170 + (w - 230) * (m - t0) / (t1 - t0); x.beginPath(); x.moveTo(a, 92); x.lineTo(a, 96 + passo * righe.length); x.stroke(); }
+      righe.forEach((a, i) => { const y = 100 + i * passo; x.fillStyle = C.ink; x.font = `600 20px ${SISTEMA}`; x.fillText(a.nome, 48, y + passo * 0.62);
+        x.fillStyle = TINTA[a.id] || C.orange; rr(x, X(a.entrata), y + 5, Math.max(10, X(a.uscita) - X(a.entrata)), passo - 12, 6); x.fill(); });
+      const xu = X(USCITA); x.strokeStyle = C.red; x.lineWidth = 3; x.beginPath(); x.moveTo(xu, 86); x.lineTo(xu, 100 + passo * righe.length); x.stroke();
+      x.fillStyle = C.red; x.font = `800 18px ${DISPLAY}`; x.textAlign = 'center'; x.fillText('ESCE ' + oraCorta(USCITA), xu, 384); x.textAlign = 'left'; }),
+    tela(640, 400, (x, w, h) => { finestra('le macchine')(x, w, h); const m = STATO.macchine || {};
+      [[m.telescrivente && m.telescrivente.articoli, 'articoli arrivati', C.orange], [m.feed && (m.feed.ok + '/' + m.feed.totale), 'fonti che rispondono', C.blue],
+        [m.radio && m.radio.discussioni, 'discussioni raccolte', C.red], [m.radio && m.radio.lab, 'voci per il LAB', C.ink]].forEach(([n, cosa, col], i) => {
+        const a = 48 + (i % 2) * 280, b = 170 + Math.floor(i / 2) * 130; x.fillStyle = col; x.font = `800 78px ${DISPLAY}`; x.fillText(n == null ? '–' : String(n), a, b);
+        x.fillStyle = C.ink2; x.font = `500 21px ${SISTEMA}`; x.fillText(cosa, a, b + 32); }); }),
+  ];
+  const texLista = tela(240, 330, (x, w, h) => {   // la tavoletta di Olivia: la scaletta, con le spunte
+    x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, w, h); x.fillStyle = C.orange; x.fillRect(0, 0, w, 44);
+    STATO.lavagna.slice(0, 7).forEach((n, i) => { const y = 82 + i * 36; x.strokeStyle = '#1F7A3F'; x.lineWidth = 6; x.lineCap = 'round'; x.beginPath(); x.moveTo(20, y - 8); x.lineTo(30, y + 2); x.lineTo(46, y - 18); x.stroke();
+      x.fillStyle = '#B9B6AE'; x.fillRect(62, y - 12, 90 + ((i * 53) % 70), 10); });
+  });
+
+  /* La lavagna: uno studio in corso, scritto a mano. Ogni numero è vero, e viene dallo stato del giorno. */
+  const INIZIALI = 'DLMMGVS';
+  function ritocco(prima, dopo) {   // le parole cambiate fra due versioni di un titolo
+    const a = prima.split(' '), b = dopo.split(' '); let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++;
+    let j = 0; while (j < a.length - i && j < b.length - i && a[a.length - 1 - j] === b[b.length - 1 - j]) j++;
+    let da = a.slice(i, a.length - j), ad = b.slice(i, b.length - j);
+    if (!da.length || !ad.length) { da = a.slice(Math.max(0, i - 1), a.length - j + 1); ad = b.slice(Math.max(0, i - 1), b.length - j + 1); }
+    const stringi = p => p.length > 3 ? p.slice(0, 3).join(' ') + '…' : p.join(' ');
+    return [stringi(da), stringi(ad)];
+  }
+  function disegnino(x, reparto) {   // un disegno per reparto, per le foto appuntate (140 × 138, centrato)
+    const k = (reparto || '').toLowerCase(); x.lineCap = 'round'; x.lineJoin = 'round';
+    if (k === 'casa') { x.fillStyle = C.ink; rr(x, -48, -58, 96, 70, 8); x.fill(); x.fillStyle = '#7CC6F2'; rr(x, -42, -52, 84, 58, 5); x.fill();
+      x.fillStyle = '#C9CCD1'; x.beginPath(); x.arc(0, 44, 32, PI, 0); x.fill(); x.fillRect(-5, 10, 10, 12); }
+    else if (k === 'iphone' || k === 'ipad') { const l = k === 'ipad' ? 84 : 56; x.fillStyle = C.ink; rr(x, -l / 2, -60, l, 110, 12); x.fill(); x.fillStyle = '#F2A65A'; rr(x, -l / 2 + 6, -54, l - 12, 98, 7); x.fill();
+      x.fillStyle = C.ink; rr(x, -10, -51, 20, 7, 3.5); x.fill(); }
+    else if (k === 'mac') { x.fillStyle = C.ink; rr(x, -50, -48, 100, 68, 7); x.fill(); x.fillStyle = '#9CCBE8'; rr(x, -44, -42, 88, 56, 4); x.fill(); x.fillStyle = '#C9CCD1'; rr(x, -62, 22, 124, 10, 5); x.fill(); }
+    else if (k === 'watch') { x.fillStyle = '#8A8D93'; rr(x, -18, -64, 36, 122, 8); x.fill(); x.fillStyle = C.ink; rr(x, -30, -36, 60, 68, 16); x.fill(); x.fillStyle = C.red; x.beginPath(); x.arc(0, -2, 16, 0, 7); x.fill(); }
+    else if (k === 'mercato') { x.strokeStyle = C.ink; x.lineWidth = 5; x.beginPath(); x.moveTo(-52, -56); x.lineTo(-52, 44); x.lineTo(56, 44); x.stroke();
+      x.strokeStyle = '#1F7A3F'; x.lineWidth = 7; x.beginPath(); x.moveTo(-40, 24); x.lineTo(-12, -4); x.lineTo(6, 12); x.lineTo(46, -40); x.stroke(); }
+    else if (k === 'servizi') { x.fillStyle = C.ink; rr(x, -54, -46, 108, 76, 10); x.fill(); x.fillStyle = '#FFFFFF'; x.beginPath(); x.moveTo(-14, -30); x.lineTo(22, -8); x.lineTo(-14, 14); x.fill(); x.fillStyle = C.ink; x.fillRect(-30, 36, 60, 8); }
+    else if (k === 'ai') { x.fillStyle = '#2F7A3F'; rr(x, -38, -50, 76, 76, 6); x.fill(); x.fillStyle = '#8FCB6B'; rr(x, -22, -34, 44, 44, 4); x.fill();
+      x.strokeStyle = C.ink; x.lineWidth = 4; for (let i = -3; i <= 3; i++) { x.beginPath(); x.moveTo(i * 11, -50); x.lineTo(i * 11, -62); x.moveTo(i * 11, 26); x.lineTo(i * 11, 38); x.stroke(); } }
+    else if (k === 'software') { x.fillStyle = '#FFFFFF'; rr(x, -52, -48, 104, 84, 8); x.fill(); x.fillStyle = C.blue; x.fillRect(-52, -48, 104, 18); x.fillStyle = '#B9B6AE'; for (let i = 0; i < 3; i++) x.fillRect(-40, -16 + i * 16, 80 - i * 18, 7); }
+    else { x.fillStyle = '#5B6470'; x.fillRect(-40, -44, 34, 90); x.fillRect(0, -62, 42, 108);   // l'azienda, e tutto il resto: i palazzi
+      x.fillStyle = '#FFD98A'; for (let r = 0; r < 5; r++) for (let c = 0; c < 2; c++) { x.fillRect(-34 + c * 14, -36 + r * 16, 7, 9); x.fillRect(7 + c * 18, -52 + r * 19, 9, 11); } }
+  }
+  const FONDO_FOTO = { casa: '#DCEAF2', iphone: '#F3E6D3', ipad: '#F3E6D3', mac: '#E3E8EC', watch: '#F2DDE0', mercato: '#E9F0D8', servizi: '#E7E0F2', ai: '#E9F0D8', software: '#DDEBF5' };
+  const texLavagna = tela(1400, 820, (x, w, h) => {
+    const caso = casuale(41), VERDE = '#1F7A3F';
+    x.fillStyle = '#FCFCFA'; x.fillRect(0, 0, w, h);
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    for (let i = 0; i < 9; i++) { x.strokeStyle = 'rgba(40,50,70,.035)'; x.lineWidth = 26 + caso() * 30; x.beginPath();   // le cancellature di ieri
+      const a = caso() * w, b = caso() * h; x.moveTo(a, b); x.lineTo(a + 120 + caso() * 260, b + (caso() - 0.5) * 80); x.stroke(); }
+    const tratto = (pts, col = C.ink, lw = 4) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath();
+      pts.forEach(([a, b], i) => { const dx = (caso() - 0.5) * 2.4, dy = (caso() - 0.5) * 2.4; if (i) x.lineTo(a + dx, b + dy); else x.moveTo(a + dx, b + dy); }); x.stroke(); };
+    const scrivi = (t, a, b, px, col = C.ink, f = A_MANO, rot = 0) => { x.save(); x.translate(a, b); x.rotate(rot); x.fillStyle = col; x.font = `700 ${px}px ${f}`; x.fillText(t, 0, 0); const l = x.measureText(t).width; x.restore(); return l; };
+    const freccia = (a, b, c, d, col = C.ink) => { tratto([[a, b], [c, d]], col, 4); const an = Math.atan2(d - b, c - a);
+      tratto([[c - 16 * Math.cos(an - 0.5), d - 16 * Math.sin(an - 0.5)], [c, d], [c - 16 * Math.cos(an + 0.5), d - 16 * Math.sin(an + 0.5)]], col, 4); };
+    const cerchio = (cx, cy, rx, ry, col = C.red, lw = 5) => { x.strokeStyle = col; x.lineWidth = lw; x.beginPath(); x.ellipse(cx, cy, rx, ry, -0.03, 0.25, 6.85); x.stroke(); };
+
+    // in alto a sinistra: il giorno e l'uscita
+    scrivi(GIORNI[OGGI.getDay()] + ' ' + OGGI.getDate(), 40, 84, 70, C.ink, PENNARELLO, -0.02);
+    tratto([[40, 98], [120, 104], [200, 97], [262, 103]], C.red, 5);
+    const lu = scrivi('uscita alle ' + oraCorta(USCITA), 290, 62, 34, VERDE); scrivi('✓', 300 + lu, 66, 44, VERDE, PENNARELLO);
+
+    // a sinistra: l'apertura, con una correzione di Ivo
+    const prime = STATO.lavagna.slice(0, 5);
+    scrivi('APERTURA', 40, 168, 40, C.blue, PENNARELLO);
+    prime.forEach((n, i) => { scrivi((i + 1) + '.', 44, 222 + i * 50, 34, C.ink3); scrivi(corto(n.titolo, 24), 86, 222 + i * 50, 36, C.ink); });
+    cerchio(232, 210, 214, 31); scrivi('!!', 456, 224, 44, C.red, PENNARELLO);
+    if (TITOLI.length) { const c = TITOLI[0], [da, ad] = ritocco(c.prima, c.dopo), riga = prime.findIndex(n => n.titolo === c.notizia);
+      const l1 = scrivi('«' + da + '»', 60, 500, 28, C.ink2); tratto([[56, 490], [60 + l1 / 2, 487], [64 + l1, 491]], C.red, 5);
+      const l2 = scrivi('→ «' + ad + '»', 78 + l1, 500, 28, C.red); if (78 + l1 + l2 < 520) scrivi('(Ivo)', 90 + l1 + l2, 500, 26, C.ink3);
+      if (riga >= 0) freccia(70, 468, 62, 240 + riga * 50, C.red); }
+
+    // al centro in alto: i minuti della corsa, a barre
+    scrivi('LA CORSA', 610, 74, 38, C.blue, PENNARELLO); scrivi('minuti', 790, 72, 28, C.ink3);
+    const bx = 620, by = 330, bw = 44, sc = 4.4, tetto = STATO.corsa.tetto || 45, ultime = (STATO.corsa.ultime || []).filter(u => u.minuti != null).slice(-7);
+    tratto([[bx - 14, 96], [bx - 14, by], [bx + 392, by]], C.ink, 4);
+    x.setLineDash([12, 10]); tratto([[bx - 14, by - tetto * sc], [bx + 392, by - tetto * sc]], C.red, 3); x.setLineDash([]);
+    scrivi('tetto ' + tetto, bx + 290, by - tetto * sc - 10, 26, C.red);
+    ultime.forEach((u, i) => { const m = u.minuti, a = bx + i * 56, alto = Math.min(m, 52) * sc, oggi = i === ultime.length - 1;
+      x.strokeStyle = oggi ? C.orange : C.ink2; x.lineWidth = 3;
+      for (let k = 0; k < alto; k += 9) { x.beginPath(); x.moveTo(a + 2, by - k - 3); x.lineTo(a + bw - 2, by - Math.min(alto, k + 8) - 1); x.stroke(); }
+      tratto([[a, by], [a, by - alto], [a + bw, by - alto], [a + bw, by]], oggi ? C.orange : C.ink, 4);
+      scrivi(String(m), a + 6, by - alto - 10, 28, oggi ? C.orange : C.ink); scrivi(INIZIALI[giornoDi(u.giorno).getDay()], a + 12, by + 34, 28, C.ink3); });
+
+    // in alto a destra: le foto delle prime due notizie, appuntate
+    const foto = (a, b, rot, n) => { const k = (n.reparto || '').toLowerCase(); x.save(); x.translate(a, b); x.rotate(rot);
+      x.shadowColor = 'rgba(0,0,0,.18)'; x.shadowBlur = 10; x.shadowOffsetY = 4; x.fillStyle = '#fff'; x.fillRect(-82, -92, 164, 200); x.shadowColor = 'transparent';
+      x.fillStyle = FONDO_FOTO[k] || '#E6E2DA'; x.fillRect(-70, -80, 140, 138); x.save(); x.translate(0, -8); disegnino(x, k); x.restore();
+      x.fillStyle = C.ink; x.font = `700 26px ${A_MANO}`; x.fillText(unaRiga(x, n.titolo.split(/[\s.,:;]+/)[0], 136), -66, 96);
+      x.fillStyle = 'rgba(245,197,24,.75)'; x.fillRect(-30, -104, 60, 22); x.restore(); };
+    if (prime[0]) foto(1110, 170, -0.06, prime[0]); if (prime[1]) foto(1290, 196, 0.05, prime[1]);
+    freccia(1010, 214, 470, 206, C.ink3);
+
+    // in basso a sinistra: chi passa le carte a chi, con gli orari veri
+    const riquadro = (a, b, l, t, col = C.ink) => { tratto([[a, b], [a + l, b], [a + l, b + 62], [a, b + 62], [a, b]], col, 4); scrivi(t, a + 14, b + 42, 30, col); };
+    const quando = id => AGENTI[id] && AGENTI[id].entrata ? oraCorta(AGENTI[id].entrata) : '';
+    scrivi('STAMATTINA', 40, 590, 36, C.blue, PENNARELLO);
+    riquadro(40, 616, 128, 'Tobia'); riquadro(214, 616, 136, 'Ettore'); riquadro(396, 616, 96, 'Ivo', C.red);
+    freccia(172, 647, 208, 647); freccia(354, 647, 390, 647); freccia(496, 647, 540, 647, VERDE);
+    scrivi(quando('lettura'), 66, 712, 26, C.ink3); scrivi(quando('redattore'), 248, 712, 26, C.ink3); scrivi(quando('revisore'), 414, 712, 26, C.ink3);
+    scrivi('ESCE', 548, 642, 30, VERDE, PENNARELLO); scrivi(oraCorta(USCITA), 548, 674, 30, VERDE, PENNARELLO);
+    tratto([[40, 734], [300, 740], [520, 733]], C.ink3, 3);
+    scrivi('Ada · Rita · Vito intanto, in parallelo', 46, 776, 28, C.ink2);
+
+    // al centro in basso: cosa ha aperto Mike
+    const lette = (STATO.letture || []).slice(-6), piu = Math.max(1, ...lette.map(l => l.aperte)), passo = Math.min(30, 230 / piu), iMax = lette.findIndex(l => l.aperte === piu);
+    scrivi('LETTE DA MIKE', 640, 440, 38, C.blue, PENNARELLO); scrivi('voci aperte per edizione', 640, 474, 26, C.ink3);
+    tratto([[640, 730], [1000, 733]], C.ink, 4);
+    lette.forEach((l, i) => { const a = 668 + i * 58;
+      for (let k = 0; k < l.aperte; k++) { x.fillStyle = i === iMax ? C.orange : C.ink; x.beginPath(); x.arc(a, 708 - k * passo, Math.min(11, passo * 0.4), 0, 7); x.fill(); }
+      scrivi(INIZIALI[giornoDi(l.giorno).getDay()], a - 9, 768, 28, C.ink3); });
+    if (lette.length && piu > 1) { const a = 668 + iMax * 58, alto = (piu - 1) * passo; cerchio(a, 708 - alto / 2, 30, alto / 2 + 26, C.red, 4); scrivi(piu + '!', a + 38, 708 - alto - 6, 36, C.red, PENNARELLO); }
+    const ultima = lette[lette.length - 1]; if (ultima && ultima.aperte <= 1 && lette.length - 1 !== iMax) scrivi('solo ' + ultima.aperte + ' ?', 668 + (lette.length - 1) * 58 + 26, 704, 28, C.red);
+
+    // a destra in basso: i post-it
+    const postit = (a, b, rot, col, righe) => { x.save(); x.translate(a, b); x.rotate(rot); x.shadowColor = 'rgba(0,0,0,.2)'; x.shadowBlur = 9; x.shadowOffsetY = 4;
+      x.fillStyle = col; x.fillRect(-78, -78, 156, 156); x.shadowColor = 'transparent'; x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(-78, -78, 156, 20);
+      righe.forEach((r, i) => scrivi(r, -66, -22 + i * 36, 30, C.ink)); x.restore(); };
+    const mazzo = (STATO.postit || []).find(p => p.mazzo), muti = ((STATO.macchine.feed || {}).rotti || []).length;
+    if (mazzo) postit(1132, 470, -0.05, '#FFE45C', [mazzo.mazzo + ' richieste', 'di Lea !!']);
+    if (STATO.gta) postit(1304, 492, 0.06, '#FF9DB0', ['GTA VI', STATO.gta.giorni > 0 ? '− ' + STATO.gta.giorni + ' giorni' : 'è uscito !!']);
+    postit(1126, 668, 0.04, '#8FD3F4', [muti + ' feed', 'muti']);
+    postit(1300, 684, -0.04, '#FFB46B', ['lunedì:', 'le fonti', '(Zeno)']);
+  });
+
+  /* Il manifesto di Vito, la bacheca dei post-it per Mike, le targhette. */
+  const texGta = tela(560, 760, (x, w, h) => {
+    const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#2B1055'); g.addColorStop(0.42, '#C2337A'); g.addColorStop(0.7, '#FF8A4C'); g.addColorStop(1, '#FFD36B'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+    x.save(); x.beginPath(); x.arc(w / 2, 470, 170, 0, 7); x.clip(); const s = x.createLinearGradient(0, 300, 0, 640); s.addColorStop(0, '#FFE066'); s.addColorStop(1, '#FF5DA2'); x.fillStyle = s; x.fillRect(0, 300, w, 340);
+    x.fillStyle = '#C2337A'; for (let i = 0; i < 6; i++) x.fillRect(0, 480 + i * 26, w, 5 + i * 2.2); x.restore();   // il sole a strisce
+    x.fillStyle = '#1B0B3A'; const caso = casuale(23);
+    for (let a = -10; a < w;) { const l = 28 + caso() * 46, alto = 40 + caso() * 110; x.fillRect(a, 640 - alto, l, alto); a += l + 2; }   // la città in controluce
+    x.fillRect(0, 636, w, h - 636);
+    const palma = (px, alta, piega) => { x.strokeStyle = '#1B0B3A'; x.lineWidth = 12; x.lineCap = 'round'; x.beginPath(); x.moveTo(px, 700); x.quadraticCurveTo(px + piega, 700 - alta * 0.5, px + piega * 1.6, 700 - alta); x.stroke();
+      const cx = px + piega * 1.6, cy = 700 - alta; x.lineWidth = 9; for (let i = 0; i < 7; i++) { const an = -PI * 0.08 - i * PI * 0.14; x.beginPath(); x.moveTo(cx, cy); x.quadraticCurveTo(cx + Math.cos(an) * 60, cy + Math.sin(an) * 60 - 22, cx + Math.cos(an) * 104, cy + Math.sin(an) * 70 + 26); x.stroke(); } };
+    palma(86, 330, 26); palma(470, 400, -34); palma(180, 220, -14);
+    x.textAlign = 'center'; x.fillStyle = '#FFFFFF'; x.font = `900 150px ${SISTEMA}`; spazia(x, -0.03, 150); x.fillText('GTA', w / 2, 170);
+    const v = x.createLinearGradient(0, 180, 0, 300); v.addColorStop(0, '#FFE066'); v.addColorStop(0.5, '#FF8A4C'); v.addColorStop(1, '#FF5DA2'); x.fillStyle = v; x.font = `900 140px ${SISTEMA}`; x.fillText('VI', w / 2, 296); spazia(x, 0, 1);
+    if (STATO.gta && STATO.gta.uscita) { const d = giornoDi(STATO.gta.uscita); x.fillStyle = '#3FE0D0'; x.font = `800 44px ${DISPLAY}`; spazia(x, 0.12, 44);
+      x.fillText(d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long' }).toUpperCase(), w / 2, 730); spazia(x, 0, 1); }
+    x.textAlign = 'left';
+  });
+
+  const COLORE_POSTIT = { visualista: '#FFE45C', fonti: '#8FD3F4', regia: '#FFB46B' };
+  const brevePostit = t => (t || '').replace(/^Un grafico per: /, 'Grafico: ');
+  const POSTIT = (STATO.postit || []).slice(0, 8);
+  const texBacheca = tela(900, 700, (x, w, h) => {
+    x.fillStyle = '#C99F6C'; x.fillRect(0, 0, w, h); const caso = casuale(77);
+    for (let i = 0; i < 2600; i++) { x.fillStyle = caso() < 0.5 ? 'rgba(120,80,40,.22)' : 'rgba(255,230,190,.2)'; x.fillRect(caso() * w, caso() * h, 2 + caso() * 3, 2 + caso() * 3); }
+    x.save(); x.translate(w / 2, 62); x.rotate(-0.012); x.fillStyle = '#FFFFFF'; x.shadowColor = 'rgba(0,0,0,.25)'; x.shadowBlur = 8; x.shadowOffsetY = 3; x.fillRect(-170, -34, 340, 68); x.shadowColor = 'transparent';
+    x.fillStyle = C.ink; x.font = `800 46px ${DISPLAY}`; spazia(x, 0.1, 46); x.textAlign = 'center'; x.fillText('PER MIKE', 0, 17); spazia(x, 0, 1); x.textAlign = 'left'; x.restore();
+    POSTIT.forEach((p, i) => { const cx = 128 + (i % 4) * 215, cy = 250 + Math.floor(i / 4) * 265, rot = (caso() - 0.5) * 0.16;
+      x.save(); x.translate(cx + (caso() - 0.5) * 16, cy + (caso() - 0.5) * 22); x.rotate(rot); const col = COLORE_POSTIT[p.da] || '#FF9DB0';
+      if (p.mazzo) for (let k = 3; k > 0; k--) { x.fillStyle = k % 2 ? '#F2D64A' : '#FFE45C'; x.fillRect(-94 + k * 7, -94 + k * 7, 188, 188); }
+      x.shadowColor = 'rgba(0,0,0,.28)'; x.shadowBlur = 10; x.shadowOffsetY = 5; x.fillStyle = col; x.fillRect(-94, -94, 188, 188); x.shadowColor = 'transparent';
+      x.fillStyle = C.ink; x.font = `700 25px ${A_MANO}`; aCapo(x, brevePostit(p.titolo), 164, 5).forEach((r, k) => x.fillText(r, -82, -46 + k * 28));
+      x.fillStyle = 'rgba(23,24,27,.55)'; x.font = `700 20px ${A_MANO}`; x.fillText((AGENTI[p.da] ? AGENTI[p.da].nome : '') + (p.giorni ? ' · da ' + p.giorni + ' gg' : ' · oggi'), -82, 80);
+      x.fillStyle = C.red; x.beginPath(); x.arc(0, -78, 9, 0, 7); x.fill(); x.fillStyle = 'rgba(255,255,255,.5)'; x.beginPath(); x.arc(-3, -81, 3, 0, 7); x.fill(); x.restore(); });
+  });
+  const texNuovoPostit = tela(128, 128, (x, w) => { x.fillStyle = '#FFE45C'; x.fillRect(0, 0, w, w); x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(0, 0, w, 16);
+    x.strokeStyle = C.ink; x.lineWidth = 5; x.lineCap = 'round'; [[40, 96], [62, 84], [84, 70]].forEach(([y, l]) => { x.beginPath(); x.moveTo(18, y); x.lineTo(18 + l, y - 3); x.stroke(); }); });
+
+  const LUNEDI = /lunedi/.test(location.search + location.hash) || new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })).getDay() === 1;
+  const texTarga = (su, sotto, col = C.ink) => tela(360, 220, (x, w, h) => { x.fillStyle = '#FFFDF6'; x.fillRect(0, 0, w, h); x.textAlign = 'center';
+    x.fillStyle = col; x.font = `800 86px ${DISPLAY}`; spazia(x, 0.06, 86); x.fillText(su, w / 2, 104); spazia(x, 0, 1);
+    x.fillStyle = C.ink2; x.font = `700 40px ${A_MANO}`; x.fillText(sotto, w / 2, 174); x.textAlign = 'left'; });
+  const texCassetti = tela(256, 512, (x, w, h) => { x.fillStyle = '#5E7F6B'; x.fillRect(0, 0, w, h);
+    for (let i = 0; i < 4; i++) { const y = 10 + i * 126; x.fillStyle = '#6E917B'; rr(x, 12, y, w - 24, 112, 8); x.fill(); x.fillStyle = '#FFFDF6'; rr(x, 78, y + 22, 100, 30, 4); x.fill();
+      x.fillStyle = C.ink; x.font = `700 20px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(['A – F', 'G – M', 'N – S', 'T – Z'][i], 128, y + 44); x.textAlign = 'left';
+      x.fillStyle = '#D5D7DB'; rr(x, 98, y + 68, 60, 12, 6); x.fill(); } });
+
   /* ================================================================ i materiali */
   const legno = M(0xE6BB86, { roughness: 0.7 }), legnoScuro = M(0xC9955C, { roughness: 0.75 });
   const pavimento = M(0xF1EADF, { roughness: 0.95 }), muro = M(0xFAF6EE, { roughness: 0.95 });
@@ -485,7 +606,8 @@ function avvia() {
   const verdi = [M(0x3F8F5A), M(0x4FA368), M(0x2F7A4C)];
 
   const stanza = new THREE.Group(); scene.add(stanza);
-  const LARGA = 7.2, FONDA = 5.4, ALTA = 3.0;
+  const LARGA = 11.6, FONDA = 8.6, ALTA = 3.0;
+  const REGIA = [4.6, 5.8];   // il centro del desk circolare
 
   /* ================================================================ pavimento e pareti */
   stanza.add(at(box(LARGA + 0.5, 0.36, FONDA + 0.5, pavimento, 0.07), LARGA / 2 - 0.05, -0.18, FONDA / 2 - 0.05));
@@ -493,11 +615,11 @@ function avvia() {
   const muroB = at(box(0.26, ALTA, FONDA + 0.5, muro, 0.03), -0.13, ALTA / 2, FONDA / 2 - 0.05); muroB.castShadow = false;
   stanza.add(muroA, muroB);
   stanza.add(at(box(LARGA, 0.1, 0.03, legnoScuro, 0.01), LARGA / 2, 0.05, 0.015), at(box(0.03, 0.1, FONDA, legnoScuro, 0.01), 0.015, 0.05, FONDA / 2));
-  const tappeto = at(cyl(1.5, 1.5, 0.03, M(0xF0C445, { roughness: 1 }), 64), 2.62, 0.016, 3.3); tappeto.castShadow = false; stanza.add(tappeto);
+  const tappeto = at(cyl(1.85, 1.85, 0.03, M(0xF0C445, { roughness: 1 }), 72), REGIA[0], 0.016, REGIA[1]); tappeto.castShadow = false; stanza.add(tappeto);
 
   /* ================================================================ la parete di fondo */
   // il fondale
-  const fx = 2.95, fy = 1.8, fw = 3.8, fh = fw * 943 / 2048;
+  const fx = 3.2, fy = 1.8, fw = 3.8, fh = fw * 943 / 2048;
   stanza.add(at(box(fw + 0.1, fh + 0.1, 0.07, nero, 0.02), fx, fy, 0.045), at(schermo(fw, fh, texFondale), fx, fy, 0.082));
   // la credenza con il merchandising
   const credenza = gruppo(at(box(3.0, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
@@ -524,25 +646,25 @@ function avvia() {
   cappello.rotation.y = PI / 4; stanza.add(at(cappello, fx - 0.35, 0.68, 0.3));
 
   // la storia di Apple, incorniciata
-  [5.35, 6.05, 6.75].forEach((cx, c) => [1.92, 1.12].forEach((cy, r) => {
+  [6.2, 6.9, 7.6].forEach((cx, c) => [1.92, 1.12].forEach((cy, r) => {
     stanza.add(at(box(0.56, 0.7, 0.035, nero, 0.012), cx, cy, 0.022), at(stampa(0.5, 0.625, manifesti[r * 3 + c]), cx, cy, 0.0405));
   }));
   // il conto alla rovescia verso la prossima edizione
   const telaConto = document.createElement('canvas'); telaConto.width = 760; telaConto.height = 176;
   const texConto = new THREE.CanvasTexture(telaConto); texConto.colorSpace = THREE.SRGBColorSpace; texConto.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  stanza.add(at(box(1.96, 0.47, 0.06, nero, 0.02), 6.05, 2.63, 0.035), at(schermo(1.86, 1.86 * 176 / 760, texConto), 6.05, 2.63, 0.067));
+  stanza.add(at(box(1.96, 0.47, 0.06, nero, 0.02), 6.9, 2.63, 0.035), at(schermo(1.86, 1.86 * 176 / 760, texConto), 6.9, 2.63, 0.067));
   let ultimoConto = '';
   function conto() {
     const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(new Date());
     const v = k => +p.find(q => q.type === k).value, adesso = (v('hour') % 24) * 3600 + v('minute') * 60 + v('second');
-    const manca = ((DATI.prossimaUscita[0] * 3600 + DATI.prossimaUscita[1] * 60 - adesso) % 86400 + 86400) % 86400;
+    const manca = ((PROSSIMA[0] * 3600 + PROSSIMA[1] * 60 - adesso) % 86400 + 86400) % 86400;
     const cifre = [Math.floor(manca / 3600), Math.floor(manca / 60) % 60, manca % 60].map(n => String(n).padStart(2, '0')), chiave = cifre.join(':');
     if (chiave === ultimoConto) return false; ultimoConto = chiave;
     const x = telaConto.getContext('2d'), w = 760, h = 176, chiude = manca <= 1800;
     x.fillStyle = '#111214'; x.fillRect(0, 0, w, h);
     x.fillStyle = chiude ? C.red : C.yellow; x.font = `800 31px ${DISPLAY}`; spazia(x, 0.07, 31);
     x.fillText(chiude ? 'SI CHIUDE' : 'ALLA PROSSIMA', 30, 62); x.fillText(chiude ? 'L\'EDIZIONE' : 'EDIZIONE', 30, 98);
-    x.fillStyle = '#9EA0A6'; x.font = `700 23px ${DISPLAY}`; x.fillText('ESCE ALLE ' + DATI.prossimaUscita[0] + ':' + String(DATI.prossimaUscita[1]).padStart(2, '0'), 30, 138); spazia(x, 0, 1);
+    x.fillStyle = '#9EA0A6'; x.font = `700 23px ${DISPLAY}`; x.fillText('ESCE ALLE ' + PROSSIMA[0] + ':' + String(PROSSIMA[1]).padStart(2, '0'), 30, 138); spazia(x, 0, 1);
     let a = 262; cifre.forEach((c, i) => { for (const ch of c) { x.fillStyle = '#2A2B30'; rr(x, a, 26, 66, 110, 9); x.fill(); x.fillStyle = '#111214'; x.fillRect(a, 80, 66, 2.5);
         x.fillStyle = chiude ? '#FF6B7D' : '#FFFFFF'; x.font = `800 92px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(ch, a + 33, 113); x.textAlign = 'left'; a += 72; }
       if (i < 2) { x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(a + 8, 62, 5.5, 0, 7); x.arc(a + 8, 100, 5.5, 0, 7); x.fill(); a += 24; } });
@@ -550,11 +672,13 @@ function avvia() {
     texConto.needsUpdate = true; return true;
   }
   // il mobiletto con la stampante
-  const STAMPANTE = [6.55, 0.3];
+  const STAMPANTE = [8.55, 0.3];
   const spiaStampa = M(0x35C759, { emissive: 0x35C759, emissiveIntensity: 0.5 });
   stanza.add(at(gruppo(at(box(1.0, 0.44, 0.44, legno, 0.03), 0, 0.36, 0), ...[-0.4, 0.4].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.14, legnoScuro, 12), dx, 0.07, dz))),
     at(box(0.44, 0.2, 0.38, bianco, 0.03), 0, 0.68, 0), at(box(0.36, 0.012, 0.3, nero, 0.005), 0, 0.786, -0.01), at(box(0.3, 0.02, 0.02, nero, 0.004), 0, 0.66, 0.191),
     at(box(0.3, 0.012, 0.16, grigio, 0.005), 0, 0.615, 0.26), at(sph(0.009, spiaStampa), 0.17, 0.72, 0.192)), STAMPANTE[0], 0, STAMPANTE[1]));
+  // il manifesto di Vito
+  stanza.add(at(box(1.46, 1.96, 0.04, nero, 0.012), 10.0, 1.78, 0.025), at(stampa(1.4, 1.9, texGta), 10.0, 1.78, 0.046));
   const foglioStampante = stampa(0.21, 0.297, foglio(31, true)); foglioStampante.rotation.x = -PI / 2; foglioStampante.visible = false; stanza.add(foglioStampante);
 
   /* ================================================================ la parete di sinistra */
@@ -565,7 +689,7 @@ function avvia() {
   stanza.add(vetro, at(box(0.07, 0.07, 1.64, telaio), 0.035, 2.48, 1.75), at(box(0.1, 0.06, 1.72, telaio), 0.05, 1.02, 1.75),
     at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 0.965), at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 2.535), at(box(0.04, 1.4, 0.04, telaio), 0.02, 1.75, 1.75));
   // la lavagna
-  const bz = 4.0;
+  const bz = 4.25;
   const lavagna = stampa(2.5, 2.5 * 820 / 1400, texLavagna); lavagna.rotation.y = PI / 2; at(lavagna, 0.047, 1.6, bz);
   stanza.add(at(box(0.04, 1.56, 2.6, grigio, 0.015), 0.022, 1.6, bz), lavagna, at(box(0.08, 0.03, 1.8, grigio, 0.01), 0.07, 0.85, bz));
   [[0xE01F3D, -0.5], [0x17181B, -0.3], [0x0E9CD8, -0.1]].forEach(([c, dz]) => stanza.add(at(box(0.03, 0.03, 0.14, M(c), 0.01), 0.075, 0.88, bz + dz)));
@@ -591,7 +715,8 @@ function avvia() {
       const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07; perno.add(f); g.add(perno); }
     return g;
   }
-  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 6.6, 0, 4.8));
+  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 11.1, 0, 0.5), at(sansevieria(), 11.0, 0, 8.05));
+  const pianta2 = piantaGrande(); pianta2.scale.setScalar(0.8); pianta2.rotation.y = 1.3; stanza.add(at(pianta2, 7.75, 0, 7.9));
   const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, fx + 0.7, 0.68, 0.3));
 
   const lampade = [], paralumi = [];
@@ -599,11 +724,13 @@ function avvia() {
   const paralume = M(0xFFF3D6, { roughness: 0.9, emissive: 0xFFD9A0, emissiveIntensity: 0 }); paralumi.push(paralume);
   const piantana = gruppo(at(cyl(0.16, 0.18, 0.03, nero, 24), 0, 0.015, 0), at(cyl(0.014, 0.014, 1.55, nero, 10), 0, 0.8, 0),
     (() => { const p = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.23, 0.3, 28, 1, true), paralume)); p.material.side = THREE.DoubleSide; p.position.y = 1.62; return p; })());
-  stanza.add(at(piantana, 0.32, 0, 2.64)); punto(0xFFC27A, 9, 0.55, 1.6, 2.7, 6);   // fra la finestra e la lavagna
-  punto(0xFFC27A, 4, 6.4, 1.5, 3.2, 4.5);   // e un po' di luce calda dalle parti di Ivo
+  stanza.add(at(piantana, 1.26, 0, 0.36)); punto(0xFFC27A, 9, 1.3, 1.6, 0.75, 6);   // nell'angolo, accanto alla pianta
+  punto(0xFFC27A, 5, 6.4, 1.6, 3.2, 5.5);   // un po' di luce calda sulla fila della prosa
+  punto(0xFFC27A, 6, REGIA[0], 1.7, REGIA[1], 5.5);   // sulla regia
+  punto(0xFFB07A, 5, 9.9, 1.6, 4.9, 5.5);   // e sull'isola di destra
   punto(0xF2ECDF, 5, fx, 1.7, 1.3, 5.5);   // il chiarore del fondale, che la sera si vede
 
-  const CESTINO = [3.7, 2.35];
+  const CESTINO = [4.08, 1.95];
   const cestino = gruppo((() => { const c = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.3, 24, 1, true), M(0x3A3B40, { roughness: 0.6 }))); c.material.side = THREE.DoubleSide; c.position.y = 0.15; return c; })(),
     at(cyl(0.11, 0.11, 0.012, M(0x3A3B40), 20), 0, 0.006, 0), at(ell(0.045, 1, 0.8, 1.1, bianco), 0.03, 0.05, -0.02));
   stanza.add(at(cestino, CESTINO[0], 0, CESTINO[1]));
@@ -636,19 +763,64 @@ function avvia() {
   }
   const tastiera = () => { const t = stampa(0.275, 0.108, texTasti); t.rotation.x = -PI / 2; return gruppo(at(box(0.285, 0.008, 0.115, alluminio, 0.004), 0, 0.004, 0), at(t, 0, 0.0086, 0)); };
   const mouse = () => ell(0.03, 0.95, 0.38, 1.85, bianco);
-  function sedia() {
-    const g = gruppo(at(box(0.46, 0.07, 0.46, nero, 0.03), 0, SED - 0.035, 0), at(cyl(0.028, 0.028, 0.25, alluminio, 12), 0, 0.215, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
-    const schienale = box(0.44, 0.5, 0.07, nero, 0.035); schienale.position.set(0, SED + 0.31, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
+  function sedia(stoffa = nero) {
+    const g = gruppo(at(box(0.46, 0.07, 0.46, stoffa, 0.03), 0, SED - 0.035, 0), at(cyl(0.028, 0.028, 0.25, alluminio, 12), 0, 0.215, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
+    const schienale = box(0.44, 0.5, 0.07, stoffa, 0.035); schienale.position.set(0, SED + 0.31, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
     for (let i = 0; i < 5; i++) { const a = i * PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
       raggio.position.set(Math.sin(a) * 0.135, 0.06, Math.cos(a) * 0.135); raggio.rotation.y = a; g.add(raggio, at(sph(0.035, M(0x101013)), Math.sin(a) * 0.26, 0.035, Math.cos(a) * 0.26)); }
     return g;
   }
+  // un posto di lavoro: scrivania, iMac, tastiera, mouse, sedia. `giro` lo orienta: 0 guarda la parete di fondo, PI guarda verso di noi
   function posto(o) {
-    const g = gruppo(); at(g, o.x, 0, o.z); stanza.add(g);
-    g.add(scrivania(o.w, o.d), at(imac(o.tex, o.mento, o.retro), 0, TAV, -0.18), at(tastiera(), 0, TAV, o.d / 2 - 0.12), at(mouse(), 0.27, TAV + 0.011, o.d / 2 - 0.11));
-    const s = sedia(), zs = o.d / 2 + 0.17; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
-    return { g, sedia: s, zs, seduta: [o.x, o.z + zs] };
+    const g = gruppo(), giro = o.giro || 0, w = o.w || 1.45, d = o.d || 0.8; at(g, o.x, 0, o.z); g.rotation.y = giro; stanza.add(g);
+    g.add(scrivania(w, d), at(imac(o.tex, o.mento, o.retro), 0, TAV, -0.18), at(tastiera(), 0, TAV, d / 2 - 0.12), at(mouse(), 0.27, TAV + 0.011, d / 2 - 0.11));
+    const s = sedia(), zs = d / 2 + 0.17; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
+    const fuori = (lx, lz) => [o.x + lx * Math.cos(giro) + lz * Math.sin(giro), o.z - lx * Math.sin(giro) + lz * Math.cos(giro)];   // da un punto del posto a un punto della stanza
+    return { g, sedia: s, zs, giro, w, d, x: o.x, z: o.z, fuori, seduta: fuori(0, zs), yaw: PI + giro };
   }
+  // il desk circolare della regia: un anello aperto verso di noi, con cinque iMac intorno
+  function anello(cx, cz, R0, R1, varco) {
+    const g = gruppo(), fi0 = -PI / 4 + varco, fi1 = -PI / 4 + 2 * PI - varco, s = new THREE.Shape();
+    s.absarc(0, 0, R1, fi0, fi1, false); s.absarc(0, 0, R0, fi1, fi0, true); s.closePath();
+    const piano = ombra(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.035, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.012, bevelSegments: 3, curveSegments: 56 }), legno));
+    piano.rotation.x = -PI / 2; piano.position.y = TAV - 0.047; g.add(piano);
+    const fascia = (r, alto, y, mat) => { const m = ombra(new THREE.Mesh(new THREE.CylinderGeometry(r, r, alto, 64, 1, true, PI / 4 + varco, 2 * PI - 2 * varco), mat)); m.material.side = THREE.DoubleSide; m.position.y = y; return m; };
+    g.add(fascia(R1 - 0.05, TAV - 0.1, (TAV - 0.1) / 2 + 0.04, M(0xFBFAF7, { roughness: 0.6 })), fascia(R1 - 0.045, 0.05, 0.025, M(0x202125, { roughness: 0.55 })), fascia(R1 - 0.046, 0.05, TAV - 0.2, M(0xF0821E, { roughness: 0.6 })));
+    for (const lato of [-1, 1]) { const a = PI / 4 + lato * varco; g.add(at(box(0.04, TAV - 0.06, R1 - R0 - 0.06, bianco, 0.012), 0, 0, 0)); const f = g.children[g.children.length - 1];
+      f.position.set(Math.sin(a) * (R0 + R1) / 2, (TAV - 0.06) / 2, Math.cos(a) * (R0 + R1) / 2); f.rotation.y = a; }
+    at(g, cx, 0, cz); stanza.add(g); return g;
+  }
+
+  /* ================================================================ la bacheca, l'archivio di Zeno, il tavolo di Mike */
+  const cliccabili = [];
+  // la bacheca di sughero: i post-it che aspettano Mike (si tocca, e si apre l'elenco)
+  const BACHECA = [0.05, 1.45, 6.5], altaB = 1.5 * 700 / 900;
+  const bacheca = stampa(1.5, altaB, texBacheca); bacheca.rotation.y = PI / 2; at(bacheca, 0.052, BACHECA[1], BACHECA[2]); bacheca.userData.id = 'bacheca'; cliccabili.push(bacheca);
+  stanza.add(at(box(0.045, altaB + 0.09, 1.59, legnoScuro, 0.015), 0.024, BACHECA[1], BACHECA[2]), bacheca);
+  const nuovoPostit = stampa(0.13, 0.13, texNuovoPostit); nuovoPostit.rotation.set(0, PI / 2, 0.07); nuovoPostit.visible = false; stanza.add(at(nuovoPostit, 0.058, 1.39, 5.84));
+
+  // l'archivio delle fonti: due schedari, e la targhetta di Zeno, che c'è il lunedì
+  const ARCHIVIO = [0.3, 7.82];
+  const verdeSalvia = M(0x5E7F6B, { roughness: 0.6 });
+  const cassetti = [];
+  [7.55, 8.09].forEach((z, i) => { stanza.add(at(box(0.56, 1.24, 0.5, verdeSalvia, 0.025), ARCHIVIO[0], 0.62, z));
+    const f = stampa(0.48, 1.2, texCassetti); f.rotation.y = PI / 2; stanza.add(at(f, ARCHIVIO[0] + 0.283, 0.62, z));
+    if (i === 0) { const c = at(box(0.4, 0.26, 0.44, M(0x6E917B, { roughness: 0.6 }), 0.015), ARCHIVIO[0] + 0.1, 1.07, z); c.visible = false; stanza.add(c); cassetti.push(c); } });
+  stanza.add(at(gruppo(...[0, 1, 2, 3].map(i => at(box(0.05, 0.3, 0.24, M([0xF5C518, 0xE01F3D, 0x0E9CD8, 0xF0821E][i], { roughness: 0.8 }), 0.008), 0, 0.15, i * 0.058))), 0.26, 1.24, 7.42));
+  const scatola = at(box(0.36, 0.2, 0.3, M(0xD9B98A, { roughness: 0.9 }), 0.012), 0.3, 1.34, 8.1); scatola.rotation.y = 0.2; stanza.add(scatola);
+  const targaZeno = stampa(0.5, 0.5 * 220 / 360, texTarga('ZENO', LUNEDI ? 'oggi ci sono' : 'torna lunedì', '#2F7A4C')); targaZeno.rotation.set(0, PI / 2, -0.04); targaZeno.userData.id = 'fonti'; cliccabili.push(targaZeno);
+  stanza.add(at(targaZeno, 0.02, 1.95, 7.82), at(sph(0.014, M(0xE01F3D)), 0.03, 2.085, 7.82));
+
+  // il tavolo di Mike: quando entri in redazione, il tuo posto è questo
+  const MIKE = [2.25, 7.3];
+  const tavoloMike = gruppo(at(cyl(0.62, 0.62, 0.05, legno, 48), 0, TAV - 0.025, 0), at(cyl(0.05, 0.06, TAV - 0.07, bianco, 16), 0, (TAV - 0.07) / 2, 0), at(cyl(0.3, 0.32, 0.03, bianco, 32), 0, 0.015, 0));
+  const ipad = gruppo(at(box(0.25, 0.012, 0.18, M(0x2A2B30, { roughness: 0.4 }), 0.005), 0, 0.006, 0), (() => { const s = schermo(0.23, 0.106, texFondale); s.rotation.x = -PI / 2; s.position.y = 0.0125; return s; })());
+  ipad.rotation.y = 0.5; tavoloMike.add(at(ipad, 0.12, TAV, 0.14), at(tazza(C.yellow, 0.6), -0.26, TAV, 0.02));
+  const segnaposto = gruppo(...[-1, 1].map(s => { const f = stampa(0.2, 0.2 * 220 / 360, texTarga('MIKE', 'direttore creativo')); f.material.side = THREE.DoubleSide; f.rotation.x = -s * 0.42; f.rotation.y = s > 0 ? 0 : PI; f.position.set(0, 0.058, s * 0.024); return f; }));
+  segnaposto.rotation.y = PI / 4; tavoloMike.add(at(segnaposto, -0.05, TAV, -0.3));
+  at(tavoloMike, MIKE[0], 0, MIKE[1]); stanza.add(tavoloMike);
+  const poltrona = M(0xF5C518, { roughness: 0.85 });
+  [-0.2, PI / 2 + 0.25].forEach(dove => { const s = sedia(poltrona); s.rotation.y = dove + PI; at(s, MIKE[0] + Math.sin(dove) * 0.98, 0, MIKE[1] + Math.cos(dove) * 0.98); stanza.add(s); });
 
   /* ================================================================ le persone
      Statuine da scrivania: testa grande, capelli scolpiti, occhi lucidi, vestiti disegnati addosso.
@@ -707,7 +879,7 @@ function avvia() {
         d = scava(d, tubo(ax, y, z, 0.205, yy, 0.07, 0.185, yy - 0.02, -0.15, 0.006), 0.011); }
       return d; },
   };
-  const chiome = {}, chioma = s => chiome[s] || (chiome[s] = scolpisci(CHIOME[s], [0, 0.03, 0], 0.26));
+  const chiome = {}, chioma = s => { if (!chiome[s]) { const c = CHIOME[s]; chiome[s] = scolpisci(c.f || c, c.centro || [0, 0.03, 0], c.mezzo || 0.26); } return chiome[s]; };
   const asta = (a, b, r, mat) => { const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b), m = cyl(r, r, A.distanceTo(B), mat, 8);
     m.position.copy(A).add(B).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), B.clone().sub(A).normalize()); return m; };
   const sfumo = tela(64, 64, (x, w) => { const g = x.createRadialGradient(32, 32, 2, 32, 32, 31); g.addColorStop(0, '#FFFFFF'); g.addColorStop(1, '#000000'); x.fillStyle = g; x.fillRect(0, 0, w, w); });
@@ -717,16 +889,17 @@ function avvia() {
       const occhio = gruppo(); at(occhio, lato * 0.064, 0.004, 0.148); occhio.rotation.y = lato * 0.36;
       const pupilla = ell(0.036, 0.8, 1.18, 0.4, nerOcchi); pupilla.castShadow = false;
       occhio.add(pupilla, at(new THREE.Mesh(new THREE.SphereGeometry(0.0095, 12, 8), riflesso), -0.009, 0.017, 0.0128), at(new THREE.Mesh(new THREE.SphereGeometry(0.0048, 8, 6), riflesso), 0.009, -0.015, 0.013));
+      if (o.ciglia) { const c = caps(0.0042, 0.02, M(SCURO, { roughness: 0.4 })); c.castShadow = false; c.rotation.z = lato * -0.95; occhio.add(at(c, lato * 0.027, 0.037, 0.006)); }
       testa.add(occhio); occhi.push(occhio);
       const sopra = caps(0.0085, 0.04, peli); sopra.castShadow = false; sopra.rotation.z = PI / 2 + lato * 0.14;
       const perno = gruppo(sopra); at(perno, lato * 0.066, 0.074, 0.143); perno.rotation.y = lato * 0.36; testa.add(perno);
       const guancia = new THREE.Mesh(new THREE.CircleGeometry(0.03, 20), new THREE.MeshStandardMaterial({ color: 0xF07F86, alphaMap: sfumo, transparent: true, opacity: 0.42, depthWrite: false, roughness: 0.7 }));
       at(guancia, lato * 0.1135, -0.052, 0.1285); guancia.rotation.y = lato * 0.45; testa.add(guancia);
     }
-    const bocca = new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.0052, 8, 22, 1.5), M(0x5A2F27, { roughness: 0.6 })); bocca.castShadow = false;
+    const bocca = new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.0052, 8, 22, 1.5), M(o.labbra || 0x5A2F27, { roughness: 0.6 })); bocca.castShadow = false;
     bocca.rotation.z = -(PI / 2 + 0.75); bocca.rotation.x = -0.12; at(bocca, 0, -0.056, 0.1595); testa.add(bocca);
-    if (o.occhiali) { const mont = M(o.occhiali, { metalness: 0.5, roughness: 0.3 });
-      for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.0036, 8, 28), mont); at(l, lato * 0.064, 0.004, 0.169); l.rotation.y = lato * 0.3; testa.add(l);
+    if (o.occhiali) { const mont = M(o.occhiali, { metalness: 0.5, roughness: 0.3 }), lente = o.lenti || 0.05;
+      for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(lente, 0.0036 + (lente - 0.05) * 0.12, 8, 28), mont); at(l, lato * 0.064, 0.004, 0.169); l.rotation.y = lato * 0.3; testa.add(l);
         testa.add(asta([lato * 0.112, 0.008, 0.153], [lato * 0.178, 0.012, 0.0], 0.003, mont)); }
       testa.add(asta([-0.017, 0.012, 0.176], [0.017, 0.012, 0.176], 0.003, mont)); }
     if (o.baffi) for (const lato of [-1, 1]) { const b = ell(0.03, 1.25, 0.42, 0.55, M(o.capelli, { roughness: 0.8 })); b.castShadow = false; b.rotation.z = lato * -0.25; testa.add(at(b, lato * 0.024, -0.048, 0.158)); }
@@ -772,11 +945,12 @@ function avvia() {
     const bacino = gruppo(), busto = gruppo(), testa = gruppo(); g.add(bacino); bacino.add(busto);
     bacino.add(at(ell(0.165, 1.02, 0.6, 0.74, calzoni), 0, 0.02, 0));
     const torso = ombra(new THREE.Mesh(BUSTO, new THREE.MeshStandardMaterial({ map: v.busto, roughness: 0.9 }))); torso.scale.set(1.1, 1, 0.72);
-    const colletto = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.021, 10, 28), M(v.colletto, { roughness: 0.85 }))); colletto.rotation.x = PI / 2; colletto.scale.set(1.08, 1, 0.6); colletto.position.set(0, 0.437, 0.004);
+    const colletto = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.021, 10, 28), M(v.colletto, { roughness: 0.85 }))); colletto.rotation.x = PI / 2; colletto.scale.set(1.08, 1, v.colloAlto ? 1.7 : 0.6); colletto.position.set(0, v.colloAlto ? 0.452 : 0.437, 0.004);
     busto.add(torso, colletto);
     testa.position.y = 0.66; testa.scale.setScalar(TESTA); busto.add(testa);
     testa.add(ombra(new THREE.Mesh(GEO_TESTA, pelle)), ombra(new THREE.Mesh(chioma(o.chioma), capelli)));
     g.userData.occhi = viso(testa, o);
+    if (o.barba) testa.add(ombra(new THREE.Mesh(barbaGeo(o.barba), M(o.barbaColore || o.capelli, { roughness: 0.85 }))));
     const braccio = lato => { const s = gruppo(); s.position.set(lato * 0.185, 0.385, 0); s.add(sph(0.062, v.manica, 16, 12), at(caps(0.056, 0.11, v.manica), 0, -0.105, 0));
       const gm = gruppo(); gm.position.y = -0.21; s.add(gm); gm.add(sph(0.054, v.manica, 14, 10), at(caps(0.05, 0.09, v.manica), 0, -0.09, 0), at(cyl(0.054, 0.054, 0.026, polsino, 18), 0, -0.165, 0));
       const m = gruppo(); m.position.y = -0.215; m.add(ell(0.056, 0.95, 1.08, 0.8, pelle), at(sph(0.023, pelle, 10, 8), lato * -0.012, 0.004, 0.046)); gm.add(m); busto.add(s); return { s, g: gm, m }; };
@@ -785,6 +959,7 @@ function avvia() {
       bacino.add(a); return { a, k }; };
     const D = braccio(-1), S = braccio(1), gaD = gamba(-1), gaS = gamba(1);   // D è la destra di chi cammina
     g.userData.j = { bacino, busto, testa, sD: D.s, gD: D.g, mD: D.m, sS: S.s, gS: S.g, mS: S.m, aD: gaD.a, kD: gaD.k, aS: gaS.a, kS: gaS.k };
+    if (o.accessori) o.accessori({ g, testa, busto, pelle });
     return g;
   }
   // una posa è un elenco di angoli; fra due pose si sfuma
@@ -804,36 +979,227 @@ function avvia() {
     return P;
   }
 
-  const pE = posto({ x: 2.6, z: 2.9, w: 1.8, d: 0.85, tex: texMonitorEttore, mento: 0xF9D2B0, retro: 0xF0821E });
-  const pI = posto({ x: 5.95, z: 2.0, w: 1.6, d: 0.8, tex: texMonitorIvo, mento: 0xF6C7CF, retro: 0xE2385A });
-  // sulla scrivania di Ettore: la tazza, le bozze, la lampada gialla
-  const tazzaE = at(tazza(C.orange, PI * 0.2), -0.62, TAV, 0.1); pE.g.add(tazzaE);
-  pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.66, TAV, -0.12));
-  const foglioDaIvo = stampa(0.21, 0.297, foglio(5)); foglioDaIvo.rotation.set(-PI / 2, 0, -0.25); foglioDaIvo.visible = false; pE.g.add(at(foglioDaIvo, 0.62, TAV + 0.02, 0.2));
+  /* ================================================================ le altre teste: sette pettinature e due barbe */
+  const viaIlViso = (d, x, y, z) => scava(d, uovo(x, y, z, 0, -0.085, 0.13, 0.152, 0.17, 0.135), 0.025);
+  const viaLeOrecchie = (d, ax, y, z) => scava(d, uovo(ax, y, z, 0.2, -0.045, 0.0, 0.055, 0.075, 0.07), 0.02);
+  const viaLaNuca = (d, x, y, z) => scava(d, uovo(x, y, z, 0, -0.2, -0.06, 0.22, 0.105, 0.22), 0.03);
+  const CIUFFI = [[0, 0.215, 0.03, 0.05], [0.07, 0.2, 0.07, 0.045], [-0.08, 0.2, 0.05, 0.048], [0.11, 0.17, -0.03, 0.045], [-0.12, 0.16, -0.02, 0.046], [0.03, 0.2, -0.08, 0.05], [-0.05, 0.19, -0.1, 0.045],
+    [0, 0.165, 0.15, 0.04], [0.09, 0.145, 0.13, 0.036], [-0.09, 0.155, 0.12, 0.04], [0, 0.13, -0.17, 0.045], [0.13, 0.1, -0.12, 0.04], [-0.13, 0.1, -0.12, 0.04]];
+  const RICCI = []; for (let i = 0; i < 54; i++) { const yy = 1 - 2 * (i + 0.5) / 54, r = Math.sqrt(1 - yy * yy), fi = i * 2.39996;
+    const p = [Math.cos(fi) * r * 0.225, 0.065 + yy * 0.21, -0.025 + Math.sin(fi) * r * 0.215]; if (!(p[2] > 0.1 && p[1] < 0.11) && p[1] > -0.14) RICCI.push(p); }
+  Object.assign(CHIOME, {
+    caschetto(x, y, z) {   // Olivia: il caschetto alla mandibola, con la riga di lato e il ciuffo sulla fronte
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.03, -0.015, 0.2, 0.19, 0.195);
+      d = fondi(d, uovo(ax, y, z, 0.13, -0.07, -0.02, 0.085, 0.125, 0.13), 0.05);
+      d = fondi(d, uovo(x, y, z, 0, -0.06, -0.09, 0.17, 0.135, 0.11), 0.05);
+      d = fondi(d, uovo(x, y, z, -0.075, 0.125, 0.115, 0.11, 0.07, 0.075), 0.04);
+      d = scava(d, uovo(x, y, z, 0.02, -0.1, 0.15, 0.125, 0.185, 0.13), 0.03);
+      d = scava(d, y + 0.178, 0.02);
+      d = scava(d, tubo(x, y, z, 0.065, 0.226, -0.1, 0.065, 0.214, 0.13, 0.007), 0.012);
+      for (let i = 0; i < 5; i++) { const zz = -0.13 + i * 0.045; d = scava(d, tubo(ax, y, z, 0.205, 0.07, zz, 0.218, -0.16, zz + 0.012, 0.0058), 0.01); }
+      return d; },
+    frangia(x, y, z) {   // Lea: il caschetto corto e nero, con la frangia dritta
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.03, -0.015, 0.198, 0.19, 0.195);
+      d = fondi(d, uovo(ax, y, z, 0.135, -0.05, -0.01, 0.075, 0.11, 0.13), 0.05);
+      d = fondi(d, uovo(x, y, z, 0, -0.05, -0.09, 0.165, 0.12, 0.11), 0.05);
+      d = scava(d, uovo(x, y, z, 0, -0.115, 0.15, 0.122, 0.175, 0.13), 0.025);
+      d = fondi(d, uovo(x, y, z, 0, 0.108, 0.125, 0.135, 0.048, 0.06), 0.025);
+      d = scava(d, y + 0.135, 0.018);
+      for (let i = -3; i <= 3; i++) d = scava(d, tubo(x, y, z, i * 0.036, 0.165, 0.15, i * 0.038, 0.058, 0.19, 0.005), 0.009);
+      return d; },
+    spettinato(x, y, z) {   // Tobia: corti, e ognuno per conto suo
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.035, -0.012, 0.188, 0.182, 0.186); if (d > 0.11) return d;
+      for (const [cx, cy, cz, r] of CIUFFI) d = fondi(d, uovo(x, y, z, cx, cy, cz, r * 0.8, r * 1.3, r * 0.8), 0.022);
+      return viaLaNuca(viaLeOrecchie(viaIlViso(d, x, y, z), ax, y, z), x, y, z); },
+    ricci: { centro: [0, 0.05, 0], mezzo: 0.31, f(x, y, z) {   // Ada: una nuvola di ricci
+      let d = uovo(x, y, z, 0, 0.06, -0.025, 0.215, 0.2, 0.205); if (d > 0.1) return d;
+      for (const [cx, cy, cz] of RICCI) d = fondi(d, Math.hypot(x - cx, y - cy, z - cz) - 0.052, 0.022);
+      d = scava(d, uovo(x, y, z, 0, -0.1, 0.16, 0.13, 0.2, 0.14), 0.03);
+      return scava(d, uovo(x, y, z, 0, -0.24, -0.03, 0.26, 0.13, 0.26), 0.04); } },
+    lunghi: { centro: [0, -0.1, -0.02], mezzo: 0.36, f(x, y, z) {   // Rita: lunghi sulla schiena, con la riga in mezzo
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.03, -0.015, 0.196, 0.188, 0.193);
+      d = fondi(d, uovo(ax, y, z, 0.15, -0.09, -0.04, 0.06, 0.16, 0.1), 0.05);
+      d = fondi(d, uovo(x, y, z, 0, -0.2, -0.118, 0.172, 0.25, 0.085), 0.06);
+      d = scava(d, uovo(x, y, z, 0, -0.1, 0.16, 0.128, 0.2, 0.135), 0.03);
+      d = scava(d, tubo(x, y, z, 0, 0.228, -0.12, 0, 0.2, 0.16, 0.007), 0.012);
+      for (const xx of [0.035, 0.085, 0.13]) { const zb = -0.118 - 0.085 * Math.sqrt(1 - (xx / 0.172) ** 2); d = scava(d, tubo(ax, y, z, xx, 0.0, zb - 0.004, xx * 0.92, -0.42, zb + 0.02, 0.006), 0.011); }
+      return d; } },
+    corti(x, y, z) {   // Vito: rasati ai lati, un ciuffo corto davanti
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.035, -0.012, 0.183, 0.177, 0.181);
+      d = fondi(d, uovo(x, y, z, 0, 0.172, 0.085, 0.1, 0.045, 0.075), 0.035);
+      d = viaIlViso(d, x, y, z);
+      d = scava(d, uovo(ax, y, z, 0.2, -0.035, 0.0, 0.052, 0.1, 0.1), 0.02);
+      d = scava(d, uovo(x, y, z, 0, -0.18, -0.06, 0.22, 0.115, 0.22), 0.03);
+      for (let i = -2; i <= 2; i++) d = scava(d, tubo(x, y, z, i * 0.034, 0.215, 0.02, i * 0.036, 0.2, 0.16, 0.005), 0.009);
+      return d; },
+    pelato(x, y, z) {   // Zeno: una corona bianca intorno, e in cima niente
+      const ax = Math.abs(x);
+      let d = uovo(x, y, z, 0, 0.03, -0.015, 0.187, 0.178, 0.186);
+      d = fondi(d, uovo(ax, y, z, 0.165, 0.0, -0.04, 0.04, 0.07, 0.1), 0.03);
+      d = scava(d, uovo(x, y, z, 0, 0.15, 0.03, 0.17, 0.14, 0.19), 0.03);
+      return viaLaNuca(viaLeOrecchie(viaIlViso(d, x, y, z), ax, y, z), x, y, z); },
+  });
+  // la barba: la testa gonfiata di poco, tenuta solo intorno alla mandibola, con la bocca libera
+  const barbe = {};
+  function barbaGeo(tipo) {
+    if (barbe[tipo]) return barbe[tipo];
+    const spessa = tipo === 'lunga' ? 0.02 : 0.0075;
+    return barbe[tipo] = scolpisci((x, y, z) => { const ax = Math.abs(x);
+      let zona = fondi(uovo(x, y, z, 0, -0.118, 0.04, 0.185, 0.088, 0.165), tubo(ax, y, z, 0.15, -0.1, 0.03, 0.166, -0.012, 0.004, 0.034), 0.03);
+      let d = -fondi(-(cranio(x, y, z) - spessa), -zona, 0.02);
+      if (tipo === 'lunga') d = fondi(d, uovo(x, y, z, 0, -0.165, 0.1, 0.075, 0.06, 0.06), 0.04);
+      return scava(d, uovo(x, y, z, 0, -0.057, 0.165, 0.046, 0.02, 0.04), 0.012); }, [0, -0.1, 0.02], 0.24);
+  }
+
+  /* ================================================================ gli altri vestiti, e gli accessori */
+  const telaRighe = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d');   // la maglia a righe di Rita
+    x.fillStyle = '#F7F1E3'; x.fillRect(0, 0, 64, 64); x.fillStyle = '#7B4BE0'; x.fillRect(0, 0, 64, 26); x.fillStyle = '#7CC6F2'; x.fillRect(0, 40, 64, 8); return c; })();
+  const stoffa = c => M(c, { roughness: 0.88 });
+  Object.assign(VESTITI, {
+    giacca: { busto: vestito((x, w, h, a) => { x.fillStyle = '#1F2A44'; x.fillRect(0, 0, w, h);                                   // Olivia: il blazer blu
+        x.fillStyle = '#F7F1E3'; a.scollo(0.3, 0.12, 0.92);
+        x.strokeStyle = '#2E3D63'; a.bordoScollo(0.3, 0.12, 0.92, 28); x.strokeStyle = '#141C30'; a.bordoScollo(0.3, 0.12, 0.92, 4);
+        x.fillStyle = '#141C30'; a.davanti(0, 0.008, 0.04, 0.3); x.fillStyle = '#C9A24A'; a.bottone(0.22, 9);
+        x.strokeStyle = '#141C30'; x.lineWidth = 4; for (const cx of [0.15, 0.85]) { x.beginPath(); x.moveTo(cx * w - 30, a.quota(0.2)); x.lineTo(cx * w + 30, a.quota(0.2)); x.stroke(); } }),
+      manica: stoffa(0x1F2A44), polsino: 0x141C30, colletto: 0xF7F1E3 },
+    denim: { busto: vestito((x, w, h, a) => { x.fillStyle = '#4E77A8'; x.fillRect(0, 0, w, h);                                    // Tobia: la giacca di jeans aperta
+        x.fillStyle = '#FFFFFF'; a.davanti(0, 0.05, 0, 0.56); a.scollo(0.52, 0.1, 0.92);
+        x.strokeStyle = '#3B5F8C'; a.bordoScollo(0.52, 0.1, 0.92, 24);
+        x.fillStyle = '#3B5F8C'; a.davanti(0.05, 0.062, 0, 0.56); a.davanti(0, 0.5, 0, 0.06);
+        x.strokeStyle = '#E8C36A'; x.lineWidth = 2.5; x.setLineDash([7, 6]);
+        for (const cx of [0.072, 0.928]) { x.beginPath(); x.moveTo(cx * w, a.quota(0.06)); x.lineTo(cx * w, a.quota(0.56)); x.stroke(); }
+        for (const cx of [0.16, 0.84]) x.strokeRect(cx * w - 28, a.quota(0.42), 56, 46); x.setLineDash([]);
+        x.fillStyle = '#C98A4B'; for (const cx of [0.16, 0.84]) { x.beginPath(); x.arc(cx * w, a.quota(0.4), 5, 0, 7); x.fill(); } }),
+      manica: stoffa(0x4E77A8), polsino: 0x3B5F8C, colletto: 0x3B5F8C },
+    dolcevita: { colloAlto: true, busto: vestito((x, w, h) => { x.fillStyle = '#1C1D22'; x.fillRect(0, 0, w, h);                  // Lea: il dolcevita nero, a coste
+        x.fillStyle = 'rgba(255,255,255,.06)'; for (let i = 0; i < w; i += 12) x.fillRect(i, 0, 4, h); }),
+      manica: stoffa(0x1C1D22), polsino: 0x101114, colletto: 0x1C1D22 },
+    maglione: { busto: vestito((x, w, h, a) => { x.fillStyle = '#F2B705'; x.fillRect(0, 0, w, h);                                 // Ada: il maglione giallo, con il colletto bianco
+        x.fillStyle = 'rgba(150,100,0,.2)'; for (let i = 0; i < w; i += 26) x.fillRect(i, 0, 5, h);
+        x.fillStyle = '#D99A00'; a.davanti(0, 0.5, 0, 0.08);
+        x.fillStyle = '#FFFFFF'; a.scollo(0.78, 0.075, 0.92); x.strokeStyle = '#D99A00'; a.bordoScollo(0.78, 0.075, 0.92, 12); }),
+      manica: stoffa(0xF2B705), polsino: 0xD99A00, colletto: 0xFFFFFF },
+    righe: { busto: vestito((x, w, h) => { x.fillStyle = x.createPattern(telaRighe, 'repeat'); x.fillRect(0, 0, w, h); }),            // Rita: le righe viola e azzurre
+      manica: new THREE.MeshStandardMaterial({ map: mappa(telaRighe, 1, 3), roughness: 0.9 }), polsino: 0x7B4BE0, colletto: 0x7B4BE0 },
+    bomber: { busto: vestito((x, w, h, a) => { x.fillStyle = '#FF5DA2'; x.fillRect(0, 0, w, h);                                   // Vito: il bomber rosa e turchese
+        x.fillStyle = '#3FE0D0'; a.davanti(0, 0.5, 0, 0.1); x.fillStyle = 'rgba(0,0,0,.14)'; for (let i = 0; i < w; i += 14) x.fillRect(i, a.quota(0.1), 5, 0.1 * h);
+        x.fillStyle = '#FFFFFF'; a.scollo(0.7, 0.07, 0.92); x.strokeStyle = '#3FE0D0'; a.bordoScollo(0.7, 0.07, 0.92, 16);
+        x.fillStyle = '#B83C74'; a.davanti(0, 0.008, 0.1, 0.7);
+        x.fillStyle = '#FFE066'; x.beginPath(); x.arc(0.86 * w, a.quota(0.52), 20, 0, 7); x.fill(); x.fillStyle = '#FF5DA2'; for (let i = 0; i < 3; i++) x.fillRect(0.86 * w - 22, a.quota(0.52) + 2 + i * 7, 44, 3); }),
+      manica: stoffa(0xFF5DA2), polsino: 0x3FE0D0, colletto: 0x3FE0D0 },
+    gilet: { busto: vestito((x, w, h, a) => { x.fillStyle = '#2F7A4C'; x.fillRect(0, 0, w, h);                                    // Zeno: il gilet verde sulla camicia
+        x.fillStyle = '#F3EBDD'; a.scollo(0.5, 0.11, 0.92); x.strokeStyle = '#24603B'; a.bordoScollo(0.5, 0.11, 0.92, 10);
+        x.fillStyle = '#24603B'; a.davanti(0, 0.01, 0.05, 0.5); x.fillStyle = '#E8C36A'; [0.14, 0.26, 0.38].forEach(v => a.bottone(v, 7));
+        x.strokeStyle = '#24603B'; x.lineWidth = 4; for (const cx of [0.15, 0.85]) { x.beginPath(); x.moveTo(cx * w - 26, a.quota(0.24)); x.lineTo(cx * w + 26, a.quota(0.24)); x.stroke(); } }),
+      manica: stoffa(0xF3EBDD), polsino: 0xE2D8C4, colletto: 0xF3EBDD },
+  });
+  // gli accessori: si attaccano alla testa o al busto di chi li porta
+  const oro = M(0xD9A93B, { metalness: 0.7, roughness: 0.3 });
+  const orecchini = ({ testa }) => { for (const l of [-1, 1]) testa.add(at(sph(0.013, oro, 12, 8), l * 0.178, -0.068, -0.004)); };
+  const spilla = ({ busto }) => { busto.add(at(sph(0.016, M(0xF5C518, { roughness: 0.35 }), 12, 8), -0.075, 0.335, 0.112)); };
+  function cuffie({ testa }) {   // le cuffie di Vito: l'archetto e i due padiglioni
+    const arco = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.218, 0.011, 8, 36, PI), M(0x202125, { roughness: 0.5 }))); arco.position.set(0, 0.0, -0.006); testa.add(arco);
+    for (const l of [-1, 1]) { const p = gruppo(cyl(0.06, 0.06, 0.04, M(0x3FE0D0, { roughness: 0.45 }), 24), at(cyl(0.05, 0.05, 0.012, M(0x202125, { roughness: 0.8 }), 24), 0, l * 0.024, 0), at(cyl(0.028, 0.028, 0.008, M(0xFF5DA2, { roughness: 0.4 }), 18), 0, -l * 0.022, 0));
+      p.rotation.z = PI / 2; testa.add(at(p, l * 0.205, -0.012, -0.006)); }
+  }
+  const cerchietto = ({ testa }) => { const c = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.202, 0.009, 8, 36, PI), M(0x7CC6F2, { roughness: 0.5 }))); c.position.set(0, 0.012, 0.04); c.rotation.x = -0.18; testa.add(c); };
+  const farfallino = ({ busto }) => { const r = M(0xE01F3D, { roughness: 0.7 }); busto.add(at(gruppo(at(ell(0.024, 1.3, 0.85, 0.5, r), -0.027, 0, 0), at(ell(0.024, 1.3, 0.85, 0.5, r), 0.027, 0, 0), sph(0.011, r, 10, 8)), 0, 0.425, 0.088)); };
+
+  /* ================================================================ i posti e le persone */
+  const schermoDi = id => texSchermo(AGENTI[id] || { id, mestiere: '', dettagli: [] });
+  const posti = {
+    lettura:    posto({ x: 1.6, z: 2.2, tex: schermoDi('lettura'), mento: 0xC9DDF2, retro: 0x2F6FD0 }),
+    redattore:  posto({ x: 3.2, z: 2.2, tex: schermoDi('redattore'), mento: 0xF9D2B0, retro: 0xF0821E }),
+    revisore:   posto({ x: 5.75, z: 2.2, tex: schermoDi('revisore'), mento: 0xF6C7CF, retro: 0xE2385A }),
+    visualista: posto({ x: 7.35, z: 2.2, tex: schermoDi('visualista'), mento: 0xFBE9A8, retro: 0xF2B705 }),
+    gta:        posto({ x: 10.0, z: 2.2, tex: schermoDi('gta'), mento: 0xC8F2EC, retro: 0x1FB5A6 }),
+    ai:         posto({ x: 9.9, z: 4.85, giro: PI, tex: schermoDi('ai'), mento: 0xCFE8D5, retro: 0x2F8F5A }),
+    schede:     posto({ x: 9.9, z: 5.7, tex: schermoDi('schede'), mento: 0xDDD3F2, retro: 0x7B4BE0 }),
+  };
+  // la regia: Olivia sta in piedi al centro dell'anello; tre schermi li vediamo di fronte, due di spalle
+  const R_IN = 0.62, R_OUT = 1.12, VARCO = 0.55, FRONTE = 5 * PI / 4;
+  const regiaG = anello(REGIA[0], REGIA[1], R_IN, R_OUT, VARCO);
+  [[FRONTE, 0], [FRONTE - 0.74, 1], [FRONTE + 0.74, 2], [PI / 4 + 1.2, 1], [PI / 4 - 1.2, 2]].forEach(([a, quale], i) => {
+    const m = imac(texRegia[quale], i < 3 ? 0xE6E7EA : 0xFBE9A8, i < 3 ? 0xC9CCD1 : 0xF2B705); m.rotation.y = a + PI; regiaG.add(at(m, Math.sin(a) * 0.92, TAV, Math.cos(a) * 0.92)); });
+  const sulAnello = (o, a, r, giro = 0) => { o.rotation.y = a + PI + giro; regiaG.add(at(o, Math.sin(a) * r, o.position.y || TAV, Math.cos(a) * r)); return o; };
+  sulAnello(tastiera(), FRONTE, 0.71);
+  sulAnello(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.11; return f; })), FRONTE + 1.42, 0.86, 0.3);
+  posti.regia = { inPiedi: true, seduta: [REGIA[0], REGIA[1]], yaw: FRONTE };
+  posti.fonti = { inPiedi: true, seduta: [1.02, ARCHIVIO[1]], yaw: -PI / 2 };
+
+  // le tazze: una sulla scrivania e la stessa in mano, per chi va a prendersi il caffè
+  const TAZZE = { regia: C.yellow, lettura: C.blue, redattore: C.orange, ai: C.red, gta: '#FF5DA2' }, tazze = {}, tazzeMano = {};
+  for (const id of ['lettura', 'redattore', 'ai', 'gta']) { tazze[id] = at(tazza(TAZZE[id], PI * 0.2), -0.52, TAV, 0.1); posti[id].g.add(tazze[id]); }
+  tazze.regia = tazza(TAZZE.regia, 0); tazze.regia.position.y = TAV; sulAnello(tazze.regia, FRONTE - 1.38, 0.84);
+  posti.revisore.g.add(at(tazza(C.red, PI * 0.2), -0.54, TAV, 0.0)); posti.schede.g.add(at(tazza('#7B4BE0', PI * 0.2), -0.54, TAV, 0.08));
+  // sulla scrivania di Ettore: le bozze, la lampada gialla
+  const pE = posti.redattore, pI = posti.revisore;
+  pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.54, TAV, -0.12));
+  const foglioDaIvo = stampa(0.21, 0.297, foglio(5)); foglioDaIvo.rotation.set(-PI / 2, 0, -0.25); foglioDaIvo.visible = false; pE.g.add(at(foglioDaIvo, 0.5, TAV + 0.02, 0.2));
   const cappa = M(0xF5C518, { roughness: 0.5, emissive: 0xFFB400, emissiveIntensity: 0 }); paralumi.push(cappa);
   pE.g.add(at(gruppo(at(cyl(0.07, 0.08, 0.02, M(0xF5C518, { roughness: 0.5 }), 20), 0, 0.01, 0), at(cyl(0.01, 0.01, 0.34, nero, 8), 0, 0.18, 0),
-    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })()), -0.72, TAV, -0.26));
-  punto(0xFFC860, 5, 2.0, 1.2, 2.75, 3.2);
-  // sulla scrivania di Ivo: la tazza rossa e le bozze di Ettore corrette a penna
-  pI.g.add(at(tazza(C.red, PI * 0.2), 0.62, TAV, 0.12));
-  const bozzeIvo = [[-0.5, 0.06, 0.28, 11], [-0.46, 0.1, -0.2, 23], [-0.56, 0.02, 0.5, 37]].map(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-PI / 2, 0, r); f.userData.r = r; pI.g.add(at(f, x, TAV + 0.002 + i * 0.002, z)); return f; });
+    (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.085, 0.12, 24, 1, true), cappa)); c.material.side = THREE.DoubleSide; c.position.set(0.05, 0.36, 0.05); c.rotation.set(0.5, 0, -0.5); return c; })()), -0.6, TAV, -0.26));
+  punto(0xFFC860, 5, pE.x - 0.55, 1.2, pE.z - 0.15, 3.2);
+  // di Ivo: le bozze di Ettore corrette a penna
+  const bozzeIvo = [[0.44, 0.1, 0.28, 11], [0.4, 0.14, -0.2, 23], [0.5, 0.06, 0.5, 37]].map(([x, z, r, seme], i) => { const f = stampa(0.21, 0.297, foglio(seme)); f.rotation.set(-PI / 2, 0, r); f.userData.r = r; pI.g.add(at(f, x, TAV + 0.002 + i * 0.002, z)); return f; });
+  // di Tobia: la pila dei giornali da leggere; di Lea: la tavoletta e le matite; di Ada: il robottino; di Rita: il razzo; di Vito: la lattina
+  posti.lettura.g.add(at(gruppo(...[0, 1, 2, 3, 4, 5].map(i => { const f = at(box(0.3, 0.018, 0.22, i % 2 ? M(0xEFEBE2) : bianco, 0.004), 0, 0.009 + i * 0.019, 0); f.rotation.y = (i % 3 - 1) * 0.12; return f; })), 0.5, TAV, -0.1));
+  const pL = posti.visualista; for (const p of [pL, pI]) p.g.children.forEach(c => { if (c.isMesh && c.geometry.type === 'SphereGeometry') c.visible = false; });   // niente mouse per Lea (disegna sulla tavoletta) né per Ivo (ha le bozze)
+  pL.g.add(at(box(0.3, 0.012, 0.21, M(0x2A2B30, { roughness: 0.5 }), 0.006), 0.4, TAV + 0.006, 0.24), at(box(0.25, 0.002, 0.16, M(0x4A4C55, { roughness: 0.3 }), 0.001), 0.4, TAV + 0.013, 0.24));
+  pL.g.add(at(gruppo(cyl(0.04, 0.035, 0.09, bianco, 18), ...[0xE01F3D, 0xF5C518, 0x0E9CD8, 0xF0821E, 0x17181B].map((c, i) => { const m = cyl(0.005, 0.005, 0.15, M(c), 6); m.position.set(Math.sin(i * 1.3) * 0.016, 0.06, Math.cos(i * 1.3) * 0.016); m.rotation.set(Math.cos(i * 1.3) * 0.2, 0, -Math.sin(i * 1.3) * 0.2); return m; })), -0.5, TAV + 0.045, -0.12));
+  const robot = gruppo(at(box(0.07, 0.08, 0.05, M(0xE01F3D, { roughness: 0.4 }), 0.012), 0, 0.05, 0), at(box(0.085, 0.06, 0.06, bianco, 0.015), 0, 0.125, 0), at(sph(0.01, M(SCURO)), -0.02, 0.13, 0.031), at(sph(0.01, M(SCURO)), 0.02, 0.13, 0.031), at(cyl(0.003, 0.003, 0.04, nero, 6), 0, 0.17, 0), at(sph(0.009, M(0xF5C518)), 0, 0.192, 0));
+  robot.rotation.y = PI + 0.5; posti.ai.g.add(at(robot, 0.52, TAV, -0.1));
+  const razzo = gruppo(at(cyl(0.028, 0.028, 0.14, bianco, 16), 0, 0.1, 0), (() => { const c = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.028, 0.06, 16), M(0xE01F3D, { roughness: 0.4 }))); c.position.y = 0.2; return c; })(),
+    ...[0, 1, 2].map(i => { const a = box(0.006, 0.05, 0.04, M(0xE01F3D), 0.002); a.position.set(Math.sin(i * 2.094) * 0.035, 0.045, Math.cos(i * 2.094) * 0.035); a.rotation.y = i * 2.094; return a; }), at(sph(0.012, M(0x0E9CD8, { roughness: 0.2 })), 0, 0.13, 0.024));
+  posti.schede.g.add(at(razzo, 0.55, TAV, -0.14));
+  posti.gta.g.add(at(cyl(0.028, 0.028, 0.11, M(0x3FE0D0, { metalness: 0.5, roughness: 0.3 }), 16), 0.56, TAV + 0.055, -0.05));
 
-  const ettore = persona({ id: 'ettore', vestito: 'quadri', chioma: 'onda', pelle: 0xF2C6A6, capelli: 0x4A2F22, calzoni: 0x2C3554, scarpe: 0xF4F1EA });
-  const ivo = persona({ id: 'ivo', vestito: 'cardigan', chioma: 'stempiato', pelle: 0xE2AE8C, capelli: 0xC9C9CE, sopracciglia: 0x9A9AA0, calzoni: 0x4A4B52, scarpe: 0x6B4A32, suola: 0x2A2B30, occhiali: 0x8A6A2F, baffi: true });
-  stanza.add(ettore, ivo);
-  const persone = { ettore, ivo };
+  /* ================================================================ i nove: l'aspetto di ciascuno */
+  const ASPETTO = {
+    regia:      { vestito: 'giacca', chioma: 'caschetto', pelle: 0xF4CDB0, capelli: 0xB5532A, sopracciglia: 0x8A3F1E, calzoni: 0xE9E2D2, scarpe: 0xB07A4A, suola: 0x2A2B30, ciglia: true, labbra: 0xB8404F, accessori: a => { orecchini(a); spilla(a); } },
+    lettura:    { vestito: 'denim', chioma: 'spettinato', pelle: 0xF0C09C, capelli: 0x7A4A2B, calzoni: 0x2A2B30, scarpe: 0xF4F1EA, barba: 'corta', barbaColore: 0x6B4127 },
+    redattore:  { vestito: 'quadri', chioma: 'onda', pelle: 0xF2C6A6, capelli: 0x4A2F22, calzoni: 0x2C3554, scarpe: 0xF4F1EA },
+    revisore:   { vestito: 'cardigan', chioma: 'stempiato', pelle: 0xE2AE8C, capelli: 0xC9C9CE, sopracciglia: 0x9A9AA0, calzoni: 0x4A4B52, scarpe: 0x6B4A32, suola: 0x2A2B30, occhiali: 0x8A6A2F, baffi: true },
+    visualista: { vestito: 'dolcevita', chioma: 'frangia', pelle: 0xF6D5BE, capelli: 0x1B1B20, calzoni: 0x3A3B42, scarpe: 0x17181B, suola: 0xF5C518, occhiali: 0x17181B, lenti: 0.057, ciglia: true, labbra: 0xC2495A },
+    ai:         { vestito: 'maglione', chioma: 'ricci', pelle: 0xB47B55, capelli: 0x2A1A14, calzoni: 0x3E5C8A, scarpe: 0xF4F1EA, ciglia: true, labbra: 0x8E3B3F },
+    schede:     { vestito: 'righe', chioma: 'lunghi', pelle: 0xEEC29E, capelli: 0xD9A441, sopracciglia: 0xA9772B, calzoni: 0x3A3350, scarpe: 0xF4F1EA, ciglia: true, labbra: 0xC2495A, accessori: cerchietto },
+    gta:        { vestito: 'bomber', chioma: 'corti', pelle: 0xD9A47C, capelli: 0x1F1A1A, calzoni: 0x8FB3D9, scarpe: 0x3FE0D0, accessori: cuffie },
+    fonti:      { vestito: 'gilet', chioma: 'pelato', pelle: 0xE9B796, capelli: 0xF1F1F1, sopracciglia: 0xDADADA, calzoni: 0x6B4A32, scarpe: 0x3A2A22, suola: 0x2A2B30, occhiali: 0x4B4D53, barba: 'lunga', barbaColore: 0xF4F4F4, accessori: farfallino },
+  };
+  const persone = {};
+  for (const id of Object.keys(ASPETTO)) { if (id === 'fonti' && !LUNEDI) continue; persone[id] = persona({ id, ...ASPETTO[id] }); stanza.add(persone[id]); }
+  const ettore = persone.redattore, ivo = persone.revisore, mano = id => persone[id].userData.j.mD;
+
   // gli oggetti che passano di mano
-  const tazzaMano = tazza(C.orange, 0); tazzaMano.visible = false; ettore.userData.j.mD.add(at(tazzaMano, 0, -0.085, 0.06));
-  const penna = cyl(0.007, 0.007, 0.14, M(0xE01F3D, { roughness: 0.4 }), 8); penna.rotation.x = 1.9; ivo.userData.j.mD.add(at(penna, 0, -0.03, 0.055));
-  const foglioMano = stampa(0.21, 0.297, foglio(5)); foglioMano.material.side = THREE.DoubleSide; foglioMano.visible = false; ivo.userData.j.mD.add(at(foglioMano, 0, -0.06, 0.13));
-  const canMano = annaffiatoio(); canMano.visible = false; ivo.userData.j.mD.add(at(canMano, 0, -0.15, 0.03));
+  for (const id of Object.keys(TAZZE)) { tazzeMano[id] = tazza(TAZZE[id], 0); tazzeMano[id].visible = false; mano(id).add(at(tazzeMano[id], 0, -0.085, 0.06)); }
+  const penna = cyl(0.007, 0.007, 0.14, M(0xE01F3D, { roughness: 0.4 }), 8); penna.rotation.x = 1.9; mano('revisore').add(at(penna, 0, -0.03, 0.055));
+  const foglioMano = stampa(0.21, 0.297, foglio(5)); foglioMano.material.side = THREE.DoubleSide; foglioMano.visible = false; mano('revisore').add(at(foglioMano, 0, -0.06, 0.13));
+  const canMano = annaffiatoio(); canMano.visible = false; mano('revisore').add(at(canMano, 0, -0.15, 0.03));
+  const foglioRita = stampa(0.21, 0.297, foglio(52, true)); foglioRita.material.side = THREE.DoubleSide; foglioRita.visible = false; mano('schede').add(at(foglioRita, 0, -0.06, 0.13));
+  const foglioDiRita = stampa(0.21, 0.297, foglio(52, true)); foglioDiRita.rotation.set(-PI / 2, 0, 0.2); foglioDiRita.visible = false; posti.schede.g.add(at(foglioDiRita, 0.36, TAV + 0.003, 0.16));
+  const stilo = cyl(0.006, 0.004, 0.15, M(0xFBFAF7, { roughness: 0.3 }), 8); stilo.rotation.x = 1.9; mano('visualista').add(at(stilo, 0, -0.03, 0.055));
+  const postitMano = stampa(0.11, 0.11, texNuovoPostit); postitMano.material.side = THREE.DoubleSide; postitMano.visible = false; mano('visualista').add(at(postitMano, 0, -0.07, 0.07));
+  // il gamepad di Vito, davanti al petto; la tavoletta di Olivia, nella sinistra
+  const gamepad = gruppo(box(0.17, 0.04, 0.085, bianco, 0.018), at(ell(0.034, 1, 1.25, 1, bianco), -0.075, -0.018, 0.02), at(ell(0.034, 1, 1.25, 1, bianco), 0.075, -0.018, 0.02),
+    at(cyl(0.014, 0.014, 0.012, M(SCURO), 12), -0.04, 0.024, 0.008), at(cyl(0.014, 0.014, 0.012, M(SCURO), 12), 0.04, 0.024, 0.02), at(sph(0.008, M(0x3FE0D0)), 0.058, 0.024, -0.012), at(sph(0.008, M(0xFF5DA2)), 0.04, 0.024, -0.024));
+  gamepad.rotation.x = -0.5; gamepad.visible = false; persone.gta.userData.j.busto.add(at(gamepad, 0, 0.275, 0.3));
+  const tavoletta = gruppo(box(0.17, 0.24, 0.012, M(0x2A2B30, { roughness: 0.4 }), 0.008), at(stampa(0.15, 0.21, texLista), 0, 0, 0.0068));
+  tavoletta.rotation.set(-0.5, 0.25, 0); persone.regia.userData.j.mS.add(at(tavoletta, -0.03, -0.02, 0.1));
+  const cartella = box(0.03, 0.24, 0.3, M(0xF5C518, { roughness: 0.8 }), 0.008); cartella.visible = false; if (persone.fonti) mano('fonti').add(at(cartella, 0, -0.1, 0.1));
 
   /* ================================================================ la vita: una giornata in piccolo, che si ripete
      Tutto dipende dall'orologio: riaprendo la pagina nello stesso secondo si vede la stessa scena. */
-  const V = 0.8, PASSO = 1.0, GIRO = 168;
+  const V = 0.9, PASSO = 1.0, GIRO = 300;
   const angolo = (a, b, u) => a + ((((b - a) % (2 * PI)) + 3 * PI) % (2 * PI) - PI) * u;
+  const verso = (da, a) => Math.atan2(a[0] - da[0], a[1] - da[1]);
   function percorso(punti) { const seg = []; let L = 0;
-    for (let i = 1; i < punti.length; i++) { const l = Math.hypot(punti[i][0] - punti[i - 1][0], punti[i][1] - punti[i - 1][1]); seg.push({ a: punti[i - 1], b: punti[i], l, da: L }); L += l; }
+    for (let i = 1; i < punti.length; i++) { const l = Math.hypot(punti[i][0] - punti[i - 1][0], punti[i][1] - punti[i - 1][1]); if (l < 0.02) continue; seg.push({ a: punti[i - 1], b: punti[i], l, da: L }); L += l; }
+    if (!seg.length) seg.push({ a: punti[0], b: punti[0], l: 0, da: 0 });
     return { seg, L }; }
   function lungo(p, d) { d = Math.max(0, Math.min(p.L, d)); let s = p.seg[p.seg.length - 1]; for (const q of p.seg) if (d <= q.da + q.l) { s = q; break; }
     const u = s.l ? (d - s.da) / s.l : 0; return [s.a[0] + (s.b[0] - s.a[0]) * u, s.a[1] + (s.b[1] - s.a[1]) * u]; }
@@ -841,143 +1207,247 @@ function avvia() {
     constructor() { this.s = []; this.t = 0; }
     poi(dur, fn) { this.s.push({ t0: this.t, t1: this.t + dur, fn }); this.t += dur; return this; }
     fino(T, fn) { return T > this.t + 0.01 ? this.poi(T - this.t, fn) : this; }
-    a(t) { for (const s of this.s) if (t < s.t1) return s.fn((t - s.t0) / (s.t1 - s.t0), t - s.t0, t); const s = this.s[this.s.length - 1]; return s.fn(1, s.t1 - s.t0, t); }
+    a(t) { for (const s of this.s) if (t < s.t1) return s.fn((t - s.t0) / (s.t1 - s.t0), t - s.t0, t, s.t1 - t); const s = this.s[this.s.length - 1]; return s.fn(1, s.t1 - s.t0, t, 0); }
   }
+
+  /* La mappa della stanza: una griglia di caselle da dieci centimetri, chiuse dove c'è un mobile.
+     Le strade fra un posto e l'altro si trovano da sole (A*), girando intorno a scrivanie e sedie. */
+  const CELLA = 0.1, NX = Math.ceil(LARGA / CELLA), NZ = Math.ceil(FONDA / CELLA), muri = new Uint8Array(NX * NZ);
+  const casella = (x, z) => Math.max(0, Math.min(NZ - 1, Math.floor(z / CELLA))) * NX + Math.max(0, Math.min(NX - 1, Math.floor(x / CELLA)));
+  const centroDi = k => [((k % NX) + 0.5) * CELLA, (Math.floor(k / NX) + 0.5) * CELLA];
+  function chiudiDove(dentro) { for (let k = 0; k < NX * NZ; k++) { const [x, z] = centroDi(k); if (dentro(x, z)) muri[k] = 1; } }
+  const rett = (x0, z0, x1, z1, m = 0.2) => chiudiDove((x, z) => x > Math.min(x0, x1) - m && x < Math.max(x0, x1) + m && z > Math.min(z0, z1) - m && z < Math.max(z0, z1) + m);
+  const tondo = (cx, cz, r, m = 0.2) => chiudiDove((x, z) => Math.hypot(x - cx, z - cz) < r + m);
+  chiudiDove((x, z) => x < 0.2 || z < 0.2 || x > LARGA - 0.15 || z > FONDA - 0.15);
+  rett(fx - 1.5, 0, fx + 1.5, 0.53); rett(STAMPANTE[0] - 0.5, 0, STAMPANTE[0] + 0.5, 0.6); rett(0, 7.3, 0.58, 8.35);
+  tondo(PIANTA[0], PIANTA[1], 0.3); tondo(11.1, 0.5, 0.2); tondo(11.0, 8.05, 0.2); tondo(7.75, 7.9, 0.24); tondo(1.26, 0.36, 0.16); tondo(CESTINO[0], CESTINO[1], 0.14, 0.15);
+  tondo(MIKE[0], MIKE[1], 0.62); [-0.2, PI / 2 + 0.25].forEach(d => tondo(MIKE[0] + Math.sin(d) * 0.98, MIKE[1] + Math.cos(d) * 0.98, 0.28, 0.15));
+  for (const p of Object.values(posti)) { if (p.inPiedi) continue; const a = p.fuori(-p.w / 2, -p.d / 2), b = p.fuori(p.w / 2, p.d / 2); rett(a[0], a[1], b[0], b[1]);
+    const c = p.fuori(-0.26, p.zs - 0.25), e = p.fuori(0.26, p.zs + 0.67); rett(c[0], c[1], e[0], e[1]); }
+  chiudiDove((x, z) => { const dx = x - REGIA[0], dz = z - REGIA[1], r = Math.hypot(dx, dz); if (r < R_IN - 0.14 || r > R_OUT + 0.2) return false;
+    return Math.abs(angolo(PI / 4, Math.atan2(dx, dz), 1) - PI / 4) > VARCO - 0.14; });
+  function libera(p, meta) {   // la casella libera più vicina a un punto (un posto a sedere sta sempre dentro un mobile)
+    let meglio = -1, quanto = 1e9; const i0 = Math.floor(p[0] / CELLA), j0 = Math.floor(p[1] / CELLA);
+    for (let j = Math.max(0, j0 - 9); j <= Math.min(NZ - 1, j0 + 9); j++) for (let i = Math.max(0, i0 - 9); i <= Math.min(NX - 1, i0 + 9); i++) { const k = j * NX + i; if (muri[k]) continue;
+      const [x, z] = centroDi(k), q = Math.hypot(x - p[0], z - p[1]) + (meta ? 0.22 * Math.hypot(x - meta[0], z - meta[1]) : 0); if (q < quanto) { quanto = q; meglio = k; } }
+    return meglio; }
+  function vede(a, b) { const l = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.ceil(l / 0.04); for (let i = 0; i <= n; i++) { const u = n ? i / n : 0; if (muri[casella(a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u)]) return false; } return true; }
+  function strada(da, a) {
+    const s = libera(da, a), e = libera(a, da); if (s < 0 || e < 0) return [da, a];
+    const g = new Float32Array(NX * NZ).fill(1e9), f = new Float32Array(NX * NZ), da_ = new Int32Array(NX * NZ).fill(-1), chiuse = new Uint8Array(NX * NZ), aperte = [s], [ex, ez] = centroDi(e); g[s] = 0;
+    const stima = k => { const [x, z] = centroDi(k); return Math.hypot(x - ex, z - ez); };
+    while (aperte.length) { let m = 0; for (let i = 1; i < aperte.length; i++) if (f[aperte[i]] < f[aperte[m]]) m = i;
+      const k = aperte.splice(m, 1)[0]; if (k === e) break; if (chiuse[k]) continue; chiuse[k] = 1; const i = k % NX, j = Math.floor(k / NX);
+      for (let dj = -1; dj <= 1; dj++) for (let di = -1; di <= 1; di++) { if (!di && !dj) continue; const ni = i + di, nj = j + dj; if (ni < 0 || nj < 0 || ni >= NX || nj >= NZ) continue;
+        const n = nj * NX + ni; if (muri[n] || chiuse[n] || (di && dj && (muri[j * NX + ni] || muri[nj * NX + i]))) continue;
+        const c = g[k] + (di && dj ? 1.4142 : 1) * CELLA; if (c < g[n]) { g[n] = c; f[n] = c + stima(n); da_[n] = k; aperte.push(n); } } }
+    if (e !== s && da_[e] < 0) return [da, a];
+    const celle = []; for (let k = e; k >= 0; k = da_[k]) { celle.push(centroDi(k)); if (k === s) break; } celle.reverse();
+    const punti = [da]; let i = 0; while (i < celle.length - 1) { let j = celle.length - 1; while (j > i + 1 && !vede(celle[i], celle[j])) j--; if (i === 0) punti.push(celle[0]); punti.push(celle[j]); i = j; }   // si tengono solo le svolte
+    if (celle.length === 1) punti.push(celle[0]);
+    punti.push(a); return punti;
+  }
+
+  /* ================================================================ i gesti: cosa fa ciascuno quando è al suo posto */
   const metti = (g, x, z, yaw) => { g.position.set(x, 0, z); g.rotation.y = yaw; };
-  const sediaFuori = (p, k) => { p.sedia.position.z = p.zs + 0.42 * k; p.sedia.rotation.y = PI + 0.35 * k; };
+  const sediaFuori = (p, k) => { if (!p.sedia) return; p.sedia.position.z = p.zs + 0.42 * k; p.sedia.rotation.y = PI + 0.35 * k; };
   // tiene dritto (o inclina) un oggetto in mano, qualunque sia la posa del braccio
   const inMano = (o, P, inclina = 0) => { o.visible = true; o.rotation.x = -(P.sD[0] + P.gD + P.lean) + inclina; };
+  const stretto = (v, a, b) => Math.max(a, Math.min(b, v));
 
-  function alza(tr, chi, p, verso = 1) {   // verso 1: si alza; -1: si siede
-    tr.poi(1.3, u => { const k = verso > 0 ? dolce(u) : 1 - dolce(u); const P = mix(SEDUTO, IN_PIEDI, k); P.lean += 0.42 * Math.sin(PI * k);
-      metti(chi, p.seduta[0], p.seduta[1], PI); posa(chi, P); sediaFuori(p, k); return P; });
-  }
-  function va(tr, chi, p, punti, yaw0, yaw1, porta) {
-    const c = percorso(punti);
-    tr.poi(c.L / V, u => { const d = u * c.L, [x, z] = lungo(c, d), [x0, z0] = lungo(c, d - 0.2), [x1, z1] = lungo(c, d + 0.2);
-      let yaw = Math.atan2(x1 - x0, z1 - z0); yaw = angolo(yaw0, yaw, fra(d, 0, 0.45)); yaw = angolo(yaw, yaw1, fra(d, c.L - 0.45, c.L));
-      const P = passo(d * 2 * PI / PASSO, Math.min(1, d / 0.3, (c.L - d) / 0.3), !!porta);
-      metti(chi, x, z, yaw); posa(chi, P); sediaFuori(p, 1); if (porta) porta(P); return P; });
-  }
-  function sta(tr, dur, chi, p, x, z, yaw, fn) { tr.poi(dur, (u, dt, t) => { const P = fn(u, dt, t); metti(chi, x, z, typeof yaw === 'function' ? yaw(u) : yaw); posa(chi, P); sediaFuori(p, 1); return P; }); }
-  function seduto(tr, T, chi, p, fn) { tr.fino(T, (u, dt, t) => { const P = fn(t, u, dt); metti(chi, p.seduta[0], p.seduta[1], PI); posa(chi, P); sediaFuori(p, 0); return P; }); }
+  const scriveCon = (sfaso, ogni = 19) => t0 => { const t = t0 + sfaso, P = { ...SEDUTO }, raffica = Math.sin(t * 0.45) > -0.35 ? 1 : 0;
+    P.gD += Math.sin(t * 15) * 0.045 * raffica; P.gS += Math.sin(t * 15 + 2.1) * 0.045 * raffica; P.hx = 0.1 + Math.sin(t * 1.1) * 0.02;
+    const pausa = campana((t % ogni) / ogni, 0.7, 0.76, 0.9, 0.96); P.hy = -0.5 * pausa; P.twist = -0.12 * pausa; return P; };   // ogni tanto guarda le carte accanto
+  const segna = t => { const P = { ...SEDUTO, sS: [-0.35, 0.18], gS: -1.5, hx: 0.34, hy: -0.3, twist: -0.12 };   // Ivo: la penna rossa sulle bozze
+    const legge = campana((t % 13) / 13, 0.62, 0.7, 0.88, 0.96); penna.visible = true;
+    P.sD = [-0.42 + Math.sin(t * 5.1) * 0.035 * (1 - legge), -0.3 + Math.sin(t * 1.7) * 0.06]; P.gD = -1.5 + Math.sin(t * 7.3) * 0.05 * (1 - legge) - 0.4 * legge; P.gS -= 0.4 * legge; P.hx -= 0.2 * legge; return P; };
+  const legge = t => { const P = { ...SEDUTO, hx: 0.06 }, scorre = Math.sin(t * 0.7) > 0.2 ? 1 : 0;   // Tobia: una mano sul mouse, si avvicina allo schermo, appoggia il mento
+    P.sD = [-0.38, -0.22]; P.gD = -1.5 + Math.sin(t * 9) * 0.03 * scorre;
+    const vicino = campana((t % 23) / 23, 0.1, 0.2, 0.45, 0.55), mento = campana((t % 31) / 31, 0.55, 0.62, 0.86, 0.93);
+    P.lean += 0.22 * vicino; P.hx += 0.1 * mento - 0.1 * vicino; P.hy = Math.sin(t * 0.5) * 0.06;
+    P.sS = [-0.35 - 0.75 * mento, 0.12 - 0.3 * mento]; P.gS = -1.55 - 0.85 * mento; return P; };
+  const disegna = t => { const guarda = campana((t % 17) / 17, 0.7, 0.78, 0.9, 0.97), P = { ...SEDUTO, hx: 0.22 - 0.25 * guarda, hy: -0.18 + 0.18 * guarda, twist: -0.06, lean: 0.1 - 0.16 * guarda };   // Lea: lo stilo sulla tavoletta
+    stilo.visible = true; P.sD = [-0.5 + Math.sin(t * 2.3) * 0.1 * (1 - guarda), -0.25 + Math.sin(t * 1.7 + 1) * 0.12 * (1 - guarda)]; P.gD = -1.35 + Math.sin(t * 3.1) * 0.08 * (1 - guarda); return P; };
+  const gioca = t => { const piega = Math.sin(t * 1.3) * 0.12 + Math.sin(t * 2.9) * 0.05, evviva = campana((t % 37) / 37, 0.8, 0.84, 0.92, 0.96), P = { ...SEDUTO, lean: -0.08 - 0.1 * evviva, hx: 0.02 - 0.2 * evviva, twist: piega, hy: -piega * 0.4 };   // Vito: il gamepad, e ogni tanto esulta
+    P.sD = [-0.55 - 2.2 * evviva, 0.32 - 0.6 * evviva]; P.sS = [-0.55 - 2.2 * evviva, -0.32 + 0.6 * evviva]; P.gD = -1.35 + 0.9 * evviva + Math.sin(t * 11) * 0.02; P.gS = -1.35 + 0.9 * evviva + Math.sin(t * 13) * 0.02;
+    gamepad.visible = evviva < 0.25; return P; };
+  const TAPPE = [0, 0.74, 1.94, 0.74, 0, -0.74, -1.94, -0.74];
+  const dirige = t => { const dur = 7, i = Math.floor(t / dur) % TAPPE.length, u = (t % dur) / dur, gira = campana(u, 0.72, 0.8, 0.92, 1), Q = passo(t * 9, 0.4 * gira);   // Olivia: da uno schermo all'altro, la tavoletta nella sinistra
+    const indica = i % 2 ? 0 : campana(u, 0.18, 0.28, 0.46, 0.58), annota = i % 2 ? campana(u, 0.12, 0.22, 0.5, 0.6) : 0;
+    const P = { ...IN_PIEDI, h: Q.h, aD: Q.aD, kD: Q.kD, aS: Q.aS, kS: Q.kS, sS: [-0.55, 0.05], gS: -1.5, hx: 0.1 + 0.25 * annota, hy: 0.3 * annota, sD: [-1.25 * indica - 0.5 * annota, -0.08 + 0.35 * annota], gD: -0.2 - 1.3 * annota + Math.sin(t * 9) * 0.05 * annota };
+    P.giro = TAPPE[i] + (TAPPE[(i + 1) % TAPPE.length] - TAPPE[i]) * fra(u, 0.72, 1); return P; };
+  const sfoglia = t => { const o = Math.sin(t * 3.2), P = { ...IN_PIEDI, lean: 0.22, hx: 0.3 }; cassetti[0].visible = true;   // Zeno: davanti allo schedario aperto
+    P.sD = [-0.75, 0.1 + 0.12 * o]; P.gD = -0.9 - 0.15 * o; P.sS = [-0.75, -0.1 + 0.12 * o]; P.gS = -0.9 + 0.15 * o; return P; };
+
+  /* chi sta lavorando alza gli occhi quando qualcuno gli si avvicina */
+  const sguardi = {};
+  const guardami = (id, t0, t1, dove) => (sguardi[id] = sguardi[id] || []).push({ t0, t1, dove });
+  function guardaChi(c, P, t) { for (const s of sguardi[c.id] || []) { if (t <= s.t0 || t >= s.t1) continue;
+    const k = campana(t, s.t0, s.t0 + 0.9, s.t1 - 0.9, s.t1), ora = c.p.yaw + (P.giro || 0), d = angolo(ora, verso(c.p.seduta, s.dove), 1) - ora;
+    if (c.p.inPiedi) { P.giro = (P.giro || 0) + d * 0.85 * k; P.hy += (d * 0.15 - P.hy) * k; }
+    else { P.hy += (stretto(d * 0.7, -1.05, 1.05) - P.hy) * k; P.twist += (stretto(d * 0.3, -0.5, 0.5) - P.twist) * k; P.hx += (-0.04 - P.hx) * k; } } }
+
+  /* ================================================================ il copione: come si scrive la giornata di una persona */
+  const cx = {};
+  function attore(id, base, nota) { const c = { id, chi: persone[id], p: posti[id], tr: new Traccia(), base, nota0: nota, note: [[0, nota]], qui: posti[id].seduta, yaw: posti[id].yaw }; cx[id] = c; return c; }
+  const dice = (c, testo) => { c.note.push([c.tr.t, testo]); };
+  function alPosto(c, T) {   // resta al suo posto fino al secondo T, con il gesto di sempre
+    c.tr.fino(T, (u, dt, t, manca) => { const P = c.base(t); guardaChi(c, P, t); const k = fra(dt, 0, 1.2) * fra(manca, 0, 1.2);
+      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw + (P.giro || 0) * k); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
+  function alPostoCon(c, dur, fn) { c.tr.poi(dur, (u, dt, t) => { const P = fn(t, u, dt); metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
+  function alzaSiedi(c, senso) {   // 1: si alza; -1: si siede
+    if (c.p.inPiedi) return;
+    c.tr.poi(1.3, u => { const k = senso > 0 ? dolce(u) : 1 - dolce(u), P = mix(SEDUTO, IN_PIEDI, k); P.lean += 0.42 * Math.sin(PI * k);
+      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw); posa(c.chi, P); sediaFuori(c.p, k); return P; }); }
+  function parte(c, T, testo) { alPosto(c, T); dice(c, testo); alzaSiedi(c, 1); c.qui = c.p.seduta; c.yaw = c.p.yaw; }
+  function cammina(c, a, yaw1, porta) {
+    const per = percorso(strada(c.qui, a)), yaw0 = c.yaw;
+    c.tr.poi(Math.max(0.4, per.L / V), u => { const d = u * per.L, [x, z] = lungo(per, d), [x0, z0] = lungo(per, d - 0.2), [x1, z1] = lungo(per, d + 0.2);
+      let yaw = Math.hypot(x1 - x0, z1 - z0) > 0.01 ? Math.atan2(x1 - x0, z1 - z0) : yaw0; yaw = angolo(yaw0, yaw, fra(d, 0, 0.45)); yaw = angolo(yaw, yaw1, fra(d, per.L - 0.45, per.L));
+      const P = passo(d * 2 * PI / PASSO, Math.min(1, d / 0.3, (per.L - d) / 0.3), !!porta);
+      metti(c.chi, x, z, yaw); posa(c.chi, P); sediaFuori(c.p, 1); if (porta) porta(P); return P; });
+    c.qui = a; c.yaw = yaw1; }
+  function fa(c, dur, fn, yaw) {   // resta dov'è arrivato e fa una cosa
+    const [x, z] = c.qui, y = yaw == null ? c.yaw : yaw;
+    c.tr.poi(dur, (u, dt, t) => { const P = fn(u, dt, t); metti(c.chi, x, z, typeof y === 'function' ? y(u) : y); posa(c.chi, P); sediaFuori(c.p, 1); return P; });
+    c.yaw = typeof y === 'function' ? y(1) : y; }
+  function rientra(c, porta) { cammina(c, c.p.seduta, c.p.yaw, porta); alzaSiedi(c, -1); dice(c, c.nota0); }
 
   // i posti dove si va
-  const pCaffe = [CAFFE[0] - 0.05, 0.96], pLavagna = [0.62, 3.8], pStampa = [STAMPANTE[0], 0.98], pDaEttore = [3.72, 3.34], pPianta = [0.75, 1.48];
-  const versoPianta = PI;
-  const E_CAFFE = [pE.seduta, [3.9, 3.62], [4.2, 2.9], [4.2, 1.6], pCaffe];
-  const E_LAVAGNA = [pE.seduta, [3.75, 3.64], [3.75, 4.58], [1.25, 4.58], pLavagna];
-  const I_STAMPA = [pI.seduta, [7.0, 2.72], [7.0, 1.3], pStampa];
-  const STAMPA_ETTORE = [pStampa, [5.0, 1.08], [4.35, 2.0], pDaEttore];
-  const ETTORE_I = [pDaEttore, [4.9, 2.72], pI.seduta];
-  const I_PIANTA = [pI.seduta, [4.9, 2.72], [4.45, 1.45], [1.75, 1.25], pPianta];
-  const rovescio = a => a.slice().reverse();
+  const pCaffe = [CAFFE[0] - 0.05, 0.98], pStampa = [STAMPANTE[0], 1.02], pLavagna = [0.62, 4.05], pPianta = [0.75, 1.48], pFinestra = [0.55, 1.75], pBacheca = [0.62, 5.95];
+  const pDaEttore = [pE.seduta[0] + 0.75, pE.seduta[1] + 0.43], pOliviaEttore = [pE.seduta[0] - 0.8, pE.seduta[1] + 0.48], pOliviaLea = [posti.visualista.seduta[0] + 0.72, posti.visualista.seduta[1] + 0.45];
+  const pDaRita = [10.88, 6.52], pVarco = [REGIA[0] + 1.1, REGIA[1] + 1.1];
 
-  // i gesti da seduti
-  const scrive = t => { const P = { ...SEDUTO }, raffica = Math.sin(t * 0.45) > -0.35 ? 1 : 0;
-    P.gD += Math.sin(t * 15) * 0.045 * raffica; P.gS += Math.sin(t * 15 + 2.1) * 0.045 * raffica; P.hx = 0.1 + Math.sin(t * 1.1) * 0.02;
-    const pausa = campana((t % 19) / 19, 0.7, 0.76, 0.9, 0.96); P.hy = -0.5 * pausa; P.twist = -0.12 * pausa; return P; };   // ogni tanto guarda le bozze
-  const segna = t => { const P = { ...SEDUTO, sS: [-0.35, 0.18], gS: -1.5, hx: 0.34, hy: 0.22, twist: 0.1 };
-    const legge = campana((t % 13) / 13, 0.62, 0.7, 0.88, 0.96);
-    P.sD = [-0.42 + Math.sin(t * 5.1) * 0.035 * (1 - legge), 0.1 + Math.sin(t * 1.7) * 0.06]; P.gD = -1.5 + Math.sin(t * 7.3) * 0.05 * (1 - legge) - 0.4 * legge; P.gS -= 0.4 * legge; P.hx -= 0.2 * legge; return P; };
+  // le azioni che fanno in tanti
+  const parla = (mano = 1) => u => { const k = campana(u, 0.05, 0.2, 0.85, 0.97), P = { ...IN_PIEDI, hx: Math.sin(u * 40) * 0.06 * k };   // parla, e muove una mano
+    P.sD = [-0.55 * k * mano + Math.sin(u * 23) * 0.12 * k * mano, -0.07 - 0.2 * k * mano]; P.gD = -0.15 - 1.25 * k * mano + Math.sin(u * 31) * 0.15 * k * mano; return P; };
+  function caffe(c, T) {   // va alla macchina con la sua tazza, aspetta che scenda, beve un sorso guardando la stanza, torna
+    const tz = tazzeMano[c.id], porta = P => inMano(tz, P), guardaLaStanza = 0.75;
+    parte(c, T, 'È alla macchina del caffè'); cammina(c, pCaffe, PI, porta);
+    fa(c, 6, u => { const k = campana(u, 0.05, 0.22, 0.78, 0.95), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.0, 0.05], gD: -0.45, lean: 0.1, hx: 0.2 }, k);
+      spiaCaffe.emissiveIntensity = u > 0.2 && u < 0.8 ? 0.4 + 2 * (Math.sin(u * 50) > 0 ? 1 : 0) : 0.6; inMano(tz, P); return P; });
+    fa(c, 3.6, u => { const k = campana(u, 0.4, 0.55, 0.78, 0.92), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.85, 0.2], gD: -2.15, hx: -0.16 }, k); inMano(tz, P, 0.6 * k); return P; }, u => angolo(PI, guardaLaStanza, fra(u, 0, 0.35)));
+    rientra(c, porta); }
+  function allaStampante(c, T, foglioInMano, testo) {   // la stampante lampeggia, il foglio esce, lo prende e lo guarda
+    parte(c, T, testo); cammina(c, pStampa, PI);
+    fa(c, 5.2, u => { const prende = campana(u, 0.52, 0.66, 0.72, 0.86), P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-0.5, 0], gD: -0.3, lean: 0.4, hx: 0.3 }, prende);
+      const guarda = fra(u, 0.78, 0.95); P.sD[0] -= 0.22 * guarda; P.gD -= 1.2 * guarda; P.hx += 0.25 * guarda;
+      spiaStampa.emissiveIntensity = u < 0.6 ? 0.6 + 1.6 * (Math.sin(u * 60) > 0 ? 1 : 0) : 0.5;
+      if (u < 0.68) { const k = fra(u, 0.08, 0.5); foglioStampante.visible = true; foglioStampante.position.set(STAMPANTE[0], 0.665 - 0.04 * k, STAMPANTE[1] + 0.06 + 0.2 * k); }
+      else inMano(foglioInMano, P, -1.1);
+      return P; }); }
+  const allaLavagna = (u, dt) => {   // scrive alla lavagna, poi ci pensa su
+    const scriveSu = campana(u, 0.02, 0.1, 0.42, 0.5), pensa = fra(u, 0.52, 0.62) * (1 - fra(u, 0.93, 1));
+    let P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-2.05 + Math.sin(dt * 6) * 0.07, -0.1 + Math.sin(dt * 2.3) * 0.12], gD: -0.5 + Math.sin(dt * 7) * 0.08, hx: -0.18 }, scriveSu);
+    P = mix(P, { ...IN_PIEDI, sD: [-0.55, 0.25], gD: -2.25, sS: [-0.3, -0.35], gS: -1.5, hx: -0.05, hy: Math.sin(dt * 0.9) * 0.3, lean: -0.04 }, pensa); return P; };
 
-  let tConsegna = 0, tRiordino = 0, tLancio = 0, tAnnaffia = 0;
-  const trI = new Traccia(), trE = new Traccia();
+  /* ================================================================ la giornata di ognuno, in cinque minuti che si ripetono */
+  let tConsegna = 0, tRiordino = 0, tLancio = 0, tAnnaffia = 0, tRitaTorna = 1e9, tPostit = 1e9;
+
+  // ---- Vito: gioca, va a raccontare a Rita l'ultima su GTA VI, più tardi il caffè
+  const Vt = attore('gta', gioca, STATO.gta && STATO.gta.giorni > 0 ? 'Rigioca al V, aspettando il VI' : 'Gioca a GTA VI: è lavoro');
+  parte(Vt, 40, 'Racconta a Rita l\'ultima su GTA VI'); cammina(Vt, pDaRita, verso(pDaRita, posti.schede.seduta));
+  guardami('schede', Vt.tr.t - 1.2, Vt.tr.t + 8, pDaRita);
+  fa(Vt, 8, u => { const k = campana(u, 0.04, 0.15, 0.88, 0.97), P = { ...IN_PIEDI, hx: Math.sin(u * 44) * 0.07 * k, lean: 0.06 * k }, o = Math.sin(u * 26);   // a due mani, come chi descrive una mappa
+      P.sD = [-0.75 * k, (0.1 + 0.3 * o) * k - 0.1]; P.gD = -0.15 - 1.1 * k; P.sS = [-0.75 * k, (-0.1 + 0.3 * o) * k + 0.1]; P.gS = -0.15 - 1.1 * k; return P; });
+  rientra(Vt); caffe(Vt, 198); alPosto(Vt, GIRO);
+
+  // ---- Rita: scrive, stampa una pagina e se la porta alla scrivania
+  const Rt = attore('schede', scriveCon(5, 23), 'Scrive Games e Scienza');
+  const portaRita = P => inMano(foglioRita, P, -1.1);
+  allaStampante(Rt, 70, foglioRita, 'Stampa una pagina'); rientra(Rt, portaRita); tRitaTorna = Rt.tr.t - 1.0; alPosto(Rt, GIRO);
+
   // ---- Ivo: segna le bozze, stampa, porta le correzioni a Ettore, riordina, annaffia la pianta
-  seduto(trI, 44, ivo, pI, segna);
-  alza(trI, ivo, pI);
-  va(trI, ivo, pI, I_STAMPA, PI, PI);
-  sta(trI, 5.2, ivo, pI, pStampa[0], pStampa[1], PI, u => {
-    const prende = campana(u, 0.52, 0.66, 0.72, 0.86), P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-0.5, 0], gD: -0.3, lean: 0.4, hx: 0.3 }, prende);
-    const guarda = fra(u, 0.78, 0.95); P.sD[0] -= 0.22 * guarda; P.gD -= 1.2 * guarda; P.hx += 0.25 * guarda;
-    spiaStampa.emissiveIntensity = u < 0.6 ? 0.6 + 1.6 * (Math.sin(u * 60) > 0 ? 1 : 0) : 0.5;
-    if (u < 0.68) { const k = fra(u, 0.08, 0.5); foglioStampante.visible = true; foglioStampante.position.set(STAMPANTE[0], 0.665 - 0.04 * k, STAMPANTE[1] + 0.06 + 0.2 * k); }
-    else inMano(foglioMano, P, -1.1);
-    return P; });
+  const Iv = attore('revisore', segna, 'Segna le bozze a penna rossa');
   const portaFoglio = P => inMano(foglioMano, P, -1.1);
-  va(trI, ivo, pI, STAMPA_ETTORE, PI, -PI / 2, portaFoglio);
-  tConsegna = trI.t;
-  sta(trI, 6, ivo, pI, pDaEttore[0], pDaEttore[1], -PI / 2, u => {
-    const porge = campana(u, 0.12, 0.34, 0.5, 0.66), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.25, 0.15], gD: -0.25, lean: 0.12, hx: 0.12 }, porge);
-    const parla = fra(u, 0.6, 0.7) * (1 - fra(u, 0.92, 1)); P.hx += Math.sin(u * 46) * 0.07 * parla; P.sS = [-0.5 * parla, 0.07 + 0.25 * parla]; P.gS = -0.12 - 1.2 * parla;
+  allaStampante(Iv, 100, foglioMano, 'Stampa le correzioni');
+  dice(Iv, 'Porta le correzioni a Ettore'); cammina(Iv, pDaEttore, verso(pDaEttore, pE.seduta), portaFoglio);
+  tConsegna = Iv.tr.t;
+  fa(Iv, 6, u => { const porge = campana(u, 0.12, 0.34, 0.5, 0.66), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.25, 0.15], gD: -0.25, lean: 0.12, hx: 0.12 }, porge);
+    const k = fra(u, 0.6, 0.7) * (1 - fra(u, 0.92, 1)); P.hx += Math.sin(u * 46) * 0.07 * k; P.sS = [-0.5 * k, 0.07 + 0.25 * k]; P.gS = -0.12 - 1.2 * k;
     if (u < 0.48) inMano(foglioMano, P, -1.1 + 0.7 * porge); return P; });
-  va(trI, ivo, pI, ETTORE_I, -PI / 2, PI);
-  alza(trI, ivo, pI, -1);
-  tRiordino = trI.t;
-  seduto(trI, trI.t + 7, ivo, pI, (t, u) => { const P = { ...SEDUTO, hx: 0.3, hy: 0.25, twist: 0.12 }, o = Math.sin(u * 22);
-    P.sD = [-0.62, -0.05 + 0.28 * o]; P.sS = [-0.62, 0.3 - 0.2 * o]; P.gD = -1.25; P.gS = -1.25; return P; });
-  seduto(trI, 128, ivo, pI, segna);
-  alza(trI, ivo, pI);
-  va(trI, ivo, pI, I_PIANTA, PI, versoPianta);
-  const china = u => mix(IN_PIEDI, { ...IN_PIEDI, h: H0 - 0.2, lean: 0.75, aD: -0.75, kD: 1.2, aS: -0.75, kS: 1.2, sD: [-0.45, -0.1], gD: -0.2, hx: 0.2 }, u);
-  const versoCan = u => angolo(versoPianta, versoPianta - 0.8, campana(u, 0, 0.4, 0.6, 1));
-  sta(trI, 1.6, ivo, pI, pPianta[0], pPianta[1], versoCan, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u > 0.5) inMano(canMano, P); return P; });
-  tAnnaffia = trI.t;
-  sta(trI, 5.4, ivo, pI, pPianta[0], pPianta[1], versoPianta, (u, dt) => { const k = campana(u, 0, 0.2, 0.85, 1), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.95, 0.1], gD: -0.5, lean: 0.14, hx: 0.3 }, k);
-    inMano(canMano, P, 0.75 * k + Math.sin(dt * 3) * 0.05 * k); return P; });
-  sta(trI, 1.4, ivo, pI, pPianta[0], pPianta[1], versoCan, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u < 0.5) inMano(canMano, P); return P; });
-  va(trI, ivo, pI, rovescio(I_PIANTA), versoPianta, PI);
-  alza(trI, ivo, pI, -1);
-  const tIvoTorna = trI.t;
-  seduto(trI, GIRO, ivo, pI, segna);
+  rientra(Iv); tRiordino = Iv.tr.t; dice(Iv, 'Riordina la scrivania');
+  alPostoCon(Iv, 7, (t, u) => { const P = { ...SEDUTO, hx: 0.3, hy: -0.3, twist: -0.14 }, o = Math.sin(u * 22); P.sD = [-0.62, -0.3 + 0.2 * o]; P.sS = [-0.62, 0.05 - 0.28 * o]; P.gD = -1.25; P.gS = -1.25; return P; });
+  dice(Iv, Iv.nota0);
+  parte(Iv, 236, 'Annaffia la pianta'); cammina(Iv, pPianta, PI);
+  const china = u => mix(IN_PIEDI, { ...IN_PIEDI, h: H0 - 0.2, lean: 0.75, aD: -0.75, kD: 1.2, aS: -0.75, kS: 1.2, sD: [-0.45, -0.1], gD: -0.2, hx: 0.2 }, u), versoCan = u => angolo(PI, PI - 0.8, campana(u, 0, 0.4, 0.6, 1));
+  fa(Iv, 1.6, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u > 0.5) inMano(canMano, P); return P; }, versoCan);
+  tAnnaffia = Iv.tr.t;
+  fa(Iv, 5.4, (u, dt) => { const k = campana(u, 0, 0.2, 0.85, 1), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.95, 0.1], gD: -0.5, lean: 0.14, hx: 0.3 }, k); inMano(canMano, P, 0.75 * k + Math.sin(dt * 3) * 0.05 * k); return P; }, PI);
+  fa(Iv, 1.4, u => { const P = china(campana(u, 0, 0.45, 0.55, 1)); if (u < 0.5) inMano(canMano, P); return P; }, versoCan);
+  rientra(Iv); alPosto(Iv, GIRO);
 
-  // ---- Ettore: scrive, va a prendere il caffè, butta una carta, riceve le correzioni, va alla lavagna
-  const portaTazza = P => inMano(tazzaMano, P);
-  seduto(trE, 20, ettore, pE, scrive);
-  alza(trE, ettore, pE);
-  va(trE, ettore, pE, E_CAFFE, PI, PI, portaTazza);
-  sta(trE, 6, ettore, pE, pCaffe[0], pCaffe[1], PI, u => { const k = campana(u, 0.05, 0.22, 0.78, 0.95), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.0, 0.05], gD: -0.45, lean: 0.1, hx: 0.2 }, k);
-    spiaCaffe.emissiveIntensity = u > 0.2 && u < 0.8 ? 0.4 + 2 * (Math.sin(u * 50) > 0 ? 1 : 0) : 0.6; inMano(tazzaMano, P); return P; });
-  const versoStanza = 0.75;
-  sta(trE, 3.6, ettore, pE, pCaffe[0], pCaffe[1], u => angolo(PI, versoStanza, fra(u, 0, 0.35)), u => { const k = campana(u, 0.4, 0.55, 0.78, 0.92), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-0.85, 0.2], gD: -2.15, hx: -0.16 }, k);
-    inMano(tazzaMano, P, 0.6 * k); return P; });
-  va(trE, ettore, pE, rovescio(E_CAFFE), versoStanza, PI, portaTazza);
-  alza(trE, ettore, pE, -1);
-  const tCaffeFine = trE.t;
-  seduto(trE, 47, ettore, pE, scrive);
-  tLancio = trE.t;
-  seduto(trE, trE.t + 3.4, ettore, pE, (t, u) => {   // appallottola una bozza e la butta nel cestino
+  // ---- Ettore: scrive, il caffè, butta una bozza nel cestino, riceve le correzioni, va alla lavagna
+  const Et = attore('redattore', scriveCon(0), 'Scrive');
+  caffe(Et, 18);
+  alPosto(Et, 50); tLancio = Et.tr.t; dice(Et, 'Butta una bozza nel cestino');
+  alPostoCon(Et, 3.4, (t, u) => {   // appallottola una bozza e la tira
     const stringe = campana(u, 0, 0.1, 0.36, 0.44), carica = campana(u, 0.36, 0.46, 0.5, 0.56), lancia = campana(u, 0.5, 0.58, 0.72, 0.9);
-    let P = mix(scrive(t), { ...SEDUTO, sD: [-0.9, 0.3], gD: -1.7, sS: [-0.9, -0.3], gS: -1.7, hx: 0.3 }, stringe);
+    let P = mix(Et.base(t), { ...SEDUTO, sD: [-0.9, 0.3], gD: -1.7, sS: [-0.9, -0.3], gS: -1.7, hx: 0.3 }, stringe);
     P = mix(P, { ...SEDUTO, sD: [0.35, -0.5], gD: -1.5, twist: -0.3, hy: -0.5 }, carica); P = mix(P, { ...SEDUTO, sD: [-1.5, -0.55], gD: -0.2, twist: -0.25, hy: -0.6, lean: 0.14 }, lancia);
-    const da = [2.95, 0.98, 3.3], a = [CESTINO[0], 0.3, CESTINO[1]], v = (u - 0.55) / 0.27;
+    const da = [pE.seduta[0] + 0.35, 0.98, pE.seduta[1] - 0.2], a = [CESTINO[0], 0.3, CESTINO[1]], v = (u - 0.55) / 0.27;
     if (u > 0.08 && v < 0) { pallina.visible = true; ettore.userData.j.mD.getWorldPosition(pallina.position); }
     else if (v >= 0 && v < 1) { pallina.visible = true; pallina.position.set(da[0] + (a[0] - da[0]) * v, da[1] + (a[1] - da[1]) * v + 0.5 * Math.sin(PI * v), da[2] + (a[2] - da[2]) * v); }
     return P; });
-  seduto(trE, tConsegna, ettore, pE, scrive);
-  seduto(trE, tConsegna + 6, ettore, pE, (t, u) => {   // si gira verso Ivo e prende il foglio
+  dice(Et, Et.nota0); alPosto(Et, tConsegna); dice(Et, 'Riceve le correzioni di Ivo');
+  alPostoCon(Et, 6, (t, u) => {   // si gira verso Ivo e prende il foglio
     const gira = campana(u, 0.05, 0.22, 0.68, 0.84), prende = campana(u, 0.26, 0.42, 0.52, 0.66);
-    let P = mix(scrive(t), { ...SEDUTO, twist: -0.55, hy: -0.7, hx: -0.05 }, gira); P = mix(P, { ...P, sD: [-0.7, -1.0], gD: -0.35 }, prende); return P; });
-  seduto(trE, 98, ettore, pE, scrive);
-  alza(trE, ettore, pE);
-  va(trE, ettore, pE, E_LAVAGNA, PI, -PI / 2);
-  sta(trE, 10, ettore, pE, pLavagna[0], pLavagna[1], -PI / 2, (u, dt) => {   // scrive alla lavagna, poi ci pensa su
-    const scriveSu = campana(u, 0.02, 0.1, 0.42, 0.5), pensa = fra(u, 0.52, 0.62) * (1 - fra(u, 0.93, 1));
-    let P = mix(IN_PIEDI, { ...IN_PIEDI, sD: [-2.05 + Math.sin(dt * 6) * 0.07, -0.1 + Math.sin(dt * 2.3) * 0.12], gD: -0.5 + Math.sin(dt * 7) * 0.08, hx: -0.18 }, scriveSu);
-    P = mix(P, { ...IN_PIEDI, sD: [-0.55, 0.25], gD: -2.25, sS: [-0.3, -0.35], gS: -1.5, hx: -0.05, hy: Math.sin(dt * 0.9) * 0.3, lean: -0.04 }, pensa); return P; });
-  va(trE, ettore, pE, rovescio(E_LAVAGNA), -PI / 2, PI);
-  alza(trE, ettore, pE, -1);
-  const tLavagnaFine = trE.t;
-  seduto(trE, GIRO, ettore, pE, scrive);
+    let P = mix(Et.base(t), { ...SEDUTO, twist: -0.55, hy: -0.7, hx: -0.05 }, gira); P = mix(P, { ...P, sD: [-0.7, -1.0], gD: -0.35 }, prende); return P; });
+  dice(Et, Et.nota0);
+  parte(Et, 150, 'È alla lavagna'); cammina(Et, pLavagna, -PI / 2); fa(Et, 10, allaLavagna); rientra(Et); alPosto(Et, GIRO);
 
-  const ADESSO = {   // cosa sta facendo, detto a parole nella scheda: lo stesso orologio della scena
-    ettore: t => t < 20 ? 'Scrive' : t < tCaffeFine ? 'È andato a prendere un caffè' : t < tLancio ? 'Scrive' : t < tLancio + 3.4 ? 'Butta una bozza nel cestino' : t < tConsegna ? 'Scrive'
-      : t < tConsegna + 6 ? 'Riceve le correzioni di Ivo' : t < 98 ? 'Scrive' : t < tLavagnaFine ? 'È alla lavagna' : 'Scrive',
-    ivo: t => t < 44 ? 'Segna le bozze a penna rossa' : t < tConsegna ? 'Stampa le correzioni' : t < tConsegna + 6 ? 'Porta le correzioni a Ettore' : t < tRiordino ? 'Torna alla scrivania'
-      : t < tRiordino + 7 ? 'Riordina la scrivania' : t < 128 ? 'Segna le bozze a penna rossa' : t < tIvoTorna ? 'Annaffia la pianta' : 'Segna le bozze a penna rossa',
-  };
+  // ---- Olivia: tiene d'occhio gli schermi, fa il giro delle scrivanie, va alla lavagna, il caffè
+  const Ol = attore('regia', dirige, 'Tiene d\'occhio gli schermi');
+  parte(Ol, 62, 'È da Ettore, guardano l\'apertura'); cammina(Ol, pOliviaEttore, verso(pOliviaEttore, [pE.x, pE.z - 0.2]));
+  guardami('redattore', Ol.tr.t - 0.8, Ol.tr.t + 6, pOliviaEttore); fa(Ol, 6, parla());
+  dice(Ol, 'È da Lea, per i grafici'); cammina(Ol, pOliviaLea, verso(pOliviaLea, [posti.visualista.x, posti.visualista.z - 0.2]));
+  guardami('visualista', Ol.tr.t - 0.8, Ol.tr.t + 5.5, pOliviaLea); fa(Ol, 5.5, parla());
+  rientra(Ol);
+  parte(Ol, 185, 'È alla lavagna'); cammina(Ol, pLavagna, -PI / 2); fa(Ol, 10, allaLavagna); rientra(Ol);
+  caffe(Ol, 266); alPosto(Ol, GIRO);
 
+  // ---- Tobia: legge, il caffè, e a un certo punto va alla finestra a guardare New York
+  const Tb = attore('lettura', legge, 'Legge gli articoli, uno per uno');
+  caffe(Tb, 78);
+  parte(Tb, 205, 'Guarda New York dalla finestra'); cammina(Tb, pFinestra, -PI / 2);
+  fa(Tb, 9, u => { const stira = campana(u, 0.08, 0.2, 0.36, 0.5), fianchi = fra(u, 0.5, 0.62) * (1 - fra(u, 0.92, 1)), P = { ...IN_PIEDI, lean: -0.1 * stira, hx: -0.12 * stira - 0.04 * fianchi };   // si stiracchia, poi le mani sui fianchi
+    P.sD = [-2.7 * stira, -0.25 * stira - 0.1 - 0.5 * fianchi]; P.gD = -0.15 - 0.3 * stira - 1.4 * fianchi; P.sS = [-2.7 * stira, 0.25 * stira + 0.1 + 0.5 * fianchi]; P.gS = -0.15 - 0.3 * stira - 1.4 * fianchi; return P; });
+  rientra(Tb); alPosto(Tb, GIRO);
+
+  // ---- Lea: disegna, poi va ad attaccare un post-it in bacheca
+  const Le = attore('visualista', disegna, 'Disegna un grafico');
+  parte(Le, 128, 'Attacca un post-it in bacheca'); cammina(Le, pBacheca, -PI / 2, P => inMano(postitMano, P, -1.2));
+  tPostit = Le.tr.t + 2.3;
+  fa(Le, 7, u => { const su = campana(u, 0.05, 0.25, 0.4, 0.5), guarda = fra(u, 0.52, 0.64) * (1 - fra(u, 0.92, 1)), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.95, -0.05], gD: -0.3, lean: 0.08, hx: -0.1 }, su);
+    P.sD[1] -= 0.45 * guarda; P.gD -= 1.3 * guarda * (1 - su); P.sS = [0, 0.1 + 0.45 * guarda]; P.gS = -0.15 - 1.3 * guarda; P.hy = Math.sin(u * 9) * 0.12 * guarda;
+    if (u < 0.33) inMano(postitMano, P, -1.2 + 1.2 * su); return P; });
+  rientra(Le); alPosto(Le, GIRO);
+
+  // ---- Ada: scrive, il caffè, e passa dalla regia a dire una cosa a Olivia
+  const Ad = attore('ai', scriveCon(9, 27), 'Scrive la scheda AI');
+  caffe(Ad, 150);
+  parte(Ad, 222, 'Parla con Olivia, alla regia'); cammina(Ad, pVarco, verso(pVarco, REGIA));
+  guardami('regia', Ad.tr.t - 1, Ad.tr.t + 8, pVarco); fa(Ad, 8, parla()); rientra(Ad); alPosto(Ad, GIRO);
+
+  // ---- Zeno, il lunedì: lo schedario, e un appunto in bacheca
+  if (persone.fonti) { const Ze = attore('fonti', sfoglia, 'Riordina l\'archivio delle fonti'), pZ = [0.62, 6.95];
+    parte(Ze, 24, 'Lascia un appunto in bacheca'); cammina(Ze, pZ, -PI / 2, P => inMano(cartella, P));
+    fa(Ze, 6, u => { const su = campana(u, 0.1, 0.3, 0.6, 0.75), P = mix(passo(0, 0, true), { ...IN_PIEDI, sS: [-1.8, 0.05], gS: -0.35, hx: -0.08 }, su); inMano(cartella, P); return P; });
+    rientra(Ze, P => inMano(cartella, P)); alPosto(Ze, GIRO); }
+
+  /* ================================================================ la scena a un dato secondo del giro */
+  const adessoDi = (id, t) => { const c = cx[id]; if (!c) return id === 'fonti' ? 'Oggi non c\'è: torna lunedì' : ''; let s = c.nota0; for (const [q, testo] of c.note) if (q <= t) s = testo; return s; };
   let tempoFermo = fermo ? 8 : null;
   const tempoGiro = () => tempoFermo != null ? tempoFermo : (Date.now() / 1000) % GIRO;
+  const inManoTutti = [foglioMano, canMano, foglioRita, postitMano, gamepad, penna, stilo, cartella, pallina, foglioStampante, cassetti[0]];
   function vita(T) {
-    // lo stato delle cose, prima dei gesti: ogni gesto poi sposta quello che tocca
-    tazzaMano.visible = false; foglioMano.visible = false; canMano.visible = false; pallina.visible = false; foglioStampante.visible = false;
+    // lo stato delle cose, prima dei gesti: ogni gesto poi accende quello che tocca
+    for (const o of inManoTutti) o.visible = false; for (const id in tazzeMano) tazzeMano[id].visible = false;
     spiaCaffe.emissiveIntensity = 0.6; spiaStampa.emissiveIntensity = 0.5;
-    trE.a(T); trI.a(T);
-    Object.values(persone).forEach((g, i) => { const chiusi = ((T + i * 1.7) % 3.9) < 0.14 ? 0.1 : 1; g.userData.occhi.forEach(o => { o.scale.y = chiusi; }); });   // battono le palpebre
-    tazzaE.visible = !tazzaMano.visible; canTerra.visible = !canMano.visible;
-    penna.visible = T < 44 || (T > tRiordino + 7 && T < 128) || T > tIvoTorna;
-    foglioDaIvo.visible = T > tConsegna + 3.4; pallinaNelCestino.visible = T > tLancio + 2.9;
+    for (const id in cx) cx[id].tr.a(T);
+    Object.values(persone).forEach((g, i) => { const chiusi = ((T + i * 1.7) % (3.6 + (i % 3) * 0.5)) < 0.14 ? 0.1 : 1; g.userData.occhi.forEach(o => { o.scale.y = chiusi; }); });   // battono le palpebre
+    for (const id in tazze) tazze[id].visible = !tazzeMano[id].visible; canTerra.visible = !canMano.visible;
+    foglioDaIvo.visible = T > tConsegna + 3.4; pallinaNelCestino.visible = T > tLancio + 2.9; foglioDiRita.visible = T > tRitaTorna; nuovoPostit.visible = T > tPostit;
     const ordine = dolce((T - tRiordino) / 6); bozzeIvo.forEach(f => { f.rotation.z = f.userData.r * (1 - ordine); });
     const versa = T > tAnnaffia + 1.2 && T < tAnnaffia + 4.4;
     gocce.forEach((g, i) => { g.visible = versa; if (versa) { const u = (T * 1.7 + i / 3) % 1; g.position.set(pPianta[0] + 0.15 - 0.08 * u, 0.86 - 0.4 * u * u - 0.06 * u, pPianta[1] - 0.5 - 0.12 * u); } });
@@ -986,10 +1456,10 @@ function avvia() {
   /* ================================================================ le luci */
   const emisfero = new THREE.HemisphereLight(0xffffff, 0xd9cdb8, 1); scene.add(emisfero);
   const solare = new THREE.DirectionalLight(0xffffff, 2.5); scene.add(solare, solare.target);
-  const centro = new THREE.Vector3(3.4, 0.9, 2.6); solare.target.position.copy(centro);
-  solare.castShadow = true; solare.shadow.mapSize.set(2048, 2048);
-  Object.assign(solare.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 40 }); solare.shadow.camera.updateProjectionMatrix();
-  solare.shadow.bias = -0.0005; solare.shadow.normalBias = 0.035; solare.shadow.radius = 6;
+  const centro = new THREE.Vector3(LARGA / 2, 0.9, FONDA / 2); solare.target.position.copy(centro);
+  solare.castShadow = true; solare.shadow.mapSize.set(4096, 4096);
+  Object.assign(solare.shadow.camera, { left: -10.5, right: 10.5, top: 10.5, bottom: -10.5, near: 1, far: 48 }); solare.shadow.camera.updateProjectionMatrix();
+  solare.shadow.bias = -0.0005; solare.shadow.normalBias = 0.035; solare.shadow.radius = 7;
   const LUCI = {
     alba:   { da: [-7, 4.4, 6], sole: 0xFFAE6E, soleI: 2.7, cielo: 0xFFDDBB, terra: 0xD8B596, emiI: 0.56, env: 0.22, lampade: 0.3, ombra: 0.6 },
     giorno: { da: [-4.5, 9, 6.5], sole: 0xFFF4E2, soleI: 2.4, cielo: 0xFFFFFF, terra: 0xDCD0BC, emiI: 0.55, env: 0.3, lampade: 0, ombra: 0.6 },
@@ -1033,73 +1503,98 @@ function avvia() {
   }
   new ResizeObserver(misura).observe(canvas); misura();
 
-  /* ================================================================ etichette e scheda */
+  /* ================================================================ etichette, benvenuto, scheda */
   const strato = document.getElementById('etichette'), tags = {};
   const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
-  for (const [id, p] of Object.entries(DATI.persone)) {
-    const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = p.colore;
-    const piu = el('span', 'piu'); piu.append(document.createTextNode(p.mestiere), el('em', null, 'Guarda ▸'));
-    b.append(pallino, document.createTextNode(p.nome), piu); b.setAttribute('aria-label', `${p.nome}, ${p.mestiere}: apri la scheda`);
+  // dove sta l'etichetta di chi non è una persona in scena: la bacheca, e Zeno quando non è lunedì
+  const ancore = { bacheca: new THREE.Vector3(0.12, BACHECA[1] + altaB / 2 + 0.1, BACHECA[2]), fonti: new THREE.Vector3(0.12, 2.2, ARCHIVIO[1]) };
+  function etichetta(id, nome, sotto, colore) {
+    const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
+    const piu = el('span', 'piu'); piu.append(document.createTextNode(sotto), el('em', null, 'Guarda ▸'));
+    b.append(pallino, document.createTextNode(nome), piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
     b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
   }
+  for (const a of STATO.agenti) etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange);
+  if (POSTIT.length) etichetta('bacheca', POSTIT.length + ' post-it', 'per te', C.yellow);
   const v3 = new THREE.Vector3();
+  const dove = id => { if (persone[id]) { persone[id].userData.j.testa.getWorldPosition(v3); v3.y += 0.32; } else v3.copy(ancore[id]); return v3; };
   function etichette() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
-    for (const [id, g] of Object.entries(persone)) {
-      g.userData.j.testa.getWorldPosition(v3); v3.y += 0.3; v3.project(cam);
-      tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`;
-    }
+    for (const id in tags) { dove(id).project(cam); tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`; }
   }
+
+  // il benvenuto: cosa è successo stamattina, e chi ha qualcosa da dirti
+  (() => { const box = document.getElementById('saluto'), h = oraDiRoma(), ciao = h >= 5 && h < 13 ? 'Buongiorno' : h < 18 ? 'Buon pomeriggio' : 'Buonasera';
+    const oggi = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Rome' }).format(new Date()), uscita = oraCorta(USCITA), min = STATO.corsa.minuti;
+    const uscita2 = min != null ? `è uscita alle ${uscita}, in ${min} minuti` : `è uscita alle ${uscita}`;
+    box.append(el('strong', null, ciao + ' Mike. '), document.createTextNode(STATO.giorno === oggi ? `L'edizione di oggi ${uscita2}. ` : `L'ultima edizione che vedo, quella di ${GIORNI_LUNGHI[OGGI.getDay()]} ${DATA_LUNGA}, ${uscita2}. `));
+    const chi = STATO.agenti.filter(a => a.ti_aspetta); if (!chi.length) return;
+    box.append(document.createTextNode(chi.length > 1 ? 'Ti aspettano ' : 'Ti aspetta '));
+    chi.forEach((a, i) => { const b = el('button', null, a.nome); b.type = 'button'; b.addEventListener('click', () => apri(a.id)); box.append(b, document.createTextNode(i < chi.length - 2 ? ', ' : i === chi.length - 2 ? ' e ' : '')); });
+    if (POSTIT.length) { const b = el('button', null, POSTIT.length + ' post-it in bacheca'); b.type = 'button'; b.addEventListener('click', () => apri('bacheca')); box.append(document.createTextNode(': '), b); }
+    box.append(document.createTextNode('.')); box.hidden = false; })();
 
   const pannello = document.getElementById('pannello'); let aperto = null, rigaAdesso = null;
   /* il primo piano: una seconda camera, vera, puntata su chi hai aperto. Si vede quello che fa, da vicino. */
   const telaRitratto = el('canvas', 'ritratto'); telaRitratto.setAttribute('aria-hidden', 'true');
-  const cam2 = new THREE.PerspectiveCamera(22, 1.6, 0.2, 40), FONDI = { alba: new THREE.Color(0xF3DCC8), giorno: new THREE.Color(0xE9E3D9), sera: new THREE.Color(0x2F3050), notte: new THREE.Color(0x161829) };
+  const cam2 = new THREE.PerspectiveCamera(27, 1.6, 0.15, 40), FONDI = { alba: new THREE.Color(0xF3DCC8), giorno: new THREE.Color(0xE9E3D9), sera: new THREE.Color(0x2F3050), notte: new THREE.Color(0x161829) };
   let rend2 = null, env2 = null;
   function primoPiano() {
-    if (!aperto) return;
+    const g = persone[aperto]; if (!g) return;
     if (!rend2) { rend2 = new THREE.WebGLRenderer({ canvas: telaRitratto, antialias: true }); rend2.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); rend2.setSize(320, 200, false);
       rend2.toneMapping = THREE.NeutralToneMapping; rend2.shadowMap.enabled = true; rend2.shadowMap.type = THREE.PCFShadowMap; env2 = new THREE.PMREMGenerator(rend2).fromScene(new RoomEnvironment(), 0.04).texture; }
-    const g = persone[aperto]; g.userData.j.testa.getWorldPosition(v3);
+    g.userData.j.testa.getWorldPosition(v3);
     const j = g.userData.j, yaw = g.rotation.y + j.busto.rotation.y + j.testa.rotation.y * 0.7; let dx = 0.8 * Math.sin(yaw) + 0.42, dz = 0.8 * Math.cos(yaw) + 0.42; const n = Math.hypot(dx, dz) || 1;
-    let cx = v3.x + dx / n * 2.0, cz = v3.z + dz / n * 2.0;
-    if (cx < 0.4 || cz < 0.4) {   // ha il viso contro una parete: lo si guarda di profilo, dal lato aperto della stanza
+    const lontano = 1.5; let cx2 = v3.x + dx / n * lontano, cz2 = v3.z + dz / n * lontano;
+    if (cx2 < 0.4 || cz2 < 0.4) {   // ha il viso contro una parete: lo si guarda di profilo, dal lato aperto della stanza
       const fx2 = Math.sin(yaw), fz2 = Math.cos(yaw); let px = fz2, pz = -fx2; if (px + pz < 0) { px = -px; pz = -pz; }
-      cx = v3.x + px * 2.0 + fx2 * 0.5; cz = v3.z + pz * 2.0 + fz2 * 0.5; }
-    cam2.position.set(Math.max(0.4, cx), v3.y + 0.1, Math.max(0.4, cz)); cam2.lookAt(v3.x, v3.y - 0.2, v3.z);
+      cx2 = v3.x + px * lontano + fx2 * 0.4; cz2 = v3.z + pz * lontano + fz2 * 0.4; }
+    cam2.position.set(Math.max(0.4, cx2), v3.y + 0.36, Math.max(0.4, cz2)); cam2.lookAt(v3.x, v3.y - 0.08, v3.z);   // un po' dall'alto: sopra gli schermi
     const e = scene.environment, b = scene.background; scene.environment = env2; scene.background = FONDI[document.documentElement.dataset.luce] || FONDI.giorno;
     rend2.render(scene, cam2); scene.environment = e; scene.background = b;
   }
+  const blocco = (titolo, ...figli) => { const b = el('div', 'blocco'); b.append(el('h3', null, titolo), ...figli); return b; };
+  const elenco = (voci, colore) => { const ul = el('ul', 'titoli'); voci.forEach(t => { const li = el('li'), i = el('i'); if (colore) i.style.background = colore; li.append(i, el('span', null, t)); ul.append(li); }); return ul; };
+  const daQuanto = p => p.giorni ? (p.giorni === 1 ? 'da ieri' : 'da ' + p.giorni + ' giorni') : 'di oggi';
+  function biglietto(p, conNome) { const d = el('div', 'postit'); d.style.borderLeftColor = COLORE_POSTIT[p.da] || '#FF9DB0';
+    d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p))); return d; }
+  const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi' };
   function apri(id) {
-    const p = DATI.persone[id]; aperto = id; pannello.textContent = '';
-    const testa = el('div', 'testa'), av = el('div', 'avatar', p.nome[0]); av.style.background = p.colore;
-    const chi = el('div'); chi.append(el('h2', null, p.nome), el('p', null, `${p.mestiere} · ${p.modello}`));
+    aperto = id; rigaAdesso = null; pannello.textContent = '';
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
-    testa.append(av, chi, x); pannello.append(telaRitratto, testa);
-    const momento = el('div', 'blocco'), riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); momento.append(el('h3', null, 'In questo momento'), riga); pannello.append(momento);
-    const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, n), el('span', null, cosa)); numeri.append(d); };
-    const stamattina = el('div', 'blocco'); stamattina.append(el('h3', null, 'Stamattina, per l\'edizione delle ' + DATI.uscita));
-    if (id === 'ettore') {
-      numero(String(p.notizie), 'notizie scritte'); numero(String(p.approfondimenti), 'approfondimenti'); numero(p.minuti + ' min', 'di lavoro');
-      stamattina.append(numeri, el('p', null, `Ha scritto la prosa dalle ${p.dalle} alle ${p.alle}. L'edizione è uscita alle ${DATI.uscita}.`));
-      const b = el('div', 'blocco'); b.append(el('h3', null, 'Sul suo schermo: le prime tre'));
-      const ul = el('ul', 'titoli'); DATI.menabo.slice(0, 3).forEach(n => { const li = el('li'); li.append(el('i'), el('span', null, n.t)); ul.append(li); }); b.append(ul);
-      const c = el('div', 'blocco'); c.append(el('h3', null, '«Il punto» di oggi'), el('p', null, DATI.punto));
-      pannello.append(stamattina, b, c);
+    const testa = el('div', 'testa'), chi = el('div'), a = AGENTI[id];
+    if (id === 'bacheca') {
+      const av = el('div', 'avatar', String(POSTIT.length)); av.style.background = C.yellow; av.style.color = C.ink;
+      chi.append(el('h2', null, 'La bacheca'), el('p', null, 'quello che la redazione ha lasciato per te')); testa.append(av, chi, x); pannello.append(testa);
+      POSTIT.forEach(p => pannello.append(biglietto(p, true)));
+      pannello.append(el('p', 'piede', 'Sono le cose rimaste aperte nei file della corsa: richieste di grafici, note sulle fonti, scadenze. Presto potrai rispondere da qui.'));
     } else {
-      numero(String(p.riscritti), 'testi riscritti'); numero(p.minuti + ' min', 'di lavoro');
-      stamattina.append(numeri, el('p', null, `Ha riletto la prosa di Ettore dalle ${p.dalle} alle ${p.alle}, subito prima dell'uscita.`));
-      const b = el('div', 'blocco'); b.append(el('h3', null, 'Sulla scrivania: tre titoli corretti'));
-      p.cambi.forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
-      pannello.append(stamattina, b);
+      const av = el('div', 'avatar', a.nome[0]); av.style.background = TINTA[id] || C.orange;
+      chi.append(el('h2', null, a.nome), el('p', null, a.mestiere + (a.modello ? ' · ' + a.modello : ''))); testa.append(av, chi, x);
+      if (persone[id]) pannello.append(telaRitratto); pannello.append(testa);
+      const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); pannello.append(blocco('In questo momento', riga));
+      if (a.minuti != null) {
+        const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, String(n)), el('span', null, cosa)); numeri.append(d); };
+        if (id === 'revisore' && STATO.revisione.fatta) numero(STATO.revisione.riscritti, 'testi riscritti');
+        if (id === 'redattore' || id === 'regia') numero(STATO.lavagna.length, 'notizie');
+        numero(a.minuti + ' min', 'di lavoro'); numero(oraCorta(a.entrata) + '–' + oraCorta(a.uscita), 'stamattina');
+        pannello.append(blocco('Per l\'edizione delle ' + oraCorta(USCITA), numeri, el('p', null, a.consegna ? 'Ha consegnato: ' + a.consegna + '.' : a.ruolo)));
+      } else pannello.append(blocco('Il suo lavoro', el('p', null, a.consegna ? a.consegna[0].toUpperCase() + a.consegna.slice(1) + '.' : a.ruolo)));
+      if (id === 'regia') pannello.append(blocco('La scaletta: le prime cinque', elenco(STATO.lavagna.slice(0, 5).map(n => n.reparto + ' · ' + n.titolo))));
+      else if (id === 'revisore' && TITOLI.length) { const b = blocco('Sulla scrivania: i titoli corretti'); TITOLI.slice(0, 4).forEach(c => { const d = el('div', 'cambio'); d.append(el('del', null, c.prima), el('ins', null, c.dopo)); b.append(d); });
+        const altri = STATO.revisione.riscritti - Math.min(4, TITOLI.length); if (altri > 0) b.append(el('p', 'piccolo', `E altri ${altri} testi, fra descrizioni, approfondimenti e «Il punto».`)); pannello.append(b); }
+      else if ((a.dettagli || []).length && TITOLO_LAVORO[id]) pannello.append(blocco(TITOLO_LAVORO[id], elenco(a.dettagli.slice(0, 6), TINTA[id])));
+      const suoi = (STATO.postit || []).filter(p => p.da === id);
+      if (suoi.length) { const b = blocco(persone[id] ? 'Ha qualcosa per te' : 'Ti ha lasciato questi appunti'); suoi.slice(0, 5).forEach(p => b.append(biglietto(p))); pannello.append(b); }
+      pannello.append(el('p', 'piede', persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'
+        : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi davanti agli schedari.'));
     }
-    pannello.append(el('p', 'piede', 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina. La conversazione arriva con il prossimo passo.'));
-    pannello.hidden = false; x.focus({ preventScroll: true }); segui(); primoPiano();
+    pannello.hidden = false; pannello.scrollTop = 0; x.focus({ preventScroll: true }); segui(); primoPiano();
   }
-  function segui() {   // la camera resta sulla persona aperta, anche mentre cammina
-    if (!aperto) return; const g = persone[aperto]; v3.set(g.position.x, 0.85, g.position.z); const [a, b] = sulPiano(v3), z = 2.1;
-    const larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
-    if (rigaAdesso) rigaAdesso.textContent = ADESSO[aperto](tempoGiro());
+  function segui() {   // la camera resta su chi hai aperto, anche mentre cammina
+    if (!aperto) return; const g = persone[aperto]; if (g) v3.set(g.position.x, 0.85, g.position.z); else v3.copy(ancore[aperto]).setY(1.2);
+    const [a, b] = sulPiano(v3), z = g ? 3.1 : 2.4, larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
+    if (rigaAdesso) rigaAdesso.textContent = adessoDi(aperto, tempoGiro());
   }
   function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; return t; }   // chiude la scheda, la camera resta dov'è
   function chiudi() { const t = lascia(); if (!t) return; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
@@ -1108,12 +1603,12 @@ function avvia() {
   /* ================================================================ rotella, trascinamento, clic */
   const raggio = new THREE.Raycaster(), ndc = new THREE.Vector2(); let presa = null;
   const chiSotto = e => { const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
-    raggio.setFromCamera(ndc, cam); const colpi = raggio.intersectObjects(Object.values(persone), true); if (!colpi.length) return null;
+    raggio.setFromCamera(ndc, cam); const colpi = raggio.intersectObjects([...Object.values(persone), ...cliccabili], true); if (!colpi.length) return null;
     let o = colpi[0].object; while (o && !o.userData.id) o = o.parent; return o ? o.userData.id : null; };
   canvas.addEventListener('wheel', e => {
     e.preventDefault(); lascia(); const r = canvas.getBoundingClientRect();
     const dx = (e.clientX - r.left - r.width / 2) / ppu, dy = -(e.clientY - r.top - r.height / 2) / ppu;
-    const z0 = meta.zoom, z1 = Math.min(5, Math.max(1, z0 * Math.exp(-e.deltaY * 0.0016)));
+    const z0 = meta.zoom, z1 = Math.min(7, Math.max(1, z0 * Math.exp(-e.deltaY * 0.0016)));
     meta.x += dx / z0 - dx / z1; meta.y += dy / z0 - dy / z1; meta.zoom = z1;
     if (z1 === 1) { meta.x = CASA.x; meta.y = CASA.y; }
   }, { passive: false });
@@ -1144,9 +1639,16 @@ function avvia() {
   }
   requestAnimationFrame(giro);
   // una maniglia per le prove: redazione.tempo(52) ferma la scena a quel secondo del giro, redazione.tempo(null) la fa ripartire
-  window.redazione = { THREE, renderer, scene, solare, luce, apri, chiudi, GIRO, adesso: ADESSO, tempi: () => ({ tCaffeFine, tLancio, tConsegna, tRiordino, tLavagnaFine, tAnnaffia, tIvoTorna }),
-    tempo(t) { tempoFermo = t; vita(tempoGiro()); sporca = true; },
-    guarda(x, y, z, zoom = 3) { lascia(); const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(inq, meta); inquadra(); } };
+  window.redazione = { THREE, renderer, scene, solare, luce, apri, chiudi, GIRO, persone, adesso: adessoDi, orario: () => Object.fromEntries(Object.entries(cx).map(([id, c]) => [id, c.note.map(([t, n]) => Math.round(t) + ' ' + n)])),
+    tempo(t) { tempoFermo = t; vita(tempoGiro()); renderer.render(scene, cam); etichette(); primoPiano(); },
+    guarda(x, y, z, zoom = 3) { lascia(); const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(inq, meta); inquadra(); renderer.render(scene, cam); etichette(); },
+    grande(si = true) { primoPiano(); if (!rend2) return; telaRitratto.style.cssText = si ? 'position:fixed;inset:0;width:100vw;height:100vh;z-index:99;border-radius:0' : ''; rend2.setSize(si ? 1280 : 320, si ? 800 : 200, false); primoPiano(); },
+    controlla() {   // passa tutto il giro: chi cammina dentro un mobile, e chi si pesta i piedi
+      const dentro = {}, urti = {}; for (let T = 0; T < GIRO; T += 0.25) { vita(T); const ids = Object.keys(persone);
+        ids.forEach(id => { const g = persone[id], s = posti[id].seduta; if (Math.hypot(g.position.x - s[0], g.position.z - s[1]) > 0.75 && muri[casella(g.position.x, g.position.z)]) (dentro[id] = dentro[id] || []).push(Math.round(T) + ':' + g.position.x.toFixed(1) + ',' + g.position.z.toFixed(1)); });
+        for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) { const a = persone[ids[i]].position, b = persone[ids[j]].position; if (Math.hypot(a.x - b.x, a.z - b.z) < 0.42) { const k = ids[i] + '+' + ids[j]; (urti[k] = urti[k] || []).push(Math.round(T)); } } }
+      const stringi = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, [...new Set(v)].slice(0, 12).join(' ')])); vita(tempoGiro()); return { dentro: stringi(dentro), urti: stringi(urti) }; },
+    casa() { lascia(); Object.assign(meta, CASA); Object.assign(inq, meta); inquadra(); renderer.render(scene, cam); etichette(); } };
   canvas.addEventListener('webglcontextlost', e => e.preventDefault());
   canvas.addEventListener('webglcontextrestored', () => { sporca = true; });
 }

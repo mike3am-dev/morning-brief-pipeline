@@ -144,3 +144,66 @@ questi sono modelli che si muovono dal vivo, fatti in codice. Lo stile c'è (tes
 capelli a volumi, vestiti riconoscibili); il dettaglio fine (pieghe dei tessuti, ciocche, mani con
 le dita) no. Per arrivarci servono modelli scolpiti veri in formato GLB, con l'ossatura: la pagina
 li può caricare come file accanto, al posto di `persona()`.
+
+## 13 novembre 2026, sera — la quarta prova: tutta la redazione
+
+Mike, visti Ettore e Ivo scolpiti: «Sì, continua così». La pagina (versione 4, stesso indirizzo) ora
+è la stanza grande con tutti e nove.
+
+**La pagina si scrive a pezzi.** `redazione/src/` tiene ventisei pezzi in ordine di nome;
+`python3 redazione/costruisci.py [AAAA-MM-GG]` li incolla in `redazione/app/redazione.html` e al
+posto di `/*__STATO__*/` mette lo stato del giorno (`redazione/stato.py`). I pezzi `.js` stanno
+tutti dentro la stessa funzione `avvia()`: si vedono fra loro, non sono moduli. **Non si modifica
+più `redazione.html` a mano**: si tocca il pezzo e si ricompone.
+
+| Pezzo | Cosa c'è |
+|---|---|
+| `00-testa.html`, `99-coda.html` | stile, markup, importmap |
+| `05-dati.js`, `08-avvio.js`, `10-mattoni.js` | lo stato, il renderer, i mattoni (box, tela, marchio) |
+| `20-tele.js` … `26-cartelli.js` | le tele: fondale, schermi di ognuno e della regia, lavagna, manifesti, bacheca |
+| `30-stanza.js`, `40-mobili.js`, `42-angoli.js` | pareti e arredi, scrivanie e anello della regia, bacheca, archivio, tavolo di Mike |
+| `50-persone.js` … `56-volti.js` | lo scalpello, le chiome, i vestiti, i posti, l'aspetto dei nove |
+| `60-strade.js` … `68-vita.js` | la mappa e le strade, i gesti, il copione, la giornata, la scena a un dato secondo |
+| `70-luci-camera.js` … `90-giro.js` | luci, camera, etichette e schede, comandi, il ciclo |
+
+**Niente più numeri scritti a mano.** Schermi, lavagna, bacheca, benvenuto e schede leggono `STATO`:
+i titoli, gli orari di entrata e uscita di ognuno, i minuti delle ultime corse, le letture di Mike,
+la correzione di Ivo (la lavagna mostra le parole cambiate nel primo titolo ritoccato), i post-it,
+i giorni all'uscita di GTA VI. `stato.py` ha in più `letture`, `gta` e `corsa.ora_uscita`.
+**La pagina mostra il giorno con cui è stata composta**: se Mike la apre un altro giorno, il
+benvenuto lo dice («l'ultima edizione che vedo…»). Il passo che manca è ricomporla e ripubblicarla
+ogni mattina da sola.
+
+**La stanza** (11,6 × 8,6): parete di fondo con fondale e credenza, galleria e conto alla
+rovescia, stampante, manifesto di GTA VI; parete di sinistra con finestra, lavagna, **bacheca di
+sughero «Per Mike»** (i post-it veri: si tocca e si apre l'elenco), **archivio di Zeno**. In mezzo:
+la fila della prosa (Tobia, Ettore | Ivo, Lea), **la regia** (un anello aperto verso di noi, cinque
+iMac: tre li vediamo di fronte con edizione, corsa, macchine), l'isola di destra (Vito sotto il suo
+manifesto, Ada e Rita faccia a faccia), **il tavolo di Mike** con il segnaposto.
+
+**I sette nuovi.** Chiome in `52-chiome.js` (`caschetto`, `frangia`, `spettinato`, `ricci`,
+`lunghi`, `corti`, `pelato`; una chioma può dichiarare il suo volume con `{centro, mezzo, f}`), due
+barbe (`barbaGeo`: la testa gonfiata di poco e tenuta solo intorno alla mandibola), vestiti in
+`53-vestiti.js` (`giacca`, `denim`, `dolcevita`, `maglione`, `righe`, `bomber`, `gilet`) e accessori
+(orecchini, spilla, cuffie, cerchietto, farfallino). L'aspetto di ognuno è una riga in `ASPETTO`
+(`56-volti.js`). **Zeno c'è solo il lunedì** (`LUNEDI`; per provarlo: `?lunedi=1` in fondo
+all'indirizzo, in locale); gli altri giorni resta la targhetta «torna lunedì», che si tocca.
+
+**Le strade si trovano da sole.** `60-strade.js` chiude su una griglia da 10 cm le caselle dei
+mobili (con 20 cm di margine) e `strada(da, a)` cerca il percorso (A*) e tiene solo le svolte. Un
+mobile nuovo va aggiunto anche lì (`rett`, `tondo`), se no ci passano attraverso.
+
+**Il copione** (`64-copione.js`): `attore(id, gestoDiBase, nota)`, poi `parte(c, T, nota)`,
+`cammina(c, punto, verso)`, `fa(c, secondi, gesto)`, `rientra(c)`; `caffe(c, T)` e
+`allaStampante(c, T, foglio, nota)` sono già pronti. `guardami(id, t0, t1, dove)` fa alzare gli
+occhi a chi lavora quando qualcuno gli si avvicina. Il giro dura 300 secondi (`66-giornata.js`):
+cinque caffè sfalsati, Rita e Ivo alla stampante, Ivo da Ettore e alla pianta, Ettore e Olivia alla
+lavagna, Olivia da Ettore e da Lea, Lea in bacheca, Tobia alla finestra, Vito da Rita, Ada alla regia.
+
+**Per provare** (`window.redazione`): `tempo(s)` ferma la scena a quel secondo, `guarda(x, y, z,
+zoom)` e `casa()` muovono la camera, `apri(id)` + `grande()` mostrano il primo piano a tutto
+schermo, `orario()` dà gli orari di ognuno, e **`controlla()` passa tutto il giro e dice chi cammina
+dentro un mobile e chi si pesta i piedi**: deve tornare vuoto. Schermate: `prova/schermate/look-4-*`.
+
+**Quanto pesa.** Circa un milione di triangoli e 860 chiamate; si accende in due secondi. Sul Mac
+va; se un giorno servisse alleggerire, le chiome a risoluzione 56 e l'ombra a 2048.
