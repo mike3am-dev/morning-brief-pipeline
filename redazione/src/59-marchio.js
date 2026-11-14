@@ -6,6 +6,7 @@
      passare attraverso i personaggi, la postazione e il loro ambiente»): l'edizione è carta, il design è uno studio,
      le schede sono quattro scrivanie ognuna col suo mondo, l'archivio è faldoni e scatole. */
   const INGOMBRI = [];   // x, z, raggio: le cose appoggiate per terra, che chi cammina deve aggirare
+  let saturnoRita = null;   // lo fa girare Rita (63-repertori.js)
   const vivo = c => new THREE.MeshBasicMaterial({ color: c, toneMapped: false });
 
   // L'EDIZIONE: carta dappertutto. Al centro dell'isola le vaschette dei documenti e i giornali del giorno; il telefono di Nora; per terra le pile (44-carte.js)
@@ -37,7 +38,7 @@
   // LE SCHEDE: quattro scrivanie, ognuna col suo mondo. Ada: il serverino che lampeggia; Rita: Saturno sul tavolo e il telescopio accanto; Dario: il router; Vito ha già la sua (55-cast.js)
   { const server = gruppo(at(box(0.11, 0.24, 0.2, M(0x17181B, { roughness: 0.4 }), 0.012), 0, 0.12, 0), ...[0, 1, 2, 3, 4, 5].map(i => { const l = new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 6), vivo(i % 3 ? 0x35C759 : 0x3FA9FF)); l.position.set(-0.03 + (i % 2) * 0.06, 0.07 + Math.floor(i / 2) * 0.06, -0.101); return l; }));
     posti.ai.g.add(at(server, -0.58, TAV, -0.26));
-    const saturno = gruppo(at(sph(0.045, M(0xE8C36A, { roughness: 0.6 }), 18, 14), 0, 0.105, 0), (() => { const a = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.072, 0.007, 6, 30), M(0xC9955C, { roughness: 0.6 }))); a.rotation.x = PI / 2 - 0.4; a.scale.z = 0.4; a.position.y = 0.105; return a; })(), at(cyl(0.004, 0.004, 0.06, alluminio, 6), 0, 0.03, 0), at(cyl(0.03, 0.034, 0.01, nero, 14), 0, 0.005, 0));
+    const saturno = saturnoRita = gruppo(at(sph(0.045, M(0xE8C36A, { roughness: 0.6 }), 18, 14), 0, 0.105, 0), (() => { const a = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.072, 0.007, 6, 30), M(0xC9955C, { roughness: 0.6 }))); a.rotation.x = PI / 2 - 0.4; a.scale.z = 0.4; a.position.y = 0.105; return a; })(), at(cyl(0.004, 0.004, 0.06, alluminio, 6), 0, 0.03, 0), at(cyl(0.03, 0.034, 0.01, nero, 14), 0, 0.005, 0));
     posti.schede.g.add(at(saturno, -0.52, TAV, -0.25));
     const [tx, tz] = posti.schede.fuori(-0.98, -0.3), tubo = cyl(0.05, 0.045, 0.56, bianco, 18), telescopio = gruppo(...[0, 1, 2].map(i => asta([0, 0.78, 0], [Math.sin(i * 2.094 + 0.4) * 0.3, 0, Math.cos(i * 2.094 + 0.4) * 0.3], 0.011, nero)), at(cyl(0.02, 0.02, 0.1, nero, 10), 0, 0.82, 0));
     tubo.rotation.set(0.95, 0, 0); const gruppoTubo = gruppo(tubo, (() => { const o = cyl(0.016, 0.016, 0.09, nero, 10); o.rotation.x = 0.95 + PI / 2; o.position.set(0.05, -0.2, -0.26); return o; })(), (() => { const v = cyl(0.046, 0.046, 0.006, M(0x7CC6F2, { roughness: 0.1 }), 18); v.rotation.x = 0.95; v.position.set(0, 0.164, 0.228); return v; })());

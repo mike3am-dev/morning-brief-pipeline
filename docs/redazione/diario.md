@@ -596,3 +596,46 @@ e quali no: viene dal grezzo); il lunedì scrive il rapporto. Gli si può sempre
 
 **Il passo dopo**, detto da Mike: «passeremo anche agli altri». Il modello è quello di Vito: un
 gesto di base, una lista di speciali con nome, durata e peso, e i pulsanti nella scheda.
+
+## 14 novembre 2026, notte — i gesti di tutti e tredici
+
+Mike, dopo Vito: «estendi a tutti gli altri 10 animazioni pensate ad hoc sulla mansione e sul
+personaggio». Pubblicata come versione 13.
+
+**Il sistema di Vito ora vale per tutti** (`63-repertori.js`). Ogni persona ha in `REPERTORI` il
+suo gesto di base (in parole, per la scheda) e nove gesti speciali: nome, secondi, peso, quello che
+si legge, e la funzione che compone la posa. `conGesti(id, base)` li mette dentro il gesto di base;
+`gestoDi` decide quale e quando (uno ogni 65 secondi più o meno 12 e mezzo, coi tempi sfalsati da
+persona a persona, mai lo stesso due volte di fila). In ogni momento, in redazione, c'è in media
+una persona che sta facendo il suo gesto.
+
+**I mattoni** per scriverli in fretta: `POSE` (dove può stare una mano: al mento, alla bocca,
+all'orecchio, sulla nuca, avanti, in alto…), `br` e `due` (portano un braccio, o tutti e due, verso
+una di quelle), `annuisci`, `scuoti`, `batti`, `parla2`, `sorso` (la tazza), `timbra`,
+`contaSulleDita`, `versoChi` (di quanto girarsi per guardare un collega). Le cose che compaiono in
+mano (`inMano2`) spariscono da sole a ogni fotogramma; `ripristini` rimette a posto quello che un
+gesto sposta sulla scrivania.
+
+| Chi | Di suo | I nove gesti |
+|---|---|---|
+| **Olivia** | fra gli schermi con la tavoletta | guarda l'ora · mani sui fianchi · «tu: vai» · braccia conserte · si massaggia il collo · batte le mani · pollice in su · si sistema la giacca · scorre la scaletta |
+| **Tobia** | legge, una mano sul mouse | evidenzia · non ci crede · apre il giornale · conta le testate · si gratta la barba · sbadiglia · scorre veloce · «trovata l'origine!» · lo dice a Ettore |
+| **Ettore** | scrive | cancella tutto · rilegge a mezza voce · cerca la parola · si scrocchia le dita · mani nei capelli · caffè · un appunto a penna · si allontana e giudica · il punto finale |
+| **Ivo** | segna con la penna rossa | si sistema gli occhiali · cerchia e sottolinea · scuote la testa e sospira · il foglio in controluce · si liscia i baffi · batte il ritmo della frase · due dita sulla tastiera · mette la spunta · tè |
+| **Nora** | al telefono, prende appunti | «non mi convince» · la lente · confronta due fonti · riattacca e cancella · conta le testate · un cenno a Tobia · si sistema gli occhiali · timbra · fa spallucce |
+| **Lea** | disegna con lo stilo | inquadra con le dita · gira la tavoletta · lo stilo fra i denti · un tratto lungo · sceglie un colore · cancella e rifà · la frangia · lo fa vedere a Bruno · applausino |
+| **Bruno** | guarda le foto da vicino | scatta · una stampa in controluce · ritaglia con le mani · soffia sull'obiettivo · ingrandisce · «è sgranata» · si gratta la testa · «questa è la foto» · la fa vedere a Lea |
+| **Ada** | scrive svelta | parla al robottino · detta al microfono · legge col dito · «mi è esplosa la testa» · beve e scrive · i ricci · il serverino · «intelligenza» fra virgolette · balletto da seduta |
+| **Rita** | scrive ordinata | fa decollare il razzo · fa girare Saturno · una partita immaginaria · spunta la lista · mette in ordine · occhi al cielo · il cerchietto · un'orbita in aria · tè |
+| **Vito** | a tempo di musica | (i dieci di Mike) |
+| **Dario** | scrive a raffiche | scorre il telefono · una notifica · lo mostra ad Ada · fotografa lo schermo · mano in fronte · schermo-telefono-schermo · caffè · il router · ride coprendosi la bocca |
+| **Zeno** | batte con due dita | timbra · sfoglia un faldone · si liscia la barba · «un momento» · soffia via la polvere · l'orologio da taschino · scorre l'elenco col dito · il farfallino · un pisolino |
+| **Clio** | scrive con calma | cerca una scheda · collega due storie · sistema la lampada · dice una cosa a Zeno · pulisce gli occhiali · guarda l'ora e la annota · «ah, sì!» · si raccoglie i capelli · tè |
+
+**Per provarli**: in ogni scheda c'è «I suoi gesti: provali». Da console
+`redazione.gesto('fonti', 'pisolino', 0.5)` ne ferma uno a metà; `redazione.provaGesti()` li passa
+tutti e dice quelli che danno errore (oggi nessuno su 117). Un gesto si vede solo se la persona è
+seduta al suo posto: a Ettore mentre riceve le correzioni, o a Bruno mentre è al muro, non parte.
+
+**Da sapere.** Sono una prima stesura: le pose sono state guardate a campione (quattro per persona,
+`look-11-gesti-*`), non tutte e 117, e mai in movimento. Mike le giudica dai pulsanti.

@@ -42,7 +42,12 @@
     edizione(e) { edizioneForzata = e || null; conto(); muroVivo(performance.now() / 1000, insegnaViva(performance.now() / 1000)); renderer.render(scene, cam); },
     muro(s) { muroVivo(s, insegnaViva(s)); renderer.render(scene, cam); },
     sigla(k) { siglaForzata = k; muroVivo(performance.now() / 1000, insegnaViva(performance.now() / 1000)); renderer.render(scene, cam); },   // 1: tutto il muro è la sigla; 0: mai; null: da sola
-    gesto(nome, u) { gestoForzato = nome ? { nome, u, da: performance.now() / 1000 } : null; vita(tempoGiro()); renderer.render(scene, cam); etichette(); primoPiano(); },   // un gesto di Vito: gesto('giro', 0.5) lo ferma a metà, gesto('giro') lo fa partire, gesto() lo toglie
+    gesto(id, nome, u) { gestoForzato = nome ? { id, nome, u, da: performance.now() / 1000 } : null; vita(tempoGiro()); renderer.render(scene, cam); etichette(); primoPiano(); },   // un gesto: gesto('gta', 'giro', 0.5) lo ferma a metà, gesto('gta', 'giro') lo fa partire, gesto() lo toglie
+    gesti: () => Object.fromEntries(Object.entries(REPERTORI).map(([id, r]) => [id, r.gesti.map(g => g[0])])),
+    provaGesti() {   // passa tutti i gesti di tutti, in più punti: dice quelli che danno errore o una posa con un numero sbagliato
+      const guasti = []; for (const id in REPERTORI) for (const g of REPERTORI[id].gesti) for (const u of [0.05, 0.2, 0.4, 0.6, 0.8, 0.95]) { gestoForzato = { id, nome: g[0], u, da: 0 };
+        try { const P = cx[id].base(130); for (const k in P) if ([].concat(P[k]).some(v => typeof v !== 'number' || Number.isNaN(v))) { guasti.push(id + ' ' + g[0] + ' ' + u + ': ' + k); break; } } catch (e) { guasti.push(id + ' ' + g[0] + ' ' + u + ': ' + e.message); } }
+      gestoForzato = null; vita(tempoGiro()); return guasti; },
     sopra(id) { sottoMano = id || null; for (const k in tags) tags[k].classList.toggle('vicino', k === id); for (let i = 0; i < 20; i++) aloniVivi(1); renderer.render(scene, cam); etichette(); },
     casa() { lascia(); Object.assign(meta, CASA); Object.assign(inq, meta); inquadra(); renderer.render(scene, cam); etichette(); } };
   canvas.addEventListener('webglcontextlost', e => e.preventDefault());

@@ -80,11 +80,11 @@
     d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p)), rispostaAlPostit(p)); return d; }
   const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi', fonti: 'Le fonti di oggi',
     verifica: 'Le notizie che girano di più', foto: 'Le foto di oggi, e quanto pesano', rete: 'Le discussioni entrate in edizione', memoria: 'Le storie che oggi vanno avanti' };
-  function bloccoGesti() {   // i gesti di Vito, da provare uno per uno
-    const b = blocco('I suoi gesti: provali'), fila = el('div', 'spunti'), nota = el('p', 'piccolo', 'Di suo tiene il tempo con la testa e ogni tanto batte due righe. Ogni 40–90 secondi gliene scappa uno di questi, mai lo stesso due volte di fila. Toccane uno per vederlo subito.');
-    GESTI_VITO.forEach(g => { const p = el('button', null, g[3]); p.type = 'button'; p.addEventListener('click', () => { const v = persone.gta.position, s = posti.gta.seduta;
-      if (Math.hypot(v.x - s[0], v.z - s[1]) > 0.15 || persone.gta.userData.j.bacino.position.y > SED + 0.12) { nota.textContent = 'Adesso Vito non è seduto alla scrivania: riprova quando torna.'; return; }
-      gestoForzato = { nome: g[0], da: performance.now() / 1000 }; nota.textContent = 'Guardalo nel riquadro in alto.'; }); fila.append(p); });
+  function bloccoGesti(id) {   // i gesti di ciascuno, da provare uno per uno
+    const a = AGENTI[id], b = blocco('I suoi gesti: provali'), fila = el('div', 'spunti'), base = REPERTORI[id].base, nota = el('p', 'piccolo', `Di suo: ${base}. Ogni 40–90 secondi gliene scappa uno di questi, mai lo stesso due volte di fila. Toccane uno per vederlo subito.`);
+    REPERTORI[id].gesti.forEach(g => { const p = el('button', null, g[3]); p.type = 'button'; p.addEventListener('click', () => { const v = persone[id].position, s = posti[id].seduta;
+      if (Math.hypot(v.x - s[0], v.z - s[1]) > 0.15 || (!posti[id].inPiedi && persone[id].userData.j.bacino.position.y > SED + 0.12)) { nota.textContent = `Adesso ${a.nome} non è al suo posto: riprova quando torna.`; return; }
+      gestoForzato = { id, nome: g[0], da: performance.now() / 1000 }; nota.textContent = 'Guarda nel riquadro in alto.'; }); fila.append(p); });
     b.append(fila, nota); return b; }
   function apri(id, pre) {
     aperto = id; for (const k in tags) tags[k].classList.toggle('scelto', k === id); rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
@@ -115,7 +115,7 @@
       const corpo = el('div', 'corpo'); pannello.append(corpo);
       const gr = GRUPPI[gruppoDi(id)]; if (gr) { const altri = gr.chi.filter(k => k !== id && AGENTI[k]).map(k => AGENTI[k].nome); const riga = el('p', 'gruppo'); const b = el('b'); b.style.background = gr.tinta; riga.append(b, document.createTextNode(gr.nome + (altri.length ? ': lavora con ' + altri.join(', ').replace(/, ([^,]*)$/, ' e $1') : ''))); corpo.append(riga); }
       const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); corpo.append(blocco('In questo momento', riga));
-      if (id === 'gta') corpo.append(bloccoGesti());
+      if (REPERTORI[id] && persone[id]) corpo.append(bloccoGesti(id));
       if (a.minuti != null) {
         const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, String(n)), el('span', null, cosa)); numeri.append(d); };
         if (id === 'revisore' && STATO.revisione.fatta) numero(STATO.revisione.riscritti, 'testi riscritti');

@@ -81,5 +81,5 @@
   function macchinaFoto({ busto }) { const corpo = M(0x1B1C20, { roughness: 0.5 }), cinghia = M(0xF5C518, { roughness: 0.8 });
     const lente = cyl(0.03, 0.03, 0.05, M(0x2E3036, { roughness: 0.3 }), 18); lente.rotation.x = PI / 2; const vetro = cyl(0.021, 0.021, 0.006, M(0x7CC6F2, { roughness: 0.1 }), 18); vetro.rotation.x = PI / 2;
     const g = gruppo(box(0.115, 0.072, 0.046, corpo, 0.01), at(lente, 0, -0.004, 0.044), at(vetro, 0, -0.004, 0.071), at(box(0.034, 0.016, 0.03, M(0xD5D7DB, { roughness: 0.4 }), 0.004), 0.03, 0.042, 0));
-    busto.add(asta([-0.062, 0.432, 0.052], [-0.05, 0.3, 0.135], 0.005, cinghia), asta([0.062, 0.432, 0.052], [0.05, 0.3, 0.135], 0.005, cinghia), at(g, 0, 0.262, 0.15)); }
+    busto.add(asta([-0.062, 0.432, 0.052], [-0.05, 0.3, 0.135], 0.005, cinghia), asta([0.062, 0.432, 0.052], [0.05, 0.3, 0.135], 0.005, cinghia), at(g, 0, 0.262, 0.15)); busto.userData.macchina = g; }
 

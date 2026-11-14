@@ -1,11 +1,11 @@
   /* ================================================================ la scena a un dato secondo del giro */
-  const adessoDi = (id, t) => { const c = cx[id]; if (!c) return ''; if (id === 'gta' && gestoVitoOra) return gestoVitoOra; let s = c.nota0; for (const [q, testo] of c.note) if (q <= t) s = testo; return s; };
+  const adessoDi = (id, t) => { const c = cx[id]; if (!c) return ''; if (gestoOra[id]) return gestoOra[id]; let s = c.nota0; for (const [q, testo] of c.note) if (q <= t) s = testo; return s; };
   let tempoFermo = fermo ? 8 : null;
   const tempoGiro = () => tempoFermo != null ? tempoFermo : (Date.now() / 1000) % GIRO;
   const inManoTutti = [foglioMano, canMano, foglioRita, postitMano, gamepad, penna, stilo, cartella, pallina, foglioStampante, cassetti[0], cornetta];
   function vita(T) {
     // lo stato delle cose, prima dei gesti: ogni gesto poi accende quello che tocca
-    for (const o of inManoTutti) o.visible = false; for (const id in tazzeMano) tazzeMano[id].visible = false; ripristinaVito(); gestoVitoOra = null;
+    for (const o of inManoTutti) o.visible = false; for (const id in tazzeMano) tazzeMano[id].visible = false; ripristinaTutto();
     spiaCaffe.emissiveIntensity = 0.6; spiaStampa.emissiveIntensity = 0.5;
     for (const id in cx) cx[id].tr.a(T);
     compone(T);

@@ -36,11 +36,10 @@
   posti.regia = { inPiedi: true, seduta: [REGIA[0], REGIA[1]], yaw: FRONTE };
 
   // le tazze: una sulla scrivania e la stessa in mano, per chi va a prendersi il caffè
-  const TAZZE = { regia: C.yellow, lettura: C.blue, redattore: C.orange, ai: C.red, gta: '#FF5DA2', rete: '#5B6CFF' }, tazze = {}, tazzeMano = {};
-  for (const id of ['lettura', 'redattore', 'ai', 'gta', 'rete']) { tazze[id] = at(tazza(TAZZE[id], PI * 0.2), -0.52, TAV, 0.1); posti[id].g.add(tazze[id]); }
+  const TAZZE = { regia: C.yellow, lettura: C.blue, redattore: C.orange, ai: C.red, gta: '#FF5DA2', rete: '#5B6CFF', revisore: C.red, schede: '#7B4BE0', verifica: '#0F8B7A', memoria: '#8E4FB8', foto: C.yellow, fonti: '#2F7A4C' }, tazze = {}, tazzeMano = {};
+  const DOVE_TAZZA = { revisore: [-0.54, 0.0], schede: [-0.54, 0.08], verifica: [-0.54, 0.02], memoria: [-0.54, 0.06], foto: [-0.54, 0.04], fonti: [-0.5, 0.2] };
+  for (const id of Object.keys(TAZZE)) { if (id === 'regia') continue; const [x, z] = DOVE_TAZZA[id] || [-0.52, 0.1]; tazze[id] = at(tazza(TAZZE[id], PI * 0.2), x, TAV, z); posti[id].g.add(tazze[id]); }
   tazze.regia = tazza(TAZZE.regia, 0); tazze.regia.position.y = TAV; sulAnello(tazze.regia, FRONTE - 1.38, 0.84);
-  posti.revisore.g.add(at(tazza(C.red, PI * 0.2), -0.54, TAV, 0.0)); posti.schede.g.add(at(tazza('#7B4BE0', PI * 0.2), -0.54, TAV, 0.08));
-  posti.verifica.g.add(at(tazza('#0F8B7A', PI * 0.2), -0.54, TAV, 0.02)); posti.memoria.g.add(at(tazza('#8E4FB8', PI * 0.2), -0.54, TAV, 0.06)); posti.foto.g.add(at(tazza(C.yellow, PI * 0.2), -0.54, TAV, 0.04));
   // sulla scrivania di Ettore: le bozze, la lampada gialla
   const pE = posti.redattore, pI = posti.revisore;
   pE.g.add(at(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.09; return f; })), 0.54, TAV, -0.12));
@@ -73,9 +72,10 @@
   // dei quattro nuovi. Di Nora: la lente sul tavolo; di Bruno: le stampe di prova; di Dario: il telefono sul suo piedino; di Clio: lo schedario da tavolo e la lampada verde
   { const l = gruppo(ombra(new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.008, 10, 26), alluminio)), at(box(0.014, 0.012, 0.1, nero, 0.004), 0, 0, 0.1)); l.children[0].rotation.x = PI / 2; l.rotation.y = 0.6; posti.verifica.g.add(at(l, 0.5, TAV + 0.011, 0.05)); }
   posti.foto.g.add(at(gruppo(...[[0xE7B98A, 0], [0x8FB7D9, 1], [0xC9D7A0, 2]].map(([c, i]) => { const f = at(box(0.15, 0.004, 0.11, M(c, { roughness: 0.6 }), 0.001), i * 0.012, 0.002 + i * 0.005, i * 0.01); f.rotation.y = (i - 1) * 0.22; return f; })), 0.5, TAV, 0.05));
-  { const t = gruppo(at(box(0.075, 0.15, 0.01, M(0x17181B, { roughness: 0.3 }), 0.006), 0, 0.085, 0), at(box(0.064, 0.13, 0.002, M(0x7CC6F2, { roughness: 0.2, emissive: 0x2A6E9A, emissiveIntensity: 0.5 }), 0.001), 0, 0.085, 0.006), at(box(0.07, 0.012, 0.06, alluminio, 0.004), 0, 0.006, -0.02)); t.children[0].rotation.x = t.children[1].rotation.x = -0.3; t.rotation.y = -0.4; posti.rete.g.add(at(t, 0.5, TAV, 0.02)); }
+  let telefonoDario = null, lampadaClio = null;
+  { const t = telefonoDario = gruppo(at(box(0.075, 0.15, 0.01, M(0x17181B, { roughness: 0.3 }), 0.006), 0, 0.085, 0), at(box(0.064, 0.13, 0.002, M(0x7CC6F2, { roughness: 0.2, emissive: 0x2A6E9A, emissiveIntensity: 0.5 }), 0.001), 0, 0.085, 0.006), at(box(0.07, 0.012, 0.06, alluminio, 0.004), 0, 0.006, -0.02)); t.children[0].rotation.x = t.children[1].rotation.x = -0.3; t.rotation.y = -0.4; posti.rete.g.add(at(t, 0.5, TAV, 0.02)); }
   { const sch = gruppo(at(box(0.2, 0.09, 0.13, M(0x8A6A45, { roughness: 0.8 }), 0.008), 0, 0.045, 0), ...[0, 1, 2, 3, 4, 5].map(i => at(box(0.17, 0.085, 0.004, M(i % 3 ? 0xF7F1E3 : 0xF5C518, { roughness: 0.9 }), 0.001), 0, 0.075 + (i % 2) * 0.006, -0.045 + i * 0.018))); sch.rotation.y = 0.3; posti.memoria.g.add(at(sch, 0.5, TAV, 0.06));
     const verdeLampada = M(0x1F7A4C, { roughness: 0.35, emissive: 0x1F7A4C, emissiveIntensity: 0 }); paralumi.push(verdeLampada);
-    const cappa2 = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.17, 16, 1, false, 0, PI), verdeLampada)); cappa2.rotation.z = PI / 2; cappa2.rotation.y = PI / 2;
+    const cappa2 = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.17, 16, 1, false, 0, PI), verdeLampada)); cappa2.rotation.z = PI / 2; cappa2.rotation.y = PI / 2; lampadaClio = cappa2;
     posti.memoria.g.add(at(gruppo(at(box(0.13, 0.014, 0.08, M(0xC9A24A, { metalness: 0.6, roughness: 0.35 }), 0.004), 0, 0.007, 0), at(cyl(0.008, 0.008, 0.2, M(0xC9A24A, { metalness: 0.6, roughness: 0.35 }), 8), 0, 0.11, 0), at(cappa2, 0, 0.21, 0.03)), -0.5, TAV, -0.24)); }
 
