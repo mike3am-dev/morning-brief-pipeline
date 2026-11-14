@@ -55,7 +55,7 @@
       a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro: ' + a.consegna + '.' : null),
       persone[id] ? 'In questo momento, nella stanza: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
       '', 'LE TUE CARTE (il tuo lavoro vero; è tutto quello che sai di oggi)', (STATO.carte || {})[id] || 'Oggi non hai carte sulla scrivania.',
-      suoi.length ? '\nI POST-IT CHE HAI LASCIATO IN BACHECA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
+      suoi.length ? '\nI POST-IT CHE HAI LASCIATO SULLA LAVAGNA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
       (() => { const d = decisioniDi(id); return d.length ? '\nLE DECISIONI CHE MIKE HA GIÀ PRESO CON TE (stanno nel registro della redazione, e valgono finché non le ritira)\n' + d.slice(0, 24).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}]: ${x.testo}`).join('\n') : null; })(),
       '', 'COME RISPONDI',
       '- In italiano semplice, in prima persona, come un collega che parla a voce: poche frasi (di solito da due a cinque). Niente markdown, niente asterischi, niente elenchi lunghi.',

@@ -1,5 +1,5 @@
   /* ================================================================ i canali, la prima pagina, le carte: le tele */
-  // i canali sugli schermi appesi: le altre schede dell'app, ognuna con il suo colore e il suo primo titolo nel sottopancia
+  // i canali, nella colonna sinistra del muro: le altre schede dell'app, ognuna con il suo colore e il suo primo titolo nel sottopancia
   const CANALI = [['ai', 'AI', C.red], ['games', 'GAMES', '#7B4BE0'], ['scienza', 'SCIENZA', C.blue]];
   function simbolo(x, quale) {   // il disegno nel riquadro accanto al mezzobusto (160 × 120, centrato)
     x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#FFFFFF'; x.fillStyle = '#FFFFFF'; x.lineWidth = 7;
@@ -8,18 +8,18 @@
     else { x.beginPath(); x.arc(0, 0, 10, 0, 7); x.fill(); for (let i = 0; i < 3; i++) { x.save(); x.rotate(i * PI / 3); x.beginPath(); x.ellipse(0, 0, 56, 20, 0, 0, 7); x.stroke(); x.restore(); } }
   }
   function texCanale(quale, nome, colore, titolo) {
-    return tela(640, 360, (x, w, h) => {
+    return tela(640, 458, (x, w, h) => {
       const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#11141C'); g.addColorStop(1, colore); x.fillStyle = g; x.fillRect(0, 0, w, h);
-      x.fillStyle = 'rgba(255,255,255,.06)'; for (let i = 0; i < 6; i++) { x.beginPath(); x.moveTo(i * 150 - 120, 0); x.lineTo(i * 150 - 20, 0); x.lineTo(i * 150 - 220, h); x.lineTo(i * 150 - 320, h); x.fill(); }
-      x.fillStyle = 'rgba(8,10,16,.45)'; rr(x, 372, 44, 226, 168, 12); x.fill(); x.save(); x.translate(485, 128); simbolo(x, quale); x.restore();
-      x.fillStyle = '#1B202C'; x.beginPath(); x.moveTo(84, 300); x.quadraticCurveTo(96, 196, 168, 190); x.lineTo(236, 190); x.quadraticCurveTo(308, 196, 320, 300); x.fill();   // le spalle
-      x.fillStyle = '#E7C3A4'; x.beginPath(); x.arc(202, 130, 52, 0, 7); x.fill(); x.fillStyle = '#1B202C'; x.beginPath(); x.arc(202, 112, 55, PI * 1.02, PI * 1.98); x.fill();   // la testa, i capelli
-      x.fillStyle = '#F8F6F2'; x.beginPath(); x.moveTo(184, 190); x.lineTo(202, 222); x.lineTo(220, 190); x.fill();
-      x.fillStyle = 'rgba(8,10,16,.88)'; x.fillRect(0, 252, w, 86); x.fillStyle = colore; x.fillRect(0, 252, 132, 86);
-      x.fillStyle = '#FFFFFF'; x.font = `800 ${nome.length > 5 ? 26 : 34}px ${DISPLAY}`; spazia(x, 0.06, 30); x.textAlign = 'center'; x.fillText(nome, 66, 306); x.textAlign = 'left'; spazia(x, 0, 1);
-      x.font = `700 25px ${SISTEMA}`; aCapo(x, titolo || 'Oggi niente da questa scheda', w - 168, 2).forEach((r, i) => x.fillText(r, 150, 288 + i * 31));
-      [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(34 + i * 22, 34, 8, 0, 7); x.fill(); });
-      x.fillStyle = '#FFFFFF'; x.font = `800 22px ${DISPLAY}`; spazia(x, 0.08, 22); x.fillText('TMB · ' + nome, 104, 42); spazia(x, 0, 1);
+      x.fillStyle = 'rgba(255,255,255,.06)'; for (let i = 0; i < 6; i++) { x.beginPath(); x.moveTo(i * 150 - 120, 0); x.lineTo(i * 150 - 20, 0); x.lineTo(i * 150 - 270, h); x.lineTo(i * 150 - 370, h); x.fill(); }
+      x.fillStyle = 'rgba(8,10,16,.45)'; rr(x, 372, 70, 226, 190, 12); x.fill(); x.save(); x.translate(485, 165); simbolo(x, quale); x.restore();
+      x.fillStyle = '#1B202C'; x.beginPath(); x.moveTo(74, 372); x.quadraticCurveTo(88, 250, 166, 242); x.lineTo(238, 242); x.quadraticCurveTo(316, 250, 330, 372); x.fill();   // le spalle
+      x.fillStyle = '#E7C3A4'; x.beginPath(); x.arc(202, 176, 58, 0, 7); x.fill(); x.fillStyle = '#1B202C'; x.beginPath(); x.arc(202, 156, 61, PI * 1.02, PI * 1.98); x.fill();   // la testa, i capelli
+      x.fillStyle = '#F8F6F2'; x.beginPath(); x.moveTo(182, 242); x.lineTo(202, 278); x.lineTo(222, 242); x.fill();
+      x.fillStyle = 'rgba(8,10,16,.9)'; x.fillRect(0, 318, w, 116); x.fillStyle = colore; x.fillRect(0, 318, 132, 116);
+      x.fillStyle = '#FFFFFF'; x.font = `800 ${nome.length > 5 ? 26 : 34}px ${DISPLAY}`; spazia(x, 0.06, 30); x.textAlign = 'center'; x.fillText(nome, 66, 388); x.textAlign = 'left'; spazia(x, 0, 1);
+      x.font = `700 25px ${SISTEMA}`; const righe = aCapo(x, titolo || 'Oggi niente da questa scheda', w - 172, 3); righe.forEach((r, i) => x.fillText(r, 150, 386 - (righe.length - 1) * 15.5 + i * 31));
+      [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(34 + i * 22, 36, 8, 0, 7); x.fill(); });
+      x.fillStyle = '#FFFFFF'; x.font = `800 22px ${DISPLAY}`; spazia(x, 0.08, 22); x.fillText('TMB · ' + nome, 104, 44); spazia(x, 0, 1);
     });
   }
   const canali = CANALI.map(([quale, nome, colore]) => { const titoli = ((STATO.canali || {})[quale] || []).slice(0, 3); return (titoli.length ? titoli : [null]).map(t => texCanale(quale, nome, colore, t)); });

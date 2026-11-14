@@ -96,14 +96,17 @@ Le scelte, una per una:
 - **L'archivista** ha lo schedario delle fonti. Lavora solo il lunedì: gli altri giorni la sedia è
   vuota e sul calendario c'è il cerchio sul prossimo lunedì.
 
-**Dal 14 novembre 2026 la stanza è una redazione che guarda fuori** (il diario dice come). Sulla
-parete di fondo, accanto al logo, c'è il **muro delle notizie**: cinque orologi coi fusi, il conto
-alla rovescia, la mappa di dove scrivono le testate e di dove nascono le notizie in apertura, le
-discussioni, Apple in borsa, le fonti, la striscia dell'ultim'ora. La regia sta lì davanti, con
-sopra l'insegna dello stato dell'edizione. Sulla parete di sinistra, sopra lavagna e bacheca, tre
-schermi con i «canali» AI, Games e Scienza. Al posto del tavolino di Mike c'è il **tavolo
-luminoso** dove si compone la prima pagina; il suo segnaposto e il registro delle decisioni stanno
-lì sopra. La sala riunioni non c'è (le riunioni restano «più avanti»).
+**Dal 14 novembre 2026 la stanza è questa** (il diario dice come ci si è arrivati; lo schema qui
+sopra è quello di partenza). Sulla parete di fondo tre cose: quattro quadri Apple sopra la credenza,
+**il muro delle notizie dal pavimento al soffitto** (marchio, orologi dei fusi, conto alla rovescia
+con lo stato dell'edizione, i tre canali, la mappa, la striscia dell'ultim'ora, borsa, fonti,
+discussioni; ogni tanto diventa la sigla col logo) e il manifesto di GTA VI. Sulla parete di
+sinistra la finestra, **una lavagna sola** (appunti a mano e post-it per Mike) e l'archivio. In
+mezzo alla stanza **due isole da quattro scrivanie**, due coppie una di fronte all'altra: l'edizione
+(Tobia, Ettore, Ivo, Lea) e le schede (Ada, Rita, Vito, e Zeno il lunedì), con la regia di Olivia
+fra le due, davanti al muro. Davanti alla lavagna il **tavolo luminoso** dove si compone la prima
+pagina, col segnaposto di Mike e il registro delle decisioni. Le etichette compaiono solo quando
+servono. La sala riunioni non c'è (le riunioni restano «più avanti»).
 
 La stanza si progetta **per il Mac**: lo schermo del portatile e un monitor esterno, la stanza
 intera in una schermata con il pannello dell'agente a destra (come nel video). iPhone e Duo vengono

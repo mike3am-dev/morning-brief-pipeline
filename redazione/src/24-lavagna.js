@@ -26,7 +26,7 @@
       x.fillStyle = '#FFD98A'; for (let r = 0; r < 5; r++) for (let c = 0; c < 2; c++) { x.fillRect(-34 + c * 14, -36 + r * 16, 7, 9); x.fillRect(7 + c * 18, -52 + r * 19, 9, 11); } }
   }
   const FONDO_FOTO = { casa: '#DCEAF2', iphone: '#F3E6D3', ipad: '#F3E6D3', mac: '#E3E8EC', watch: '#F2DDE0', mercato: '#E9F0D8', servizi: '#E7E0F2', ai: '#E9F0D8', software: '#DDEBF5' };
-  const texLavagna = tela(1400, 820, (x, w, h) => {
+  const texLavagna = tela(1640, 820, (x, w, h) => {   // a sinistra gli appunti a mano; da 1060 in poi la zona «per Mike» (la disegna 26-cartelli.js)
     const caso = casuale(41), VERDE = '#1F7A3F';
     x.fillStyle = '#FCFCFA'; x.fillRect(0, 0, w, h);
     x.lineCap = 'round'; x.lineJoin = 'round';
@@ -66,15 +66,6 @@
       tratto([[a, by], [a, by - alto], [a + bw, by - alto], [a + bw, by]], oggi ? C.orange : C.ink, 4);
       scrivi(String(m), a + 6, by - alto - 10, 28, oggi ? C.orange : C.ink); scrivi(INIZIALI[giornoDi(u.giorno).getDay()], a + 12, by + 34, 28, C.ink3); });
 
-    // in alto a destra: le foto delle prime due notizie, appuntate
-    const foto = (a, b, rot, n) => { const k = (n.reparto || '').toLowerCase(); x.save(); x.translate(a, b); x.rotate(rot);
-      x.shadowColor = 'rgba(0,0,0,.18)'; x.shadowBlur = 10; x.shadowOffsetY = 4; x.fillStyle = '#fff'; x.fillRect(-82, -92, 164, 200); x.shadowColor = 'transparent';
-      x.fillStyle = FONDO_FOTO[k] || '#E6E2DA'; x.fillRect(-70, -80, 140, 138); x.save(); x.translate(0, -8); disegnino(x, k); x.restore();
-      x.fillStyle = C.ink; x.font = `700 26px ${A_MANO}`; x.fillText(unaRiga(x, n.titolo.split(/[\s.,:;]+/)[0], 136), -66, 96);
-      x.fillStyle = 'rgba(245,197,24,.75)'; x.fillRect(-30, -104, 60, 22); x.restore(); };
-    if (prime[0]) foto(1110, 170, -0.06, prime[0]); if (prime[1]) foto(1290, 196, 0.05, prime[1]);
-    freccia(1010, 214, 470, 206, C.ink3);
-
     // in basso a sinistra: chi passa le carte a chi, con gli orari veri
     const riquadro = (a, b, l, t, col = C.ink) => { tratto([[a, b], [a + l, b], [a + l, b + 62], [a, b + 62], [a, b]], col, 4); scrivi(t, a + 14, b + 42, 30, col); };
     const quando = id => AGENTI[id] && AGENTI[id].entrata ? oraCorta(AGENTI[id].entrata) : '';
@@ -96,14 +87,5 @@
     if (lette.length && piu > 1) { const a = 668 + iMax * 58, alto = (piu - 1) * passo; cerchio(a, 708 - alto / 2, 30, alto / 2 + 26, C.red, 4); scrivi(piu + '!', a + 38, 708 - alto - 6, 36, C.red, PENNARELLO); }
     const ultima = lette[lette.length - 1]; if (ultima && ultima.aperte <= 1 && lette.length - 1 !== iMax) scrivi('solo ' + ultima.aperte + ' ?', 668 + (lette.length - 1) * 58 + 26, 704, 28, C.red);
 
-    // a destra in basso: i post-it
-    const postit = (a, b, rot, col, righe) => { x.save(); x.translate(a, b); x.rotate(rot); x.shadowColor = 'rgba(0,0,0,.2)'; x.shadowBlur = 9; x.shadowOffsetY = 4;
-      x.fillStyle = col; x.fillRect(-78, -78, 156, 156); x.shadowColor = 'transparent'; x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(-78, -78, 156, 20);
-      righe.forEach((r, i) => scrivi(r, -66, -22 + i * 36, 30, C.ink)); x.restore(); };
-    const mazzo = (STATO.postit || []).find(p => p.mazzo), muti = ((STATO.macchine.feed || {}).rotti || []).length;
-    if (mazzo) postit(1132, 470, -0.05, '#FFE45C', [mazzo.mazzo + ' richieste', 'di Lea !!']);
-    if (STATO.gta) postit(1304, 492, 0.06, '#FF9DB0', ['GTA VI', STATO.gta.giorni > 0 ? '− ' + STATO.gta.giorni + ' giorni' : 'è uscito !!']);
-    postit(1126, 668, 0.04, '#8FD3F4', [muti + ' feed', 'muti']);
-    postit(1300, 684, -0.04, '#FFB46B', ['lunedì:', 'le fonti', '(Zeno)']);
   });
 

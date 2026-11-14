@@ -12,9 +12,11 @@
   }, { passive: false });
   canvas.addEventListener('pointerdown', e => { presa = { x: e.clientX, y: e.clientY, mosso: 0 }; canvas.setPointerCapture(e.pointerId); });
   canvas.addEventListener('pointermove', e => {
-    if (!presa) { const id = chiSotto(e); canvas.classList.toggle('mano', !!id); for (const k in tags) tags[k].classList.toggle('vicino', k === id); return; }
+    if (!presa) { const id = chiSotto(e); if (id !== sottoMano) { sottoMano = id; canvas.classList.toggle('mano', !!id); for (const k in tags) tags[k].classList.toggle('vicino', k === id); sporca = true; } return; }
     const dx = e.clientX - presa.x, dy = e.clientY - presa.y; presa.mosso += Math.abs(dx) + Math.abs(dy); if (presa.mosso > 6) { canvas.classList.add('presa'); lascia(); }
     presa.x = e.clientX; presa.y = e.clientY; meta.x -= dx / (ppu * inq.zoom); meta.y += dy / (ppu * inq.zoom); inq.x = meta.x; inq.y = meta.y; inquadra(); });
   canvas.addEventListener('pointerup', e => { canvas.classList.remove('presa'); const p = presa; presa = null; if (!p || p.mosso > 6) return; const id = chiSotto(e); if (id) apri(id); else if (aperto) chiudi(); });
   canvas.addEventListener('dblclick', () => { if (aperto) chiudi(); else Object.assign(meta, CASA); });
+  canvas.addEventListener('pointerleave', e => { if (presa || (e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.tag'))) return; sottoMano = null; canvas.classList.remove('mano'); for (const k in tags) tags[k].classList.remove('vicino'); sporca = true; });
+  document.getElementById('etichette').addEventListener('pointerleave', () => { sottoMano = null; for (const k in tags) tags[k].classList.remove('vicino'); sporca = true; });
 

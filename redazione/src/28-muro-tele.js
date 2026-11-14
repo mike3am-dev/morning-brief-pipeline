@@ -22,7 +22,7 @@
   const terra = (lon, lat) => TERRE.some(p => dentro(p, lon, lat)) && !ACQUE.some(p => dentro(p, lon, lat));
 
   const MAPPA = STATO.mappa || { luoghi: [], calde: [], senza_luogo: 0 };
-  const MW = 1380, MH = 700, GRADO = MW / 360, MAPPA_SU = 96, LAT0 = 80;
+  const MW = 1380, MH = 857, GRADO = MW / 360, MAPPA_SU = 80, LAT0 = 80;
   const suMappa = (lon, lat) => [(lon + 180) * GRADO, MAPPA_SU + (LAT0 - lat) * GRADO];
   const raggioDi = l => 6 + Math.sqrt(l.articoli) * 1.35;
   const caldePer = {}; (MAPPA.calde || []).forEach(c => { (caldePer[c.luogo] = caldePer[c.luogo] || []).push(c.rank); });
@@ -30,7 +30,7 @@
   const NERO_MURO = '#0C1220', GRIGIO_MURO = '#8D97AB';
   const texMappa = tela(MW, MH, (x, w, h) => {
     x.fillStyle = NERO_MURO; x.fillRect(0, 0, w, h);
-    x.fillStyle = C.yellow; x.font = `800 31px ${DISPLAY}`; spazia(x, 0.1, 31); x.fillText('DA DOVE ARRIVANO LE NOTIZIE', 28, 50); spazia(x, 0, 1);
+    x.fillStyle = C.yellow; x.font = `800 33px ${DISPLAY}`; spazia(x, 0.1, 33); x.fillText('DA DOVE ARRIVANO LE NOTIZIE', 28, 52); spazia(x, 0, 1);
     const tele = (STATO.macchine || {}).telescrivente || {};
     x.fillStyle = GRIGIO_MURO; x.font = `500 21px ${SISTEMA}`; x.textAlign = 'right'; x.fillText(`${tele.articoli != null ? tele.articoli + ' articoli nelle ultime ' + Math.round(tele.finestra_ore || 26) + ' ore · ' : ''}le sedi delle testate`, w - 28, 48); x.textAlign = 'left';
     for (let lat = 78; lat >= -56; lat -= 2.4) for (let lon = -170; lon <= 179; lon += 2.4) if (terra(lon, lat)) { const [a, b] = suMappa(lon, lat); x.fillStyle = '#4F6C99'; x.beginPath(); x.arc(a, b, 3.1, 0, 7); x.fill(); }
@@ -41,15 +41,24 @@
       x.fillStyle = C.yellow; x.font = `600 17px ${SISTEMA}`; x.fillText(l.articoli + ' articoli · ' + l.testate + ' testate', a + s[0], b + s[1] + 21); x.textAlign = 'left'; });
     Object.entries(caldePer).forEach(([luogo, ranghi]) => { const c = MAPPA.calde.find(q => q.luogo === luogo), [a, b] = suMappa(c.lon, c.lat), t = ranghi.join('·'); x.font = `800 19px ${SISTEMA}`;
       const l = Math.max(30, x.measureText(t).width + 18); x.fillStyle = C.red; rr(x, a + 10, b - 40, l, 28, 14); x.fill(); x.fillStyle = '#FFFFFF'; x.textAlign = 'center'; x.fillText(t, a + 10 + l / 2, b - 20); x.textAlign = 'left'; });
-    const yl = h - 26; x.font = `500 19px ${SISTEMA}`;
+    const yl = 646; x.font = `500 19px ${SISTEMA}`;
     x.fillStyle = C.yellow; x.beginPath(); x.arc(38, yl - 6, 8, 0, 7); x.fill(); x.fillStyle = GRIGIO_MURO; x.fillText('una testata che scrive: più grande, più articoli oggi', 56, yl);
     x.fillStyle = C.red; rr(x, 560, yl - 20, 30, 26, 13); x.fill(); x.fillStyle = '#FFFFFF'; x.font = `800 17px ${SISTEMA}`; x.fillText('1', 570, yl - 1); x.fillStyle = GRIGIO_MURO; x.font = `500 19px ${SISTEMA}`; x.fillText('dove nasce una notizia in apertura', 600, yl);
     if (MAPPA.senza_luogo) { x.textAlign = 'right'; x.fillText(MAPPA.senza_luogo + ' articoli da raccolte senza una sede', w - 28, yl); x.textAlign = 'left'; }
+    // sotto la mappa: le notizie in apertura, ognuna col posto da cui viene
+    x.fillStyle = '#232B3B'; x.fillRect(28, 668, w - 56, 2);
+    x.fillStyle = GRIGIO_MURO; x.font = `800 22px ${DISPLAY}`; spazia(x, 0.1, 22); x.fillText('IN APERTURA, DA DOVE VIENE', 28, 706); spazia(x, 0, 1);
+    const calde = (MAPPA.calde || []).slice(0, 6), meta = (w - 56) / 2;
+    if (!calde.length) { x.font = `500 21px ${SISTEMA}`; x.fillText('oggi nessuna notizia in apertura ha un luogo riconosciuto', 28, 750); }
+    calde.forEach((c, i) => { const a = 28 + (i % 2) * meta, b = 750 + Math.floor(i / 2) * 40;
+      x.fillStyle = C.red; rr(x, a, b - 22, 30, 28, 14); x.fill(); x.fillStyle = '#FFFFFF'; x.font = `800 18px ${SISTEMA}`; x.textAlign = 'center'; x.fillText(String(c.rank), a + 15, b - 2); x.textAlign = 'left';
+      x.fillStyle = C.yellow; x.font = `700 21px ${SISTEMA}`; const l = x.measureText(c.luogo).width; x.fillText(c.luogo, a + 42, b);
+      x.fillStyle = '#F1EEE8'; x.font = `500 21px ${SISTEMA}`; x.fillText(unaRiga(x, c.titolo || '', meta - 42 - l - 40), a + 54 + l, b); });
   });
 
   // Apple in borsa: la chiusura, la variazione, le ultime sedute a barrette (verde se è salita sulla seduta prima)
   const BORSA = STATO.borsa;
-  const texBorsa = tela(370, 340, (x, w, h) => {
+  const texBorsa = tela(505, 362, (x, w, h) => {
     x.fillStyle = NERO_MURO; x.fillRect(0, 0, w, h); x.fillStyle = GRIGIO_MURO; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('APPLE IN BORSA', 22, 40); spazia(x, 0, 1);
     if (!BORSA) { x.font = `500 20px ${SISTEMA}`; x.fillText('nessun dato oggi', 22, 90); return; }
     const su = (BORSA.variazione || 0) >= 0, col = su ? '#35C759' : C.red;
@@ -57,15 +66,15 @@
     x.fillStyle = col; x.beginPath(); if (su) { x.moveTo(26, 156); x.lineTo(50, 156); x.lineTo(38, 136); } else { x.moveTo(26, 136); x.lineTo(50, 136); x.lineTo(38, 156); } x.fill();
     x.font = `800 30px ${DISPLAY}`; x.fillText((su ? '+' : '') + String(BORSA.variazione).replace('.', ',') + '%', 60, 158);
     x.fillStyle = GRIGIO_MURO; x.font = `600 19px ${SISTEMA}`; x.fillText((BORSA.simbolo || 'AAPL') + ' · chiusura del ' + giornoDi(BORSA.data).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' }), 180, 156);
-    const s = BORSA.serie || []; if (s.length > 1) { const lo = Math.min(...s), hi = Math.max(...s), passo = (w - 44) / s.length, Y = v => 316 - (v - lo) / Math.max(0.01, hi - lo) * 112;
+    const s = BORSA.serie || []; if (s.length > 1) { const lo = Math.min(...s), hi = Math.max(...s), passo = (w - 44) / s.length, Y = v => h - 24 - (v - lo) / Math.max(0.01, hi - lo) * (h - 228);
       s.forEach((v, i) => { const prima = i ? s[i - 1] : v, a = 24 + i * passo, y0 = Y(prima), y1 = Y(v); x.fillStyle = v >= prima ? '#35C759' : C.red; x.fillRect(a + passo * 0.2, Math.min(y0, y1) - 3, passo * 0.6, Math.abs(y1 - y0) + 6); }); }
   });
   // le fonti: un quadratino per feed, rosso se oggi non ha risposto
-  const texFonti = tela(370, 340, (x, w, h) => {
+  const texFonti = tela(505, 362, (x, w, h) => {
     const f = (STATO.macchine || {}).feed; x.fillStyle = NERO_MURO; x.fillRect(0, 0, w, h); x.fillStyle = GRIGIO_MURO; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('LE FONTI', 22, 40); spazia(x, 0, 1);
     if (!f) return; x.fillStyle = '#FFFFFF'; x.font = `800 74px ${DISPLAY}`; x.fillText(f.ok + '/' + f.totale, 20, 116);
     x.fillStyle = GRIGIO_MURO; x.font = `600 19px ${SISTEMA}`; x.fillText('rispondono stamattina', 22, 148);
-    const per = 14, lato = (w - 44) / per; for (let i = 0; i < f.totale; i++) { x.fillStyle = i < f.ok ? '#35C759' : C.red; rr(x, 22 + (i % per) * lato, 172 + Math.floor(i / per) * lato, lato - 5, lato - 5, 3); x.fill(); }
+    const per = 18, lato = (w - 44) / per; for (let i = 0; i < f.totale; i++) { x.fillStyle = i < f.ok ? '#35C759' : C.red; rr(x, 22 + (i % per) * lato, 172 + Math.floor(i / per) * lato, lato - 5, lato - 5, 3); x.fill(); }
   });
 
   // la striscia dell'ultim'ora: i titoli di oggi su un nastro, che poi scorre
@@ -86,8 +95,13 @@
         x.font = `600 22px ${SISTEMA}`; const righe = aCapo(x, v.titolo, W - 48, 5); if (vero) { x.fillStyle = '#F1EEE8'; righe.forEach((r, i) => x.fillText(r, 24, y + 106 + i * 28)); }
         y += 106 + righe.length * 28 + 6; if (vero) { x.fillStyle = '#232B3B'; x.fillRect(24, y, W - 48, 2); } y += 20; }
       return y; };
-    const prova = document.createElement('canvas').getContext('2d'), alta = Math.max(700, disegna(prova, false)), c = document.createElement('canvas'); c.width = W; c.height = alta; disegna(c.getContext('2d'), true);
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapT = THREE.RepeatWrapping; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return { tex: t, alta, scorre: alta > 720 && voci.length > 2 }; })();
+    const prova = document.createElement('canvas').getContext('2d'), alta = Math.max(240, disegna(prova, false)), c = document.createElement('canvas'); c.width = W; c.height = alta; disegna(c.getContext('2d'), true);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapT = THREE.RepeatWrapping; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return { tex: t, alta, scorre: alta > 240 && voci.length > 1 }; })();
   const texDiscussioni = tela(390, 60, (x, w, h) => { x.fillStyle = '#161D2C'; x.fillRect(0, 0, w, h); x.fillStyle = GRIGIO_MURO; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.1, 24); x.fillText('SE NE DISCUTE', 22, 39); spazia(x, 0, 1); });
   const texCitta = nome => tela(220, 64, (x, w, h) => { x.fillStyle = NERO_MURO; x.fillRect(0, 0, w, h); x.fillStyle = '#F1EEE8'; x.font = `800 30px ${DISPLAY}`; spazia(x, 0.1, 30); x.textAlign = 'center'; x.fillText(nome.toUpperCase(), w / 2, 42); spazia(x, 0, 1); x.textAlign = 'left'; });
+  // il marchio, in alto a sinistra sul muro
+  const texLogoMuro = tela(505, 250, (x, w, h) => { x.fillStyle = NERO_MURO; x.fillRect(0, 0, w, h);
+    const m = marchio(document.createElement('canvas').getContext('2d'), 0, 0, 100), S = Math.min((w - 76) / m.w, (h - 80) / m.h) * 100, x0 = (w - m.w * S / 100) / 2, y0 = (h - m.h * S / 100) / 2 + 14;
+    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(x0 + 8 + i * 22, y0 - 14, 7, 0, 7); x.fill(); });
+    marchio(x, x0, y0, S, '#F8F6F2'); });
 

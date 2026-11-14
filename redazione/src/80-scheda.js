@@ -1,15 +1,17 @@
   /* ================================================================ etichette, benvenuto, scheda */
   const strato = document.getElementById('etichette'), tags = {};
   const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
-  // dove sta l'etichetta di chi non è una persona in scena: la bacheca, e Zeno quando non è lunedì
-  const ancore = { bacheca: new THREE.Vector3(0.12, BACHECA[1] + altaB / 2 + 0.1, BACHECA[2]), fonti: new THREE.Vector3(0.12, 2.2, ARCHIVIO[1]) };
+  /* Le etichette non stanno sempre accese: un nome compare quando ci passi sopra col mouse, quando quella persona cambia
+     cosa sta facendo (per un paio di secondi), quando ha qualcosa per te, e mentre la sua scheda è aperta. */
+  // dove sta l'etichetta di chi non è una persona in scena: i post-it sulla lavagna, e Zeno quando non è lunedì
+  const ancore = { bacheca: new THREE.Vector3(0.12, suLav + 0.06, bacheca.position.z), fonti: new THREE.Vector3(posti.fonti.seduta[0], 1.4, posti.fonti.seduta[1]) };
   // le icone di stato: piccole, a tratto, una per cosa che si può stare facendo
   const ICONE = { scrive: 'M3 13l1-3 7-7 2 2-7 7-3 1z', legge: 'M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM10 10l4 4', corregge: 'M3 8l3 3 7-7', disegna: 'M3 13V8M8 13V4M13 13V6', regia: 'M2 4h12v7H2zM6 14h4M8 11v3',
     gioca: 'M4 6h8a3 3 0 0 1 0 6c-1 0-1.5-1-2.3-1H6.3c-.8 0-1.3 1-2.3 1a3 3 0 0 1 0-6zM6 8v2M5 9h2', caffe: 'M3 6h8v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM11 7h1.5a1.5 1.5 0 0 1 0 3H11M5 2v2M8 2v2',
     stampa: 'M4 6V2h8v4M4 11H2V6h12v5h-2M4 9h8v5H4z', lavagna: 'M2 3h12v8H2zM5 14l3-3 3 3', parla: 'M2 3h12v8H7l-3 3v-3H2z', pianta: 'M8 14V8M8 8c0-3 2-5 5-5 0 3-2 5-5 5zM8 10c0-2-1.5-3.5-4-3.5 0 2 1.5 3.5 4 3.5z',
     finestra: 'M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8zM8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z', postit: 'M3 2h10v8l-4 4H3zM9 14v-4h4', carta: 'M4 5h8l-1 9H5zM3 5h10M6 5V3h4v2', archivio: 'M2 4h4l1.5 2H14v7H2z' };
   const DI_BASE = { regia: 'regia', lettura: 'legge', redattore: 'scrive', revisore: 'corregge', visualista: 'disegna', ai: 'scrive', schede: 'scrive', gta: 'gioca', fonti: 'archivio' };
-  const iconaPer = (id, cosa) => /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra' : /post-it|appunto/i.test(cosa) ? 'postit'
+  const iconaPer = (id, cosa) => /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /post-it|appunto/i.test(cosa) ? 'postit' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra'
     : /cestino/i.test(cosa) ? 'carta' : /riordina/i.test(cosa) ? 'archivio' : /parla|racconta|^è da |correzioni|risponde|ascolta|ci pensa/i.test(cosa) ? 'parla' : DI_BASE[id] || 'scrive';
   function etichetta(id, nome, sotto, colore) {
     const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
@@ -26,7 +28,7 @@
       if (b.icona !== k) { const primo = b.icona == null; b.icona = k; b.ico.hidden = false; b.ico.firstChild.firstChild.setAttribute('d', ICONE[k]);
         if (!primo && !fermo) { b.classList.add('pop'); clearTimeout(b.viaPop); b.viaPop = setTimeout(() => b.classList.remove('pop'), 2600); } } }
   }
-  for (const a of STATO.agenti) etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange);
+  for (const a of STATO.agenti) { etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange); if (a.ti_aspetta) tags[a.id].classList.add('aspetta'); }
   if (POSTIT.length) etichetta('bacheca', POSTIT.length + ' post-it', 'per te', C.yellow);
   const v3 = new THREE.Vector3();
   const dove = id => { if (persone[id]) { persone[id].userData.j.testa.getWorldPosition(v3); v3.y += 0.32; } else v3.copy(ancore[id]); return v3; };
@@ -44,7 +46,7 @@
     const chi = STATO.agenti.filter(a => a.ti_aspetta); box.hidden = false; if (!chi.length) return;
     box.append(document.createTextNode(chi.length > 1 ? 'Ti aspettano ' : 'Ti aspetta '));
     chi.forEach((a, i) => { const b = el('button', null, a.nome); b.type = 'button'; b.addEventListener('click', () => apri(a.id)); box.append(b, document.createTextNode(i < chi.length - 2 ? ', ' : i === chi.length - 2 ? ' e ' : '')); });
-    if (POSTIT.length) { const b = el('button', null, POSTIT.length + ' post-it in bacheca'); b.type = 'button'; b.addEventListener('click', () => apri('bacheca')); box.append(document.createTextNode(': '), b); }
+    if (POSTIT.length) { const b = el('button', null, POSTIT.length + ' post-it sulla lavagna'); b.type = 'button'; b.addEventListener('click', () => apri('bacheca')); box.append(document.createTextNode(': '), b); }
     box.append(document.createTextNode('.')); })();
 
   const pannello = document.getElementById('pannello'); let aperto = null, rigaAdesso = null;
@@ -58,7 +60,10 @@
       rend2.toneMapping = THREE.NeutralToneMapping; rend2.shadowMap.enabled = true; rend2.shadowMap.type = THREE.PCFShadowMap; env2 = new THREE.PMREMGenerator(rend2).fromScene(new RoomEnvironment(), 0.04).texture; }
     g.userData.j.testa.getWorldPosition(v3);
     const j = g.userData.j, yaw = g.rotation.y + j.busto.rotation.y + j.testa.rotation.y * 0.7; let dx = 0.8 * Math.sin(yaw) + 0.42, dz = 0.8 * Math.cos(yaw) + 0.42; const n = Math.hypot(dx, dz) || 1;
-    const lontano = 1.5; let cx2 = v3.x + dx / n * lontano, cz2 = v3.z + dz / n * lontano;
+    let ux = dx / n, uz = dz / n; const fxx = Math.sin(yaw), fzz = Math.cos(yaw), p = posti[aperto];
+    if (p && !p.inPiedi && Math.hypot(g.position.x - p.seduta[0], g.position.z - p.seduta[1]) < 0.3 && ux * fxx + uz * fzz > 0.86) {   // è seduto e ha lo schermo proprio fra sé e noi: lo si guarda un po' di lato
+      let px = fzz, pz = -fxx; if (px + pz < 0) { px = -px; pz = -pz; } ux = fxx * 0.78 + px * 0.63; uz = fzz * 0.78 + pz * 0.63; }
+    const lontano = 1.5; let cx2 = v3.x + ux * lontano, cz2 = v3.z + uz * lontano;
     if (cx2 < 0.4 || cz2 < 0.4) {   // ha il viso contro una parete: lo si guarda di profilo, dal lato aperto della stanza
       const fx2 = Math.sin(yaw), fz2 = Math.cos(yaw); let px = fz2, pz = -fx2; if (px + pz < 0) { px = -px; pz = -pz; }
       cx2 = v3.x + px * lontano + fx2 * 0.4; cz2 = v3.z + pz * lontano + fz2 * 0.4; }
@@ -73,7 +78,7 @@
     d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p)), rispostaAlPostit(p)); return d; }
   const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi' };
   function apri(id, pre) {
-    aperto = id; rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
+    aperto = id; for (const k in tags) tags[k].classList.toggle('scelto', k === id); rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
     const testa = el('div', 'testa'), chi = el('div'), a = AGENTI[id];
     if (id === 'prima') {
@@ -91,7 +96,7 @@
       montaRegistro(pre);
     } else if (id === 'bacheca') {
       const av = el('div', 'avatar', String(POSTIT.length)); av.style.background = C.yellow; av.style.color = C.ink;
-      chi.append(el('h2', null, 'La bacheca'), el('p', null, 'quello che la redazione ha lasciato per te')); testa.append(av, chi, x); pannello.append(testa);
+      chi.append(el('h2', null, 'Per Mike'), el('p', null, 'i post-it che la redazione ti ha lasciato sulla lavagna')); testa.append(av, chi, x); pannello.append(testa);
       POSTIT.forEach(p => pannello.append(biglietto(p, true)));
       pannello.append(el('p', 'piede', 'Sono le cose rimaste aperte nei file della corsa: richieste di grafici, note sulle fonti, scadenze. Rispondi parlando con chi le ha lasciate: quello che decidi va nel registro.'));
     } else {
@@ -125,7 +130,7 @@
     const [a, b] = sulPiano(v3), z = g ? 3.1 : 2.4, larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
     if (rigaAdesso) rigaAdesso.textContent = scenaDi(aperto);
   }
-  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null; return t; }   // chiude la scheda, la camera resta dov'è
+  function lascia() { if (!aperto) return null; const t = tags[aperto]; if (t) t.classList.remove('scelto'); aperto = null; rigaAdesso = null; pannello.hidden = true; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null; return t; }   // chiude la scheda, la camera resta dov'è
   function chiudi() { const t = lascia(); if (!t) return; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
   addEventListener('keydown', e => { if (e.key === 'Escape') chiudi(); });
 

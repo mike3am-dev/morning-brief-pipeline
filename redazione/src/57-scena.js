@@ -12,15 +12,15 @@
      lasciato in bacheca per Mike, rossi quelle che aspettano da più di un mese, verdi le decisioni che Mike ha preso
      con lui (compaiono quando ne salva una). */
   const noteVerdi = {};
-  function noteSulloSchermo(id, base) {   // base: un gruppo con l'origine ai piedi dello schermo, rivolto come lui
+  function noteSulloSchermo(id, base, retro) {   // base: un gruppo con l'origine ai piedi dello schermo, rivolto come lui; retro: attaccati dietro (chi sta in fondo all'isola)
+    const zN = retro ? -0.0115 : 0.011, giroN = retro ? PI : 0, lato = retro ? -1 : 1;
     const suoi = (STATO.postit || []).filter(p => p.da === id).slice(0, 4);
     suoi.forEach((p, k) => { const urgente = (p.giorni || 0) > 30, n = stampa(0.075, 0.075, texNota(urgente ? C.red : '#FFE45C', urgente ? ['da ' + p.giorni, 'giorni'] : p.mazzo ? [String(p.mazzo), 'richieste'] : []));
-      n.rotation.z = (k % 2 ? 1 : -1) * 0.08; n.castShadow = false; base.add(at(n, 0.262, 0.5 - k * 0.088, 0.011)); });
-    noteVerdi[id] = [0, 1, 2].map(k => { const n = stampa(0.075, 0.075, texNota('#1F5A3C', ['deciso', 'con Mike'])); n.rotation.z = (k % 2 ? -1 : 1) * 0.07; n.castShadow = false; n.visible = false; base.add(at(n, -0.262, 0.5 - k * 0.088, 0.011)); return n; });
+      n.rotation.set(0, giroN, (k % 2 ? 1 : -1) * 0.08); n.castShadow = false; base.add(at(n, lato * 0.262, 0.5 - k * 0.088, zN)); });
+    noteVerdi[id] = [0, 1, 2].map(k => { const n = stampa(0.075, 0.075, texNota('#1F5A3C', ['deciso', 'con Mike'])); n.rotation.set(0, giroN, (k % 2 ? -1 : 1) * 0.07); n.castShadow = false; n.visible = false; base.add(at(n, -lato * 0.262, 0.5 - k * 0.088, zN)); return n; });
   }
-  for (const id of Object.keys(posti)) { if (posti[id].inPiedi) continue; const base = gruppo(); at(base, 0, TAV, -0.18); posti[id].g.add(base); noteSulloSchermo(id, base); }
+  for (const id of Object.keys(posti)) { if (posti[id].inPiedi) continue; const base = gruppo(); at(base, 0, TAV, -0.18); posti[id].g.add(base); noteSulloSchermo(id, base, !!posti[id].giro); }
   { const base = gruppo(); at(base, Math.sin(FRONTE) * 0.92, TAV, Math.cos(FRONTE) * 0.92); base.rotation.y = FRONTE + PI; regiaG.add(base); noteSulloSchermo('regia', base); }
-  { const base = gruppo(); at(base, ARCHIVIO[0] + 0.29, 0.62, 7.82); base.rotation.y = PI / 2; stanza.add(base); noteSulloSchermo('fonti', base); }   // quelle di Zeno stanno sugli schedari
   const aggiornaNoteVerdi = quante => { for (const id in noteVerdi) noteVerdi[id].forEach((n, k) => { n.visible = k < (quante[id] || 0); }); };
 
   // i tesserini: chi esce a cercare notizie lo porta al collo; quello di Ettore pende dalla sua sedia

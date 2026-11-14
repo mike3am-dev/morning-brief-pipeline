@@ -55,9 +55,9 @@
 
   // ---- Olivia: tiene d'occhio gli schermi, fa il giro delle scrivanie, va alla lavagna, il caffè
   const Ol = attore('regia', dirige, 'Tiene d\'occhio gli schermi');
-  parte(Ol, 62, 'È da Ettore, guardano l\'apertura'); cammina(Ol, pOliviaEttore, verso(pOliviaEttore, [pE.x, pE.z - 0.2]));
+  parte(Ol, 62, 'È da Ettore, guardano l\'apertura'); cammina(Ol, pOliviaEttore, verso(pOliviaEttore, pE.fuori(0, -0.2)));
   guardami('redattore', Ol.tr.t - 0.8, Ol.tr.t + 6, pOliviaEttore); fa(Ol, 6, parla());
-  dice(Ol, 'È da Lea, per i grafici'); cammina(Ol, pOliviaLea, verso(pOliviaLea, [posti.visualista.x, posti.visualista.z - 0.2]));
+  dice(Ol, 'È da Lea, per i grafici'); cammina(Ol, pOliviaLea, verso(pOliviaLea, posti.visualista.fuori(0, -0.2)));
   guardami('visualista', Ol.tr.t - 0.8, Ol.tr.t + 5.5, pOliviaLea); fa(Ol, 5.5, parla());
   rientra(Ol);
   parte(Ol, 185, 'È alla lavagna'); cammina(Ol, pLavagna, -PI / 2); fa(Ol, 10, allaLavagna); rientra(Ol);
@@ -65,15 +65,15 @@
 
   // ---- Tobia: legge, il caffè, e a un certo punto va alla finestra a guardare New York
   const Tb = attore('lettura', legge, 'Legge gli articoli, uno per uno');
-  caffe(Tb, 78);
+  caffe(Tb, 172);
   parte(Tb, 205, 'Guarda New York dalla finestra'); cammina(Tb, pFinestra, -PI / 2);
   fa(Tb, 9, u => { const stira = campana(u, 0.08, 0.2, 0.36, 0.5), fianchi = fra(u, 0.5, 0.62) * (1 - fra(u, 0.92, 1)), P = { ...IN_PIEDI, lean: -0.1 * stira, hx: -0.12 * stira - 0.04 * fianchi };   // si stiracchia, poi le mani sui fianchi
     P.sD = [-2.7 * stira, -0.25 * stira - 0.1 - 0.5 * fianchi]; P.gD = -0.15 - 0.3 * stira - 1.4 * fianchi; P.sS = [-2.7 * stira, 0.25 * stira + 0.1 + 0.5 * fianchi]; P.gS = -0.15 - 0.3 * stira - 1.4 * fianchi; return P; });
   rientra(Tb); alPosto(Tb, GIRO);
 
-  // ---- Lea: disegna, poi va ad attaccare un post-it in bacheca
+  // ---- Lea: disegna, poi va ad attaccare un post-it per Mike alla lavagna
   const Le = attore('visualista', disegna, 'Disegna un grafico');
-  parte(Le, 128, 'Attacca un post-it in bacheca'); cammina(Le, pBacheca, -PI / 2, P => inMano(postitMano, P, -1.2));
+  parte(Le, 128, 'Attacca un post-it per Mike alla lavagna'); cammina(Le, pBacheca, -PI / 2, P => inMano(postitMano, P, -1.2));
   tPostit = Le.tr.t + 2.3;
   fa(Le, 7, u => { const su = campana(u, 0.05, 0.25, 0.4, 0.5), guarda = fra(u, 0.52, 0.64) * (1 - fra(u, 0.92, 1)), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.95, -0.05], gD: -0.3, lean: 0.08, hx: -0.1 }, su);
     P.sD[1] -= 0.45 * guarda; P.gD -= 1.3 * guarda * (1 - su); P.sS = [0, 0.1 + 0.45 * guarda]; P.gS = -0.15 - 1.3 * guarda; P.hy = Math.sin(u * 9) * 0.12 * guarda;
@@ -83,12 +83,13 @@
   // ---- Ada: scrive, il caffè, e passa dalla regia a dire una cosa a Olivia
   const Ad = attore('ai', scriveCon(9, 27), 'Scrive la scheda AI');
   caffe(Ad, 150);
-  parte(Ad, 222, 'Parla con Olivia, alla regia'); cammina(Ad, pVarco, verso(pVarco, REGIA));
+  parte(Ad, 240, 'Parla con Olivia, alla regia'); cammina(Ad, pVarco, verso(pVarco, REGIA));
   guardami('regia', Ad.tr.t - 1, Ad.tr.t + 8, pVarco); fa(Ad, 8, parla()); rientra(Ad); alPosto(Ad, GIRO);
 
-  // ---- Zeno, il lunedì: lo schedario, e un appunto in bacheca
-  if (persone.fonti) { const Ze = attore('fonti', sfoglia, 'Riordina l\'archivio delle fonti'), pZ = [0.62, 6.95];
-    parte(Ze, 24, 'Lascia un appunto in bacheca'); cammina(Ze, pZ, -PI / 2, P => inMano(cartella, P));
+  // ---- Zeno, il lunedì: alla scrivania controlla i feed; poi va all'archivio, e lascia un appunto per Mike alla lavagna
+  if (persone.fonti) { const Ze = attore('fonti', scriveCon(13, 29), 'Controlla i feed, uno per uno'), pZ = [0.62, suLavagna(1250, 0)[1]];
+    parte(Ze, 24, 'È all\'archivio delle fonti'); cammina(Ze, pArchivio, -PI / 2); fa(Ze, 12, (u, dt, t) => sfoglia(t));
+    dice(Ze, 'Lascia un appunto per Mike alla lavagna'); cammina(Ze, pZ, -PI / 2, P => inMano(cartella, P));
     fa(Ze, 6, u => { const su = campana(u, 0.1, 0.3, 0.6, 0.75), P = mix(passo(0, 0, true), { ...IN_PIEDI, sS: [-1.8, 0.05], gS: -0.35, hx: -0.08 }, su); inMano(cartella, P); return P; });
     rientra(Ze, P => inMano(cartella, P)); alPosto(Ze, GIRO); }
 

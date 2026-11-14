@@ -430,3 +430,63 @@ Sulle etichette delle persone un'icona dice cosa stanno facendo, e salta quando 
 **Da sapere.** I pezzi stanno tutti nello stesso recinto: due nomi uguali in due file rompono la
 pagina (è successo con `anello` e `foglio`). Lo stato nell'archivio è alla versione 4, con i dati
 del muro. La routine del mattino compone lo stato dal `main`: `muro.py` deve esserci.
+
+## 14 novembre 2026, pomeriggio — ordine: un muro solo, due isole, le etichette a comparsa
+
+Mike ha guardato la versione 9 e ha chiesto ordine: «pareti piene zeppe», i tre schermi «infilati lì
+tutti appiccicati», il muro «a tutta altezza», «solo uno spazio unico lavagna», i poster «anche solo
+4: decorazione, non riempimento», e soprattutto **scrivanie a isole da quattro, due coppie una
+davanti all'altra**, «veri e propri team di lavoro che si confrontano» (i comportamenti verranno
+dopo). In più ha girato una lista di suggerimenti («vedi tu»): fondere i due schermi grandi,
+nascondere le etichette, togliere la carta da terra e l'insegna a mezz'aria, ancorare il tavolo
+della prima pagina. Pubblicata come versione 10.
+
+**La parete di fondo ha tre cose, non cinque.** Quattro quadri in fila sopra la credenza (Macintosh,
+iMac, iPod, iPhone), **un solo muro** dal pavimento al soffitto (5,6 × 3 m), il manifesto di GTA VI.
+Il fondale col logo non c'è più come oggetto a parte: **è diventato la sigla del muro**
+(`texSigla`, `32-muro.js`). Tutto il muro mostra marchio e sole quando la pagina si apre (cinque
+secondi) e poi venti secondi a metà di ogni giro (da 150 a 170); mai mentre si chiude.
+`redazione.sigla(1)` la forza, `sigla(0)` la spegne, `sigla(null)` la lascia fare.
+
+**Il muro è una griglia a tre colonne** (1,01 · 3,30 · 1,01): in cima il marchio, i cinque orologi,
+il conto alla rovescia; sotto, a sinistra i **tre canali** (AI, Games, Scienza: i televisori sono
+entrati qui), in mezzo la mappa con sotto l'elenco «in apertura, da dove viene» e la striscia
+dell'ultim'ora, a destra borsa, fonti e discussioni. **Lo stato dell'edizione sta nel riquadro del
+conto alla rovescia** («USCITA ALLE 5:57», «IN CHIUSURA» che lampeggia, «IN RITARDO», «SI CHIUDE
+ALLE 6:00»): l'insegna sul palo è stata tolta, e sulla regia resta solo una spia rossa che si
+accende in chiusura (`58-insegna.js`).
+
+**Una lavagna sola** sulla parete di sinistra (`24-lavagna.js` + `26-cartelli.js`): a sinistra gli
+appunti a mano, a destra la zona «PER MIKE» con i post-it (nove caselle; quella libera è dove Lea
+attacca il suo). La bacheca di sughero non c'è più; quella parte della lavagna si tocca come prima
+(`id` resta `bacheca`). Via le foto appuntate e i quattro foglietti di contorno.
+
+**Due isole da quattro** (`55-cast.js`, `ISOLE` e `banco`). Chi sta nella fila in fondo guarda verso
+di noi, chi sta davanti ci dà le spalle e gli si vede lo schermo.
+- **L'edizione** (a sinistra): davanti Tobia ed Ettore, in fondo Lea e Ivo. Le carte fanno il giro
+  dell'isola: Tobia → Ettore (accanto), Ettore → Ivo (di fronte), Ivo → Lea (accanto).
+- **Le schede** (a destra): in fondo Ada e la scrivania di Zeno, davanti Rita e Vito. **Zeno ora ha
+  una scrivania** con il segnaposto («torna lunedì»); il lunedì ci sta seduto, va all'archivio e
+  lascia un appunto alla lavagna.
+- La regia di Olivia sta in mezzo, davanti al muro.
+I punti dove ci si ferma accanto a qualcuno si calcolano con `accanto(posto, lato, dietro)`, che
+funziona da qualunque parte guardi la scrivania. Il primo piano di chi siede in fondo si prende un
+po' di lato, se no lo schermo gli copre il viso.
+
+**Le etichette compaiono solo quando servono** (`.tag` in `00-testa.html`): passando sopra una
+persona o una cosa, per un paio di secondi quando qualcuno cambia quello che fa, sempre (col bordo
+giallo) per chi ha qualcosa per Mike, e mentre la scheda è aperta. Su uno schermo a tocco restano
+tutte accese. Le cose che si aprono (la prima pagina, il registro, i post-it) si illuminano di
+giallo sotto il mouse (`alone` e `aloniVivi` in `42-angoli.js`; `redazione.sopra(id)` per provarlo).
+
+**Pavimento pulito**: niente più pile di giornali a terra; stanno sul ripiano del tavolo luminoso.
+Il tavolo è stato avvicinato alla lavagna (è l'angolo di Mike) e lo sgabello, ora di legno, è
+infilato sotto.
+
+**Lo sfarfallio sugli schedari** erano i quattro faldoni disegnati uno dentro l'altro: ora stanno
+uno accanto all'altro.
+
+**Dove ho scelto diversamente dai suggerimenti**, e l'ho detto a Mike: il muro resta a tutta altezza
+(lo aveva chiesto lui) invece di un 16:9 sopra il mobile; il muro non cambia contenuto secondo
+l'ora (la mappa è la cosa che gli è piaciuta), ma ha la sigla; restano i quadri Apple, ridotti a
+quattro e lontani da GTA; i nomi di chi lo aspetta restano accesi.

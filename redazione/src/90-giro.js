@@ -5,7 +5,7 @@
     fusi[fuso] = { minuto, hm }; return hm; }
   function ora() { const d = new Date(), sec = d.getSeconds() + d.getMilliseconds() / 1000;
     for (const o of OROLOGI) { const [h, m] = oraIn(o.fuso, +d), min = m + sec / 60; o.secondi.rotation.z = -sec * PI / 30; o.minuti.rotation.z = -min * PI / 30; o.ore.rotation.z = -((h % 12) + min / 60) * PI / 6; } }
-  luce('adesso'); ora(); conto(); vita(tempoGiro()); muroVivo(1, insegnaViva(1));
+  luce('adesso'); ora(); conto(); vita(tempoGiro()); apriSigla(); muroVivo(1, insegnaViva(1));
   pronta = true; renderer.render(scene, cam); etichette();
   let prima = 0;
   function giro(t) {
@@ -14,6 +14,7 @@
     ascolto.k = fermo ? (ascolto.vivo ? 1 : 0) : ascolto.k + ((ascolto.vivo ? 1 : 0) - ascolto.k) * 0.09; if (!ascolto.vivo && ascolto.k < 0.002) { ascolto.k = 0; ascolto.chi = null; }
     if (!fermo) { vita(tempoGiro()); ora(); muroVivo(t / 1000, insegnaViva(t / 1000)); sporca = true; }
     if (conto()) sporca = true;
+    aloniVivi(t / 1000);
     segui();
     let muove = false; for (const c of ['x', 'y', 'zoom']) { const d = meta[c] - inq[c]; if (Math.abs(d) > 0.0005) { inq[c] += d * 0.16; muove = true; } else inq[c] = meta[c]; }
     if (muove) inquadra();
@@ -31,8 +32,10 @@
         ids.forEach(id => { const g = persone[id], s = posti[id].seduta; if (Math.hypot(g.position.x - s[0], g.position.z - s[1]) > 0.75 && muri[casella(g.position.x, g.position.z)]) (dentro[id] = dentro[id] || []).push(Math.round(T) + ':' + g.position.x.toFixed(1) + ',' + g.position.z.toFixed(1)); });
         for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) { const a = persone[ids[i]].position, b = persone[ids[j]].position; if (Math.hypot(a.x - b.x, a.z - b.z) < 0.42) { const k = ids[i] + '+' + ids[j]; (urti[k] = urti[k] || []).push(Math.round(T)); } } }
       const stringi = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, [...new Set(v)].slice(0, 12).join(' ')])); vita(tempoGiro()); return { dentro: stringi(dentro), urti: stringi(urti) }; },
-    edizione(e) { edizioneForzata = e || null; muroVivo(performance.now() / 1000, insegnaViva(performance.now() / 1000)); renderer.render(scene, cam); },
+    edizione(e) { edizioneForzata = e || null; conto(); muroVivo(performance.now() / 1000, insegnaViva(performance.now() / 1000)); renderer.render(scene, cam); },
     muro(s) { muroVivo(s, insegnaViva(s)); renderer.render(scene, cam); },
+    sigla(k) { siglaForzata = k; muroVivo(performance.now() / 1000, insegnaViva(performance.now() / 1000)); renderer.render(scene, cam); },   // 1: tutto il muro è la sigla; 0: mai; null: da sola
+    sopra(id) { sottoMano = id || null; for (const k in tags) tags[k].classList.toggle('vicino', k === id); for (let i = 0; i < 20; i++) aloniVivi(1); renderer.render(scene, cam); etichette(); },
     casa() { lascia(); Object.assign(meta, CASA); Object.assign(inq, meta); inquadra(); renderer.render(scene, cam); etichette(); } };
   canvas.addEventListener('webglcontextlost', e => e.preventDefault());
   canvas.addEventListener('webglcontextrestored', () => { sporca = true; });

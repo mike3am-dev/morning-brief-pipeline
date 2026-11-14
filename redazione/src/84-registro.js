@@ -36,7 +36,7 @@
       const tutto = el('button', 'parla-indietro', d.length > 4 ? `Tutte e ${d.length} nel registro ▸` : 'Apri il registro ▸'); tutto.type = 'button'; tutto.addEventListener('click', () => apri('decisioni')); b.append(tutto); };
     riempi(); vistaDecisioniAgente = riempi; return b;
   }
-  // un post-it della bacheca: si risponde parlando con chi l'ha lasciato, o annotando una decisione se oggi non c'è
+  // un post-it per Mike (quelli sulla lavagna): si risponde parlando con chi l'ha lasciato, o annotando una decisione se oggi non c'è
   function rispostaAlPostit(p) {
     const riga = el('div', 'postit-azioni'), tema = 'A proposito di «' + brevePostit(p.titolo) + '»: ', a = AGENTI[p.da];
     if (decisioni.some(d => d.postit === p.id)) riga.append(el('span', 'fatta', 'Hai già risposto ✓'));

@@ -1,16 +1,17 @@
   /* ================================================================ le tele */
-  // Il fondale: solo il marchio e il visual della testata, come dietro alle trasmissioni del mattino.
-  const texFondale = tela(2048, 943, (x, w, h) => {
+  // La sigla: solo il marchio e il visual della testata, come dietro alle trasmissioni del mattino. Il muro delle
+  // notizie la mostra quando la pagina si apre e poi ogni tanto, a tutta parete (32-muro.js).
+  const texSigla = tela(2048, 1080, (x, w, h) => {
     x.fillStyle = C.bone; x.fillRect(0, 0, w, h);
-    const cx = 1620, cy = 800, R = 430;
+    const cx = 1620, cy = h - 143, R = 430;
     for (let r = 0, gy = 26; gy < h; gy += 44, r++) for (let gx = 26 + (r % 2) * 22; gx < w; gx += 44) {   // il campo di pallini
       const d = Math.hypot(gx - cx, gy - cy), rag = 13.5 * (1 - (d - R) / 760) * Math.min(1, Math.max(0, (gx - 1090) / 360));
       if (d > R + 6 && rag > 1.2) { x.fillStyle = d < R + 330 ? C.orange : C.red; x.beginPath(); x.arc(gx, gy, Math.min(13.5, rag), 0, 7); x.fill(); }
     }
     x.fillStyle = C.yellow; x.beginPath(); x.arc(cx, cy, R, 0, 7); x.fill();
-    falce(x, 540, 560, 2300, 420);
-    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(140 + i * 60, 124, 21, 0, 7); x.fill(); });
-    marchio(x, 118, 196, 200);
+    falce(x, 540, h - 383, 2300, 420);
+    [[C.red, 0], [C.yellow, 1], [C.blue, 2]].forEach(([c, i]) => { x.fillStyle = c; x.beginPath(); x.arc(142 + i * 68, 134, 24, 0, 7); x.fill(); });
+    marchio(x, 118, 214, 236);
   });
 
   function finestra(titolo) {   // la cornice di una finestra del Mac, per gli schermi

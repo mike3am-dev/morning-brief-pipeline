@@ -1,14 +1,23 @@
   /* ================================================================ i posti e le persone */
   const schermoDi = id => texSchermo(AGENTI[id] || { id, mestiere: '', dettagli: [] });
+  /* Due isole da quattro: due scrivanie affiancate, e di fronte altre due. Chi sta nella fila in fondo guarda verso di
+     noi (gli vediamo il viso), chi sta in quella davanti ci dà le spalle (gli vediamo lo schermo).
+     L'isola dell'edizione: Tobia passa le carte a Ettore, che gli siede accanto; Ettore a Ivo, che ha di fronte; Ivo a
+     Lea, accanto a lui. L'isola delle schede: Ada, Rita e Vito, e la scrivania di Zeno, che c'è il lunedì. */
+  const ISOLE = { edizione: [3.1, 3.3], schede: [11.4, 3.3] };
+  const banco = (isola, lato, fila, o) => posto({ x: ISOLE[isola][0] + lato * 0.735, z: ISOLE[isola][1] + fila * 0.41, giro: fila < 0 ? PI : 0, ...o });   // fila −1: in fondo; +1: davanti
   const posti = {
-    lettura:    posto({ x: 1.6, z: 2.2, tex: schermoDi('lettura'), mento: 0xC9DDF2, retro: 0x2F6FD0 }),
-    redattore:  posto({ x: 3.2, z: 2.2, tex: schermoDi('redattore'), mento: 0xF9D2B0, retro: 0xF0821E }),
-    revisore:   posto({ x: 5.75, z: 2.2, tex: schermoDi('revisore'), mento: 0xF6C7CF, retro: 0xE2385A }),
-    visualista: posto({ x: 7.35, z: 2.2, tex: schermoDi('visualista'), mento: 0xFBE9A8, retro: 0xF2B705 }),
-    gta:        posto({ x: 12.25, z: 2.2, tex: schermoDi('gta'), mento: 0xC8F2EC, retro: 0x1FB5A6 }),
-    ai:         posto({ x: 11.6, z: 4.85, giro: PI, tex: schermoDi('ai'), mento: 0xCFE8D5, retro: 0x2F8F5A }),
-    schede:     posto({ x: 11.6, z: 5.7, tex: schermoDi('schede'), mento: 0xDDD3F2, retro: 0x7B4BE0 }),
+    lettura:    banco('edizione', -1, 1, { tex: schermoDi('lettura'), mento: 0xC9DDF2, retro: 0x2F6FD0 }),
+    redattore:  banco('edizione', 1, 1, { tex: schermoDi('redattore'), mento: 0xF9D2B0, retro: 0xF0821E }),
+    visualista: banco('edizione', -1, -1, { tex: schermoDi('visualista'), mento: 0xFBE9A8, retro: 0xF2B705 }),
+    revisore:   banco('edizione', 1, -1, { tex: schermoDi('revisore'), mento: 0xF6C7CF, retro: 0xE2385A }),
+    ai:         banco('schede', -1, -1, { tex: schermoDi('ai'), mento: 0xCFE8D5, retro: 0x2F8F5A }),
+    fonti:      banco('schede', 1, -1, { tex: schermoDi('fonti'), mento: 0xE9DCC8, retro: 0x8A6A45 }),
+    schede:     banco('schede', -1, 1, { tex: schermoDi('schede'), mento: 0xDDD3F2, retro: 0x7B4BE0 }),
+    gta:        banco('schede', 1, 1, { tex: schermoDi('gta'), mento: 0xC8F2EC, retro: 0x1FB5A6 }),
   };
+  // il segnaposto di Zeno, sulla sua scrivania: dice se oggi c'è. Si tocca (anche la scrivania) per aprire la sua scheda
+  { const c = cavaliere('ZENO', LUNEDI ? 'oggi ci sono' : 'torna lunedì', '#2F7A4C'); c.rotation.y = PI / 4; posti.fonti.g.add(at(c, -0.5, TAV, -0.2)); posti.fonti.g.userData.id = 'fonti'; cliccabili.push(posti.fonti.g); }
   // la regia: Olivia sta in piedi al centro dell'anello; tre schermi li vediamo di fronte, due di spalle
   const R_IN = 0.62, R_OUT = 1.12, VARCO = 0.55, FRONTE = 5 * PI / 4;
   const regiaG = anello(REGIA[0], REGIA[1], R_IN, R_OUT, VARCO);
@@ -18,7 +27,6 @@
   sulAnello(tastiera(), FRONTE, 0.71);
   sulAnello(gruppo(...[0, 1, 2].map(i => { const f = at(box(0.21, 0.004, 0.297, bianco, 0.001), 0, 0.002 + i * 0.005, 0); f.rotation.y = i * 0.11; return f; })), FRONTE + 1.42, 0.86, 0.3);
   posti.regia = { inPiedi: true, seduta: [REGIA[0], REGIA[1]], yaw: FRONTE };
-  posti.fonti = { inPiedi: true, seduta: [1.02, ARCHIVIO[1]], yaw: -PI / 2 };
 
   // le tazze: una sulla scrivania e la stessa in mano, per chi va a prendersi il caffè
   const TAZZE = { regia: C.yellow, lettura: C.blue, redattore: C.orange, ai: C.red, gta: '#FF5DA2' }, tazze = {}, tazzeMano = {};

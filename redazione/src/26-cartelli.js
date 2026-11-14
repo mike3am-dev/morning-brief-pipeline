@@ -1,4 +1,4 @@
-  /* Il manifesto di Vito, la bacheca dei post-it per Mike, le targhette. */
+  /* Il manifesto di Vito, i post-it per Mike sulla lavagna, le targhette. */
   const texGta = tela(560, 760, (x, w, h) => {
     const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#2B1055'); g.addColorStop(0.42, '#C2337A'); g.addColorStop(0.7, '#FF8A4C'); g.addColorStop(1, '#FFD36B'); x.fillStyle = g; x.fillRect(0, 0, w, h);
     x.save(); x.beginPath(); x.arc(w / 2, 470, 170, 0, 7); x.clip(); const s = x.createLinearGradient(0, 300, 0, 640); s.addColorStop(0, '#FFE066'); s.addColorStop(1, '#FF5DA2'); x.fillStyle = s; x.fillRect(0, 300, w, 340);
@@ -19,19 +19,24 @@
   const COLORE_POSTIT = { visualista: '#FFE45C', fonti: '#8FD3F4', regia: '#FFB46B' };
   const brevePostit = t => (t || '').replace(/^Un grafico per: /, 'Grafico: ');
   const POSTIT = (STATO.postit || []).slice(0, 8);
-  const texBacheca = tela(900, 700, (x, w, h) => {
-    x.fillStyle = '#C99F6C'; x.fillRect(0, 0, w, h); const caso = casuale(77);
-    for (let i = 0; i < 2600; i++) { x.fillStyle = caso() < 0.5 ? 'rgba(120,80,40,.22)' : 'rgba(255,230,190,.2)'; x.fillRect(caso() * w, caso() * h, 2 + caso() * 3, 2 + caso() * 3); }
-    x.save(); x.translate(w / 2, 62); x.rotate(-0.012); x.fillStyle = '#FFFFFF'; x.shadowColor = 'rgba(0,0,0,.25)'; x.shadowBlur = 8; x.shadowOffsetY = 3; x.fillRect(-170, -34, 340, 68); x.shadowColor = 'transparent';
-    x.fillStyle = C.ink; x.font = `800 46px ${DISPLAY}`; spazia(x, 0.1, 46); x.textAlign = 'center'; x.fillText('PER MIKE', 0, 17); spazia(x, 0, 1); x.textAlign = 'left'; x.restore();
-    POSTIT.forEach((p, i) => { const cx = 128 + (i % 4) * 215, cy = 250 + Math.floor(i / 4) * 265, rot = (caso() - 0.5) * 0.16;
-      x.save(); x.translate(cx + (caso() - 0.5) * 16, cy + (caso() - 0.5) * 22); x.rotate(rot); const col = COLORE_POSTIT[p.da] || '#FF9DB0';
-      if (p.mazzo) for (let k = 3; k > 0; k--) { x.fillStyle = k % 2 ? '#F2D64A' : '#FFE45C'; x.fillRect(-94 + k * 7, -94 + k * 7, 188, 188); }
-      x.shadowColor = 'rgba(0,0,0,.28)'; x.shadowBlur = 10; x.shadowOffsetY = 5; x.fillStyle = col; x.fillRect(-94, -94, 188, 188); x.shadowColor = 'transparent';
-      x.fillStyle = C.ink; x.font = `700 25px ${A_MANO}`; aCapo(x, brevePostit(p.titolo), 164, 5).forEach((r, k) => x.fillText(r, -82, -46 + k * 28));
-      x.fillStyle = 'rgba(23,24,27,.55)'; x.font = `700 20px ${A_MANO}`; x.fillText((AGENTI[p.da] ? AGENTI[p.da].nome : '') + (p.giorni ? ' · da ' + p.giorni + ' gg' : ' · oggi'), -82, 80);
-      x.fillStyle = C.red; x.beginPath(); x.arc(0, -78, 9, 0, 7); x.fill(); x.fillStyle = 'rgba(255,255,255,.5)'; x.beginPath(); x.arc(-3, -81, 3, 0, 7); x.fill(); x.restore(); });
-  });
+  /* La lavagna è una sola: a destra degli appunti c'è la zona «PER MIKE», con i post-it che lo aspettano (si tocca, e si
+     apre l'elenco). Nove caselle; l'ultima, in mezzo a destra, resta libera per il post-it che Lea va ad attaccare. */
+  const LAV = { W: 1640, H: 820, X0: 1050 };
+  const CASELLE = [0, 1, 2, 3, 4, 6, 7, 8, 5].map(k => [1162 + (k % 3) * 186, 262 + Math.floor(k / 3) * 190]);
+  (() => { const x = texLavagna.image.getContext('2d'), caso = casuale(77); x.lineCap = 'round'; x.lineJoin = 'round';
+    x.strokeStyle = 'rgba(23,24,27,.3)'; x.lineWidth = 4; x.beginPath(); x.moveTo(1041, 36); x.lineTo(1036, 400); x.lineTo(1042, 786); x.stroke();
+    x.fillStyle = C.ink; x.font = `700 60px ${PENNARELLO}`; x.fillText('PER MIKE', 1080, 98);
+    x.strokeStyle = C.red; x.lineWidth = 6; x.beginPath(); x.moveTo(1080, 116); x.lineTo(1190, 122); x.lineTo(1330, 114); x.stroke();
+    if (!POSTIT.length) { x.fillStyle = '#1F7A3F'; x.font = `700 36px ${A_MANO}`; x.fillText('niente che ti aspetta ✓', 1084, 200); }
+    POSTIT.forEach((p, i) => { const [cx, cy] = CASELLE[i], rot = (caso() - 0.5) * 0.13;
+      x.save(); x.translate(cx + (caso() - 0.5) * 10, cy + (caso() - 0.5) * 12); x.rotate(rot); const col = COLORE_POSTIT[p.da] || '#FF9DB0';
+      if (p.mazzo) for (let k = 3; k > 0; k--) { x.fillStyle = k % 2 ? '#F2D64A' : '#FFE45C'; x.fillRect(-84 + k * 6, -84 + k * 6, 168, 168); }
+      x.shadowColor = 'rgba(0,0,0,.24)'; x.shadowBlur = 9; x.shadowOffsetY = 4; x.fillStyle = col; x.fillRect(-84, -84, 168, 168); x.shadowColor = 'transparent';
+      x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(-84, -84, 168, 18);
+      x.fillStyle = C.ink; x.font = `700 23px ${A_MANO}`; aCapo(x, brevePostit(p.titolo), 150, 4).forEach((r, k) => x.fillText(r, -74, -40 + k * 26));
+      x.fillStyle = 'rgba(23,24,27,.55)'; x.font = `700 19px ${A_MANO}`; x.fillText((AGENTI[p.da] ? AGENTI[p.da].nome : '') + (p.giorni ? ' · da ' + p.giorni + ' gg' : ' · oggi'), -74, 72);
+      x.restore(); });
+    texLavagna.needsUpdate = true; })();
   const texNuovoPostit = tela(128, 128, (x, w) => { x.fillStyle = '#FFE45C'; x.fillRect(0, 0, w, w); x.fillStyle = 'rgba(0,0,0,.06)'; x.fillRect(0, 0, w, 16);
     x.strokeStyle = C.ink; x.lineWidth = 5; x.lineCap = 'round'; [[40, 96], [62, 84], [84, 70]].forEach(([y, l]) => { x.beginPath(); x.moveTo(18, y); x.lineTo(18 + l, y - 3); x.stroke(); }); });
 

@@ -7,9 +7,9 @@
 
   const stanza = new THREE.Group(); scene.add(stanza);
   const LARGA = 13.2, FONDA = 8.6, ALTA = 3.0;
-  const REGIA = [7.0, 5.7];   // il centro del desk circolare: sta davanti al muro delle notizie
+  const REGIA = [7.55, 5.5];   // il centro del desk circolare: sta davanti al muro delle notizie, fra le due isole
   const viviSchermi = [];   // i materiali di tutti gli schermi accesi: «respirano» appena (32-muro.js)
-  const MURO = { x: 7.05, w: 4.36, sin: 4.87 };   // il muro delle notizie, sulla parete di fondo: centro, larghezza, bordo sinistro
+  const MURO = { x: 7.55, w: 5.6, sin: 4.75 };   // il muro delle notizie, sulla parete di fondo: centro, larghezza, bordo sinistro. Va dal pavimento al soffitto
 
   /* ================================================================ pavimento e pareti */
   stanza.add(at(box(LARGA + 0.5, 0.36, FONDA + 0.5, pavimento, 0.07), LARGA / 2 - 0.05, -0.18, FONDA / 2 - 0.05));
@@ -20,9 +20,7 @@
   const tappeto = at(cyl(1.85, 1.85, 0.03, M(0xF0C445, { roughness: 1 }), 72), REGIA[0], 0.016, REGIA[1]); tappeto.castShadow = false; stanza.add(tappeto);
 
   /* ================================================================ la parete di fondo */
-  // il fondale
-  const fx = 3.05, fy = 1.8, fw = 3.0, fh = fw * 943 / 2048;
-  stanza.add(at(box(fw + 0.1, fh + 0.1, 0.07, nero, 0.02), fx, fy, 0.045), at(schermo(fw, fh, texFondale), fx, fy, 0.082));
+  const fx = 2.95;   // il centro della credenza: sopra, quattro quadri in fila; il marchio ora è la sigla del muro
   // la credenza con il merchandising
   const credenza = gruppo(at(box(2.6, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
     ...[-1.1, 1.1].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.16, legnoScuro, 12), dx, 0.08, dz))),
@@ -47,40 +45,39 @@
     (() => { const v = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.012, 24, 1, false, -PI / 2, PI), M(0x17181B))); v.position.set(0, 0.006, 0.02); v.scale.z = 1.25; return v; })());
   cappello.rotation.y = PI / 4; stanza.add(at(cappello, fx - 0.35, 0.68, 0.3));
 
-  // la storia di Apple, incorniciata
-  [9.85, 10.5, 11.15].forEach((cx, c) => [2.02, 1.24].forEach((cy, r) => {
-    stanza.add(at(box(0.56, 0.7, 0.035, nero, 0.012), cx, cy, 0.022), at(stampa(0.5, 0.625, manifesti[r * 3 + c]), cx, cy, 0.0405));
-  }));
-  // il conto alla rovescia verso la prossima edizione
-  const telaConto = document.createElement('canvas'); telaConto.width = 760; telaConto.height = 176;
+  // la storia di Apple, incorniciata: quattro quadri in fila sopra la credenza, in ordine di anno
+  [0, 2, 3, 5].forEach((quale, i) => { const cx = fx + (i - 1.5) * 0.66, cy = 1.82;
+    stanza.add(at(box(0.56, 0.7, 0.035, nero, 0.012), cx, cy, 0.022), at(stampa(0.5, 0.625, manifesti[quale]), cx, cy, 0.0405)); });
+  // il conto alla rovescia verso la prossima edizione, con lo stato di quella di oggi: sta in alto a destra sul muro (32-muro.js)
+  const telaConto = document.createElement('canvas'); telaConto.width = 505; telaConto.height = 250;
   const texConto = new THREE.CanvasTexture(telaConto); texConto.colorSpace = THREE.SRGBColorSpace; texConto.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  stanza.add(at(schermo(1.86, 1.86 * 176 / 760, texConto), 7.28, 2.66, 0.077));   // sta in cima al muro delle notizie, fra gli orologi
   let ultimoConto = '';
   function conto() {
     const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(new Date());
     const v = k => +p.find(q => q.type === k).value, adesso = (v('hour') % 24) * 3600 + v('minute') * 60 + v('second');
-    const manca = ((PROSSIMA[0] * 3600 + PROSSIMA[1] * 60 - adesso) % 86400 + 86400) % 86400;
-    const cifre = [Math.floor(manca / 3600), Math.floor(manca / 60) % 60, manca % 60].map(n => String(n).padStart(2, '0')), chiave = cifre.join(':');
+    const manca = ((PROSSIMA[0] * 3600 + PROSSIMA[1] * 60 - adesso) % 86400 + 86400) % 86400, e = edizione();
+    const cifre = [Math.floor(manca / 3600), Math.floor(manca / 60) % 60, manca % 60].map(n => String(n).padStart(2, '0')), chiave = cifre.join(':') + e;
     if (chiave === ultimoConto) return false; ultimoConto = chiave;
-    const x = telaConto.getContext('2d'), w = 760, h = 176, chiude = manca <= 1800;
+    const x = telaConto.getContext('2d'), w = 505, h = 250, rosso = e === 'chiusura' || e === 'ritardo', alle = PROSSIMA[0] + ':' + String(PROSSIMA[1]).padStart(2, '0');
     x.fillStyle = '#111214'; x.fillRect(0, 0, w, h);
-    x.fillStyle = chiude ? C.red : C.yellow; x.font = `800 31px ${DISPLAY}`; spazia(x, 0.07, 31);
-    x.fillText(chiude ? 'SI CHIUDE' : 'ALLA PROSSIMA', 30, 62); x.fillText(chiude ? 'L\'EDIZIONE' : 'EDIZIONE', 30, 98);
-    x.fillStyle = '#9EA0A6'; x.font = `700 23px ${DISPLAY}`; x.fillText('ESCE ALLE ' + PROSSIMA[0] + ':' + String(PROSSIMA[1]).padStart(2, '0'), 30, 138); spazia(x, 0, 1);
-    let a = 262; cifre.forEach((c, i) => { for (const ch of c) { x.fillStyle = '#2A2B30'; rr(x, a, 26, 66, 110, 9); x.fill(); x.fillStyle = '#111214'; x.fillRect(a, 80, 66, 2.5);
-        x.fillStyle = chiude ? '#FF6B7D' : '#FFFFFF'; x.font = `800 92px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(ch, a + 33, 113); x.textAlign = 'left'; a += 72; }
-      if (i < 2) { x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(a + 8, 62, 5.5, 0, 7); x.arc(a + 8, 100, 5.5, 0, 7); x.fill(); a += 24; } });
-    x.fillStyle = '#9EA0A6'; x.font = `700 17px ${DISPLAY}`; spazia(x, 0.12, 17); ['ORE', 'MIN', 'SEC'].forEach((t, i) => x.fillText(t, 262 + 48 + i * 168, 160)); spazia(x, 0, 1);
+    const [colore, scritta] = e === 'uscita' ? ['#5BE08A', 'USCITA ALLE ' + oraCorta(USCITA)] : e === 'chiusura' ? ['#FF5468', 'IN CHIUSURA'] : e === 'ritardo' ? ['#FF5468', 'IN RITARDO'] : ['#8D97AB', 'SI CHIUDE ALLE ' + alle];
+    x.globalAlpha = e === 'chiusura' && manca % 2 ? 0.3 : 1; x.fillStyle = colore; x.beginPath(); x.arc(37, 37, 9, 0, 7); x.fill();
+    x.font = `800 31px ${DISPLAY}`; spazia(x, 0.08, 31); x.fillText(scritta, 58, 48); spazia(x, 0, 1); x.globalAlpha = 1;
+    let a = 31.5; cifre.forEach((c, i) => { [...c].forEach((ch, k) => { x.fillStyle = '#2A2B30'; rr(x, a, 72, 62, 104, 9); x.fill(); x.fillStyle = '#111214'; x.fillRect(a, 123, 62, 2.5);
+        x.fillStyle = rosso ? '#FF6B7D' : '#FFFFFF'; x.font = `800 88px ${DISPLAY}`; x.textAlign = 'center'; x.fillText(ch, a + 31, 155); x.textAlign = 'left'; a += k ? 62 : 68; });
+      if (i < 2) { x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(a + 13, 106, 5, 0, 7); x.arc(a + 13, 142, 5, 0, 7); x.fill(); a += 26; } });
+    x.fillStyle = '#9EA0A6'; x.textAlign = 'center'; x.font = `700 15px ${DISPLAY}`; spazia(x, 0.12, 15); ['ORE', 'MIN', 'SEC'].forEach((t, i) => x.fillText(t, 31.5 + 65 + i * 156, 200));
+    x.font = `700 17px ${DISPLAY}`; spazia(x, 0.1, 17); x.fillText('ALLA PROSSIMA EDIZIONE, ALLE ' + alle, w / 2, 232); spazia(x, 0, 1); x.textAlign = 'left';
     texConto.needsUpdate = true; return true;
   }
   // il mobiletto con la stampante
-  const STAMPANTE = [10.5, 0.3];
+  const STAMPANTE = [11.75, 0.3];
   const spiaStampa = M(0x35C759, { emissive: 0x35C759, emissiveIntensity: 0.5 });
   stanza.add(at(gruppo(at(box(1.0, 0.44, 0.44, legno, 0.03), 0, 0.36, 0), ...[-0.4, 0.4].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.14, legnoScuro, 12), dx, 0.07, dz))),
     at(box(0.44, 0.2, 0.38, bianco, 0.03), 0, 0.68, 0), at(box(0.36, 0.012, 0.3, nero, 0.005), 0, 0.786, -0.01), at(box(0.3, 0.02, 0.02, nero, 0.004), 0, 0.66, 0.191),
     at(box(0.3, 0.012, 0.16, grigio, 0.005), 0, 0.615, 0.26), at(sph(0.009, spiaStampa), 0.17, 0.72, 0.192)), STAMPANTE[0], 0, STAMPANTE[1]));
   // il manifesto di Vito
-  stanza.add(at(box(1.46, 1.96, 0.04, nero, 0.012), 12.25, 1.78, 0.025), at(stampa(1.4, 1.9, texGta), 12.25, 1.78, 0.046));
+  stanza.add(at(box(1.46, 1.96, 0.04, nero, 0.012), STAMPANTE[0], 1.92, 0.025), at(stampa(1.4, 1.9, texGta), STAMPANTE[0], 1.92, 0.046));
   const foglioStampante = stampa(0.21, 0.297, foglio(31, true)); foglioStampante.rotation.x = -PI / 2; foglioStampante.visible = false; stanza.add(foglioStampante);
 
   /* ================================================================ la parete di sinistra */
@@ -90,11 +87,14 @@
   const telaio = M(0xFFFFFF, { roughness: 0.5 });
   stanza.add(vetro, at(box(0.07, 0.07, 1.64, telaio), 0.035, 2.48, 1.75), at(box(0.1, 0.06, 1.72, telaio), 0.05, 1.02, 1.75),
     at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 0.965), at(box(0.07, 1.5, 0.07, telaio), 0.035, 1.75, 2.535), at(box(0.04, 1.4, 0.04, telaio), 0.02, 1.75, 1.75));
-  // la lavagna
-  const bz = 4.25;
-  const lavagna = stampa(2.5, 2.5 * 820 / 1400, texLavagna); lavagna.rotation.y = PI / 2; at(lavagna, 0.047, 1.6, bz);
-  stanza.add(at(box(0.04, 1.56, 2.6, grigio, 0.015), 0.022, 1.6, bz), lavagna, at(box(0.08, 0.03, 1.8, grigio, 0.01), 0.07, 0.85, bz));
-  [[0xE01F3D, -0.5], [0x17181B, -0.3], [0x0E9CD8, -0.1]].forEach(([c, dz]) => stanza.add(at(box(0.03, 0.03, 0.14, M(c), 0.01), 0.075, 0.88, bz + dz)));
+  // la lavagna: una sola. A sinistra gli appunti a mano, a destra i post-it per Mike (quel pezzo si tocca: 42-angoli.js)
+  const bz = 5.7, PXL = 2.5 / 1400, largaLav = LAV.W * PXL, altaLav = LAV.H * PXL, suLav = 1.6 + altaLav / 2;
+  const suLavagna = (cx, cy) => [suLav - cy * PXL, bz + largaLav / 2 - cx * PXL];   // da un punto della tela all'altezza e alla profondità nella stanza
+  const pezzoLavagna = (x0, x1) => { const g = new THREE.PlaneGeometry((x1 - x0) * PXL, altaLav), uv = g.attributes.uv; [0, 2].forEach(k => uv.setX(k, x0 / LAV.W)); [1, 3].forEach(k => uv.setX(k, x1 / LAV.W));
+    const m = ombra(new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: texLavagna, roughness: 0.9 })), false); m.rotation.y = PI / 2; return at(m, 0.047, 1.6, suLavagna((x0 + x1) / 2, 0)[1]); };
+  const lavagna = pezzoLavagna(0, LAV.X0), bacheca = pezzoLavagna(LAV.X0, LAV.W);
+  stanza.add(at(box(0.04, altaLav + 0.1, largaLav + 0.1, grigio, 0.015), 0.022, 1.6, bz), lavagna, bacheca, at(box(0.08, 0.03, 1.8, grigio, 0.01), 0.07, 1.6 - altaLav / 2 - 0.03, bz + 0.5));
+  [[0xE01F3D, -0.5], [0x17181B, -0.3], [0x0E9CD8, -0.1]].forEach(([c, dz]) => stanza.add(at(box(0.03, 0.03, 0.14, M(c), 0.01), 0.075, 1.6 - altaLav / 2, bz + 0.5 + dz)));
   // gli orologi: uno per città, in cima al muro delle notizie (li mette 32-muro.js); segnano l'ora vera di ogni fuso
   const OROLOGI = [];
   function orologioDi(fuso, r = 0.25) {
@@ -130,12 +130,11 @@
   const piantana = gruppo(at(cyl(0.16, 0.18, 0.03, nero, 24), 0, 0.015, 0), at(cyl(0.014, 0.014, 1.55, nero, 10), 0, 0.8, 0),
     (() => { const p = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.23, 0.3, 28, 1, true), paralume)); p.material.side = THREE.DoubleSide; p.position.y = 1.62; return p; })());
   stanza.add(at(piantana, 1.26, 0, 0.36)); punto(0xFFC27A, 9, 1.3, 1.6, 0.75, 6);   // nell'angolo, accanto alla pianta
-  punto(0xFFC27A, 5, 6.4, 1.6, 3.2, 5.5);   // un po' di luce calda sulla fila della prosa
+  punto(0xFFC27A, 6, 3.1, 1.6, 3.3, 5.5);   // un po' di luce calda sull'isola della prosa
   punto(0xFFC27A, 6, REGIA[0], 1.7, REGIA[1], 5.5);   // sulla regia
-  punto(0xFFB07A, 5, 11.6, 1.6, 4.9, 5.5);   // e sull'isola di destra
-  punto(0xF2ECDF, 5, fx, 1.7, 1.3, 5.5);   // il chiarore del fondale, che la sera si vede
+  punto(0xFFB07A, 6, 11.4, 1.6, 3.3, 5.5);   // e sull'isola delle schede
 
-  const CESTINO = [4.08, 1.95];
+  const CESTINO = [4.92, 3.5];   // accanto all'isola della prosa, dal lato di Ettore
   const cestino = gruppo((() => { const c = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.3, 24, 1, true), M(0x3A3B40, { roughness: 0.6 }))); c.material.side = THREE.DoubleSide; c.position.y = 0.15; return c; })(),
     at(cyl(0.11, 0.11, 0.012, M(0x3A3B40), 20), 0, 0.006, 0), at(ell(0.045, 1, 0.8, 1.1, bianco), 0.03, 0.05, -0.02));
   stanza.add(at(cestino, CESTINO[0], 0, CESTINO[1]));

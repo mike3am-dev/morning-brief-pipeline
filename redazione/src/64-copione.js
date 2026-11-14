@@ -24,10 +24,11 @@
     c.yaw = typeof y === 'function' ? y(1) : y; }
   function rientra(c, porta) { cammina(c, c.p.seduta, c.p.yaw, porta); alzaSiedi(c, -1); dice(c, c.nota0); }
 
-  // i posti dove si va
-  const pCaffe = [CAFFE[0] - 0.05, 0.98], pStampa = [STAMPANTE[0], 1.02], pLavagna = [0.62, 4.05], pPianta = [0.75, 1.48], pFinestra = [0.55, 1.75], pBacheca = [0.62, 5.95];
-  const pDaEttore = [pE.seduta[0] + 0.75, pE.seduta[1] + 0.43], pOliviaEttore = [pE.seduta[0] - 0.8, pE.seduta[1] + 0.48], pOliviaLea = [posti.visualista.seduta[0] + 0.72, posti.visualista.seduta[1] + 0.45];
-  const pDaRita = [posti.schede.seduta[0] + 0.98, posti.schede.seduta[1] + 0.23], pVarco = [REGIA[0] + 1.1, REGIA[1] + 1.1];
+  // i posti dove si va. `accanto` dà un punto di fianco e dietro a chi è seduto, da qualunque parte guardi
+  const accanto = (p, lato, dietro) => p.fuori(lato, p.zs + dietro);
+  const pCaffe = [CAFFE[0] - 0.05, 0.98], pStampa = [STAMPANTE[0], 1.02], pLavagna = [0.62, suLavagna(520, 0)[1]], pPianta = [0.75, 1.48], pFinestra = [0.55, 1.75], pBacheca = [0.62, DOVE_POSTIT[1] + 0.11], pArchivio = [1.02, ARCHIVIO[1]];
+  const pDaEttore = accanto(pE, 0.75, 0.43), pOliviaEttore = accanto(pE, -0.8, 0.48), pOliviaLea = accanto(posti.visualista, 0.72, 0.45);
+  const pDaRita = accanto(posti.schede, -0.98, 0.23), pVarco = [REGIA[0] + 1.1, REGIA[1] + 1.1];
 
   // le azioni che fanno in tanti
   const parla = (mano = 1) => u => { const k = campana(u, 0.05, 0.2, 0.85, 0.97), P = { ...IN_PIEDI, hx: Math.sin(u * 40) * 0.06 * k };   // parla, e muove una mano
