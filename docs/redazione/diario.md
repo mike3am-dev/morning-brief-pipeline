@@ -323,3 +323,53 @@ Nel benvenuto ora c'è anche il promemoria «Nel registro hai N decisioni».
 sessione in cloud arrivi all'archivio (`ArtifactData`). La routine del mattino gira in modalità
 automatica con gli strumenti di base; usa già strumenti fuori dal suo elenco (`PushNotification`),
 quindi l'elenco non è un limite, ma se `ArtifactData` ci sia è da provare con una routine a parte.
+
+## 14 novembre 2026 — la redazione collegata alla corsa, da sola
+
+Mike: «o che tu prima della stampa mattutina, in automatico vada a leggere cosa è stato deciso.
+Ancora meglio». E ha detto sì a un'automazione in cloud accanto a quella del mattino.
+
+**La prova.** Una routine di una volta sola ha mostrato che **da una sessione in cloud
+`ArtifactData` c'è** (è differito: si carica con `ToolSearch`, `select:ArtifactData`) e arriva
+all'archivio della pagina di Mike in lettura e in scrittura. Sedici secondi.
+
+**La routine**: «The Morning Brief — la redazione: registro e modellino»,
+`trig_01KDe8UemP2NtpCnuZwnZsQE`, ogni giorno alle **04:15, 05:15 e 06:15 UTC** (5:15, 6:15, 7:15
+con l'ora solare). Il suo prompt è `routine/redazione-registro.md`. Non ha connettori, non manda
+notifiche. Fa due lavori, tutti e due senza effetto se non c'è niente di nuovo:
+
+1. **le decisioni arrivano alla corsa**: legge la collezione `decisioni`, la passa a
+   `pipeline/decisioni.py --importa`, che rifà `data/redazione/decisioni.json` e dice CAMBIATO o
+   UGUALE; se è cambiato fa commit e push su un branch `claude/decisioni-…`, che il workflow unisce
+   a `main`. Il giro delle 04:15 UTC sta 19 minuti prima della corsa (04:34 UTC);
+2. **il modellino si aggiorna**: legge `stato/corrente`, lancia `redazione/aggiorna.py`, che
+   compone lo stato dell'ultima edizione e dice SCRIVI, UGUALE o INCOMPLETO; se serve lo scrive
+   (con `if_version`). INCOMPLETO finché la corsa non ha chiuso il suo conto in `data/corse.json`:
+   quindi il modellino cambia dopo «Fine corsa», non a metà.
+
+**Nella corsa.** `mattino.py` stampa le decisioni in fondo alla raccolta, per la regia (che passa
+al lettore le sue). Redattore, revisore, visualista, `ai`, `schede` e `gta` hanno nel loro file,
+come secondo paragrafo, la riga che gli fa lanciare `python3 pipeline/decisioni.py --per <id>`
+(il primo paragrafo resta la loro voce: lo legge `stato.py`). Arrivano `preferenza` e `regola`;
+gli `incarico` no. Chi non è un agente della redazione viene ignorato. Se il file manca o è rotto
+nessuno stampa niente: la corsa va come sempre.
+
+**Nel registro** ogni decisione dice dov'è: «Letta dalla corsa ✓» (il suo id è in
+`STATO.registro.ids`, cioè era nel file quando è stato composto lo stato), «La corsa la legge
+domattina», oppure «Per chi costruisce l'app».
+
+**La prova di tutto il giro** (14 novembre, 08:37 UTC): una decisione finta per un agente che non
+esiste, la routine lanciata a mano. In 19 secondi: importata, spinta, unita a `main`, stato
+scritto nell'archivio (versione 2). Poi la decisione finta è stata tolta e la routine rilanciata
+per ripulire il file.
+
+**Da sapere.**
+- Per lanciarla a mano: `RemoteTrigger` con `action: "run"` e il suo id; il registro di un giro
+  con `list_runs` e `get_run_log`.
+- Se un giorno si sposta l'orario della corsa del mattino, questa va spostata insieme: un giro
+  deve stare prima della corsa e uno dopo la fine.
+- Le decisioni finiscono in un file del repository, che è pubblico.
+- È rimasta la routine della prova, «TMB redazione — prova tecnica (una volta sola)»: è già
+  spenta da sola, e si cancella solo da claude.ai/code/routines.
+- Il modellino si aggiorna a ore fisse, non al minuto: un aggancio al push su GitHub
+  (`create_webhook_trigger`) lo renderebbe immediato. Non provato.

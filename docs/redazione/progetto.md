@@ -385,9 +385,11 @@ su schermi, lavagna e bacheca, la giornata di ognuno in un giro di cinque minuti
 primo piano dal vivo, e **la conversazione con ognuno** (§10: ogni agente risponde dalle sue carte
 del giorno). Dal 14 novembre c'è anche **il registro delle decisioni** (§8: nascono parlando o
 rispondendo a un post-it, si salvano con un tocco, chi le riceve le ritrova). Come è fatta ogni
-cosa: `diario.md`, dalla quarta alla sesta prova. Mancano, in quest'ordine: la pagina che si
-ricompone da sola ogni mattina, le riunioni (§6), e il passo che porta regole e incarichi del
-registro fino alla corsa (lo decide Mike).
+cosa: `diario.md`, dalla quarta prova in poi. Sempre dal 14: **il modellino si aggiorna da solo**
+(legge lo stato dal suo archivio, che una routine riscrive a corsa finita) e **le decisioni
+arrivano alla corsa** (la stessa routine le copia nel repository prima che cominci, e ogni agente
+legge le sue). Mancano: la redazione dal vivo durante la corsa (oggi cambia a corsa finita), le
+riunioni (§6).
 
 **Ancora da chiedere, quando servirà:**
 

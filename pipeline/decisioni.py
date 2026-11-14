@@ -35,7 +35,8 @@ def leggi():
     try:
         with open(FILE, encoding="utf-8") as f:
             d = json.load(f)
-        return [x for x in d.get("decisioni") or [] if isinstance(x, dict) and x.get("testo") and x.get("agente")]
+        return [x for x in d.get("decisioni") or []
+                if isinstance(x, dict) and x.get("testo") and x.get("agente") in NOMI]   # chi non è in redazione non conta
     except (OSError, ValueError):
         return []
 

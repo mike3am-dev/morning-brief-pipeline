@@ -1553,9 +1553,18 @@ riesce a scrivere, la corsa va avanti.
 decisione finisce nel **registro**: la collezione `decisioni` nell'archivio della pagina
 (https://claude.ai/artifact/1bbSgKiM4HHmx2zTxUWhDK). Una sessione di lavoro la legge con lo
 strumento `ArtifactData` (`action: "list"`, `collection: "decisioni"`). Ogni decisione ha `agente`,
-`tipo` (`preferenza`, `regola`, `incarico`), `testo`, `quando`. **La corsa non le legge**: una
-`regola` o un `incarico` diventano veri solo quando una sessione li porta nelle istruzioni della
-corsa o nell'app, e lo fa solo se Mike lo chiede. Dettagli in `docs/redazione/diario.md`.
+`tipo` (`preferenza`, `regola`, `incarico`), `testo`, `quando`. **Dal 15 novembre 2026 la corsa le
+legge da sola** (vedi *Le decisioni di Mike* nella procedura): preferenze e regole arrivano a chi
+fa quel mestiere; un `incarico` è lavoro per una sessione di sviluppo, e si fa solo se Mike lo
+chiede. **All'inizio di una sessione di lavoro sulla redazione o sulla corsa, leggi il registro e
+di' a Mike se ci sono incarichi aperti.**
+
+**La routine che tiene tutto collegato** è «The Morning Brief — la redazione: registro e
+modellino» (`trig_01KDe8UemP2NtpCnuZwnZsQE`, prompt in `routine/redazione-registro.md`), alle
+04:15, 05:15 e 06:15 UTC: copia il registro in `data/redazione/decisioni.json` prima della corsa
+e, a corsa finita, scrive lo stato del giorno nell'archivio della pagina (`stato/corrente`), da cui
+il modellino si aggiorna da solo. **Se si sposta l'orario della corsa del mattino, va spostata
+anche lei**: un giro prima dell'inizio, uno dopo la fine. Dettagli in `docs/redazione/diario.md`.
 
 ## Struttura
 
