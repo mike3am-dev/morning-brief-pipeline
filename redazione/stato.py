@@ -358,7 +358,10 @@ def stato(giorno):
              "ora_fine": ora_locale(fine), "minuti": corsa.get("minuti"),
              "tetto": 45 if giorno >= "2026-11-11" else 30,
              "token_milioni": round(token(corsa) / 1e6, 1),
-             "fasi": fasi(giorno, raw, social, lab, missed),
+             # stesso formato dell'ora su ogni macchina (git la scrive con Z o con +00:00): se no lo stato
+             # composto sul Mac e quello composto in cloud sembrano diversi, e il modellino si riscrive a vuoto
+             "fasi": [dict(f, quando=str(f.get("quando") or "").replace("Z", "+00:00"))
+                      for f in fasi(giorno, raw, social, lab, missed)],
              "ultime": [{"giorno": x["giorno"], "minuti": x.get("minuti")} for x in prima]}
         uscita = next((f for f in c["fasi"] if f["cosa"] == "edizione pubblicata"), None)
         c["ora_uscita"] = uscita["ora"] if uscita else c["ora_fine"]
