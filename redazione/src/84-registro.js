@@ -70,7 +70,9 @@
   // il registro sul tavolo di Mike: l'etichetta porta il numero delle decisioni
   ancore.decisioni = new THREE.Vector3(MIKE[0], TAV + 0.42, MIKE[1]);
   etichetta('decisioni', 'Il registro', 'le tue decisioni', VERDE);
-  quandoCambiaRegistro(() => { tags.decisioni.nomeNodo.textContent = decisioni.length ? 'Il registro · ' + decisioni.length : 'Il registro'; if (vistaRegistro) vistaRegistro(); if (vistaDecisioniAgente) vistaDecisioniAgente(); });
+  const promemoria = el('span'); document.getElementById('saluto').append(promemoria);   // nel benvenuto: quante decisioni hai nel registro
+  quandoCambiaRegistro(() => { tags.decisioni.nomeNodo.textContent = decisioni.length ? 'Il registro · ' + decisioni.length : 'Il registro'; if (vistaRegistro) vistaRegistro(); if (vistaDecisioniAgente) vistaDecisioniAgente();
+    promemoria.textContent = ''; if (decisioni.length) { const b = el('button', null, decisioni.length === 1 ? 'una decisione' : decisioni.length + ' decisioni'); b.type = 'button'; b.addEventListener('click', () => apri('decisioni')); promemoria.append(document.createTextNode(' Nel registro hai '), b, document.createTextNode('.')); } });
 
   // l'archivio: su claude.ai è quello della pagina; in locale, con ?finto=1, uno di prova nel browser
   const archivioFinto = (() => { const K = 'tmb-redazione-registro-finto', leggi = () => { try { return JSON.parse(localStorage.getItem(K) || '[]'); } catch (e) { return []; } }; let sente = null;
@@ -78,8 +80,20 @@
     const scrivi = l => { try { localStorage.setItem(K, JSON.stringify(l)); } catch (e) { /* pazienza */ } if (sente) sente(foto()); };
     const q = { orderBy: () => q, limit: () => q, onSnapshot: next => { sente = next; setTimeout(() => next(foto()), 60); return () => {}; }, add: async d => { scrivi([...leggi(), { ...d, id: 'prova' + Date.now() }]); } };
     return { collection: () => q, doc: path => ({ delete: async () => scrivi(leggi().filter(d => d.id !== path.split('/')[1])) }) }; })();
+  // quando nell'archivio arriva uno stato più nuovo (è uscita un'edizione), la redazione si aggiorna: da sola se non
+  // stai facendo niente, con un pulsante se hai una scheda aperta. Dopo aver ricaricato, parte dallo stato nuovo.
+  let statoInArrivo = null;
+  function statoNuovo(d) {
+    if (!valido(d) || !(d.scritto > STATO.scritto) || (statoInArrivo && statoInArrivo >= d.scritto)) return; statoInArrivo = d.scritto;
+    const box = document.getElementById('novita'), gia = (() => { try { return sessionStorage.getItem('tmb-redazione-ricarica') === d.scritto; } catch (e) { return false; } })();
+    const ricarica = () => { try { sessionStorage.setItem('tmb-redazione-ricarica', d.scritto); } catch (e) { /* pazienza */ } location.reload(); };
+    const b = el('button', null, 'Aggiorna la redazione'); b.type = 'button'; b.addEventListener('click', ricarica);
+    box.textContent = ''; box.append(el('strong', null, d.giorno !== STATO.giorno ? 'È uscita l\'edizione di ' + GIORNI_LUNGHI[giornoDi(d.giorno).getDay()] + '. ' : 'Ci sono novità dalla corsa. '), b); box.hidden = false;
+    if (!gia && !aperto && !inCorso) setTimeout(() => { if (!aperto && !inCorso) ricarica(); }, 2500);
+  }
   function collegaRegistro(db) {
     archivio = db || null; if (!db) { registro = 'assente'; return cambiaRegistro(); }
+    if (db.doc) try { db.doc('stato/corrente').onSnapshot(foto => { if (foto.exists) statoNuovo(foto.data()); }, () => {}); } catch (e) { /* senza ascolto si aggiorna alla prossima apertura */ }
     const timer = setTimeout(() => { if (registro === 'attesa') { registro = 'lento'; cambiaRegistro(); } }, 10000);
     db.collection('decisioni').orderBy('quando', 'desc').limit(300).onSnapshot(
       snap => { if (!snap.metadata.fromCache) clearTimeout(timer); registro = 'pronto'; decisioni = snap.docs.map(d => ({ ...d.data(), id: d.id })); cambiaRegistro(); },

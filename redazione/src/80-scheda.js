@@ -23,11 +23,11 @@
     const oggi = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Rome' }).format(new Date()), uscita = oraCorta(USCITA), min = STATO.corsa.minuti;
     const uscita2 = min != null ? `è uscita alle ${uscita}, in ${min} minuti` : `è uscita alle ${uscita}`;
     box.append(el('strong', null, ciao + ' Mike. '), document.createTextNode(STATO.giorno === oggi ? `L'edizione di oggi ${uscita2}. ` : `L'ultima edizione che vedo, quella di ${GIORNI_LUNGHI[OGGI.getDay()]} ${DATA_LUNGA}, ${uscita2}. `));
-    const chi = STATO.agenti.filter(a => a.ti_aspetta); if (!chi.length) return;
+    const chi = STATO.agenti.filter(a => a.ti_aspetta); box.hidden = false; if (!chi.length) return;
     box.append(document.createTextNode(chi.length > 1 ? 'Ti aspettano ' : 'Ti aspetta '));
     chi.forEach((a, i) => { const b = el('button', null, a.nome); b.type = 'button'; b.addEventListener('click', () => apri(a.id)); box.append(b, document.createTextNode(i < chi.length - 2 ? ', ' : i === chi.length - 2 ? ' e ' : '')); });
     if (POSTIT.length) { const b = el('button', null, POSTIT.length + ' post-it in bacheca'); b.type = 'button'; b.addEventListener('click', () => apri('bacheca')); box.append(document.createTextNode(': '), b); }
-    box.append(document.createTextNode('.')); box.hidden = false; })();
+    box.append(document.createTextNode('.')); })();
 
   const pannello = document.getElementById('pannello'); let aperto = null, rigaAdesso = null;
   /* il primo piano: una seconda camera, vera, puntata su chi hai aperto. Si vede quello che fa, da vicino. */

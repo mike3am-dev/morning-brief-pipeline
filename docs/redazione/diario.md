@@ -295,3 +295,31 @@ salvataggio, l'etichetta col numero, l'elenco, l'annotazione a mano partita da u
 ritiro, le decisioni che entrano nelle regole di chi le riceve. Dopo la pubblicazione ho letto la
 collezione vera con `ArtifactData`: risponde, ed è vuota. **Non provata la scrittura vera dalla
 pagina**: la fa Mike su claude.ai alla prima decisione.
+
+## 14 novembre 2026, mattina — la redazione si aggiorna dall'archivio
+
+Mike: «si deve aggiornare in tempo reale, quando l'edizione esce tutti lo sanno». La pagina
+(versione 7) non dipende più dal giorno in cui è stata composta:
+
+- **all'apertura** (`src/05-dati.js`) chiede all'archivio il documento `stato/corrente` (lo stesso
+  JSON di `redazione/stato.py`) e, se è più nuovo dello stato di composizione (`STATO_FISSO`,
+  confronto su `scritto`), parte da quello. Aspetta poco (2 secondi l'archivio, 2,5 la lettura):
+  se non risponde parte con quello che ha;
+- **mentre è aperta** ascolta lo stesso documento: quando ne arriva uno più nuovo compare la fascia
+  gialla «È uscita l'edizione di …» e la pagina si ricarica da sola, se non c'è una scheda aperta
+  né una risposta in arrivo; altrimenti c'è il pulsante «Aggiorna la redazione». Una sola
+  ricarica automatica per stato (`sessionStorage`), così non può andare in ciclo.
+
+**Per aggiornare la redazione basta quindi scrivere lo stato nell'archivio**, senza ricomporre né
+ripubblicare: `python3 redazione/stato.py <giorno>` e poi `ArtifactData` con `action: "set"`,
+`collection: "stato"`, `doc_id: "corrente"`, `file_path: redazione/stato/<giorno>.json` (su un
+documento che esiste già serve `if_version`, quello dell'ultima lettura). Fatto a mano il 14
+novembre, e riletto: l'archivio ha lo stato del 14. Uno stato si accetta solo se è completo
+(`valido`: corsa, agenti, lavagna, schermo, macchine): a metà corsa non si scrive.
+
+Nel benvenuto ora c'è anche il promemoria «Nel registro hai N decisioni».
+
+**Quello che manca è chi lo scrive da solo**, e chi porta le decisioni alla corsa: serve che una
+sessione in cloud arrivi all'archivio (`ArtifactData`). La routine del mattino gira in modalità
+automatica con gli strumenti di base; usa già strumenti fuori dal suo elenco (`PushNotification`),
+quindi l'elenco non è un limite, ma se `ArtifactData` ci sia è da provare con una routine a parte.

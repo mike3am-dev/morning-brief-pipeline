@@ -18,7 +18,7 @@
   }
   requestAnimationFrame(giro);
   // una maniglia per le prove: redazione.tempo(52) ferma la scena a quel secondo del giro, redazione.tempo(null) la fa ripartire
-  window.redazione = { THREE, renderer, scene, solare, luce, apri, chiudi, GIRO, persone, ascolto, regole, adesso: adessoDi, orario: () => Object.fromEntries(Object.entries(cx).map(([id, c]) => [id, c.note.map(([t, n]) => Math.round(t) + ' ' + n)])),
+  window.redazione = { THREE, renderer, scene, solare, luce, apri, chiudi, GIRO, persone, ascolto, regole, stato: STATO, statoNuovo, adesso: adessoDi, orario: () => Object.fromEntries(Object.entries(cx).map(([id, c]) => [id, c.note.map(([t, n]) => Math.round(t) + ' ' + n)])),
     tempo(t) { tempoFermo = t; vita(tempoGiro()); renderer.render(scene, cam); etichette(); primoPiano(); },
     guarda(x, y, z, zoom = 3) { lascia(); const [a, b] = sulPiano(new THREE.Vector3(x, y, z)); Object.assign(meta, { x: a, y: b, zoom }); Object.assign(inq, meta); inquadra(); renderer.render(scene, cam); etichette(); },
     grande(si = true) { primoPiano(); if (!rend2) return; telaRitratto.style.cssText = si ? 'position:fixed;inset:0;width:100vw;height:100vh;z-index:99;border-radius:0' : ''; rend2.setSize(si ? 1280 : 320, si ? 800 : 200, false); primoPiano(); },

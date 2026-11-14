@@ -7,7 +7,10 @@ redazione/src/, in ordine di nome: così ogni pezzo resta piccolo. I pezzi .js s
 dentro la stessa funzione `avvia()`, quindi si vedono fra loro: non sono moduli.
 
 Dove un pezzo contiene il segnaposto /*__STATO__*/ entra lo stato del giorno, quello che
-redazione/stato.py ricava dai file della corsa (sola lettura).
+redazione/stato.py ricava dai file della corsa (sola lettura). È lo stato «di composizione»:
+quando si apre, la pagina guarda prima nel suo archivio (documento stato/corrente) e, se lì ce
+n'è uno più nuovo, usa quello. Così per aggiornare la redazione basta scrivere lo stato
+nell'archivio: non serve ricomporre né ripubblicare la pagina.
 
     python3 redazione/costruisci.py               # con l'ultimo giorno che ha un'edizione
     python3 redazione/costruisci.py 2026-11-13    # con un giorno preciso
@@ -30,12 +33,12 @@ def main():
         if not giorno:
             sys.exit("Nessuna edizione in data/briefs.")
         dati = json.dumps(S.stato(giorno), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-        testo = testo.replace("/*__STATO__*/", "const STATO = " + dati + ";")
+        testo = testo.replace("/*__STATO__*/", "const STATO_FISSO = " + dati + ";")
     uscita = os.path.join(QUI, "app", "redazione.html")
     with open(uscita, "w", encoding="utf-8") as f:
         f.write(testo)
     print(f"{os.path.relpath(uscita, S.ROOT)}: {len(pezzi)} pezzi, {len(testo) // 1024} KB"
-          + (f", stato del {giorno}" if "const STATO = " in testo else ""))
+          + (f", stato del {giorno}" if "const STATO_FISSO = " in testo else ""))
 
 
 if __name__ == "__main__":
