@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-14",
+  "title": "The Morning Brief – 14 novembre 2026",
+  "generated_at": "2026-11-14T04:50:00Z",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 0,
+    "notizie_selezionate": 0
+  },
+  "feed_notes": [
+    "AI Explained: html-not-feed, nessuna data leggibile",
+    "Andrea Galeazzi: html-not-feed, nessuna data leggibile",
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "Everyeye: html-not-feed, nessuna data leggibile",
+    "Interconnects: ultimo articolo 228.0h fa",
+    "MKBHD: html-not-feed, nessuna data leggibile",
+    "Matt Wolfe: html-not-feed, nessuna data leggibile"
+  ],
+  "radar": [
+    {
+      "id": "kindle-colorsoft-premium",
+      "topic": "hardware-indipendente",
+      "title": "Il nuovo Kindle Colorsoft punta sempre più in alto, sulla stessa fascia dell'iPad mini",
+      "note": "Amazon porta la Signature Edition del Colorsoft a 320 dollari (290 il modello base): display E-Ink a colori più sottile e luminoso del primo Colorsoft del 2024, 300 ppi in bianco e nero e 150 a colori. È lo stesso terreno su cui gioca l'iPad mini quando si parla di un dispositivo leggero per leggere.",
+      "link": "https://techcrunch.com/2026/11/13/amazons-new-kindle-colorsoft-is-a-premium-e-reader-with-a-premium-price/",
+      "source": "TechCrunch"
+    },
+    {
+      "id": "github-supply-chain-wfxloot",
+      "topic": "sicurezza-infrastrutture",
+      "title": "Una campagna rastrella 61.764 repository GitHub a caccia di credenziali cloud",
+      "note": "La società di sicurezza Aikido descrive la campagna «wfx-loot»: 4.837 account GitHub compromessi hanno aperto pull request-sonda su decine di migliaia di repository, e almeno 1.835 hanno eseguito lo script che ruba chiavi AWS, Azure, Google Cloud e token API (anche di OpenAI e Anthropic), poi cancella le tracce in meno di un minuto.",
+      "link": "https://www.techradar.com/pro/security/thousands-of-github-repositories-targeted-in-widespread-attack-4-800-accounts-already-compromised-to-steal-cloud-credentials",
+      "source": "TechRadar"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-touchbar-nostalgia",
+      "origine": "nuovo",
+      "title": "Su r/mac c'è ancora chi rimpiange la Touch Bar",
+      "note": "Secondo thread più votato della giornata su r/mac: per l'autore nessun gesto o scorciatoia ha mai sostituito davvero la barra OLED sopra la tastiera.",
+      "link": "https://www.reddit.com/r/mac/comments/1xv1t31/i_miss_the_touch_bar/",
+      "source": "Reddit r/mac"
+    },
+    {
+      "id": "social-visionpro-meet-with-apple",
+      "origine": "nuovo",
+      "title": "Su r/VisionPro si discute se l'evento «Meet with Apple» dell'11 novembre cambi la narrazione sul visore",
+      "note": "Terzo thread più votato del giorno su r/VisionPro: secondo l'autore la stampa di settore non ha colto il peso di quell'evento per il futuro di Vision Pro.",
+      "link": "https://www.reddit.com/r/VisionPro/comments/1xv0n6s/the_nov_11_meet_with_apple_event_completely/",
+      "source": "Reddit r/VisionPro"
+    },
+    {
+      "id": "social-hackintosh-x86-translator",
+      "origine": "nuovo",
+      "title": "Un traduttore per Apple Silicon rilancia il sogno Hackintosh: macOS su PC x86-64",
+      "note": "Quinto thread più votato su r/apple: un progetto open source basato su un'app UEFI per Linux traduce al volo le chiamate Arm e Metal su hardware x86-64. Per ora, dicono gli autori, è «lento e non molto stabile».",
+      "link": "https://www.reddit.com/r/apple/comments/1xvhv38/macos_on_pc_becomes_possible_again_thanks_to/",
+      "source": "Reddit r/apple"
+    },
+    {
+      "id": "social-bare-metal-windows-m5pro",
+      "origine": "nuovo",
+      "title": "Gira un teaser di Windows installato bare metal su un Mac con M5 Pro",
+      "note": "Sesto thread più votato del giorno su r/mac: un utente mostra un primo avvio di Windows senza virtualizzazione su un Mac con chip M5 Pro, senza spiegare come l'abbia ottenuto.",
+      "link": "https://www.reddit.com/r/mac/comments/1xvjrbs/bare_metal_windows_teaser_m5_pro/",
+      "source": "Reddit r/mac"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-huawei-sence-g1-glucosio",
+      "kind": "curiosità",
+      "topic": "salute",
+      "title": "Huawei presenta il suo primo sensore di glucosio continuo",
+      "orig": "HUAWEI reveals its first continuous glucose monitor",
+      "note": "Il Sence G1 è il primo dispositivo medico di Classe III di Huawei: misura il glucosio in continuo e manda i dati su smartphone, smartwatch o fitness band Huawei, dopo oltre tre anni di sviluppo. Per ora è stato annunciato solo in Cina, senza una data per gli altri mercati.",
+      "perche": "No, per ora Apple Watch non misura il glucosio in continuo: resta un dispositivo medico separato, come i sensori Abbott. Huawei ha appena presentato il suo, il Sence G1, ma finora solo in Cina.",
+      "link": "https://www.androidauthority.com/huawei-continuous-glucose-monitor-cgm-3734906/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-razr-50-ultra-android17",
+      "kind": "curiosità",
+      "topic": "pieghevoli",
+      "title": "L'aggiornamento ad Android 17 del Razr 50 Ultra arriva, ma non da tutti i canali",
+      "orig": "Motorola Razr 50 Ultra's Android 17 update becomes available in Europe, with a catch",
+      "note": "Il pieghevole di due anni riceve Android 17 in Europa, ma per ora si scarica solo passando dal tool Software Fix di Motorola sul computer, non via etere. Porta un effetto di profondità per gli sfondi, le impostazioni rapide ridisegnate e un nuovo quadrante per lo schermo di copertina; alcuni utenti segnalano bug sullo schermo esterno.",
+      "perche": "Sì, ma con qualche inciampo: su alcuni Razr 50 Ultra in Europa l'update ad Android 17 si scarica solo collegando il telefono al computer con un tool di Motorola, non arriva ancora da solo via etere, e qualche utente segnala bug sullo schermo di copertina.",
+      "link": "https://www.gsmarena.com/motorola_razr_50_ultra_starts_getting_android_17_in_europe-news-75480.php",
+      "source": "GSMArena"
+    },
+    {
+      "id": "banco-vivo-x300-ultra-originos7-camera",
+      "kind": "curiosità",
+      "topic": "fotocamera",
+      "title": "vivo aggiorna la fotocamera dell'X300 Ultra con un push software",
+      "orig": "vivo X300 Ultra gets new OriginOS 7 update with camera and battery optimizations",
+      "note": "L'update OriginOS 7, per ora solo sul modello cinese, ridisegna l'app Fotocamera con una nuova cassetta degli strumenti, stabilizza la luminosità nei video e ottimizza i consumi e la gestione termica della batteria.",
+      "perche": "È il software, non il sensore, a cambiare: vivo ha appena aggiornato l'app Fotocamera dell'X300 Ultra con un'interfaccia più semplice e video più stabili, oltre a consumi migliori — per ora solo sulla versione cinese.",
+      "link": "https://www.gsmarena.com/vivo_x300_ultra_china_originos_7_camera_update-news-75467.php",
+      "source": "GSMArena"
+    },
+    {
+      "id": "banco-cinque-assistenti-ai-android",
+      "kind": "guida",
+      "topic": "assistenti-ai",
+      "title": "Cinque assistenti AI agentici che si possono già usare su Android, e per chi sono",
+      "orig": "5 AI agents you can actually use on Android in 2026 (and who should use them)",
+      "note": "Claude Duet gira su una sua macchina virtuale e lavora anche a telefono spento, ma costa 20 dollari al mese (serve l'abbonamento Pro) e richiede ancora una lista d'attesa. Gemini Intelligence di Google, invece, si integra a fondo in Android: legge notifiche, schermate e app per anticipare bisogni, come tirare fuori da solo un biglietto digitale all'ingresso di un concerto.",
+      "perche": "Il confronto che conta è l'integrazione: Claude Duet lavora per conto suo su una macchina virtuale, comodo ma a pagamento e ancora in lista d'attesa; Gemini Intelligence di Google entra più a fondo nel telefono, leggendo notifiche e schermate per capire cosa ti serve.",
+      "link": "https://www.androidauthority.com/best-ai-agents-android-2026-3731766/",
+      "source": "Android Authority"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-gemini-carplay",
+      "when": "2026-11-12",
+      "ref": {"date": "2026-11-12", "id": "gemini-carplay-app"},
+      "title": "Gemini arriva su CarPlay con un'app sua",
+      "note": "Google ha portato Gemini su CarPlay in tutto il mondo, con un'icona propria sullo schermo dell'auto: prima si usava solo dentro Google Maps. Le chat si sincronizzano con il telefono, ma l'app non comanda ancora musica o climatizzatore.",
+      "signal": "39 testate",
+      "link": "https://www.macrumors.com/2026/11/11/google-gemini-apple-carplay/",
+      "source": "MacRumors"
+    },
+    {
+      "id": "persa-harbor-claris",
+      "when": "2026-11-11",
+      "ref": {"date": "2026-11-11", "id": "harbor-claris-ai-locale"},
+      "title": "Claris prova Harbor, un'app che trasforma uno o più Mac in un server privato per l'AI",
+      "note": "Secondo il leaker Aaron Perris, la filiale Apple Claris ha in anteprima privata Harbor: fa girare modelli aperti sul Mac senza mandare dati al cloud, e con Thunderbolt 5 collega più Mac per caricare modelli troppo grandi per uno solo.",
+      "signal": "8 testate, 3 discussioni",
+      "link": "https://www.cultofmac.com/news/apples-harbor-app-promises-easier-way-run-local-ai-mac",
+      "source": "Cult of Mac"
+    }
+  ]
+}

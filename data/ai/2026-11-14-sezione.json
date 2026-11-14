@@ -1,0 +1,128 @@
+{
+ "ai": [
+  {
+   "id": "chatgpt-wallet",
+   "lab": "openai",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "OpenAI lancia ChatGPT Wallet: gli agenti comprano per te, con la conferma di Face ID",
+   "sintesi": "Da ieri gli abbonati Pro negli Stati Uniti possono registrare una carta e lasciare che gli agenti di ChatGPT completino gli acquisti, approvandoli uno per uno con Face ID o l'impronta.",
+   "note": "ChatGPT Wallet è il secondo tentativo di OpenAI con gli acquisti dentro la chat, dopo Instant Checkout, abbandonato perché poco flessibile. Prima di pagare l'agente mostra articoli, totale e carta; l'utente conferma con una verifica biometrica, e American Express, Mastercard e Visa sostituiscono i dati della carta con un token, che il negozio vede al posto del numero vero. Per ora vale solo con Dots, per maggiorenni con abbonamento Pro e carta americana; più avanti OpenAI vuole permettere acquisti delegati entro limiti di spesa e categorie. Alcuni negozi bloccano gli agenti: quest'anno Amazon ha chiuso la porta a Muse di Meta.",
+   "apple": "La conferma passa da Face ID, e il pagamento usa lo stesso meccanismo a token di Apple Pay, che OpenAI cita come modello.",
+   "link": "https://the-decoder.com/openai-rebuilt-ai-shopping-from-scratch-with-chatgpt-wallet/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "anthropic-ipo-sei-volte",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "La IPO di Anthropic ha richieste sei volte superiori alle azioni, e le banche escludono gli investitori cinesi",
+   "sintesi": "Secondo Bloomberg gli ordini superano di sei volte le azioni in vendita: Anthropic punta a raccogliere fino a 64,4 miliardi di dollari, più della quotazione di SpaceX.",
+   "note": "Rispetto alla forchetta fissata la settimana scorsa, ora c'è la domanda: sei volte l'offerta, su una valutazione di circa 1.400 miliardi di dollari, con altri 26 miliardi da un collocamento privato in cui Nvidia compra azioni per 10 miliardi. I ricavi annualizzati erano a 81 miliardi a fine ottobre, contro i 71 di settembre. Bloomberg scrive anche che diverse banche respingono gli ordini dalla Cina continentale e da Hong Kong, citando le regole americane sull'export militare (ITAR). Il titolo, ANT al Nasdaq, ha il prezzo fissato per il 18 novembre.",
+   "link": "https://the-decoder.com/anthropics-ipo-is-six-times-oversubscribed-and-on-track-to-become-the-largest-public-offering-in-history/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "blackwell-modelli-cinesi",
+   "lab": "aperti",
+   "kind": "ricerca",
+   "title": "Will DePue trova le tracce dei chip Blackwell di Nvidia nei pesi di sei modelli cinesi",
+   "sintesi": "Secondo l'analisi dell'ex ricercatore di OpenAI, DeepSeek, Moonshot AI, MiniMax e Ant Group hanno addestrato i loro modelli più recenti su GPU vietate all'export verso la Cina.",
+   "note": "Will DePue, che in OpenAI ha lavorato a Sora, GPT-4o e GPT-5 prima di fondare il gruppo no profit Unemployment Labs, legge nei pesi pubblicati la firma che ogni generazione di chip lascia all'inizio dell'addestramento. I sei modelli usciti da aprile 2026 portano quella di Blackwell; quelli precedenti, come DeepSeek-V3 e Kimi K2.5, quella della generazione Hopper. DePue scrive su X che ricercatori di OpenAI e Anthropic hanno verificato il metodo: finora i sospetti dei funzionari americani non avevano mai avuto una prova pubblica.",
+   "link": "https://the-decoder.com/former-openai-researcher-says-he-found-nvidia-blackwell-fingerprints-hidden-inside-six-chinese-ai-models/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "claude-duet-prova",
+   "lab": "anthropic",
+   "kind": "funzione",
+   "title": "Claude Duet alla prova del Verge: un agente un po' assillante, ma utile",
+   "sintesi": "Allison Johnson ha usato per una settimana Duet, l'agente di Anthropic per chi non scrive codice, fra viaggi e lavoro: a tratti davvero utile, a tratti insistente.",
+   "note": "Duet ha un'app sua, come Muse di Meta, e una volta collegati i servizi di produttività e di chat propone aiuti sotto forma di schede da scorrere. È più orientato al lavoro degli agenti rivali, Instinct, Muse e Dots di OpenAI, e più semplice di Claude Cowork e Claude Code. La recensora lo trova a tratti assillante, e molto disposto a scrivere di sé: si è offerto di aiutarla a raccontare la prova.",
+   "apple": "L'app di Duet è già aggiornata per lo schermo di iPhone Duo.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on",
+   "source": "The Verge"
+  },
+  {
+   "id": "linux-segnalazioni-ai",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Le segnalazioni di bug scritte dall'AI travolgono i manutentori di Linux",
+   "sintesi": "Trovare i bug ora costa poco: nel 2026 Linux ha registrato in media 27 vulnerabilità al giorno, e il 10 novembre un manutentore del kernel ha smesso di rivedere codice.",
+   "note": "Il sistema MDASH del FORGE Lab di Microsoft ha trovato 59 bug nel kernel, uno vecchio almeno 21 anni, ma trasformarli in segnalazioni ha chiesto più di quattro mesi-persona: «Finding bugs and fixing them are drastically out of balance». Nell'ultimo aggiornamento mensile di Windows Microsoft ha corretto 726 vulnerabilità, in gran parte trovate con l'AI. Lorenzo Stoakes, ingegnere di ARM che rivedeva la gestione della memoria del kernel, ha lasciato il ruolo per il carico di lavoro.",
+   "link": "https://www.zdnet.com/innovation/ai-bug-reports-linux-windows/",
+   "source": "ZDNet"
+  },
+  {
+   "id": "agibot-g2-negozio",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Sei robot AGIBOT G2 gestiscono per 24 ore un minimarket di Shanghai",
+   "sintesi": "Dal 2 al 3 novembre sei umanoidi su ruote di AGIBOT hanno svolto 1.730 compiti in un negozio aperto al pubblico; quattro su sei hanno superato la valutazione finale.",
+   "note": "AGIBOT è un'azienda cinese di robot umanoidi. Ogni G2 aveva un ruolo: assistenza ai clienti, controllo degli scaffali, rifornimento, caffè, cassa e cibo caldo, pulizia. Nelle 24 ore hanno gestito 683 interazioni con i clienti, 147 caffè, 126 colazioni e 277 controlli e rifornimenti degli scaffali. La prova, nel distretto di Xuhui, è stata seguita in diretta da oltre due milioni di persone.",
+   "conto": {
+    "parte": 683,
+    "tutto": 1730,
+    "etichetta": "interazioni con i clienti, sui 1.730 compiti svolti dai sei robot in 24 ore",
+    "fonte": "AGIBOT, via The Robot Report"
+   },
+   "link": "https://www.therobotreport.com/six-agibot-g2-robots-complete-1730-tasks-in-24-hour-shanghai-convenience-store-trial/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "fable52-picchiaduro-nipote",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Lex Toumbourou fa scrivere a Fable 5.2 in una notte il picchiaduro disegnato dal nipote",
+   "note": "Il nipote Aiden aveva disegnato eroi, dodici boss e la storia; una prima versione fatta a giugno con Opus 4.8 e Fable 5 non reggeva più di qualche minuto. Con Fable 5.2 in Claude Code, Toumbourou ha lanciato un solo prompt prima di dormire: la mattina c'era un gioco a dodici livelli per quattro giocatori con i controller, con scene animate, casse da rompere e un finale, circa 175 immagini e 140 clip audio. Il modello aveva anche scritto un bot che giocava tutti i livelli in un browser e controllava le schermate.",
+   "prova": "Apri aidens-revenge.pages.dev e gioca, anche con un controller collegato al Mac",
+   "passi": [
+    "Apri aidens-revenge.pages.dev nel browser",
+    "Collega un controller al Mac, fino a quattro",
+    "Scegli un eroe e gioca i dodici livelli"
+   ],
+   "prompt": "I want you to help me finish this game. Make it as fun as possible. It should feel like a modern-day Ninja Turtles arcade game. An action-packed beat 'em up. Make the graphics amazing. You can use OpenAI's ChatGPT Images 2.5 for images. And ElevenLabs for sound effects. OpenAI key is /path/to/openai-key. ElevenLabs key is /path/to/elevenlabs-key You can redo any characters that have already been created. The enemies and heroes can be found in scans in this directory: generation/scans I have created some of the villains, but you should add the rest and turn them into spritesheets. Use any assets you find online. Create new sprites for the henchmen. Create backgrounds and power-ups in the levels. I'd like to plug in a controller so up to 4 people can play. Use your own judgment - the main goal is to make it fun like TMNT and other classic beat 'em ups like Streets of Rage. Make it one of the best games you can possibly make. You are a truly world-class game developer. Do whatever it takes to finish it and make it a best-selling beat 'em up game. Commit as you go. Don't worry about destroying what exists. Start fresh where it makes sense.",
+   "prompt_lingua": "en",
+   "strumento": "Claude Code con Fable 5.2, ChatGPT Images 2.5, ElevenLabs",
+   "costo": "circa 340 milioni di token Claude, quasi tutti letture dalla cache",
+   "link": "https://notesbylex.com/fable-5-2-one-shotted-my-nephews-dream-game",
+   "source": "NotesByLex"
+  },
+  {
+   "id": "isometric-sf",
+   "lab": "aperti",
+   "kind": "demo",
+   "title": "Isometric SF: tutta la Baia di San Francisco in una mappa isometrica disegnata da un modello",
+   "note": "Justin Chavez ha ripreso con three.js le tessere 3D fotorealistiche di Google, poi ha addestrato un piccolo modello aperto (una LoRA su Klein 4B, addestrata con l'aiuto di Qwen) a ridisegnarle in stile pixel art: circa 1.300 miglia quadrate, da Apple Park a Berkeley. Con Nano Banana 2 la stessa mappa sarebbe costata circa 7.000 dollari; così costa 9 centesimi al chilometro quadrato. Su Hacker News più di un commento fa notare che non è vera pixel art: si vedono bordi sfumati e giunture fra le tessere.",
+   "prova": "Apri isometricsf.com e cerca Apple Park a Cupertino",
+   "passi": [
+    "Apri isometricsf.com",
+    "Trascina la mappa verso sud, fino a Cupertino",
+    "Avvicinati con lo zoom su Apple Park"
+   ],
+   "strumento": "Google 3D Photorealistic Tiles, three.js, LoRA su Klein 4B",
+   "costo": "circa 0,09 dollari al chilometro quadrato, dopo l'addestramento",
+   "segnale": "172 punti e 67 commenti su Hacker News",
+   "link": "https://isometricsf.com/",
+   "source": "Show HN"
+  },
+  {
+   "id": "llamacpp-1-0",
+   "lab": "aperti",
+   "kind": "sapevi",
+   "title": "llama.cpp arriva alla versione 1.0",
+   "note": "llama.cpp è il programma open source con cui si fanno girare in locale, senza cloud, i modelli a pesi aperti, anche su un portatile. L'annuncio della 1.0 è stato uno dei post più votati di ieri su r/LocalLLaMA, la comunità di chi usa i modelli sul proprio computer.",
+   "prova": "Scarica llama.cpp dal repository ggml-org su GitHub e avvia un modello aperto",
+   "passi": [
+    "Apri github.com/ggml-org/llama.cpp",
+    "Installa la versione per il tuo sistema",
+    "Scarica un modello aperto piccolo e avvialo"
+   ],
+   "segnale": "8º fra i post più votati del giorno su r/LocalLLaMA",
+   "link": "https://www.reddit.com/r/LocalLLaMA/comments/1xv8t2e/llamacpp_v10_is_here/",
+   "source": "Reddit r/LocalLLaMA"
+  }
+ ],
+ "scritto": "2026-11-14"
+}
