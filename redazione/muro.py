@@ -8,7 +8,8 @@ Tutto viene dai file della corsa (si legge soltanto):
   di Google News e le testate di cui non so la sede restano «senza luogo», e lo si dice;
 - la borsa: la chiusura di AAPL che la corsa mette nell'edizione;
 - le discussioni: la sezione «social» dell'edizione;
-- i canali: i primi titoli delle altre schede (AI, Games, Scienza, GTA VI).
+- i canali: i primi titoli delle altre schede (AI, Games, Scienza, GTA VI);
+- l'edicola: le testate lette di più per scrivere l'edizione di oggi; le annate: le edizioni in archivio, per mese.
 """
 import re
 
@@ -123,3 +124,28 @@ def canali(brief):
     primi = lambda voci, n=3: [x.get("title") for x in (voci or []) if x.get("title")][:n]   # noqa: E731
     return {"ai": primi(b.get("ai")), "games": primi(b.get("games")), "scienza": primi(b.get("spazio")),
             "gta": primi((b.get("gta") or {}).get("voci"))}
+
+
+def edicola(brief, quante=5):
+    """Le testate lette di più per scrivere l'edizione di oggi (il campo `sources` delle notizie): sono i
+    giornali appesi alla rastrelliera sotto la finestra."""
+    conta = {}
+    for n in (brief or {}).get("news") or []:
+        for nome in n.get("sources") or []:
+            if nome:
+                conta[nome] = conta.get(nome, 0) + 1
+    return [{"nome": k, "notizie": v} for k, v in sorted(conta.items(), key=lambda kv: (-kv[1], kv[0]))[:quante]]
+
+
+MESI = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
+
+
+def annate(giorni, fino_a):
+    """Quante edizioni ci sono in archivio, mese per mese: sono i faldoni sullo scaffale sotto la lavagna."""
+    per = {}
+    for g in giorni:
+        if g <= fino_a:
+            per[g[:7]] = per.get(g[:7], 0) + 1
+    mesi = [{"mese": k, "etichetta": MESI[int(k[5:7]) - 1].upper(), "anno": k[:4], "edizioni": v} for k, v in sorted(per.items())]
+    return {"mesi": mesi[-8:], "totale": sum(per.values()), "dal": min((g for g in giorni if g <= fino_a), default=None)}
+

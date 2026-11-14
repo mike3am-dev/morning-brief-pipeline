@@ -23,7 +23,7 @@
         y += 20; x.fillStyle = C.ink; x.font = `800 30px ${SISTEMA}`; aCapo(x, c.dopo, w - 96, 4).forEach(r => { x.fillText(r, 48, y); y += 37; });
         return; }
       finestra(a.mestiere)(x, w, h);
-      const tinta = { ai: C.red, schede: '#7B4BE0', visualista: C.blue, lettura: C.blue }[a.id] || C.orange;
+      const tinta = { ai: C.red, schede: '#7B4BE0', visualista: C.blue, lettura: C.blue, verifica: '#0F8B7A', foto: '#8A6A45', rete: '#5B6CFF', memoria: '#8E4FB8', fonti: '#2F7A4C' }[a.id] || C.orange;
       x.fillStyle = tinta; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.08, 24); x.fillText(unaRiga(x, (a.consegna || a.ruolo || '').toUpperCase(), w - 96), 48, 112); spazia(x, 0, 1);
       let y = 156;
       if (a.id === 'visualista') { [70, 118, 92, 150, 104].forEach((alto, i) => { x.fillStyle = [C.blue, C.yellow, C.orange, C.red, C.blue][i]; x.fillRect(52 + i * 40, 320 - alto, 28, alto); }); x.fillStyle = C.ink; x.fillRect(48, 320, 210, 4); }
@@ -37,7 +37,7 @@
   // i tre schermi della regia che si vedono di fronte: l'edizione, la corsa, le macchine
   const minutiDi = o => { const [h, m] = (o || '0:0').split(':').map(Number); return h * 60 + m; };
   const oraCorta = o => (o || '').replace(/^0/, '');
-  const TINTA = { regia: C.orange, lettura: C.blue, redattore: C.orange, revisore: C.red, visualista: C.yellow, ai: C.red, schede: '#7B4BE0', gta: '#FF5DA2', fonti: '#2F7A4C' };
+  const TINTA = { regia: C.orange, lettura: C.blue, redattore: C.orange, revisore: C.red, visualista: C.yellow, ai: C.red, schede: '#7B4BE0', gta: '#FF5DA2', fonti: '#2F7A4C', verifica: '#0F8B7A', foto: '#8A6A45', rete: '#5B6CFF', memoria: '#8E4FB8' };
   const texRegia = [
     tela(640, 400, (x, w, h) => { finestra('l\'edizione del ' + DATA_LUNGA)(x, w, h);
       x.fillStyle = C.orange; x.font = `800 24px ${DISPLAY}`; spazia(x, 0.08, 24); x.fillText(STATO.lavagna.length + ' NOTIZIE · USCITA ALLE ' + oraCorta(USCITA), 48, 112); spazia(x, 0, 1);

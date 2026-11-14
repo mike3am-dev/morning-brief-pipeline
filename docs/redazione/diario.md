@@ -490,3 +490,57 @@ uno accanto all'altro.
 (lo aveva chiesto lui) invece di un 16:9 sopra il mobile; il muro non cambia contenuto secondo
 l'ora (la mappa è la cosa che gli è piaciuta), ma ha la sigla; restano i quadri Apple, ridotti a
 quattro e lontani da GTA; i nomi di chi lo aspetta restano accesi.
+
+## 14 novembre 2026, sera — quattro gruppi di lavoro, il marchio dappertutto, l'angolo delle riunioni
+
+Mike, vista la versione 10: «logo sempre visibile», «voglio aprire il modello e CAPIRE che sono
+dentro la redazione di TMB»; il muro che diventa logo gli piace, ma ogni minuto («10-50-10-50»);
+«sotto la lavagna e la finestra è proprio spazio sprecato»; la sua scrivania «sembra un tavolo
+vuoto»: rotonda, con gli sgabelli, «un'area meeting» per quando convoca un reparto; e soprattutto
+«a colpo d'occhio vorrei gruppi di lavoro», con altre scrivanie e altri agenti («scegli tu»), «per
+un totale di 12 agenti + Olivia». Pubblicata come versione 11.
+
+**Chi sono i quattro nuovi, e perché loro.** Non ho inventato mestieri: ho dato una faccia a
+quattro passi della corsa che finora erano solo script. Così anche le loro schede mostrano numeri
+veri, e la regola «niente di inventato» tiene.
+
+| Nome | Mestiere | Gli script | Cosa mostra (dai file della corsa) |
+|---|---|---|---|
+| **Nora** | verificatrice | `verify.py`, `eco.py` | quante notizie verificate, quante con la parola di Apple, quante da una testata sola, quali girano di più |
+| **Bruno** | photo editor | `images.py` | quante foto per notizie, AI, Games e Scienza, e quanto pesa ognuna |
+| **Dario** | cronista della rete | `social.py`, `lab.py` | le discussioni entrate in edizione, quante le testate non avevano, quante raccolte |
+| **Clio** | archivista delle storie | `threads.py`, `claims.py`, `facts.py`, `missed.py` | le storie che oggi vanno avanti, le previsioni nuove e chiuse, i numeri seguiti, i ripescaggi |
+
+Stanno in `ROSTER` (`redazione/stato.py`) con `script` (i comandi) e `voce` (chi sono, al posto del
+file dell'agente); `modello` vale «uno script». Le carte per quando Mike gli parla le scrive
+`redazione/carte.py`. La scheda lo dice chiaro: non sono un modello. **Le decisioni prese con loro
+vanno alla regia** (`NOMI` in `pipeline/decisioni.py`), che quegli script li lancia. Se lo stato
+che la pagina trova è più vecchio e non li conosce, li aggiunge vuoti (`05-dati.js`).
+
+**I gruppi** (`GRUPPI` in `05-dati.js`, `ISOLE` in `55-cast.js`), ognuno col suo tappeto e il nome
+scritto sopra (`59-marchio.js`):
+- **L'edizione** (isola da quattro, a sinistra): Tobia ed Ettore davanti, Nora e Ivo di fronte.
+- **Le schede** (isola da quattro, a destra): Rita e Vito davanti, Ada e Dario di fronte.
+- **Design** (coppia affiancata davanti al muro): Lea e Bruno. Ogni tanto si girano l'uno verso
+  l'altra e ne parlano (`conIlCollega` in `62-gesti.js`): è il primo «confronto» fra colleghi.
+- **Archivio** (coppia una di fronte all'altra, accanto agli schedari): Zeno, il lunedì, e Clio.
+- La regia di Olivia al centro. Nella scheda di ognuno c'è il gruppo e con chi lavora.
+
+**L'angolo delle riunioni** (`43-tavolo.js`) ha preso il posto del tavolo luminoso, in basso a
+destra: tavolo rotondo e alto, tre sgabelli per chi viene convocato, la sedia da regista di Mike
+(«MIKE · direttore creativo» sullo schienale). Sul tavolo la prima pagina, girata verso chi guarda,
+che si compone come prima; accanto il registro delle decisioni. **Convocare un gruppo al tavolo non
+si può ancora**: è il passo dopo (le riunioni).
+
+**Il marchio.** Nell'intestazione della pagina («The Morning Brief · la redazione»); il muro che
+diventa sigla dieci secondi ogni minuto, e per cinque quando si apre la pagina; l'insegna luminosa
+sulla parete di sinistra, sempre accesa (`46-arredo.js`); il tappeto della regia che è il sole del
+marchio con la falce azzurra; la testata sul fronte del desk, dai due lati dell'apertura.
+
+**L'arredo lungo la parete di sinistra** (`46-arredo.js`): sotto la finestra la rastrelliera dei
+giornali, con le testate lette di più per l'edizione di oggi e quante notizie ognuna
+(`edicola` in `muro.py`); sotto la lavagna lo scaffale delle annate, un faldone per mese grosso
+quanto le edizioni che contiene (`annate`), con i giornali impilati e il cartoncino col totale.
+
+**Per provare**: il muro mostra il logo quando il secondo del giro, diviso per 60, dà resto fra 0 e
+10: per vedere le notizie `redazione.tempo(75)`, per il logo `redazione.tempo(64)`.

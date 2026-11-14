@@ -97,16 +97,17 @@ Le scelte, una per una:
   vuota e sul calendario c'è il cerchio sul prossimo lunedì.
 
 **Dal 14 novembre 2026 la stanza è questa** (il diario dice come ci si è arrivati; lo schema qui
-sopra è quello di partenza). Sulla parete di fondo tre cose: quattro quadri Apple sopra la credenza,
-**il muro delle notizie dal pavimento al soffitto** (marchio, orologi dei fusi, conto alla rovescia
-con lo stato dell'edizione, i tre canali, la mappa, la striscia dell'ultim'ora, borsa, fonti,
-discussioni; ogni tanto diventa la sigla col logo) e il manifesto di GTA VI. Sulla parete di
-sinistra la finestra, **una lavagna sola** (appunti a mano e post-it per Mike) e l'archivio. In
-mezzo alla stanza **due isole da quattro scrivanie**, due coppie una di fronte all'altra: l'edizione
-(Tobia, Ettore, Ivo, Lea) e le schede (Ada, Rita, Vito, e Zeno il lunedì), con la regia di Olivia
-fra le due, davanti al muro. Davanti alla lavagna il **tavolo luminoso** dove si compone la prima
-pagina, col segnaposto di Mike e il registro delle decisioni. Le etichette compaiono solo quando
-servono. La sala riunioni non c'è (le riunioni restano «più avanti»).
+sopra è quello di partenza). **Tredici persone in quattro gruppi di lavoro, attorno alla regia.**
+Sulla parete di fondo: quattro quadri Apple sopra la credenza, il muro delle notizie dal pavimento
+al soffitto (dieci secondi ogni minuto diventa la sigla col marchio), il manifesto di GTA VI.
+Sulla parete di sinistra: la finestra con sotto la rastrelliera dei giornali, l'insegna luminosa
+col marchio, una lavagna sola con sotto lo scaffale delle annate, gli schedari.
+In mezzo: **l'edizione** (Tobia, Ettore, Ivo, Nora) e **le schede** (Ada, Rita, Vito, Dario), due
+isole da quattro; **il design** (Lea, Bruno), una coppia davanti al muro; **l'archivio** (Zeno,
+Clio), una coppia accanto agli schedari; la regia di Olivia al centro, sul tappeto che è il sole
+del marchio. In basso a destra **l'angolo delle riunioni**: il tavolo rotondo di Mike con la prima
+pagina e il registro delle decisioni, tre sgabelli e la sua sedia da regista. Nora, Bruno, Dario e
+Clio sono la faccia di quattro passi della corsa fatti da script, non agenti con un modello.
 
 La stanza si progetta **per il Mac**: lo schermo del portatile e un monitor esterno, la stanza
 intera in una schermata con il pannello dell'agente a destra (come nel video). iPhone e Duo vengono

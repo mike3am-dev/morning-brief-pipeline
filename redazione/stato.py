@@ -39,25 +39,53 @@ OUT = os.path.join(ROOT, "redazione", "stato")
 
 # Chi c'è in redazione. L'ordine è quello della procedura (routine/prompt.md).
 # I nomi li ha voluti Mike il 12 novembre 2026 («diamogli dei nomi, fai tu, oltre al ruolo»).
+# Dal 14 novembre 2026 la redazione è fatta di gruppi di lavoro (`gruppo`), e quattro passi della corsa che finora
+# erano solo script hanno una persona: la verifica, le foto, la rete, la memoria. Non sono agenti con un modello
+# (`script` dice quali comandi sono), ma i loro numeri vengono dagli stessi file della corsa.
 ROSTER = [
     {"id": "regia", "nome": "Olivia", "mestiere": "caporedattrice", "ruolo": "la regia, al desk circolare",
-     "file": None, "colore": "apple"},
+     "file": None, "colore": "apple", "gruppo": "regia"},
     {"id": "lettura", "nome": "Tobia", "mestiere": "lettore", "ruolo": "legge gli articoli, notizia per notizia",
-     "file": None, "colore": "apple"},
+     "file": None, "colore": "apple", "gruppo": "edizione"},
     {"id": "redattore", "nome": "Ettore", "mestiere": "redattore", "ruolo": "scrive la prosa dell'edizione",
-     "file": ".claude/agents/redattore.md", "colore": "apple", "dal": "2026-11-03"},
+     "file": ".claude/agents/redattore.md", "colore": "apple", "dal": "2026-11-03", "gruppo": "edizione"},
     {"id": "revisore", "nome": "Ivo", "mestiere": "revisore", "ruolo": "rilegge e corregge le parole, mai i fatti",
-     "file": ".claude/agents/revisore.md", "colore": "apple", "dal": "2026-11-12"},
+     "file": ".claude/agents/revisore.md", "colore": "apple", "dal": "2026-11-12", "gruppo": "edizione"},
+    {"id": "verifica", "nome": "Nora", "mestiere": "verificatrice", "gruppo": "edizione", "colore": "apple", "file": None,
+     "ruolo": "controlla da dove viene ogni notizia e quanto gira", "script": "verify.py ed eco.py",
+     "voce": "Sono la verifica delle fonti. Per ogni notizia metto insieme gli articoli che la raccontano, li apro e "
+             "cerco da dove dicono di averla presa: cinque siti che scrivono la stessa cosa citando lo stesso nome sono "
+             "una fonte sola, non cinque conferme. Chiedo anche a Google News e Bing News chi altro l'ha scritta, per "
+             "sapere quanto gira e chi l'ha data per primo. Non cambio i tag: dico cosa ho visto, decide la regia."},
     {"id": "visualista", "nome": "Lea", "mestiere": "visualista", "ruolo": "i grafici degli approfondimenti",
-     "file": ".claude/agents/visualista.md", "colore": "apple"},
+     "file": ".claude/agents/visualista.md", "colore": "apple", "gruppo": "design"},
+    {"id": "foto", "nome": "Bruno", "mestiere": "photo editor", "gruppo": "design", "colore": "apple", "file": None,
+     "ruolo": "sceglie la foto di ogni notizia, senza loghi e non sgranata", "script": "images.py",
+     "voce": "Sono le foto dell'edizione. Per le prime notizie e per le schede prendo l'immagine dall'articolo; se "
+             "porta il marchio della testata provo quella di un'altra testata sulla stessa notizia, e se resta solo "
+             "quella taglio la striscia col logo. Le prime cinque le voglio larghe, l'apertura più di tutte: una foto "
+             "stretta fra le prime si sostituisce prima di pubblicare."},
     {"id": "ai", "nome": "Ada", "mestiere": "cronista AI", "ruolo": "la scheda AI: cronaca e LAB",
-     "file": ".claude/agents/ai.md", "colore": "ai", "dal": "2026-11-05"},
+     "file": ".claude/agents/ai.md", "colore": "ai", "dal": "2026-11-05", "gruppo": "schede"},
     {"id": "schede", "nome": "Rita", "mestiere": "redattrice di Games e Scienza", "ruolo": "le schede Games e Scienza",
-     "file": ".claude/agents/schede.md", "colore": "games-scienza", "dal": "2026-11-05"},
+     "file": ".claude/agents/schede.md", "colore": "games-scienza", "dal": "2026-11-05", "gruppo": "schede"},
     {"id": "gta", "nome": "Vito", "mestiere": "cronista di GTA VI", "ruolo": "la sezione GTA VI",
-     "file": ".claude/agents/gta.md", "colore": "vice-city", "dal": "2026-11-05"},
+     "file": ".claude/agents/gta.md", "colore": "vice-city", "dal": "2026-11-05", "gruppo": "schede"},
+    {"id": "rete", "nome": "Dario", "mestiere": "cronista della rete", "gruppo": "schede", "colore": "apple", "file": None,
+     "ruolo": "ascolta cosa si dice in rete: Reddit, Hacker News, i link che Mike incolla", "script": "social.py e lab.py",
+     "voce": "Sono l'orecchio sulla rete. Raccolgo le discussioni di Reddit e Hacker News e quello che Mike incolla a "
+             "mano, e le divido in due mucchi: l'eco, cioè si parla di una notizia che abbiamo già, e il nuovo, cioè se "
+             "ne parla e da noi non c'è. Raccolgo anche cosa fa la gente con i modelli, per il LAB di Ada. Non sono "
+             "fatti: è la misura di quanto se ne parla."},
     {"id": "fonti", "nome": "Zeno", "mestiere": "archivista delle fonti", "ruolo": "il controllo delle fonti, il lunedì",
-     "file": "routine/fonti-settimanale.md", "colore": "apple"},
+     "file": "routine/fonti-settimanale.md", "colore": "apple", "gruppo": "archivio"},
+    {"id": "memoria", "nome": "Clio", "mestiere": "archivista delle storie", "gruppo": "archivio", "colore": "apple", "file": None,
+     "ruolo": "tiene i fili delle storie, le previsioni e i numeri che si muovono",
+     "script": "threads.py, claims.py, facts.py e missed.py",
+     "voce": "Sono la memoria della rassegna. Tengo i fili delle storie che vanno avanti nel tempo, le previsioni "
+             "che ogni rumor contiene e la data entro cui si saprà se era vero, i numeri che qualcuno rivede. Prima "
+             "che si scriva dico cosa abbiamo già raccontato: se una notizia è un doppione o un seguito. E propongo "
+             "cosa ripescare: quello che non abbiamo dato e quello che Mike non ha aperto."},
 ]
 
 CRONACA = {"modello", "funzione", "affari", "regole", "ricerca"}
@@ -374,12 +402,12 @@ def stato(giorno):
     for a in ROSTER:
         r = (reg or {}).get(a["id"])
         x = {"id": a["id"], "nome": a["nome"], "mestiere": a["mestiere"], "ruolo": a["ruolo"],
-             "colore": a["colore"],
-             "modello": r["modello"] if r else None, "minuti": r["minuti"] if r else None,
+             "colore": a["colore"], "gruppo": a.get("gruppo"), "script": a.get("script"),
+             "modello": r["modello"] if r else ("uno script" if a.get("script") else None), "minuti": r["minuti"] if r else None,
              "token_milioni": r["token_milioni"] if r else None,
              "entrata": ora_locale(r.get("inizio")) if r else None,
              "uscita": ora_locale(r.get("fine")) if r else None,
-             "chi": chi_e(a["file"]), "consegna": None, "dettagli": [],
+             "chi": chi_e(a["file"]) or a.get("voce"), "consegna": None, "dettagli": [],
              "ti_aspetta": a["id"] in da_chi}
         st = None
 
@@ -435,6 +463,58 @@ def stato(giorno):
                                  + (f", {senza} senza" if senza else ""))
                 x["dettagli"] = [f"{n['rank']}. {v.get('tipo')}: {taglia(v.get('titolo'), 80)}"
                                  for n in primi for v in ((n.get("approfondimento") or {}).get("visivi") or [])]
+        elif a["id"] == "verifica":
+            ver = [n for n in news if n.get("verifica")]
+            if ver:
+                st = "consegnato"
+                uff = sum(1 for n in ver if n["verifica"].get("ufficiale"))
+                sole = sum(1 for n in ver if n["verifica"].get("testate") == 1)
+                x["consegna"] = (f"{len(ver)} notizie verificate: {uff} con la parola di Apple, "
+                                 + ("nessuna" if not sole else str(sole)) + " da una testata sola")
+                per_giro = sorted(ver, key=lambda n: -(n["verifica"].get("testate") or 0))
+                x["dettagli"] = [f"{taglia(n.get('title'), 70)} — {n['verifica'].get('testate')} testate"
+                                 + (f", la prima {n['verifica']['primo']['testata']}" if (n["verifica"].get("primo") or {}).get("testata") else "")
+                                 for n in per_giro[:5]]
+        elif a["id"] == "foto":
+            if brief:
+                st = "consegnato"
+                con = [n for n in news if n.get("image")]
+                n_ai = sum(1 for v in b.get("ai") or [] if v.get("image"))
+                n_sc = sum(1 for k in ("games", "spazio") for v in b.get(k) or [] if v.get("image"))
+                x["consegna"] = f"{len(con)} foto per le notizie, {n_ai} per la scheda AI, {n_sc} per Games e Scienza"
+                # il peso della foto incorporata (i caratteri del data URI per tre quarti): l'apertura è la più grande
+                x["dettagli"] = [f"{n.get('rank')}. {taglia(n.get('title'), 64)} — {round(len(n['image']) * 0.75 / 1024)} KB"
+                                 for n in con[:6]]
+                senza = [str(n.get("rank")) for n in news[:8] if not n.get("image")]
+                if senza:
+                    x["dettagli"].append("senza foto fra le prime otto: la " + ", la ".join(senza))
+        elif a["id"] == "rete":
+            disc = b.get("social") or []
+            if brief:
+                st = "consegnato"
+                nuove = sum(1 for d in disc if d.get("origine") == "nuovo")
+                x["consegna"] = (f"{len(disc)} discussioni in edizione, {nuove} che le testate non avevano"
+                                 + (f"; {(social or {}).get('count')} raccolte in rete" if (social or {}).get("count") is not None else "")
+                                 + (f", {(lab or {}).get('count')} per il LAB" if (lab or {}).get("count") is not None else ""))
+                x["dettagli"] = [taglia(d.get("title"), 84) + (f" ({d.get('source')})" if d.get("source") else "") for d in disc[:5]]
+        elif a["id"] == "memoria":
+            if brief:
+                st = "consegnato"
+                registro = carica(p("data", "threads.json")) or {}
+                fili = {}
+                for n in news:
+                    if n.get("thread"):
+                        fili[n["thread"]] = fili.get(n["thread"], 0) + 1
+                prev = [n["claim"] for n in news if n.get("claim")]
+                chiuse = sum(len(n.get("resolves") or []) for n in news)
+                numeri = sum(len(n.get("facts") or []) for n in news)
+                x["consegna"] = (f"{sum(fili.values())} notizie su {len(fili)} storie già aperte; {len(prev)} "
+                                 f"{'previsione nuova' if len(prev) == 1 else 'previsioni nuove'}, {chiuse} chiuse; "
+                                 f"{numeri} {'numero seguito' if numeri == 1 else 'numeri seguiti'}; "
+                                 f"{len(b.get('recap') or [])} ripescaggi")
+                x["dettagli"] = [f"{(registro.get(k) or {}).get('label') or k}: {v} {'notizia' if v == 1 else 'notizie'} oggi"
+                                 for k, v in sorted(fili.items(), key=lambda kv: -kv[1])[:4]]
+                x["dettagli"] += [f"Previsione: {taglia(c.get('text'), 70)} (entro il {c.get('horizon')})" for c in prev[:2]]
         elif a["id"] == "ai":
             voci = (ai_file or {}).get("ai")
             if voci is not None:
@@ -535,6 +615,8 @@ def stato(giorno):
         s["borsa"] = _muro.borsa(brief)
         s["discussioni"] = _muro.discussioni(brief)
         s["canali"] = _muro.canali(brief)
+        s["edicola"] = _muro.edicola(brief)
+        s["annate"] = _muro.annate(giorni_disponibili(), giorno)
     except Exception as e:   # il muro non deve mai fermare lo stato
         print("muro non composto:", e, file=sys.stderr)
     # quali decisioni del registro sono arrivate alla corsa: quelle copiate in data/redazione/decisioni.json

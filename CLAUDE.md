@@ -1542,7 +1542,13 @@ Un controllo fatto solo con curl dà un falso positivo. La Edge Function `app` e
 Dal 12 novembre 2026 si costruisce **la redazione virtuale**: una stanza in 3D dove gli agenti della
 corsa hanno una scrivania e un nome (Olivia la regia, Tobia il lettore, Ettore il redattore, Ivo il
 revisore, Lea la visualista, Ada, Rita, Vito, Zeno) e Mike, il direttore creativo, entra dal Mac,
-guarda e parla con loro. È un'interfaccia sul lavoro della corsa: **la corsa non la lancia, non la
+guarda e parla con loro. Dal 14 novembre 2026 sono in **quattro gruppi di lavoro** attorno alla regia
+di Olivia: l'edizione (Tobia, Ettore, Ivo, Nora), le schede (Ada, Rita, Vito, Dario), il design (Lea,
+Bruno), l'archivio (Zeno, Clio). **Nora, Bruno, Dario e Clio non sono agenti con un modello**: sono
+la faccia di quattro passi che nella corsa fanno gli script (la verifica con `verify.py` ed `eco.py`,
+le foto con `images.py`, le discussioni con `social.py` e `lab.py`, la memoria con `threads.py`,
+`claims.py`, `facts.py` e `missed.py`). Le decisioni che Mike prende parlando con loro arrivano
+alla regia, che quegli script li lancia (`pipeline/decisioni.py` le elenca fra le sue). È un'interfaccia sul lavoro della corsa: **la corsa non la lancia, non la
 legge e non la aspetta**. Tutto sta in `docs/redazione/` (si parte da `progetto.md`) e in
 `redazione/`. Per lei la corsa lascia due cose in più, senza costo: `pipeline/revisione.py` archivia
 il testo prima e dopo il revisore in `data/revisione/<giorno>.json`, e `pipeline/costo.py` salva in

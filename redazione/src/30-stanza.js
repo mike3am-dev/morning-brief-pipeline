@@ -119,9 +119,9 @@
       const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07; perno.add(f); g.add(perno); }
     return g;
   }
-  const PIANTE = [[PIANTA[0], PIANTA[1], 0.3], [12.95, 0.45, 0.2], [12.75, 8.1, 0.2], [9.6, 7.95, 0.24]];   // x, z, raggio: servono anche a chi cammina
-  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 12.95, 0, 0.45), at(sansevieria(), 12.75, 0, 8.1));
-  const pianta2 = piantaGrande(); pianta2.scale.setScalar(0.8); pianta2.rotation.y = 1.3; stanza.add(at(pianta2, 9.6, 0, 7.95));
+  const PIANTE = [[PIANTA[0], PIANTA[1], 0.3], [12.95, 0.45, 0.2], [12.95, 5.75, 0.2], [5.55, 8.0, 0.24]];   // x, z, raggio: servono anche a chi cammina
+  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 12.95, 0, 0.45), at(sansevieria(), 12.95, 0, 5.75));
+  const pianta2 = piantaGrande(); pianta2.scale.setScalar(0.8); pianta2.rotation.y = 1.3; stanza.add(at(pianta2, 5.55, 0, 8.0));
   const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, fx + 0.6, 0.68, 0.3));
 
   const lampade = [], paralumi = [];
@@ -133,6 +133,8 @@
   punto(0xFFC27A, 6, 3.1, 1.6, 3.3, 5.5);   // un po' di luce calda sull'isola della prosa
   punto(0xFFC27A, 6, REGIA[0], 1.7, REGIA[1], 5.5);   // sulla regia
   punto(0xFFB07A, 6, 11.4, 1.6, 3.3, 5.5);   // e sull'isola delle schede
+  punto(0xFFC27A, 4, 7.55, 1.5, 2.9, 4);   // sulla coppia del design
+  punto(0xFFC27A, 5, 2.3, 1.6, 7.2, 4.5);   // e su quella dell'archivio
 
   const CESTINO = [4.92, 3.5];   // accanto all'isola della prosa, dal lato di Ettore
   const cestino = gruppo((() => { const c = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.3, 24, 1, true), M(0x3A3B40, { roughness: 0.6 }))); c.material.side = THREE.DoubleSide; c.position.y = 0.15; return c; })(),

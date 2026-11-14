@@ -19,13 +19,13 @@
       n.rotation.set(0, giroN, (k % 2 ? 1 : -1) * 0.08); n.castShadow = false; base.add(at(n, lato * 0.262, 0.5 - k * 0.088, zN)); });
     noteVerdi[id] = [0, 1, 2].map(k => { const n = stampa(0.075, 0.075, texNota('#1F5A3C', ['deciso', 'con Mike'])); n.rotation.set(0, giroN, (k % 2 ? -1 : 1) * 0.07); n.castShadow = false; n.visible = false; base.add(at(n, -lato * 0.262, 0.5 - k * 0.088, zN)); return n; });
   }
-  for (const id of Object.keys(posti)) { if (posti[id].inPiedi) continue; const base = gruppo(); at(base, 0, TAV, -0.18); posti[id].g.add(base); noteSulloSchermo(id, base, !!posti[id].giro); }
+  for (const id of Object.keys(posti)) { if (posti[id].inPiedi) continue; const base = gruppo(); at(base, 0, TAV, -0.18); posti[id].g.add(base); noteSulloSchermo(id, base, -Math.sin(posti[id].giro) - Math.cos(posti[id].giro) > 0); }   // sul retro, se è il retro quello che vediamo
   { const base = gruppo(); at(base, Math.sin(FRONTE) * 0.92, TAV, Math.cos(FRONTE) * 0.92); base.rotation.y = FRONTE + PI; regiaG.add(base); noteSulloSchermo('regia', base); }
   const aggiornaNoteVerdi = quante => { for (const id in noteVerdi) noteVerdi[id].forEach((n, k) => { n.visible = k < (quante[id] || 0); }); };
 
   // i tesserini: chi esce a cercare notizie lo porta al collo; quello di Ettore pende dalla sua sedia
   function tesserino(nome, colore) { const g = gruppo(), cordino = M(colore, { roughness: 0.8 }), c = stampa(0.062, 0.088, texBadge(nome, colore)); c.rotation.x = -0.14;
     g.add(asta([-0.062, 0.432, 0.052], [0, 0.31, 0.126], 0.004, cordino), asta([0.062, 0.432, 0.052], [0, 0.31, 0.126], 0.004, cordino), at(c, 0, 0.262, 0.1295)); return g; }
-  [['lettura', '#0E9CD8'], ['ai', '#E01F3D'], ['schede', '#7B4BE0'], ['gta', '#17181B'], ['regia', '#F0821E']].forEach(([id, col]) => { if (persone[id]) persone[id].userData.j.busto.add(tesserino(AGENTI[id].nome, col)); });
+  [['lettura', '#0E9CD8'], ['ai', '#E01F3D'], ['schede', '#7B4BE0'], ['gta', '#17181B'], ['regia', '#F0821E'], ['verifica', '#0F8B7A'], ['rete', '#5B6CFF']].forEach(([id, col]) => { if (persone[id]) persone[id].userData.j.busto.add(tesserino(AGENTI[id].nome, col)); });
   { const c = stampa(0.062, 0.088, texBadge(AGENTI.redattore.nome, '#F0821E')); c.rotation.y = PI; c.rotation.z = 0.12; posti.redattore.sedia.add(at(c, 0.13, SED + 0.36, -0.272), asta([0.13, SED + 0.56, -0.24], [0.13, SED + 0.4, -0.27], 0.004, M(0xF0821E)), asta([0.1, SED + 0.565, -0.2], [0.13, SED + 0.56, -0.24], 0.004, M(0xF0821E))); }
 

@@ -25,9 +25,9 @@
   const rett = (x0, z0, x1, z1, m = 0.2) => chiudiDove((x, z) => x > Math.min(x0, x1) - m && x < Math.max(x0, x1) + m && z > Math.min(z0, z1) - m && z < Math.max(z0, z1) + m);
   const tondo = (cx, cz, r, m = 0.2) => chiudiDove((x, z) => Math.hypot(x - cx, z - cz) < r + m);
   chiudiDove((x, z) => x < 0.2 || z < 0.2 || x > LARGA - 0.15 || z > FONDA - 0.15);
-  rett(fx - 1.3, 0, fx + 1.3, 0.53); rett(STAMPANTE[0] - 0.5, 0, STAMPANTE[0] + 0.5, 0.6); rett(0, 7.3, 0.58, 8.35);
+  rett(fx - 1.3, 0, fx + 1.3, 0.53); rett(STAMPANTE[0] - 0.5, 0, STAMPANTE[0] + 0.5, 0.6); rett(0, 7.3, 0.58, 8.35); rett(0, zSc0, 0.02 + PROF_SC, zSc1, 0.12);
   PIANTE.forEach(([x, z, r]) => tondo(x, z, r)); tondo(1.26, 0.36, 0.16); tondo(CESTINO[0], CESTINO[1], 0.14, 0.15); PILE.forEach(([x, z]) => tondo(x, z, 0.17, 0.12));
-  rett(MIKE[0] - TAVOLO_MEZZO[0], MIKE[1] - TAVOLO_MEZZO[1], MIKE[0] + TAVOLO_MEZZO[0], MIKE[1] + TAVOLO_MEZZO[1]); tondo(SGABELLO[0], SGABELLO[1], 0.2, 0.15);
+  tondo(MIKE[0], MIKE[1], TAVOLO_R, 0.18); SGABELLI.forEach(([x, z]) => tondo(x, z, 0.2, 0.12)); tondo(SEDIA_MIKE[0], SEDIA_MIKE[1], 0.27, 0.12);
   for (const p of Object.values(posti)) { if (p.inPiedi) continue; const a = p.fuori(-p.w / 2, -p.d / 2), b = p.fuori(p.w / 2, p.d / 2); rett(a[0], a[1], b[0], b[1]);
     const c = p.fuori(-0.26, p.zs - 0.25), e = p.fuori(0.26, p.zs + 0.67); rett(c[0], c[1], e[0], e[1]); }
   chiudiDove((x, z) => { const dx = x - REGIA[0], dz = z - REGIA[1], r = Math.hypot(dx, dz); if (r < R_IN - 0.14 || r > R_OUT + 0.2) return false;

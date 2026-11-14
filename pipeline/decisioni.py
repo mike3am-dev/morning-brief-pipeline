@@ -26,7 +26,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILE = os.path.join(ROOT, "data", "redazione", "decisioni.json")
 NOMI = {"regia": "la regia (Olivia)", "lettura": "il lettore (Tobia)", "redattore": "il redattore (Ettore)",
         "revisore": "il revisore (Ivo)", "visualista": "il visualista (Lea)", "ai": "la scheda AI (Ada)",
-        "schede": "Games e Scienza (Rita)", "gta": "GTA VI (Vito)", "fonti": "le fonti (Zeno)", "tutti": "tutta la redazione"}
+        "schede": "Games e Scienza (Rita)", "gta": "GTA VI (Vito)", "fonti": "le fonti (Zeno)", "tutti": "tutta la redazione",
+        # dal 14 novembre 2026: quattro passi della corsa che sono script. Non leggono niente da soli: li applica la regia
+        "verifica": "la verifica delle fonti (Nora: verify.py ed eco.py, li lanci tu)",
+        "foto": "le foto (Bruno: images.py, lo lanci tu)",
+        "rete": "le discussioni in rete (Dario: social.py e lab.py, li lanci tu)",
+        "memoria": "la memoria delle storie (Clio: threads, claims, facts, missed; li lanci tu)"}
 PER_LA_CORSA = ("preferenza", "regola")
 CAMPI = ("agente", "tipo", "testo", "quando", "giorno", "origine", "postit")
 

@@ -16,6 +16,10 @@
     schede: 'Sei ordinata e un po\' ironica. Sai dire perché una voce è entrata e un\'altra no.',
     gta: 'Sei il più giovane e il più appassionato: GTA VI è la tua ossessione, ma tieni sempre separato l\'ufficiale dalle voci.',
     fonti: 'Sei calmo e preciso, un po\' all\'antica. Lavori il lunedì e ragioni sui numeri delle fonti, non sulle impressioni.',
+    verifica: 'Sei scettica per mestiere e precisa: distingui sempre chi ha dato una notizia da chi l\'ha solo ripresa, e non ti fidi di cinque siti che citano la stessa fonte.',
+    foto: 'Sei concreto e di buon occhio. Parli poco: una foto o va bene o si cambia. I loghi sulle foto non li sopporti.',
+    rete: 'Sei svelto e curioso, con l\'orecchio sempre sulla rete. Sai che una discussione non è un fatto, e lo ripeti volentieri.',
+    memoria: 'Hai una memoria di ferro e un tono pacato. Ti piace collegare la notizia di oggi a quella di tre settimane fa, e ricordare le previsioni che stanno per scadere.',
   };
   const SPUNTI = {
     regia: ['Com\'è andata la corsa stamattina?', 'Perché questa apertura?', 'C\'è qualcosa che ti preoccupa?'],
@@ -27,6 +31,10 @@
     schede: ['Cosa hai scelto per Games?', 'E per Scienza?', 'Cosa hai scartato, e perché?'],
     gta: ['Cosa gira in rete oggi su GTA VI?', 'Quanto manca all\'uscita?', 'Cosa è ufficiale e cosa no?'],
     fonti: ['Cosa c\'è da decidere sulle fonti?', 'Quali fonti tieni d\'occhio?', 'Cosa hai fatto lunedì scorso?'],
+    verifica: ['Quale notizia gira di più oggi?', 'C\'è una notizia con una fonte sola?', 'Dove c\'è la parola di Apple?'],
+    foto: ['Quante foto ci sono oggi?', 'Quale notizia è rimasta senza foto?', 'Come scegli una foto?'],
+    rete: ['Di cosa si discute oggi in rete?', 'Cosa c\'è che le testate non hanno?', 'Cosa hai raccolto per il LAB?'],
+    memoria: ['Quali storie vanno avanti oggi?', 'C\'è una previsione nuova?', 'Cosa hai ripescato, e perché?'],
   };
   const SCUSA = {
     not_granted: 'Per parlare con la redazione la pagina deve poter usare Claude con il tuo account. Ricarica la pagina e, quando te lo chiede, consenti.',
@@ -50,6 +58,8 @@
       `Sei ${a.nome}, ${a.mestiere} della redazione (${a.ruolo}). ${CARATTERE[id] || ''}`,
       a.chi ? 'Il tuo incarico, come sta scritto nelle istruzioni della corsa: ' + a.chi : null,
       'In redazione ogni mestiere è un agente AI che ogni mattina fa la sua parte della corsa, e Mike lo sa: non devi fingere di essere una persona, ma parli del tuo lavoro in prima persona. I colleghi: ' + STATO.agenti.filter(x => x.id !== id).map(x => `${x.nome} (${x.mestiere})`).join(', ') + '.',
+      a.script ? `Una cosa da sapere di te: nella corsa la tua parte non la fa un modello, la fanno degli script (${a.script}), che lancia Olivia. Qui parli per loro. Se Mike ti chiede di cambiare come lavori, digli che la decisione arriverà a Olivia e a chi costruisce quegli script.` : null,
+      GRUPPI[gruppoDi(id)] ? `Il tuo gruppo di lavoro è «${GRUPPI[gruppoDi(id)].nome}»: siedi con ` + (GRUPPI[gruppoDi(id)].chi.filter(k => k !== id && AGENTI[k]).map(k => AGENTI[k].nome).join(', ') || 'nessun altro') + '.' : null,
       '', 'OGGI',
       `In redazione sono le ${ora} di ${GIORNI_LUNGHI[new Date(oggi + 'T12:00:00').getDay()]}. ${edizione} è uscita alle ${oraCorta(USCITA)}.`,
       a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro: ' + a.consegna + '.' : null),

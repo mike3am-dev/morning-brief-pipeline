@@ -40,6 +40,31 @@
         x.strokeStyle = '#24603B'; x.lineWidth = 4; for (const cx of [0.15, 0.85]) { x.beginPath(); x.moveTo(cx * w - 26, a.quota(0.24)); x.lineTo(cx * w + 26, a.quota(0.24)); x.stroke(); } }),
       manica: stoffa(0xF3EBDD), polsino: 0xE2D8C4, colletto: 0xF3EBDD },
   });
+  Object.assign(VESTITI, {
+    blazer: { busto: vestito((x, w, h, a) => { x.fillStyle = '#0F6B5C'; x.fillRect(0, 0, w, h);                                   // Nora: il blazer verde petrolio
+        x.fillStyle = '#FDF6E8'; a.scollo(0.3, 0.12, 0.92);
+        x.strokeStyle = '#17836F'; a.bordoScollo(0.3, 0.12, 0.92, 28); x.strokeStyle = '#0A4A40'; a.bordoScollo(0.3, 0.12, 0.92, 4);
+        x.fillStyle = '#0A4A40'; a.davanti(0, 0.008, 0.04, 0.3); x.fillStyle = '#E8C36A'; a.bottone(0.22, 9);
+        x.strokeStyle = '#0A4A40'; x.lineWidth = 4; for (const cx of [0.15, 0.85]) { x.beginPath(); x.moveTo(cx * w - 30, a.quota(0.2)); x.lineTo(cx * w + 30, a.quota(0.2)); x.stroke(); } }),
+      manica: stoffa(0x0F6B5C), polsino: 0x0A4A40, colletto: 0xFDF6E8 },
+    felpa: { busto: vestito((x, w, h, a) => { x.fillStyle = '#3DA35D'; x.fillRect(0, 0, w, h);                                    // Dario: la felpa verde
+        x.fillStyle = 'rgba(0,60,20,.14)'; for (let i = 0; i < w; i += 24) x.fillRect(i, 0, 4, h);
+        x.fillStyle = '#2E8049'; a.davanti(0, 0.5, 0, 0.08);
+        x.fillStyle = '#F4F1EA'; a.scollo(0.76, 0.078, 0.92); x.strokeStyle = '#2E8049'; a.bordoScollo(0.76, 0.078, 0.92, 20);
+        x.strokeStyle = '#F4F1EA'; x.lineWidth = 5; x.lineCap = 'round'; for (const cx of [0.022, 0.978]) { x.beginPath(); x.moveTo(cx * w, a.quota(0.1)); x.lineTo(cx * w, a.quota(0.27)); x.stroke(); } }),
+      manica: stoffa(0x3DA35D), polsino: 0x2E8049, colletto: 0x2E8049 },
+    multitasche: { busto: vestito((x, w, h, a) => { x.fillStyle = '#B59A6A'; x.fillRect(0, 0, w, h);                              // Bruno: il gilet da fotografo, sulla maglietta nera
+        x.fillStyle = '#26272C'; a.scollo(0.5, 0.11, 0.92); x.strokeStyle = '#8F7848'; a.bordoScollo(0.5, 0.11, 0.92, 10);
+        x.fillStyle = '#8F7848'; a.davanti(0, 0.01, 0.05, 0.5);
+        x.strokeStyle = '#8F7848'; x.lineWidth = 4; for (const cx of [0.15, 0.85]) { x.strokeRect(cx * w - 30, a.quota(0.18), 60, 40); x.strokeRect(cx * w - 34, a.quota(0.4), 68, 52); } }),
+      manica: stoffa(0x26272C), polsino: 0x17181B, colletto: 0x26272C },
+    golf: { busto: vestito((x, w, h, a) => { x.fillStyle = '#7A3FA6'; x.fillRect(0, 0, w, h);                                     // Clio: il cardigan viola
+        x.fillStyle = '#F7EEDC'; a.scollo(0.44, 0.115, 0.9);
+        x.strokeStyle = '#5E2F82'; a.bordoScollo(0.44, 0.115, 0.9, 16);
+        x.fillStyle = '#5E2F82'; a.davanti(0, 0.03, 0.06, 0.44); a.davanti(0, 0.5, 0.14, 0.19);
+        x.fillStyle = '#F3DDB5'; [0.22, 0.31, 0.4].forEach(v => a.bottone(v, 8)); }),
+      manica: stoffa(0x7A3FA6), polsino: 0x5E2F82, colletto: 0xF7EEDC },
+  });
   // gli accessori: si attaccano alla testa o al busto di chi li porta
   const oro = M(0xD9A93B, { metalness: 0.7, roughness: 0.3 });
   const orecchini = ({ testa }) => { for (const l of [-1, 1]) testa.add(at(sph(0.013, oro, 12, 8), l * 0.178, -0.068, -0.004)); };
@@ -51,4 +76,9 @@
   }
   const cerchietto = ({ testa }) => { const c = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.202, 0.009, 8, 36, PI), M(0x7CC6F2, { roughness: 0.5 }))); c.position.set(0, 0.012, 0.04); c.rotation.x = -0.18; testa.add(c); };
   const farfallino = ({ busto }) => { const r = M(0xE01F3D, { roughness: 0.7 }); busto.add(at(gruppo(at(ell(0.024, 1.3, 0.85, 0.5, r), -0.027, 0, 0), at(ell(0.024, 1.3, 0.85, 0.5, r), 0.027, 0, 0), sph(0.011, r, 10, 8)), 0, 0.425, 0.088)); };
+  // la macchina fotografica di Bruno, al collo
+  function macchinaFoto({ busto }) { const corpo = M(0x1B1C20, { roughness: 0.5 }), cinghia = M(0xF5C518, { roughness: 0.8 });
+    const lente = cyl(0.03, 0.03, 0.05, M(0x2E3036, { roughness: 0.3 }), 18); lente.rotation.x = PI / 2; const vetro = cyl(0.021, 0.021, 0.006, M(0x7CC6F2, { roughness: 0.1 }), 18); vetro.rotation.x = PI / 2;
+    const g = gruppo(box(0.115, 0.072, 0.046, corpo, 0.01), at(lente, 0, -0.004, 0.044), at(vetro, 0, -0.004, 0.071), at(box(0.034, 0.016, 0.03, M(0xD5D7DB, { roughness: 0.4 }), 0.004), 0.03, 0.042, 0));
+    busto.add(asta([-0.062, 0.432, 0.052], [-0.05, 0.3, 0.135], 0.005, cinghia), asta([0.062, 0.432, 0.052], [0.05, 0.3, 0.135], 0.005, cinghia), at(g, 0, 0.262, 0.15)); }
 

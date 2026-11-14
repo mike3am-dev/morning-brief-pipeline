@@ -9,10 +9,11 @@
   const ICONE = { scrive: 'M3 13l1-3 7-7 2 2-7 7-3 1z', legge: 'M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM10 10l4 4', corregge: 'M3 8l3 3 7-7', disegna: 'M3 13V8M8 13V4M13 13V6', regia: 'M2 4h12v7H2zM6 14h4M8 11v3',
     gioca: 'M4 6h8a3 3 0 0 1 0 6c-1 0-1.5-1-2.3-1H6.3c-.8 0-1.3 1-2.3 1a3 3 0 0 1 0-6zM6 8v2M5 9h2', caffe: 'M3 6h8v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM11 7h1.5a1.5 1.5 0 0 1 0 3H11M5 2v2M8 2v2',
     stampa: 'M4 6V2h8v4M4 11H2V6h12v5h-2M4 9h8v5H4z', lavagna: 'M2 3h12v8H2zM5 14l3-3 3 3', parla: 'M2 3h12v8H7l-3 3v-3H2z', pianta: 'M8 14V8M8 8c0-3 2-5 5-5 0 3-2 5-5 5zM8 10c0-2-1.5-3.5-4-3.5 0 2 1.5 3.5 4 3.5z',
-    finestra: 'M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8zM8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z', postit: 'M3 2h10v8l-4 4H3zM9 14v-4h4', carta: 'M4 5h8l-1 9H5zM3 5h10M6 5V3h4v2', archivio: 'M2 4h4l1.5 2H14v7H2z' };
-  const DI_BASE = { regia: 'regia', lettura: 'legge', redattore: 'scrive', revisore: 'corregge', visualista: 'disegna', ai: 'scrive', schede: 'scrive', gta: 'gioca', fonti: 'archivio' };
-  const iconaPer = (id, cosa) => /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /post-it|appunto/i.test(cosa) ? 'postit' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra'
-    : /cestino/i.test(cosa) ? 'carta' : /riordina/i.test(cosa) ? 'archivio' : /parla|racconta|^è da |correzioni|risponde|ascolta|ci pensa/i.test(cosa) ? 'parla' : DI_BASE[id] || 'scrive';
+    finestra: 'M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8zM8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z', postit: 'M3 2h10v8l-4 4H3zM9 14v-4h4', carta: 'M4 5h8l-1 9H5zM3 5h10M6 5V3h4v2', archivio: 'M2 4h4l1.5 2H14v7H2z',
+    foto: 'M2 5h3l1-2h4l1 2h3v8H2zM8 7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z', telefono: 'M4 2h3l1 3-2 1a7 7 0 0 0 4 4l1-2 3 1v3a1 1 0 0 1-1 1A11 11 0 0 1 3 3a1 1 0 0 1 1-1z', rete: 'M2 4h8v5H6l-2 2V9H2zM11 7h3v5h-1v2l-2-2H8v-1' };
+  const DI_BASE = { regia: 'regia', lettura: 'legge', redattore: 'scrive', revisore: 'corregge', visualista: 'disegna', ai: 'scrive', schede: 'scrive', gta: 'gioca', fonti: 'archivio', verifica: 'legge', foto: 'foto', rete: 'rete', memoria: 'archivio' };
+  const iconaPer = (id, cosa) => /telefono/i.test(cosa) ? 'telefono' : /muro/i.test(cosa) ? 'finestra' : /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /post-it|appunto/i.test(cosa) ? 'postit' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra'
+    : /cestino/i.test(cosa) ? 'carta' : /riordina|archivio|puntata/i.test(cosa) ? 'archivio' : /parla|racconta|chiede|^è da |correzioni|risponde|ascolta|ci pensa/i.test(cosa) ? 'parla' : DI_BASE[id] || 'scrive';
   function etichetta(id, nome, sotto, colore) {
     const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
     b.ico = el('span', 'ico'); b.ico.innerHTML = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path/></svg>'; b.ico.hidden = true;
@@ -76,7 +77,8 @@
   const daQuanto = p => p.giorni ? (p.giorni === 1 ? 'da ieri' : 'da ' + p.giorni + ' giorni') : 'di oggi';
   function biglietto(p, conNome) { const d = el('div', 'postit'); d.style.borderLeftColor = COLORE_POSTIT[p.da] || '#FF9DB0';
     d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p)), rispostaAlPostit(p)); return d; }
-  const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi' };
+  const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi',
+    verifica: 'Le notizie che girano di più', foto: 'Le foto di oggi, e quanto pesano', rete: 'Le discussioni entrate in edizione', memoria: 'Le storie che oggi vanno avanti' };
   function apri(id, pre) {
     aperto = id; for (const k in tags) tags[k].classList.toggle('scelto', k === id); rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
@@ -104,6 +106,7 @@
       chi.append(el('h2', null, a.nome), el('p', null, a.mestiere + (a.modello ? ' · ' + a.modello : ''))); testa.append(av, chi, x);
       if (persone[id]) pannello.append(telaRitratto); pannello.append(testa);
       const corpo = el('div', 'corpo'); pannello.append(corpo);
+      const gr = GRUPPI[gruppoDi(id)]; if (gr) { const altri = gr.chi.filter(k => k !== id && AGENTI[k]).map(k => AGENTI[k].nome); const riga = el('p', 'gruppo'); const b = el('b'); b.style.background = gr.tinta; riga.append(b, document.createTextNode(gr.nome + (altri.length ? ': lavora con ' + altri.join(', ').replace(/, ([^,]*)$/, ' e $1') : ''))); corpo.append(riga); }
       const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); corpo.append(blocco('In questo momento', riga));
       if (a.minuti != null) {
         const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, String(n)), el('span', null, cosa)); numeri.append(d); };
@@ -119,8 +122,9 @@
       const suoi = (STATO.postit || []).filter(p => p.da === id);
       if (suoi.length) { const b = blocco(persone[id] ? 'Ha qualcosa per te' : 'Ti ha lasciato questi appunti'); suoi.slice(0, 5).forEach(p => b.append(biglietto(p))); corpo.append(b); }
       corpo.append(bloccoDecisioni(id));
-      corpo.append(el('p', 'piede', persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina.'
-        : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi davanti agli schedari.'));
+      corpo.append(el('p', 'piede', a.script ? `${a.nome} è la parte della corsa che fanno gli script (${a.script}): non è un modello come gli altri, ma i numeri sono quelli veri di stamattina. Quello che decidi con ${a.nome} arriva a Olivia, che lancia quegli script.`
+        : persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina.'
+        : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi alla sua scrivania, accanto agli schedari.'));
       montaParla(id, corpo, testa);
     }
     pannello.hidden = false; pannello.scrollTop = 0; x.focus({ preventScroll: true }); segui(); primoPiano();

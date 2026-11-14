@@ -2,7 +2,7 @@
   const adessoDi = (id, t) => { const c = cx[id]; if (!c) return id === 'fonti' ? 'Oggi non c\'è: torna lunedì' : ''; let s = c.nota0; for (const [q, testo] of c.note) if (q <= t) s = testo; return s; };
   let tempoFermo = fermo ? 8 : null;
   const tempoGiro = () => tempoFermo != null ? tempoFermo : (Date.now() / 1000) % GIRO;
-  const inManoTutti = [foglioMano, canMano, foglioRita, postitMano, gamepad, penna, stilo, cartella, pallina, foglioStampante, cassetti[0]];
+  const inManoTutti = [foglioMano, canMano, foglioRita, postitMano, gamepad, penna, stilo, cartella, pallina, foglioStampante, cassetti[0], cornetta];
   function vita(T) {
     // lo stato delle cose, prima dei gesti: ogni gesto poi accende quello che tocca
     for (const o of inManoTutti) o.visible = false; for (const id in tazzeMano) tazzeMano[id].visible = false;

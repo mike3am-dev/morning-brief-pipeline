@@ -261,4 +261,73 @@ def carte(giorno, root, brief, rev, stato):
         r.append(pulito if len(pulito) <= 6000 else pulito[:6000].rsplit("\n", 1)[0] + "\n(il rapporto continua)")
     out["fonti"] = "\n".join(r) or "Non ho ancora scritto un rapporto."
 
+    # ---- Nora: la verifica, notizia per notizia
+    r = ["LA VERIFICA DI STAMATTINA", "Per ogni notizia: quante testate la raccontano, quali sono state lette, da dove dicono di averla presa, se c'è la parola di Apple, chi l'ha data per primo."]
+    for n in news:
+        r.append(f"{n.get('rank')}. [{n.get('tag')} · affidabilità {n.get('reliability')} · origine scelta dalla redazione: {n.get('origine') or '?'}] {n.get('title')} — {_testate(n)}")
+    out["verifica"] = "\n".join(r) if news else "Di stamattina non ho la verifica sulla scrivania."
+
+    # ---- Bruno: le foto
+    r = ["LE FOTO DELL'EDIZIONE", "Di ogni foto so solo se c'è e quanto pesa: da quale testata l'ho presa e se ho tagliato un logo lo dico durante la corsa, ma non resta scritto nell'edizione."]
+    for n in news[:8]:
+        r.append(f"{n.get('rank')}. {n.get('title')} — " + (f"foto incorporata, circa {round(len(n['image']) * 0.75 / 1024)} KB" if n.get("image") else "senza foto") + f" (testate lette: {', '.join(n.get('sources') or []) or '—'})")
+    for nome, chiave in (("Scheda AI", "ai"), ("Games", "games"), ("Scienza", "spazio")):
+        voci = b.get(chiave) or []
+        if voci:
+            r.append(f"{nome}: {sum(1 for v in voci if v.get('image'))} voci con la foto su {len(voci)}")
+    out["foto"] = "\n".join(r) if b else "Di stamattina non ho le foto sulla scrivania."
+
+    # ---- Dario: le discussioni
+    r = []
+    disc = b.get("social") or []
+    if disc:
+        r.append(f"LE DISCUSSIONI ENTRATE IN EDIZIONE ({len(disc)})")
+        for i, d in enumerate(disc, 1):
+            tipo = "non l'avevano le testate" if d.get("origine") == "nuovo" else "eco di una notizia"
+            r.append(f"{i}. [{tipo}] {d.get('title')} — {taglia(d.get('note'), 300)} ({d.get('source')})")
+    raccolta = carica(p("data", "social", giorno + ".json")) or {}
+    if raccolta.get("items"):
+        r.append(f"\nLA RACCOLTA DI STAMATTINA: {raccolta.get('count')} discussioni nelle ultime {raccolta.get('window_hours')} ore. Le prime:")
+        for x in raccolta["items"][:14]:
+            r.append(f"- {taglia(x.get('title'), 110)} ({x.get('source') or x.get('where') or ''}" + (f", {x.get('score')} punti" if x.get("score") is not None else "") + (f", {x.get('comments')} commenti" if x.get("comments") is not None else "") + ")")
+    lab = carica(p("data", "lab", giorno + ".json")) or {}
+    if lab.get("count") is not None:
+        r.append(f"\nPER IL LAB DI ADA ho raccolto {lab.get('count')} cose fatte con i modelli.")
+    out["rete"] = "\n".join(r) or "Di stamattina non ho la raccolta sulla scrivania."
+
+    # ---- Clio: i fili, le previsioni, i numeri, i ripescaggi
+    r = []
+    registro = carica(p("data", "threads.json")) or {}
+    con_filo = [n for n in news if n.get("thread")]
+    if con_filo:
+        r.append("LE STORIE CHE OGGI VANNO AVANTI")
+        for n in con_filo:
+            f = registro.get(n["thread"]) or {}
+            r.append(f"{n.get('rank')}. {n.get('title')} — filo «{f.get('label') or n['thread']}»" + (f", aperto il {f.get('opened')}" if f.get("opened") else "") + (f": {taglia(f.get('note'), 160)}" if f.get("note") else ""))
+    aperti = [k for k, v in registro.items() if isinstance(v, dict) and not v.get("closed")]
+    if registro:
+        r.append(f"\nNel registro ci sono {len(registro)} fili, {len(aperti)} ancora aperti.")
+    prev = [n for n in news if n.get("claim")]
+    if prev:
+        r.append("\nLE PREVISIONI NUOVE DI OGGI")
+        for n in prev:
+            c = n["claim"]
+            r.append(f"- {c.get('text')} — la dice {c.get('source')}, si saprà entro il {c.get('horizon')} (notizia {n.get('rank')})")
+    chiuse = [(n, x) for n in news for x in (n.get("resolves") or [])]
+    if chiuse:
+        r.append("\nLE PREVISIONI CHIUSE OGGI")
+        for n, x in chiuse:
+            r.append(f"- {x.get('claim')}: {x.get('verdict')}. {taglia(x.get('note'), 200)}")
+    numeri = [(n, x) for n in news for x in (n.get("facts") or [])]
+    if numeri:
+        r.append("\nI NUMERI SEGUITI OGGI")
+        for n, x in numeri:
+            r.append(f"- {x.get('label') or x.get('key')}: {x.get('value')} {x.get('unit') or ''} ({x.get('kind')}, {x.get('source')})")
+    rec = b.get("recap") or []
+    if rec:
+        r.append("\nSE TE LO FOSSI PERSO (i ripescaggi di oggi)")
+        for x in rec:
+            r.append(f"- {x.get('title')} — del {x.get('when')}, {x.get('signal')}. {taglia(x.get('note'), 220)}")
+    out["memoria"] = "\n".join(r) or "Di stamattina non ho niente sulla scrivania."
+
     return {k: (v if len(v) <= TETTO else v[:TETTO].rsplit("\n", 1)[0] + "\n(il resto è rimasto fuori per brevità)") for k, v in out.items()}

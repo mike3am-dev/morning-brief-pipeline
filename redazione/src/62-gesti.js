@@ -29,6 +29,13 @@
   const sfoglia = t => { const o = Math.sin(t * 3.2), P = { ...IN_PIEDI, lean: 0.22, hx: 0.3 }; cassetti[0].visible = true;   // Zeno: davanti allo schedario aperto
     P.sD = [-0.75, 0.1 + 0.12 * o]; P.gD = -0.9 - 0.15 * o; P.sS = [-0.75, -0.1 + 0.12 * o]; P.gS = -0.9 + 0.15 * o; return P; };
 
+  const telefona = t => { const parla = campana((t % 31) / 31, 0.1, 0.16, 0.66, 0.73), P = { ...SEDUTO, hx: 0.05 - 0.07 * parla, hy: 0.1 * parla + Math.sin(t * 0.8) * 0.06 * parla };   // Nora: al telefono con una fonte, e intanto prende appunti
+    P.sS = [-0.35 - 0.85 * parla, 0.12 + 0.2 * parla]; P.gS = -1.5 - 0.95 * parla; cornetta.visible = parla > 0.45;
+    P.sD = [-0.42 + Math.sin(t * 5.3) * 0.03 * parla, -0.26]; P.gD = -1.5 + Math.sin(t * 7.1) * 0.05 * parla + Math.sin(t * 15) * 0.04 * (1 - parla); return P; };
+  // chi lavora in coppia ogni tanto si gira verso il collega e ne parla (lato: 1 se il collega gli siede a destra, −1 a sinistra)
+  const conIlCollega = (base, lato, ogni = 43) => t => { const P = base(t), k = campana((t % ogni) / ogni, 0.58, 0.64, 0.84, 0.9); if (k < 0.01) return P;
+    const Q = { ...SEDUTO, twist: -0.5 * lato, hy: -0.75 * lato, hx: -0.04 + Math.sin(t * 7) * 0.04, lean: -0.02 }; Q.sD = [-0.55 + Math.sin(t * 3.3) * 0.12, -0.12]; Q.gD = -1.45 + Math.sin(t * 4.7) * 0.18; return mix(P, Q, k); };
+
   /* quando Mike parla con qualcuno che è al suo posto, quello si gira verso di lui (cioè verso di noi): la sedia ruota,
      le mani lasciano la tastiera; mentre ci pensa porta la mano al mento, mentre risponde gesticola */
   const ascolto = { chi: null, vivo: false, k: 0, fase: '' };

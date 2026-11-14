@@ -16,9 +16,6 @@
   function microfono(col) { const m = gruppo(cyl(0.013, 0.011, 0.15, M(0x2A2B30, { roughness: 0.5 }), 12), at(sph(0.028, M(0x3A3B40, { roughness: 1 }), 14, 10), 0, 0.095, 0), at(box(0.05, 0.05, 0.05, M(col, { roughness: 0.6 }), 0.006), 0, 0.045, 0));
     m.rotation.z = PI / 2 - 0.1; m.position.y = 0.028; return gruppo(m); }
 
-  // per terra non c'è più carta: i giornali stanno impilati sul ripiano del tavolo luminoso. (PILE resta, vuota: la leggono le strade)
+  // per terra non c'è carta: i giornali stanno impilati sullo scaffale sotto la lavagna (46-arredo.js). (PILE resta, vuota: la leggono le strade)
   const PILE = [];
-  { const p = pilaGiornali(9, 3); p.rotation.y = 0.06; tavolo.add(at(p, 0.55, 0.315, 0.12)); const q = pilaGiornali(5, 11); q.rotation.y = -0.1; tavolo.add(at(q, 0.55, 0.315, -0.2)); }
-  // sul tavolo luminoso: una rassegna aperta, con l'evidenziatore
-  const rassegnaTavolo = rassegna(61); rassegnaTavolo.rotation.y = -0.2; attrezzi.add(at(rassegnaTavolo, 0.4, 0.004, -0.04), at(evidenziatore(), 0.5, 0, 0.3));
 

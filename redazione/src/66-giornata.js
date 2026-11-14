@@ -72,8 +72,8 @@
   rientra(Tb); alPosto(Tb, GIRO);
 
   // ---- Lea: disegna, poi va ad attaccare un post-it per Mike alla lavagna
-  const Le = attore('visualista', disegna, 'Disegna un grafico');
-  parte(Le, 128, 'Attacca un post-it per Mike alla lavagna'); cammina(Le, pBacheca, -PI / 2, P => inMano(postitMano, P, -1.2));
+  const Le = attore('visualista', conIlCollega(disegna, 1), 'Disegna un grafico');
+  parte(Le, 90, 'Attacca un post-it per Mike alla lavagna'); cammina(Le, pBacheca, -PI / 2, P => inMano(postitMano, P, -1.2));
   tPostit = Le.tr.t + 2.3;
   fa(Le, 7, u => { const su = campana(u, 0.05, 0.25, 0.4, 0.5), guarda = fra(u, 0.52, 0.64) * (1 - fra(u, 0.92, 1)), P = mix(passo(0, 0, true), { ...IN_PIEDI, sD: [-1.95, -0.05], gD: -0.3, lean: 0.08, hx: -0.1 }, su);
     P.sD[1] -= 0.45 * guarda; P.gD -= 1.3 * guarda * (1 - su); P.sS = [0, 0.1 + 0.45 * guarda]; P.gS = -0.15 - 1.3 * guarda; P.hy = Math.sin(u * 9) * 0.12 * guarda;
@@ -87,9 +87,29 @@
   guardami('regia', Ad.tr.t - 1, Ad.tr.t + 8, pVarco); fa(Ad, 8, parla()); rientra(Ad); alPosto(Ad, GIRO);
 
   // ---- Zeno, il lunedì: alla scrivania controlla i feed; poi va all'archivio, e lascia un appunto per Mike alla lavagna
-  if (persone.fonti) { const Ze = attore('fonti', scriveCon(13, 29), 'Controlla i feed, uno per uno'), pZ = [0.62, suLavagna(1250, 0)[1]];
+  if (persone.fonti) { const Ze = attore('fonti', scriveCon(13, 29), 'Controlla i feed, uno per uno'), pZ = [0.74, suLavagna(1250, 0)[1]];
     parte(Ze, 24, 'È all\'archivio delle fonti'); cammina(Ze, pArchivio, -PI / 2); fa(Ze, 12, (u, dt, t) => sfoglia(t));
     dice(Ze, 'Lascia un appunto per Mike alla lavagna'); cammina(Ze, pZ, -PI / 2, P => inMano(cartella, P));
     fa(Ze, 6, u => { const su = campana(u, 0.1, 0.3, 0.6, 0.75), P = mix(passo(0, 0, true), { ...IN_PIEDI, sS: [-1.8, 0.05], gS: -0.35, hx: -0.08 }, su); inMano(cartella, P); return P; });
     rientra(Ze, P => inMano(cartella, P)); alPosto(Ze, GIRO); }
+
+  // ---- Nora: al telefono con le fonti; a un certo punto va da Tobia a chiedere da dove viene una notizia
+  const No = attore('verifica', telefona, 'Verifica una fonte, al telefono');
+  parte(No, 34, 'Chiede a Tobia da dove viene una notizia'); cammina(No, pDaTobia, verso(pDaTobia, posti.lettura.seduta));
+  guardami('lettura', No.tr.t - 1, No.tr.t + 7, pDaTobia); fa(No, 7, parla()); rientra(No); alPosto(No, GIRO);
+
+  // ---- Bruno: sceglie e ritocca le foto, si confronta con Lea, e ogni tanto va a guardare il muro da vicino
+  const Br = attore('foto', conIlCollega(t => legge(t + 13), -1), 'Sceglie e ritocca le foto');
+  parte(Br, 118, 'Guarda il muro delle notizie'); cammina(Br, pMuro, PI);
+  fa(Br, 9, u => { const k = campana(u, 0.08, 0.22, 0.86, 0.97), P = { ...IN_PIEDI, hx: -0.24 * k, hy: Math.sin(u * 7) * 0.28 * k };   // le mani sui fianchi, il naso all'insù
+    P.sD = [0, -0.1 - 0.5 * k]; P.gD = -0.15 - 1.4 * k; P.sS = [0, 0.1 + 0.5 * k]; P.gS = -0.15 - 1.4 * k; return P; });
+  rientra(Br); alPosto(Br, GIRO);
+
+  // ---- Dario: scorre le discussioni; il caffè
+  const Da = attore('rete', scriveCon(4, 13), 'Scorre le discussioni in rete');
+  caffe(Da, 84); alPosto(Da, GIRO);
+
+  // ---- Clio: aggiorna i fili delle storie; va a cercare una vecchia puntata nello schedario
+  const Cl = attore('memoria', scriveCon(21, 17), 'Aggiorna i fili delle storie');
+  parte(Cl, 212, 'Cerca una vecchia puntata in archivio'); cammina(Cl, pArchivio, -PI / 2); fa(Cl, 10, (u, dt, t) => sfoglia(t)); rientra(Cl); alPosto(Cl, GIRO);
 

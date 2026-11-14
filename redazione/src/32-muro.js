@@ -1,8 +1,8 @@
   /* ================================================================ il muro delle notizie: dal pavimento al soffitto
      Una griglia sola, a tre colonne. In cima: il marchio, cinque orologi, il conto alla rovescia con lo stato
      dell'edizione. Sotto: a sinistra i tre canali (le altre schede dell'app), in mezzo la mappa e la striscia
-     dell'ultim'ora, a destra la borsa, le fonti e le discussioni. Quando la pagina si apre, e poi una volta ogni giro,
-     tutto il muro diventa la sigla: il marchio e il sole, e nient'altro. */
+     dell'ultim'ora, a destra la borsa, le fonti e le discussioni. Quando la pagina si apre, e poi dieci secondi ogni
+     minuto, tutto il muro diventa la sigla: il marchio e il sole, e nient'altro. */
   const MZ = 0.076, nerissimo = M(0x0B0D12, { roughness: 0.45 });
   stanza.add(at(box(MURO.w, ALTA, 0.07, nerissimo, 0.012), MURO.x, ALTA / 2, 0.036));
   const mBordo = 0.09, mSpazio = 0.05, mCol = 1.01, mMezzo = MURO.w - 2 * mBordo - 2 * mCol - 2 * mSpazio;   // le colonne ai lati, e quella di mezzo (3,30)
@@ -54,8 +54,8 @@
     if (rullo.scorre) rullo.tex.offset.y = ((rullo.tex.offset.y - dt * 13 / rullo.alta) % 1 + 1) % 1;
     for (const t of TV) { const serie = canali[t.i], quale = serie[Math.floor(adesso / 9 + t.i * 0.4) % serie.length]; if (t.mat.map !== quale) { t.mat.map = quale; t.mat.needsUpdate = true; } }
     viviSchermi.forEach((m, i) => { m.color.setScalar(1 - (0.035 + 0.03 * (fretta - 1)) * (1 + Math.sin(adesso * (1.7 + (i % 7) * 0.41) + i * 1.3))); });
-    // la sigla: all'apertura della pagina per qualche secondo, poi venti secondi a metà di ogni giro; mai mentre si chiude
-    const T = tempoGiro(), ident = campana(T, 150, 151.6, 168.4, 170), inizio = siglaDa == null ? 0 : 1 - fra(performance.now() / 1000 - siglaDa, 3.6, 5.4);
+    // la sigla: all'apertura della pagina per qualche secondo, poi dieci secondi ogni minuto (dieci di marchio, cinquanta di notizie); mai mentre si chiude
+    const T = tempoGiro() % 60, ident = campana(T, 0, 1.2, 8.8, 10), inizio = siglaDa == null ? 0 : 1 - fra(performance.now() / 1000 - siglaDa, 3.6, 5.4);
     const op = siglaForzata != null ? siglaForzata : fermo || fretta > 1 ? 0 : Math.max(ident, inizio);
     matSigla.opacity = op; sigla.visible = op > 0.004;
   }
