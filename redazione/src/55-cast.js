@@ -5,9 +5,9 @@
     redattore:  posto({ x: 3.2, z: 2.2, tex: schermoDi('redattore'), mento: 0xF9D2B0, retro: 0xF0821E }),
     revisore:   posto({ x: 5.75, z: 2.2, tex: schermoDi('revisore'), mento: 0xF6C7CF, retro: 0xE2385A }),
     visualista: posto({ x: 7.35, z: 2.2, tex: schermoDi('visualista'), mento: 0xFBE9A8, retro: 0xF2B705 }),
-    gta:        posto({ x: 10.0, z: 2.2, tex: schermoDi('gta'), mento: 0xC8F2EC, retro: 0x1FB5A6 }),
-    ai:         posto({ x: 9.9, z: 4.85, giro: PI, tex: schermoDi('ai'), mento: 0xCFE8D5, retro: 0x2F8F5A }),
-    schede:     posto({ x: 9.9, z: 5.7, tex: schermoDi('schede'), mento: 0xDDD3F2, retro: 0x7B4BE0 }),
+    gta:        posto({ x: 12.25, z: 2.2, tex: schermoDi('gta'), mento: 0xC8F2EC, retro: 0x1FB5A6 }),
+    ai:         posto({ x: 11.6, z: 4.85, giro: PI, tex: schermoDi('ai'), mento: 0xCFE8D5, retro: 0x2F8F5A }),
+    schede:     posto({ x: 11.6, z: 5.7, tex: schermoDi('schede'), mento: 0xDDD3F2, retro: 0x7B4BE0 }),
   };
   // la regia: Olivia sta in piedi al centro dell'anello; tre schermi li vediamo di fronte, due di spalle
   const R_IN = 0.62, R_OUT = 1.12, VARCO = 0.55, FRONTE = 5 * PI / 4;

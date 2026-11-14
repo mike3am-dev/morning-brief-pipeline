@@ -8,6 +8,7 @@
     for (const o of inManoTutti) o.visible = false; for (const id in tazzeMano) tazzeMano[id].visible = false;
     spiaCaffe.emissiveIntensity = 0.6; spiaStampa.emissiveIntensity = 0.5;
     for (const id in cx) cx[id].tr.a(T);
+    compone(T);
     Object.values(persone).forEach((g, i) => { const chiusi = ((T + i * 1.7) % (3.6 + (i % 3) * 0.5)) < 0.14 ? 0.1 : 1; g.userData.occhi.forEach(o => { o.scale.y = chiusi; }); });   // battono le palpebre
     for (const id in tazze) tazze[id].visible = !tazzeMano[id].visible; canTerra.visible = !canMano.visible;
     foglioDaIvo.visible = T > tConsegna + 3.4; pallinaNelCestino.visible = T > tLancio + 2.9; foglioDiRita.visible = T > tRitaTorna; nuovoPostit.visible = T > tPostit;

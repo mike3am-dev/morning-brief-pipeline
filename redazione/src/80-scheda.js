@@ -3,11 +3,28 @@
   const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
   // dove sta l'etichetta di chi non è una persona in scena: la bacheca, e Zeno quando non è lunedì
   const ancore = { bacheca: new THREE.Vector3(0.12, BACHECA[1] + altaB / 2 + 0.1, BACHECA[2]), fonti: new THREE.Vector3(0.12, 2.2, ARCHIVIO[1]) };
+  // le icone di stato: piccole, a tratto, una per cosa che si può stare facendo
+  const ICONE = { scrive: 'M3 13l1-3 7-7 2 2-7 7-3 1z', legge: 'M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM10 10l4 4', corregge: 'M3 8l3 3 7-7', disegna: 'M3 13V8M8 13V4M13 13V6', regia: 'M2 4h12v7H2zM6 14h4M8 11v3',
+    gioca: 'M4 6h8a3 3 0 0 1 0 6c-1 0-1.5-1-2.3-1H6.3c-.8 0-1.3 1-2.3 1a3 3 0 0 1 0-6zM6 8v2M5 9h2', caffe: 'M3 6h8v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM11 7h1.5a1.5 1.5 0 0 1 0 3H11M5 2v2M8 2v2',
+    stampa: 'M4 6V2h8v4M4 11H2V6h12v5h-2M4 9h8v5H4z', lavagna: 'M2 3h12v8H2zM5 14l3-3 3 3', parla: 'M2 3h12v8H7l-3 3v-3H2z', pianta: 'M8 14V8M8 8c0-3 2-5 5-5 0 3-2 5-5 5zM8 10c0-2-1.5-3.5-4-3.5 0 2 1.5 3.5 4 3.5z',
+    finestra: 'M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8zM8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z', postit: 'M3 2h10v8l-4 4H3zM9 14v-4h4', carta: 'M4 5h8l-1 9H5zM3 5h10M6 5V3h4v2', archivio: 'M2 4h4l1.5 2H14v7H2z' };
+  const DI_BASE = { regia: 'regia', lettura: 'legge', redattore: 'scrive', revisore: 'corregge', visualista: 'disegna', ai: 'scrive', schede: 'scrive', gta: 'gioca', fonti: 'archivio' };
+  const iconaPer = (id, cosa) => /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra' : /post-it|appunto/i.test(cosa) ? 'postit'
+    : /cestino/i.test(cosa) ? 'carta' : /riordina/i.test(cosa) ? 'archivio' : /parla|racconta|^è da |correzioni|risponde|ascolta|ci pensa/i.test(cosa) ? 'parla' : DI_BASE[id] || 'scrive';
   function etichetta(id, nome, sotto, colore) {
     const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
-    const piu = el('span', 'piu'); piu.append(document.createTextNode(sotto), el('em', null, 'Guarda ▸'));
-    b.nomeNodo = document.createTextNode(nome); b.append(pallino, b.nomeNodo, piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
+    b.ico = el('span', 'ico'); b.ico.innerHTML = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path/></svg>'; b.ico.hidden = true;
+    b.cosa = document.createTextNode(sotto); const piu = el('span', 'piu'); piu.append(b.cosa, el('em', null, 'Guarda ▸'));
+    b.nomeNodo = document.createTextNode(nome); b.append(pallino, b.nomeNodo, b.ico, piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
     b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
+  }
+  let ultimoStato = 0;
+  function statiVivi() {   // quattro volte al secondo: cosa sta facendo ognuno, e l'icona che salta fuori quando cambia
+    const ora = performance.now(); if (ora - ultimoStato < 250) return; ultimoStato = ora;
+    for (const id in persone) { const b = tags[id], cosa = scenaDi(id), k = iconaPer(id, cosa); if (!b) continue;
+      if (b.cosa.nodeValue !== cosa) b.cosa.nodeValue = cosa;
+      if (b.icona !== k) { const primo = b.icona == null; b.icona = k; b.ico.hidden = false; b.ico.firstChild.firstChild.setAttribute('d', ICONE[k]);
+        if (!primo && !fermo) { b.classList.add('pop'); clearTimeout(b.viaPop); b.viaPop = setTimeout(() => b.classList.remove('pop'), 2600); } } }
   }
   for (const a of STATO.agenti) etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange);
   if (POSTIT.length) etichetta('bacheca', POSTIT.length + ' post-it', 'per te', C.yellow);
@@ -15,6 +32,7 @@
   const dove = id => { if (persone[id]) { persone[id].userData.j.testa.getWorldPosition(v3); v3.y += 0.32; } else v3.copy(ancore[id]); return v3; };
   function etichette() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
+    statiVivi();
     for (const id in tags) { dove(id).project(cam); tags[id].style.transform = `translate(-50%,-100%) translate(${((v3.x + 1) / 2 * w).toFixed(1)}px,${((1 - v3.y) / 2 * h).toFixed(1)}px)`; }
   }
 
@@ -58,7 +76,16 @@
     aperto = id; rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
     const testa = el('div', 'testa'), chi = el('div'), a = AGENTI[id];
-    if (id === 'decisioni') {
+    if (id === 'prima') {
+      const L = STATO.lavagna || [], sc = STATO.schermo || {}, a0 = L[0], av = el('div', 'avatar', '1'); av.style.background = C.orange;
+      chi.append(el('h2', null, 'La prima pagina'), el('p', null, 'l\'edizione di ' + GIORNI_LUNGHI[OGGI.getDay()] + ' ' + DATA_LUNGA + ', impaginata')); testa.append(av, chi, x); pannello.append(testa);
+      if (a0) pannello.append(blocco('In apertura · ' + (a0.reparto || ''), el('p', 'grande', a0.titolo), el('p', null, a0.sintesi || '')));
+      if (L.length > 1) pannello.append(blocco('E poi', elenco(L.slice(1, 7).map(n => n.reparto + ' · ' + n.titolo))));
+      if (sc.citazione && sc.citazione.testo) pannello.append(blocco('L\'ultima parola', el('p', 'citazione', '«' + sc.citazione.testo + '»'), el('p', 'piccolo', '— ' + (sc.citazione.chi || ''))));
+      if (sc.punto) pannello.append(blocco('Il punto', el('p', 'grande', sc.punto)));
+      if (sc.intro) pannello.append(blocco('Il quadro della giornata', el('p', null, sc.intro)));
+      pannello.append(el('p', 'piede', 'Sul tavolo luminoso la pagina si compone striscia dopo striscia, ed è fatta con i titoli veri dell\'edizione. Per ora si ricompone a ogni giro; quando la redazione seguirà la corsa dal vivo, lo farà mentre i pezzi arrivano.'));
+    } else if (id === 'decisioni') {
       const av = el('div', 'avatar', String(decisioni.length)); av.style.background = VERDE;
       chi.append(el('h2', null, 'Il registro'), el('p', null, 'le decisioni che hai preso con la redazione')); testa.append(av, chi, x); pannello.append(testa);
       montaRegistro(pre);

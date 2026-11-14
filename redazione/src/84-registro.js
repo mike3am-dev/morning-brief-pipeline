@@ -70,10 +70,11 @@
   }
 
   // il registro sul tavolo di Mike: l'etichetta porta il numero delle decisioni
-  ancore.decisioni = new THREE.Vector3(MIKE[0], TAV + 0.42, MIKE[1]);
-  etichetta('decisioni', 'Il registro', 'le tue decisioni', VERDE);
+  ancore.decisioni = new THREE.Vector3(MIKE[0] + 0.84, ALTO_TL + 0.3, MIKE[1] + 0.3); ancore.prima = new THREE.Vector3(MIKE[0] - 0.5, ALTO_TL + 0.42, MIKE[1] - 0.1);
+  etichetta('decisioni', 'Il registro', 'le tue decisioni', VERDE); etichetta('prima', 'La prima pagina', 'sul tavolo luminoso', C.orange);
   const promemoria = el('span'); document.getElementById('saluto').append(promemoria);   // nel benvenuto: quante decisioni hai nel registro
   quandoCambiaRegistro(() => { tags.decisioni.nomeNodo.textContent = decisioni.length ? 'Il registro · ' + decisioni.length : 'Il registro'; if (vistaRegistro) vistaRegistro(); if (vistaDecisioniAgente) vistaDecisioniAgente();
+    const quante = {}; decisioni.forEach(d => { quante[d.agente] = (quante[d.agente] || 0) + 1; }); aggiornaNoteVerdi(quante); sporca = true;
     promemoria.textContent = ''; if (decisioni.length) { const b = el('button', null, decisioni.length === 1 ? 'una decisione' : decisioni.length + ' decisioni'); b.type = 'button'; b.addEventListener('click', () => apri('decisioni')); promemoria.append(document.createTextNode(' Nel registro hai '), b, document.createTextNode('.')); } });
 
   // l'archivio: su claude.ai è quello della pagina; in locale, con ?finto=1, uno di prova nel browser

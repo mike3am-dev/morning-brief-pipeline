@@ -373,3 +373,60 @@ per ripulire il file.
   spenta da sola, e si cancella solo da claude.ai/code/routines.
 - Il modellino si aggiorna a ore fisse, non al minuto: un aggancio al push su GitHub
   (`create_webhook_trigger`) lo renderebbe immediato. Non provato.
+
+## 14 novembre 2026 — il rinnovamento: da studio di design a redazione
+
+Mike: «ha più l'aria di uno studio di design o di una startup tech che di una vera newsroom
+pulsante, dove si deve sentire il flusso incessante delle notizie dall'esterno». Cinque richieste:
+il muro delle notizie, gli schermi tematici, gli oggetti di scena, gli stati che si vedono, il
+tavolo della prima pagina al posto del tavolino rotondo. Pubblicata come versione 9.
+
+**Regola tenuta ferma: ogni cosa nuova porta un dato vero.** Niente mappa di fantasia, niente
+grafici inventati. Dove il dato non c'è, il riquadro lo dice o resta vuoto.
+
+**La stanza** è più larga (13,2 × 8,6). Il fondale col logo resta; accanto, sulla parete di fondo,
+il **muro delle notizie** (`28-muro-tele.js`, `32-muro.js`), e la regia si è spostata lì davanti.
+
+- In cima **cinque orologi** con l'ora vera (San Francisco, New York, Londra, Milano, Tokyo) e in
+  mezzo il conto alla rovescia alla prossima edizione, che prima stava da solo.
+- **La mappa**: i continenti a puntini; in giallo i luoghi da cui scrivono le testate che oggi
+  hanno portato articoli (più grande, più articoli), in rosso col numero le notizie in apertura
+  sul luogo da cui vengono (il campo `origine`). Gli anelli pulsano. I dati li prepara
+  `redazione/muro.py`: le sedi sono quelle note delle testate (`SEDI`), le origini si riconoscono
+  per pezzi di nome (`ORIGINI`). Le raccolte di Google News e le testate senza sede nota restano
+  fuori, e la mappa lo scrive («440 articoli da raccolte senza una sede»). **Una testata nuova va
+  aggiunta a `SEDI`**, se no finisce fra i senza luogo.
+- A sinistra **le discussioni** della sezione social, che scorrono in verticale; a destra **Apple
+  in borsa** (la chiusura che la corsa mette nell'edizione, con le ultime sedute a barrette) e **le
+  fonti** (un quadratino per feed, rosso se stamattina non ha risposto).
+- In basso la striscia **ULTIM'ORA** con i titoli veri di oggi, che scorre.
+
+**I canali.** Tre schermi in alto sulla parete di sinistra: AI, Games, Scienza. Sono le altre
+schede dell'app, disegnate come canali di notizie (mezzobusto e sottopancia), e il sottopancia è
+il primo titolo vero di quella scheda; cambiano ogni nove secondi.
+
+**Il tavolo luminoso** (`43-tavolo.js`) ha preso il posto del tavolino di Mike. Sopra, la **prima
+pagina** dell'edizione di oggi si compone striscia per striscia nei primi quaranta secondi del
+giro (testata, apertura, due spalle, brevi, l'ultima parola, il piede), poi resta lì. Toccandola
+si apre la scheda «La prima pagina» con apertura, le altre, l'ultima parola e il punto. Sul bordo
+ci sono il segnaposto di Mike e il **registro delle decisioni**, ora un libro verde che si tocca.
+
+**Gli oggetti** (`44-carte.js`, `57-scena.js`): pile di giornali a terra, rassegne aperte con le
+righe evidenziate, evidenziatori, taccuini, registratori, microfoni, tesserini stampa al collo.
+**I foglietti sugli schermi hanno un colore che vuol dire qualcosa**: gialli i post-it che
+quell'agente ha lasciato a Mike, rossi quelli più vecchi di un mese, verdi le decisioni prese con
+Mike (compaiono appena la decisione entra nel registro).
+
+**Gli stati** (`58-insegna.js`). Sopra la regia un'insegna: «SI CHIUDE ALLE 6:00» prima,
+«IN CHIUSURA» rossa con la luce accesa dalle 5:24 alle 6:45, «USCITA · 5:57» verde quando
+l'edizione di oggi è fuori, «IN RITARDO» se alle 6:45 non c'è. Mai «on air»: è un giornale. In
+chiusura gli anelli della mappa e il nastro vanno più svelti e gli schermi tremolano di più.
+Sulle etichette delle persone un'icona dice cosa stanno facendo, e salta quando cambia.
+
+**Per provarla**: `redazione.edizione('chiusura'|'uscita'|'ritardo'|'attesa')` forza l'insegna,
+`redazione.muro(s)` porta avanti il muro. Se allo stato mancano i campi nuovi (`mappa`, `borsa`,
+`discussioni`, `canali`) il muro si accende lo stesso, vuoto: provato.
+
+**Da sapere.** I pezzi stanno tutti nello stesso recinto: due nomi uguali in due file rompono la
+pagina (è successo con `anello` e `foglio`). Lo stato nell'archivio è alla versione 4, con i dati
+del muro. La routine del mattino compone lo stato dal `main`: `muro.py` deve esserci.

@@ -96,6 +96,15 @@ Le scelte, una per una:
 - **L'archivista** ha lo schedario delle fonti. Lavora solo il lunedì: gli altri giorni la sedia è
   vuota e sul calendario c'è il cerchio sul prossimo lunedì.
 
+**Dal 14 novembre 2026 la stanza è una redazione che guarda fuori** (il diario dice come). Sulla
+parete di fondo, accanto al logo, c'è il **muro delle notizie**: cinque orologi coi fusi, il conto
+alla rovescia, la mappa di dove scrivono le testate e di dove nascono le notizie in apertura, le
+discussioni, Apple in borsa, le fonti, la striscia dell'ultim'ora. La regia sta lì davanti, con
+sopra l'insegna dello stato dell'edizione. Sulla parete di sinistra, sopra lavagna e bacheca, tre
+schermi con i «canali» AI, Games e Scienza. Al posto del tavolino di Mike c'è il **tavolo
+luminoso** dove si compone la prima pagina; il suo segnaposto e il registro delle decisioni stanno
+lì sopra. La sala riunioni non c'è (le riunioni restano «più avanti»).
+
 La stanza si progetta **per il Mac**: lo schermo del portatile e un monitor esterno, la stanza
 intera in una schermata con il pannello dell'agente a destra (come nel video). iPhone e Duo vengono
 dopo: Mike li usa per leggere l'edizione, in redazione entra dal Mac.

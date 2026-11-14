@@ -507,6 +507,7 @@ def stato(giorno):
         ap = n.get("approfondimento") or {}
         vis = ap.get("visivi") or []
         lavagna.append({"rank": n.get("rank"), "id": n.get("id"), "titolo": n.get("title"),
+                        "sintesi": n.get("sintesi"),
                         "reparto": n.get("reparto"), "tag": n.get("tag"),
                         "origine": n.get("origine"),
                         "testate": (n.get("verifica") or {}).get("testate"),
@@ -527,6 +528,15 @@ def stato(giorno):
          "schermo": schermo, "postit": pi, "revisione": rev, "letture": letture(giorno),
          "gta": ({"uscita": gta_file["uscita"], "giorni": (data(gta_file["uscita"]) - data(giorno)).days}
                  if gta_file and gta_file.get("uscita") else None)}
+    # il muro delle notizie: la mappa, la borsa, le discussioni, i canali delle altre schede (redazione/muro.py)
+    try:
+        import muro as _muro
+        s["mappa"] = _muro.mappa(raw, news)
+        s["borsa"] = _muro.borsa(brief)
+        s["discussioni"] = _muro.discussioni(brief)
+        s["canali"] = _muro.canali(brief)
+    except Exception as e:   # il muro non deve mai fermare lo stato
+        print("muro non composto:", e, file=sys.stderr)
     # quali decisioni del registro sono arrivate alla corsa: quelle copiate in data/redazione/decisioni.json
     dec = carica(p("data", "redazione", "decisioni.json")) or {}
     s["registro"] = {"aggiornato": dec.get("aggiornato"),

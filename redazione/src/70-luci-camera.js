@@ -3,7 +3,7 @@
   const solare = new THREE.DirectionalLight(0xffffff, 2.5); scene.add(solare, solare.target);
   const centro = new THREE.Vector3(LARGA / 2, 0.9, FONDA / 2); solare.target.position.copy(centro);
   solare.castShadow = true; solare.shadow.mapSize.set(4096, 4096);
-  Object.assign(solare.shadow.camera, { left: -10.5, right: 10.5, top: 10.5, bottom: -10.5, near: 1, far: 48 }); solare.shadow.camera.updateProjectionMatrix();
+  Object.assign(solare.shadow.camera, { left: -11.5, right: 11.5, top: 11.5, bottom: -11.5, near: 1, far: 50 }); solare.shadow.camera.updateProjectionMatrix();
   solare.shadow.bias = -0.0005; solare.shadow.normalBias = 0.035; solare.shadow.radius = 7;
   const LUCI = {
     alba:   { da: [-7, 4.4, 6], sole: 0xFFAE6E, soleI: 2.7, cielo: 0xFFDDBB, terra: 0xD8B596, emiI: 0.56, env: 0.22, lampade: 0.3, ombra: 0.6 },

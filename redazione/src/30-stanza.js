@@ -6,8 +6,10 @@
   const verdi = [M(0x3F8F5A), M(0x4FA368), M(0x2F7A4C)];
 
   const stanza = new THREE.Group(); scene.add(stanza);
-  const LARGA = 11.6, FONDA = 8.6, ALTA = 3.0;
-  const REGIA = [4.6, 5.8];   // il centro del desk circolare
+  const LARGA = 13.2, FONDA = 8.6, ALTA = 3.0;
+  const REGIA = [7.0, 5.7];   // il centro del desk circolare: sta davanti al muro delle notizie
+  const viviSchermi = [];   // i materiali di tutti gli schermi accesi: «respirano» appena (32-muro.js)
+  const MURO = { x: 7.05, w: 4.36, sin: 4.87 };   // il muro delle notizie, sulla parete di fondo: centro, larghezza, bordo sinistro
 
   /* ================================================================ pavimento e pareti */
   stanza.add(at(box(LARGA + 0.5, 0.36, FONDA + 0.5, pavimento, 0.07), LARGA / 2 - 0.05, -0.18, FONDA / 2 - 0.05));
@@ -19,12 +21,12 @@
 
   /* ================================================================ la parete di fondo */
   // il fondale
-  const fx = 3.2, fy = 1.8, fw = 3.8, fh = fw * 943 / 2048;
+  const fx = 3.05, fy = 1.8, fw = 3.0, fh = fw * 943 / 2048;
   stanza.add(at(box(fw + 0.1, fh + 0.1, 0.07, nero, 0.02), fx, fy, 0.045), at(schermo(fw, fh, texFondale), fx, fy, 0.082));
   // la credenza con il merchandising
-  const credenza = gruppo(at(box(3.0, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
-    ...[-1.3, 1.3].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.16, legnoScuro, 12), dx, 0.08, dz))),
-    ...[-0.75, 0, 0.75].map(dx => at(box(0.012, 0.44, 0.01, legnoScuro, 0.004), dx, 0.42, 0.232)));
+  const credenza = gruppo(at(box(2.6, 0.52, 0.46, legno, 0.03), 0, 0.42, 0),
+    ...[-1.1, 1.1].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.16, legnoScuro, 12), dx, 0.08, dz))),
+    ...[-0.65, 0, 0.65].map(dx => at(box(0.012, 0.44, 0.01, legnoScuro, 0.004), dx, 0.42, 0.232)));
   at(credenza, fx, 0, 0.3); stanza.add(credenza);
   function tazza(colore, giro = -PI * 0.75) {
     const g = gruppo(), mat = new THREE.MeshStandardMaterial({ map: texTazza(colore), roughness: 0.45 });
@@ -34,25 +36,25 @@
     const dentro = at(cyl(0.044, 0.044, 0.004, M(0x3a2a22, { roughness: 0.3 })), 0, 0.092, 0); dentro.castShadow = false;
     g.add(corpo, at(cyl(0.046, 0.045, 0.01, M(colore, { roughness: 0.45 })), 0, 0.005, 0), dentro, manico); g.rotation.y = giro; return g;
   }
-  [C.yellow, C.blue, C.red].forEach((c, i) => stanza.add(at(tazza(c), fx - 1.2 + i * 0.2, 0.68, 0.36)));
+  [C.yellow, C.blue, C.red].forEach((c, i) => stanza.add(at(tazza(c), fx - 1.05 + i * 0.2, 0.68, 0.36)));
   const spiaCaffe = M(0xF5C518, { emissive: 0xF5C518, emissiveIntensity: 0.6 });
-  const CAFFE = [fx + 1.15, 0.3];
+  const CAFFE = [fx + 0.98, 0.3];
   stanza.add(at(gruppo(at(box(0.28, 0.36, 0.3, nero, 0.04), 0, 0.18, 0), at(box(0.2, 0.03, 0.12, alluminio, 0.01), 0, 0.03, 0.2),
     at(box(0.07, 0.05, 0.07, nero, 0.01), 0, 0.26, 0.17), at(sph(0.014, spiaCaffe), 0.09, 0.3, 0.152)), CAFFE[0], 0.68, CAFFE[1]));
   const pila = gruppo(...[0, 1, 2, 3, 4].map(i => { const f = at(box(0.3, 0.014, 0.22, i % 2 ? bianco : M(0xEFEBE2), 0.004), 0, 0.007 + i * 0.015, 0); f.rotation.y = (i - 2) * 0.05; return f; }));
-  stanza.add(at(pila, fx + 0.25, 0.68, 0.32));
+  stanza.add(at(pila, fx + 0.2, 0.68, 0.32));
   const cappello = gruppo(ombra(new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 12, 0, PI * 2, 0, PI / 2), M(0xF5C518, { roughness: 0.9 }))),
     (() => { const v = ombra(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.012, 24, 1, false, -PI / 2, PI), M(0x17181B))); v.position.set(0, 0.006, 0.02); v.scale.z = 1.25; return v; })());
   cappello.rotation.y = PI / 4; stanza.add(at(cappello, fx - 0.35, 0.68, 0.3));
 
   // la storia di Apple, incorniciata
-  [6.2, 6.9, 7.6].forEach((cx, c) => [1.92, 1.12].forEach((cy, r) => {
+  [9.85, 10.5, 11.15].forEach((cx, c) => [2.02, 1.24].forEach((cy, r) => {
     stanza.add(at(box(0.56, 0.7, 0.035, nero, 0.012), cx, cy, 0.022), at(stampa(0.5, 0.625, manifesti[r * 3 + c]), cx, cy, 0.0405));
   }));
   // il conto alla rovescia verso la prossima edizione
   const telaConto = document.createElement('canvas'); telaConto.width = 760; telaConto.height = 176;
   const texConto = new THREE.CanvasTexture(telaConto); texConto.colorSpace = THREE.SRGBColorSpace; texConto.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  stanza.add(at(box(1.96, 0.47, 0.06, nero, 0.02), 6.9, 2.63, 0.035), at(schermo(1.86, 1.86 * 176 / 760, texConto), 6.9, 2.63, 0.067));
+  stanza.add(at(schermo(1.86, 1.86 * 176 / 760, texConto), 7.28, 2.66, 0.077));   // sta in cima al muro delle notizie, fra gli orologi
   let ultimoConto = '';
   function conto() {
     const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).formatToParts(new Date());
@@ -72,13 +74,13 @@
     texConto.needsUpdate = true; return true;
   }
   // il mobiletto con la stampante
-  const STAMPANTE = [8.55, 0.3];
+  const STAMPANTE = [10.5, 0.3];
   const spiaStampa = M(0x35C759, { emissive: 0x35C759, emissiveIntensity: 0.5 });
   stanza.add(at(gruppo(at(box(1.0, 0.44, 0.44, legno, 0.03), 0, 0.36, 0), ...[-0.4, 0.4].flatMap(dx => [-0.15, 0.15].map(dz => at(cyl(0.025, 0.02, 0.14, legnoScuro, 12), dx, 0.07, dz))),
     at(box(0.44, 0.2, 0.38, bianco, 0.03), 0, 0.68, 0), at(box(0.36, 0.012, 0.3, nero, 0.005), 0, 0.786, -0.01), at(box(0.3, 0.02, 0.02, nero, 0.004), 0, 0.66, 0.191),
     at(box(0.3, 0.012, 0.16, grigio, 0.005), 0, 0.615, 0.26), at(sph(0.009, spiaStampa), 0.17, 0.72, 0.192)), STAMPANTE[0], 0, STAMPANTE[1]));
   // il manifesto di Vito
-  stanza.add(at(box(1.46, 1.96, 0.04, nero, 0.012), 10.0, 1.78, 0.025), at(stampa(1.4, 1.9, texGta), 10.0, 1.78, 0.046));
+  stanza.add(at(box(1.46, 1.96, 0.04, nero, 0.012), 12.25, 1.78, 0.025), at(stampa(1.4, 1.9, texGta), 12.25, 1.78, 0.046));
   const foglioStampante = stampa(0.21, 0.297, foglio(31, true)); foglioStampante.rotation.x = -PI / 2; foglioStampante.visible = false; stanza.add(foglioStampante);
 
   /* ================================================================ la parete di sinistra */
@@ -93,13 +95,15 @@
   const lavagna = stampa(2.5, 2.5 * 820 / 1400, texLavagna); lavagna.rotation.y = PI / 2; at(lavagna, 0.047, 1.6, bz);
   stanza.add(at(box(0.04, 1.56, 2.6, grigio, 0.015), 0.022, 1.6, bz), lavagna, at(box(0.08, 0.03, 1.8, grigio, 0.01), 0.07, 0.85, bz));
   [[0xE01F3D, -0.5], [0x17181B, -0.3], [0x0E9CD8, -0.1]].forEach(([c, dz]) => stanza.add(at(box(0.03, 0.03, 0.14, M(c), 0.01), 0.075, 0.88, bz + dz)));
-  // l'orologio, sopra la lavagna: segna l'ora vera
-  const orologio = gruppo(); orologio.rotation.y = PI / 2; at(orologio, 0.03, 2.67, bz);
-  const cassa = cyl(0.25, 0.25, 0.05, nero, 48); cassa.rotation.x = PI / 2;
-  const quadrante = at(new THREE.Mesh(new THREE.CircleGeometry(0.227, 48), new THREE.MeshStandardMaterial({ map: texOrologio, roughness: 0.6 })), 0, 0, 0.027);
-  const lancetta = (l, s, col) => { const p = gruppo(); const m = at(box(s, l, 0.008, M(col), 0.003), 0, l / 2 - 0.02, 0); m.castShadow = false; p.add(m); p.position.z = 0.034; return p; };
-  const ore = lancetta(0.12, 0.02, 0x17181B), minuti = lancetta(0.185, 0.015, 0x17181B), secondi = lancetta(0.2, 0.007, 0xE01F3D);
-  orologio.add(cassa, quadrante, ore, minuti, secondi); stanza.add(orologio);
+  // gli orologi: uno per città, in cima al muro delle notizie (li mette 32-muro.js); segnano l'ora vera di ogni fuso
+  const OROLOGI = [];
+  function orologioDi(fuso, r = 0.25) {
+    const g = gruppo(), k = r / 0.25, cassa = cyl(r, r, 0.04, nero, 40); cassa.rotation.x = PI / 2;
+    const quadrante = at(new THREE.Mesh(new THREE.CircleGeometry(r * 0.908, 40), new THREE.MeshStandardMaterial({ map: texOrologio, roughness: 0.6 })), 0, 0, 0.022);
+    const lancetta = (l, s, col) => { const p = gruppo(); const m = at(box(s * k, l * k, 0.006, M(col), 0.002), 0, (l / 2 - 0.02) * k, 0); m.castShadow = false; p.add(m); p.position.z = 0.028; return p; };
+    const ore = lancetta(0.12, 0.022, 0x17181B), minuti = lancetta(0.185, 0.016, 0x17181B), secondi = lancetta(0.2, 0.008, 0xE01F3D);
+    g.add(cassa, quadrante, ore, minuti, secondi); OROLOGI.push({ fuso, ore, minuti, secondi }); return g;
+  }
 
   /* ================================================================ piante, lampade, cestino, annaffiatoio */
   const PIANTA = [0.62, 0.62];
@@ -115,9 +119,10 @@
       const f = ombra(new THREE.Mesh(new THREE.ConeGeometry(0.055, l, 6), verdi[i % 3])); f.scale.z = 0.35; f.position.set(0, l / 2, 0.02 + (i % 3) * 0.03); f.rotation.x = 0.12 + (i % 4) * 0.07; perno.add(f); g.add(perno); }
     return g;
   }
-  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 11.1, 0, 0.5), at(sansevieria(), 11.0, 0, 8.05));
-  const pianta2 = piantaGrande(); pianta2.scale.setScalar(0.8); pianta2.rotation.y = 1.3; stanza.add(at(pianta2, 7.75, 0, 7.9));
-  const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, fx + 0.7, 0.68, 0.3));
+  const PIANTE = [[PIANTA[0], PIANTA[1], 0.3], [12.95, 0.45, 0.2], [12.75, 8.1, 0.2], [9.6, 7.95, 0.24]];   // x, z, raggio: servono anche a chi cammina
+  stanza.add(at(piantaGrande(), PIANTA[0], 0, PIANTA[1]), at(sansevieria(), 12.95, 0, 0.45), at(sansevieria(), 12.75, 0, 8.1));
+  const pianta2 = piantaGrande(); pianta2.scale.setScalar(0.8); pianta2.rotation.y = 1.3; stanza.add(at(pianta2, 9.6, 0, 7.95));
+  const piantina = sansevieria(); piantina.scale.setScalar(0.36); stanza.add(at(piantina, fx + 0.6, 0.68, 0.3));
 
   const lampade = [], paralumi = [];
   function punto(colore, forza, x, y, z, raggio = 5) { const l = new THREE.PointLight(colore, 0, raggio, 1.6); l.position.set(x, y, z); l.userData.max = forza; lampade.push(l); stanza.add(l); return l; }
@@ -127,7 +132,7 @@
   stanza.add(at(piantana, 1.26, 0, 0.36)); punto(0xFFC27A, 9, 1.3, 1.6, 0.75, 6);   // nell'angolo, accanto alla pianta
   punto(0xFFC27A, 5, 6.4, 1.6, 3.2, 5.5);   // un po' di luce calda sulla fila della prosa
   punto(0xFFC27A, 6, REGIA[0], 1.7, REGIA[1], 5.5);   // sulla regia
-  punto(0xFFB07A, 5, 9.9, 1.6, 4.9, 5.5);   // e sull'isola di destra
+  punto(0xFFB07A, 5, 11.6, 1.6, 4.9, 5.5);   // e sull'isola di destra
   punto(0xF2ECDF, 5, fx, 1.7, 1.3, 5.5);   // il chiarore del fondale, che la sera si vede
 
   const CESTINO = [4.08, 1.95];

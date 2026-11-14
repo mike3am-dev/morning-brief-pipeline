@@ -1623,6 +1623,8 @@ data/redazione/          decisioni.json: il registro delle decisioni di Mike, co
 redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato dai file della corsa (sola lettura)
 redazione/aggiorna.py    prepara lo stato da scrivere nell'archivio della redazione (lo usa la routine che la tiene aggiornata)
 redazione/carte.py       le carte sulla scrivania di ogni agente: il suo lavoro del giorno in testo, per quando Mike gli parla
+redazione/muro.py        i dati del muro delle notizie della redazione: la mappa (sedi delle testate, origine delle notizie),
+                         la borsa, le discussioni, i canali; una testata nuova va aggiunta a SEDI
 redazione/src/           la pagina della redazione, a pezzi; redazione/costruisci.py li compone in redazione/app/redazione.html
                          con lo stato del giorno (mai modificare a mano il file composto)
 docs/redazione/          la redazione virtuale: progetto, mappa dei dati, ricerca, prove

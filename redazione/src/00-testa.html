@@ -40,6 +40,11 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
   background:color-mix(in srgb, var(--paper) 90%, transparent); color:var(--ink); font:600 11px var(--body);
   box-shadow:0 1px 0 rgba(23,24,27,.16); will-change:transform}
 .tag b{width:6px; height:6px; border-radius:50%; display:block}
+.tag .ico{display:none; width:17px; height:17px; border-radius:50%; background:var(--ink); color:var(--paper); align-items:center; justify-content:center; flex:none}
+.tag .ico[hidden]{display:none!important}
+.tag:hover .ico, .tag:focus-visible .ico, .tag.vicino .ico, .tag.pop .ico{display:inline-flex}
+.tag.pop .ico{animation:salta .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes salta{from{transform:scale(0)} to{transform:scale(1)}}
 .tag .piu{display:none; align-items:center; gap:6px; color:var(--ink-3); font-weight:500}
 .tag .piu em{font-style:normal; font-family:var(--display); font-weight:700; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
   background:var(--ink); color:var(--paper); padding:1px 7px; border-radius:999px}
@@ -84,6 +89,8 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .postit span{font-size:12.5px; line-height:1.4; color:var(--ink-2)}
 .postit small{font-size:11px; color:var(--ink-3)}
 .piccolo{font-size:12.5px; color:var(--ink-2)}
+.grande{font-weight:700; font-size:17px; line-height:1.3}
+.citazione{font-family:Georgia,"Times New Roman",serif; font-style:italic; font-size:16px; line-height:1.4}
 .corpo{display:flex; flex-direction:column; gap:16px; flex:1}
 .parla-apri{border:0; border-radius:12px; background:var(--ink); color:var(--paper); padding:11px 14px; cursor:pointer; text-align:left;
   font-family:var(--display); font-weight:800; font-size:16px; letter-spacing:.05em; text-transform:uppercase}

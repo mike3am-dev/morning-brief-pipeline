@@ -7,7 +7,7 @@
   }
   function imac(tex, mento, retro) {   // l'iMac: la lastra sottile, il mento colorato, il piede di alluminio
     const g = gruppo(at(box(0.55, 0.455, 0.012, M(retro, { roughness: 0.4 }), 0.006), 0, 0.3175, -0.003), at(box(0.548, 0.36, 0.004, bianco, 0.002), 0, 0.364, 0.0045),
-      at(box(0.548, 0.094, 0.004, M(mento, { roughness: 0.5 }), 0.002), 0, 0.138, 0.0045), at(schermo(0.5, 0.3125, tex), 0, 0.364, 0.0072),
+      at(box(0.548, 0.094, 0.004, M(mento, { roughness: 0.5 }), 0.002), 0, 0.138, 0.0045), (() => { const s = at(schermo(0.5, 0.3125, tex), 0, 0.364, 0.0072); viviSchermi.push(s.material); return s; })(),
       at(box(0.17, 0.008, 0.16, alluminio, 0.003), 0, 0.004, -0.02));
     const collo = box(0.13, 0.2, 0.01, alluminio, 0.004); collo.position.set(0, 0.1, -0.05); collo.rotation.x = 0.28; g.add(collo);
     return g;
