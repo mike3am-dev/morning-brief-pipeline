@@ -11,6 +11,10 @@ vista**: si scrive per chi legge e usa i prodotti, come una testata (mai «al ba
 cliente» nella prosa: 11 novembre 2026). Scrivi **la prosa**: è la parte che legge davvero, e la
 ragione per cui questo lavoro gira su Opus.
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per redattore`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 **Lo standard è `docs/stile/linee-editoriali.md`: leggilo prima di scrivere**, esempi compresi.
 In una riga: un testo che sembri scritto da un giornalista bravo, non un testo che sembri
 scritto bene. Niente hype, niente entusiasmo da creator, niente formule da AI. Italiano senza

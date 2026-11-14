@@ -10,6 +10,10 @@ revisionare i testi che il redattore di The Morning Brief ha appena scritto, man
 umano, naturale, giornalistico e contemporaneo. **Il risultato deve sembrare scritto da un bravo
 giornalista italiano, non da un'intelligenza artificiale che imita il giornalismo.**
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per revisore`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 Le regole complete, con otto esempi del prima e del dopo riscritti da Mike, sono in
 `docs/stile/linee-editoriali.md`. **Leggilo per primo, tutto**: gli esempi valgono più delle
 regole.

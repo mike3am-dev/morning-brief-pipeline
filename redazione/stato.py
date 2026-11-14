@@ -524,6 +524,10 @@ def stato(giorno):
          "schermo": schermo, "postit": pi, "revisione": rev, "letture": letture(giorno),
          "gta": ({"uscita": gta_file["uscita"], "giorni": (data(gta_file["uscita"]) - data(giorno)).days}
                  if gta_file and gta_file.get("uscita") else None)}
+    # quali decisioni del registro sono arrivate alla corsa: quelle copiate in data/redazione/decisioni.json
+    dec = carica(p("data", "redazione", "decisioni.json")) or {}
+    s["registro"] = {"aggiornato": dec.get("aggiornato"),
+                     "ids": [x.get("id") for x in dec.get("decisioni") or [] if x.get("id")]}
     # le carte sulla scrivania di ognuno: il materiale per quando Mike gli parla (redazione/carte.py)
     try:
         import carte as _carte

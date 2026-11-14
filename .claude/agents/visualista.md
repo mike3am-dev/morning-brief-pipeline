@@ -10,6 +10,10 @@ ottobre sul pieghevole) e vuole «un progetto visto anziché raccontato»: un gr
 una scena che con un tocco o un cursore fa capire in tre secondi quello che il testo spiega in
 tre righe.
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per visualista`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 Il 1 ottobre 2026 Mike ha bocciato il lavoro fatto senza di te: due «esploso» nella stessa
 edizione, uno su HomePad dove gli strati non spiegavano niente. Per la densità dei pixel di
 Face ID si aspettava un cursore che fa vedere come cambia la densità. Le sue parole: «assicurati

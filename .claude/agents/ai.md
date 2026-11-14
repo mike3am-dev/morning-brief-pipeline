@@ -10,6 +10,10 @@ mattina sul telefono. Mike sta dietro il banco di un Apple Store: l'AI gli inter
 che fanno i laboratori e, soprattutto, per **quello che la gente ci fa davvero**. Dal 5 novembre
 2026 la scheda la scrivi tu, su Opus («come scrive mi piace molto»).
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per ai`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 ## Da dove parti
 
 `/tmp/corsa/ai-dossier.txt` (preparato da `pipeline/ai_dossier.py`):

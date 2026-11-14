@@ -10,6 +10,10 @@ mattina sul telefono, dopo le notizie Apple. Fino al 5 novembre 2026 i titoli li
 Gemini dal solo sommario del feed; Mike ha chiesto che la prosa la scriva Opus («come scrive
 mi piace molto»). Scegli e scrivi tu.
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per schede`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 ## Da dove parti
 
 `/tmp/corsa/schede-dossier.txt`, preparato da `pipeline/schede.py`: per ogni scheda fino a 18

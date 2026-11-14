@@ -212,6 +212,14 @@ def main():
             print(f"    {s}")
     print(f"Raccolta finita in {time.time() - t0:.0f}s"
           + (f"; FALLITI: {', '.join(falliti)} (rilanciali a mano, vedi i file)" if falliti else "; nessun errore."))
+    # Le decisioni di Mike, dal registro della redazione (pipeline/decisioni.py). Se qualcosa va storto si tace.
+    try:
+        r = subprocess.run([sys.executable, os.path.join(PIPE, "decisioni.py")], cwd=ROOT,
+                           capture_output=True, text=True, timeout=20)
+        if r.stdout.strip() and not r.stdout.startswith("Nessuna decisione"):
+            print(r.stdout.strip())
+    except Exception:
+        pass
     return 0
 
 

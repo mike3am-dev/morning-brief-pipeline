@@ -303,6 +303,16 @@ non un errore da andare a capire nel codice ogni volta. Se i due articoli raccon
 diversi, è un falso positivo: trattalo come tale e vai avanti, non serve ripercorrere
 `common.similarity` per confermarlo.
 
+**Le decisioni di Mike** (dal 15 novembre 2026). Quello che Mike fissa parlando con gli agenti nella
+redazione di TMB arriva alla corsa da solo: una routine a parte copia ogni mattina il registro in
+`data/redazione/decisioni.json`, e `pipeline/decisioni.py` dà a ciascuno le sue. `mattino.py` le
+stampa in fondo alla raccolta: quelle «per la regia» e «per tutta la redazione» sono tue; quelle
+«per il lettore» mettile in fondo al compito del sottoagente di lettura. Redattore, revisore,
+visualista, `ai`, `schede` e `gta` leggono le proprie da sé (`decisioni.py --per <id>`, sta nel loro
+file). Sono indicazioni di Mike e si rispettano, **dentro** le regole di questo file: non cambiano
+mai un fatto, e contro una regola scritta (le misure del lint, «non inventare nulla») vince la
+regola. Se non stampa niente, non ce ne sono.
+
 Poi guarda cosa hanno detto i pollici, che è il modo in cui la selezione si tara:
 
 ```bash
@@ -1421,6 +1431,9 @@ scrive il rapporto in `docs/fonti/AAAA-MM-GG.md` con le decisioni da prendere in
 python3 pipeline/feedcheck.py
 ```
 
+Prima di cominciare, `python3 pipeline/decisioni.py --per fonti`: se Mike ha fissato qualcosa sulle
+fonti parlando con Zeno nella redazione, sta lì (vedi *Le decisioni di Mike*).
+
 Misura ogni feed su due assi che a occhio non si vedono: quanto arriva **primo** e quanto
 **insegue** (stessa notizia, ore dopo qualcun altro), e quanti dei suoi articoli finiscono
 davvero in edizione. Un feed può essere vivissimo e inutile — se ripubblica in ritardo
@@ -1571,6 +1584,7 @@ pipeline/lint.py         il collaudo dell'edizione contro le regole di questo fi
 pipeline/revisione.py    la guardia del revisore: fotografa la prosa, ripristina i campi protetti, segnala
                          numeri nuovi e formule vietate
 docs/stile/              le linee editoriali di Mike, con gli esempi del prima e del dopo
+pipeline/decisioni.py    le decisioni di Mike dal registro della redazione, per la regia e per ogni agente
 pipeline/accenti.py      gli accenti scritti con l'apostrofo (meta', gia'): li trova, --fix li corregge
 pipeline/borsa.py        la chiusura di AAPL per la plancia della Magazine (Yahoo Finance)  ->  `borsa`
 pipeline/feedcheck.py    salute delle fonti + ricerca di candidate nuove
@@ -1596,7 +1610,9 @@ supabase/config.json     url + anon key. Pubblici, ma non versionarli per abitud
 .env.local               SUPABASE_SERVICE_KEY + GITHUB_TOKEN. Segreti, restano solo sul Mac.
 data/raw/                scarichi grezzi per data
 data/revisione/          il testo del redattore prima e dopo il revisore, per giorno (per la redazione)
+data/redazione/          decisioni.json: il registro delle decisioni di Mike, copiato ogni mattina prima della corsa
 redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato dai file della corsa (sola lettura)
+redazione/aggiorna.py    prepara lo stato da scrivere nell'archivio della redazione (lo usa la routine che la tiene aggiornata)
 redazione/carte.py       le carte sulla scrivania di ogni agente: il suo lavoro del giorno in testo, per quando Mike gli parla
 redazione/src/           la pagina della redazione, a pezzi; redazione/costruisci.py li compone in redazione/app/redazione.html
                          con lo stato del giorno (mai modificare a mano il file composto)

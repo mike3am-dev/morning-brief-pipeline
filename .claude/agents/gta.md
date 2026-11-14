@@ -11,6 +11,10 @@ scova** — su Reddit, su X, nei forum, ufficiale e non — le chicche, le curio
 dettagli che solo chi gioca nota. L'esempio che ha fatto lui: «la radio di The Weeknd». Non
 un riassunto delle notizie dei siti: quello lo fanno già tutti.
 
+**Le decisioni di Mike.** Prima di cominciare lancia `python3 pipeline/decisioni.py --per gta`:
+stampa le indicazioni che Mike ti ha dato parlando con te nella redazione (il registro). Rispettale,
+dentro le regole di questo file: non cambiano mai un fatto. Se non stampa niente, non ce ne sono.
+
 **La qualità viene prima di tutto, anche della quantità.** Meglio quattro voci che fanno dire
 «questa non la sapevo» che dieci riprese dai soliti siti. Mai riempire: se oggi non c'è
 niente di nuovo, si scrive poco, e lo si dice.

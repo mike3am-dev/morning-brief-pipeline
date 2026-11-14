@@ -57,13 +57,15 @@
     const riga = d => { const r = el('div', 'postit decisa'), a = AGENTI[d.agente], via = el('button', 'ritira', 'Ritira'); r.style.borderLeftColor = TINTA[d.agente] || VERDE; via.type = 'button'; let sicuro = false;
       via.addEventListener('click', async () => { if (!sicuro) { sicuro = true; via.textContent = 'Sicuro? Tocca ancora'; setTimeout(() => { if (via.isConnected && !via.disabled) { sicuro = false; via.textContent = 'Ritira'; } }, 4000); return; }
         via.disabled = true; try { await ritiraDecisione(d.id); } catch (e) { via.disabled = false; via.textContent = 'Non riuscito'; } });
-      r.append(el('small', null, (a ? a.nome : 'Tutta la redazione') + ' · ' + dataCorta(d.quando) + ' · ' + (TIPI_DECISIONE[d.tipo] || 'preferenza')), el('strong', null, d.testo), via); return r; };
+      const arrivata = ((STATO.registro || {}).ids || []).includes(d.id), dove = d.tipo === 'incarico' ? el('span', 'in-attesa', 'Per chi costruisce l\'app') : arrivata ? el('span', 'fatta', 'Letta dalla corsa ✓') : el('span', 'in-attesa', 'La corsa la legge domattina');
+      const piede = el('div', 'postit-azioni'); piede.append(dove, via);
+      r.append(el('small', null, (a ? a.nome : 'Tutta la redazione') + ' · ' + dataCorta(d.quando) + ' · ' + (TIPI_DECISIONE[d.tipo] || 'preferenza')), el('strong', null, d.testo), piede); return r; };
     const ridisegna = () => { const fermo2 = registro === 'assente' || registro === 'errore' || !archivio; ok.disabled = fermo2; campo.disabled = fermo2;
       nota.textContent = registro === 'assente' ? 'Qui il registro non c\'è: funziona aprendo la pagina su claude.ai.' : registro === 'errore' ? 'Il registro non risponde. Ricarica la pagina per riprovare.' : registro === 'attesa' ? 'Un momento: sto aprendo il registro…' : registro === 'lento' ? 'Il registro tarda a rispondere: quello che vedi potrebbe non essere aggiornato.' : '';
       nota.hidden = !nota.textContent; lista.textContent = '';
       if (!decisioni.length && registro === 'pronto') lista.append(el('p', 'parla-vuoto', 'Ancora nessuna decisione. Nascono parlando con qualcuno della redazione (te la propone, e la salvi con un tocco) oppure le annoti qui sopra.'));
       decisioni.forEach(d => lista.append(riga(d))); const av = pannello.querySelector('.avatar'); if (av) av.textContent = String(decisioni.length); };
-    pannello.append(nota, form, lista, el('p', 'piede', 'Chi riceve una decisione la ritrova ogni volta che gli parli. La corsa del mattino il registro non lo legge ancora: una regola o un incarico cambiano l\'edizione quando qualcuno li porta nelle istruzioni della corsa o nell\'app.'));
+    pannello.append(nota, form, lista, el('p', 'piede', 'Chi riceve una decisione la ritrova ogni volta che gli parli. Ogni mattina, prima della corsa, preferenze e regole vengono copiate da qui e ognuno legge le sue prima di cominciare. Gli incarichi sono lavori per chi costruisce l\'app: restano qui finché non vengono presi in mano.'));
     ridisegna(); vistaRegistro = ridisegna;
   }
 
