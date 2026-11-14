@@ -1382,5 +1382,211 @@
     "passo": "chiudi"
    }
   ]
+ },
+ {
+  "nuovi": 353,
+  "in_cache": 26880938,
+  "scritti_cache": 1323825,
+  "scritti": 216211,
+  "risposte": 177,
+  "ricerche_web": 0,
+  "giorno": "2026-11-14",
+  "sessione": "7f7538fb-91e3-5e0a-a294-d97b8af582a4",
+  "inizio": "2026-11-14T04:34:41+00:00",
+  "minuti": 29,
+  "registri": [
+   {
+    "nuovi": 171,
+    "in_cache": 17527364,
+    "scritti_cache": 220199,
+    "scritti": 51754,
+    "risposte": 86,
+    "ricerche_web": 0,
+    "nome": "principale",
+    "minuti": 28,
+    "inizio": "2026-11-14T04:34:41.959Z",
+    "fine": "2026-11-14T05:03:02.066Z",
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 8,
+    "in_cache": 227317,
+    "scritti_cache": 82600,
+    "scritti": 4359,
+    "risposte": 4,
+    "ricerche_web": 0,
+    "nome": "revisore: Rilegge e corregge la prosa dell'edizione",
+    "minuti": 1,
+    "inizio": "2026-11-14T04:55:36.344Z",
+    "fine": "2026-11-14T04:56:18.907Z",
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 60,
+    "in_cache": 3859943,
+    "scritti_cache": 204485,
+    "scritti": 52295,
+    "risposte": 30,
+    "ricerche_web": 0,
+    "nome": "general-purpose: Lettura articoli Apple del giorno",
+    "minuti": 10,
+    "inizio": "2026-11-14T04:36:22.815Z",
+    "fine": "2026-11-14T04:46:37.965Z",
+    "modello": "Sonnet"
+   },
+   {
+    "nuovi": 30,
+    "in_cache": 1542138,
+    "scritti_cache": 351013,
+    "scritti": 57288,
+    "risposte": 15,
+    "ricerche_web": 0,
+    "nome": "redattore: Scrive la prosa dell'edizione",
+    "minuti": 9,
+    "inizio": "2026-11-14T04:46:45.126Z",
+    "fine": "2026-11-14T04:55:31.403Z",
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 12,
+    "in_cache": 458404,
+    "scritti_cache": 112622,
+    "scritti": 8108,
+    "risposte": 6,
+    "ricerche_web": 0,
+    "nome": "schede: Scrive schede Games e Scienza",
+    "minuti": 1,
+    "inizio": "2026-11-14T04:46:41.599Z",
+    "fine": "2026-11-14T04:48:09.270Z",
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 28,
+    "in_cache": 1262289,
+    "scritti_cache": 119970,
+    "scritti": 14473,
+    "risposte": 14,
+    "ricerche_web": 0,
+    "nome": "ai: Scrive sezione AI dell'edizione",
+    "minuti": 3,
+    "inizio": "2026-11-14T04:36:25.206Z",
+    "fine": "2026-11-14T04:39:10.016Z",
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 30,
+    "in_cache": 1445138,
+    "scritti_cache": 129102,
+    "scritti": 8271,
+    "risposte": 15,
+    "ricerche_web": 0,
+    "nome": "gta: Scrive sezione GTA VI",
+    "minuti": 2,
+    "inizio": "2026-11-14T04:46:38.552Z",
+    "fine": "2026-11-14T04:48:56.649Z",
+    "modello": "Opus"
+   },
+   {
+    "nuovi": 14,
+    "in_cache": 558345,
+    "scritti_cache": 103834,
+    "scritti": 19663,
+    "risposte": 7,
+    "ricerche_web": 0,
+    "nome": "visualista: Scrive le visualizzazioni degli approfondimenti",
+    "minuti": 4,
+    "inizio": "2026-11-14T04:57:28.396Z",
+    "fine": "2026-11-14T05:01:31.280Z",
+    "modello": "Sonnet"
+   }
+  ],
+  "modelli": {
+   "Sonnet": {
+    "nuovi": 245,
+    "in_cache": 21945652,
+    "scritti_cache": 528518,
+    "scritti": 123712,
+    "risposte": 123,
+    "ricerche_web": 0
+   },
+   "Opus": {
+    "nuovi": 108,
+    "in_cache": 4935286,
+    "scritti_cache": 795307,
+    "scritti": 92499,
+    "risposte": 54,
+    "ricerche_web": 0
+   }
+  },
+  "passi": [
+   {
+    "ora_utc": "04:34:50",
+    "passo": "mattino"
+   },
+   {
+    "ora_utc": "04:36:37",
+    "passo": "campi"
+   },
+   {
+    "ora_utc": "04:43:01",
+    "passo": "lint"
+   },
+   {
+    "ora_utc": "04:43:46",
+    "passo": "salva"
+   },
+   {
+    "ora_utc": "04:43:54",
+    "passo": "aspetta"
+   },
+   {
+    "ora_utc": "04:49:17",
+    "passo": "salva"
+   },
+   {
+    "ora_utc": "04:56:22",
+    "passo": "chiudi"
+   },
+   {
+    "ora_utc": "04:56:34",
+    "passo": "verify"
+   },
+   {
+    "ora_utc": "04:56:59",
+    "passo": "qualita"
+   },
+   {
+    "ora_utc": "04:57:19",
+    "passo": "chiudi"
+   },
+   {
+    "ora_utc": "05:01:44",
+    "passo": "accenti"
+   },
+   {
+    "ora_utc": "05:01:48",
+    "passo": "chiudi"
+   },
+   {
+    "ora_utc": "05:01:53",
+    "passo": "accenti"
+   },
+   {
+    "ora_utc": "05:01:56",
+    "passo": "chiudi"
+   },
+   {
+    "ora_utc": "05:02:14",
+    "passo": "lint"
+   },
+   {
+    "ora_utc": "05:02:22",
+    "passo": "accenti"
+   },
+   {
+    "ora_utc": "05:03:02",
+    "passo": "chiudi"
+   }
+  ]
  }
 ]
