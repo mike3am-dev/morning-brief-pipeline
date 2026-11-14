@@ -251,8 +251,14 @@ def carte(giorno, root, brief, rev, stato):
         r.append("Oggi la sezione GTA VI non l'ho scritta io.")
     out["gta"] = "\n".join(r)
 
-    # ---- Zeno: l'ultimo rapporto sulle fonti
+    # ---- Zeno: le fonti di oggi, e l'ultimo rapporto
     r = []
+    feed = (stato.get("macchine") or {}).get("feed")
+    if feed:
+        r.append(f"LE FONTI DI STAMATTINA: rispondono {feed['ok']} su {feed['totale']}. Mute o rotte: {', '.join(feed.get('rotti') or []) or 'nessuna'}.")
+        if b.get("feed_notes"):
+            r.append("Le note sui feed scritte nell'edizione: " + "; ".join(b["feed_notes"][:14]))
+        r.append("")
     rapporti = sorted(f for f in glob.glob(p("docs", "fonti", "*.md")) if os.path.basename(f)[:10] <= giorno)
     if rapporti:
         testo = open(rapporti[-1], encoding="utf-8").read()

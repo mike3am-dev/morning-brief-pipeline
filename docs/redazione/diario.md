@@ -544,3 +544,55 @@ quanto le edizioni che contiene (`annate`), con i giornali impilati e il cartonc
 
 **Per provare**: il muro mostra il logo quando il secondo del giro, diviso per 60, dà resto fra 0 e
 10: per vedere le notizie `redazione.tempo(75)`, per il logo `redazione.tempo(64)`.
+
+## 14 novembre 2026, tardi — via i tappeti, i gesti di Vito, e la causa degli scatti
+
+Mike, vista la versione 11: i tappeti con le scritte non lo convincono («altre scritte poi»): «la
+caratterizzazione delle zone deve passare attraverso i personaggi, la postazione e il loro
+ambiente». Zeno «lo voglio sempre presente in ufficio». Poi il **primo test comportamentale**:
+dieci gesti per Vito, descritti uno per uno, e la regola per alternarli (quasi sempre il gesto di
+base; ogni 40–90 secondi uno speciale). E i movimenti «mi sembrano leggermente a scatti».
+Pubblicata come versione 12.
+
+**Gli scatti avevano due cause** (`90-giro.js`, `64-copione.js`).
+- Il modellino si ridisegnava **al massimo 30 volte al secondo**, e con un passo irregolare. Ora
+  segue lo schermo fino a 60 (su uno schermo a 120, un fotogramma sì e uno no); se il computer non
+  ce la fa per più di due secondi scende a 30, ma regolare. Le cose che «inseguono» (la camera, chi
+  si gira verso Mike) vanno alla stessa velocità a 30 e a 60.
+- Quando qualcuno si alzava o si sedeva **la posa cambiava di colpo** (dal gesto di base a «seduto»).
+  Ora `alPosto` e `alPostoCon` sfumano all'inizio e alla fine (`sfuma` in `50-persone.js`, che regge
+  anche le voci che una posa non ha). Sparisce anche lo scatto al ricominciare del giro.
+
+**I gesti di Vito** (`vito` in `62-gesti.js`). Di base tiene il tempo con la testa (105 battiti al
+minuto) e ogni tanto batte due righe. Gli speciali sono nove, ognuno una posa che sfuma dentro e
+fuori quella di base: assolo con le penne · scosta una cuffia e guarda verso Olivia · la tazza
+vuota · un giro sulla sedia · scatto sulla tastiera · si stiracchia · riposa gli occhi (le cuffie
+sul collo) · ride da solo · «questa spacca». Ne parte **uno ogni 65 secondi, più o meno 12 e mezzo**:
+fra l'uno e l'altro passano da 40 a 90 secondi. Quale, dipende dall'ora vera e non dal giro di
+cinque minuti, quindi non si ripete uguale; mai lo stesso due volte di fila; i quattro che Mike ha
+indicato (penne, cuffia, tazza, giro) escono il doppio degli altri.
+- Per farli servivano cose nuove: le cuffie in un gruppo che si sposta, due penne-bacchette, la
+  sedia da gaming che gira e si inclina con lui (`sediaCon`), la testa che si inclina di lato
+  (`hz`), la bocca e gli occhi che cambiano. A ogni fotogramma tutto torna com'era
+  (`ripristinaVito`) e il gesto del momento lo sposta.
+- **Nella scheda di Vito ci sono i pulsanti «I suoi gesti: provali»**: Mike li guarda uno per uno
+  nel primo piano. Per le prove: `redazione.gesto('giro', 0.5)` lo ferma a metà.
+- Il gamepad non c'è più: Vito scrive, a tempo di musica.
+- Il primo piano di chi è seduto ora si prende da un punto fermo, così un giro sulla sedia si vede.
+
+**Le zone senza tappeti** (`59-marchio.js`, `44-carte.js`). Resta solo il tappeto della regia, che
+è il sole del marchio. Ogni gruppo si riconosce da quello che ha intorno:
+- **l'edizione** è carta: pile di giornali per terra ai lati dell'isola, vaschette di documenti al
+  centro, il telefono sul tavolo di Nora;
+- **il design** è uno studio: il cavalletto con la tavola dei colori, il faretto col diffusore, il
+  manichino da disegno e il ventaglio dei colori da Lea, un obiettivo da Bruno;
+- **le schede** sono quattro mondi: il serverino di Ada, Saturno e il telescopio di Rita, il
+  router di Dario, e Vito con la sedia da gaming, la barra di luce e la palma al neon;
+- **l'archivio** sono i faldoni sul tavolo di Zeno e le scatole per terra accanto a Clio.
+Le cose appoggiate per terra stanno in `INGOMBRI`, che le strade aggirano.
+
+**Zeno c'è tutti i giorni.** Alla sua scrivania tiene d'occhio le fonti di oggi (quante rispondono
+e quali no: viene dal grezzo); il lunedì scrive il rapporto. Gli si può sempre parlare.
+
+**Il passo dopo**, detto da Mike: «passeremo anche agli altri». Il modello è quello di Vito: un
+gesto di base, una lista di speciali con nome, durata e peso, e i pulsanti nella scheda.

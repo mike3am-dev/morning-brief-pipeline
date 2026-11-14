@@ -69,10 +69,11 @@
   const oro = M(0xD9A93B, { metalness: 0.7, roughness: 0.3 });
   const orecchini = ({ testa }) => { for (const l of [-1, 1]) testa.add(at(sph(0.013, oro, 12, 8), l * 0.178, -0.068, -0.004)); };
   const spilla = ({ busto }) => { busto.add(at(sph(0.016, M(0xF5C518, { roughness: 0.35 }), 12, 8), -0.075, 0.335, 0.112)); };
-  function cuffie({ testa }) {   // le cuffie di Vito: l'archetto e i due padiglioni
-    const arco = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.218, 0.011, 8, 36, PI), M(0x202125, { roughness: 0.5 }))); arco.position.set(0, 0.0, -0.006); testa.add(arco);
+  function cuffie({ testa }) {   // le cuffie di Vito: l'archetto e i due padiglioni. Stanno in un gruppo, perché lui le sposta: un padiglione scostato, o tutte giù intorno al collo
+    const c = gruppo(), pad = {}, arco = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.218, 0.011, 8, 36, PI), M(0x202125, { roughness: 0.5 }))); arco.position.set(0, 0.0, -0.006); c.add(arco);
     for (const l of [-1, 1]) { const p = gruppo(cyl(0.06, 0.06, 0.04, M(0x3FE0D0, { roughness: 0.45 }), 24), at(cyl(0.05, 0.05, 0.012, M(0x202125, { roughness: 0.8 }), 24), 0, l * 0.024, 0), at(cyl(0.028, 0.028, 0.008, M(0xFF5DA2, { roughness: 0.4 }), 18), 0, -l * 0.022, 0));
-      p.rotation.z = PI / 2; testa.add(at(p, l * 0.205, -0.012, -0.006)); }
+      p.rotation.z = PI / 2; c.add(at(p, l * 0.205, -0.012, -0.006)); pad[l] = p; }
+    testa.add(c); testa.userData.cuffie = { g: c, pad };
   }
   const cerchietto = ({ testa }) => { const c = ombra(new THREE.Mesh(new THREE.TorusGeometry(0.202, 0.009, 8, 36, PI), M(0x7CC6F2, { roughness: 0.5 }))); c.position.set(0, 0.012, 0.04); c.rotation.x = -0.18; testa.add(c); };
   const farfallino = ({ busto }) => { const r = M(0xE01F3D, { roughness: 0.7 }); busto.add(at(gruppo(at(ell(0.024, 1.3, 0.85, 0.5, r), -0.027, 0, 0), at(ell(0.024, 1.3, 0.85, 0.5, r), 0.027, 0, 0), sph(0.011, r, 10, 8)), 0, 0.425, 0.088)); };

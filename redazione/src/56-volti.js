@@ -16,7 +16,7 @@
     memoria:    { vestito: 'golf', chioma: 'lunghi', pelle: 0xEFC4A4, capelli: 0xD9D9DE, sopracciglia: 0xA9A9B0, calzoni: 0x4A4B52, scarpe: 0x3A2A22, suola: 0x2A2B30, occhiali: 0xD9A93B, ciglia: true, labbra: 0xB8404F, accessori: orecchini },
   };
   const persone = {};
-  for (const id of Object.keys(ASPETTO)) { if (id === 'fonti' && !LUNEDI) continue; persone[id] = persona({ id, ...ASPETTO[id] }); stanza.add(persone[id]); }
+  for (const id of Object.keys(ASPETTO)) { persone[id] = persona({ id, ...ASPETTO[id] }); stanza.add(persone[id]); }   // ci sono tutti, tutti i giorni: anche Zeno (Mike, 14 novembre 2026: «lo voglio sempre presente in ufficio»)
   const ettore = persone.redattore, ivo = persone.revisore, mano = id => persone[id].userData.j.mD;
 
   // gli oggetti che passano di mano
@@ -34,7 +34,14 @@
   gamepad.rotation.x = -0.5; gamepad.visible = false; persone.gta.userData.j.busto.add(at(gamepad, 0, 0.275, 0.3));
   const tavoletta = gruppo(box(0.17, 0.24, 0.012, M(0x2A2B30, { roughness: 0.4 }), 0.008), at(stampa(0.15, 0.21, texLista), 0, 0, 0.0068));
   tavoletta.rotation.set(-0.5, 0.25, 0); persone.regia.userData.j.mS.add(at(tavoletta, -0.03, -0.02, 0.1));
-  const cartella = box(0.03, 0.24, 0.3, M(0xF5C518, { roughness: 0.8 }), 0.008); cartella.visible = false; if (persone.fonti) mano('fonti').add(at(cartella, 0, -0.1, 0.1));
+  const cartella = box(0.03, 0.24, 0.3, M(0xF5C518, { roughness: 0.8 }), 0.008); cartella.visible = false; mano('fonti').add(at(cartella, 0, -0.1, 0.1));
   // la cornetta di Nora, nella sinistra: la verifica si fa anche al telefono
   const cornetta = box(0.034, 0.13, 0.016, M(0x17181B, { roughness: 0.4 }), 0.008); cornetta.visible = false; persone.verifica.userData.j.mS.add(at(cornetta, 0, -0.03, 0.05));
+  /* Vito: quello che i suoi gesti toccano. Le due penne che usa come bacchette (una per mano), le cuffie, la tazza, la
+     bocca, gli occhi. A ogni fotogramma tutto torna com'era (`ripristina`), poi il gesto del momento lo sposta. */
+  const OGGETTI_VITO = { bacchette: [[0x2F6FD0, 'mD'], [0xE01F3D, 'mS']].map(([c, quale]) => { const p = cyl(0.0065, 0.0065, 0.15, M(c, { roughness: 0.4 }), 8); p.rotation.x = 1.9; p.visible = false; persone.gta.userData.j[quale].add(at(p, 0, -0.03, 0.06)); return p; }),
+    cuffie: persone.gta.userData.j.testa.userData.cuffie, tazza: tazzeMano.gta, bocca: persone.gta.userData.j.testa.userData.bocca, chiudi: k => { persone.gta.userData.chiudi = k; } };
+  const ripristinaVito = () => { const o = OGGETTI_VITO, c = o.cuffie; o.bacchette.forEach(b => { b.visible = false; }); c.g.position.set(0, 0, 0); c.g.rotation.set(0, 0, 0); c.g.scale.set(1, 1, 1);
+    for (const l of [-1, 1]) { c.pad[l].position.x = l * 0.205; c.pad[l].rotation.y = 0; } o.bocca.scale.setScalar(1); persone.gta.userData.chiudi = 0; };
+
 

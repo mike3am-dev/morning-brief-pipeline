@@ -3,8 +3,8 @@
   const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
   /* Le etichette non stanno sempre accese: un nome compare quando ci passi sopra col mouse, quando quella persona cambia
      cosa sta facendo (per un paio di secondi), quando ha qualcosa per te, e mentre la sua scheda è aperta. */
-  // dove sta l'etichetta di chi non è una persona in scena: i post-it sulla lavagna, e Zeno quando non è lunedì
-  const ancore = { bacheca: new THREE.Vector3(0.12, suLav + 0.06, bacheca.position.z), fonti: new THREE.Vector3(posti.fonti.seduta[0], 1.4, posti.fonti.seduta[1]) };
+  // dove sta l'etichetta di quello che non è una persona: i post-it sulla lavagna (e, più giù, il registro e la prima pagina)
+  const ancore = { bacheca: new THREE.Vector3(0.12, suLav + 0.06, bacheca.position.z) };
   // le icone di stato: piccole, a tratto, una per cosa che si può stare facendo
   const ICONE = { scrive: 'M3 13l1-3 7-7 2 2-7 7-3 1z', legge: 'M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM10 10l4 4', corregge: 'M3 8l3 3 7-7', disegna: 'M3 13V8M8 13V4M13 13V6', regia: 'M2 4h12v7H2zM6 14h4M8 11v3',
     gioca: 'M4 6h8a3 3 0 0 1 0 6c-1 0-1.5-1-2.3-1H6.3c-.8 0-1.3 1-2.3 1a3 3 0 0 1 0-6zM6 8v2M5 9h2', caffe: 'M3 6h8v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM11 7h1.5a1.5 1.5 0 0 1 0 3H11M5 2v2M8 2v2',
@@ -60,9 +60,10 @@
     if (!rend2) { rend2 = new THREE.WebGLRenderer({ canvas: telaRitratto, antialias: true }); rend2.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); rend2.setSize(320, 200, false);
       rend2.toneMapping = THREE.NeutralToneMapping; rend2.shadowMap.enabled = true; rend2.shadowMap.type = THREE.PCFShadowMap; env2 = new THREE.PMREMGenerator(rend2).fromScene(new RoomEnvironment(), 0.04).texture; }
     g.userData.j.testa.getWorldPosition(v3);
-    const j = g.userData.j, yaw = g.rotation.y + j.busto.rotation.y + j.testa.rotation.y * 0.7; let dx = 0.8 * Math.sin(yaw) + 0.42, dz = 0.8 * Math.cos(yaw) + 0.42; const n = Math.hypot(dx, dz) || 1;
-    let ux = dx / n, uz = dz / n; const fxx = Math.sin(yaw), fzz = Math.cos(yaw), p = posti[aperto];
-    if (p && !p.inPiedi && Math.hypot(g.position.x - p.seduta[0], g.position.z - p.seduta[1]) < 0.3 && ux * fxx + uz * fzz > 0.86) {   // è seduto e ha lo schermo proprio fra sé e noi: lo si guarda un po' di lato
+    const j = g.userData.j, p = posti[aperto], alSuoPosto = !!p && !p.inPiedi && Math.hypot(g.position.x - p.seduta[0], g.position.z - p.seduta[1]) < 0.3;
+    const yaw = alSuoPosto ? p.yaw : g.rotation.y + j.busto.rotation.y + j.testa.rotation.y * 0.7; let dx = 0.8 * Math.sin(yaw) + 0.42, dz = 0.8 * Math.cos(yaw) + 0.42; const n = Math.hypot(dx, dz) || 1;   // chi è seduto si guarda da un punto fermo: così, se volta la testa o fa un giro sulla sedia, lo si vede girare
+    let ux = dx / n, uz = dz / n; const fxx = Math.sin(yaw), fzz = Math.cos(yaw);
+    if (alSuoPosto && ux * fxx + uz * fzz > 0.86) {   // è seduto e ha lo schermo proprio fra sé e noi: lo si guarda un po' di lato
       let px = fzz, pz = -fxx; if (px + pz < 0) { px = -px; pz = -pz; } ux = fxx * 0.78 + px * 0.63; uz = fzz * 0.78 + pz * 0.63; }
     const lontano = 1.5; let cx2 = v3.x + ux * lontano, cz2 = v3.z + uz * lontano;
     if (cx2 < 0.4 || cz2 < 0.4) {   // ha il viso contro una parete: lo si guarda di profilo, dal lato aperto della stanza
@@ -77,8 +78,14 @@
   const daQuanto = p => p.giorni ? (p.giorni === 1 ? 'da ieri' : 'da ' + p.giorni + ' giorni') : 'di oggi';
   function biglietto(p, conNome) { const d = el('div', 'postit'); d.style.borderLeftColor = COLORE_POSTIT[p.da] || '#FF9DB0';
     d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p)), rispostaAlPostit(p)); return d; }
-  const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi',
+  const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi', fonti: 'Le fonti di oggi',
     verifica: 'Le notizie che girano di più', foto: 'Le foto di oggi, e quanto pesano', rete: 'Le discussioni entrate in edizione', memoria: 'Le storie che oggi vanno avanti' };
+  function bloccoGesti() {   // i gesti di Vito, da provare uno per uno
+    const b = blocco('I suoi gesti: provali'), fila = el('div', 'spunti'), nota = el('p', 'piccolo', 'Di suo tiene il tempo con la testa e ogni tanto batte due righe. Ogni 40–90 secondi gliene scappa uno di questi, mai lo stesso due volte di fila. Toccane uno per vederlo subito.');
+    GESTI_VITO.forEach(g => { const p = el('button', null, g[3]); p.type = 'button'; p.addEventListener('click', () => { const v = persone.gta.position, s = posti.gta.seduta;
+      if (Math.hypot(v.x - s[0], v.z - s[1]) > 0.15 || persone.gta.userData.j.bacino.position.y > SED + 0.12) { nota.textContent = 'Adesso Vito non è seduto alla scrivania: riprova quando torna.'; return; }
+      gestoForzato = { nome: g[0], da: performance.now() / 1000 }; nota.textContent = 'Guardalo nel riquadro in alto.'; }); fila.append(p); });
+    b.append(fila, nota); return b; }
   function apri(id, pre) {
     aperto = id; for (const k in tags) tags[k].classList.toggle('scelto', k === id); rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
@@ -108,6 +115,7 @@
       const corpo = el('div', 'corpo'); pannello.append(corpo);
       const gr = GRUPPI[gruppoDi(id)]; if (gr) { const altri = gr.chi.filter(k => k !== id && AGENTI[k]).map(k => AGENTI[k].nome); const riga = el('p', 'gruppo'); const b = el('b'); b.style.background = gr.tinta; riga.append(b, document.createTextNode(gr.nome + (altri.length ? ': lavora con ' + altri.join(', ').replace(/, ([^,]*)$/, ' e $1') : ''))); corpo.append(riga); }
       const riga = el('p', 'adesso'); rigaAdesso = el('span'); riga.append(el('i'), rigaAdesso); corpo.append(blocco('In questo momento', riga));
+      if (id === 'gta') corpo.append(bloccoGesti());
       if (a.minuti != null) {
         const numeri = el('div', 'numeri'), numero = (n, cosa) => { const d = el('div'); d.append(el('strong', null, String(n)), el('span', null, cosa)); numeri.append(d); };
         if (id === 'revisore' && STATO.revisione.fatta) numero(STATO.revisione.riscritti, 'testi riscritti');
@@ -124,7 +132,7 @@
       corpo.append(bloccoDecisioni(id));
       corpo.append(el('p', 'piede', a.script ? `${a.nome} è la parte della corsa che fanno gli script (${a.script}): non è un modello come gli altri, ma i numeri sono quelli veri di stamattina. Quello che decidi con ${a.nome} arriva a Olivia, che lancia quegli script.`
         : persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina.'
-        : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi alla sua scrivania, accanto agli schedari.'));
+        : ''));
       montaParla(id, corpo, testa);
     }
     pannello.hidden = false; pannello.scrollTop = 0; x.focus({ preventScroll: true }); segui(); primoPiano();

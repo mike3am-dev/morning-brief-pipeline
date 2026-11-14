@@ -16,6 +16,7 @@
   function microfono(col) { const m = gruppo(cyl(0.013, 0.011, 0.15, M(0x2A2B30, { roughness: 0.5 }), 12), at(sph(0.028, M(0x3A3B40, { roughness: 1 }), 14, 10), 0, 0.095, 0), at(box(0.05, 0.05, 0.05, M(col, { roughness: 0.6 }), 0.006), 0, 0.045, 0));
     m.rotation.z = PI / 2 - 0.1; m.position.y = 0.028; return gruppo(m); }
 
-  // per terra non c'è carta: i giornali stanno impilati sullo scaffale sotto la lavagna (46-arredo.js). (PILE resta, vuota: la leggono le strade)
-  const PILE = [];
+  // le pile per terra (x, z, quanti giornali, seme, giro): solo intorno all'isola dell'edizione, appoggiate ai lati dei tavoli. Contano anche per chi cammina
+  const PILE = [[1.44, 2.95, 9, 3, 0.3], [1.44, 3.62, 6, 5, -0.4], [4.77, 2.78, 11, 7, 1.2], [4.77, 4.02, 5, 13, 0.2]];
+  PILE.forEach(([x, z, n, seme, giro]) => { const p = pilaGiornali(n, seme); p.rotation.y = giro; stanza.add(at(p, x, 0, z)); });
 

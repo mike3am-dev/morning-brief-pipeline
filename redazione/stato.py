@@ -77,7 +77,7 @@ ROSTER = [
              "mano, e le divido in due mucchi: l'eco, cioè si parla di una notizia che abbiamo già, e il nuovo, cioè se "
              "ne parla e da noi non c'è. Raccolgo anche cosa fa la gente con i modelli, per il LAB di Ada. Non sono "
              "fatti: è la misura di quanto se ne parla."},
-    {"id": "fonti", "nome": "Zeno", "mestiere": "archivista delle fonti", "ruolo": "il controllo delle fonti, il lunedì",
+    {"id": "fonti", "nome": "Zeno", "mestiere": "archivista delle fonti", "ruolo": "tiene d'occhio le fonti ogni giorno; il lunedì scrive il rapporto",
      "file": "routine/fonti-settimanale.md", "colore": "apple", "gruppo": "archivio"},
     {"id": "memoria", "nome": "Clio", "mestiere": "archivista delle storie", "gruppo": "archivio", "colore": "apple", "file": None,
      "ruolo": "tiene i fili delle storie, le previsioni e i numeri che si muovono",
@@ -556,14 +556,17 @@ def stato(giorno):
                               if os.path.basename(f)[:10] <= giorno)
             ultimo = rapporti[-1] if rapporti else None
             n_dec = sum(1 for y in pi if y["da"] == "fonti")
+            # Zeno c'è tutti i giorni (Mike, 14 novembre 2026): ogni mattina guarda quali fonti hanno risposto; il lunedì scrive il rapporto
+            fs_oggi = (raw or {}).get("feed_status") or {}
+            mute = sorted(k for k, v in fs_oggi.items() if v.get("state") != "ok")
+            oggi_fonti = (f"oggi rispondono {len(fs_oggi) - len(mute)} fonti su {len(fs_oggi)}" if fs_oggi else None)
             if ultimo == giorno:
                 st = "consegnato"
-                x["consegna"] = f"rapporto delle fonti, {n_dec} cose da decidere"
+                x["consegna"] = f"rapporto delle fonti, {n_dec} cose da decidere" + (f"; {oggi_fonti}" if oggi_fonti else "")
             else:
-                st = "non oggi"
-                x["consegna"] = (f"lavora il lunedì; l'ultimo rapporto è del {ultimo}" if ultimo
-                                 else "lavora il lunedì")
-            x["dettagli"] = [] if not lunedi else ["oggi è lunedì"]
+                st = "consegnato" if oggi_fonti else "non oggi"
+                x["consegna"] = "; ".join(t for t in (oggi_fonti, f"il rapporto lo scrive il lunedì (l'ultimo è del {ultimo})" if ultimo else "il rapporto lo scrive il lunedì") if t)
+            x["dettagli"] = (["oggi è lunedì: è il giorno del rapporto"] if lunedi else []) + [f"non ha risposto: {m}" for m in mute[:6]]
 
         x["stato"] = st or "fuori"
         agenti.append(x)

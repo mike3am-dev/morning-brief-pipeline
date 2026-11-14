@@ -73,7 +73,7 @@
       at(guancia, lato * 0.1135, -0.052, 0.1285); guancia.rotation.y = lato * 0.45; testa.add(guancia);
     }
     const bocca = new THREE.Mesh(new THREE.TorusGeometry(0.034, 0.0052, 8, 22, 1.5), M(o.labbra || 0x5A2F27, { roughness: 0.6 })); bocca.castShadow = false;
-    bocca.rotation.z = -(PI / 2 + 0.75); bocca.rotation.x = -0.12; at(bocca, 0, -0.056, 0.1595); testa.add(bocca);
+    bocca.rotation.z = -(PI / 2 + 0.75); bocca.rotation.x = -0.12; at(bocca, 0, -0.056, 0.1595); testa.add(bocca); testa.userData.bocca = bocca;
     if (o.occhiali) { const mont = M(o.occhiali, { metalness: 0.5, roughness: 0.3 }), lente = o.lenti || 0.05;
       for (const lato of [-1, 1]) { const l = new THREE.Mesh(new THREE.TorusGeometry(lente, 0.0036 + (lente - 0.05) * 0.12, 8, 28), mont); at(l, lato * 0.064, 0.004, 0.169); l.rotation.y = lato * 0.3; testa.add(l);
         testa.add(asta([lato * 0.112, 0.008, 0.153], [lato * 0.178, 0.012, 0.0], 0.003, mont)); }
@@ -142,8 +142,11 @@
   const IN_PIEDI = { h: H0, lean: 0, twist: 0, hx: 0, hy: 0, sD: [0, -0.1], gD: -0.15, sS: [0, 0.1], gS: -0.15, aD: 0, kD: 0, aS: 0, kS: 0 };
   const SEDUTO = { ...IN_PIEDI, h: SED + 0.08, lean: 0.04, aD: -1.22, kD: 1.22, aS: -1.22, kS: 1.22, sD: [-0.35, -0.12], gD: -1.55, sS: [-0.35, 0.12], gS: -1.55 };
   const mix = (A, B, u) => { const P = {}; for (const k in A) P[k] = Array.isArray(A[k]) ? [A[k][0] + (B[k][0] - A[k][0]) * u, A[k][1] + (B[k][1] - A[k][1]) * u] : A[k] + (B[k] - A[k]) * u; return P; };
+  // come `mix`, ma regge anche le voci che una delle due pose non ha (la testa inclinata, il giro sulla sedia…): chi non le ha vale zero
+  const sfuma = (A, B, u) => { if (u <= 0) return { ...A }; if (u >= 1) return { ...B }; const P = {}; for (const k of new Set([...Object.keys(A), ...Object.keys(B)])) { const a = A[k], b = B[k];
+    P[k] = Array.isArray(a) || Array.isArray(b) ? [0, 1].map(i => (a ? a[i] : b[i]) + ((b ? b[i] : a[i]) - (a ? a[i] : b[i])) * u) : (a || 0) + ((b || 0) - (a || 0)) * u; } return P; };
   function posa(g, P) {
-    const j = g.userData.j; j.bacino.position.y = P.h; j.busto.rotation.set(P.lean, P.twist, 0); j.testa.rotation.set(P.hx, P.hy, 0);
+    const j = g.userData.j; j.bacino.position.y = P.h; j.busto.rotation.set(P.lean, P.twist, 0); j.testa.rotation.set(P.hx, P.hy, P.hz || 0);
     j.sD.rotation.set(P.sD[0], 0, P.sD[1]); j.gD.rotation.x = P.gD; j.sS.rotation.set(P.sS[0], 0, P.sS[1]); j.gS.rotation.x = P.gS;
     j.aD.rotation.x = P.aD; j.kD.rotation.x = P.kD; j.aS.rotation.x = P.aS; j.kS.rotation.x = P.kS;
   }

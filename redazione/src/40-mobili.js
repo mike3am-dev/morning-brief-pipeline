@@ -14,9 +14,11 @@
   }
   const tastiera = () => { const t = stampa(0.275, 0.108, texTasti); t.rotation.x = -PI / 2; return gruppo(at(box(0.285, 0.008, 0.115, alluminio, 0.004), 0, 0.004, 0), at(t, 0, 0.0086, 0)); };
   const mouse = () => ell(0.03, 0.95, 0.38, 1.85, bianco);
-  function sedia(stoffa = nero) {
+  function sedia(stoffa = nero, gaming = false) {   // gaming: lo schienale alto con il poggiatesta e le bande colorate, come quella di Vito
     const g = gruppo(at(box(0.46, 0.07, 0.46, stoffa, 0.03), 0, SED - 0.035, 0), at(cyl(0.028, 0.028, 0.25, alluminio, 12), 0, 0.215, 0), at(cyl(0.05, 0.07, 0.05, nero, 16), 0, 0.085, 0));
-    const schienale = box(0.44, 0.5, 0.07, stoffa, 0.035); schienale.position.set(0, SED + 0.31, -0.23); schienale.rotation.x = -0.1; g.add(schienale);
+    const schienale = box(0.44, gaming ? 0.66 : 0.5, 0.07, stoffa, 0.035); schienale.position.set(0, SED + (gaming ? 0.39 : 0.31), -0.23 - (gaming ? 0.008 : 0)); schienale.rotation.x = -0.1; g.add(schienale);
+    if (gaming) { const testa2 = box(0.3, 0.15, 0.08, stoffa, 0.035); testa2.position.set(0, SED + 0.8, -0.275); testa2.rotation.x = -0.1; g.add(testa2);
+      for (const dx of [-1, 1]) { const banda = box(0.055, 0.6, 0.076, M(dx < 0 ? 0xFF5DA2 : 0x3FE0D0, { roughness: 0.6 }), 0.02); banda.position.set(dx * 0.165, SED + 0.39, -0.236); banda.rotation.x = -0.1; g.add(banda); } }
     for (let i = 0; i < 5; i++) { const a = i * PI * 2 / 5, raggio = box(0.045, 0.03, 0.27, nero, 0.012);
       raggio.position.set(Math.sin(a) * 0.135, 0.06, Math.cos(a) * 0.135); raggio.rotation.y = a; g.add(raggio, at(sph(0.035, M(0x101013)), Math.sin(a) * 0.26, 0.035, Math.cos(a) * 0.26)); }
     return g;
@@ -25,7 +27,7 @@
   function posto(o) {
     const g = gruppo(), giro = o.giro || 0, w = o.w || 1.45, d = o.d || 0.8; at(g, o.x, 0, o.z); g.rotation.y = giro; stanza.add(g);
     g.add(scrivania(w, d), at(imac(o.tex, o.mento, o.retro), 0, TAV, -0.18), at(tastiera(), 0, TAV, d / 2 - 0.12), at(mouse(), 0.27, TAV + 0.011, d / 2 - 0.11));
-    const s = sedia(), zs = d / 2 + 0.17; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
+    const s = sedia(undefined, !!o.gaming), zs = d / 2 + 0.17; s.rotation.y = PI; at(s, 0, 0, zs); g.add(s);
     const fuori = (lx, lz) => [o.x + lx * Math.cos(giro) + lz * Math.sin(giro), o.z - lx * Math.sin(giro) + lz * Math.cos(giro)];   // da un punto del posto a un punto della stanza
     return { g, sedia: s, zs, giro, w, d, x: o.x, z: o.z, fuori, seduta: fuori(0, zs), yaw: PI + giro };
   }

@@ -2,10 +2,15 @@
   const cx = {};
   function attore(id, base, nota) { const c = { id, chi: persone[id], p: posti[id], tr: new Traccia(), base, nota0: nota, note: [[0, nota]], qui: posti[id].seduta, yaw: posti[id].yaw }; cx[id] = c; return c; }
   const dice = (c, testo) => { c.note.push([c.tr.t, testo]); };
-  function alPosto(c, T) {   // resta al suo posto fino al secondo T, con il gesto di sempre
-    c.tr.fino(T, (u, dt, t, manca) => { const P = c.base(t); guardaChi(c, P, t); const k = fra(dt, 0, 1.2) * fra(manca, 0, 1.2), mike = versoMike(c, P, t) * k;
-      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw + (P.giro || 0) * k + mike); posa(c.chi, P); sediaFuori(c.p, 0); if (mike && c.p.sedia) c.p.sedia.rotation.y = PI + mike; return P; }); }
-  function alPostoCon(c, dur, fn) { c.tr.poi(dur, (u, dt, t) => { const P = fn(t, u, dt); metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
+  const riposo = c => c.p.inPiedi ? IN_PIEDI : SEDUTO;
+  const sediaCon = (c, giro, P) => { if (c.p.sedia) { c.p.sedia.rotation.y = PI + giro; c.p.sedia.rotation.x = P.sedia || 0; } };   // la sedia gira e si inclina insieme a chi ci sta sopra
+  function alPosto(c, T) {   // resta al suo posto fino al secondo T, con il gesto di sempre. All'inizio e alla fine la posa sfuma da e verso quella di riposo: niente scatti quando ci si alza o ci si siede
+    c.tr.fino(T, (u, dt, t, manca) => { let P = c.base(t); guardaChi(c, P, t); const k = fra(dt, 0, 1.2) * fra(manca, 0, 1.2), mike = versoMike(c, P, t) * k, morbido = fra(dt, 0, 0.9) * fra(manca, 0, 0.9);
+      if (morbido < 0.999) P = sfuma(riposo(c), P, morbido);
+      const giro = (P.giro || 0) * k + mike;
+      metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw + giro); posa(c.chi, P); sediaFuori(c.p, 0); sediaCon(c, giro, P); return P; }); }
+  function alPostoCon(c, dur, fn) { c.tr.poi(dur, (u, dt, t, manca) => { let P = fn(t, u, dt); const morbido = fra(dt, 0, 0.5) * fra(manca, 0, 0.5); if (morbido < 0.999) P = sfuma(SEDUTO, P, morbido);
+    metti(c.chi, c.p.seduta[0], c.p.seduta[1], c.p.yaw); posa(c.chi, P); sediaFuori(c.p, 0); return P; }); }
   function alzaSiedi(c, senso) {   // 1: si alza; -1: si siede
     if (c.p.inPiedi) return;
     c.tr.poi(1.3, u => { const k = senso > 0 ? dolce(u) : 1 - dolce(u), P = mix(SEDUTO, IN_PIEDI, k); P.lean += 0.42 * Math.sin(PI * k);

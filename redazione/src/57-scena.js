@@ -2,7 +2,7 @@
   const sul = (id, o, x, z, giro = 0) => { o.rotation.y += giro; posti[id].g.add(at(o, x, TAV, z)); return o; };
   sul('redattore', taccuino(3), -0.3, 0.27, 0.15); sul('redattore', registratore(), -0.27, -0.02, -0.4);
   sul('ai', taccuino(5), -0.3, 0.27, -0.1); sul('ai', microfono(0xE01F3D), -0.28, -0.04, 0.5);
-  sul('schede', taccuino(7), -0.31, 0.26, 0.2); sul('gta', microfono(0xFF5DA2), 0.3, -0.06, -0.6); sul('gta', registratore(), -0.28, 0.02, 0.3);
+  sul('schede', taccuino(7), -0.31, 0.26, 0.2); sul('gta', microfono(0xFF5DA2), 0.3, -0.08, -0.6);
   sul('lettura', evidenziatore(), 0.34, 0.06, 0.8); sul('lettura', evidenziatore(0xFF8AC0), 0.3, 0.1, 0.3); sul('revisore', evidenziatore(0xFF6B6B), -0.3, 0.26, -0.5);
   // sulla regia: un taccuino e un registratore fra gli schermi, e una rassegna aperta
   const taccuinoRegia = taccuino(9); taccuinoRegia.position.y = TAV; sulAnello(taccuinoRegia, FRONTE - 0.37, 0.74);
