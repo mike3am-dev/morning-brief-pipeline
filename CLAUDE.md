@@ -1536,6 +1536,14 @@ il testo prima e dopo il revisore in `data/revisione/<giorno>.json`, e `pipeline
 `data/corse.json` l'inizio e la fine di ogni agente e l'ora dei passi. Se uno dei due archivi non si
 riesce a scrivere, la corsa va avanti.
 
+**Le decisioni di Mike.** Quando Mike parla con un agente nella redazione e fissa qualcosa, la
+decisione finisce nel **registro**: la collezione `decisioni` nell'archivio della pagina
+(https://claude.ai/artifact/1bbSgKiM4HHmx2zTxUWhDK). Una sessione di lavoro la legge con lo
+strumento `ArtifactData` (`action: "list"`, `collection: "decisioni"`). Ogni decisione ha `agente`,
+`tipo` (`preferenza`, `regola`, `incarico`), `testo`, `quando`. **La corsa non le legge**: una
+`regola` o un `incarico` diventano veri solo quando una sessione li porta nelle istruzioni della
+corsa o nell'app, e lo fa solo se Mike lo chiede. Dettagli in `docs/redazione/diario.md`.
+
 ## Struttura
 
 ```

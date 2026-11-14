@@ -108,6 +108,24 @@ body{background:radial-gradient(110% 85% at 50% 42%, var(--fondo), var(--fondo-2
 .parla-invia{border:0; border-radius:12px; background:var(--orange); color:#fff; padding:0 16px; height:44px; cursor:pointer; font-family:var(--display); font-weight:800; font-size:15px; letter-spacing:.06em; text-transform:uppercase}
 .parla-invia:disabled{background:var(--rule); cursor:default}
 .parla-apri:focus-visible, .parla-indietro:focus-visible, .spunti button:focus-visible, .parla-invia:focus-visible, .parla-form textarea:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
+.decisione{border:1.5px dashed #1F5A3C; border-radius:10px; background:var(--paper); padding:8px 10px; display:flex; flex-direction:column; gap:4px}
+.decisione small{font-family:var(--display); font-weight:700; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:#1F5A3C}
+.decisione p{margin:0; font-weight:600; line-height:1.35}
+.decisione-piede{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink-2)}
+.decisione-piede button, .postit-azioni button{border:0; border-radius:999px; background:#1F5A3C; color:#fff; padding:5px 12px; cursor:pointer; font:600 12.5px var(--body)}
+.decisione-piede button:disabled{opacity:.6; cursor:default}
+.fatta{color:#1F5A3C; font-weight:700; font-size:12.5px}
+.postit-azioni{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px}
+.postit-azioni button{background:var(--ink)}
+.postit.decisa{border-left-color:#1F5A3C; position:relative}
+.postit.decisa strong{font-weight:600}
+.ritira{align-self:flex-start; border:0; background:none; padding:0; color:var(--ink-3); font:600 11.5px var(--body); text-decoration:underline; cursor:pointer}
+.ritira:hover{color:var(--red)}
+.registro-form{display:flex; flex-direction:column; gap:8px}
+.registro-scelte{display:flex; gap:8px}
+.registro-scelte select{flex:1; min-width:0; border:1px solid var(--rule); border-radius:10px; padding:7px 8px; font:13px var(--body); color:var(--ink); background:#fff}
+.registro-lista{display:flex; flex-direction:column; gap:8px}
+.decisione-piede button:focus-visible, .postit-azioni button:focus-visible, .ritira:focus-visible, .registro-scelte select:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
 .adesso{display:flex; gap:8px; align-items:center; font-weight:600}
 .adesso i{width:9px; height:9px; border-radius:50%; background:#2f8a4a; flex:none}
 .ritratto{display:block; width:100%; aspect-ratio:1.6; border-radius:12px; background:var(--bone)}

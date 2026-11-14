@@ -25,6 +25,14 @@
   ipad.rotation.y = 0.5; tavoloMike.add(at(ipad, 0.12, TAV, 0.14), at(tazza(C.yellow, 0.6), -0.26, TAV, 0.02));
   const segnaposto = gruppo(...[-1, 1].map(s => { const f = stampa(0.2, 0.2 * 220 / 360, texTarga('MIKE', 'direttore creativo')); f.material.side = THREE.DoubleSide; f.rotation.x = -s * 0.42; f.rotation.y = s > 0 ? 0 : PI; f.position.set(0, 0.058, s * 0.024); return f; }));
   segnaposto.rotation.y = PI / 4; tavoloMike.add(at(segnaposto, -0.05, TAV, -0.3));
+  // il registro delle decisioni: un libro verde sul tavolo. Tutto il tavolo si tocca, e apre il registro
+  const texRegistro = tela(256, 340, (x, w, h) => { x.fillStyle = '#1F5A3C'; x.fillRect(0, 0, w, h); x.strokeStyle = '#D9A93B'; x.lineWidth = 6; x.strokeRect(16, 16, w - 32, h - 32);
+    x.fillStyle = '#F3E3B0'; x.textAlign = 'center'; x.font = `800 42px ${DISPLAY}`; spazia(x, 0.1, 42); x.fillText('REGISTRO', w / 2 + 2, 150); x.font = `700 21px ${DISPLAY}`; x.fillText('DELLE DECISIONI', w / 2 + 2, 188); spazia(x, 0, 1); x.textAlign = 'left'; });
+  const copertina = M(0x1F5A3C, { roughness: 0.7 });
+  const libro = gruppo(at(box(0.2, 0.006, 0.27, copertina, 0.002), 0, 0.003, 0), at(box(0.186, 0.024, 0.258, M(0xF3EBDD, { roughness: 0.9 }), 0.002), 0.004, 0.018, 0), at(box(0.2, 0.006, 0.27, copertina, 0.002), 0, 0.033, 0), at(box(0.012, 0.036, 0.27, copertina, 0.004), -0.094, 0.018, 0),
+    (() => { const s = stampa(0.19, 0.255, texRegistro); s.rotation.x = -PI / 2; s.position.y = 0.0365; return s; })(), at(cyl(0.005, 0.005, 0.15, M(0xE01F3D, { roughness: 0.4 }), 8), 0.14, 0.006, 0.02));
+  libro.children[libro.children.length - 1].rotation.x = PI / 2; libro.rotation.y = -0.35; tavoloMike.add(at(libro, 0.3, TAV, -0.16));
+  tavoloMike.userData.id = 'decisioni'; cliccabili.push(tavoloMike);
   at(tavoloMike, MIKE[0], 0, MIKE[1]); stanza.add(tavoloMike);
   const poltrona = M(0xF5C518, { roughness: 0.85 });
   [-0.2, PI / 2 + 0.25].forEach(dove => { const s = sedia(poltrona); s.rotation.y = dove + PI; at(s, MIKE[0] + Math.sin(dove) * 0.98, 0, MIKE[1] + Math.cos(dove) * 0.98); stanza.add(s); });

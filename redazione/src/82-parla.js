@@ -56,21 +56,27 @@
       persone[id] ? 'In questo momento, nella stanza: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
       '', 'LE TUE CARTE (il tuo lavoro vero; è tutto quello che sai di oggi)', (STATO.carte || {})[id] || 'Oggi non hai carte sulla scrivania.',
       suoi.length ? '\nI POST-IT CHE HAI LASCIATO IN BACHECA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
+      (() => { const d = decisioniDi(id); return d.length ? '\nLE DECISIONI CHE MIKE HA GIÀ PRESO CON TE (stanno nel registro della redazione, e valgono finché non le ritira)\n' + d.slice(0, 24).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}]: ${x.testo}`).join('\n') : null; })(),
       '', 'COME RISPONDI',
       '- In italiano semplice, in prima persona, come un collega che parla a voce: poche frasi (di solito da due a cinque). Niente markdown, niente asterischi, niente elenchi lunghi.',
       '- Solo i fatti che hai nelle carte. Se una cosa non c\'è, dillo: «non lo so» e «non ce l\'ho qui» sono risposte buone. Non inventare numeri, citazioni, nomi.',
       '- Non ricordi cosa pensavi stamattina: hai davanti le carte. Se Mike chiede il perché di una scelta, ragionaci adesso sulle carte e dillo («rileggendolo ora…»).',
       '- Quando chiede cosa hai fatto, faglielo vedere: i titoli, i numeri, le differenze. Per mostrare un testo cambiato scrivi due righe a sé, una che comincia con «PRIMA:» e una con «DOPO:».',
       '- Un dubbio o un suggerimento deve nascere da un dato delle carte (una notizia con una testata sola, una correzione che si ripete, una richiesta ferma da settimane), e lo presenti come tale.',
-      '- Non puoi cambiare l\'edizione, il codice o la corsa di domani, e non puoi promettere che domani sarà diverso: puoi spiegare, proporre, dire cosa ti servirebbe. Se Mike ti dà un\'indicazione, prendine atto e digli chiaro che per ora resta in questa conversazione: la redazione non ha ancora un posto dove le decisioni si salvano.',
+      '- Non puoi cambiare l\'edizione, il codice o la corsa di domani, e non puoi promettere che domani sarà diverso: puoi spiegare, proporre, dire cosa ti servirebbe.',
+      '- Le decisioni. Se Mike ti dà un\'indicazione che deve valere anche dopo questa conversazione, oppure gliene proponi una tu e lui è d\'accordo, chiudi la risposta con una riga a sé scritta così: «DECISIONE [tipo]: la decisione in una frase sola, chiara anche riletta fra un mese». Il tipo è uno fra: preferenza (un gusto di Mike sul tuo lavoro), regola (una cosa che la corsa del mattino dovrebbe fare diversamente), incarico (un lavoro per chi costruisce l\'app o la redazione: un grafico nuovo, una fonte da aggiungere). La pagina mostra quella riga a Mike con un pulsante: finché non lo preme non è salvata. Una sola per risposta, solo quando c\'è davvero qualcosa da fissare, e mai una che è già nel registro.',
+      '- Sii chiaro su cosa succede dopo: una decisione salvata resta nel registro e tu la ritrovi ogni volta che parlate; la corsa del mattino però il registro non lo legge ancora, quindi una regola o un incarico cambiano l\'edizione solo quando qualcuno li porta nelle istruzioni della corsa o nell\'app.',
+      '- Rispetta le decisioni già prese con te: se una risposta le tocca, tienine conto e dillo.',
       '- Niente convenevoli, niente «certo!», non ripetere la domanda.',
     ].filter(r => r != null).join('\n');
   }
 
-  // una risposta in pagina: il testo, e i «PRIMA: / DOPO:» mostrati come una correzione
-  function scriviIn(bolla, testo) {
+  // una risposta in pagina: il testo, i «PRIMA: / DOPO:» mostrati come una correzione, e la «DECISIONE:» come un foglietto da salvare
+  function scriviIn(bolla, testo, ctx = {}) {
     bolla.textContent = ''; let cambio = null, par = null;
     for (const riga of String(testo).split('\n')) {
+      const dec = riga.match(/^\s*[-–•]?\s*DECISIONE\s*(?:[\[(]\s*(preferenza|regola|incarico)\s*[\])])?\s*:\s*(.+)$/i);
+      if (dec) { par = null; cambio = null; bolla.append(cartaDecisione(ctx, (dec[1] || 'preferenza').toLowerCase(), dec[2].trim())); continue; }
       const m = riga.match(/^\s*[-–•]?\s*(PRIMA|DOPO)\s*:\s*(.*)$/i);
       if (m) { par = null; if (!cambio || m[1].toUpperCase() === 'PRIMA') { cambio = el('div', 'cambio'); bolla.append(cambio); }
         cambio.append(el(m[1].toUpperCase() === 'PRIMA' ? 'del' : 'ins', null, m[2])); if (m[1].toUpperCase() === 'DOPO') cambio = null; continue; }
@@ -88,7 +94,8 @@
     return ascolto.fase === 'pensa' ? 'Ci pensa' : ascolto.fase === 'parla' ? 'Ti risponde' : 'Ti ascolta';
   }
   function montaParla(id, corpo, dopo) {   // dentro la scheda di una persona: il pulsante, e la conversazione che prende il posto della scheda
-    const a = AGENTI[id], qui = !!persone[id], turni = () => (discorsi[id] = discorsi[id] || []);
+    const a = AGENTI[id], qui = !!persone[id], turni = () => (discorsi[id] = discorsi[id] || []); let postitCorrente = null;
+    const ctx = finita => ({ id, finita, postit: postitCorrente });
     const apriBtn = el('button', 'parla-apri', !qui ? 'Gli parli lunedì, quando c\'è' : (discorsi[id] || []).length ? 'Riprendi la conversazione ▸' : 'Parla con ' + a.nome + ' ▸'); apriBtn.type = 'button'; apriBtn.disabled = !qui;
     dopo.after(apriBtn); if (!qui) return;
     const box = el('div', 'parla'); box.hidden = true; corpo.after(box);
@@ -101,7 +108,7 @@
     const invia = el('button', 'parla-invia', 'Invia'); invia.type = 'submit'; form.append(campo, invia);
     box.append(barra, lista, spunti, avviso, form);
     const inFondo = () => { lista.scrollTop = lista.scrollHeight; };
-    const bolla = (ruolo, testo) => { const b = el('div', 'bolla ' + (ruolo === 'user' ? 'mia' : 'sua')); if (ruolo === 'user') b.textContent = testo; else scriviIn(b, testo); lista.append(b); return b; };
+    const bolla = (ruolo, testo) => { const b = el('div', 'bolla ' + (ruolo === 'user' ? 'mia' : 'sua')); if (ruolo === 'user') b.textContent = testo; else scriviIn(b, testo, ctx(true)); lista.append(b); return b; };
     const dico = t => { avviso.textContent = t || ''; avviso.hidden = !t; };
     function disegna() {
       lista.textContent = ''; spunti.textContent = '';
@@ -120,12 +127,12 @@
       const b = bolla('assistant', ''); b.classList.add('attesa'); b.textContent = a.nome + ' ci pensa…'; inFondo();
       const ctl = new AbortController(); inCorso = { id, ctl }; ascolto.fase = 'pensa'; stato();
       try {
-        const r = await chiedi([{ role: 'user', content: regole(id) }, ...turni().slice(-16)], { cache: false, signal: ctl.signal, modelTier: 'default',
-          onText: ({ text }) => { ascolto.fase = 'parla'; b.classList.remove('attesa'); scriviIn(b, text); inFondo(); } });
-        b.classList.remove('attesa'); scriviIn(b, r.text); turni().push({ role: 'assistant', content: r.text }); if (r.truncated) dico('La risposta è stata tagliata: chiedigli un pezzo per volta.');
+        const r = await chiedi([{ role: 'user', content: regole(id) }, ...turni().slice(-16).map(t => ({ role: t.role, content: t.content }))], { cache: false, signal: ctl.signal, modelTier: 'default',
+          onText: ({ text }) => { ascolto.fase = 'parla'; b.classList.remove('attesa'); scriviIn(b, text, ctx(false)); inFondo(); } });
+        b.classList.remove('attesa'); scriviIn(b, r.text, ctx(true)); turni().push({ role: 'assistant', content: r.text }); if (r.truncated) dico('La risposta è stata tagliata: chiedigli un pezzo per volta.');
       } catch (e) {
         const codice = e && e.code, parte = e && e.text;
-        if (parte) { b.classList.remove('attesa'); scriviIn(b, parte); turni().push({ role: 'assistant', content: parte }); } else { b.remove(); if (codice !== 'cancelled') { turni().pop(); campo.value = testo; lista.lastChild && lista.lastChild.remove(); } }
+        if (parte) { b.classList.remove('attesa'); scriviIn(b, parte, ctx(true)); turni().push({ role: 'assistant', content: parte }); } else { b.remove(); if (codice !== 'cancelled') { turni().pop(); campo.value = testo; lista.lastChild && lista.lastChild.remove(); } }
         if (codice !== 'cancelled') dico(SCUSA[codice] || 'La risposta si è interrotta. Riprova.');
         if (CHIUSE.includes(codice)) { voce = 'negata'; chiedi = null; }
       } finally { inCorso = null; ascolto.fase = ''; ricorda(); stato(); inFondo(); }
@@ -133,11 +140,12 @@
     form.addEventListener('submit', e => { e.preventDefault(); if (inCorso && inCorso.id === id) inCorso.ctl.abort(); else manda(campo.value); });
     campo.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
     const mostra = si => { box.hidden = !si; corpo.hidden = si; apriBtn.hidden = si; pannello.classList.toggle('conversa', si); ascolto.vivo = si; if (si) { ascolto.chi = id; disegna(); campo.focus({ preventScroll: true }); } vistaParla = si ? { id, stato } : null; };
+    apriBtn._apri = (testo, postit) => { mostra(true); if (postit) postitCorrente = postit; if (testo && !campo.value) { campo.value = testo; campo.setSelectionRange(testo.length, testo.length); } };   // da un post-it: si apre già sull'argomento
     apriBtn.addEventListener('click', () => mostra(true)); indietro.addEventListener('click', () => { mostra(false); apriBtn.textContent = (discorsi[id] || []).length ? 'Riprendi la conversazione ▸' : 'Parla con ' + a.nome + ' ▸'; });
     daCapo.addEventListener('click', () => { if (inCorso && inCorso.id === id) inCorso.ctl.abort(); discorsi[id] = []; ricorda(); dico(''); disegna(); });
   }
   // la voce: su claude.ai la dà la pagina; in locale, con ?finto=1, risponde un pappagallo (serve solo a provare la scheda)
-  const finta = (input, o = {}) => new Promise((ok, no) => { const ultima = input[input.length - 1].content, parole = ('Questa è una risposta di prova, senza Claude. Mi hai chiesto: «' + ultima + '».\nPRIMA: un titolo com\'era, con qualche parola di troppo\nDOPO: un titolo com\'è\nSu claude.ai qui risponde davvero chi hai davanti.').split(' ');
+  const finta = (input, o = {}) => new Promise((ok, no) => { const ultima = input[input.length - 1].content, parole = ('Questa è una risposta di prova, senza Claude. Mi hai chiesto: «' + ultima + '».\nPRIMA: un titolo com\'era, con qualche parola di troppo\nDOPO: un titolo com\'è\nSu claude.ai qui risponde davvero chi hai davanti.' + (/ora in poi|decid|sempre|mai più/i.test(ultima) ? '\nDECISIONE [preferenza]: Una decisione di prova, nata da «' + ultima.slice(0, 60) + '».' : '')).split(' ');
     let i = 0, testo = ''; const t = setInterval(() => { if (o.signal && o.signal.aborted) { clearInterval(t); return no({ code: 'cancelled', message: '', text: testo || undefined }); }
       if (i < 12) { i++; return; } const p = parole[i - 12]; if (p == null) { clearInterval(t); return ok({ text: testo, truncated: false }); } testo += (testo ? ' ' : '') + p; i++; o.onText && o.onText({ text: testo, delta: p }); }, 90); });
   const voceArrivata = s => { chiedi = s; voce = s ? 'pronta' : 'assente'; if (vistaParla) vistaParla.stato(); };

@@ -249,3 +249,49 @@ Se è in giro per la stanza continua quello che fa e la scheda dice «ti rispond
 arriva a pezzi, «Ferma», ripresa dopo aver ricaricato, PRIMA/DOPO, le pose. **Non provata la
 risposta vera di Claude**: si può fare solo aprendo la pagina su claude.ai (al primo messaggio
 chiede il permesso). Lo stato del giorno ora pesa 87 KB, la pagina 261.
+
+## 14 novembre 2026 — la sesta prova: il registro delle decisioni
+
+Mike: «Sì, le decisioni». La pagina (versione 6, stesso indirizzo, composta con l'edizione del 14)
+dichiara anche la capacità `db`.
+
+**Dove stanno.** Nell'archivio della pagina, collezione `decisioni`, un documento per decisione:
+
+```json
+{"agente": "visualista", "tipo": "preferenza", "testo": "…", "quando": "2026-11-14T08:12:00Z",
+ "giorno": "2026-11-14", "origine": "conversazione", "stato": "aperta", "postit": "visivi-…"}
+```
+
+`agente` è l'id di chi la riceve, o `tutti`. `tipo`: `preferenza` (un gusto di Mike), `regola` (una
+cosa che la corsa dovrebbe fare diversamente), `incarico` (un lavoro per chi costruisce). `origine`:
+`conversazione` o `registro` (annotata a mano). `postit` c'è quando risponde a un post-it della
+bacheca. **Una sessione di lavoro le legge con lo strumento `ArtifactData`** (`action: "list"`,
+`collection: "decisioni"`, l'indirizzo della pagina): è così che una regola o un incarico arrivano a
+chi li può fare. La corsa del mattino non le legge.
+
+**Come nascono** (`src/84-registro.js`, e le regole in `82-parla.js`):
+
+- parlando: chi risponde, se Mike dà un'indicazione che deve valere anche dopo, chiude con una riga
+  «DECISIONE [tipo]: …». La pagina la mostra come un foglietto tratteggiato con **«Salva nel
+  registro»**: finché Mike non lo tocca non è salvata. Una già nel registro mostra «Nel registro ✓»;
+- a mano: nella scheda del registro, scegliendo per chi è e di che tipo;
+- da un post-it: ogni post-it ha «Rispondi a …» (apre la conversazione già sull'argomento, e la
+  decisione che ne esce porta l'id del post-it) oppure, se chi l'ha lasciato oggi non c'è,
+  «Annota la tua decisione» (apre il registro già compilato).
+
+**Dove si vedono.** Sul tavolo di Mike c'è **il registro**, un libro verde: si tocca il tavolo (o
+l'etichetta, che porta il numero) e si apre l'elenco, dal più recente, con «Ritira» in due tocchi.
+Nella scheda di ognuno, «Deciso con …». E soprattutto **le ritrova chi le ha ricevute**: entrano
+nelle sue regole a ogni domanda («Le decisioni che Mike ha già preso con te»), con la consegna di
+rispettarle e di dire chiaro che la corsa non le legge ancora.
+
+**Cose tecniche.** Un solo ascolto sulla collezione (`onSnapshot`, ordinata per `quando`, 300 al
+massimo), con il timer di dieci secondi per dire «tarda a rispondere»; chi cambia qualcosa lo fa
+sapere con `quandoCambiaRegistro`. Regole d'accesso predefinite: la pagina è privata, scrive solo
+Mike. **In locale `?finto=1`** dà anche un registro di prova nel browser.
+
+**Provato e non provato.** In locale, col registro di prova: il foglietto nella risposta, il
+salvataggio, l'etichetta col numero, l'elenco, l'annotazione a mano partita da un post-it, il
+ritiro, le decisioni che entrano nelle regole di chi le riceve. Dopo la pubblicazione ho letto la
+collezione vera con `ArtifactData`: risponde, ed è vuota. **Non provata la scrittura vera dalla
+pagina**: la fa Mike su claude.ai alla prima decisione.

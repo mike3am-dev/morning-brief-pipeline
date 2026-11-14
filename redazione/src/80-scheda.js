@@ -6,7 +6,7 @@
   function etichetta(id, nome, sotto, colore) {
     const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
     const piu = el('span', 'piu'); piu.append(document.createTextNode(sotto), el('em', null, 'Guarda ▸'));
-    b.append(pallino, document.createTextNode(nome), piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
+    b.nomeNodo = document.createTextNode(nome); b.append(pallino, b.nomeNodo, piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
     b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
   }
   for (const a of STATO.agenti) etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange);
@@ -52,17 +52,21 @@
   const elenco = (voci, colore) => { const ul = el('ul', 'titoli'); voci.forEach(t => { const li = el('li'), i = el('i'); if (colore) i.style.background = colore; li.append(i, el('span', null, t)); ul.append(li); }); return ul; };
   const daQuanto = p => p.giorni ? (p.giorni === 1 ? 'da ieri' : 'da ' + p.giorni + ' giorni') : 'di oggi';
   function biglietto(p, conNome) { const d = el('div', 'postit'); d.style.borderLeftColor = COLORE_POSTIT[p.da] || '#FF9DB0';
-    d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p))); return d; }
+    d.append(el('strong', null, brevePostit(p.titolo)), el('span', null, p.testo || ''), el('small', null, (conNome && AGENTI[p.da] ? AGENTI[p.da].nome + ' · ' : '') + daQuanto(p)), rispostaAlPostit(p)); return d; }
   const TITOLO_LAVORO = { lettura: 'Le notizie su cui ha letto di più', redattore: 'Le prime tre, e «Il punto»', visualista: 'I grafici di oggi', ai: 'Nella scheda AI di oggi', schede: 'In Games e Scienza, oggi', gta: 'Su GTA VI, oggi' };
-  function apri(id) {
-    aperto = id; rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null;
+  function apri(id, pre) {
+    aperto = id; rigaAdesso = null; pannello.textContent = ''; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null;
     const x = el('button', 'chiudi', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Chiudi la scheda'); x.addEventListener('click', chiudi);
     const testa = el('div', 'testa'), chi = el('div'), a = AGENTI[id];
-    if (id === 'bacheca') {
+    if (id === 'decisioni') {
+      const av = el('div', 'avatar', String(decisioni.length)); av.style.background = VERDE;
+      chi.append(el('h2', null, 'Il registro'), el('p', null, 'le decisioni che hai preso con la redazione')); testa.append(av, chi, x); pannello.append(testa);
+      montaRegistro(pre);
+    } else if (id === 'bacheca') {
       const av = el('div', 'avatar', String(POSTIT.length)); av.style.background = C.yellow; av.style.color = C.ink;
       chi.append(el('h2', null, 'La bacheca'), el('p', null, 'quello che la redazione ha lasciato per te')); testa.append(av, chi, x); pannello.append(testa);
       POSTIT.forEach(p => pannello.append(biglietto(p, true)));
-      pannello.append(el('p', 'piede', 'Sono le cose rimaste aperte nei file della corsa: richieste di grafici, note sulle fonti, scadenze. Presto potrai rispondere da qui.'));
+      pannello.append(el('p', 'piede', 'Sono le cose rimaste aperte nei file della corsa: richieste di grafici, note sulle fonti, scadenze. Rispondi parlando con chi le ha lasciate: quello che decidi va nel registro.'));
     } else {
       const av = el('div', 'avatar', a.nome[0]); av.style.background = TINTA[id] || C.orange;
       chi.append(el('h2', null, a.nome), el('p', null, a.mestiere + (a.modello ? ' · ' + a.modello : ''))); testa.append(av, chi, x);
@@ -82,6 +86,7 @@
       else if ((a.dettagli || []).length && TITOLO_LAVORO[id]) corpo.append(blocco(TITOLO_LAVORO[id], elenco(a.dettagli.slice(0, 6), TINTA[id])));
       const suoi = (STATO.postit || []).filter(p => p.da === id);
       if (suoi.length) { const b = blocco(persone[id] ? 'Ha qualcosa per te' : 'Ti ha lasciato questi appunti'); suoi.slice(0, 5).forEach(p => b.append(biglietto(p))); corpo.append(b); }
+      corpo.append(bloccoDecisioni(id));
       corpo.append(el('p', 'piede', persone[id] ? 'In alto il primo piano, dal vivo. I gesti in scena sono una giornata tipo; i numeri e i testi sono quelli veri di stamattina.'
         : 'Zeno lavora il lunedì, quando controlla le fonti: quel giorno lo trovi davanti agli schedari.'));
       montaParla(id, corpo, testa);
@@ -93,7 +98,7 @@
     const [a, b] = sulPiano(v3), z = g ? 3.1 : 2.4, larga = canvas.clientWidth > 760 ? pannello.offsetWidth : 0; meta.x = a + (larga / 2) / (ppu * z); meta.y = b; meta.zoom = z;
     if (rigaAdesso) rigaAdesso.textContent = scenaDi(aperto);
   }
-  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; return t; }   // chiude la scheda, la camera resta dov'è
+  function lascia() { if (!aperto) return null; const t = tags[aperto]; aperto = null; rigaAdesso = null; pannello.hidden = true; pannello.classList.remove('conversa'); ascolto.vivo = false; vistaParla = null; vistaRegistro = null; vistaDecisioniAgente = null; return t; }   // chiude la scheda, la camera resta dov'è
   function chiudi() { const t = lascia(); if (!t) return; Object.assign(meta, CASA); t.focus({ preventScroll: true }); }
   addEventListener('keydown', e => { if (e.key === 'Escape') chiudi(); });
 

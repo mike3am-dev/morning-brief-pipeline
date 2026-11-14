@@ -383,9 +383,11 @@ Cosa può fare un agente nella conversazione, e cosa no:
 **Costruito al 13 novembre 2026 (sera):** la stanza intera con tutti e nove, i dati veri del giorno
 su schermi, lavagna e bacheca, la giornata di ognuno in un giro di cinque minuti, le schede con il
 primo piano dal vivo, e **la conversazione con ognuno** (§10: ogni agente risponde dalle sue carte
-del giorno). Come è fatta ogni cosa: `diario.md`, «la quarta prova» e «la quinta prova». Mancano,
-in quest'ordine: l'archivio delle decisioni (§8), la pagina che si ricompone da sola ogni mattina,
-le riunioni (§6).
+del giorno). Dal 14 novembre c'è anche **il registro delle decisioni** (§8: nascono parlando o
+rispondendo a un post-it, si salvano con un tocco, chi le riceve le ritrova). Come è fatta ogni
+cosa: `diario.md`, dalla quarta alla sesta prova. Mancano, in quest'ordine: la pagina che si
+ricompone da sola ogni mattina, le riunioni (§6), e il passo che porta regole e incarichi del
+registro fino alla corsa (lo decide Mike).
 
 **Ancora da chiedere, quando servirà:**
 
