@@ -517,6 +517,9 @@ html.vista-magazine .mt-actions{display:flex; order:3; gap:.35rem; align-items:c
 /* ---- Magazine: le sezioni hanno carattere — pillole col pallino del loro colore ---- */
 .tab-dopo{display:none}
 html.vista-magazine .tab-dopo{display:inline-flex}
+/* l'account condiviso non ha «Più tardi» */
+html.ospite .tab-dopo, html.ospite .card-star, html.ospite .t-star, html.ospite .t-note,
+html.ospite .t-down{display:none !important}
 html.vista-magazine .masthead .tab{display:inline-flex; align-items:center; gap:.45rem; margin:.3rem .15rem .45rem 0;
   padding:.42rem .85rem .38rem .7rem; border-radius:999px; font-weight:800; font-size:1.02rem; letter-spacing:.045em;
   color:var(--ink-2); z-index:1; transition:color .3s ease}
@@ -2738,13 +2741,22 @@ footer.colophon .sp{flex:1}
 
 /* Sostituiti da pipeline/build.py */
 const MODE    = "cloud";
-const CFG     = {"url":"https://bjwyesqwwyogsdbjlaui.supabase.co","anon_key":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqd3llc3F3d3lvZ3NkYmpsYXVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1NDA5MTUsImV4cCI6MjEwNTExNjkxNX0.Ep2SPZogZ0quSVp0OrQ1sLWDUe3peToUj1ghWXu_0oU"};
+const CFG     = {"url":"https://bjwyesqwwyogsdbjlaui.supabase.co","anon_key":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqd3llc3F3d3lvZ3NkYmpsYXVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1NDA5MTUsImV4cCI6MjEwNTExNjkxNX0.Ep2SPZogZ0quSVp0OrQ1sLWDUe3peToUj1ghWXu_0oU","owner_id":"062a0e59-8612-465a-9fd2-ae999b7301f8"};
 const EMBED   = [];
 const APP_URL = "";
 
 const CLOUD = (MODE === "cloud" && CFG && CFG.url && CFG.anon_key);
 // appunti, salvati e diario: presenti anche senza sincronizzazione
-const NOTES = (MODE !== "static");
+let NOTES = (MODE !== "static");
+/* L'account condiviso con i colleghi (15 novembre 2026, Mike: «diario, stelline, più tardi…
+   tutto quello che non ha senso, solo nel mio account»). Chi entra con un utente diverso dal
+   proprietario (owner_id in supabase/config.json) legge le edizioni e basta: niente appunti,
+   stelline, «Più tardi», diario, esporta/importa, pollice giù. Se l'app non conosce il
+   proprietario, o l'accesso salvato non ha l'id, nessuno diventa ospite: il rischio va dalla
+   parte di Mike, mai contro. */
+function ospite(){
+  return !!(CLOUD && CFG.owner_id && AUTH && AUTH.user_id && AUTH.user_id !== CFG.owner_id);
+}
 const K_STATE = "tmb-state", K_AUTH = "tmb-auth", K_BRIEFS = "tmb-briefs";
 
 let BRIEFS = EMBED || [];
@@ -6797,12 +6809,12 @@ const Testata = (function(){
         /* sul Duo chiuso la lente sta qui: nella barra lascia il posto alle sezioni */
         search.offsetParent === null ? row("Cerca", "", function(){ show("cerca"); }) : null,
         row("Archivio", "", function(){ show("archivio"); }),
-        row("Diario", txt("cDiary"), function(){ show("diario"); })
+        NOTES ? row("Diario", txt("cDiary"), function(){ show("diario"); }) : null
       ]),
-      el("div", {class:"mm-list"}, [
+      NOTES ? el("div", {class:"mm-list"}, [
         row("Esporta gli appunti", "", function(){ clickId("exportBtn"); }),
         row("Importa gli appunti", "", function(){ clickId("importBtn"); })
-      ]),
+      ]) : null,
       el("div", {class:"mm-list"}, [row("Esci", "", function(){ clickId("outBtn"); }, "out")])
     ]);
     document.body.appendChild(menu);
@@ -8558,6 +8570,8 @@ const views = ["oggi","ai","games","spazio","archivio","salvati","diario","cerca
 let currentView = "oggi";
 
 function show(name){
+  /* l'account condiviso non ha salvati né diario: si torna alla prima pagina */
+  if(!NOTES && (name === "salvati" || name === "diario")) name = "oggi";
   currentView = name;
   views.forEach(function(v){ document.getElementById("view-" + v).hidden = (v !== name); });
   Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
@@ -8769,6 +8783,7 @@ document.getElementById("fileInput").addEventListener("change", function(ev){
 
 /* ================= avvio ================= */
 function boot(){
+  if(ospite()){ NOTES = false; document.documentElement.classList.add("ospite"); }
   document.getElementById("gate").hidden = true;
   document.getElementById("masthead").hidden = false;
   document.getElementById("main").hidden = false;

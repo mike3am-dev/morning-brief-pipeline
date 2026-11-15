@@ -113,6 +113,9 @@ def main():
         host = re.match(r"(https://[^/]+)", cfg.get("url", "").strip())
         if host and "xxxx" not in host.group(1) and "INCOLLA" not in cfg.get("anon_key", ""):
             config = {"url": host.group(1), "anon_key": cfg["anon_key"]}
+            # chi non e' il proprietario entra come ospite: legge, ma senza appunti e salvati
+            if cfg.get("owner_id"):
+                config["owner_id"] = cfg["owner_id"]
             # Storage conserva il file ma lo serve come text/plain:
             # la pagina vera la restituisce la Edge Function "app"
             app_url = cfg.get("app_url") or f"{config['url']}/functions/v1/app"

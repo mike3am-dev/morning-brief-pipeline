@@ -1650,6 +1650,18 @@ data/gta/                il dossier del giorno e la sezione scritta dall'agente 
 app/                     output generato, non modificare a mano
 ```
 
+## L'account condiviso con i colleghi
+
+Dal 15 novembre 2026 tre colleghi di Mike leggono l'edizione con un utente Supabase dedicato,
+una mail e una password che si passano fra loro. **Diario, stelline, «Più tardi», appunti,
+esporta/importa e «Non mi interessa» restano solo sull'account di Mike** (Mike: «tutto quello
+che non ha senso, solo nel mio account»): l'app confronta l'utente con `owner_id` di
+`supabase/config.json` (che `build.py` ora le passa) e, se è un altro, accende la classe
+`html.ospite` e spegne `NOTES` in `boot()`. L'ospite legge tutto il resto, comprese le sezioni
+cucite su Mike («Se te lo fossi perso», «Di cosa si parla»): per ora va bene così. Se l'app non
+conosce il proprietario, nessuno diventa ospite. La taratura non cambia: `taste.py` legge solo
+`owner_id`. Le iscrizioni libere su Supabase vanno tenute chiuse.
+
 ## Come funziona la sincronizzazione
 
 Local-first. Ogni modifica va prima in `localStorage`, marcata `dirty`, e viene spinta su
