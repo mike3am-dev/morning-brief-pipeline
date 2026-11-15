@@ -1,0 +1,152 @@
+{
+ "ai": [
+  {
+   "id": "nvidia-petizione-huang",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "Una petizione con 115.000 firme chiede a Nvidia di riprendersi Jensen Huang",
+   "sintesi": "Fra i firmatari ci sono Elon Musk, Tim Sweeney e 5.965 dipendenti di Nvidia; chiedono il ritorno di Huang finché un'indagine indipendente non avrà accertato i fatti.",
+   "note": "Huang si è dimesso giovedì 12 novembre, quattro giorni dopo aver ammesso una relazione con Alice Huang, ex dirigente della singaporiana Megaspeed che l'intelligence americana sospetta di spionaggio per la Cina; la guida ad interim è di Colette Kress. La petizione conta anche 1.108 ex dipendenti e 63.063 azionisti, e accusa il consiglio di averlo rimosso «without meaningful due process». Intanto Singapore ha sequestrato il passaporto di Alice Huang e, secondo Reuters, restano in sospeso oltre 3 miliardi di dollari di progetti cinesi di calcolo che dipendono dai chip Nvidia soggetti a restrizioni.",
+   "link": "https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "amodei-incertezza-calcolo",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Amodei, a cinque giorni dalla quotazione: «There's a huge uncertainty» sul prossimo anno",
+   "sintesi": "Il capo di Anthropic chiama il calcolo «the deepest business dilemma» dell'azienda, che ha impegni per quasi 901 miliardi di dollari, 71 dei quali in scadenza entro settembre 2027.",
+   "note": "Amodei ne ha parlato venerdì a New York con Jamie Dimon, a un evento di JPMorgan, prima della quotazione prevista per il 19 novembre. Il calcolo va comprato con uno o due anni d'anticipo, prima di sapere se i ricavi lo ripagheranno: comprarne poco toglie risorse ai clienti, comprarne troppo vuol dire «financially overextend yourself». I 71 miliardi in scadenza, scrive Bloomberg, superano la capitalizzazione di circa due terzi delle società dell'S&P 500.",
+   "conto": {
+    "parte": 71,
+    "tutto": 901,
+    "etichetta": "miliardi di dollari di impegni di Anthropic in scadenza entro settembre 2027, su quasi 901",
+    "fonte": "Bloomberg"
+   },
+   "link": "https://the-decoder.com/anthropic-ceo-amodei-admits-theres-a-huge-uncertainty-in-whats-going-to-happen-next-year-days-before-a-record-ipo/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "matharena-gemini-carbon",
+   "lab": "google",
+   "kind": "ricerca",
+   "thread": "gemini-4-carbon",
+   "title": "Gemini 4 Carbon passa in testa a MathArena, ma costa 15 volte GPT-6.1 Sol",
+   "sintesi": "Per la prima volta da tempo un modello non di OpenAI guida la classifica di matematica MathArena; secondo è Claude Fable 5.2, che costa circa 40 volte GPT-6.1 Sol.",
+   "note": "Il primato arriva quattro giorni dopo l'uscita di Carbon per tutti. L'errore più frequente del modello è sforare il tempo concesso: non si arrende quasi mai, e in un caso ha lanciato uno script rimasto in esecuzione più di undici ore senza controllarne l'avanzamento. I modelli di OpenAI che avrebbero risolto problemi come le equazioni di Navier-Stokes non sono ancora pubblici, e quindi non sono in classifica.",
+   "link": "https://the-decoder.com/gemini-4-carbon-takes-the-matharena-crown-but-costs-15-times-more-than-gpt-6-1-sol/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-robotica-riorganizzata",
+   "lab": "openai",
+   "kind": "affari",
+   "title": "OpenAI distribuisce i ricercatori di robotica fra ricerca e prodotto",
+   "sintesi": "I ricercatori passano sotto Mark Chen, l'hardware nel gruppo di Greg Brockman: OpenAI scommette che un modello generale come GPT-6 Astra possa guidare i robot da solo.",
+   "note": "OpenAI precisa che il lavoro sulla robotica continua; la decisione è stata così rapida che il suo stand alla conferenza CoRL di Austin è rimasto vuoto, racconta Fortune. In uno studio di Nvidia un agente basato su Astra ha portato a termine il 74,8% dei compiti su un robot simulato, contro il 51% dei migliori modelli specializzati. Sui bracci veri del test StationeryBench, però, Astra ha completato per intero solo 7 compiti su 100.",
+   "link": "https://the-decoder.com/openai-reassigns-robotics-researchers-to-other-teams-as-general-purpose-models-might-make-specialized-robotics-ai-unnecessary/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "runway-praxis1-pesi",
+   "lab": "robot",
+   "kind": "ricerca",
+   "title": "Runway pubblica i pesi di Praxis-1, il modello video che guida i robot",
+   "sintesi": "Praxis-1 è aperto con licenza Apache 2.0, anche per uso commerciale, e guida la categoria dei World Action Model nel test RoboLab-120 di Nvidia.",
+   "note": "Runway, nota per i modelli video come Gen-4.5, lo aveva presentato a fine settembre solo ad alcuni partner. Il modello parte da quello che ha imparato guardando video normali: dalle immagini della telecamera e da un'istruzione prevede come cambierà la scena e ne ricava i movimenti del robot. Standard Bots, Noble Machines e Ultra lo provano da settembre; da solo non sa ancora pianificare sequenze di azioni complesse.",
+   "link": "https://the-decoder.com/runways-open-source-praxis-1-turns-video-ai-into-a-robot-controller/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "abyssal-garden-97kb",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Un mondo sottomarino da esplorare a nuoto, tutto in un file HTML da 97 KB",
+   "note": "Abyssal Garden ha foreste di kelp, un relitto, una coda di balena in pietra, mante e banchi di pesci, ma nessuna immagine né modello 3D: tutto viene generato dal codice quando la pagina si apre. La prima versione è uscita da un solo prompt in Claude Code, con un sottoagente che guardava solo i render per segnalarne i difetti. Claude ha scritto shader, suono e circa due milioni di foglie e piante; il codice è aperto, con licenza MIT.",
+   "prova": "Apri noniv.github.io/abyssal-garden in Chrome e nuota con WASD e il mouse.",
+   "passi": [
+    "Apri noniv.github.io/abyssal-garden in Chrome",
+    "Scegli il dettaglio Low, Medium o High",
+    "Muoviti con WASD, sali e scendi con Q ed E",
+    "Leggi prompt.txt nel repository su GitHub"
+   ],
+   "prompt": "Build a real-time fantasy underwater scene that runs in the browser. It only needs to look beautiful and let me fly a free camera through it.\n\nPRIORITIES (in this order when they conflict)\n1. Visual quality\n2. Stable frame pacing at the target spec\n3. Small bundle size\n\nCONSTRAINTS\n- No Three.js/Babylon.js or other engines.\n- WebGPU rendered.\n- Everything procedural: no texture/model files. Deliverable is a single self-contained index.html. Report minified size.\n- Zero per-frame JS allocations (no GC stutter). Preallocate all buffers.\n\nTARGET\n- Windows 11 25H2, Chrome 157, RTX 5070 Ti, Ryzen 7800X3D, 180 Hz monitor\n- 2560×1440 at full resolution. GPU frame time ≤ 11 ms average, no frame > 16.7 ms during a scripted 60 s fly-through.\n\nSCENE\n- Dense, towering kelp columns with sparkling green/gold specks, swaying\n- Strong depth fog/absorption: cyan near the surface → deep blue in the distance\n- God rays, animated caustics, wavy surface visible from below\n- Rock canyons, arches and overhangs; floating boulders\n- Iridescent purple/pink foliage, magenta ground cover, barrel sponges, coral\n- Animated life: manta rays, fish schools, rising bubbles, drifting particles\n- Set pieces: a sunken ship hull, a stone whale-fluke sculpture\n- World: bounded, but the boundaries can't be visible from the starting area\n\nCONTROLS\nWASD move, mouse look (pointer lock), Q/E up/down, Shift to accelerate\n\nVERIFICATION\n- Visual critic: a separate subagent that sees ONLY the your renders, never your code or reasoning. Give it 6 fixed camera poses, rendered at 2560×1440 in GPU-accelerated Chrome, plus a short recording of the fly-through to catch shimmer, aliasing, popping and banding. It returns prioritized, concrete defects. Iterate until it reports nothing above \"minor\".\n- Performance: GPU timestamp queries plus a frame-time log from the scripted fly-through. Report average, 99th percentile and max.\n\nDONE WHEN: both verification gates pass. Deliver index.html, the bundle size, the perf report and the critic's final review.",
+   "prompt_lingua": "en",
+   "strumento": "Claude Code, WebGPU senza motore grafico",
+   "segnale": "Il post più votato del giorno su r/ClaudeAI, oltre 400 commenti",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xw376f/i_built_a_swimmable_underwater_world_in_one_97_kb/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "minecraft-brickify-claude",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Una mod per Minecraft scritta da Claude trasforma il mondo in mattoncini",
+   "note": "Con Brickify si preme B e tutto diventa mattoncini stile LEGO, blocco per blocco; i mob colpiti si sfasciano e con R il mondo si ricompone. L'autore ha dato l'idea, Claude ha scritto la mod in Java e, non potendo vedere lo schermo, ci ha costruito un telecomando: lascia comandi in una cartella e guarda gli screenshot. Ha anche scoperto perché una mappa scaricata andava a scatti: la velocità dei tick era a 1000 invece che a 3.",
+   "prova": "Scarica Brickify da GitHub e installalo in Minecraft 26.3 con Fabric.",
+   "passi": [
+    "Apri github.com/moritzfh/brickify/releases",
+    "Scarica l'ultima versione per Fabric",
+    "Avvia Minecraft 26.3 in giocatore singolo",
+    "Premi B, poi tieni premuto R"
+   ],
+   "strumento": "Claude, mod Fabric in Java",
+   "segnale": "Fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xwgbxr/i_made_a_minecraft_mod_with_claude_press_b_and/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "opus55-niente-think-hard",
+   "lab": "anthropic",
+   "kind": "trucco",
+   "title": "Anthropic: con Opus 5.5 togli «think hard» dal prompt e parti dallo sforzo medio",
+   "note": "Opus 5.5 è ora il modello predefinito sui piani Pro, Max, Ultra e Team, e Anthropic ha pubblicato una guida contro le abitudini vecchie. Il modello ragiona da sé e regola la profondità in base al compito: senza «think hard» o «think carefully» le risposte partono prima, senza perdere qualità. Nei test interni Opus 5.5 su Medium vale Opus 5 su High; High conviene solo se Medium non basta.",
+   "prova": "Togli «think hard» dai tuoi prompt e lascia lo sforzo su Medium.",
+   "passi": [
+    "Apri Claude e scegli Opus 5.5",
+    "Cancella «think hard» dalle istruzioni salvate",
+    "Lascia lo sforzo su Medium, accanto a Invia",
+    "Passa a High solo se la risposta non basta"
+   ],
+   "link": "https://the-decoder.com/anthropic-says-outdated-prompting-habits-are-slowing-down-claude-opus-5-5/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "fable52-pro-fino-al-16",
+   "lab": "anthropic",
+   "kind": "sapevi",
+   "title": "Fable 5.2 è compreso nel piano Pro fino a domani, 16 novembre",
+   "note": "Chi paga Claude Pro può usare Fable 5.2, il modello di punta di Anthropic, fino al 16 novembre. Nella discussione su r/ClaudeAI molti raccontano che esaurisce il limite delle cinque ore in 10-45 minuti, a volte con un solo prompt. Chi ne cava qualcosa lo usa per scrivere il piano di un progetto e poi passa a Opus 5.5 o Sonnet 5.5 per eseguirlo.",
+   "prova": "Chiedi a Fable 5.2 il piano del progetto, poi fallo eseguire a Opus 5.5.",
+   "passi": [
+    "Apri Claude con un piano Pro",
+    "Scegli Fable 5.2 nel menu dei modelli",
+    "Fatti scrivere un piano dettagliato del progetto",
+    "Passa a Opus 5.5 per eseguirlo"
+   ],
+   "segnale": "Fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xw1u7g/claude_fable_52_is_included_with_pro_until/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "mythos-verifica-cyber",
+   "lab": "anthropic",
+   "kind": "sapevi",
+   "title": "Mythos si può chiedere anche da singoli, con il programma di verifica per la sicurezza",
+   "note": "Un utente di r/ClaudeAI ha scoperto che il Cyber Verification Program di Anthropic accetta anche ricercatori individuali, con un documento d'identità e, se richiesto, un selfie. Non è un'apertura al pubblico, precisano nella discussione: il programma c'è da tempo, serve dimostrare un lavoro nella sicurezza e Mythos non si può usare per attaccare. Chi l'ha ottenuto riferisce che dà accesso a Mythos senza i soliti limiti settimanali del piano Pro.",
+   "prova": "Su portal.anthropic.com scegli «Cyber Verification Program» e fai domanda come singolo.",
+   "passi": [
+    "Apri portal.anthropic.com con il tuo account Claude",
+    "Scegli «Cyber Verification Program», singolo",
+    "Verifica l'identità con un documento",
+    "Descrivi il tuo lavoro sulla sicurezza e invia"
+   ],
+   "segnale": "Fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xwguid/anthropic_has_opened_up_claude_mythos_access_to/",
+   "source": "Reddit r/ClaudeAI"
+  }
+ ],
+ "scritto": "2026-11-15"
+}
