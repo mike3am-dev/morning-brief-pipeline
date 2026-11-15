@@ -630,5 +630,21 @@
   "interazione": "tocchi una parte e vedi dove sta su ciascuna delle due domande",
   "dati": "le posizioni descritte nell'articolo per Apple, Epic e il governo USA, senza numeri da plottare",
   "stato": "aperta"
+ },
+ {
+  "data": "2026-11-15",
+  "notizia": "apple-tv-4k-italia-senza-siri-ai",
+  "idea": "Una linea del tempo del ritardo di Siri AI in Europa: l'annuncio di giugno, la stima dei 5 mesi di Gurman mai realizzata, e ogni prodotto nuovo (HomeView, Apple TV 4K) che esce comunque senza la funzione",
+  "interazione": "si scorre la linea e si vede quale prodotto è arrivato intanto, con o senza Siri AI",
+  "dati": "comunicato Apple di giugno 2026 sul DMA, stima di 5 mesi di Gurman, 8 paesi con HomeView in vendita (nessuno nell'UE), tvOS 27.2.1 senza cambiamenti; mancano le date esatte (solo 'giugno', nessuna data di debutto Siri AI)",
+  "stato": "aperta"
+ },
+ {
+  "data": "2026-11-15",
+  "notizia": "apple-work-xserve-mlx",
+  "idea": "Quanto di un modello enorme serve davvero in memoria: Muse Spark Open ha 816 miliardi di parametri ma ne attiva 42 miliardi alla volta, il motivo per cui un Mac con memoria unificata può farlo girare",
+  "interazione": "un cursore che scorre fra 'parametri totali' e 'parametri attivi' e mostra quanta memoria serve davvero",
+  "dati": "816 mld parametri totali e 42 mld attivi di Muse Spark Open (Meta); 45 milioni $ raccolti da Mount Thor il 13 novembre per data center di Mac; la carriera di Gerard Williams III dall'A7 all'M1, ora WarpCore con Nuvacore (podcast Power On di Gurman); mancano le cifre di RAM di un Mac Studio per confrontarle direttamente",
+  "stato": "aperta"
  }
 ]
