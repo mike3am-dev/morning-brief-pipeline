@@ -1,0 +1,247 @@
+{
+ "giorno": "2026-11-15",
+ "prima": {
+  "intro": "Una giornata senza annunci, in cui di Apple si parla soprattutto per la casa. Il riconoscimento delle persone su HomeView è costruito perché immagini e voce non escano dal chip, e la stessa prudenza fa dello schermo in cucina un oggetto pienamente utile solo a chi ha un iPhone recente. In Italia il nuovo Apple TV 4K è in vendita, ma senza la funzione con cui è stato presentato.",
+  "top3": [
+   "Apple spiega come HomeView riconosce chi c'è in casa senza far uscire immagini e voce dal chip",
+   "Siri AI in casa risponde solo a chi ha un iPhone adatto",
+   "Il nuovo Apple TV 4K arriva in Italia a 349 euro, senza Siri AI"
+  ],
+  "editoriale": {
+   "titolo": "Di chi è lo schermo in cucina?",
+   "testo": [
+    "HomeView riconosce fino a sei persone dal viso e dalla voce, e Apple ha spiegato questa settimana con quanta cura lo fa: immagini e audio restano in un'area isolata del chip e poi si cancellano, e al sistema arriva soltanto chi è, dove si trova e con che sicurezza. Le richieste personali, la lista della spesa o un promemoria, non le risolve lo schermo ma il telefono di chi le fa. Su r/apple c'è chi racconta che la moglie, con un iPhone 14 Pro, non riesce ad aggiungere nulla, e un genitore spiega che i figli, senza un dispositivo Apple, non vedono l'elenco delle loro faccende.",
+    "Sono due facce della stessa scelta. Tenere i dati di ciascuno sul dispositivo di ciascuno è il modo in cui Apple protegge la privacy, e un lettore dello stesso thread lo riconosce: quelle restrizioni hanno senso, ma creano un problema che il prodotto da solo non sa risolvere. Così un oggetto pensato per tutta la famiglia funziona davvero per chi ha già un iPhone recente. In Italia, dove Siri AI non c'è, la domanda nemmeno si pone: il nuovo Apple TV 4K è in vendita a 349 euro senza la funzione che lo ha presentato.",
+    "Intanto uno sviluppatore indipendente ha fatto la cosa più semplice. Milton trasforma un vecchio iPad in un pannello di casa, con le faccende dei figli a punti e la condivisione con il gruppo Famiglia. È un'app piccola, senza l'intelligenza artificiale di Siri, ma risponde a una domanda che HomeView per ora lascia aperta: in una casa, la lista della spesa è di una persona o di tutti? Apple ha promesso per il mese prossimo una Siri capace di fare di più. Resta da capire se imparerà anche ad ascoltare chi un iPhone non ce l'ha."
+   ],
+   "notizie": [
+    "homeview-exclaves-fotocamera-microfono",
+    "siri-ai-casa-chi-non-ha-iphone",
+    "apple-tv-4k-italia-senza-siri-ai",
+    "milton-ipad-pannello-casa"
+   ]
+  },
+  "news": {
+   "homeview-exclaves-fotocamera-microfono": {
+    "title": "Apple spiega come HomeView riconosce chi c'è in casa senza far uscire immagini e voce dal chip",
+    "sintesi": "Per riconoscere fino a sei persone HomeView elabora audio e video in un'area isolata del chip e poi li cancella: al sistema arriva solo chi è, dove si trova e con che sicurezza.",
+    "descrizione": "Apple ha pubblicato sul suo blog di ricerca sulla sicurezza un articolo che spiega come HomeView riconosce le persone di casa senza consegnare fotocamera e microfono alle app. HomeView distingue fino a sei persone registrate, dal viso e dalla voce, per mostrare a ciascuna il suo calendario, i suoi messaggi e la sua musica. L'audio e il video usati per farlo vengono elaborati in ambienti isolati, i Secure Exclaves, e poi scartati: al sistema operativo arrivano solo un identificativo della persona, la sua posizione e un livello di confidenza.\n\nDiverso è l'uso attivo, una conversazione con Siri o una chiamata FaceTime: lì il flusso completo passa al sistema, ma solo dopo che la spia di privacy è accesa. Per questo la luce non resta sempre accesa mentre HomeView riconosce chi ha davanti: non direbbe più quando un'app sta ricevendo davvero le immagini. Il blocco sta sotto il sistema operativo, in un componente che trattiene i dati dei sensori finché la spia non è rimasta visibile abbastanza a lungo.",
+    "approfondimento": {
+     "titolo": "Un secondo sistema operativo dentro il chip, per custodire i sensori",
+     "punto": "I Secure Exclaves non sono il Secure Enclave: girano sui core principali del processore con un piccolo sistema operativo loro, exclaveOS. Le regole sulla spia della fotocamera valgono lì sotto, dove le app non arrivano, e Apple le racconta con un esempio che non riguarda solo la casa.",
+     "sotto": [
+      "Il nome trae in inganno. Il Secure Enclave è un processore a parte; i Secure Exclaves invece girano sui core principali del chip, con un loro microkernel e un sistema operativo chiamato exclaveOS, separati dal resto da protezioni della memoria garantite dall'hardware. The Register ne aveva descritto l'arrivo già nel marzo 2025, quando Apple aveva cominciato a riorganizzare attorno a questi compartimenti XNU, il nucleo dei suoi sistemi.",
+      "L'esempio scelto da Apple è Siri su iPhone 18 Pro. Un processore a basso consumo ascolta di continuo se qualcuno pronuncia la frase di attivazione, poi componenti isolati fanno un secondo controllo, più preciso. Fino a quel momento il sistema riceve solo un indicatore che Siri potrebbe essere stata chiamata; l'audio, frase di attivazione compresa, arriva quando la sessione è approvata e la spia è comparsa. Sugli iPhone compatibili l'hardware verifica anche che la spia sullo schermo abbia la forma e il colore giusti, la luminosità minima, e che non sia coperta.",
+      "Per ora non è noto quanto a lungo la spia debba restare visibile prima che i dati passino: Apple dice solo «abbastanza». Il post è stato rilanciato più volte su Hacker News fra l'11 e il 14 novembre, ma la versione più votata si è fermata a 17 punti, senza commenti. Una spiegazione così dettagliata arriva mentre HomeView entra nelle case, e mentre su Reddit la discussione è un'altra: non quanto protegge i dati, ma chi riesce a usarlo."
+     ]
+    }
+   },
+   "siri-ai-casa-chi-non-ha-iphone": {
+    "title": "Siri AI in casa risponde a chi ha un iPhone adatto. Gli altri restano fuori",
+    "sintesi": "Su HomeView e Apple TV le richieste personali passano dal dispositivo di ciascuno: chi in famiglia non ha un iPhone compatibile con Apple Intelligence non può aggiungere nulla alle liste.",
+    "descrizione": "Dopo i primi giorni di HomeView e del nuovo Apple TV 4K, la domanda più discussa non riguarda cosa sappia fare Siri AI, ma chi possa usarla. Per accenderla, il proprietario della casa registrato nell'app Casa deve avere un iPhone o un iPad compatibile con Apple Intelligence, aggiornato e con Siri AI attiva in una lingua supportata. Un iPad con chip A16 basta per configurare HomeView, ma non per attivare Siri AI.\n\nPer le richieste personali, come messaggi e calendario, ognuno deve avere un proprio dispositivo abbinato e idoneo: su HomeView deve stare nelle vicinanze, e su Apple TV un dispositivo con Siri AI vicino serve anche per le domande generiche. Il riconoscimento di viso e voce funziona solo se quel dispositivo è stato sbloccato di recente ed è sulla stessa rete Wi-Fi. Su r/apple un thread da circa 68 commenti raccoglie i casi di chi è rimasto fuori: una moglie con un iPhone 14 Pro, dei figli senza un dispositivo Apple.",
+    "approfondimento": {
+     "titolo": "Uno schermo di famiglia che ragiona come un telefono personale",
+     "punto": "HomeView riconosce fino a sei persone, ma ciascuna conta davvero solo se ha con sé un iPhone abbastanza recente. È la conseguenza della scelta di tenere i dati personali sul dispositivo di chi li possiede, e su Reddit c'è già chi parla di restituirlo.",
+     "sotto": [
+      "Il limite nasce dal modo in cui Apple ha costruito Siri AI. Le richieste che toccano promemoria, liste e calendari non le risolve lo schermo in cucina, ma il telefono della persona a cui appartengono. Per HomePod mini 2, che ha 2 GB di RAM, la strada sarà la stessa quando l'aggiornamento arriverà. Il risultato è che il dispositivo di casa funziona bene per chi ha già un iPhone 15 Pro o successivo, e molto meno per chi non ne ha uno.",
+      "Su r/apple il thread sulle recensioni di HomeView ha raccolto circa 191 commenti, sotto un titolo che dice il tono: 299 dollari per una Siri AI che non funziona sono difficili da giustificare. Nel thread sui requisiti le storie sono pratiche: una moglie che non può aggiungere la spesa, figli che non vedono l'elenco delle loro faccende perché Promemoria resta chiuso nell'account del genitore. Sono testimonianze, non una misura, ma riguardano proprio l'uso per cui uno schermo in cucina sembra fatto: la lista di tutta la casa.",
+      "Per ora non è noto se Apple pensi a un profilo per chi non ha un iPhone, o a un modo di condividere una lista con tutta la famiglia senza passare dal dispositivo di ciascuno. A Joanna Stern Apple ha confermato che un aggiornamento del mese prossimo permetterà a Siri di fare quello che oggi si fa toccando lo schermo. È una promessa sui comandi, non su chi potrà darli."
+     ]
+    }
+   },
+   "apple-tv-4k-italia-senza-siri-ai": {
+    "title": "Il nuovo Apple TV 4K è in Italia a 349 euro, ma senza Siri AI",
+    "sintesi": "Il nuovo Apple TV 4K con chip A19 si compra in Italia a 349 euro, ma Siri AI non c'è: nell'Unione Europea resta bloccata, anche sui modelli del 2021 e del 2022 aggiornati.",
+    "descrizione": "Il nuovo Apple TV 4K, quello con il chip A19, è arrivato nei negozi italiani a 349 euro. Manca però la funzione su cui Apple ha costruito il lancio: Siri AI non è disponibile nell'Unione Europea, Italia compresa, e non compare nemmeno dopo aver installato tvOS 27.2.1, l'aggiornamento che negli altri paesi la porta anche sui modelli del 2021 e del 2022.\n\nChi lo compra in Italia trova comunque l'hardware nuovo: i tre microfoni integrati pensati per il controllo a voce da lontano e il supporto a Dolby Vision, HDR10+ e Dolby Atmos. Macitynet lega l'assenza alle restrizioni che Apple applica all'intelligenza artificiale in Europa, e che toccano anche altri prodotti per la casa. HomeView, il primo di questi, nell'Unione Europea non è nemmeno in vendita.",
+    "approfondimento": {
+     "titolo": "Siri AI e l'Europa: un ritardo che adesso si vede anche in salotto",
+     "punto": "Finché riguardava iPhone e iPad, il ritardo di Siri AI in Europa era una funzione in meno su un telefono che fa mille altre cose. Con Apple TV diventa una differenza di prodotto: lo stesso apparecchio, in Italia, fa meno di quello per cui è stato presentato.",
+     "sotto": [
+      "La radice è un comunicato di giugno, in cui Apple annunciava che Siri AI non sarebbe arrivata nell'Unione Europea con iOS 27 e iPadOS 27, indicando come causa il Digital Markets Act, il regolamento europeo sulle grandi piattaforme digitali. Da allora il limite accompagna ogni prodotto nuovo che si appoggia alla funzione. HomeView, che è costruito attorno a Siri AI, in Europa non è stato messo in vendita. Apple TV sì: anche senza, resta un apparecchio per guardare film e serie.",
+      "Mark Gurman, di Bloomberg, aveva scritto che Siri AI sarebbe arrivata nell'Unione Europea entro cinque mesi dal debutto. Per ora nessun annuncio va in quella direzione, e tvOS 27.2.1 non ha cambiato nulla per chi vive nell'Unione. Apple non ha dato date.",
+      "Vale la pena sapere cosa chiede la funzione nei paesi dove c'è già. Lì Siri AI su Apple TV vuole un iPhone o un iPad compatibile con Apple Intelligence nelle vicinanze, anche per le domande generiche, e parla solo inglese. Se arriverà in Europa è facile aspettarsi le stesse condizioni, e un apparecchio comprato oggi la riceverebbe con un aggiornamento, come è successo ai modelli del 2021 e del 2022."
+     ]
+    }
+   },
+   "apple-work-xserve-mlx": {
+    "title": "Per 9to5Mac il Mac è l'erede dello Xserve, grazie ai modelli degli altri",
+    "sintesi": "Nella rubrica Apple @ Work Bradley Chambers sostiene che Apple silicon e MLX hanno fatto del Mac l'hardware giusto per i modelli aperti: Muse Spark Open di Meta è ottimizzato per Mac Studio.",
+    "descrizione": "Bradley Chambers, nella sua rubrica Apple @ Work su 9to5Mac, propone una lettura controcorrente del ritardo di Apple nell'intelligenza artificiale. Apple non ha un modello di punta suo, ma ha costruito l'hardware su cui girano quelli aperti degli altri, e secondo lui questo fa del Mac l'erede dello Xserve, il server che Apple ha smesso di vendere da tempo. Il caso che cita è Muse Spark Open, il modello a pesi aperti più capace di Meta: 816 miliardi di parametri, di cui 42 miliardi attivi, una finestra di contesto da un milione di token, ottimizzato per Mac Studio. Chambers ha provato anche Osaurus, un'app che fa girare un modello in locale, senza rete, su un portatile con 16 GB di RAM; altri due modelli si accontentano di 8.\n\nNon assolve Apple: ammette che Siri AI è arrivata tardi e resta molto indietro. Ma con la corsa ai modelli di punta diventata, scrive, un falò di capitale, non averla corsa potrebbe essere stata la scelta giusta.",
+    "approfondimento": {
+     "titolo": "I data center fatti di Mac non sono più solo un'idea da rubrica",
+     "punto": "La tesi di Chambers sarebbe una provocazione, se fosse isolata. In pochi giorni però si sono messi in fila un'azienda che raccoglie capitali per server fatti di Mac e l'ex architetto dei chip Apple che progetta processori per i data center dell'intelligenza artificiale.",
+     "sotto": [
+      "In genere un modello linguistico deve stare per intero in memoria per rispondere in fretta, ed è qui che i chip Apple, con processore e grafica che condividono la stessa memoria, si sono fatti un posto fra chi fa girare modelli in proprio. Muse Spark Open ha 816 miliardi di parametri ma ne usa 42 miliardi alla volta: è il genere di modello che Meta ha voluto ottimizzare per Mac Studio.",
+      "Il 13 novembre Mount Thor ha annunciato di aver raccolto 45 milioni di dollari per costruire data center di Mac al servizio degli agenti AI. E Gerard Williams III, che ha lavorato ai processori Apple dall'A7 dell'iPhone 5s fino all'M1, nel podcast Power On di Mark Gurman ha raccontato WarpCore, la CPU per data center che sviluppa con la sua Nuvacore: la sua idea è che l'efficienza del singolo core conti anche negli impianti più grandi, che è la stessa scommessa da cui sono nati i chip del Mac.",
+      "La parte che Chambers lascia aperta è Siri. Per chi non scarica modelli e non configura un Mac Studio, l'intelligenza artificiale di Apple resta quella dell'assistente, e lì il ritardo si vede ogni giorno: in Europa Siri AI non c'è, negli altri paesi chiede un iPhone recente nelle vicinanze. Il vantaggio sull'hardware, per ora, riguarda soprattutto sviluppatori e aziende."
+     ]
+    }
+   },
+   "costo-tutti-iphone-bgr": {
+    "title": "Comprare tutti i 55 iPhone usciti dal 2007 costerebbe 46.845 dollari",
+    "sintesi": "BGR ha sommato i prezzi di lancio dei 55 iPhone usciti dal 2007: 46.845 dollari, 57.630 al valore di oggi. Il più caro di sempre è iPhone Duo, a 1.999 dollari.",
+    "descrizione": "BGR ha messo in fila i 55 modelli di iPhone usciti dal giugno 2007, quando il primo costava 499 dollari, fino a iPhone Duo, arrivato a ottobre. Comprando ogni modello base al prezzo di lancio negli Stati Uniti, senza sconti, si spenderebbero 46.845 dollari; aggiustati per l'inflazione diventano 57.630,72.\n\nIl più caro di sempre è iPhone Duo, a 1.999 dollari. Dietro, fra i prezzi di lancio, c'è iPhone 18 Pro Max a 1.299; tenendo conto dell'inflazione il secondo posto passa a iPhone XS Max, che nel 2018 costava 1.099 dollari e oggi ne varrebbe 1.474,66. Il più economico al valore di oggi è l'iPhone SE di terza generazione: 429 dollari nel 2022, 493,92 adesso. In assoluto il prezzo più basso lo condividono i primi due SE, del 2016 e del 2020, a 399 dollari. Sul Duo BGR riconosce che il prezzo è discusso, ma ricorda che un pieghevole costa di più da progettare e da produrre.",
+    "approfondimento": {
+     "titolo": "Fino al Duo nessun iPhone era partito sopra i 1.299 dollari",
+     "punto": "La classifica di BGR dice una cosa che il totale nasconde: per anni il prezzo dell'iPhone più caro si è mosso poco, e con l'inflazione è perfino sceso. Il pieghevole lo ha spostato in un colpo di 700 dollari.",
+     "sotto": [
+      "Messi in fila, i prezzi di lancio raccontano una gamma salita per gradini piccoli. Nel 2018 iPhone XS Max partiva da 1.099 dollari; otto anni dopo il Pro più grande parte da 1.299. Al valore di oggi, però, lo XS Max costerebbe 1.474,66 dollari: in termini reali l'iPhone 18 Pro Max costa meno di quello che allora era il modello più caro.",
+      "Il Duo esce da questa linea. A 1.999 dollari costa 700 dollari più del Pro Max e più di qualunque iPhone del passato anche dopo l'inflazione, visto che il secondo, lo XS Max, resta sotto i 1.500. Somiglia più al prezzo di una categoria nuova che a un rincaro, ed è con i pieghevoli della concorrenza, a cominciare dal Galaxy Z Fold 8, che BGR lo confronta.",
+      "Il prezzo, per ora, non sembra frenare le stime: Bloomberg Intelligence conta 16 milioni di iPhone Duo nel primo anno, nonostante i resi raccontati nelle settimane scorse. Non è ancora noto quanto il Duo pesi sulle vendite complessive di iPhone, né se il prezzo resterà quello al secondo modello."
+     ]
+    }
+   },
+   "beats-360-studio-pro-confronto": {
+    "title": "Beats 360 o Studio Pro: cosa cambia fra le cuffie nuove e quelle del 2023",
+    "sintesi": "Le Beats 360 di settembre cancellano meglio il rumore e passano da sole da un dispositivo all'altro; le Studio Pro, scontate fino a 199 dollari, si piegano e hanno ancora l'audio via cavo.",
+    "descrizione": "9to5Mac ha messo a confronto le Beats 360, uscite a settembre a 349 dollari e per ora mai scontate, con le Studio Pro del 2023, che su Amazon negli Stati Uniti si trovano fra 199 e 249 dollari. Le nuove hanno una cancellazione del rumore più forte, una modalità trasparenza più chiara e il passaggio automatico fra i dispositivi, che sulle Studio Pro manca. Si possono anche personalizzare nel design, e i cuscinetti UltraPlush sono intercambiabili, ma si comprano a parte.\n\nLe Studio Pro restano più pratiche in viaggio: si piegano e hanno un ingresso per il cavo, utile con una console o in aereo. Le Beats 360 non si piegano e non hanno audio cablato, nemmeno via USB-C. L'autore racconta che con le Studio Pro la trasparenza non basta a seguire una conversazione e costringe a togliere le cuffie, mentre con le 360 non gli è capitato."
+   },
+   "esr-magsafe-cavalletto-duo": {
+    "title": "Ricaricare iPhone Duo in piedi: la prova del caricatore MagSafe di ESR con cavalletto",
+    "sintesi": "Con la porta sul fondo, iPhone Duo non si tiene in piedi mentre si ricarica; il caricatore MagSafe di ESR, con cavalletto e raffreddamento attivo, aggira il problema da 36,99 dollari.",
+    "descrizione": "Su iPhone Duo la porta di ricarica sta sul fondo: per guardare un video sullo schermo interno con il telefono in piedi e il cavo attaccato bisogna capovolgerlo, e i tasti finiscono dalla parte sbagliata. 9to5Mac ha provato una soluzione che passa dal retro, il caricatore MagSafe di ESR con un cavalletto integrato. Ricarica in Qi2 a 25 W e ha un raffreddamento attivo, utile su un telefono che tende a scaldarsi; con un iPhone 18 Pro arriva al 50% in 25 minuti. Su Amazon costa 36,99 dollari in bianco e in nero, 42,99 in bordeaux."
+   },
+   "milton-ipad-pannello-casa": {
+    "title": "Milton trasforma un vecchio iPad in un pannello per la famiglia",
+    "sintesi": "L'app Milton porta su un iPad con iPadOS 17 calendario, liste, faccende dei figli e cornice per le foto: le funzioni base sono gratis, la versione per la famiglia costa 14,99 dollari.",
+    "descrizione": "Milton, presentata da 9to5Mac nella rubrica sulle app indipendenti, è pensata per chi ha un iPad vecchio nel cassetto e non vuole comprare HomeView. Funziona da iPadOS 17 in su e fa del tablet un pannello per la casa: calendario, liste della spesa, cose da fare, meteo, orologio e cornice per le foto, con l'iPhone che lo controlla a distanza. Per i figli c'è un sistema a punti, con cui i genitori fissano gli obiettivi e approvano le faccende fatte. Dalla foto di un libro di cucina ricava la ricetta passo per passo, e gli ingredienti che mancano finiscono nella lista con un tocco.\n\nLe funzioni di base sono gratuite. Milton Individual costa 4,99 dollari con un acquisto unico, Milton Family 14,99 e si condivide da sola con il gruppo Famiglia di iCloud. Lo sviluppatore la spiega così: «We wanted something that fit our lives, connected us as the Apple family we already are, and didn't cost families a fortune.»"
+   },
+   "homeview-modalita-scura-ambiente": {
+    "title": "HomeView passa al tema scuro guardando la luce della stanza. 9to5Mac lo vorrebbe ovunque",
+    "sintesi": "Su HomeView la modalità scura può seguire il sensore di luce ambientale e non solo l'orario: per 9to5Mac dovrebbe arrivare anche su iPhone, iPad e Mac con i sistemi del prossimo anno.",
+    "descrizione": "Su iPhone, iPad e Mac il passaggio automatico al tema scuro segue due regole: dal tramonto all'alba, oppure un orario scelto a mano. HomeView ne ha una terza, la modalità scura ambientale: è il sensore di luce a decidere se lo schermo resta chiaro o diventa scuro, in base alla stanza e non all'ora. In un editoriale 9to5Mac chiede che la funzione arrivi anche sugli altri dispositivi a partire dai sistemi 28, l'anno prossimo. È un auspicio della testata: Apple non ha annunciato nulla in questo senso."
+   },
+   "firefox-160-mini-window-mac": {
+    "title": "Firefox 160 stacca una parte della pagina e la tiene in primo piano, anche sul Mac",
+    "sintesi": "Con le Mini Window di Firefox 160 una scheda, o solo una sua porzione, diventa una piccola finestra sempre in vista; l'aggiornamento è uscito il 10 novembre anche per macOS.",
+    "descrizione": "Mozilla ha distribuito il 10 novembre Firefox 160 per Mac, Windows e Linux. La novità principale sono le Mini Window: una scheda, o solo una parte della pagina, si sposta in una finestra piccola che resta sopra le altre, come già succede ai video in Picture-in-Picture. Serve a tenere d'occhio una tabella mentre si scrive, una chat o delle istruzioni. Si attiva con il tasto destro sulla scheda, da Sposta scheda, oppure su un punto della pagina, delimitando l'area da tenere; il contenuto spostato non resta anche nella finestra di partenza.\n\nLa funzione è ancora in una fase iniziale e Mozilla raccoglie i pareri di chi la usa. L'aggiornamento porta anche il controllo della velocità nei video Picture-in-Picture e alcune correzioni per macOS."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "Una giornata senza annunci, in cui di Apple si parla soprattutto della casa. Apple ha spiegato come HomeView riconosce le persone senza far uscire immagini e voce dal chip, e su Reddit si discute di chi in famiglia resta escluso da Siri AI perché non ha un iPhone recente. In Italia il nuovo Apple TV 4K è in vendita, ma senza la funzione con cui è stato presentato.",
+  "top3": [
+   "Apple spiega come HomeView riconosce chi c'è in casa senza far uscire immagini e voce dal chip",
+   "Siri AI in casa risponde solo a chi ha un iPhone adatto",
+   "Il nuovo Apple TV 4K arriva in Italia a 349 euro, senza Siri AI"
+  ],
+  "editoriale": {
+   "titolo": "Di chi è lo schermo in cucina?",
+   "testo": [
+    "HomeView riconosce fino a sei persone dal viso e dalla voce, e Apple ha spiegato questa settimana con quanta cura lo fa: immagini e audio restano in un'area isolata del chip e poi si cancellano, e al sistema arriva soltanto chi è, dove si trova e con che sicurezza. Le richieste personali, la lista della spesa o un promemoria, non le risolve lo schermo ma il telefono di chi le fa. Su r/apple c'è chi racconta che la moglie, con un iPhone 14 Pro, non riesce ad aggiungere nulla, e un genitore spiega che i figli, senza un dispositivo Apple, non vedono l'elenco delle loro faccende.",
+    "Le due cose vengono dalla stessa scelta. Tenere i dati di ciascuno sul dispositivo di ciascuno è il modo in cui Apple protegge la privacy, e un lettore dello stesso thread lo riconosce: quelle restrizioni hanno senso, ma creano un problema che il prodotto da solo non sa risolvere. Il risultato è che un oggetto pensato per tutta la famiglia, per ora, funziona davvero solo per chi ha già un iPhone recente. In Italia, dove Siri AI non c'è, la domanda nemmeno si pone: il nuovo Apple TV 4K è in vendita a 349 euro senza la funzione che lo ha presentato.",
+    "Intanto uno sviluppatore indipendente ha percorso una strada più semplice: la sua app, Milton, trasforma un vecchio iPad in un pannello di casa, con le faccende dei figli a punti e la condivisione con il gruppo Famiglia. È un'app piccola, senza l'intelligenza artificiale di Siri, ma risponde a una domanda che HomeView per ora lascia aperta: in una casa, la lista della spesa è di una persona o di tutti? Apple ha promesso per il mese prossimo una Siri capace di fare di più. Resta da capire se imparerà anche ad ascoltare chi un iPhone non ce l'ha."
+   ],
+   "notizie": [
+    "homeview-exclaves-fotocamera-microfono",
+    "siri-ai-casa-chi-non-ha-iphone",
+    "apple-tv-4k-italia-senza-siri-ai",
+    "milton-ipad-pannello-casa"
+   ]
+  },
+  "news": {
+   "homeview-exclaves-fotocamera-microfono": {
+    "title": "Come HomeView riconosce chi c'è in casa senza far uscire immagini e voce dal chip",
+    "sintesi": "Per riconoscere fino a sei persone HomeView elabora audio e video in un'area isolata del chip e poi li cancella: al sistema arriva solo chi è, dove si trova e con che sicurezza.",
+    "descrizione": "Apple ha pubblicato sul suo blog di ricerca sulla sicurezza un articolo che spiega come HomeView riconosce le persone di casa senza consegnare fotocamera e microfono alle app. HomeView distingue fino a sei persone registrate, dal viso e dalla voce, per mostrare a ciascuna il suo calendario, i suoi messaggi e la sua musica. L'audio e il video usati per farlo vengono elaborati in ambienti isolati, i Secure Exclaves, e poi scartati: al sistema operativo arrivano solo un identificativo della persona, la sua posizione e un livello di confidenza.\n\nDiverso è l'uso attivo, una conversazione con Siri o una chiamata FaceTime: lì il flusso completo passa al sistema, ma solo dopo che la spia di privacy è accesa. Per questo la luce non resta sempre accesa mentre HomeView riconosce chi ha davanti: non direbbe più quando un'app sta ricevendo davvero le immagini. Il blocco sta sotto il sistema operativo, in un componente che trattiene i dati dei sensori finché la spia non è rimasta visibile abbastanza a lungo.",
+    "approfondimento": {
+     "titolo": "Un secondo sistema operativo dentro il chip, per custodire i sensori",
+     "punto": "I Secure Exclaves non sono il Secure Enclave: girano sui core principali del processore con un piccolo sistema operativo loro, exclaveOS. Le regole sulla spia della fotocamera valgono lì sotto, dove le app non arrivano, e Apple le racconta con un esempio che non riguarda solo la casa.",
+     "sotto": [
+      "Il nome si confonde facilmente con quello di un componente più noto. Il Secure Enclave è un processore a parte; i Secure Exclaves invece girano sui core principali del chip, con un loro microkernel e un sistema operativo chiamato exclaveOS, separati dal resto da protezioni della memoria garantite dall'hardware. The Register ne aveva descritto l'arrivo già nel marzo 2025, quando Apple aveva cominciato a riorganizzare attorno a questi compartimenti XNU, il nucleo dei suoi sistemi.",
+      "L'esempio scelto da Apple è Siri su iPhone 18 Pro. Un processore a basso consumo ascolta di continuo se qualcuno pronuncia la frase di attivazione, poi componenti isolati fanno un secondo controllo, più preciso. Fino a quel momento il sistema riceve solo un indicatore che Siri potrebbe essere stata chiamata; l'audio, frase di attivazione compresa, arriva quando la sessione è approvata e la spia è comparsa. Sugli iPhone compatibili l'hardware verifica anche che la spia sullo schermo abbia la forma e il colore giusti, la luminosità minima, e che non sia coperta.",
+      "Per ora non è noto quanto a lungo la spia debba restare visibile prima che i dati passino: Apple dice solo «abbastanza». Il post è stato rilanciato più volte su Hacker News fra l'11 e il 14 novembre, ma la versione più votata si è fermata a 17 punti, senza commenti. Una spiegazione così dettagliata arriva mentre HomeView entra nelle case, e mentre su Reddit si discute soprattutto di chi, in famiglia, riesce davvero a usarlo."
+     ]
+    }
+   },
+   "siri-ai-casa-chi-non-ha-iphone": {
+    "title": "Siri AI in casa risponde a chi ha un iPhone adatto. Gli altri restano fuori",
+    "sintesi": "Su HomeView e Apple TV le richieste personali passano dal dispositivo di ciascuno: chi in famiglia non ha un iPhone compatibile con Apple Intelligence non può aggiungere nulla alle liste.",
+    "descrizione": "Dopo i primi giorni di HomeView e del nuovo Apple TV 4K, la domanda più discussa è chi possa usare Siri AI. Per accenderla, il proprietario della casa registrato nell'app Casa deve avere un iPhone o un iPad compatibile con Apple Intelligence, aggiornato e con Siri AI attiva in una lingua supportata. Un iPad con chip A16 basta per configurare HomeView, ma non per attivare Siri AI.\n\nPer le richieste personali, come messaggi e calendario, ognuno deve avere un proprio dispositivo abbinato e idoneo: su HomeView deve stare nelle vicinanze, e su Apple TV un dispositivo con Siri AI vicino serve anche per le domande generiche. Il riconoscimento di viso e voce funziona solo se quel dispositivo è stato sbloccato di recente ed è sulla stessa rete Wi-Fi. Su r/apple un thread da circa 68 commenti raccoglie i casi di chi è rimasto fuori: una moglie con un iPhone 14 Pro, dei figli senza un dispositivo Apple.",
+    "approfondimento": {
+     "titolo": "Uno schermo di famiglia che ragiona come un telefono personale",
+     "punto": "HomeView riconosce fino a sei persone, ma ciascuna conta davvero solo se ha con sé un iPhone abbastanza recente. È la conseguenza della scelta di tenere i dati personali sul dispositivo di chi li possiede, e su Reddit c'è già chi parla di restituirlo.",
+     "sotto": [
+      "Il limite nasce dal modo in cui Apple ha costruito Siri AI. Le richieste che toccano promemoria, liste e calendari non le risolve lo schermo in cucina, ma il telefono della persona a cui appartengono. Per HomePod mini 2, che ha 2 GB di RAM, la strada sarà la stessa quando l'aggiornamento arriverà. Il risultato è che il dispositivo di casa funziona bene per chi ha già un iPhone 15 Pro o successivo, e molto meno per chi non ne ha uno.",
+      "Su r/apple il thread sulle recensioni di HomeView ha raccolto circa 191 commenti, sotto un titolo che dice il tono: 299 dollari per una Siri AI che non funziona sono difficili da giustificare. Nel thread sui requisiti le storie sono pratiche: una moglie che non può aggiungere la spesa, figli che non vedono l'elenco delle loro faccende perché Promemoria resta chiuso nell'account del genitore. Sono testimonianze, non una misura, ma riguardano proprio l'uso per cui uno schermo in cucina sembra fatto: la lista di tutta la casa.",
+      "Per ora non è noto se Apple pensi a un profilo per chi non ha un iPhone, o a un modo di condividere una lista con tutta la famiglia senza passare dal dispositivo di ciascuno. A Joanna Stern Apple ha confermato che un aggiornamento del mese prossimo permetterà a Siri di fare quello che oggi si fa toccando lo schermo. La promessa riguarda quello che Siri saprà fare; su chi potrà chiederglielo, per ora, Apple non ha detto nulla."
+     ]
+    }
+   },
+   "apple-tv-4k-italia-senza-siri-ai": {
+    "title": "Il nuovo Apple TV 4K è in Italia a 349 euro, ma senza Siri AI",
+    "sintesi": "Il nuovo Apple TV 4K con chip A19 si compra in Italia a 349 euro, ma Siri AI non c'è: nell'Unione Europea resta bloccata, anche sui modelli del 2021 e del 2022 aggiornati.",
+    "descrizione": "Il nuovo Apple TV 4K, quello con il chip A19, è arrivato nei negozi italiani a 349 euro. Manca però la funzione su cui Apple ha costruito il lancio: Siri AI non è disponibile nell'Unione Europea, Italia compresa, e non compare nemmeno dopo aver installato tvOS 27.2.1, l'aggiornamento che negli altri paesi la porta anche sui modelli del 2021 e del 2022.\n\nChi lo compra in Italia trova comunque l'hardware nuovo: i tre microfoni integrati pensati per il controllo a voce da lontano e il supporto a Dolby Vision, HDR10+ e Dolby Atmos. Macitynet lega l'assenza alle restrizioni che Apple applica all'intelligenza artificiale in Europa, e che toccano anche altri prodotti per la casa. HomeView, il primo di questi, nell'Unione Europea non è nemmeno in vendita.",
+    "approfondimento": {
+     "titolo": "Siri AI e l'Europa: un ritardo che adesso si vede anche in salotto",
+     "punto": "Finché riguardava iPhone e iPad, il ritardo di Siri AI in Europa era una funzione in meno su dispositivi che fanno comunque molte altre cose. Con Apple TV diventa una differenza di prodotto: lo stesso apparecchio, in Italia, fa meno di quello per cui è stato presentato.",
+     "sotto": [
+      "La radice è un comunicato di giugno, in cui Apple annunciava che Siri AI non sarebbe arrivata nell'Unione Europea con iOS 27 e iPadOS 27, indicando come causa il Digital Markets Act, il regolamento europeo sulle grandi piattaforme digitali. Da allora il limite accompagna ogni prodotto nuovo che si appoggia alla funzione. HomeView, che è costruito attorno a Siri AI, in Europa non è stato messo in vendita. Apple TV sì: anche senza, resta un apparecchio per guardare film e serie.",
+      "Mark Gurman, di Bloomberg, aveva scritto che Siri AI sarebbe arrivata nell'Unione Europea entro cinque mesi dal debutto. Per ora nessun annuncio va in quella direzione, e tvOS 27.2.1 non ha cambiato nulla per chi vive nell'Unione. Apple non ha dato date.",
+      "Vale la pena sapere cosa chiede la funzione nei paesi dove c'è già. Lì Siri AI su Apple TV vuole un iPhone o un iPad compatibile con Apple Intelligence nelle vicinanze, anche per le domande generiche, e parla solo inglese. Se arriverà in Europa è facile aspettarsi le stesse condizioni, e un apparecchio comprato oggi la riceverebbe con un aggiornamento, come è successo ai modelli del 2021 e del 2022."
+     ]
+    }
+   },
+   "apple-work-xserve-mlx": {
+    "title": "Per 9to5Mac il Mac è diventato l'erede dello Xserve",
+    "sintesi": "Nella rubrica Apple @ Work Bradley Chambers sostiene che Apple silicon e MLX hanno fatto del Mac l'hardware giusto per i modelli aperti: Muse Spark Open di Meta è ottimizzato per Mac Studio.",
+    "descrizione": "Bradley Chambers, nella sua rubrica Apple @ Work su 9to5Mac, propone una lettura controcorrente del ritardo di Apple nell'intelligenza artificiale. Apple non ha un modello di punta suo, ma ha costruito l'hardware su cui girano quelli aperti degli altri, e secondo lui questo fa del Mac l'erede dello Xserve, il server che Apple ha smesso di vendere da tempo. Il caso che cita è Muse Spark Open, il modello a pesi aperti più capace di Meta: 816 miliardi di parametri, di cui 42 miliardi attivi, una finestra di contesto da un milione di token, ottimizzato per Mac Studio. Chambers ha provato anche Osaurus, un'app che fa girare un modello in locale, senza rete, su un portatile con 16 GB di RAM; altri due modelli si accontentano di 8.\n\nNon assolve Apple: ammette che Siri AI è arrivata tardi e resta molto indietro. Ma con la corsa ai modelli di punta diventata, scrive, un falò di capitale, non averla corsa potrebbe essere stata la scelta giusta.",
+    "approfondimento": {
+     "titolo": "I data center fatti di Mac non sono più solo un'idea da rubrica",
+     "punto": "La tesi di Chambers sarebbe una provocazione, se fosse isolata. In pochi giorni però si sono messi in fila un'azienda che raccoglie capitali per server fatti di Mac e l'ex architetto dei chip Apple che progetta processori per i data center dell'intelligenza artificiale.",
+     "sotto": [
+      "In genere un modello linguistico deve stare per intero in memoria per rispondere in fretta, e i chip Apple, in cui processore e grafica condividono la stessa memoria, si sono fatti per questo un posto fra chi fa girare modelli in proprio. Muse Spark Open ha 816 miliardi di parametri ma ne usa 42 miliardi alla volta: è il genere di modello che Meta ha voluto ottimizzare per Mac Studio.",
+      "Il 13 novembre Mount Thor ha annunciato di aver raccolto 45 milioni di dollari per costruire data center di Mac al servizio degli agenti AI. E Gerard Williams III, che ha lavorato ai processori Apple dall'A7 dell'iPhone 5s fino all'M1, nel podcast Power On di Mark Gurman ha raccontato WarpCore, la CPU per data center che sviluppa con la sua Nuvacore: la sua idea è che l'efficienza del singolo core conti anche negli impianti più grandi, che è la stessa scommessa da cui sono nati i chip del Mac.",
+      "La parte che Chambers lascia aperta è Siri. Per chi non scarica modelli e non configura un Mac Studio, l'intelligenza artificiale di Apple resta quella dell'assistente, e lì il ritardo si vede ogni giorno: in Europa Siri AI non c'è, negli altri paesi chiede un iPhone recente nelle vicinanze. Il vantaggio sull'hardware, per ora, riguarda soprattutto sviluppatori e aziende."
+     ]
+    }
+   },
+   "costo-tutti-iphone-bgr": {
+    "title": "Comprare tutti i 55 iPhone usciti dal 2007 costerebbe 46.845 dollari",
+    "sintesi": "BGR ha sommato i prezzi di lancio dei 55 iPhone usciti dal 2007: 46.845 dollari, 57.630 al valore di oggi. Il più caro di sempre è iPhone Duo, a 1.999 dollari.",
+    "descrizione": "BGR ha messo in fila i 55 modelli di iPhone usciti dal giugno 2007, quando il primo costava 499 dollari, fino a iPhone Duo, arrivato a ottobre. Comprando ogni modello base al prezzo di lancio negli Stati Uniti, senza sconti, si spenderebbero 46.845 dollari; aggiustati per l'inflazione diventano 57.630,72.\n\nIl più caro di sempre è iPhone Duo, a 1.999 dollari. Dietro, fra i prezzi di lancio, c'è iPhone 18 Pro Max a 1.299; tenendo conto dell'inflazione il secondo posto passa a iPhone XS Max, che nel 2018 costava 1.099 dollari e oggi ne varrebbe 1.474,66. Il più economico al valore di oggi è l'iPhone SE di terza generazione: 429 dollari nel 2022, 493,92 adesso. In assoluto il prezzo più basso lo condividono i primi due SE, del 2016 e del 2020, a 399 dollari. Sul Duo BGR riconosce che il prezzo è discusso, ma ricorda che un pieghevole costa di più da progettare e da produrre.",
+    "approfondimento": {
+     "titolo": "Fino al Duo nessun iPhone era partito sopra i 1.299 dollari",
+     "punto": "Guardando la classifica di BGR oltre il totale, si nota che per anni il prezzo dell'iPhone più caro si è mosso poco, e con l'inflazione è perfino sceso. Il pieghevole lo ha spostato in un colpo di 700 dollari.",
+     "sotto": [
+      "Messi in fila, i prezzi di lancio raccontano una gamma salita per gradini piccoli. Nel 2018 iPhone XS Max partiva da 1.099 dollari; otto anni dopo il Pro più grande parte da 1.299. Al valore di oggi, però, lo XS Max costerebbe 1.474,66 dollari: in termini reali l'iPhone 18 Pro Max costa meno di quello che allora era il modello più caro.",
+      "Il Duo esce da questa linea. A 1.999 dollari costa 700 dollari più del Pro Max e più di qualunque iPhone del passato anche dopo l'inflazione, visto che il secondo, lo XS Max, resta sotto i 1.500. Più che un rincaro, sembra il prezzo di una categoria nuova, ed è infatti con i pieghevoli della concorrenza, a cominciare dal Galaxy Z Fold 8, che BGR lo confronta.",
+      "Il prezzo, per ora, non sembra frenare le stime: Bloomberg Intelligence conta 16 milioni di iPhone Duo nel primo anno, nonostante i resi raccontati nelle settimane scorse. Non è ancora noto quanto il Duo pesi sulle vendite complessive di iPhone, né se il prezzo resterà quello al secondo modello."
+     ]
+    }
+   },
+   "beats-360-studio-pro-confronto": {
+    "title": "Beats 360 o Studio Pro: cosa cambia fra le cuffie nuove e quelle del 2023",
+    "sintesi": "Le Beats 360 di settembre cancellano meglio il rumore e passano da sole da un dispositivo all'altro; le Studio Pro, scontate fino a 199 dollari, si piegano e hanno ancora l'audio via cavo.",
+    "descrizione": "9to5Mac ha messo a confronto le Beats 360, uscite a settembre a 349 dollari e per ora mai scontate, con le Studio Pro del 2023, che su Amazon negli Stati Uniti si trovano fra 199 e 249 dollari. Le nuove hanno una cancellazione del rumore più forte, una modalità trasparenza più chiara e il passaggio automatico fra i dispositivi, che sulle Studio Pro manca. Si possono anche personalizzare nel design, e i cuscinetti UltraPlush sono intercambiabili, ma si comprano a parte.\n\nLe Studio Pro restano più pratiche in viaggio: si piegano e hanno un ingresso per il cavo, utile con una console o in aereo. Le Beats 360 non si piegano e non hanno audio cablato, nemmeno via USB-C. L'autore racconta che con le Studio Pro la trasparenza non basta a seguire una conversazione e costringe a togliere le cuffie, mentre con le 360 non gli è capitato."
+   },
+   "esr-magsafe-cavalletto-duo": {
+    "title": "iPhone Duo in piedi mentre si ricarica: la prova del caricatore MagSafe di ESR",
+    "sintesi": "Con la porta sul fondo, iPhone Duo non si tiene in piedi mentre si ricarica; il caricatore MagSafe di ESR, con cavalletto e raffreddamento attivo, aggira il problema da 36,99 dollari.",
+    "descrizione": "Su iPhone Duo la porta di ricarica sta sul fondo: per guardare un video sullo schermo interno con il telefono in piedi e il cavo attaccato bisogna capovolgerlo, e i tasti finiscono dalla parte sbagliata. 9to5Mac ha provato una soluzione che passa dal retro, il caricatore MagSafe di ESR con un cavalletto integrato. Ricarica in Qi2 a 25 W e ha un raffreddamento attivo, utile su un telefono che tende a scaldarsi; con un iPhone 18 Pro arriva al 50% in 25 minuti. Su Amazon costa 36,99 dollari in bianco e in nero, 42,99 in bordeaux."
+   },
+   "milton-ipad-pannello-casa": {
+    "title": "Milton trasforma un vecchio iPad in un pannello per la famiglia",
+    "sintesi": "L'app Milton porta su un iPad con iPadOS 17 calendario, liste, faccende dei figli e cornice per le foto: le funzioni base sono gratis, la versione per la famiglia costa 14,99 dollari.",
+    "descrizione": "Milton, presentata da 9to5Mac nella rubrica sulle app indipendenti, è pensata per chi ha un iPad vecchio nel cassetto e non vuole comprare HomeView. Funziona da iPadOS 17 in su e fa del tablet un pannello per la casa: calendario, liste della spesa, cose da fare, meteo, orologio e cornice per le foto, con l'iPhone che lo controlla a distanza. Per i figli c'è un sistema a punti, con cui i genitori fissano gli obiettivi e approvano le faccende fatte. Dalla foto di un libro di cucina ricava la ricetta passo per passo, e gli ingredienti che mancano finiscono nella lista con un tocco.\n\nLe funzioni di base sono gratuite. Milton Individual costa 4,99 dollari con un acquisto unico, Milton Family 14,99 e si condivide da sola con il gruppo Famiglia di iCloud. Lo sviluppatore la spiega così: «We wanted something that fit our lives, connected us as the Apple family we already are, and didn't cost families a fortune.»"
+   },
+   "homeview-modalita-scura-ambiente": {
+    "title": "HomeView passa al tema scuro guardando la luce della stanza. 9to5Mac lo vorrebbe ovunque",
+    "sintesi": "Su HomeView la modalità scura può seguire il sensore di luce ambientale e non solo l'orario: per 9to5Mac dovrebbe arrivare anche su iPhone, iPad e Mac con i sistemi del prossimo anno.",
+    "descrizione": "Su iPhone, iPad e Mac il passaggio automatico al tema scuro segue due regole: dal tramonto all'alba, oppure un orario scelto a mano. HomeView ne ha una terza, la modalità scura ambientale: è il sensore di luce a decidere se lo schermo resta chiaro o diventa scuro, in base alla stanza e non all'ora. In un editoriale 9to5Mac chiede che la funzione arrivi anche sugli altri dispositivi a partire dai sistemi 28, l'anno prossimo. È un auspicio della testata: Apple non ha annunciato nulla in questo senso."
+   },
+   "firefox-160-mini-window-mac": {
+    "title": "Firefox 160 stacca una parte della pagina e la tiene in primo piano, anche sul Mac",
+    "sintesi": "Con le Mini Window di Firefox 160 una scheda, o solo una sua porzione, diventa una piccola finestra sempre in vista; l'aggiornamento è uscito il 10 novembre anche per macOS.",
+    "descrizione": "Mozilla ha distribuito il 10 novembre Firefox 160 per Mac, Windows e Linux. La novità principale sono le Mini Window: una scheda, o solo una parte della pagina, si sposta in una finestra piccola che resta sopra le altre, come già succede ai video in Picture-in-Picture. Serve a tenere d'occhio una tabella mentre si scrive, una chat o delle istruzioni. Si attiva con il tasto destro sulla scheda, da Sposta scheda, oppure su un punto della pagina, delimitando l'area da tenere; il contenuto spostato non resta anche nella finestra di partenza.\n\nLa funzione è ancora in una fase iniziale e Mozilla raccoglie i pareri di chi la usa. L'aggiornamento porta anche il controllo della velocità nei video Picture-in-Picture e alcune correzioni per macOS."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 12,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
