@@ -171,7 +171,10 @@ Un **articolo che va oltre la notizia senza ripeterla**: non un modulo a schede.
   che il lettore non ha ancora visto.
 - `numeri` ≤ 3, le cifre che fanno capire la scala e che non stanno già nella notizia.
 - `voci` ≤ 4, ciascuna ≤ 240: chi altro ne parla e cosa dice. Una citazione vera nella lingua
-  originale (mai tradotta), o la sua parafrasi stretta in italiano dichiarata tale. Mai
+  originale (mai tradotta). Se le parole esatte non ci sono, la voce si scrive in italiano con
+  parole nostre, strette su quello che ha detto, e porta il campo `"parafrasi": true`: l'app la
+  mostra senza virgolette. **Mai l'etichetta «Parafrasi:» (o simili) dentro `testo`**: il testo
+  comincia subito con la frase (15 novembre 2026, Mike: «non ha senso in italiano»). Mai
   un'attribuzione a chi l'ha solo ripresa. Un commento è un parere, non un fatto: «un lettore
   di GSMArena», mai «gli utenti».
 - `approfondire` 2–3 voci, **solo link che la lettura ha aperto davvero**, mai l'articolo della
@@ -192,7 +195,9 @@ Accorciare non autorizza ad arrotondare: «poco sopra il 60%» non diventa «al 
 ```
 
 - `citazione` — «L'ultima parola»: una persona con nome (mai «un utente»), una frase che
-  cattura, ≤ 200 caratteri, **nella lingua originale**, presa dagli articoli letti. `notizia`
+  cattura, ≤ 200 caratteri, **nella lingua originale**, presa dagli articoli letti. È una
+  frase detta davvero, alla lettera: **mai una parafrasi**, mai un'etichetta davanti. Se oggi
+  una frase così non c'è, il campo non si scrive. `notizia`
   è l'id di una notizia con approfondimento che la contiene.
 - `editoriale` — «Il punto»: il commento della redazione, **non un riassunto**. Collega fatti
   distinti e propone una chiave di lettura, partendo da una domanda e non da una tesi

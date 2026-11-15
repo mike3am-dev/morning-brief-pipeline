@@ -10,21 +10,24 @@
   const decisioniDi = id => decisioni.filter(d => d.agente === id || d.agente === 'tutti');
   const dataCorta = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('it-IT', { day: 'numeric', month: 'short', timeZone: 'Europe/Rome' }); };
   const giaSalvata = (agente, testo) => decisioni.some(d => d.agente === agente && d.testo === testo);
-  async function salvaDecisione(agente, tipo, testo, origine, postit) {
+  async function salvaDecisione(agente, tipo, testo, origine, postit, da) {   // `da`: con chi stava parlando Mike, quando la decisione è per un altro
     const d = { agente, tipo: TIPI_DECISIONE[tipo] ? tipo : 'preferenza', testo: String(testo).trim().slice(0, 600), quando: new Date().toISOString(), giorno: STATO.giorno, origine, stato: 'aperta' };
-    if (postit) d.postit = postit; await archivio.collection('decisioni').add(d);
+    if (postit) d.postit = postit; if (da && da !== agente) d.da = da; await archivio.collection('decisioni').add(d);
   }
+  // «DECISIONE [regola] per Ettore: …»: a chi va. Un nome della redazione, oppure «tutti»; se non si capisce, resta a chi parla
+  const perChi = nome => { const n = senzaAccenti(nome).trim(); if (!n) return null; if (/^tutt/.test(n)) return 'tutti'; const a = STATO.agenti.find(x => (' ' + n + ' ').includes(' ' + senzaAccenti(x.nome) + ' ')); return a ? a.id : null; };
   const ritiraDecisione = id => archivio.doc('decisioni/' + id).delete();
 
   // il foglietto di una decisione dentro una risposta: si salva con un tocco
-  function cartaDecisione(ctx, tipo, testo) {
-    const c = el('div', 'decisione'), piede = el('div', 'decisione-piede'); c.append(el('small', null, 'Decisione · ' + (TIPI_DECISIONE[tipo] || tipo)), el('p', null, testo), piede);
-    const fatta = () => { piede.textContent = ''; piede.append(el('span', 'fatta', 'Nel registro ✓')); };
-    if (ctx.id && giaSalvata(ctx.id, testo)) fatta();
+  function cartaDecisione(ctx, tipo, testo, per) {
+    const chi = per || ctx.id, altro = chi !== ctx.id, nomeChi = chi === 'tutti' ? 'tutta la redazione' : AGENTI[chi] ? AGENTI[chi].nome : '';
+    const c = el('div', 'decisione'), piede = el('div', 'decisione-piede'); c.append(el('small', null, 'Decisione · ' + (TIPI_DECISIONE[tipo] || tipo) + (altro && nomeChi ? ' · per ' + nomeChi : '')), el('p', null, testo), piede);
+    const fatta = () => { piede.textContent = ''; piede.append(el('span', 'fatta', altro && nomeChi ? 'Nel registro, per ' + nomeChi + ' ✓' : 'Nel registro ✓')); };
+    if (chi && giaSalvata(chi, testo)) fatta();
     else if (!ctx.finita) piede.append(el('span', null, '…'));
     else if (!archivio) piede.append(el('span', null, registro === 'attesa' ? 'Sto collegando il registro: riapri la conversazione fra un momento.' : 'Qui il registro non c\'è: si salva aprendo la pagina su claude.ai.'));
     else { const b = el('button', null, 'Salva nel registro'); b.type = 'button';
-      b.addEventListener('click', async () => { b.disabled = true; b.textContent = 'Salvo…'; try { await salvaDecisione(ctx.id, tipo, testo, 'conversazione', ctx.postit); fatta(); } catch (e) { b.disabled = false; b.textContent = 'Non salvata: riprova'; } });
+      b.addEventListener('click', async () => { b.disabled = true; b.textContent = 'Salvo…'; try { await salvaDecisione(chi, tipo, testo, 'conversazione', ctx.postit, ctx.id); fatta(); } catch (e) { b.disabled = false; b.textContent = 'Non salvata: riprova'; } });
       piede.append(b); }
     return c;
   }
@@ -59,7 +62,7 @@
         via.disabled = true; try { await ritiraDecisione(d.id); } catch (e) { via.disabled = false; via.textContent = 'Non riuscito'; } });
       const arrivata = ((STATO.registro || {}).ids || []).includes(d.id), dove = d.tipo === 'incarico' ? el('span', 'in-attesa', 'Per chi costruisce l\'app') : arrivata ? el('span', 'fatta', 'Letta dalla corsa ✓') : el('span', 'in-attesa', 'La corsa la legge domattina');
       const piede = el('div', 'postit-azioni'); piede.append(dove, via);
-      r.append(el('small', null, (a ? a.nome : 'Tutta la redazione') + ' · ' + dataCorta(d.quando) + ' · ' + (TIPI_DECISIONE[d.tipo] || 'preferenza')), el('strong', null, d.testo), piede); return r; };
+      r.append(el('small', null, (a ? a.nome : 'Tutta la redazione') + ' · ' + dataCorta(d.quando) + ' · ' + (TIPI_DECISIONE[d.tipo] || 'preferenza') + (d.da && AGENTI[d.da] ? ' · detta a ' + AGENTI[d.da].nome : '')), el('strong', null, d.testo), piede); return r; };
     const ridisegna = () => { const fermo2 = registro === 'assente' || registro === 'errore' || !archivio; ok.disabled = fermo2; campo.disabled = fermo2;
       nota.textContent = registro === 'assente' ? 'Qui il registro non c\'è: funziona aprendo la pagina su claude.ai.' : registro === 'errore' ? 'Il registro non risponde. Ricarica la pagina per riprovare.' : registro === 'attesa' ? 'Un momento: sto aprendo il registro…' : registro === 'lento' ? 'Il registro tarda a rispondere: quello che vedi potrebbe non essere aggiornato.' : '';
       nota.hidden = !nota.textContent; lista.textContent = '';

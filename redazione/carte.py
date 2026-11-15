@@ -77,6 +77,149 @@ def _testate(n):
     return "; ".join(pezzi)
 
 
+# ------------------------------------------------------------------ l'edizione com'è uscita
+# Mike legge l'edizione nell'app e poi ne parla con chi capita («spesso scrivi "parafrasi: …"», detto a Ivo il 15
+# novembre 2026: le voci le scrive Ettore, Ivo sulla scrivania aveva solo le sue correzioni e non ha capito di cosa
+# si parlava). Chi risponde deve poter trovare il passo anche se non è lavoro suo, e dire di chi è. Due cose:
+# `uscita`, un quadro breve dell'edizione così come si legge nell'app, che va sulla scrivania di tutti; e `passi`,
+# tutti i testi uno per uno, dentro cui la pagina cerca le parole che Mike usa.
+
+def e_parafrasi(v):
+    """Una voce riportata con parole nostre, non una citazione alla lettera."""
+    return bool(v.get("parafrasi")) or bool(re.match(r"\s*(?:\(\s*parafrasi\s*\)\s*[:—–-]?|parafrasi\s*[:—–-])", v.get("testo") or "", re.I))
+
+
+def ultima_parola(b):
+    """«L'ultima parola» come la mostra l'app (citazioneDi in pipeline/template.html): quella scritta dal redattore;
+    se manca, la voce più forte fra quelle degli approfondimenti, mai un anonimo e mai una parafrasi."""
+    c = (b or {}).get("citazione") or {}
+    if c.get("testo"):
+        return {"testo": c["testo"], "chi": c.get("chi"), "dove": c.get("dove"), "scelta": "redattore"}
+    pesi = {"apple": 4, "esperto": 3, "analista": 3, "testata": 2, "storia": 1}
+    scelta, voto = None, 0
+    for n in ((b or {}).get("news") or [])[:5]:
+        for v in (n.get("approfondimento") or {}).get("voci") or []:
+            t, chi, peso = v.get("testo") or "", v.get("chi") or "", pesi.get(v.get("tipo"), 0)
+            if not peso or not chi or re.match(r"(un|una) ", chi, re.I) or not t or len(t) > 220 or e_parafrasi(v):
+                continue
+            if peso > voto:
+                scelta, voto = {"testo": t, "chi": chi, "dove": v.get("dove"), "scelta": "app"}, peso
+    return scelta
+
+
+def passi(brief):
+    """Tutti i testi dell'edizione uscita, uno per uno: [{d: dove sta, a: chi lo scrive, r: 1 se il revisore lo
+    rilegge, t: il testo}]. Solo testo: niente immagini, niente link."""
+    b = brief or {}
+    out = []
+
+    def metti(dove, autore, testo, rivisto=False):
+        t = " ".join(str(testo or "").split())
+        if t:
+            out.append({"d": dove, "a": autore, "r": 1 if rivisto else 0, "t": t})
+
+    for i, t in enumerate(b.get("top3") or [], 1):
+        metti(f"i tre titoli d'apertura, il {i}°", "redattore", t, True)
+    metti("il quadro della giornata", "redattore", b.get("intro"), True)
+    for n in sorted(b.get("news") or [], key=lambda n: n.get("rank", 99)):
+        qui = f"notizia {n.get('rank')}, «{taglia(n.get('title'), 56)}»"
+        metti(qui + " · il titolo", "redattore", n.get("title"), True)
+        metti(qui + " · la riga di sintesi", "redattore", n.get("sintesi"), True)
+        metti(qui + " · il pezzo", "redattore", n.get("descrizione"), True)
+        for x in n.get("novita") or []:
+            metti(qui + " · «Tutte le novità»", "redattore", f"{x.get('sistema') or ''}, {x.get('area') or ''}: {x.get('cosa') or ''}. {x.get('dettaglio') or ''}")
+        ap = n.get("approfondimento") or {}
+        if not ap:
+            continue
+        qui += " · approfondimento"
+        metti(qui + " · il titolo", "redattore", ap.get("titolo"), True)
+        metti(qui + " · il sommario", "redattore", ap.get("punto"), True)
+        for k, par in enumerate(ap.get("sotto") or [], 1):
+            metti(qui + f" · il testo, paragrafo {k}", "redattore", par, True)
+        for x in ap.get("numeri") or []:
+            metti(qui + " · i numeri in fascia", "redattore", f"{x.get('valore')}: {x.get('etichetta') or ''} ({x.get('fonte') or 'senza fonte'})")
+        for v in ap.get("voci") or []:
+            metti(qui + f" · «Cosa ne dicono», la voce di {v.get('chi') or v.get('dove') or '?'}", "redattore", v.get("testo"))
+        for x in ap.get("approfondire") or []:
+            metti(qui + " · «Per andare oltre»", "redattore", f"{x.get('titolo') or ''} ({x.get('fonte') or ''}): {x.get('perche') or ''}")
+        for v in ap.get("visivi") or []:
+            metti(qui + f" · il grafico «{v.get('tipo')}»", "visualista", f"{v.get('titolo') or ''}. {v.get('didascalia') or ''}")
+    u = ultima_parola(b)
+    if u:
+        metti("«L'ultima parola», la frase grande a metà pagina" + ("" if u["scelta"] == "redattore" else " (oggi il redattore non l'ha scritta: l'app ha ripescato da sola una voce degli approfondimenti)"),
+              "redattore", f"{u['testo']} — {u.get('chi') or ''}, {u.get('dove') or ''}")
+    ed = b.get("editoriale") or {}
+    metti("«Il punto», il titolo", "redattore", ed.get("titolo"), True)
+    for k, par in enumerate(ed.get("testo") or [], 1):
+        metti(f"«Il punto», paragrafo {k}", "redattore", par, True)
+    for x in b.get("banco") or []:
+        metti("«Di cosa si parla» · " + taglia(x.get("title"), 56), "regia", f"{x.get('title') or ''}. {x.get('note') or ''}")
+        metti("«Di cosa si parla» · il foglietto «La risposta» di «" + taglia(x.get("title"), 56) + "»", "regia", x.get("perche"))
+    for nome, chiave in (("le discussioni", "social"), ("il radar", "radar")):
+        for x in b.get(chiave) or []:
+            metti(f"{nome} · " + taglia(x.get("title"), 56), "regia", f"{x.get('title') or ''}. {x.get('note') or ''}")
+    for x in b.get("recap") or []:
+        metti("«Se te lo fossi perso» · " + taglia(x.get("title"), 56), "regia", f"{x.get('title') or ''}. {x.get('note') or ''} ({x.get('signal') or ''})")
+    for x in b.get("ai") or []:
+        qui = "scheda AI · " + taglia(x.get("title"), 56)
+        metti(qui, "ai", f"{x.get('title') or ''}. {x.get('sintesi') or ''} {x.get('note') or ''}")
+        metti(qui + " · «E Apple?»", "ai", x.get("apple"))
+        metti(qui + " · il foglietto «Prova»", "ai", x.get("prova"))
+    for nome, chiave in (("scheda Games", "games"), ("scheda Scienza", "spazio")):
+        for x in b.get(chiave) or []:
+            metti(f"{nome} · " + taglia(x.get("title"), 56), "schede", f"{x.get('title') or ''}. {x.get('nota') or ''}")
+    g = b.get("gta") or {}
+    metti("GTA VI · il tema del giorno", "gta", g.get("sintesi"))
+    for x in g.get("voci") or []:
+        metti("GTA VI · " + taglia(x.get("title"), 56), "gta", f"{x.get('title') or ''}. {x.get('nota') or ''} {x.get('citazione') or ''}")
+    return out
+
+
+def uscita(brief, stato):
+    """Il quadro dell'edizione così come Mike la legge nell'app, con accanto a ogni pezzo chi lo scrive."""
+    b = brief or {}
+    news = sorted(b.get("news") or [], key=lambda n: n.get("rank", 99))
+    if not news:
+        return ""
+    nome = {a["id"]: a["nome"] for a in (stato or {}).get("agenti") or []}
+    N = lambda k: nome.get(k, k)   # noqa: E731
+    r = [f"LE NOTIZIE ({len(news)}) [le scrive {N('redattore')}; {N('revisore')} ne rilegge le parole: titoli, sintesi, pezzi, titolo, sommario "
+         f"e testo degli approfondimenti, quadro della giornata, «Il punto». {N('revisore')} non tocca mai citazioni, voci, numeri e link]"]
+    for n in news:
+        r.append(f"{n.get('rank')}. {n.get('title')} [{n.get('reparto')} · {n.get('tag')}]")
+    con = [n for n in news if n.get("approfondimento")]
+    if con:
+        r.append(f"\nGLI APPROFONDIMENTI (le prime {len(con)}) [{N('redattore')}; i grafici sono di {N('visualista')}]. Nell'app, sotto il testo, c'è «Cosa ne dicono»: "
+                 "le voci, cioè frasi di altri, mostrate fra virgolette «» con il nome sotto. Ecco le voci di oggi, parola per parola come sono uscite:")
+        for n in con:
+            ap = n["approfondimento"]
+            r.append(f"{n.get('rank')}. «{ap.get('titolo')}»")
+            for v in ap.get("voci") or []:
+                r.append(f"   - {v.get('chi') or v.get('dove')}: «{taglia(v.get('testo'), 150)}»")
+    u = ultima_parola(b)
+    if u:
+        r.append(f"\n«L'ULTIMA PAROLA» (la frase grande a metà pagina) [{N('redattore')}]: «{taglia(u['testo'], 220)}» — {u.get('chi')}"
+                 + ("" if u["scelta"] == "redattore" else f". Oggi {N('redattore')} non l'ha scritta: l'app ha ripescato da sola questa voce dagli approfondimenti."))
+    else:
+        r.append(f"\n«L'ULTIMA PAROLA» [{N('redattore')}]: oggi non c'è.")
+    ed = b.get("editoriale") or {}
+    r.append(f"«IL PUNTO» (il commento) [{N('redattore')}, riletto da {N('revisore')}]: " + (ed.get("titolo") or "oggi non c'è"))
+    r.append("\nLE ALTRE SEZIONI")
+    for etichetta, chiave, chi in (("«Di cosa si parla», ognuna con il foglietto «La risposta»", "banco", N("regia")),
+                                   ("Le discussioni", "social", f"{N('regia')}, da quello che raccoglie {N('rete')}"),
+                                   ("«Se te lo fossi perso»", "recap", f"{N('regia')}, da quello che propone {N('memoria')}"),
+                                   ("Il radar", "radar", N("regia"))):
+        voci = [taglia(x.get("title"), 80) for x in b.get(chiave) or [] if x.get("title")]
+        r.append(f"{etichetta} [{chi}] ({len(voci)}): " + (" | ".join(voci) if voci else "oggi niente"))
+    for etichetta, chiave, chi in (("La scheda AI", "ai", N("ai")), ("La scheda Games", "games", N("schede")), ("La scheda Scienza", "spazio", N("schede"))):
+        voci = [taglia(x.get("title"), 70) for x in b.get(chiave) or [] if x.get("title")]
+        r.append(f"{etichetta} [{chi}] ({len(voci)}): " + (" | ".join(voci) if voci else "oggi niente"))
+    g = (b.get("gta") or {}).get("voci") or []
+    r.append(f"GTA VI, in cima a Games [{N('gta')}] ({len(g)}): " + (" | ".join(taglia(x.get("title"), 70) for x in g) if g else "oggi niente"))
+    r.append(f"Le foto le sceglie {N('foto')}; «quanto gira» una notizia lo conta {N('verifica')}; le fonti le tiene {N('fonti')}; la scaletta e la pubblicazione sono di {N('regia')}.")
+    return "\n".join(r)
+
+
 def carte(giorno, root, brief, rev, stato):
     """{id dell'agente: testo}. `stato` è lo stato del giorno già composto (corsa, agenti, post-it…)."""
     p = lambda *a: os.path.join(root, *a)   # noqa: E731

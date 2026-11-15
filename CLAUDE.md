@@ -1028,8 +1028,12 @@ letture. L'esempio completo è l'edizione del 1 novembre 2026.
   `testata` · `apple` (un dirigente, un portavoce) · `esperto` (un recensore, uno
   sviluppatore) · `social` (un commento, un post) · `storia` (una frase del passato che
   torna). `testo` è una citazione vera **nella lingua originale, mai tradotta** (2 novembre
-  2026: una frase di Ternus resta in inglese), o la sua parafrasi stretta in italiano
-  dichiarata come tale — mai un'invenzione, mai un'attribuzione a chi l'ha solo ripresa. I commenti si prendono
+  2026: una frase di Ternus resta in inglese). Se le parole esatte non ci sono, la voce si
+  scrive in italiano con parole nostre e porta `"parafrasi": true`: l'app la mostra senza
+  virgolette, e non la usa mai come «L'ultima parola». **Mai l'etichetta «Parafrasi:» dentro
+  il testo** (15 novembre 2026, Mike: «non ha senso in italiano»: il 14 e il 15 ne erano uscite
+  dieci, una come «L'ultima parola»); l'app la toglie comunque, anche dalle edizioni vecchie, e
+  il lint avvisa. Mai un'invenzione, mai un'attribuzione a chi l'ha solo ripresa. I commenti si prendono
   dove ci sono: il thread di Reddit (il suo RSS, `…/comments/<id>/.rss`, si legge senza
   chiave), Hacker News, i commenti di GSMArena e di 9to5Mac; `segnale` dice quanto pesa
   («il thread più discusso di r/apple», «1.180 punti su HN»). Un commento è un parere,
@@ -1132,6 +1136,9 @@ Classica non mostra, e la corsa li scrive ogni mattina:
   cattura rispetto alla notizia e fa venire voglia di aprirla, entro 200 caratteri. Viene
   da una delle voci degli approfondimenti o dagli articoli letti, **nella lingua in cui è
   stata detta: mai tradotta** (Mike, 2 novembre 2026). Gurman in inglese, Galeazzi in italiano.
+  **Mai una parafrasi** (15 novembre 2026: l'edizione è uscita senza `citazione`, l'app ha
+  ripescato una voce che cominciava con «Parafrasi:» e l'ha messa lì in grande). Se manca, l'app
+  ripesca solo una voce detta davvero; se non ce n'è nessuna, il riquadro quel giorno non esce.
   `notizia` è l'id della notizia in cui porta: al tocco l'app apre quell'approfondimento
   dritto sulle voci. `contesto` è la riga che lo dice («Perché HomeView…»).
 - **`editoriale`** — «Il punto», il commento della redazione: lo scrive Claude, e l'app lo
@@ -1565,6 +1572,17 @@ fa quel mestiere; un `incarico` è lavoro per una sessione di sviluppo, e si fa 
 chiede. **All'inizio di una sessione di lavoro sulla redazione o sulla corsa, leggi il registro e
 di' a Mike se ci sono incarichi aperti.**
 
+**Chi risponde a Mike ha davanti l'edizione com'è uscita** (15 novembre 2026). Mike aveva detto a
+Ivo «spesso scrivi "parafrasi: …", togli»: le voci le scrive Ettore, Ivo sulla scrivania aveva solo
+le sue correzioni, non ha capito e non ha fissato niente. Da allora lo stato porta due cose in più
+(`redazione/carte.py`): `uscita`, il quadro dell'edizione come si legge nell'app, con accanto a
+ogni pezzo chi lo scrive, che va a tutti; e `passi`, tutti i testi uno per uno, dentro cui la
+pagina cerca le parole degli ultimi messaggi di Mike (`cercaPassi` in `redazione/src/82-parla.js`)
+per mettere davanti a chi risponde i passi trovati. E **una decisione può andare a un collega**:
+chi risponde scrive «DECISIONE [regola] per Ettore: …», la pagina la salva per Ettore (`agente`) e
+segna con chi Mike stava parlando (`da`). Se Mike dice che una cosa detta in redazione non ha
+funzionato, si sistema tutta la catena, fino alla regola scritta che la causa.
+
 **La routine che tiene tutto collegato** è «The Morning Brief — la redazione: registro e
 modellino» (`trig_01KDe8UemP2NtpCnuZwnZsQE`, prompt in `routine/redazione-registro.md`), alle
 04:15, 05:15 e 06:15 UTC: copia il registro in `data/redazione/decisioni.json` prima della corsa
@@ -1628,7 +1646,8 @@ data/revisione/          il testo del redattore prima e dopo il revisore, per gi
 data/redazione/          decisioni.json: il registro delle decisioni di Mike, copiato ogni mattina prima della corsa
 redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato dai file della corsa (sola lettura)
 redazione/aggiorna.py    prepara lo stato da scrivere nell'archivio della redazione (lo usa la routine che la tiene aggiornata)
-redazione/carte.py       le carte sulla scrivania di ogni agente: il suo lavoro del giorno in testo, per quando Mike gli parla
+redazione/carte.py       le carte sulla scrivania di ogni agente: il suo lavoro del giorno in testo, per quando Mike gli parla;
+                         più l'edizione com'è uscita (`uscita`) e tutti i suoi testi (`passi`), uguali per tutti
 redazione/muro.py        i dati del muro delle notizie della redazione: la mappa (sedi delle testate, origine delle notizie),
                          la borsa, le discussioni, i canali; una testata nuova va aggiunta a SEDI
 redazione/src/           la pagina della redazione, a pezzi; redazione/costruisci.py li compone in redazione/app/redazione.html

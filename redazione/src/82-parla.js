@@ -48,6 +48,33 @@
   };
   const CHIUSE = ['not_granted', 'sampling_disabled', 'not_declared', 'capability_disabled', 'capability_removed'];
 
+  /* Mike legge l'edizione nell'app e ne parla con chi ha davanti, anche quando quel testo non è lavoro suo («spesso scrivi
+     "parafrasi: …"», detto a Ivo: le voci le scrive Ettore, e Ivo non ha capito). La pagina cerca nel testo intero
+     dell'edizione uscita (STATO.passi, da redazione/carte.py) le parole degli ultimi messaggi di Mike, e mette i passi
+     trovati davanti a chi risponde, con accanto di chi sono. Contano solo le parole rare: «Apple» sta dappertutto. */
+  const senzaAccenti = t => String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const PAROLE_VUOTE = new Set(('alla alle allo agli anche ancora avere aveva avete bene caso certo che chi come cosa cose così cosi cui dalla dalle dallo degli della delle dello dentro deve devi devo dice dico dire dopo dove ecco erano essere fare fatto forse fosse fuori hanno invece loro meno mentre mica molto nella nelle nello niente noi non nostra nostro ogni oggi oppure ora parola parole perche però pero piu poco poi prima proprio qualche qualcosa quale quali quando quanto quella quelle quelli quello questa queste questi questo quindi scritto scrivi scrive scrivere sempre senza sia siamo siete solo sono sopra sotto spesso stata stato stesso sua sue sugli sulla sulle sullo suoi suo tanto tra tutta tutte tutti tutto una uno vedo vedi verso voglio volevo vorrei vuoi').split(' '));
+  const PASSI = (STATO.passi || []).map(p => ({ ...p, n: ' ' + senzaAccenti(p.t).replace(/[^a-z0-9]+/g, ' ') + ' ' }));
+  const radiceDi = w => w.length > 7 ? w.slice(0, -2) : w.length > 4 ? w.slice(0, -1) : w;   // «citazioni» trova anche «citazione»
+  const chiScrive = (p, id) => { const a = AGENTI[p.a], ivo = AGENTI.revisore ? AGENTI.revisore.nome : 'il revisore';
+    return (p.a === id ? 'lo scrivi tu' : 'lo scrive ' + (a ? a.nome : p.a)) + (p.a === 'redattore' ? (p.r ? (id === 'revisore' ? '; tu ne rileggi le parole' : '; ' + ivo + ' ne rilegge le parole') : (id === 'revisore' ? '; tu non lo tocchi: è un campo protetto' : '; ' + ivo + ' non lo tocca')) : ''); };
+  function cercaPassi(id) {
+    const miei = (discorsi[id] || []).filter(t => t.role === 'user').slice(-3); if (!PASSI.length || !miei.length) return null;
+    const pesi = new Map(), frasi = [];
+    miei.forEach((t, i) => { const forza = i === miei.length - 1 ? 1 : 0.5, testo = senzaAccenti(t.content);
+      for (const m of testo.matchAll(/[«"“]([^»"”]{5,90})[»"”]/g)) { const f = m[1].replace(/[^a-z0-9]+/g, ' ').trim(); if (f.split(' ').length >= 2) frasi.push(f); }   // una frase fra virgolette si cerca intera
+      for (const w of testo.split(/[^a-z0-9]+/)) { if (w.length < 4 || PAROLE_VUOTE.has(w)) continue; const r = radiceDi(w), c = pesi.get(r); if (!c || c.forza < forza) pesi.set(r, { forza, parola: w }); } });
+    const N = PASSI.length, tetto = Math.max(10, N * 0.06), radici = [];
+    for (const [r, x] of pesi) { const quanti = PASSI.reduce((s, p) => s + (p.n.includes(' ' + r) ? 1 : 0), 0); if (quanti && quanti <= tetto) radici.push({ r, quanti, parola: x.parola, peso: x.forza * Math.log(1 + N / quanti) }); }
+    const voti = PASSI.map((p, i) => { let v = 0, dove = -1; for (const x of radici) { const k = p.n.indexOf(' ' + x.r); if (k >= 0) { v += x.peso * (p.n.includes(' ' + x.parola + ' ') ? 1.7 : 1); if (dove < 0) dove = k; } }   // la parola tale e quale vale più di una che le somiglia
+      for (const f of frasi) { const k = p.n.indexOf(' ' + f + ' '); if (k >= 0) { v += 12; dove = k; } } return { p, i, v, dove }; }).filter(x => x.v > 0).sort((a, b) => b.v - a.v || a.i - b.i);
+    if (!voti.length) return null;
+    const scelti = voti.filter(x => x.v >= voti[0].v * 0.7).slice(0, 8).sort((a, b) => a.i - b.i);
+    const pezzo = x => { const t = x.p.t; if (t.length <= 460) return t; const da = Math.max(0, Math.min(t.length - 420, x.dove - 160)); return (da ? '…' : '') + t.slice(da, da + 420) + (da + 420 < t.length ? '…' : ''); };
+    const conta = radici.filter(x => scelti.some(s => s.p.n.includes(' ' + x.r))).sort((a, b) => b.peso - a.peso).slice(0, 4).map(x => `«${x.parola}» compare in ${x.quanti === 1 ? 'un passo' : x.quanti + ' passi'}`).join('; ');
+    return (conta ? 'In tutta l\'edizione uscita: ' + conta + '.\n' : '') + scelti.map(x => `- [${x.p.d} — ${chiScrive(x.p, id)}] ${pezzo(x)}`).join('\n');
+  }
+
   function regole(id) {   // tutto quello che Claude deve sapere per rispondere da quella persona, oggi
     const a = AGENTI[id], h = oraDiRoma(), ora = Math.floor(h) + ':' + String(Math.round((h % 1) * 60) % 60).padStart(2, '0');
     const oggi = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Rome' }).format(new Date()), suoi = (STATO.postit || []).filter(p => p.da === id);
@@ -64,17 +91,22 @@
       `In redazione sono le ${ora} di ${GIORNI_LUNGHI[new Date(oggi + 'T12:00:00').getDay()]}. ${edizione} è uscita alle ${oraCorta(USCITA)}.`,
       a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro: ' + a.consegna + '.' : null),
       persone[id] ? 'In questo momento, nella stanza: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
-      '', 'LE TUE CARTE (il tuo lavoro vero; è tutto quello che sai di oggi)', (STATO.carte || {})[id] || 'Oggi non hai carte sulla scrivania.',
+      '', 'LE TUE CARTE (il tuo lavoro vero di oggi)', (STATO.carte || {})[id] || 'Oggi non hai carte sulla scrivania.',
+      STATO.uscita ? '\nL\'EDIZIONE COM\'È USCITA (è quello che Mike legge nell\'app, e ne ha una copia ogni scrivania. Non è tutto lavoro tuo: fra parentesi quadre c\'è chi scrive ogni pezzo)\n' + STATO.uscita : null,
+      (() => { const t = cercaPassi(id); return t ? '\nDOVE COMPAIONO, NELL\'EDIZIONE USCITA, LE PAROLE CHE MIKE HA APPENA USATO (la pagina le ha cercate per te nel testo intero dell\'edizione; fra parentesi quadre dove sta il passo e di chi è)\n' + t : null; })(),
       suoi.length ? '\nI POST-IT CHE HAI LASCIATO SULLA LAVAGNA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
       (() => { const d = decisioniDi(id); return d.length ? '\nLE DECISIONI CHE MIKE HA GIÀ PRESO CON TE (stanno nel registro della redazione, e valgono finché non le ritira)\n' + d.slice(0, 24).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}]: ${x.testo}`).join('\n') : null; })(),
+      (() => { const d = decisioni.filter(x => x.da === id && x.agente !== id); return d.length ? '\nLE DECISIONI CHE MIKE HA PRESO PARLANDO CON TE E CHE SONO ANDATE A UN COLLEGA (sono già nel registro: non riproporle)\n' + d.slice(0, 12).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}, per ${AGENTI[x.agente] ? AGENTI[x.agente].nome : 'tutta la redazione'}]: ${x.testo}`).join('\n') : null; })(),
       '', 'COME RISPONDI',
       '- In italiano semplice, in prima persona, come un collega che parla a voce: poche frasi (di solito da due a cinque). Niente markdown, niente asterischi, niente elenchi lunghi.',
-      '- Solo i fatti che hai nelle carte. Se una cosa non c\'è, dillo: «non lo so» e «non ce l\'ho qui» sono risposte buone. Non inventare numeri, citazioni, nomi.',
+      '- Solo i fatti che hai nelle carte e nell\'edizione uscita. Se una cosa non c\'è, dillo: «non lo so» e «non ce l\'ho qui» sono risposte buone. Non inventare numeri, citazioni, nomi.',
+      '- Mike parla di quello che legge nell\'app, anche di testi che non hai scritto tu, e spesso lo dice in due parole. Prima di rispondere che non trovi una cosa, cercala in «L\'edizione com\'è uscita» e nei passi che la pagina ha trovato: se è lì, digli dove sta e di chi è, citando il passo («è nelle voci dell\'approfondimento sulla notizia 1: le scrive Ettore, io non le tocco»). Solo se non c\'è nemmeno lì diglielo, e chiedigli dove l\'ha vista.',
       '- Non ricordi cosa pensavi stamattina: hai davanti le carte. Se Mike chiede il perché di una scelta, ragionaci adesso sulle carte e dillo («rileggendolo ora…»).',
       '- Quando chiede cosa hai fatto, faglielo vedere: i titoli, i numeri, le differenze. Per mostrare un testo cambiato scrivi due righe a sé, una che comincia con «PRIMA:» e una con «DOPO:».',
       '- Un dubbio o un suggerimento deve nascere da un dato delle carte (una notizia con una testata sola, una correzione che si ripete, una richiesta ferma da settimane), e lo presenti come tale.',
       '- Non puoi cambiare l\'edizione già uscita né il codice, e non puoi garantire un risultato: puoi spiegare, proporre, dire cosa ti servirebbe.',
       '- Le decisioni. Se Mike ti dà un\'indicazione che deve valere anche dopo questa conversazione, oppure gliene proponi una tu e lui è d\'accordo, chiudi la risposta con una riga a sé scritta così: «DECISIONE [tipo]: la decisione in una frase sola, chiara anche riletta fra un mese». Il tipo è uno fra: preferenza (un gusto di Mike sul tuo lavoro), regola (una cosa che la corsa del mattino dovrebbe fare diversamente), incarico (un lavoro per chi costruisce l\'app o la redazione: un grafico nuovo, una fonte da aggiungere). La pagina mostra quella riga a Mike con un pulsante: finché non lo preme non è salvata. Una sola per risposta, solo quando c\'è davvero qualcosa da fissare, e mai una che è già nel registro.',
+      '- Se l\'indicazione riguarda un testo o un lavoro che non è tuo, non fermarti a dire che non tocca a te: la decisione deve arrivare a chi lo fa. Scrivi la riga così: «DECISIONE [tipo] per Nome: …», col nome del collega (per esempio «per Ettore»), oppure «per tutti» se riguarda più mestieri. La pagina la salva per lui, e lui la legge prima della corsa. Se riguarda il tuo lavoro, niente «per». Nel testo della decisione di\' con precisione di quale parte dell\'edizione si parla (per esempio «le voci di Cosa ne dicono» o «L\'ultima parola»), così chi la legge domattina non deve indovinare.',
       '- Sii chiaro su cosa succede dopo: una decisione salvata resta nel registro e tu la ritrovi ogni volta che parlate. Ogni mattina, prima della corsa, preferenze e regole vengono copiate dal registro, e chi fa il tuo mestiere nella corsa le legge prima di cominciare: valgono dall\'edizione di domattina. Un incarico invece è lavoro per chi costruisce l\'app: resta nel registro finché non viene preso in mano.',
       '- Rispetta le decisioni già prese con te: se una risposta le tocca, tienine conto e dillo.',
       '- Niente convenevoli, niente «certo!», non ripetere la domanda.',
@@ -85,8 +117,8 @@
   function scriviIn(bolla, testo, ctx = {}) {
     bolla.textContent = ''; let cambio = null, par = null;
     for (const riga of String(testo).split('\n')) {
-      const dec = riga.match(/^\s*[-–•]?\s*DECISIONE\s*(?:[\[(]\s*(preferenza|regola|incarico)\s*[\])])?\s*:\s*(.+)$/i);
-      if (dec) { par = null; cambio = null; bolla.append(cartaDecisione(ctx, (dec[1] || 'preferenza').toLowerCase(), dec[2].trim())); continue; }
+      const dec = riga.match(/^\s*[-–•]?\s*«?\s*DECISIONE\s*(?:[\[(]\s*(preferenza|regola|incarico)\s*[\])])?\s*(?:per\s+([^:]{2,40}?))?\s*:\s*(.+?)»?\s*$/i);
+      if (dec) { par = null; cambio = null; bolla.append(cartaDecisione(ctx, (dec[1] || 'preferenza').toLowerCase(), dec[3].trim(), perChi(dec[2]))); continue; }
       const m = riga.match(/^\s*[-–•]?\s*(PRIMA|DOPO)\s*:\s*(.*)$/i);
       if (m) { par = null; if (!cambio || m[1].toUpperCase() === 'PRIMA') { cambio = el('div', 'cambio'); bolla.append(cambio); }
         cambio.append(el(m[1].toUpperCase() === 'PRIMA' ? 'del' : 'ins', null, m[2])); if (m[1].toUpperCase() === 'DOPO') cambio = null; continue; }
@@ -155,7 +187,7 @@
     daCapo.addEventListener('click', () => { if (inCorso && inCorso.id === id) inCorso.ctl.abort(); discorsi[id] = []; ricorda(); dico(''); disegna(); });
   }
   // la voce: su claude.ai la dà la pagina; in locale, con ?finto=1, risponde un pappagallo (serve solo a provare la scheda)
-  const finta = (input, o = {}) => new Promise((ok, no) => { const ultima = input[input.length - 1].content, parole = ('Questa è una risposta di prova, senza Claude. Mi hai chiesto: «' + ultima + '».\nPRIMA: un titolo com\'era, con qualche parola di troppo\nDOPO: un titolo com\'è\nSu claude.ai qui risponde davvero chi hai davanti.' + (/ora in poi|decid|sempre|mai più/i.test(ultima) ? '\nDECISIONE [preferenza]: Una decisione di prova, nata da «' + ultima.slice(0, 60) + '».' : '')).split(' ');
+  const finta = (input, o = {}) => new Promise((ok, no) => { const ultima = input[input.length - 1].content, parole = ('Questa è una risposta di prova, senza Claude. Mi hai chiesto: «' + ultima + '».\nPRIMA: un titolo com\'era, con qualche parola di troppo\nDOPO: un titolo com\'è\nSu claude.ai qui risponde davvero chi hai davanti.' + (/parafrasi/i.test(ultima) ? '\nDECISIONE [regola] per Ettore: Una decisione di prova per un collega, nata da «' + ultima.slice(0, 60) + '».' : /ora in poi|decid|sempre|mai più/i.test(ultima) ? '\nDECISIONE [preferenza]: Una decisione di prova, nata da «' + ultima.slice(0, 60) + '».' : '')).split(' ');
     let i = 0, testo = ''; const t = setInterval(() => { if (o.signal && o.signal.aborted) { clearInterval(t); return no({ code: 'cancelled', message: '', text: testo || undefined }); }
       if (i < 12) { i++; return; } const p = parole[i - 12]; if (p == null) { clearInterval(t); return ok({ text: testo, truncated: false }); } testo += (testo ? ' ' : '') + p; i++; o.onText && o.onText({ text: testo, delta: p }); }, 90); });
   const voceArrivata = s => { chiedi = s; voce = s ? 'pronta' : 'assente'; if (vistaParla) vistaParla.stato(); };

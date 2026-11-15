@@ -630,6 +630,8 @@ def stato(giorno):
     try:
         import carte as _carte
         s["carte"] = _carte.carte(giorno, ROOT, brief, rev, s)
+        s["uscita"] = _carte.uscita(brief, s)   # l'edizione com'è uscita: sulla scrivania di tutti
+        s["passi"] = _carte.passi(brief)        # e tutti i suoi testi, dove la pagina cerca le parole di Mike
     except Exception as e:   # le carte non devono mai fermare lo stato
         s["carte"] = {}
         print("carte non composte:", e, file=sys.stderr)

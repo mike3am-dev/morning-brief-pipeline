@@ -639,3 +639,48 @@ seduta al suo posto: a Ettore mentre riceve le correzioni, o a Bruno mentre è a
 
 **Da sapere.** Sono una prima stesura: le pose sono state guardate a campione (quattro per persona,
 `look-11-gesti-*`), non tutte e 117, e mai in movimento. Mike le giudica dai pulsanti.
+
+## 15 novembre 2026, pomeriggio — la versione 14: «devi fare in modo che funzioni»
+
+Due cose di Mike, con tre schermate.
+
+**Le scritte sul bancone di Olivia si accavallavano.** Il marchio sui due fronti era largo più
+della fascia: finiva oltre i bordi dell'apertura (tagliato) e a ridosso della riga arancione. Ora
+occupa un arco fisso di 0,52 radianti, parte a un palmo dal bordo, e sta tutto nella fascia bianca
+fra lo zoccolo nero e la riga arancione (`redazione/src/59-marchio.js`). Schermata:
+`prova/schermate/look-12-bancone.jpg`.
+
+**«Non volevo la parola parafrasi, l'ho detto a Ivo e non sa di cosa parlo.»** Nell'app
+«L'ultima parola» del 15 cominciava con «Parafrasi:». Le cause erano tre, una sopra l'altra:
+
+1. la regola del redattore diceva che una parafrasi va «dichiarata tale», e lui la dichiarava
+   scrivendo «Parafrasi:» in testa alla voce (dieci voci fra il 14 e il 15);
+2. il 15 il redattore non aveva scritto `citazione`, e l'app ha ripescato da sola la voce più
+   «forte», che era una di quelle;
+3. Ivo, nel modellino, aveva sulla scrivania solo le sue correzioni: le voci non le tocca (sono
+   un campo protetto) e non le vedeva. Ha risposto che non trovava niente, e non ha fissato niente.
+
+Cosa è cambiato:
+
+- **Nel modellino.** Ogni scrivania ha una copia dell'edizione com'è uscita (`uscita`), con scritto
+  di chi è ogni pezzo. La pagina cerca nel testo intero dell'edizione (`passi`, 138 il 15 novembre)
+  le parole degli ultimi tre messaggi di Mike: contano solo quelle rare (una parola che sta in più
+  del 6% dei passi non dice niente), la parola tale e quale vale più di una che le somiglia, una
+  frase fra virgolette si cerca intera. I passi trovati finiscono davanti a chi risponde, con
+  «lo scrive Ettore; tu non lo tocchi». Provato con la frase di Mike a Ivo: escono le cinque voci.
+- **Le decisioni vanno a chi fa il lavoro.** «DECISIONE [regola] per Ettore: …» si salva per
+  Ettore, con `da: revisore`; il foglietto dice «per Ettore», il registro «detta a Ivo», e Ivo la
+  ritrova fra «le decisioni andate a un collega» così non la ripropone.
+- **Nella corsa** (poco, e solo testo): la regola in `.claude/agents/redattore.md` e in `CLAUDE.md`
+  ora dice che una parafrasi porta il campo `"parafrasi": true` e mai l'etichetta nel testo, e
+  che «L'ultima parola» è sempre una frase detta davvero. `lint.py` avvisa (un avviso, mai un
+  errore: non ferma la pubblicazione).
+- **Nell'app**: una voce con il campo, o con la vecchia etichetta, si mostra senza etichetta e
+  senza virgolette, e non fa mai da «L'ultima parola». Vale anche per le edizioni già uscite, senza
+  toccarne i dati. Il 15 novembre «L'ultima parola» non esce più: non c'era una frase detta davvero.
+- **Nel registro** c'è la decisione di Mike, per Ettore (`parafrasi-2026-11-15`), già copiata in
+  `data/redazione/decisioni.json`: `decisioni.py --per redattore` la stampa.
+
+**Da sapere.** La conversazione vera con Claude l'ho provata solo con la voce finta (`?finto=1`):
+che Ivo, con i passi davanti, risponda bene e proponga la decisione per Ettore lo vede Mike su
+claude.ai. Se la routine del mattino trova il registro uguale al file, non fa niente: va bene così.

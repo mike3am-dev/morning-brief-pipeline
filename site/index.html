@@ -2319,6 +2319,8 @@ a.nov-src:hover{color:var(--ink); text-decoration:underline}
 .voce blockquote{margin:0; font-family:var(--display); font-weight:500; font-size:1.16rem; line-height:1.28; text-wrap:pretty}
 .voce blockquote::before{content:"«"}
 .voce blockquote::after{content:"»"}
+/* una voce riportata con parole nostre non e' una citazione: niente virgolette */
+.voce.is-parafrasi blockquote::before, .voce.is-parafrasi blockquote::after{content:none}
 .voce figcaption{display:flex; flex-wrap:wrap; gap:.15rem .6rem; align-items:baseline; margin-top:.4rem; font-size:.8rem; color:var(--ink-3)}
 .voce figcaption b{font-weight:700; color:var(--ink)}
 .voce figcaption .sig{font-size:.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase}
@@ -5234,8 +5236,8 @@ function deepNode(brief, n){
         (v.chi && v.dove) ? el("span", {text:v.dove}) : null,
         v.segnale ? el("span", {class:"sig", text:v.segnale}) : null
       ]);
-      const fig = Motion.once(el("figure", {class:"voce" + (v.tipo ? " v-" + String(v.tipo).toLowerCase() : "")}, [
-        el("blockquote", {text:v.testo}), cap
+      const fig = Motion.once(el("figure", {class:"voce" + (v.tipo ? " v-" + String(v.tipo).toLowerCase() : "") + (eParafrasi(v) ? " is-parafrasi" : "")}, [
+        el("blockquote", {text:senzaEtichetta(v.testo)}), cap
       ]), "quote");
       list.appendChild(u ? el("a", {class:"voce-link", href:u, target:"_blank", rel:"noopener noreferrer"}, [fig]) : fig);
     });
@@ -6369,16 +6371,33 @@ function magCard(brief, n, i, w, kind){
 
 /* «L'ultima parola»: la frase che fa entrare nell'approfondimento. La scrive
    la corsa del mattino (brief.citazione); per le edizioni senza, si prende
-   la voce piu' forte fra quelle degli approfondimenti — mai un anonimo. */
+   la voce piu' forte fra quelle degli approfondimenti — mai un anonimo, mai
+   una parafrasi: se non c'e' una frase detta davvero, il riquadro non esce. */
+/* Una voce riportata con parole nostre (15 novembre 2026, Mike: «non volevo la
+   parola parafrasi»). La dice il campo `parafrasi`; nelle edizioni di prima
+   la diceva l'etichetta «Parafrasi:» in testa al testo, che non si mostra mai.
+   Si legge senza virgolette, e non fa da «L'ultima parola». */
+const ETICHETTA_PARAFRASI = /^\s*(?:\(\s*parafrasi\s*\)\s*[:\u2014\u2013-]?|parafrasi\s*[:\u2014\u2013-])\s*/i;
+function eParafrasi(v){ return !!(v && (v.parafrasi || ETICHETTA_PARAFRASI.test(v.testo || ""))); }
+function senzaEtichetta(t){
+  const s = String(t || ""), m = s.match(ETICHETTA_PARAFRASI);
+  if(!m) return s;
+  const r = s.slice(m[0].length);
+  /* la prima lettera torna maiuscola, ma non in «iPhone» */
+  return /^[a-z\u00e0-\u00ff]+(?:[\s,.;:!?]|$)/.test(r) ? r.charAt(0).toUpperCase() + r.slice(1) : r;
+}
 function citazioneDi(brief){
   const news = brief.news || [];
-  if(brief.citazione && brief.citazione.testo) return brief.citazione;
+  if(brief.citazione && brief.citazione.testo){
+    return ETICHETTA_PARAFRASI.test(brief.citazione.testo)
+      ? Object.assign({}, brief.citazione, {testo:senzaEtichetta(brief.citazione.testo)}) : brief.citazione;
+  }
   const pesi = {apple:4, esperto:3, analista:3, testata:2, storia:1};
   let best = null, score = 0;
   news.slice(0, 5).forEach(function(n){
     ((n.approfondimento || {}).voci || []).forEach(function(v){
       const s = pesi[v.tipo] || 0;
-      if(!s || !v.chi || /^(un|una) /i.test(v.chi) || !v.testo || v.testo.length > 220) return;
+      if(!s || !v.chi || /^(un|una) /i.test(v.chi) || !v.testo || v.testo.length > 220 || eParafrasi(v)) return;
       if(s > score){ score = s; best = {testo:v.testo, chi:v.chi, dove:v.dove, notizia:n.id}; }
     });
   });

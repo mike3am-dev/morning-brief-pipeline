@@ -57,8 +57,10 @@
     const m = new THREE.Mesh(new THREE.PlaneGeometry(3.7, 3.7), new THREE.MeshStandardMaterial({ map: t, alphaTest: 0.5, roughness: 1 })); m.rotation.x = -PI / 2; m.receiveShadow = true;
     const g = gruppo(at(m, 0, 0.0325, 0)); g.rotation.y = PI / 4; stanza.add(at(g, REGIA[0], 0, REGIA[1])); }
 
-  // la testata sul fronte del desk della regia, dai due lati dell'apertura (come sui banconi dei telegiornali)
-  { const mis = marchio(document.createElement('canvas').getContext('2d'), 0, 0, 100), alto = 0.3, largo = alto * mis.w / mis.h, raggio = R_OUT - 0.05 + 0.004, arco = largo / raggio;
-    const t = tela(Math.round(420 * mis.w / mis.h), 420, (x, w, h) => { marchio(x, 4, 0, (h - 8) / mis.h * 100); });
-    for (const lato of [-1, 1]) regiaG.add(at(new THREE.Mesh(new THREE.CylinderGeometry(raggio, raggio, alto, 36, 1, true, PI / 4 + lato * 0.9 - arco / 2, arco), new THREE.MeshStandardMaterial({ map: t, transparent: true, roughness: 0.6 })), 0, 0.27, 0)); }
+  // la testata sul fronte del desk della regia, dai due lati dell'apertura (come sui banconi dei telegiornali). Sta tutta nella
+  // fascia bianca: sotto la riga arancione, sopra lo zoccolo nero, e a un palmo dai due bordi dell'apertura, così niente la taglia
+  { const mis = marchio(document.createElement('canvas').getContext('2d'), 0, 0, 100), forma = 1.08 * mis.w / mis.h;   // un filo d'aria ai lati: la falce comincia prima della M
+    const raggio = R_OUT - 0.05 + 0.005, arco = 0.52, largo = arco * raggio, alto = largo / forma, centro = VARCO + 0.085 + arco / 2, su = 0.05 + (TAV - 0.225 - 0.05) / 2;
+    const t = tela(Math.round(420 * forma), 420, (x, w, h) => { marchio(x, w * 0.04 / 1.08, 5, (h - 10) / mis.h * 100); });
+    for (const lato of [-1, 1]) regiaG.add(at(new THREE.Mesh(new THREE.CylinderGeometry(raggio, raggio, alto, 36, 1, true, PI / 4 + lato * centro - arco / 2, arco), new THREE.MeshStandardMaterial({ map: t, transparent: true, roughness: 0.6 })), 0, su, 0)); }
 

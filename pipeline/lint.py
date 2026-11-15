@@ -461,6 +461,8 @@ DATA_OK = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 DEEP_MAX = {"titolo": 80, "punto": 300, "sotto_par": 3, "sotto_len": 650, "numeri": 3,
             "voci": 4, "voce_len": 240, "letture": 3, "perche_len": 70}
 DEEP_VOCI = {"analista", "testata", "apple", "social", "storia", "esperto"}
+# «Parafrasi: …» in testa a una voce: Mike non la vuole (15 novembre 2026). La dice il campo `parafrasi`
+ETICHETTA_PARAFRASI = re.compile(r"(?i)\s*(?:\(\s*parafrasi\s*\)\s*[:—–-]?|parafrasi\s*[:—–-])")
 # il titolo dell'approfondimento che somiglia a quello della notizia la ripete
 DEEP_TITLE_SAME = 0.5
 
@@ -618,6 +620,8 @@ def check_magazine(brief, r):
             r.warn("citazione", f"{len(c['testo'])} caratteri: «L'ultima parola» regge fino a 200")
         if c.get("chi") and re.match(r"(?i)^(un|una|gli|alcuni) ", c["chi"]):
             r.warn("citazione", "un anonimo non e' «L'ultima parola»: serve una persona con nome")
+        if ETICHETTA_PARAFRASI.match(c.get("testo") or ""):
+            r.warn("citazione", "«L'ultima parola» e' una frase detta davvero, alla lettera: non una parafrasi")
     e = brief.get("editoriale")
     if not e:
         r.warn("editoriale", "manca «Il punto»: nella vista Magazine il commento non esce")
@@ -807,6 +811,9 @@ def check_approfondimento(brief, r):
                 r.error(where, "voce senza testo o senza chi l'ha detta")
             if v.get("tipo") and v["tipo"] not in DEEP_VOCI:
                 r.warn(where, f"tipo di voce non previsto: {v['tipo']!r} (ammessi: {', '.join(sorted(DEEP_VOCI))})")
+            if ETICHETTA_PARAFRASI.match(v.get("testo") or ""):
+                r.warn(where, f"la voce di {v.get('chi') or v.get('dove')} comincia con «Parafrasi»: l'etichetta non si scrive "
+                              "nel testo (15 novembre 2026). Toglila e metti \"parafrasi\": true sulla voce")
             if v.get("link") and not str(v["link"]).startswith(("http://", "https://")):
                 r.error(where, f"voce con link non valido: {v.get('chi', '')}")
         for x in a.get("numeri") or []:
