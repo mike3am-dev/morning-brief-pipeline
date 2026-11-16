@@ -1,0 +1,267 @@
+{
+ "giorno": "2026-11-16",
+ "prima": {
+  "intro": "Una domenica di Power On: Mark Gurman detta l'agenda con due prodotti che non vedremo prima del 2027, gli occhiali di Apple e il secondo iPhone Duo. In tutti e due i casi l'hardware è a buon punto e la partita si gioca altrove, sulle app e su Siri per gli occhiali, sul calendario per il Duo. L'unica notizia ufficiale viene dalla Salute, con uno studio sull'intelligenza artificiale che non passa da Siri. E il nuovo Apple TV mostra che più memoria non vuol dire più memoria per le app.",
+  "top3": [
+   "Gurman: gli occhiali di Apple, attesi nel 2027, si useranno parlando a Siri",
+   "iPhone Duo 2, Apple prova il Face ID ma i tempi sono stretti",
+   "Apple lancia uno studio sull'AI per la salute con OpenEvidence"
+  ],
+  "editoriale": {
+   "titolo": "Che cosa compra chi compra un prodotto che aspetta Siri?",
+   "testo": [
+    "Gli occhiali che Gurman descrive oggi non hanno uno schermo da guardare: si usano parlando, e tutto quello che fanno passa da Siri, che vede con le fotocamere e comanda le app dell'iPhone. Le app degli altri potranno arrivare sull'App Store solo dalla primavera 2027. Lo stesso giorno il nuovo Apple TV risulta avere 8 GB di RAM e ne lascia 2 alle app, e su r/apple la prima domanda è se il resto sia per Siri AI. Il MacBook Neo 2, secondo Bloomberg, salirà a 12 GB proprio per far girare il modello di Apple che il primo non regge.",
+    "Viene da chiedersi che cosa stia comprando chi compra adesso. Un oggetto, certo, ma sempre più spesso anche un posto in fila per funzioni che arriveranno quando il software sarà pronto. HomeView e HomePod mini 2 sono arrivati nei negozi in questi giorni con una parte di Siri AI ancora da accendere, e sotto la notizia degli occhiali più di un lettore ricorda anni di attese per l'assistente.",
+    "Lo studio sulla salute va in un'altra direzione, e per questo merita attenzione. Lì Siri non c'è: le risposte le dà OpenEvidence, le domande si scrivono, e Apple misura prima di promettere. Può essere soltanto la prudenza che la salute impone. Oppure un segno che, dove sbagliare costa di più, anche Apple preferisce sapere come va prima di dire che cosa farà."
+   ],
+   "notizie": [
+    "occhiali-apple-siri-app",
+    "apple-tv-4k-ram-2gb-app",
+    "macbook-neo-2-a19-pro",
+    "apple-studio-ai-salute"
+   ]
+  },
+  "news": {
+   "occhiali-apple-siri-app": {
+    "title": "Gli occhiali di Apple puntano tutto su Siri e sulle app dell'iPhone",
+    "sintesi": "Secondo Gurman i primi occhiali di Apple, attesi nel 2027, non avranno realtà aumentata: si useranno parlando a Siri, che vedrà con le fotocamere e comanderà le app dell'iPhone.",
+    "descrizione": "Mark Gurman, nella newsletter Power On di Bloomberg, descrive i prototipi interni degli occhiali di Apple, nome in codice N50. Sono più sottili dei Ray-Ban Meta di seconda generazione, con le fotocamere in due aperture ovali a filo della montatura e una luce sul frontale. Vicino alla punta dell'asta sinistra c'è un connettore magnetico a tre pin «grande come un Tic Tac», che li ricarica anche mentre si indossano; non è detto che resti nel prodotto finale.\n\nIl primo modello non avrà realtà aumentata. Si parla a Siri, che guarda attraverso le fotocamere: riconosce un edificio, suggerisce una ricetta da quello che c'è nel frigo, traduce un cartello o una conversazione, gestisce chiamate, messaggi, musica e casa. Serve un iPhone recente a portata, e Android resta fuori. Dentro, aggiunge iClarified, ci sono un processore derivato da una vecchia generazione di chip dell'Apple Watch e una versione alleggerita di visionOS 28. Il lancio è atteso l'anno prossimo.",
+    "approfondimento": {
+     "titolo": "Il calendario vero degli occhiali è quello delle app degli altri",
+     "punto": "L'hardware degli N50 è quasi definito. Se gli occhiali serviranno a qualcosa lo deciderà un'altra scadenza: il giorno in cui le app di terze parti potranno farsi comandare da Siri.",
+     "sotto": [
+      "Il dettaglio che pesa di più lo riporta iClarified: le app di terze parti che si integrano con Siri attraverso App Intents potranno essere inviate all'App Store dalla primavera 2027, mentre i controlli estesi sulle app di Apple arrivano a dicembre. Gli esempi sono concreti: prenotare un tavolo con OpenTable, chiamare un Uber o un Lyft, ordinare un caffè da Starbucks, comprare un biglietto del cinema con Fandango. Secondo 9to5Mac le basi stanno già nella beta di iOS 27.3, che apre a Siri le app degli altri oltre i Comandi rapidi.",
+      "Per 9to5Mac è qui il vantaggio di Apple su Meta: gli sviluppatori che lavorano già per l'iPhone, a cui si chiede un passo in più invece di cominciare da capo. Il rischio sta nello stesso punto. Un paio di occhiali senza schermo, che si usano solo con la voce, vale quanto l'assistente che li fa funzionare. E sotto la notizia, su r/apple, il tema che torna più spesso è proprio la fiducia in Siri, dopo anni di promesse.",
+      "Gli occhiali non staranno da soli. Siri li collegherà agli AirPods con fotocamera, attesi alla fine del 2027, e a HomeView, in vendita negli Stati Uniti dal 13 novembre. Il Wi-Fi tiene accese alcune funzioni, come l'audio, anche quando l'iPhone non è a portata, ma per MacRumors non sono un dispositivo indipendente. Per ora non si sa nulla del prezzo, né se arriveranno in Europa, dove Siri AI non è ancora disponibile."
+     ]
+    }
+   },
+   "iphone-duo-2-face-id": {
+    "title": "iPhone Duo 2, Apple prova il Face ID ma il tempo per deciderlo stringe",
+    "sintesi": "Secondo Gurman Apple ha già prototipi del Duo 2 con Face ID, la priorità della seconda generazione attesa nell'autunno 2027; se non ce la fa, arriverà sul Duo 3 nel 2028.",
+    "descrizione": "Gli ingegneri di Apple lavorano «attivamente» al Face ID per il secondo iPhone Duo, nome in codice V78, atteso nell'autunno 2027. Lo scrive Mark Gurman su Bloomberg, e ne esistono già prototipi. Il Duo di oggi riconosce chi lo usa con il Touch ID nel tasto laterale.\n\nIl Face ID è la priorità, ma Gurman non garantisce che arrivi in tempo: se manca il Duo 2, è nei piani per il Duo 3, nel 2028. MacRumors mette in fila le quattro direzioni delle prossime generazioni: il Face ID, un tasto Azione, un teleobiettivo, una scocca più sottile e leggera. Il tasto Azione potrebbe essere solo software, spiega 9to5Mac: la pressione prolungata del Controllo fotocamera, che oggi apre Siri nella fotocamera, si potrebbe assegnare a un'app a scelta. iClarified aggiunge il problema del calendario: per uscire alla fine del 2027 l'hardware va fissato adesso.",
+    "approfondimento": {
+     "titolo": "Il Duo 2 si decide prima che il primo Duo abbia finito di parlare",
+     "punto": "Apple sta ancora raccogliendo il parere di chi ha comprato il primo pieghevole, ma per il secondo è già tardi: l'hardware si fissa adesso, e le priorità del terzo erano scritte prima ancora dell'annuncio.",
+     "sotto": [
+      "Secondo iClarified, che riprende Gurman, il Duo 2 arriverà nei negozi mentre il sondaggio fra chi ha il primo Duo è ancora aperto: troppo tardi per cambiare rotta su quel modello. E le priorità del Duo 3 erano già fissate prima che il primo venisse presentato. In genere l'hardware di un telefono si decide con largo anticipo sull'uscita, e un pieghevole, con la cerniera e due schermi, lascia meno spazio alle correzioni dell'ultimo momento.",
+      "Le prime settimane del Duo qualcosa l'avevano detto. Il 12 novembre, alla scadenza del reso, The Verge aveva raccolto le ragioni di chi lo restituiva; il 14 la prova di CNET ha mostrato una cerniera che dopo 451.000 pieghe funziona ancora ma comincia a cedere. Il Face ID tocca un'altra cosa, più quotidiana: lo sblocco, che sul Duo oggi passa dal dito appoggiato sul tasto laterale.",
+      "Resta il lato software, che non deve aspettare il 2027. Dopo tre settimane d'uso, 9to5Mac nota che le app non aggiornate per iOS 27 restano dentro una cornice nera sullo schermo interno, e propone che si aprano da sole in Split View. Se il tasto Azione sarà davvero solo un'impostazione del Controllo fotocamera, per ora non è noto se arriverà anche sul primo Duo."
+     ]
+    }
+   },
+   "apple-studio-ai-salute": {
+    "title": "Apple apre uno studio su come si usa l'AI per la salute, con OpenEvidence",
+    "sintesi": "Apple ha lanciato negli Stati Uniti l'Apple Health AI Usage Study, un'app e uno studio virtuale con OpenEvidence: fino a 200.000 partecipanti, per oltre dodici mesi.",
+    "descrizione": "Apple ha presentato l'Apple Health AI Usage Study, uno studio di ricerca virtuale con un'app dedicata, scaricabile da oggi negli Stati Uniti. Il partner è OpenEvidence, una piattaforma di intelligenza artificiale usata dai medici, che risponde basandosi su riviste come NEJM, JAMA e Nature. Chi partecipa può condividere i dati di HealthKit, dal battito a riposo al sonno, dall'attività agli esami, per verificare quanto migliorano le risposte quando sono personalizzate. Lo studio guarda anche a come l'AI aiuti a prepararsi a una visita dal medico.\n\nTechCrunch riporta i numeri che il comunicato non dà: fino a 200.000 partecipanti, oltre dodici mesi di durata, maggiorenni dai 21 anni e residenti negli Stati Uniti, con iOS 26 o successivo. Sul telefono le due testate non coincidono: per TechCrunch basta un iPhone 15 con Apple Intelligence attiva, per The Verge serve un iPhone 15 Pro, e l'app non usa né Apple Intelligence né Siri. I dati vengono anonimizzati e non addestrano modelli.",
+    "approfondimento": {
+     "titolo": "Un'app di Apple sull'AI medica in cui Siri non parla",
+     "punto": "Apple studia l'AI per la salute con un partner esterno e un'app a parte, lontano dall'assistente che sta mettendo dappertutto. Il disegno dello studio dice quanto, per ora, tenga separate le due cose.",
+     "sotto": [
+      "Sumbul Desai, vicepresidente Salute e Fitness di Apple, presenta lo studio con il lessico della ricerca più che di un lancio: rigore scientifico, base clinica, risultati che servano al dibattito scientifico generale. L'impianto le va dietro. Le risposte non arrivano da un modello di Apple ma da OpenEvidence, che si appoggia alla letteratura medica; i dati non addestrano modelli; domande e risposte si cancellano dopo un giorno.",
+      "Secondo The Verge l'app non passa da Siri né da Apple Intelligence: le domande si scrivono, o si dettano con la tastiera. Il 12 novembre, nel codice della prima beta di iOS 27.3, l'esploratore pdfu aveva trovato due indicatori spenti che darebbero a Siri AI accesso a sonno, allenamenti e farmaci. Le due cose non si escludono: una è uno studio, l'altra una funzione che Apple non ha annunciato. Mostrano però due strade che corrono nello stesso momento.",
+      "Restano domande che il comunicato non scioglie. Non è noto se e quando i risultati saranno pubblicati, né se qualcosa di quello che emergerà finirà nell'app Salute. Anche la divergenza fra TechCrunch e The Verge sui requisiti, Apple Intelligence attiva oppure no, si chiarirà solo con l'app in mano. Fuori dagli Stati Uniti, intanto, lo studio non si può fare."
+     ]
+    }
+   },
+   "apple-tv-4k-ram-2gb-app": {
+    "title": "Il nuovo Apple TV ha 8 GB di RAM, ma un'app ne può usare solo 2",
+    "sintesi": "Il nuovo Apple TV 4K ha 8 GB di RAM, il doppio del modello precedente, ma tvOS lascia a ogni app o gioco al massimo 2 GB, lo stesso limite della terza generazione.",
+    "descrizione": "Il nuovo Apple TV 4K, in vendita da venerdì a 299 dollari con chip A19 e 128 GB di spazio, ha 8 GB di RAM, il doppio del modello di terza generazione. Le app e i giochi però non possono usarne più di 2 GB, lo stesso tetto di prima. Lo ha verificato 9to5Mac: il sistema chiude d'autorità un'app che supera quella soglia, e la funzione con cui gli sviluppatori chiedono quanta memoria resta a disposizione restituisce lo stesso valore.\n\nAnche lo spazio ha i suoi limiti. Un'app può pesare fino a circa 4 GB, più una ventina di gigabyte da riservare ad alcuni contenuti scaricati, quindi nemmeno i 128 GB sono tutti a disposizione di un solo gioco. Apple non ha spiegato a cosa servano gli altri sei gigabyte di RAM. Per ora il dato lo riporta solo 9to5Mac.",
+    "approfondimento": {
+     "titolo": "Sei gigabyte che nessuna app può toccare",
+     "punto": "Apple ha raddoppiato la memoria del suo Apple TV e ha lasciato ferme le regole per chi ci porta i giochi. Dove vada il resto non lo dice, e l'ipotesi più ovvia convince poco anche chi l'ha avanzata.",
+     "sotto": [
+      "La spiegazione che viene in mente per prima è Siri AI: il nuovo Apple TV ascolta senza telecomando, e un modello che gira sul dispositivo ha bisogno di memoria. 9to5Mac la mette sul tavolo ma la giudica poco plausibile, perché le funzioni più complesse di Siri AI si appoggiano all'iPhone o ai server di Apple, non alla televisione. Apple non ha confermato né smentito.",
+      "Il limite conta soprattutto per i giochi. Chi porta un titolo su tvOS deve stare dentro gli stessi 2 GB dell'Apple TV del 2022, e dentro un pacchetto di circa 4 GB, anche sul modello che ha il quadruplo della memoria di cui l'app può disporre. Se Apple alzerà la soglia con un aggiornamento di tvOS, per ora non è noto.",
+      "Su r/apple, dove il thread ha raccolto un centinaio di commenti, la RAM è passata quasi subito in secondo piano. Molti ironizzano su Siri: c'è chi chiede se la memoria sia riservata all'assistente, chi racconta di averlo spento sul portatile e di trovarlo più veloce."
+     ]
+    }
+   },
+   "macbook-neo-2-a19-pro": {
+    "title": "MacBook Neo 2, l'A19 Pro e 12 GB di RAM per far girare l'AI di Apple",
+    "sintesi": "Il secondo MacBook Neo dovrebbe passare dall'A18 Pro all'A19 Pro e da 8 a 12 GB di RAM, abbastanza per il modello AI di Apple che il primo non regge; uscita prevista nel 2027.",
+    "descrizione": "Il MacBook Neo uscito a marzo usa il chip A18 Pro dell'iPhone 16 Pro e ha 8 GB di RAM, la metà dei 16 GB da cui parte il resto della gamma Mac. Il secondo modello, secondo Bloomberg, passa all'A19 Pro, il chip di iPhone 17 Pro e iPhone Air: dal 10 al 15% in più nel processore e fino al 40% nella grafica, grazie agli acceleratori neurali in ogni core della GPU. Il giornalista Tim Culpan aggiunge che Apple userà una versione con un core grafico in meno, cinque invece di sei.\n\nLa RAM salirebbe a 12 GB, non a 16. Basta per far girare sul Neo il modello di intelligenza artificiale più potente che Apple usa sul dispositivo, quello della dettatura più precisa e della voce di Siri personalizzabile, che il Neo di oggi non supporta. Per Culpan l'uscita è nel 2027, senza una data. Le indiscrezioni le mette in fila 9to5Mac.",
+    "approfondimento": {
+     "titolo": "Il Mac più economico si misura in gigabyte di intelligenza",
+     "punto": "Il primo MacBook Neo è rimasto fuori dal modello AI più potente di Apple per una questione di memoria. Il secondo la risolve con quattro gigabyte in più, e lascia comunque un gradino fra il Mac d'ingresso e il resto della gamma.",
+     "sotto": [
+      "Il Neo è nato con un chip da iPhone, e il secondo modello conferma la scelta. La versione dell'A19 Pro con cinque core grafici indicata da Culpan è quella che il settore chiama binned: in genere sono chip usciti dalla produzione con un'unità difettosa, che si disattiva invece di scartare il pezzo intero.",
+      "Il salto di memoria dice di più. Con 8 GB il Neo di oggi non regge il modello che Apple usa per la dettatura più precisa e per la voce di Siri personalizzabile; con 12 sì. Restano però quattro gigabyte sotto i 16 da cui partono gli altri Mac, e per ora non è noto se qualche funzione rimarrà fuori anche sul Neo 2.",
+      "Il 5 novembre Digitimes aveva scritto che Apple chiede ai fornitori 16 milioni di Neo per il 2027, il doppio degli 8 milioni attesi quest'anno, e Gurman collocava il Neo 2 all'inizio del prossimo anno. Culpan resta più vago e parla soltanto del 2027. Sui colori non c'è niente: oggi il Neo esce in citrus, blush, indigo e silver, e Apple li aggiornerebbe periodicamente."
+     ]
+    }
+   },
+   "slow-horses-ultima-stagione": {
+    "title": "«Slow Horses» potrebbe chiudere con l'ottava stagione, dice Olivia Cooke",
+    "sintesi": "Olivia Cooke, Sid Baker nella serie di Apple TV, ha detto al Times di girare l'ultima stagione: l'ottava raggiunge i libri di Mick Herron ed è attesa nel 2028.",
+    "descrizione": "«I am shooting the last season!», ha detto Olivia Cooke al Times. L'attrice, che in «Slow Horses» interpreta Sid Baker, sta girando l'ottava stagione della serie di spionaggio di Apple TV, e subito dopo ha aggiunto «never say never»: «But I think that's what we've been told and it definitely feels like we are ending».\n\nApple aveva confermato l'ottava stagione a settembre. Sono sei episodi tratti da «Clown Town», il romanzo del 2025 e l'ultimo uscito della serie Slough House di Mick Herron: con quella stagione la serie raggiunge i libri, e Radio Times ricorda che Herron vuole continuare a scriverli. Secondo Yahoo la settima stagione è attesa nel 2027 e l'ottava nel 2028."
+   },
+   "homepod-mini-2-o-primo-mini": {
+    "title": "HomePod mini 2 o il primo mini: le due cose che giustificano il cambio",
+    "sintesi": "HomePod mini 2 costa 149 dollari e fa due cose che il primo non fa: resta l'altoparlante del Mac, se ha il Wi-Fi 6E, ed entra nel surround dell'Apple TV 4K.",
+    "descrizione": "Fuori è lo stesso HomePod mini, 84,3 per 97,9 millimetri, con dieci grammi in meno. Dentro il chip passa dall'S5 all'S10, i microfoni scendono da quattro a tre, e l'altoparlante resta quello, con i due radiatori passivi. Il confronto di iClarified si ferma su due funzioni che il primo mini non ha.\n\nIl mini 2 può restare l'altoparlante predefinito di un Mac per film, giochi e videochiamate, ma solo se il Mac ha il Wi-Fi 6E o successivo. E può far parte del surround a quattro altoparlanti con l'Apple TV 4K di quarta generazione: quattro mini 2, oppure due HomePod davanti e due mini 2 dietro. Il primo mini non si accoppia in stereo con il nuovo. Siri AI conversazionale sul mini 2 resta senza data. Per musica, timer e luci, conclude iClarified, il vecchio va ancora benissimo."
+   },
+   "black-friday-airpods-pro-3-watch-12": {
+    "title": "AirPods Pro 3 a 179,99 dollari e Apple Watch Series 12 a 329: il Black Friday comincia prima",
+    "sintesi": "Su Amazon negli Stati Uniti le AirPods Pro 3 scendono a 179,99 dollari da 249 e l'Apple Watch Series 12 da 42 mm a 329, il prezzo più basso mai visto.",
+    "descrizione": "Gli sconti del Black Friday su Amazon sono partiti in anticipo, negli Stati Uniti. Le AirPods Pro 3 costano 179,99 dollari invece di 249, novantanove centesimi sopra il minimo toccato in passato, con consegna entro il 20 novembre secondo MacRumors. 9to5Mac ricorda che con iOS 27 hanno guadagnato l'equalizzatore personalizzato, l'integrazione con GymKit e i comandi di Siri AI.\n\nL'Apple Watch Series 12 da 42 mm GPS in alluminio nero scende a 329 dollari, 70 meno del listino di 399 e sotto i 349,99 del Prime Big Deal Days di ottobre: è il prezzo più basso finora, segnala iClarified. Secondo 9to5Mac lo sconto vale anche per i modelli in ceramica Pearl White. Nelle stesse ore l'AirTag 2 è sceso a 17,50 dollari."
+   },
+   "iphone-duo-split-view-app-vecchie": {
+    "title": "Sul Duo le app non aggiornate restano in una cornice. 9to5Mac propone di aprirle in Split View",
+    "sintesi": "Sullo schermo interno del Duo le app ferme a iOS 26 si aprono con le bande nere: 9to5Mac chiede di poterle avviare sempre in Split View, che oggi va scelta a mano ogni volta.",
+    "descrizione": "Dopo circa tre settimane con l'iPhone Duo, l'autore di 9to5Mac nota che molte app, ancora compilate per iOS 26 o versioni precedenti, si aprono sullo schermo interno dentro una cornice nera, senza occupare tutto lo spazio. Si possono già mettere in Split View, ma va chiesto ogni volta, tenendo premuta l'icona.\n\nLa proposta è un'impostazione che le apra sempre affiancate a un'altra app, così che lo schermo grande non resti mezzo vuoto. 9to5Mac chiede anche Slide Over, la finestra che scorre di lato, che sul Duo non c'è. È un suggerimento: nessuna fonte dice che Apple ci stia lavorando."
+   },
+   "iphone-18-pro-max-modem-c2-segnale": {
+    "title": "Con l'iPhone 18 Pro Max il segnale è cambiato, racconta TechRadar. Il merito è del modem C2",
+    "sintesi": "Una giornalista di TechRadar, che dal 2021 vive in una zona con poca copertura, racconta che con l'iPhone 18 Pro Max e il modem C2 di Apple il segnale è migliorato ovunque.",
+    "descrizione": "Dal 2021 l'autrice vive in una zona isolata, dove il segnale mobile va e viene, e gli iPhone degli ultimi anni a volte segnavano il 5G anche quando la rete non c'era. Con l'iPhone 18 Pro Max, scrive su TechRadar, la differenza si nota ovunque: riesce a lavorare in mobilità invece di cercare il Wi-Fi di un treno o di un bar.\n\nAttribuisce il salto al C2, il modem progettato da Apple che debutta con la gamma 18, e non ad altre novità del telefono. Il pezzo non riporta misure: è una prova personale, non un test di laboratorio, anche se il titolo dice che non è l'unica ad averlo notato."
+   },
+   "messaggi-ios-27-novita": {
+    "title": "Messaggi da iOS 26 a iOS 27: cosa è cambiato in un anno",
+    "sintesi": "9to5Mac ripercorre le novità di Messaggi: con iOS 26 sfondi, sondaggi e filtri per gli sconosciuti, con iOS 27 il reinvio automatico dei messaggi falliti e risposte rapide più personali.",
+    "descrizione": "Con iOS 26 Messaggi ha avuto gli sfondi per ogni conversazione, gli indicatori di scrittura nei gruppi, Apple Cash per dividere un conto, i sondaggi, che sui dispositivi con Apple Intelligence può proporre da sé, e i filtri che separano sconosciuti, transazioni, promozioni e spam.\n\niOS 27 ha lavorato soprattutto sull'affidabilità: i messaggi non partiti vengono reinviati da soli, foto e video si mandano senza interruzioni e la sincronizzazione fra dispositivi è migliorata. Sono arrivati anche i suggerimenti con un tocco, che ricavano un promemoria o una nota dalla conversazione, e le risposte rapide che imitano il modo di scrivere di chi le usa. Nel corso dell'anno, ricorda 9to5Mac, è migliorata anche la cifratura end-to-end dei messaggi RCS scambiati con Android."
+   },
+   "gsmarena-giochi-iphone-15-pro-18-pro": {
+    "title": "Tre anni di giochi su iPhone: GSMArena rimette l'iPhone 15 Pro contro il 18 Pro",
+    "sintesi": "GSMArena ha rigiocato sull'iPhone 18 Pro i titoli da console provati tre anni fa sull'iPhone 15 Pro, a partire da Resident Evil Village, per misurare quanto è cresciuta la grafica.",
+    "descrizione": "Tre anni fa l'A17 Pro dell'iPhone 15 Pro ha aperto l'iPhone ai giochi nati per le console, con porting come Resident Evil Village. GSMArena ha ripreso gli stessi titoli e li ha giocati sull'iPhone 18 Pro, mettendolo accanto al vecchio 15 Pro così com'è oggi.\n\nResident Evil Village resta il gioco con più opzioni grafiche fra quelli provati, ed è il confronto più leggibile: lo stesso preset, Prioritize Graphics, sui due telefoni, nella stessa zona del villaggio. Fotogrammi al secondo e risoluzione dei due modelli sono nella prova completa."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "Una domenica di Power On: Mark Gurman detta l'agenda con due prodotti che non vedremo prima del 2027, gli occhiali di Apple e il secondo iPhone Duo. In tutti e due i casi l'hardware è a buon punto: per gli occhiali conteranno le app e Siri, per il Duo il calendario. L'unica notizia ufficiale viene dalla Salute, con uno studio sull'intelligenza artificiale che non passa da Siri. E il nuovo Apple TV ha il doppio della memoria, ma alle app ne lascia quanta prima.",
+  "top3": [
+   "Gurman: gli occhiali di Apple, attesi nel 2027, si useranno parlando a Siri",
+   "iPhone Duo 2, Apple prova il Face ID ma i tempi sono stretti",
+   "Apple lancia uno studio sull'AI per la salute con OpenEvidence"
+  ],
+  "editoriale": {
+   "titolo": "Che cosa compra chi compra un prodotto che aspetta Siri?",
+   "testo": [
+    "Gli occhiali che Gurman descrive oggi non hanno uno schermo da guardare: si usano parlando, e tutto quello che fanno passa da Siri, che vede con le fotocamere e comanda le app dell'iPhone. Le app degli altri potranno arrivare sull'App Store solo dalla primavera 2027. Lo stesso giorno il nuovo Apple TV risulta avere 8 GB di RAM e ne lascia 2 alle app, e su r/apple la prima domanda è se il resto sia per Siri AI. Il MacBook Neo 2, secondo Bloomberg, salirà a 12 GB proprio per far girare il modello di Apple che il primo non regge.",
+    "Viene da chiedersi che cosa stia comprando chi compra adesso. Un oggetto, certo, ma sempre più spesso anche un posto in fila per funzioni che arriveranno quando il software sarà pronto. HomeView e HomePod mini 2 sono arrivati nei negozi in questi giorni con una parte di Siri AI ancora da accendere, e sotto la notizia degli occhiali più di un lettore ricorda anni di attese per l'assistente.",
+    "Lo studio sulla salute va in un'altra direzione. Lì Siri non c'è: le risposte le dà OpenEvidence, le domande si scrivono, e Apple misura prima di promettere. Può essere soltanto la prudenza che la salute impone. Oppure un segno che, dove sbagliare costa di più, anche Apple preferisce sapere come va prima di dire che cosa farà."
+   ],
+   "notizie": [
+    "occhiali-apple-siri-app",
+    "apple-tv-4k-ram-2gb-app",
+    "macbook-neo-2-a19-pro",
+    "apple-studio-ai-salute"
+   ]
+  },
+  "news": {
+   "occhiali-apple-siri-app": {
+    "title": "Gli occhiali di Apple puntano tutto su Siri e sulle app dell'iPhone",
+    "sintesi": "Secondo Gurman i primi occhiali di Apple, attesi nel 2027, non avranno realtà aumentata: si useranno parlando a Siri, che vedrà con le fotocamere e comanderà le app dell'iPhone.",
+    "descrizione": "Mark Gurman, nella newsletter Power On di Bloomberg, descrive i prototipi interni degli occhiali di Apple, nome in codice N50. Sono più sottili dei Ray-Ban Meta di seconda generazione, con le fotocamere in due aperture ovali a filo della montatura e una luce sul frontale. Vicino alla punta dell'asta sinistra c'è un connettore magnetico a tre pin «grande come un Tic Tac», che li ricarica anche mentre si indossano; non è detto che resti nel prodotto finale.\n\nIl primo modello non avrà realtà aumentata. Si parla a Siri, che guarda attraverso le fotocamere: riconosce un edificio, suggerisce una ricetta da quello che c'è nel frigo, traduce un cartello o una conversazione, gestisce chiamate, messaggi, musica e casa. Serve un iPhone recente a portata, e Android resta fuori. Dentro, aggiunge iClarified, ci sono un processore derivato da una vecchia generazione di chip dell'Apple Watch e una versione alleggerita di visionOS 28. Il lancio è atteso l'anno prossimo.",
+    "approfondimento": {
+     "titolo": "Il calendario vero degli occhiali è quello delle app degli altri",
+     "punto": "L'hardware degli N50 è quasi definito. Se gli occhiali serviranno a qualcosa lo deciderà un'altra scadenza: il giorno in cui le app di terze parti potranno farsi comandare da Siri.",
+     "sotto": [
+      "Secondo iClarified, le app di terze parti che si integrano con Siri attraverso App Intents potranno essere inviate all'App Store dalla primavera 2027, mentre i controlli estesi sulle app di Apple arrivano a dicembre. Gli esempi sono concreti: prenotare un tavolo con OpenTable, chiamare un Uber o un Lyft, ordinare un caffè da Starbucks, comprare un biglietto del cinema con Fandango. Secondo 9to5Mac le basi stanno già nella beta di iOS 27.3, che apre a Siri le app degli altri oltre i Comandi rapidi.",
+      "Secondo 9to5Mac il vantaggio di Apple su Meta sta negli sviluppatori che lavorano già per l'iPhone: a loro si chiede un passo in più, non di cominciare da capo. Ma un paio di occhiali senza schermo, che si usano solo con la voce, funziona bene quanto l'assistente che lo comanda. E sotto la notizia, su r/apple, il tema che torna più spesso è proprio la fiducia in Siri, dopo anni di promesse.",
+      "Gli occhiali non staranno da soli. Siri li collegherà agli AirPods con fotocamera, attesi alla fine del 2027, e a HomeView, in vendita negli Stati Uniti dal 13 novembre. Il Wi-Fi tiene accese alcune funzioni, come l'audio, anche quando l'iPhone non è a portata, ma per MacRumors non sono un dispositivo indipendente. Per ora non si sa nulla del prezzo, né se arriveranno in Europa, dove Siri AI non è ancora disponibile."
+     ]
+    }
+   },
+   "iphone-duo-2-face-id": {
+    "title": "iPhone Duo 2, Apple prova il Face ID ma il tempo per deciderlo stringe",
+    "sintesi": "Secondo Gurman Apple ha già prototipi del Duo 2 con Face ID, la priorità della seconda generazione attesa nell'autunno 2027; se non ce la fa, arriverà sul Duo 3 nel 2028.",
+    "descrizione": "Gli ingegneri di Apple lavorano «attivamente» al Face ID per il secondo iPhone Duo, nome in codice V78, atteso nell'autunno 2027. Lo scrive Mark Gurman su Bloomberg, e ne esistono già prototipi. Il Duo di oggi riconosce chi lo usa con il Touch ID nel tasto laterale.\n\nIl Face ID è la priorità, ma Gurman non garantisce che arrivi in tempo: se salta il Duo 2, è nei piani per il Duo 3, nel 2028. Il calendario è stretto, perché per uscire alla fine del 2027 l'hardware va fissato adesso. Per le prossime generazioni si parla anche di un tasto Azione, di un teleobiettivo e di una scocca più sottile e leggera. Il tasto Azione potrebbe essere solo software: secondo 9to5Mac basterebbe assegnare a un'app a scelta la pressione prolungata del Controllo fotocamera, che oggi apre Siri nella fotocamera.",
+    "approfondimento": {
+     "titolo": "Il Duo 2 si decide prima che il primo Duo abbia finito di parlare",
+     "punto": "Apple sta ancora raccogliendo il parere di chi ha comprato il primo pieghevole, ma per il secondo è già tardi: l'hardware si fissa adesso, e le priorità del terzo erano scritte prima ancora dell'annuncio.",
+     "sotto": [
+      "Secondo iClarified, che riprende Gurman, il Duo 2 arriverà nei negozi mentre il sondaggio fra chi ha il primo Duo è ancora aperto: troppo tardi per cambiare rotta su quel modello. E le priorità del Duo 3 erano già fissate prima che il primo venisse presentato. In genere l'hardware di un telefono si decide con largo anticipo sull'uscita, e un pieghevole, con la cerniera e due schermi, lascia meno spazio alle correzioni dell'ultimo momento.",
+      "Le prime settimane del Duo qualcosa l'avevano detto. Il 12 novembre, alla scadenza del reso, The Verge aveva raccolto le ragioni di chi lo restituiva; il 14 la prova di CNET ha mostrato una cerniera che dopo 451.000 pieghe funziona ancora ma comincia a cedere. Il Face ID tocca un'altra cosa, più quotidiana: lo sblocco, che sul Duo oggi passa dal dito appoggiato sul tasto laterale.",
+      "Resta il lato software, che non deve aspettare il 2027. Dopo tre settimane d'uso, 9to5Mac nota che le app non aggiornate per iOS 27 restano dentro una cornice nera sullo schermo interno, e propone che si aprano da sole in Split View. Se il tasto Azione sarà davvero solo un'impostazione del Controllo fotocamera, per ora non è noto se arriverà anche sul primo Duo."
+     ]
+    }
+   },
+   "apple-studio-ai-salute": {
+    "title": "Apple apre uno studio su come si usa l'AI per la salute, con OpenEvidence",
+    "sintesi": "Apple ha lanciato negli Stati Uniti l'Apple Health AI Usage Study, un'app e uno studio virtuale con OpenEvidence: fino a 200.000 partecipanti, per oltre dodici mesi.",
+    "descrizione": "Apple ha presentato l'Apple Health AI Usage Study, uno studio di ricerca virtuale con un'app dedicata, scaricabile da oggi negli Stati Uniti. Il partner è OpenEvidence, una piattaforma di intelligenza artificiale usata dai medici, che risponde basandosi su riviste come NEJM, JAMA e Nature. Chi partecipa può condividere i dati di HealthKit, dal battito a riposo al sonno, dall'attività agli esami, per verificare quanto migliorano le risposte quando sono personalizzate. Lo studio guarda anche a come l'AI aiuti a prepararsi a una visita dal medico.\n\nSecondo TechCrunch lo studio coinvolgerà fino a 200.000 partecipanti per oltre dodici mesi, e possono iscriversi i maggiorenni dai 21 anni residenti negli Stati Uniti, con iOS 26 o successivo. Sul telefono necessario le testate non coincidono: per TechCrunch basta un iPhone 15 con Apple Intelligence attiva, per The Verge serve un iPhone 15 Pro, e l'app non usa né Apple Intelligence né Siri. I dati vengono anonimizzati e non addestrano modelli.",
+    "approfondimento": {
+     "titolo": "Un'app di Apple sull'AI medica in cui Siri non parla",
+     "punto": "Apple studia l'AI per la salute con un partner esterno e un'app a parte, lontano dall'assistente che sta mettendo dappertutto. Il disegno dello studio dice quanto, per ora, tenga separate le due cose.",
+     "sotto": [
+      "Sumbul Desai, vicepresidente Salute e Fitness di Apple, presenta lo studio con il lessico della ricerca più che di un lancio: rigore scientifico, base clinica, risultati che servano al dibattito scientifico generale. E lo studio è costruito di conseguenza. Le risposte non arrivano da un modello di Apple ma da OpenEvidence, che si appoggia alla letteratura medica; i dati non addestrano modelli; domande e risposte si cancellano dopo un giorno.",
+      "Secondo The Verge l'app non passa da Siri né da Apple Intelligence: le domande si scrivono, o si dettano con la tastiera. Il 12 novembre, nel codice della prima beta di iOS 27.3, l'esploratore pdfu aveva trovato due indicatori spenti che darebbero a Siri AI accesso a sonno, allenamenti e farmaci. Le due cose non si escludono: una è uno studio, l'altra una funzione che Apple non ha annunciato. Per ora, però, le strade sono due: nello studio Siri resta fuori, nel codice sembrerebbe prepararsi a leggere i dati della salute.",
+      "Restano domande che il comunicato non scioglie. Non è noto se e quando i risultati saranno pubblicati, né se qualcosa di quello che emergerà finirà nell'app Salute. Anche la divergenza fra TechCrunch e The Verge sui requisiti, Apple Intelligence attiva oppure no, si chiarirà solo con l'app in mano. Fuori dagli Stati Uniti, intanto, lo studio non si può fare."
+     ]
+    }
+   },
+   "apple-tv-4k-ram-2gb-app": {
+    "title": "Il nuovo Apple TV ha 8 GB di RAM, ma un'app ne può usare solo 2",
+    "sintesi": "Il nuovo Apple TV 4K ha 8 GB di RAM, il doppio del modello precedente, ma tvOS lascia a ogni app o gioco al massimo 2 GB, lo stesso limite della terza generazione.",
+    "descrizione": "Il nuovo Apple TV 4K, in vendita da venerdì a 299 dollari con chip A19 e 128 GB di spazio, ha 8 GB di RAM, il doppio del modello di terza generazione. Le app e i giochi però non possono usarne più di 2 GB, lo stesso tetto di prima. Lo ha verificato 9to5Mac: il sistema chiude d'autorità un'app che supera quella soglia, e la funzione con cui gli sviluppatori chiedono quanta memoria resta a disposizione restituisce lo stesso valore.\n\nAnche lo spazio ha i suoi limiti. Un'app può pesare fino a circa 4 GB, più una ventina di gigabyte da riservare ad alcuni contenuti scaricati, quindi nemmeno i 128 GB sono tutti a disposizione di un solo gioco. Apple non ha spiegato a cosa servano gli altri sei gigabyte di RAM. Per ora il dato lo riporta solo 9to5Mac.",
+    "approfondimento": {
+     "titolo": "Sei gigabyte che nessuna app può toccare",
+     "punto": "Apple ha raddoppiato la memoria del suo Apple TV e ha lasciato ferme le regole per chi ci porta i giochi. Dove vada il resto non lo dice, e l'ipotesi più ovvia convince poco anche chi l'ha avanzata.",
+     "sotto": [
+      "La spiegazione che viene in mente per prima è Siri AI: il nuovo Apple TV ascolta senza telecomando, e un modello che gira sul dispositivo ha bisogno di memoria. 9to5Mac la mette sul tavolo ma la giudica poco plausibile, perché le funzioni più complesse di Siri AI si appoggiano all'iPhone o ai server di Apple, non alla televisione. Apple non ha confermato né smentito.",
+      "Il limite conta soprattutto per i giochi. Chi porta un titolo su tvOS deve stare dentro gli stessi 2 GB dell'Apple TV del 2022, e dentro un pacchetto di circa 4 GB, anche sul modello che ha il quadruplo della memoria di cui l'app può disporre. Se Apple alzerà la soglia con un aggiornamento di tvOS, per ora non è noto.",
+      "Su r/apple, dove il thread ha raccolto un centinaio di commenti, la RAM è passata quasi subito in secondo piano. Molti ironizzano su Siri: c'è chi chiede se la memoria sia riservata all'assistente, chi racconta di averlo spento sul portatile e di trovarlo più veloce."
+     ]
+    }
+   },
+   "macbook-neo-2-a19-pro": {
+    "title": "MacBook Neo 2, l'A19 Pro e 12 GB di RAM per far girare l'AI di Apple",
+    "sintesi": "Il secondo MacBook Neo dovrebbe passare dall'A18 Pro all'A19 Pro e da 8 a 12 GB di RAM, abbastanza per il modello AI di Apple che il primo non regge; uscita prevista nel 2027.",
+    "descrizione": "Il MacBook Neo uscito a marzo usa il chip A18 Pro dell'iPhone 16 Pro e ha 8 GB di RAM, la metà dei 16 GB da cui parte il resto della gamma Mac. Il secondo modello, secondo Bloomberg, passerebbe all'A19 Pro, il chip di iPhone 17 Pro e iPhone Air: dal 10 al 15% in più nel processore e fino al 40% nella grafica, grazie agli acceleratori neurali in ogni core della GPU. Il giornalista Tim Culpan aggiunge che Apple userebbe una versione con un core grafico in meno, cinque invece di sei.\n\nLa RAM salirebbe a 12 GB, non a 16. Basta per far girare sul Neo il modello di intelligenza artificiale più potente che Apple usa sul dispositivo, quello della dettatura più precisa e della voce di Siri personalizzabile, che il Neo di oggi non supporta. Per Culpan l'uscita è nel 2027, senza una data. Le indiscrezioni le mette in fila 9to5Mac.",
+    "approfondimento": {
+     "titolo": "Per il Mac più economico, l'AI di Apple è una questione di memoria",
+     "punto": "Il primo MacBook Neo è rimasto fuori dal modello AI più potente di Apple per una questione di memoria. Il secondo la risolve con quattro gigabyte in più, e lascia comunque un gradino fra il Mac d'ingresso e il resto della gamma.",
+     "sotto": [
+      "Il Neo è nato con un chip da iPhone, e il secondo modello conferma la scelta. La versione dell'A19 Pro con cinque core grafici indicata da Culpan è quella che il settore chiama binned: in genere sono chip usciti dalla produzione con un'unità difettosa, che si disattiva invece di scartare il pezzo intero.",
+      "Il salto di memoria dice di più. Con 8 GB il Neo di oggi non regge il modello che Apple usa per la dettatura più precisa e per la voce di Siri personalizzabile; con 12 sì. Restano però quattro gigabyte sotto i 16 da cui partono gli altri Mac, e per ora non è noto se qualche funzione rimarrà fuori anche sul Neo 2.",
+      "Il 5 novembre Digitimes aveva scritto che Apple chiede ai fornitori 16 milioni di Neo per il 2027, il doppio degli 8 milioni attesi quest'anno, e Gurman collocava il Neo 2 all'inizio del prossimo anno. Culpan resta più vago e parla soltanto del 2027. Sui colori non c'è niente: oggi il Neo esce in citrus, blush, indigo e silver, e Apple li aggiornerebbe periodicamente."
+     ]
+    }
+   },
+   "slow-horses-ultima-stagione": {
+    "title": "«Slow Horses» potrebbe chiudere con l'ottava stagione, dice Olivia Cooke",
+    "sintesi": "Olivia Cooke, Sid Baker nella serie di Apple TV, ha detto al Times di girare l'ultima stagione: l'ottava raggiunge i libri di Mick Herron ed è attesa nel 2028.",
+    "descrizione": "«I am shooting the last season!», ha detto Olivia Cooke al Times. L'attrice, che in «Slow Horses» interpreta Sid Baker, sta girando l'ottava stagione della serie di spionaggio di Apple TV, e subito dopo ha aggiunto «never say never»: «But I think that's what we've been told and it definitely feels like we are ending».\n\nApple aveva confermato l'ottava stagione a settembre. Sono sei episodi tratti da «Clown Town», il romanzo del 2025 e l'ultimo uscito della serie Slough House di Mick Herron: con quella stagione la serie raggiunge i libri, e Radio Times ricorda che Herron vuole continuare a scriverli. Secondo Yahoo la settima stagione è attesa nel 2027 e l'ottava nel 2028."
+   },
+   "homepod-mini-2-o-primo-mini": {
+    "title": "HomePod mini 2 o il primo mini: le due cose che giustificano il cambio",
+    "sintesi": "HomePod mini 2 costa 149 dollari e fa due cose che il primo non fa: resta l'altoparlante del Mac, se ha il Wi-Fi 6E, ed entra nel surround dell'Apple TV 4K.",
+    "descrizione": "Fuori è lo stesso HomePod mini, 84,3 per 97,9 millimetri, con dieci grammi in meno. Dentro il chip passa dall'S5 all'S10, i microfoni scendono da quattro a tre, e l'altoparlante resta quello, con i due radiatori passivi. Il confronto di iClarified si ferma su due funzioni che il primo mini non ha.\n\nIl mini 2 può restare l'altoparlante predefinito di un Mac per film, giochi e videochiamate, ma solo se il Mac ha il Wi-Fi 6E o successivo. E può far parte del surround a quattro altoparlanti con l'Apple TV 4K di quarta generazione: quattro mini 2, oppure due HomePod davanti e due mini 2 dietro. Il primo mini non si accoppia in stereo con il nuovo. Siri AI conversazionale sul mini 2 resta senza data. Per musica, timer e luci, conclude iClarified, il vecchio va ancora benissimo."
+   },
+   "black-friday-airpods-pro-3-watch-12": {
+    "title": "AirPods Pro 3 a 179,99 dollari e Apple Watch Series 12 a 329: il Black Friday comincia prima",
+    "sintesi": "Su Amazon negli Stati Uniti le AirPods Pro 3 scendono a 179,99 dollari da 249 e l'Apple Watch Series 12 da 42 mm a 329, il prezzo più basso mai visto.",
+    "descrizione": "Gli sconti del Black Friday su Amazon sono partiti in anticipo, negli Stati Uniti. Le AirPods Pro 3 costano 179,99 dollari invece di 249, novantanove centesimi sopra il minimo toccato in passato, con consegna entro il 20 novembre secondo MacRumors. 9to5Mac ricorda che con iOS 27 hanno guadagnato l'equalizzatore personalizzato, l'integrazione con GymKit e i comandi di Siri AI.\n\nL'Apple Watch Series 12 da 42 mm GPS in alluminio nero scende a 329 dollari, 70 meno del listino di 399 e sotto i 349,99 del Prime Big Deal Days di ottobre: è il prezzo più basso finora, segnala iClarified. Secondo 9to5Mac lo sconto vale anche per i modelli in ceramica Pearl White. Nelle stesse ore l'AirTag 2 è sceso a 17,50 dollari."
+   },
+   "iphone-duo-split-view-app-vecchie": {
+    "title": "Sul Duo le app non aggiornate restano in una cornice. 9to5Mac propone di aprirle in Split View",
+    "sintesi": "Sullo schermo interno del Duo le app ferme a iOS 26 si aprono con le bande nere: 9to5Mac chiede di poterle avviare sempre in Split View, che oggi va scelta a mano ogni volta.",
+    "descrizione": "Dopo circa tre settimane con l'iPhone Duo, l'autore di 9to5Mac nota che molte app, ancora compilate per iOS 26 o versioni precedenti, si aprono sullo schermo interno dentro una cornice nera, senza occupare tutto lo spazio. Si possono già mettere in Split View, ma va chiesto ogni volta, tenendo premuta l'icona.\n\nLa proposta è un'impostazione che le apra sempre affiancate a un'altra app, così che lo schermo grande non resti mezzo vuoto. 9to5Mac chiede anche Slide Over, la finestra che scorre di lato, che sul Duo non c'è. È un suggerimento: nessuna fonte dice che Apple ci stia lavorando."
+   },
+   "iphone-18-pro-max-modem-c2-segnale": {
+    "title": "Con l'iPhone 18 Pro Max il segnale è cambiato, racconta TechRadar. Il merito è del modem C2",
+    "sintesi": "Una giornalista di TechRadar, che dal 2021 vive in una zona con poca copertura, racconta che con l'iPhone 18 Pro Max e il modem C2 di Apple il segnale è migliorato ovunque.",
+    "descrizione": "Dal 2021 l'autrice vive in una zona isolata, dove il segnale mobile va e viene, e gli iPhone degli ultimi anni a volte segnavano il 5G anche quando la rete non c'era. Con l'iPhone 18 Pro Max, scrive su TechRadar, la differenza si nota ovunque: riesce a lavorare in mobilità invece di cercare il Wi-Fi di un treno o di un bar.\n\nAttribuisce il salto al C2, il modem progettato da Apple che debutta con la gamma 18, e non ad altre novità del telefono. Il pezzo non riporta misure: è una prova personale, non un test di laboratorio, anche se il titolo dice che non è l'unica ad averlo notato."
+   },
+   "messaggi-ios-27-novita": {
+    "title": "Messaggi da iOS 26 a iOS 27: cosa è cambiato in un anno",
+    "sintesi": "9to5Mac ripercorre le novità di Messaggi: con iOS 26 sfondi, sondaggi e filtri per gli sconosciuti, con iOS 27 il reinvio automatico dei messaggi falliti e risposte rapide più personali.",
+    "descrizione": "Con iOS 26 Messaggi ha avuto gli sfondi per ogni conversazione, gli indicatori di scrittura nei gruppi, Apple Cash per dividere un conto, i sondaggi, che sui dispositivi con Apple Intelligence può proporre da sé, e i filtri che separano sconosciuti, transazioni, promozioni e spam.\n\niOS 27 ha lavorato soprattutto sull'affidabilità: i messaggi non partiti vengono reinviati da soli, foto e video si mandano senza interruzioni e la sincronizzazione fra dispositivi è migliorata. Sono arrivati anche i suggerimenti con un tocco, che ricavano un promemoria o una nota dalla conversazione, e le risposte rapide che imitano il modo di scrivere di chi le usa. Nel corso dell'anno, ricorda 9to5Mac, è migliorata anche la cifratura end-to-end dei messaggi RCS scambiati con Android."
+   },
+   "gsmarena-giochi-iphone-15-pro-18-pro": {
+    "title": "Tre anni di giochi su iPhone: GSMArena rimette l'iPhone 15 Pro contro il 18 Pro",
+    "sintesi": "GSMArena ha rigiocato sull'iPhone 18 Pro i titoli da console provati tre anni fa sull'iPhone 15 Pro, a partire da Resident Evil Village, per misurare quanto è cresciuta la grafica.",
+    "descrizione": "Tre anni fa l'A17 Pro dell'iPhone 15 Pro ha aperto l'iPhone ai giochi nati per le console, con porting come Resident Evil Village. GSMArena ha ripreso gli stessi titoli e li ha giocati sull'iPhone 18 Pro, mettendolo accanto al vecchio 15 Pro così com'è oggi.\n\nResident Evil Village resta il gioco con più opzioni grafiche fra quelli provati, ed è il confronto più leggibile: lo stesso preset, Prioritize Graphics, sui due telefoni, nella stessa zona del villaggio. Fotogrammi al secondo e risoluzione dei due modelli sono nella prova completa."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 8,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
