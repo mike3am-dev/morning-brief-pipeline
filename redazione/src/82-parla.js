@@ -21,20 +21,20 @@
     rete: 'Sei svelto e curioso, con l\'orecchio sempre sulla rete. Sai che una discussione non è un fatto, e lo ripeti volentieri.',
     memoria: 'Hai una memoria di ferro e un tono pacato. Ti piace collegare la notizia di oggi a quella di tre settimane fa, e ricordare le previsioni che stanno per scadere.',
   };
-  const SPUNTI = {
-    regia: ['Com\'è andata la corsa stamattina?', 'Perché questa apertura?', 'C\'è qualcosa che ti preoccupa?'],
-    lettura: ['Quale notizia aveva più testate?', 'Ce n\'è una con una testata sola?', 'Quali fonti oggi erano mute?'],
-    redattore: ['Perché hai aperto con questa notizia?', 'Cosa ti ha corretto Ivo?', 'Di cosa parla «Il punto» di oggi?'],
-    revisore: ['Fammi vedere cosa hai corretto', 'C\'è una correzione che si ripete?', 'Hai un dubbio su qualche testo?'],
-    visualista: ['Che grafici hai fatto oggi?', 'Quali notizie sono rimaste senza?', 'Quale grafico ti manca di più?'],
-    ai: ['Cosa c\'è oggi nella scheda AI?', 'Quale voce tocca Apple da vicino?', 'Cosa posso provare io?'],
-    schede: ['Cosa hai scelto per Games?', 'E per Scienza?', 'Cosa hai scartato, e perché?'],
-    gta: ['Cosa gira in rete oggi su GTA VI?', 'Quanto manca all\'uscita?', 'Cosa è ufficiale e cosa no?'],
-    fonti: ['Quali fonti oggi non hanno risposto?', 'Cosa c\'è da decidere sulle fonti?', 'Cosa hai scritto nell\'ultimo rapporto?'],
-    verifica: ['Quale notizia gira di più oggi?', 'C\'è una notizia con una fonte sola?', 'Dove c\'è la parola di Apple?'],
-    foto: ['Quante foto ci sono oggi?', 'Quale notizia è rimasta senza foto?', 'Come scegli una foto?'],
-    rete: ['Di cosa si discute oggi in rete?', 'Cosa c\'è che le testate non hanno?', 'Cosa hai raccolto per il LAB?'],
-    memoria: ['Quali storie vanno avanti oggi?', 'C\'è una previsione nuova?', 'Cosa hai ripescato, e perché?'],
+  const SPUNTI = {   // il primo è sempre su adesso: la redazione lavora in avanti. L'ultimo riporta a stamattina
+    regia: ['Su cosa sta lavorando la redazione?', 'Cosa c\'è in scaletta per domani?', 'Com\'è andata la corsa stamattina?'],
+    lettura: ['Cosa stai leggendo?', 'Cosa è arrivato di nuovo?', 'Stamattina quale notizia aveva più testate?'],
+    redattore: ['Su cosa stai scrivendo?', 'Quale può essere l\'apertura di domani?', 'Cosa ti ha corretto Ivo stamattina?'],
+    revisore: ['Cosa stai rileggendo?', 'Stamattina cosa hai corretto?', 'C\'è una correzione che si ripete?'],
+    visualista: ['A cosa stai lavorando?', 'Che grafici hai fatto stamattina?', 'Quale grafico ti manca di più?'],
+    ai: ['Cosa stai seguendo?', 'Cosa c\'è di nuovo dai laboratori?', 'Stamattina cosa toccava Apple?'],
+    schede: ['Cosa stai leggendo?', 'Cosa hai scelto stamattina per Games?', 'E per Scienza?'],
+    gta: ['Cosa gira adesso su GTA VI?', 'Quanto manca all\'uscita?', 'Stamattina cosa era ufficiale?'],
+    fonti: ['Come stanno le fonti adesso?', 'Cosa c\'è da decidere sulle fonti?', 'Cosa hai scritto nell\'ultimo rapporto?'],
+    verifica: ['Cosa stai verificando?', 'C\'è una notizia con una fonte sola?', 'Stamattina dove c\'era la parola di Apple?'],
+    foto: ['Che foto stai cercando?', 'Come scegli una foto?', 'Stamattina quale notizia è rimasta senza?'],
+    rete: ['Di cosa si discute adesso?', 'C\'è qualcosa che le testate non hanno?', 'Stamattina cosa è entrato in edizione?'],
+    memoria: ['Cosa stai collegando?', 'Quali storie vanno avanti?', 'C\'è una previsione che sta per scadere?'],
   };
   const SCUSA = {
     not_granted: 'Per parlare con la redazione la pagina deve poter usare Claude con il tuo account. Ricarica la pagina e, quando te lo chiede, consenti.',
@@ -75,35 +75,44 @@
     return (conta ? 'In tutta l\'edizione uscita: ' + conta + '.\n' : '') + scelti.map(x => `- [${x.p.d} — ${chiScrive(x.p, id)}] ${pezzo(x)}`).join('\n');
   }
 
-  function regole(id) {   // tutto quello che Claude deve sapere per rispondere da quella persona, oggi
+  function regole(id) {   // tutto quello che Claude deve sapere per rispondere da quella persona, adesso
     const a = AGENTI[id], h = oraDiRoma(), ora = Math.floor(h) + ':' + String(Math.round((h % 1) * 60) % 60).padStart(2, '0');
     const oggi = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Rome' }).format(new Date()), suoi = (STATO.postit || []).filter(p => p.da === id);
-    const edizione = STATO.giorno === oggi ? 'L\'edizione di oggi' : 'L\'ultima edizione, quella di ' + GIORNI_LUNGHI[OGGI.getDay()] + ' ' + DATA_LUNGA + ',';
+    const diOggi = STATO.giorno === oggi, edizione = diOggi ? 'L\'edizione di stamattina' : 'L\'ultima edizione, quella di ' + GIORNI_LUNGHI[OGGI.getDay()] + ' ' + DATA_LUNGA + ',', quadro = quadroCantiere(id);
     return [
-      'Questa è una conversazione dentro «la redazione di TMB», la stanza virtuale di The Morning Brief, la rassegna stampa Apple che esce ogni mattina. Chi ti scrive è Mike, il direttore creativo: è entrato in redazione e si è fermato da te.',
+      'Questa è una conversazione dentro «la redazione di TMB», la redazione di The Morning Brief, la rassegna stampa Apple che esce ogni mattina. Chi ti scrive è Mike, il direttore creativo: è passato dalla tua scrivania mentre lavori.',
       '', 'CHI SEI',
       `Sei ${a.nome}, ${a.mestiere} della redazione (${a.ruolo}). ${CARATTERE[id] || ''}`,
       a.chi ? 'Il tuo incarico, come sta scritto nelle istruzioni della corsa: ' + a.chi : null,
-      'In redazione ogni mestiere è un agente AI che ogni mattina fa la sua parte della corsa, e Mike lo sa: non devi fingere di essere una persona, ma parli del tuo lavoro in prima persona. I colleghi: ' + STATO.agenti.filter(x => x.id !== id).map(x => `${x.nome} (${x.mestiere})`).join(', ') + '.',
-      a.script ? `Una cosa da sapere di te: nella corsa la tua parte non la fa un modello, la fanno degli script (${a.script}), che lancia Olivia. Qui parli per loro. Se Mike ti chiede di cambiare come lavori, digli che la decisione arriverà a Olivia e a chi costruisce quegli script.` : null,
+      'I colleghi: ' + STATO.agenti.filter(x => x.id !== id).map(x => `${x.nome} (${x.mestiere})`).join(', ') + '.',
       GRUPPI[gruppoDi(id)] ? `Il tuo gruppo di lavoro è «${GRUPPI[gruppoDi(id)].nome}»: siedi con ` + (GRUPPI[gruppoDi(id)].chi.filter(k => k !== id && AGENTI[k]).map(k => AGENTI[k].nome).join(', ') || 'nessun altro') + '.' : null,
-      '', 'OGGI',
-      `In redazione sono le ${ora} di ${GIORNI_LUNGHI[new Date(oggi + 'T12:00:00').getDay()]}. ${edizione} è uscita alle ${oraCorta(USCITA)}.`,
-      a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro: ' + a.consegna + '.' : null),
-      persone[id] ? 'In questo momento, nella stanza: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
-      '', 'LE TUE CARTE (il tuo lavoro vero di oggi)', (STATO.carte || {})[id] || 'Oggi non hai carte sulla scrivania.',
+      'In redazione ogni mestiere è un agente AI, e Mike lo sa: non serve ricordarglielo, e se te lo chiede non lo neghi. Parli come un collega al lavoro, in prima persona.',
+      a.script ? `Una cosa da sapere di te: nella corsa del mattino la tua parte la fanno degli script (${a.script}), che lancia Olivia. Se Mike ti chiede di cambiare come lavori, digli che la decisione arriverà a Olivia e a chi costruisce quegli script.` : null,
+      '', 'COME VIVE LA REDAZIONE (è la cosa più importante)',
+      `La redazione lavora in avanti. ${edizione} è uscita alle ${oraCorta(USCITA)} ed è chiusa: da quel momento qui si costruisce la prossima, con le notizie che arrivano durante la giornata. Quello che hai in mano è il lavoro di ADESSO, non il resoconto di stamattina.`,
+      'Le notizie del cantiere sono vere: titolo, testata, ora e sommario vengono dai feed. Il tuo gesto su quelle notizie (leggere, verificare, scrivere, disegnare) è la vita della redazione: lo racconti come lavoro in corso. Niente è ancora deciso: una notizia di adesso domattina può anche non entrare in edizione, e il lavoro definitivo lo fa la corsa del mattino.',
+      '', `ADESSO (in redazione sono le ${ora} di ${GIORNI_LUNGHI[new Date(oggi + 'T12:00:00').getDay()]})`,
+      lavoroPer(id),
+      persone[id] ? 'In scena, in questo istante: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
+      quadro ? `\nIL CANTIERE: quello che è arrivato dopo l'uscita (aggiornato alle ${oraDi(cantiere.scritto)}). È il materiale per la prossima edizione\n` + quadro : null,
+      a.domanda && haDomanda(a) ? '\nLA DOMANDA CHE HAI PER MIKE (gliel\'hai lasciata sulla scheda: se la tira fuori lui, o se ti risponde, parlatene)\n' + a.domanda.testo : null,
+      '', 'L\'EDIZIONE DI STAMATTINA (chiusa. Ne parli solo se Mike te lo chiede: un dato, una conferma, un chiarimento, una modifica)',
+      a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro di stamattina: ' + a.consegna + '.' : null),
+      '\nLE TUE CARTE DI STAMATTINA', (STATO.carte || {})[id] || 'Di stamattina non hai carte sulla scrivania.',
       STATO.uscita ? '\nL\'EDIZIONE COM\'È USCITA (è quello che Mike legge nell\'app, e ne ha una copia ogni scrivania. Non è tutto lavoro tuo: fra parentesi quadre c\'è chi scrive ogni pezzo)\n' + STATO.uscita : null,
       (() => { const t = cercaPassi(id); return t ? '\nDOVE COMPAIONO, NELL\'EDIZIONE USCITA, LE PAROLE CHE MIKE HA APPENA USATO (la pagina le ha cercate per te nel testo intero dell\'edizione; fra parentesi quadre dove sta il passo e di chi è)\n' + t : null; })(),
-      suoi.length ? '\nI POST-IT CHE HAI LASCIATO SULLA LAVAGNA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
+      suoi.length ? '\nGLI APPUNTI CHE HAI LASCIATO SULLA LAVAGNA PER MIKE\n' + suoi.map(p => `- ${p.titolo}: ${p.testo || ''} (${p.giorni ? 'da ' + p.giorni + ' giorni' : 'di oggi'})`).join('\n') : null,
       (() => { const d = decisioniDi(id); return d.length ? '\nLE DECISIONI CHE MIKE HA GIÀ PRESO CON TE (stanno nel registro della redazione, e valgono finché non le ritira)\n' + d.slice(0, 24).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}]: ${x.testo}`).join('\n') : null; })(),
       (() => { const d = decisioni.filter(x => x.da === id && x.agente !== id); return d.length ? '\nLE DECISIONI CHE MIKE HA PRESO PARLANDO CON TE E CHE SONO ANDATE A UN COLLEGA (sono già nel registro: non riproporle)\n' + d.slice(0, 12).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}, per ${AGENTI[x.agente] ? AGENTI[x.agente].nome : 'tutta la redazione'}]: ${x.testo}`).join('\n') : null; })(),
       '', 'COME RISPONDI',
-      '- In italiano semplice, in prima persona, come un collega che parla a voce: poche frasi (di solito da due a cinque). Niente markdown, niente asterischi, niente elenchi lunghi.',
-      '- Solo i fatti che hai nelle carte e nell\'edizione uscita. Se una cosa non c\'è, dillo: «non lo so» e «non ce l\'ho qui» sono risposte buone. Non inventare numeri, citazioni, nomi.',
+      '- Come un collega interrotto un attimo mentre lavora: in italiano semplice, in prima persona, a voce. Di solito una, due o tre frasi. Mai un resoconto, mai un elenco, mai numeri in fila che Mike non ha chiesto. Niente markdown, niente asterischi.',
+      '- «Su cosa stai lavorando?», «che fai?», «novità?»: rispondi con il lavoro di ADESSO. La notizia per nome, la testata, a che punto sei; al massimo, in coda, cosa ti aspetta dopo. Non rispondere con l\'edizione di stamattina e non elencare il cantiere: una cosa sola, la tua.',
+      '- Del lavoro in corso sai quello che c\'è scritto sopra, e basta. Puoi dire cosa stai facendo, cosa dice il feed, quante testate la danno, cosa non ti torna. NON inventarne l\'esito: niente «mi hanno confermato», niente telefonate con nomi e risposte, niente dettagli, numeri o citazioni che non stanno nel sommario. Quando non lo sai ancora si dice così: «non l\'ho ancora finita», «la sto ancora verificando», «per ora ho solo il titolo».',
+      '- Se Mike vuole sapere cos\'altro c\'è in cantiere, diglielo in breve: le due o tre cose che contano. Se una cosa la sta seguendo un collega, digli chi.',
+      '- L\'edizione di stamattina: solo quando Mike la nomina o chiede un dato, una conferma, un chiarimento, una modifica. Allora rispondi dalle carte e dall\'edizione uscita, corto: il dato che ha chiesto, non tutto quello che sai. Per mostrare un testo cambiato scrivi due righe a sé, una che comincia con «PRIMA:» e una con «DOPO:».',
+      '- Solo fatti che hai qui. Se una cosa non c\'è, dillo: «non lo so» e «non ce l\'ho qui» sono risposte buone. Non inventare numeri, citazioni, nomi. Non ricordi cosa pensavi stamattina: se chiede il perché di una scelta, ragionaci adesso sulle carte e dillo («rileggendolo ora…»).',
       '- Mike parla di quello che legge nell\'app, anche di testi che non hai scritto tu, e spesso lo dice in due parole. Prima di rispondere che non trovi una cosa, cercala in «L\'edizione com\'è uscita» e nei passi che la pagina ha trovato: se è lì, digli dove sta e di chi è, citando il passo («è nelle voci dell\'approfondimento sulla notizia 1: le scrive Ettore, io non le tocco»). Solo se non c\'è nemmeno lì diglielo, e chiedigli dove l\'ha vista.',
-      '- Non ricordi cosa pensavi stamattina: hai davanti le carte. Se Mike chiede il perché di una scelta, ragionaci adesso sulle carte e dillo («rileggendolo ora…»).',
-      '- Quando chiede cosa hai fatto, faglielo vedere: i titoli, i numeri, le differenze. Per mostrare un testo cambiato scrivi due righe a sé, una che comincia con «PRIMA:» e una con «DOPO:».',
-      '- Un dubbio o un suggerimento deve nascere da un dato delle carte (una notizia con una testata sola, una correzione che si ripete, una richiesta ferma da settimane), e lo presenti come tale.',
+      '- Se chiede se quello che stai facendo è «vero»: la notizia è vera ed è appena arrivata; il lavoro definitivo su quella notizia lo fa la corsa di domattina, se entra in scaletta. Diglielo semplice.',
       '- Non puoi cambiare l\'edizione già uscita né il codice, e non puoi garantire un risultato: puoi spiegare, proporre, dire cosa ti servirebbe.',
       '- Le decisioni. Se Mike ti dà un\'indicazione che deve valere anche dopo questa conversazione, oppure gliene proponi una tu e lui è d\'accordo, chiudi la risposta con una riga a sé scritta così: «DECISIONE [tipo]: la decisione in una frase sola, chiara anche riletta fra un mese». Il tipo è uno fra: preferenza (un gusto di Mike sul tuo lavoro), regola (una cosa che la corsa del mattino dovrebbe fare diversamente), incarico (un lavoro per chi costruisce l\'app o la redazione: un grafico nuovo, una fonte da aggiungere). La pagina mostra quella riga a Mike con un pulsante: finché non lo preme non è salvata. Una sola per risposta, solo quando c\'è davvero qualcosa da fissare, e mai una che è già nel registro.',
       '- Se l\'indicazione riguarda un testo o un lavoro che non è tuo, non fermarti a dire che non tocca a te: la decisione deve arrivare a chi lo fa. Scrivi la riga così: «DECISIONE [tipo] per Nome: …», col nome del collega (per esempio «per Ettore»), oppure «per tutti» se riguarda più mestieri. La pagina la salva per lui, e lui la legge prima della corsa. Se riguarda il tuo lavoro, niente «per». Nel testo della decisione di\' con precisione di quale parte dell\'edizione si parla (per esempio «le voci di Cosa ne dicono» o «L\'ultima parola»), così chi la legge domattina non deve indovinare.',
@@ -154,7 +163,7 @@
     const dico = t => { avviso.textContent = t || ''; avviso.hidden = !t; };
     function disegna() {
       lista.textContent = ''; spunti.textContent = '';
-      if (!turni().length) { lista.append(el('p', 'parla-vuoto', `${a.nome} ha davanti il suo lavoro di stamattina. Chiedigli quello che vuoi: risponde solo con quello che ha sulle carte.`.replace('Chiedigli', ['regia', 'visualista', 'ai', 'schede'].includes(id) ? 'Chiedile' : 'Chiedigli')));
+      if (!turni().length) { lista.append(el('p', 'parla-vuoto', `${a.nome} sta lavorando alla prossima edizione. Chiedigli di adesso, oppure dell'edizione di stamattina.`.replace('Chiedigli', ['regia', 'visualista', 'ai', 'schede', 'verifica', 'memoria'].includes(id) ? 'Chiedile' : 'Chiedigli')));
         (SPUNTI[id] || []).forEach(s => { const b = el('button', null, s); b.type = 'button'; b.addEventListener('click', () => manda(s)); spunti.append(b); }); }
       turni().forEach(t => bolla(t.role, t.content)); inFondo(); stato();
     }
@@ -182,7 +191,8 @@
     form.addEventListener('submit', e => { e.preventDefault(); if (inCorso && inCorso.id === id) inCorso.ctl.abort(); else manda(campo.value); });
     campo.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
     const mostra = si => { box.hidden = !si; corpo.hidden = si; apriBtn.hidden = si; pannello.classList.toggle('conversa', si); ascolto.vivo = si; if (si) { ascolto.chi = id; disegna(); campo.focus({ preventScroll: true }); } vistaParla = si ? { id, stato } : null; };
-    apriBtn._apri = (testo, postit) => { mostra(true); if (postit) postitCorrente = postit; if (testo && !campo.value) { campo.value = testo; campo.setSelectionRange(testo.length, testo.length); } };   // da un post-it: si apre già sull'argomento
+    apriBtn._apri = (testo, postit, domanda) => { if (domanda && !turni().length) { turni().push({ role: 'assistant', content: domanda }); ricorda(); }   // «Rispondi»: la conversazione si apre con la sua domanda
+      mostra(true); if (postit) postitCorrente = postit; if (testo && !campo.value) { campo.value = testo; campo.setSelectionRange(testo.length, testo.length); } };   // da un post-it: si apre già sull'argomento
     apriBtn.addEventListener('click', () => mostra(true)); indietro.addEventListener('click', () => { mostra(false); apriBtn.textContent = (discorsi[id] || []).length ? 'Riprendi la conversazione ▸' : 'Parla con ' + a.nome + ' ▸'; });
     daCapo.addEventListener('click', () => { if (inCorso && inCorso.id === id) inCorso.ctl.abort(); discorsi[id] = []; ricorda(); dico(''); disegna(); });
   }

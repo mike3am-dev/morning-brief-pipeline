@@ -684,3 +684,37 @@ Cosa è cambiato:
 **Da sapere.** La conversazione vera con Claude l'ho provata solo con la voce finta (`?finto=1`):
 che Ivo, con i passi davanti, risponda bene e proponga la decisione per Ettore lo vede Mike su
 claude.ai. Se la routine del mattino trova il registro uguale al file, non fa niente: va bene così.
+
+
+## 16 novembre 2026 — la versione 15: la scheda essenziale, e la redazione che lavora in avanti
+
+Mike, con due schermate (la scheda di Lea e una risposta di Nora): la scheda è «una spatafiata di informazioni che
+non leggerò mai»; e gli agenti sono «tutti attaccati all'edizione pubblicata, invece l'ufficio dovrebbe lavorare in
+avanti… sta costruendo la prossima edizione». Nora, alla domanda «su cosa stai lavorando?», aveva risposto con quattro
+paragrafi sulle dodici notizie di stamattina.
+
+**La scheda.** Restano: il primo piano, «Parla con», una riga su cosa fa e con chi lavora, «In questo momento» (il
+compito, da quanto, a che ora è uscita la notizia, cosa viene dopo; e «in questo istante» solo se non è alla
+scrivania), la domanda per Mike se ce n'è una. Tolti: i gesti da provare, i numeri di stamattina, gli elenchi, i
+post-it uno per uno, il testo in fondo. Le decisioni prese con quella persona sono una riga che apre il registro.
+
+**La domanda per Mike.** Una per persona, detta da collega: non più «81 richieste di grafici nuovi, ancora aperte»
+ma «Ogni tanto resto senza il grafico giusto… L'ultimo caso: «…». Ne scegliamo un paio da far costruire?». «Rispondi»
+apre la conversazione con la domanda come prima battuta. Chi aspetta una risposta ha il pallino rosso che pulsa
+accanto al nome, nella stanza; quando la risposta è nel registro, si spegne.
+
+**Il cantiere.** `redazione/cantiere.py` legge i feed e tiene quello che è uscito dopo la raccolta del mattino. La
+prima prova, alle 9:40 di lunedì, ha insegnato una cosa: a metà mattina le testate italiane ripubblicano le notizie
+che noi abbiamo dato alle sei (gli occhiali, il Face ID del Duo 2, lo studio sull'AI per la salute). Non sono lavoro
+nuovo: sono **riprese**, e il cantiere le riconosce dal titolo e le tiene a parte. Così Nora «conta chi riprende»
+la nostra notizia, Clio aggancia la ripresa al filo, e solo le notizie davvero nuove vanno a chi legge, scrive,
+disegna e cerca le foto. Quel lunedì alle 9:40 di nuova ce n'era una sola, ed è giusto così.
+
+**Come rispondono.** Le regole (`regole` in `82-parla.js`) ora partono da «come vive la redazione»: l'edizione è
+chiusa, si lavora alla prossima; poi il compito di adesso con la notizia per esteso, il cantiere, i colleghi; e solo
+dopo l'edizione di stamattina, «ne parli solo se Mike te lo chiede». Risposte da una a tre frasi. Del lavoro in corso
+non si inventa l'esito.
+
+**Da sapere.** La conversazione vera l'ho provata solo con la voce finta: come suonano le risposte lo sente Mike su
+claude.ai. I titoli inglesi li traduce la routine (un modello); le riprese si riconoscono per somiglianza dei
+titoli, e ogni tanto sbaglieranno. Le discussioni vengono da Reddit, che a volte non risponde: restano le ultime.

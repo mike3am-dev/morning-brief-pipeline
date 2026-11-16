@@ -294,8 +294,9 @@ def postit(giorno, brief):
         aperte.sort(key=lambda r: r.get("data", ""))
         piu_vecchia = aperte[0]["data"]
         out.append({"id": "visivi-mazzo", "da": "visualista",
-                    "titolo": f"{len(aperte)} richieste di grafici nuovi, ancora aperte",
-                    "testo": "La più vecchia è del " + piu_vecchia + ".",
+                    "titolo": "Grafici che l'app non sa ancora disegnare",
+                    "testo": f"Dal {data(piu_vecchia).day}/{data(piu_vecchia).month} mi è capitato {len(aperte)} volte di non avere "
+                             "il grafico giusto per una notizia, e l'ho lasciata senza. Sotto, gli ultimi tre casi.",
                     "dal": piu_vecchia, "giorni": (oggi - data(piu_vecchia)).days,
                     "mazzo": len(aperte), "fonte": "data/visivi/richieste.json"})
         for r in aperte[-3:][::-1]:
@@ -336,6 +337,27 @@ def postit(giorno, brief):
                                  + taste["last_report"] + ".",
                         "dal": scade.isoformat(), "giorni": (oggi - scade).days,
                         "fonte": "data/taste.json"})
+    return out
+
+
+def domande(pi):
+    """Una domanda sola per persona, detta come la direbbe un collega: è quello che la scheda mostra a Mike, e il
+    pallino rosso accanto al nome. Nasce dai post-it (cioè da cose davvero aperte nei file della corsa)."""
+    out = {}
+    casi = [x for x in pi if x["da"] == "visualista" and x.get("notizia")]
+    if casi:
+        caso = re.sub(r"^Un grafico per:\s*", "", casi[0]["titolo"])
+        out["visualista"] = {"postit": casi[0]["id"], "testo": "Ogni tanto resto senza il grafico giusto, perché l'app non lo sa ancora disegnare. "
+                             f"L'ultimo caso: «{caso}». Ne scegliamo un paio da far costruire?"}
+    fonti = [x for x in pi if x["da"] == "fonti"]
+    if fonti:
+        n = len(fonti)
+        out["fonti"] = {"postit": fonti[0]["id"], "testo": ("Nel rapporto sulle fonti c'è una cosa da decidere" if n == 1 else f"Nel rapporto sulle fonti ci sono {n} cose da decidere")
+                        + ". La prima: " + taglia(re.split(r"\s+—\s+|\.\s|:\s", fonti[0]["testo"])[0], 150).rstrip(".") + ". Che facciamo?"}
+    gusto = next((x for x in pi if x["id"] == "gusto-briefing"), None)
+    if gusto:
+        out["regia"] = {"postit": gusto["id"], "testo": "È un po' che non guardiamo insieme cosa sta sparendo dalla rassegna, e perché. "
+                        "Di solito lo facciamo ogni due settimane: troviamo dieci minuti?"}
     return out
 
 
@@ -397,7 +419,7 @@ def stato(giorno):
     # --- le consegne, agente per agente
     lunedi = data(giorno).weekday() == 0
     pi = postit(giorno, brief)
-    da_chi = {x["da"] for x in pi}
+    dom = domande(pi)
     agenti = []
     for a in ROSTER:
         r = (reg or {}).get(a["id"])
@@ -408,7 +430,7 @@ def stato(giorno):
              "entrata": ora_locale(r.get("inizio")) if r else None,
              "uscita": ora_locale(r.get("fine")) if r else None,
              "chi": chi_e(a["file"]) or a.get("voce"), "consegna": None, "dettagli": [],
-             "ti_aspetta": a["id"] in da_chi}
+             "ti_aspetta": a["id"] in dom, "domanda": dom.get(a["id"])}
         st = None
 
         if a.get("dal") and giorno < a["dal"]:

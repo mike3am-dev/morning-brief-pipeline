@@ -34,9 +34,8 @@
   // nella scheda di una persona: le decisioni prese con lei
   function bloccoDecisioni(id) {
     const b = el('div', 'blocco'), a = AGENTI[id];
-    const riempi = () => { const d = decisioniDi(id); b.textContent = ''; b.hidden = !d.length; if (!d.length) return;
-      b.append(el('h3', null, 'Deciso con ' + a.nome)); d.slice(0, 4).forEach(x => { const r = el('div', 'postit decisa'); r.append(el('strong', null, x.testo), el('small', null, dataCorta(x.quando) + ' · ' + (TIPI_DECISIONE[x.tipo] || 'preferenza'))); b.append(r); });
-      const tutto = el('button', 'parla-indietro', d.length > 4 ? `Tutte e ${d.length} nel registro ▸` : 'Apri il registro ▸'); tutto.type = 'button'; tutto.addEventListener('click', () => apri('decisioni')); b.append(tutto); };
+    const riempi = () => { const d = decisioniDi(id); b.textContent = ''; b.hidden = !d.length; if (!d.length) return;   // una riga sola: il resto è nel registro
+      const tutto = el('button', 'parla-indietro', (d.length === 1 ? 'Una decisione presa con ' : d.length + ' decisioni prese con ') + a.nome + ' ▸'); tutto.type = 'button'; tutto.addEventListener('click', () => apri('decisioni')); b.append(tutto); };
     riempi(); vistaDecisioniAgente = riempi; return b;
   }
   // un post-it per Mike (quelli sulla lavagna): si risponde parlando con chi l'ha lasciato, o annotando una decisione se oggi non c'è
@@ -75,7 +74,9 @@
   // il registro sul tavolo di Mike: l'etichetta porta il numero delle decisioni
   ancore.decisioni = new THREE.Vector3(MIKE[0] + 0.84, ALTO_TL + 0.3, MIKE[1] + 0.3); ancore.prima = new THREE.Vector3(MIKE[0] - 0.5, ALTO_TL + 0.42, MIKE[1] - 0.1);
   etichetta('decisioni', 'Il registro', 'le tue decisioni', VERDE); etichetta('prima', 'La prima pagina', 'sul tavolo luminoso', C.orange);
-  const promemoria = el('span'); document.getElementById('saluto').append(promemoria);   // nel benvenuto: quante decisioni hai nel registro
+  saluta(); aggiornaAttese();   // adesso che il registro c'è: il benvenuto, e i pallini rossi di chi aspetta una risposta
+  quandoCambiaRegistro(() => { aggiornaAttese(); saluta(); }); quandoCambiaCantiere(() => { saluta(); if (vistaLavoro) vistaLavoro(); });
+  const promemoria = el('span', 'promemoria'); document.getElementById('saluto').append(promemoria);   // nel benvenuto: quante decisioni hai nel registro
   quandoCambiaRegistro(() => { tags.decisioni.nomeNodo.textContent = decisioni.length ? 'Il registro · ' + decisioni.length : 'Il registro'; if (vistaRegistro) vistaRegistro(); if (vistaDecisioniAgente) vistaDecisioniAgente();
     const quante = {}; decisioni.forEach(d => { quante[d.agente] = (quante[d.agente] || 0) + 1; }); aggiornaNoteVerdi(quante); sporca = true;
     promemoria.textContent = ''; if (decisioni.length) { const b = el('button', null, decisioni.length === 1 ? 'una decisione' : decisioni.length + ' decisioni'); b.type = 'button'; b.addEventListener('click', () => apri('decisioni')); promemoria.append(document.createTextNode(' Nel registro hai '), b, document.createTextNode('.')); } });
@@ -100,6 +101,7 @@
   function collegaRegistro(db) {
     archivio = db || null; if (!db) { registro = 'assente'; return cambiaRegistro(); }
     if (db.doc) try { db.doc('stato/corrente').onSnapshot(foto => { if (foto.exists) statoNuovo(foto.data()); }, () => {}); } catch (e) { /* senza ascolto si aggiorna alla prossima apertura */ }
+    if (db.doc) try { db.doc('stato/cantiere').onSnapshot(foto => { if (foto.exists) cantiereNuovo(foto.data()); }, () => {}); } catch (e) { /* idem: resta il cantiere con cui la pagina è nata */ }
     const timer = setTimeout(() => { if (registro === 'attesa') { registro = 'lento'; cambiaRegistro(); } }, 10000);
     db.collection('decisioni').orderBy('quando', 'desc').limit(300).onSnapshot(
       snap => { if (!snap.metadata.fromCache) clearTimeout(timer); registro = 'pronto'; decisioni = snap.docs.map(d => ({ ...d.data(), id: d.id })); cambiaRegistro(); },

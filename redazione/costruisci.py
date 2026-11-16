@@ -32,7 +32,15 @@ def main():
     if "/*__STATO__*/" in testo:
         if not giorno:
             sys.exit("Nessuna edizione in data/briefs.")
-        dati = json.dumps(S.stato(giorno), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        stato = S.stato(giorno)
+        try:   # il cantiere (redazione/cantiere.py): le notizie arrivate dopo l'edizione. Dal vivo arriva dall'archivio
+            with open(os.path.join(QUI, "stato", "cantiere.json"), encoding="utf-8") as f:
+                cantiere = json.load(f)
+            if cantiere.get("edizione") == giorno:
+                stato["cantiere"] = cantiere
+        except (OSError, ValueError):
+            pass
+        dati = json.dumps(stato, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
         testo = testo.replace("/*__STATO__*/", "const STATO_FISSO = " + dati + ";")
     uscita = os.path.join(QUI, "app", "redazione.html")
     with open(uscita, "w", encoding="utf-8") as f:

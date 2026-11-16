@@ -1583,6 +1583,30 @@ chi risponde scrive «DECISIONE [regola] per Ettore: …», la pagina la salva p
 segna con chi Mike stava parlando (`da`). Se Mike dice che una cosa detta in redazione non ha
 funzionato, si sistema tutta la catena, fino alla regola scritta che la causa.
 
+**La redazione lavora in avanti** (16 novembre 2026, Mike: «l'ufficio dovrebbe lavorare in avanti… sta costruendo la
+prossima edizione. Piuttosto sono io che li interrogo sull'edizione passata»). Fino a quel giorno ogni scrivania
+parlava solo dell'edizione uscita, con resoconti lunghi. Ora:
+
+- **Il cantiere** (`redazione/cantiere.py`): le notizie VERE uscite dopo la raccolta del mattino, lette dai feed in
+  memoria (non scrive niente in `data/`, non fa parte della corsa). Toglie quello che abbiamo già dato, unisce le
+  testate sullo stesso fatto, divide per reparto (notizie Apple, AI, LAB, concorrenza, Games, Scienza, GTA VI, radar,
+  discussioni) e distingue le notizie **nuove** dalle **riprese** (`seg`: un'altra testata che dà adesso una notizia
+  uscita da noi stamattina). Sta nell'archivio della pagina, documento `stato/cantiere`.
+- **Il lavoro di ognuno** (`redazione/src/79-cantiere.js`): dal cantiere ogni persona prende le sue voci e ne fa il
+  compito di adesso, con da quanto ci lavora e cosa viene dopo; ogni tanto passa al compito successivo, ognuno col
+  suo passo. Vero è il materiale (titolo, testata, ora, quante testate); il gesto è verosimile, e **nessuno ne
+  inventa l'esito** («mi hanno confermato» non si dice mai). Se per un reparto non è arrivato niente, aspetta e lo dice.
+- **Come rispondono**: da colleghi interrotti mentre lavorano, una-tre frasi, il lavoro di ADESSO per primo.
+  Dell'edizione di stamattina parlano solo se Mike chiede (un dato, una conferma, un chiarimento, una modifica).
+- **La scheda** è essenziale: «Parla con», di cosa si occupa, cosa fa adesso (da quanto, e poi), e **una domanda sola
+  per Mike**, detta da collega (`domande` in `redazione/stato.py`: nasce dai post-it, cioè da cose davvero aperte).
+  Chi ha una domanda ha **un pallino rosso che pulsa** accanto al nome; si spegne quando Mike risponde e la risposta
+  finisce nel registro. Niente più elenco dei gesti né resoconto: quello si chiede a voce.
+- **La routine** «The Morning Brief — la redazione: il cantiere» (prompt in `routine/redazione-cantiere.md`) rifà il
+  cantiere ogni due ore, dalle 6:40 alle 22:40 (in UTC: `40 5,7,9,11,13,15,17,19,21 * * *`), traduce i titoli inglesi
+  e scrive `stato/cantiere`. La pagina lo ascolta e cambia lavoro senza ricaricare. Non fa commit e non tocca il
+  repository. Se si spegne, la redazione resta sull'ultimo cantiere, e il giorno dopo aspetta.
+
 **La routine che tiene tutto collegato** è «The Morning Brief — la redazione: registro e
 modellino» (`trig_01KDe8UemP2NtpCnuZwnZsQE`, prompt in `routine/redazione-registro.md`), alle
 04:15, 05:15 e 06:15 UTC: copia il registro in `data/redazione/decisioni.json` prima della corsa
@@ -1648,6 +1672,8 @@ redazione/stato.py       lo stato della redazione di TMB per un giorno, ricavato
 redazione/aggiorna.py    prepara lo stato da scrivere nell'archivio della redazione (lo usa la routine che la tiene aggiornata)
 redazione/carte.py       le carte sulla scrivania di ogni agente: il suo lavoro del giorno in testo, per quando Mike gli parla;
                          più l'edizione com'è uscita (`uscita`) e tutti i suoi testi (`passi`), uguali per tutti
+redazione/cantiere.py    il cantiere: le notizie uscite dopo l'edizione, su cui la redazione lavora in avanti (feed in memoria,
+                         niente in data/); lo lancia la routine del cantiere ogni due ore
 redazione/muro.py        i dati del muro delle notizie della redazione: la mappa (sedi delle testate, origine delle notizie),
                          la borsa, le discussioni, i canali; una testata nuova va aggiunta a SEDI
 redazione/src/           la pagina della redazione, a pezzi; redazione/costruisci.py li compone in redazione/app/redazione.html

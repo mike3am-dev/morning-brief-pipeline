@@ -8,10 +8,15 @@
 const entro = (p, ms) => Promise.race([p, new Promise(r => setTimeout(() => r(null), ms))]);
 const valido = d => !!(d && d.giorno && d.scritto && d.corsa && Array.isArray(d.agenti) && Array.isArray(d.lavagna) && d.lavagna.length && d.schermo && d.macchine);
 let STATO = STATO_FISSO;
+/* Il cantiere: le notizie arrivate dopo l'edizione, su cui la redazione lavora in avanti (redazione/cantiere.py). Sta in un
+   documento suo, «stato/cantiere», che durante il giorno si riscrive da solo: qui si prende il più fresco che c'è. */
+let CANTIERE = STATO_FISSO.cantiere || null;
 try {
   const db0 = window.claude && typeof window.claude.use === 'function' ? await entro(window.claude.use('db'), 2000) : null;
-  const foto = db0 ? await entro(db0.doc('stato/corrente').get(), 2500) : null, d = foto && foto.exists ? foto.data() : null;
+  const [foto, foto2] = db0 ? await Promise.all([entro(db0.doc('stato/corrente').get(), 2500), entro(db0.doc('stato/cantiere').get(), 2500)]) : [null, null];
+  const d = foto && foto.exists ? foto.data() : null, c = foto2 && foto2.exists ? foto2.data() : null;
   if (valido(d) && d.scritto > (STATO_FISSO.scritto || '')) STATO = JSON.parse(JSON.stringify(d));
+  if (c && c.scritto && (!CANTIERE || c.scritto > CANTIERE.scritto)) CANTIERE = JSON.parse(JSON.stringify(c));
 } catch (e) { console.warn('stato dall\'archivio non letto', e); }
 const GIORNI = ['DOM', 'LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB'];
 const GIORNI_LUNGHI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
