@@ -1602,10 +1602,14 @@ parlava solo dell'edizione uscita, con resoconti lunghi. Ora:
   per Mike**, detta da collega (`domande` in `redazione/stato.py`: nasce dai post-it, cioè da cose davvero aperte).
   Chi ha una domanda ha **un pallino rosso che pulsa** accanto al nome; si spegne quando Mike risponde e la risposta
   finisce nel registro. Niente più elenco dei gesti né resoconto: quello si chiede a voce.
-- **La routine** «The Morning Brief — la redazione: il cantiere» (prompt in `routine/redazione-cantiere.md`) rifà il
-  cantiere ogni due ore, dalle 6:40 alle 22:40 (in UTC: `40 5,7,9,11,13,15,17,19,21 * * *`), traduce i titoli inglesi
-  e scrive `stato/cantiere`. La pagina lo ascolta e cambia lavoro senza ricaricare. Non fa commit e non tocca il
-  repository. Se si spegne, la redazione resta sull'ultimo cantiere, e il giorno dopo aspetta.
+- **La routine del cantiere non c'è ancora** (16 novembre 2026): è pronta, col prompt in
+  `routine/redazione-cantiere.md`, ma crearla vuol dire un lavoro automatico ricorrente sull'account di Mike, e serve
+  il suo sì esplicito. Il progetto: ogni due ore dalle 6:40 alle 22:40 (in UTC `40 5,7,9,11,13,15,17,19,21 * * *`),
+  stesso ambiente e stessi strumenti della routine del registro, nessun connettore; rifà il cantiere, traduce i titoli
+  inglesi e scrive `stato/cantiere`, senza commit e senza toccare il repository. La pagina ascolta quel documento e
+  cambia lavoro senza ricaricare. Finché non c'è, il cantiere si rifà a mano dal Mac (`python3 redazione/cantiere.py`,
+  poi `--tradotti`, poi la scrittura nell'archivio); senza un cantiere dell'edizione del giorno la redazione lo dice
+  («oggi il cantiere non è arrivato») e resta sulle carte di stamattina.
 
 **La routine che tiene tutto collegato** è «The Morning Brief — la redazione: registro e
 modellino» (`trig_01KDe8UemP2NtpCnuZwnZsQE`, prompt in `routine/redazione-registro.md`), alle

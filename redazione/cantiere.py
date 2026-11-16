@@ -40,7 +40,7 @@ TETTI = {"notizie": 10, "ai": 5, "lab": 3, "banco": 3, "games": 4, "scienza": 4,
 # offerte e servizio: non sono lavoro per l'edizione di domani
 RUMORE = re.compile(r"(?i)\b(offert[ae]|sconto|sconti|scontat[oaie]|deal[s]?|% off|black friday|cyber monday|coupon|prezzo più basso|"
                     r"lowest price|save \$|giveaway|sponsor(ed|izzato)?|how to watch|dove vedere|wallpaper|sfondi|imperdibil[ei]|"
-                    r"costa solo|a soli|minimo storico|migliori .{3,40}\(20\d\d\)|best .{3,40} (of|in) 20\d\d|funniest|quiz|oroscopo)\b|€")
+                    r"costa (solo|appena|meno|pochissimo)|a soli|in offerta|in sconto|prezzo (minimo|bomba|folle|shock|stracciato)|minimo storico|migliori .{3,40}\(20\d\d\)|best .{3,40} (of|in) 20\d\d|funniest|quiz|oroscopo)\b|€")
 # le testate che parlano solo di Apple: le altre entrano fra le notizie solo se nominano Apple nel titolo
 SOLO_APPLE = {"Apple Newsroom", "Apple Developer", "Apple Developer Releases", "9to5Mac", "MacRumors", "Macitynet", "iSpazio",
               "AppleInsider", "iClarified", "iPhone Italia"}
