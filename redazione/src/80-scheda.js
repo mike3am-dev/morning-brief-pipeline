@@ -15,10 +15,10 @@
   const iconaPer = (id, cosa) => /telefono/i.test(cosa) ? 'telefono' : /muro/i.test(cosa) ? 'finestra' : /caff/i.test(cosa) ? 'caffe' : /stampa/i.test(cosa) ? 'stampa' : /post-it|appunto/i.test(cosa) ? 'postit' : /lavagna/i.test(cosa) ? 'lavagna' : /pianta/i.test(cosa) ? 'pianta' : /finestra/i.test(cosa) ? 'finestra'
     : /cestino/i.test(cosa) ? 'carta' : /riordina|archivio|puntata/i.test(cosa) ? 'archivio' : /parla|racconta|chiede|^è da |correzioni|risponde|ascolta|ci pensa/i.test(cosa) ? 'parla' : DI_BASE[id] || 'scrive';
   function etichetta(id, nome, sotto, colore) {
-    const b = el('button', 'tag'); b.type = 'button'; const pallino = el('b'); pallino.style.background = colore;
+    const b = el('button', 'tag'); b.type = 'button';   // niente pallino colorato prima del nome (Mike, 16 nov 2026: «mi confondono»): l'unico pallino è quello rosso di chi ha una domanda
     b.ico = el('span', 'ico'); b.ico.innerHTML = '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path/></svg>'; b.ico.hidden = true;
     b.cosa = document.createTextNode(sotto); const piu = el('span', 'piu'); piu.append(b.cosa, el('em', null, 'Guarda ▸'));
-    b.nomeNodo = document.createTextNode(nome); b.append(pallino, b.nomeNodo, b.ico, piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
+    b.nomeNodo = document.createTextNode(nome); b.append(b.nomeNodo, b.ico, piu); b.setAttribute('aria-label', `${nome}, ${sotto}: apri la scheda`);
     b.addEventListener('click', () => apri(id)); strato.append(b); tags[id] = b;
   }
   let ultimoStato = 0;
