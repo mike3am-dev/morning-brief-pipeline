@@ -10883,9 +10883,87 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/apple-tv-4k-italia-senza-siri-ai",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/apple-work-xserve-mlx",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/banco:banco-honor-magic10-200mp-camera",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/banco:banco-huawei-nova-flip-wide",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/beats-360-studio-pro-confronto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/costo-tutti-iphone-bgr",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/esr-magsafe-cavalletto-duo",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/firefox-160-mini-window-mac",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/homeview-exclaves-fotocamera-microfono",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/homeview-modalita-scura-ambiente",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/milton-ipad-pannello-casa",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/siri-ai-casa-chi-non-ha-iphone",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-15/spazio:713a48e0",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-11-15T04:36:32",
+ "pulled": "2026-11-16T04:35:18",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -10894,7 +10972,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 37,
-   "scarto": -0.26,
+   "scarto": -0.25,
    "nota": "fonte «Push Square»: aperta 0 volte su 37, sotto la media"
   },
   {
@@ -10903,7 +10981,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 28,
-   "scarto": -0.25,
+   "scarto": -0.24,
    "nota": "fonte «Eurogamer»: aperta 0 volte su 28, sotto la media"
   },
   {
@@ -10921,7 +10999,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 12,
-   "scarto": -0.21,
+   "scarto": -0.2,
    "nota": "fonte «NASA»: aperta 0 volte su 12, sotto la media"
   },
   {
@@ -10971,15 +11049,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "IGN",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 13,
-   "scarto": -0.18,
-   "nota": "fonte «IGN»: aperta 1 volta su 14, sotto la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "NASA APOD",
    "verso": "declassa",
    "su": 0,
@@ -10998,12 +11067,30 @@
   },
   {
    "asse": "fonte",
+   "valore": "IGN",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 13,
+   "scarto": -0.17,
+   "nota": "fonte «IGN»: aperta 1 volta su 14, sotto la media"
+  },
+  {
+   "asse": "fonte",
    "valore": "The Robot Report",
    "verso": "declassa",
    "su": 0,
    "giu": 7,
    "scarto": -0.17,
    "nota": "fonte «The Robot Report»: aperta 0 volte su 7, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "audio",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 11,
+   "scarto": -0.16,
+   "nota": "categoria «audio»: aperta 1 volta su 12, sotto la media"
   },
   {
    "asse": "categoria",
@@ -11034,24 +11121,6 @@
   },
   {
    "asse": "categoria",
-   "valore": "audio",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 10,
-   "scarto": -0.15,
-   "nota": "categoria «audio»: aperta 1 volta su 11, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "carplay",
-   "verso": "declassa",
-   "su": 2,
-   "giu": 15,
-   "scarto": -0.15,
-   "nota": "categoria «carplay»: aperta 2 volte su 17, sotto la media"
-  },
-  {
-   "asse": "categoria",
    "valore": "regolamentazione",
    "verso": "declassa",
    "su": 3,
@@ -11060,12 +11129,39 @@
    "nota": "categoria «regolamentazione»: aperta 3 volte su 22, sotto la media"
   },
   {
+   "asse": "banco",
+   "valore": "curiosità",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 46,
+   "scarto": -0.15,
+   "nota": "banco «curiosità»: aperta 0 volte su 46, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "carplay",
+   "verso": "declassa",
+   "su": 2,
+   "giu": 15,
+   "scarto": -0.14,
+   "nota": "categoria «carplay»: aperta 2 volte su 17, sotto la media"
+  },
+  {
+   "asse": "categoria",
+   "valore": "contorno",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 5,
+   "scarto": -0.14,
+   "nota": "categoria «contorno»: aperta 0 volte su 5, sotto la media"
+  },
+  {
    "asse": "fonte",
    "valore": "Ars Technica Scienza",
    "verso": "declassa",
    "su": 0,
    "giu": 5,
-   "scarto": -0.15,
+   "scarto": -0.14,
    "nota": "fonte «Ars Technica Scienza»: aperta 0 volte su 5, sotto la media"
   },
   {
@@ -11074,35 +11170,17 @@
    "verso": "declassa",
    "su": 0,
    "giu": 5,
-   "scarto": -0.15,
+   "scarto": -0.14,
    "nota": "fonte «Hacker News»: aperta 0 volte su 5, sotto la media"
-  },
-  {
-   "asse": "banco",
-   "valore": "curiosità",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 44,
-   "scarto": -0.15,
-   "nota": "banco «curiosità»: aperta 0 volte su 44, sotto la media"
-  },
-  {
-   "asse": "categoria",
-   "valore": "contorno",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 4,
-   "scarto": -0.13,
-   "nota": "categoria «contorno»: aperta 0 volte su 4, sotto la media"
   },
   {
    "asse": "tag",
    "valore": "SERVIZIO",
    "verso": "declassa",
    "su": 21,
-   "giu": 106,
+   "giu": 109,
    "scarto": -0.13,
-   "nota": "tag «SERVIZIO»: aperta 21 volte su 127, sotto la media"
+   "nota": "tag «SERVIZIO»: aperta 21 volte su 130, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11115,12 +11193,21 @@
   },
   {
    "asse": "fonte",
+   "valore": "BBC Science",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 4,
+   "scarto": -0.13,
+   "nota": "fonte «BBC Science»: aperta 0 volte su 4, sotto la media"
+  },
+  {
+   "asse": "fonte",
    "valore": "GSMArena",
    "verso": "declassa",
    "su": 10,
-   "giu": 62,
+   "giu": 64,
    "scarto": -0.13,
-   "nota": "fonte «GSMArena»: aperta 10 volte su 72, sotto la media"
+   "nota": "fonte «GSMArena»: aperta 10 volte su 74, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11178,15 +11265,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "Reddit r/ClaudeAI",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 12,
-   "scarto": -0.13,
-   "nota": "fonte «Reddit r/ClaudeAI»: aperta 1 volta su 13, sotto la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "Reddit r/LocalLLaMA",
    "verso": "declassa",
    "su": 0,
@@ -11213,15 +11291,6 @@
    "nota": "fonte «Universe Today»: aperta 0 volte su 4, sotto la media"
   },
   {
-   "asse": "tag",
-   "valore": "CONTESTO",
-   "verso": "declassa",
-   "su": 11,
-   "giu": 48,
-   "scarto": -0.12,
-   "nota": "tag «CONTESTO»: aperta 11 volte su 59, sotto la media"
-  },
-  {
    "asse": "fonte",
    "valore": "Engadget",
    "verso": "declassa",
@@ -11238,6 +11307,15 @@
    "giu": 11,
    "scarto": -0.12,
    "nota": "fonte «Nintendo Life»: aperta 1 volta su 12, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "Reddit r/ClaudeAI",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 12,
+   "scarto": -0.12,
+   "nota": "fonte «Reddit r/ClaudeAI»: aperta 1 volta su 13, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11294,13 +11372,22 @@
    "nota": "categoria «vendite»: aperta 0 volte su 3, sotto la media"
   },
   {
-   "asse": "fonte",
-   "valore": "BBC Science",
+   "asse": "tag",
+   "valore": "CONTESTO",
    "verso": "declassa",
-   "su": 0,
-   "giu": 3,
+   "su": 11,
+   "giu": 48,
    "scarto": -0.11,
-   "nota": "fonte «BBC Science»: aperta 0 volte su 3, sotto la media"
+   "nota": "tag «CONTESTO»: aperta 11 volte su 59, sotto la media"
+  },
+  {
+   "asse": "tag",
+   "valore": "CONTORNO",
+   "verso": "declassa",
+   "su": 6,
+   "giu": 26,
+   "scarto": -0.11,
+   "nota": "tag «CONTORNO»: aperta 6 volte su 32, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11375,22 +11462,13 @@
    "nota": "fonte «X (via awesome-gpt-6-astra)»: aperta 0 volte su 3, sotto la media"
   },
   {
-   "asse": "tag",
-   "valore": "CONTORNO",
-   "verso": "declassa",
-   "su": 6,
-   "giu": 25,
-   "scarto": -0.1,
-   "nota": "tag «CONTORNO»: aperta 6 volte su 31, sotto la media"
-  },
-  {
    "asse": "fonte",
-   "valore": "AppleInsider",
+   "valore": "Bloomberg",
    "verso": "promuovi",
-   "su": 2,
-   "giu": 3,
+   "su": 7,
+   "giu": 9,
    "scarto": 0.1,
-   "nota": "fonte «AppleInsider»: aperta 2 volte su 5, sopra la media"
+   "nota": "fonte «Bloomberg»: aperta 7 volte su 16, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11411,6 +11489,15 @@
    "nota": "fonte «Apple Developer»: aperta 4 volte su 11, sopra la media"
   },
   {
+   "asse": "fonte",
+   "valore": "AppleInsider",
+   "verso": "promuovi",
+   "su": 2,
+   "giu": 3,
+   "scarto": 0.11,
+   "nota": "fonte «AppleInsider»: aperta 2 volte su 5, sopra la media"
+  },
+  {
    "asse": "categoria",
    "valore": "siri",
    "verso": "promuovi",
@@ -11418,6 +11505,15 @@
    "giu": 3,
    "scarto": 0.14,
    "nota": "categoria «siri»: aperta 3 volte su 6, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "iClarified",
+   "verso": "promuovi",
+   "su": 10,
+   "giu": 17,
+   "scarto": 0.14,
+   "nota": "fonte «iClarified»: aperta 10 volte su 27, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11456,15 +11552,6 @@
    "nota": "fonte «Apple Newsroom»: aperta 13 volte su 25, sopra la media"
   },
   {
-   "asse": "fonte",
-   "valore": "iClarified",
-   "verso": "promuovi",
-   "su": 10,
-   "giu": 15,
-   "scarto": 0.17,
-   "nota": "fonte «iClarified»: aperta 10 volte su 25, sopra la media"
-  },
-  {
    "asse": "categoria",
    "valore": "watch",
    "verso": "promuovi",
@@ -11497,7 +11584,7 @@
    "verso": "promuovi",
    "su": 5,
    "giu": 3,
-   "scarto": 0.22,
+   "scarto": 0.23,
    "nota": "categoria «retail»: aperta 5 volte su 8, sopra la media"
   },
   {

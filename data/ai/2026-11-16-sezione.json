@@ -1,0 +1,131 @@
+{
+ "ai": [
+  {
+   "id": "meituan-longcat-25-pesi",
+   "lab": "aperti",
+   "kind": "modello",
+   "title": "Meituan pubblica i pesi di LongCat-2.5, addestrato senza chip Nvidia",
+   "sintesi": "LongCat-2.5 ha 1.600 miliardi di parametri, è addestrato solo su hardware cinese e su Terminal Bench segna 88,4 punti, poco dietro Claude Opus 5.",
+   "note": "Il gruppo LongCat di Meituan, la società cinese delle consegne a domicilio, ha reso scaricabili i pesi a una settimana dalla presentazione. È un modello a esperti: dei 1.600 miliardi di parametri ne usa circa 48 miliardi per ogni token, legge fino a un milione di token e capisce testo, immagini e video. È pensato per agenti che lavorano a lungo da soli, soprattutto nella programmazione. L'installazione d'esempio gira su 194 chip Huawei Ascend, e Meituan non nomina mai le GPU Nvidia.",
+   "modello": {
+    "nome": "LongCat-2.5",
+    "famiglia": "aperto"
+   },
+   "link": "https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "megaspeed-12-miliardi-chip",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "La società di Alice Huang avrebbe procurato a clienti cinesi chip Nvidia per 12 miliardi di dollari",
+   "sintesi": "Secondo documenti visti dal Wall Street Journal, fra marzo 2024 e giugno 2025 Megaspeed ha organizzato ordini di chip Nvidia per quasi 12 miliardi destinati alla Cina.",
+   "note": "È il seguito della crisi che ha portato alle dimissioni di Jensen Huang: gli ordini riguardavano diverse centinaia di migliaia di chip che le regole americane sull'export volevano tenere fuori dalla Cina. Nvidia dichiara per la Cina 12,4 miliardi di ricavi in sei mesi, il 7% del totale; il fondo ribassista Culper Research stima una quota oltre il 20%. Megaspeed sostiene che Alice Huang è uscita dalla società il 30 agosto 2025. Intanto al Congresso democratici e repubblicani chiedono di stringere l'export dei chip e di sentire Huang in audizione.",
+   "link": "https://the-decoder.com/firm-linked-to-jensen-huangs-ex-lover-reportedly-brokered-nearly-12-billion-in-nvidia-chip-orders-for-china/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-modello-standard-reticolo",
+   "lab": "openai",
+   "kind": "ricerca",
+   "title": "OpenAI apre un blog per la scienza, e il primo caso è una dimostrazione di fisica con GPT-6 Astra",
+   "sintesi": "Nel primo articolo del nuovo blog OpenAI racconta come GPT-6 Astra ha aiutato a trasformare in una dimostrazione dettagliata una definizione del Modello standard su reticolo.",
+   "note": "Il blog raccoglierà risultati, metodi e resoconti in prima persona dei ricercatori che usano l'AI nel loro lavoro. Il primo pezzo riguarda una proposta di definizione non perturbativa del Modello standard, la teoria che descrive le particelle elementari, costruita su un reticolo. OpenAI la presenta come «un passo», una candidata, non come un risultato chiuso.",
+   "link": "https://openai.com/index/step-toward-defining-the-standard-model",
+   "source": "OpenAI"
+  },
+  {
+   "id": "rba-giovani-lavoro-ai",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "La banca centrale australiana vede i primi effetti dell'AI sui giovani programmatori e addetti all'assistenza",
+   "sintesi": "Per la Reserve Bank of Australia, dall'arrivo di ChatGPT annunci e occupazione dei lavoratori fra 15 e 24 anni sono calati di più nei mestieri più esposti all'AI.",
+   "note": "L'analisi di Mike Major segue i settori dove gli effetti dovrebbero vedersi prima: programmazione, lavoro d'ufficio, assistenza clienti. Gli annunci di lavoro sono scesi per tutti dalla fine del 2022, e di più nel gruppo più esposto, dove i giovani hanno anche più disoccupazione dei colleghi più anziani. L'autore avverte che lo studio non dimostra un rapporto di causa e misura l'esposizione teorica, non l'uso reale nelle aziende.",
+   "link": "https://the-decoder.com/australias-central-bank-finds-ai-hitting-young-workers-first-especially-in-software-and-customer-service/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "oats-tamagotchi-oggetti",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "A Carnegie Mellon piccoli schermi a inchiostro elettronico danno un carattere a piante e manubri",
+   "sintesi": "Gli OATs di Daehwa Kim sono agenti AI su minuscoli schermi E Ink da attaccare agli oggetti di casa: la pianta si rattrista se non la annaffi e si rallegra quando lo fai.",
+   "note": "Kim, dottoranda del Future Interfaces Group di Carnegie Mellon, li ha presentati a inizio novembre al simposio ACM UIST di Detroit, con due menzioni d'onore. L'idea è quella del Tamagotchi portata sugli oggetti veri, per spingere verso abitudini migliori senza passare dallo schermo del telefono. Non è in vendita: Kim non ha ancora deciso se farne un prodotto.",
+   "link": "https://www.wired.com/story/this-ai-tamagotchi-oats-turns-everyday-objects-into-needy-virtual-pets/",
+   "source": "Wired"
+  },
+  {
+   "id": "fable-52-pittura-pennellate",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Fable 5.2 dipinge un carrello in un parcheggio con 700.000 pennellate simulate",
+   "note": "Jake Eaton, ricercatore di Anthropic, chiede da settimane a Fable 5.2 di dipingere scrivendo codice invece di generare pixel. Ogni quadro è un programma Python da 1.000 a 2.000 righe che guida un motore di pittura simulato, con la trama delle setole e gli errori da coprire, senza modelli di immagini esterni né fotografie da ricalcare. Alla richiesta di un dipinto il più possibile indistinguibile da una foto, il modello ha prodotto un carrello della spesa in un garage, in circa 700.000 pennellate; per rispondere a chi diceva che Opus 5.5 imitava l'arte esistente, Eaton gli fa inventare pittori con una storia e uno stile propri.",
+   "prova": "Chiedi a Claude un programma Python che dipinga una scena a pennellate su una tela simulata, e guardalo lavorare.",
+   "passi": [
+    "Apri Claude con Fable 5.2",
+    "Chiedi uno script Python che dipinga a pennellate",
+    "Esegui lo script e salva l'immagine",
+    "Chiedi di correggere lo stile, pennellata per pennellata"
+   ],
+   "strumento": "Claude Fable 5.2 + Python",
+   "segnale": "560.697 visualizzazioni e 2.395 mi piace su X",
+   "link": "https://x.com/jkeatn/status/2119874018706874601",
+   "source": "X"
+  },
+  {
+   "id": "claude-torre-idroponica",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Non riusciva a far crescere il prezzemolo: con Claude si è costruito una torre idroponica",
+   "note": "Un utente di r/ClaudeAI che non aveva mai tenuto in vita una pianta ha chiesto a Claude di guidarlo nella costruzione di una torre idroponica, partendo da zero. Ha seguito le istruzioni e ha messo a confronto due piante di prezzemolo nate vicine, una rimasta in terra e una spostata nella torre: la foto dei due gambi tagliati alla base mostra la differenza. Dopo l'interesse nel thread ha annunciato che pubblicherà il progetto su GitHub; nei commenti si parla di circa 200 euro per i pezzi dell'automazione.",
+   "prova": "Chiedi a Claude un progetto di torre idroponica per casa, con l'elenco dei pezzi e i passaggi di montaggio.",
+   "passi": [
+    "Descrivi a Claude spazio, piante e budget",
+    "Chiedi l'elenco dei pezzi e lo schema",
+    "Monta seguendo i passaggi uno per uno"
+   ],
+   "costo": "circa 200 € per l'automazione, secondo la discussione",
+   "segnale": "13º fra i più votati del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xwvzv1/i_couldnt_even_grow_parsley_so_i_asked_claude_for/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "logiclens-verifica-politici",
+   "lab": "openai",
+   "kind": "demo",
+   "title": "LogicLens controlla in diretta le affermazioni dei politici nei video di YouTube",
+   "note": "L'autore ci lavora da due anni: l'estensione trascrive il video, isola le affermazioni verificabili, cerca le fonti sul web e solo su quelle fa dare il verdetto a ChatGPT, per evitare fonti inventate. Funziona anche su siti di notizie e social. Nel video d'esempio scorre un dibattito con Biden e Trump, e le affermazioni vengono segnate una per una mentre si parla.",
+   "prova": "Installa LogicLens dal Chrome Web Store (c'è anche per iOS) e aprilo su un video di un dibattito.",
+   "passi": [
+    "Cerca LogicLens nel Chrome Web Store",
+    "Installa l'estensione",
+    "Apri un dibattito su YouTube",
+    "Leggi i verdetti con le fonti"
+   ],
+   "strumento": "ChatGPT + ricerca web, estensione per Chrome",
+   "segnale": "10º fra i più votati del giorno su r/OpenAI",
+   "link": "https://www.reddit.com/r/OpenAI/comments/1xwmzgl/built_a_factchecker_that_catches_politicians/",
+   "source": "Reddit r/OpenAI"
+  },
+  {
+   "id": "willison-datasette-maplibre",
+   "lab": "anthropic",
+   "kind": "demo",
+   "title": "Simon Willison costruisce con un solo prompt un plugin di mappe per Datasette",
+   "note": "datasette-maplibre unisce la libreria MapLibre GL e OpenFreeMap, il server di mappe gratuito di Zsolt Ero, e mette insieme le funzioni di due plugin precedenti. Willison l'ha fatto scrivere quasi tutto a Claude Fable 5.2 con un prompt solo, chiudendo con «be creative and think outside the box»: ne è uscita fra l'altro un'anteprima in SVG delle forme GeoJSON, che diventa una vista WebGL solo quando arriva sullo schermo. Claude ha preparato anche una demo che gira nel browser con Datasette Lite.",
+   "prova": "Apri la demo dal post di Willison: plugin e database di prova si caricano nel browser.",
+   "passi": [
+    "Apri il post su simonwillison.net",
+    "Tocca il link alla demo in Datasette Lite",
+    "Guarda forme GeoJSON e punti sulla stessa mappa"
+   ],
+   "prompt": "Look at datasette-cluster-map and datasette-leaflet-geojson plugins, then look at ~/dev/tools/openfreemap-demo.html - then build a brand new Datasette plugin that uses maplibreGL and openfreemap and combines the features of those other two plugins - but be creative and think outside the box for other useful features the plugin might have",
+   "prompt_lingua": "en",
+   "strumento": "Claude Fable 5.2",
+   "link": "https://simonwillison.net/2026/Nov/15/datasette-maplibre/",
+   "source": "Simon Willison"
+  }
+ ],
+ "scritto": "2026-11-16"
+}
