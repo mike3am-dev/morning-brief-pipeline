@@ -10961,9 +10961,123 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/apple-studio-ai-salute",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/apple-tv-4k-ram-2gb-app",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/banco:banco-app-pieghevoli-migliori",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/banco:banco-bluetooth-hdt-audio-senza-fili",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/banco:banco-fitness-tracker-alternative-moto-watch",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/banco:banco-samsung-galaxy-claw",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/black-friday-airpods-pro-3-watch-12",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/gsmarena-giochi-iphone-15-pro-18-pro",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/homepod-mini-2-o-primo-mini",
+   "vote": 0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/iphone-18-pro-max-modem-c2-segnale",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/iphone-duo-2-face-id",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/iphone-duo-split-view-app-vecchie",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/macbook-neo-2-a19-pro",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/messaggi-ios-27-novita",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/occhiali-apple-siri-app",
+   "vote": 1,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/radar:pixel-tag-galaxy-smarttag-confronto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/recap:persa-microsoft-365-guasto",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/recap:persa-shes-fine-apple-tv",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
+  },
+  {
+   "story": "2026-11-16/slow-horses-ultima-stagione",
+   "vote": -0.5,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-11-16T04:35:18",
+ "pulled": "2026-11-17T04:35:15",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -10972,7 +11086,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 37,
-   "scarto": -0.25,
+   "scarto": -0.26,
    "nota": "fonte «Push Square»: aperta 0 volte su 37, sotto la media"
   },
   {
@@ -10981,7 +11095,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 28,
-   "scarto": -0.24,
+   "scarto": -0.25,
    "nota": "fonte «Eurogamer»: aperta 0 volte su 28, sotto la media"
   },
   {
@@ -10999,7 +11113,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 12,
-   "scarto": -0.2,
+   "scarto": -0.21,
    "nota": "fonte «NASA»: aperta 0 volte su 12, sotto la media"
   },
   {
@@ -11039,6 +11153,15 @@
    "nota": "fonte «Scientific American»: aperta 0 volte su 9, sotto la media"
   },
   {
+   "asse": "fonte",
+   "valore": "The Decoder",
+   "verso": "declassa",
+   "su": 5,
+   "giu": 41,
+   "scarto": -0.19,
+   "nota": "fonte «The Decoder»: aperta 5 volte su 46, sotto la media"
+  },
+  {
    "asse": "categoria",
    "valore": "airpods",
    "verso": "declassa",
@@ -11046,6 +11169,15 @@
    "giu": 14,
    "scarto": -0.18,
    "nota": "categoria «airpods»: aperta 1 volta su 15, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "IGN",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 13,
+   "scarto": -0.18,
+   "nota": "fonte «IGN»: aperta 1 volta su 14, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11057,22 +11189,13 @@
    "nota": "fonte «NASA APOD»: aperta 0 volte su 8, sotto la media"
   },
   {
-   "asse": "fonte",
-   "valore": "The Decoder",
+   "asse": "categoria",
+   "valore": "offerte",
    "verso": "declassa",
-   "su": 5,
-   "giu": 41,
-   "scarto": -0.18,
-   "nota": "fonte «The Decoder»: aperta 5 volte su 46, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "IGN",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 13,
+   "su": 2,
+   "giu": 17,
    "scarto": -0.17,
-   "nota": "fonte «IGN»: aperta 1 volta su 14, sotto la media"
+   "nota": "categoria «offerte»: aperta 2 volte su 19, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11103,12 +11226,12 @@
   },
   {
    "asse": "categoria",
-   "valore": "offerte",
+   "valore": "regolamentazione",
    "verso": "declassa",
-   "su": 2,
-   "giu": 16,
+   "su": 3,
+   "giu": 19,
    "scarto": -0.16,
-   "nota": "categoria «offerte»: aperta 2 volte su 18, sotto la media"
+   "nota": "categoria «regolamentazione»: aperta 3 volte su 22, sotto la media"
   },
   {
    "asse": "categoria",
@@ -11121,29 +11244,11 @@
   },
   {
    "asse": "categoria",
-   "valore": "regolamentazione",
-   "verso": "declassa",
-   "su": 3,
-   "giu": 19,
-   "scarto": -0.15,
-   "nota": "categoria «regolamentazione»: aperta 3 volte su 22, sotto la media"
-  },
-  {
-   "asse": "banco",
-   "valore": "curiosità",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 46,
-   "scarto": -0.15,
-   "nota": "banco «curiosità»: aperta 0 volte su 46, sotto la media"
-  },
-  {
-   "asse": "categoria",
    "valore": "carplay",
    "verso": "declassa",
    "su": 2,
    "giu": 15,
-   "scarto": -0.14,
+   "scarto": -0.15,
    "nota": "categoria «carplay»: aperta 2 volte su 17, sotto la media"
   },
   {
@@ -11152,7 +11257,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 5,
-   "scarto": -0.14,
+   "scarto": -0.15,
    "nota": "categoria «contorno»: aperta 0 volte su 5, sotto la media"
   },
   {
@@ -11161,7 +11266,7 @@
    "verso": "declassa",
    "su": 0,
    "giu": 5,
-   "scarto": -0.14,
+   "scarto": -0.15,
    "nota": "fonte «Ars Technica Scienza»: aperta 0 volte su 5, sotto la media"
   },
   {
@@ -11170,17 +11275,26 @@
    "verso": "declassa",
    "su": 0,
    "giu": 5,
-   "scarto": -0.14,
+   "scarto": -0.15,
    "nota": "fonte «Hacker News»: aperta 0 volte su 5, sotto la media"
+  },
+  {
+   "asse": "banco",
+   "valore": "curiosità",
+   "verso": "declassa",
+   "su": 0,
+   "giu": 48,
+   "scarto": -0.14,
+   "nota": "banco «curiosità»: aperta 0 volte su 48, sotto la media"
   },
   {
    "asse": "tag",
    "valore": "SERVIZIO",
    "verso": "declassa",
-   "su": 21,
-   "giu": 109,
+   "su": 22,
+   "giu": 111,
    "scarto": -0.13,
-   "nota": "tag «SERVIZIO»: aperta 21 volte su 130, sotto la media"
+   "nota": "tag «SERVIZIO»: aperta 22 volte su 133, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11205,9 +11319,9 @@
    "valore": "GSMArena",
    "verso": "declassa",
    "su": 10,
-   "giu": 64,
+   "giu": 65,
    "scarto": -0.13,
-   "nota": "fonte «GSMArena»: aperta 10 volte su 74, sotto la media"
+   "nota": "fonte «GSMArena»: aperta 10 volte su 75, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11265,6 +11379,15 @@
   },
   {
    "asse": "fonte",
+   "valore": "Reddit r/ClaudeAI",
+   "verso": "declassa",
+   "su": 1,
+   "giu": 12,
+   "scarto": -0.13,
+   "nota": "fonte «Reddit r/ClaudeAI»: aperta 1 volta su 13, sotto la media"
+  },
+  {
+   "asse": "fonte",
    "valore": "Reddit r/LocalLLaMA",
    "verso": "declassa",
    "su": 0,
@@ -11291,6 +11414,15 @@
    "nota": "fonte «Universe Today»: aperta 0 volte su 4, sotto la media"
   },
   {
+   "asse": "tag",
+   "valore": "CONTESTO",
+   "verso": "declassa",
+   "su": 11,
+   "giu": 49,
+   "scarto": -0.12,
+   "nota": "tag «CONTESTO»: aperta 11 volte su 60, sotto la media"
+  },
+  {
    "asse": "fonte",
    "valore": "Engadget",
    "verso": "declassa",
@@ -11307,15 +11439,6 @@
    "giu": 11,
    "scarto": -0.12,
    "nota": "fonte «Nintendo Life»: aperta 1 volta su 12, sotto la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "Reddit r/ClaudeAI",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 12,
-   "scarto": -0.12,
-   "nota": "fonte «Reddit r/ClaudeAI»: aperta 1 volta su 13, sotto la media"
   },
   {
    "asse": "fonte",
@@ -11346,15 +11469,6 @@
   },
   {
    "asse": "categoria",
-   "valore": "salute",
-   "verso": "declassa",
-   "su": 0,
-   "giu": 3,
-   "scarto": -0.11,
-   "nota": "categoria «salute»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "categoria",
    "valore": "sviluppatori",
    "verso": "declassa",
    "su": 0,
@@ -11370,15 +11484,6 @@
    "giu": 3,
    "scarto": -0.11,
    "nota": "categoria «vendite»: aperta 0 volte su 3, sotto la media"
-  },
-  {
-   "asse": "tag",
-   "valore": "CONTESTO",
-   "verso": "declassa",
-   "su": 11,
-   "giu": 48,
-   "scarto": -0.11,
-   "nota": "tag «CONTESTO»: aperta 11 volte su 59, sotto la media"
   },
   {
    "asse": "tag",
@@ -11462,13 +11567,31 @@
    "nota": "fonte «X (via awesome-gpt-6-astra)»: aperta 0 volte su 3, sotto la media"
   },
   {
+   "asse": "categoria",
+   "valore": "legale",
+   "verso": "declassa",
+   "su": 6,
+   "giu": 24,
+   "scarto": -0.1,
+   "nota": "categoria «legale»: aperta 6 volte su 30, sotto la media"
+  },
+  {
    "asse": "fonte",
-   "valore": "Bloomberg",
+   "valore": "HDblog",
+   "verso": "declassa",
+   "su": 4,
+   "giu": 22,
+   "scarto": -0.1,
+   "nota": "fonte «HDblog»: aperta 4 volte su 26, sotto la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "AppleInsider",
    "verso": "promuovi",
-   "su": 7,
-   "giu": 9,
+   "su": 2,
+   "giu": 3,
    "scarto": 0.1,
-   "nota": "fonte «Bloomberg»: aperta 7 volte su 16, sopra la media"
+   "nota": "fonte «AppleInsider»: aperta 2 volte su 5, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11490,12 +11613,12 @@
   },
   {
    "asse": "fonte",
-   "valore": "AppleInsider",
+   "valore": "The Verge",
    "verso": "promuovi",
-   "su": 2,
-   "giu": 3,
-   "scarto": 0.11,
-   "nota": "fonte «AppleInsider»: aperta 2 volte su 5, sopra la media"
+   "su": 24,
+   "giu": 43,
+   "scarto": 0.12,
+   "nota": "fonte «The Verge»: aperta 24 volte su 67, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11505,15 +11628,6 @@
    "giu": 3,
    "scarto": 0.14,
    "nota": "categoria «siri»: aperta 3 volte su 6, sopra la media"
-  },
-  {
-   "asse": "fonte",
-   "valore": "iClarified",
-   "verso": "promuovi",
-   "su": 10,
-   "giu": 17,
-   "scarto": 0.14,
-   "nota": "fonte «iClarified»: aperta 10 volte su 27, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11543,13 +11657,13 @@
    "nota": "categoria «manifattura»: aperta 2 volte su 3, sopra la media"
   },
   {
-   "asse": "fonte",
-   "valore": "Apple Newsroom",
+   "asse": "categoria",
+   "valore": "casa intelligente",
    "verso": "promuovi",
-   "su": 13,
+   "su": 7,
    "giu": 12,
-   "scarto": 0.17,
-   "nota": "fonte «Apple Newsroom»: aperta 13 volte su 25, sopra la media"
+   "scarto": 0.18,
+   "nota": "categoria «casa intelligente»: aperta 7 volte su 19, sopra la media"
   },
   {
    "asse": "categoria",
@@ -11561,13 +11675,13 @@
    "nota": "categoria «watch»: aperta 3 volte su 6, sopra la media"
   },
   {
-   "asse": "categoria",
-   "valore": "casa intelligente",
+   "asse": "fonte",
+   "valore": "Apple Newsroom",
    "verso": "promuovi",
-   "su": 7,
+   "su": 14,
    "giu": 12,
-   "scarto": 0.19,
-   "nota": "categoria «casa intelligente»: aperta 7 volte su 19, sopra la media"
+   "scarto": 0.2,
+   "nota": "fonte «Apple Newsroom»: aperta 14 volte su 26, sopra la media"
   },
   {
    "asse": "fonte",
@@ -11579,12 +11693,21 @@
    "nota": "fonte «Tbreak»: aperta 2 volte su 3, sopra la media"
   },
   {
+   "asse": "fonte",
+   "valore": "iClarified",
+   "verso": "promuovi",
+   "su": 13,
+   "giu": 18,
+   "scarto": 0.2,
+   "nota": "fonte «iClarified»: aperta 13 volte su 31, sopra la media"
+  },
+  {
    "asse": "categoria",
    "valore": "retail",
    "verso": "promuovi",
    "su": 5,
    "giu": 3,
-   "scarto": 0.23,
+   "scarto": 0.22,
    "nota": "categoria «retail»: aperta 5 volte su 8, sopra la media"
   },
   {
@@ -11593,7 +11716,7 @@
    "verso": "promuovi",
    "su": 25,
    "giu": 18,
-   "scarto": 0.27,
+   "scarto": 0.26,
    "nota": "categoria «iphone duo»: aperta 25 volte su 43, sopra la media"
   },
   {
@@ -11601,9 +11724,9 @@
    "valore": "guida",
    "verso": "promuovi",
    "su": 3,
-   "giu": 2,
-   "scarto": 0.37,
-   "nota": "banco «guida»: aperta 3 volte su 5, sopra la media"
+   "giu": 4,
+   "scarto": 0.28,
+   "nota": "banco «guida»: aperta 3 volte su 7, sopra la media"
   }
  ]
 }

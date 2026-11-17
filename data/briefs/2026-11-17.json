@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-17",
+  "title": "The Morning Brief – 17 novembre 2026",
+  "generated_at": "2026-11-17T06:30:00+01:00",
+  "window": "Ultime 26 ore",
+  "stats": {
+    "articoli_letti": 41,
+    "notizie_selezionate": 15
+  },
+  "feed_notes": [
+    "Anthropic cookbook: parse-error, nessuna data leggibile",
+    "Everyeye: html-not-feed, nessuna data leggibile",
+    "Push Square: html-not-feed, nessuna data leggibile",
+    "Science: ok, ultimo articolo 865.6h fa",
+    "feed troncato BGR (redazionale): 20 voci, la più vecchia di 13.5h su una finestra di 26h",
+    "feed troncato Tom's Hardware IT (redazionale): 20 voci, la più vecchia di 11.8h su una finestra di 26h"
+  ],
+  "radar": [
+    {
+      "id": "tsmc-dati-dipendenti",
+      "topic": "apple-contorno",
+      "title": "TSMC conferma una violazione: in vendita online i dati dei dipendenti",
+      "note": "Un venditore sul dark web offre un campione di dipendenti TSMC e sostiene di avere l'archivio completo, circa 46.000 record per 7 GB, con documenti d'identità, indirizzi e coordinate bancarie. Il colosso dei chip, che produce anche i processori Apple, dice che i propri sistemi non sono stati violati: i dati verrebbero da un fornitore cloud esterno, non ancora identificato.",
+      "link": "https://www.techradar.com/pro/security/tsmc-confirms-cyberattack-and-data-breach-chip-giant-says-personal-employee-data-has-been-leaked-online",
+      "source": "TechRadar"
+    },
+    {
+      "id": "amd-versal-tr-sicurezza-fisica",
+      "topic": "sicurezza-firmware",
+      "title": "AMD blinda i suoi chip contro le manomissioni fisiche",
+      "note": "I nuovi SoC Versal TR montano un secondo chip-sensore sul retro del die principale, che blocca l'avvio se rileva un tentativo di manomissione o la sostituzione del componente. Il bersaglio sono difesa, data center e infrastrutture critiche; i primi campioni arrivano nella seconda metà del 2027.",
+      "link": "https://www.techradar.com/pro/amd-is-adding-tamper-resistant-hardware-to-its-chips-to-protect-from-physical-attacks",
+      "source": "TechRadar"
+    }
+  ],
+  "social": [
+    {
+      "id": "social-cnc-trackpad-mac",
+      "origine": "nuovo",
+      "title": "Su r/mac un utente si fa fresare un supporto su misura per trackpad e tastiera",
+      "note": "Nel quinto thread più votato della giornata su r/mac, un utente mostra il supporto per trackpad e tastiera che si è fatto realizzare in CNC da un'azienda cinese, con le stesse dimensioni del MacBook Pro 16 pollici, per lavorare allo stesso modo quando collega il portatile a un televisore da 65 pollici. Costo dichiarato: circa 200 dollari, spedizione e dogana comprese verso la Germania. Nei commenti si discute se la posizione affiancata di trackpad e tastiera resti più ergonomica.",
+      "link": "https://www.reddit.com/r/mac/comments/1xxk8oa/custom_cnc_trackpadkeyboard_holder/",
+      "source": "Reddit r/mac"
+    },
+    {
+      "id": "social-iphone-duo-app-letterboxing",
+      "origine": "nuovo",
+      "title": "Su r/apple ci si lamenta delle app non ottimizzate per iPhone Duo",
+      "note": "Il sesto thread più votato della giornata su r/apple raccoglie le proteste dei primi proprietari di iPhone Duo per le app ancora in modalità compatibilità, con bande nere ai lati. Nei commenti più votati si fa notare che la stessa cosa è successa a ogni cambio importante di formato dello schermo Apple, dall'iPhone 5 all'iPhone X: agli sviluppatori serve circa un anno per aggiornarsi.",
+      "link": "https://www.reddit.com/r/apple/comments/1xxlihi/new_apple_iphone_duo_owners_slam_the_app_situation_as_unoptimised_apps_suffer_from_letterboxing/",
+      "source": "Reddit r/apple"
+    },
+    {
+      "id": "social-oled-macbook-pro-pwm",
+      "origine": "eco",
+      "title": "Sotto la notizia dei disturbi con l'OLED del MacBook Pro, i commenti puntano al PWM",
+      "note": "Sui thread di r/apple e r/mac nati dalle segnalazioni di mal di testa e vertigini con il nuovo MacBook Pro OLED, i commenti più tecnici indicano come possibile causa lo sfarfallio PWM dei pannelli, forniti da Samsung: secondo alcuni utenti i monitor OLED Samsung darebbero lo stesso problema più spesso di quelli LG. Un commento segnala che l'opzione di accessibilità «Attenuazione pulsazioni schermo» introdotta da Apple fa poco per risolverlo.",
+      "link": "https://www.reddit.com/r/apple/comments/1xxxjd6/some_oled_macbook_pro_owners_report_eye_strain_and_dizziness/",
+      "source": "Reddit r/apple"
+    }
+  ],
+  "banco": [
+    {
+      "id": "banco-samsung-meal-scan",
+      "kind": "curiosità",
+      "topic": "salute",
+      "title": "Samsung Health potrebbe contare le calorie da una sola foto",
+      "orig": "One UI 9.5's leaked Meal Scan feature could help you calorie-count your meals using photos",
+      "note": "La funzione Meal Scan, scovata in anteprima in One UI 9.5, analizza nel cloud la foto di un pasto e stima calorie, ingredienti probabili e porzioni, al posto della ricerca manuale nel database. La stessa Samsung avverte che il riconoscimento può essere impreciso con foto poco nitide. Arriverebbe con i Galaxy S27, nei primi mesi del 2027.",
+      "perche": "Samsung Health lo farebbe con una foto sola, stimando le calorie da solo; oggi bisogna ancora cercare il piatto a mano nel database. È solo in anteprima, e Samsung stessa dice che può sbagliare con foto poco nitide.",
+      "link": "https://www.androidauthority.com/one-ui-9-5-samsung-health-meal-scan-3735422/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-comprare-flagship-anno-prima",
+      "kind": "guida",
+      "topic": "acquisti",
+      "title": "Perché conviene comprare il modello dell'anno prima, non l'ultimo",
+      "orig": "Why you shouldn't buy the latest flagship phone — and what to get instead",
+      "note": "Android Authority consiglia di scegliere il top di gamma dell'anno prima: i modelli più recenti costano di più e hanno spesso meno RAM del predecessore, mentre le prestazioni crescono di poco, salvo eccezioni come l'iPhone 18 Pro. Fra le scelte indicate c'è l'iPhone 17 Pro, con teleobiettivo e schermo a 120 Hz giudicati ancora validi e sette anni di aggiornamenti davanti.",
+      "perche": "Con i numeri alla mano: un iPhone 17 Pro di un anno fa ha lo stesso teleobiettivo e lo stesso schermo a 120 Hz del modello nuovo, e gli restano sette anni di aggiornamenti. Vale la pena salire di modello soprattutto se cerchi la fotocamera o la batteria più recenti, o se lo sconto sul nuovo è concreto.",
+      "link": "https://www.androidauthority.com/2025-phone-hardware-thats-still-great-3732895/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-galaxy-s27-fotocamere-render",
+      "kind": "curiosità",
+      "topic": "fotocamere",
+      "title": "Il render del Galaxy S27: una fotocamera in meno sull'Ultra",
+      "orig": "New leak shows Galaxy S27 Pro and Ultra camera design with three lenses",
+      "note": "Un render in line-art del leaker Ice Universe mostra tre fotocamere posteriori su Galaxy S27 Pro e Ultra, contro le quattro dell'attuale S26 Ultra. Il sensore principale resterebbe da 200 megapixel su entrambi i modelli, con un teleobiettivo da 50 megapixel e zoom ottico 5x sull'Ultra. Non è una conferma, e il lancio è previsto nei primi mesi del 2027.",
+      "perche": "Secondo questo leak Samsung taglierebbe una fotocamera sul prossimo top di gamma, passando da quattro a tre. Non è ancora confermato da Samsung.",
+      "link": "https://www.androidauthority.com/galaxy-s27-pro-ultra-camera-design-leak-3735297/",
+      "source": "Android Authority"
+    },
+    {
+      "id": "banco-bose-s1-pro-richiamo",
+      "kind": "guida",
+      "topic": "sicurezza",
+      "title": "Bose richiama 670.000 batterie dei diffusori S1 Pro per rischio incendio",
+      "orig": "Bose recalls over 670,000 S1 Pro speaker batteries after reports of fires and property damage",
+      "note": "Bose richiama le batterie agli ioni di litio degli altoparlanti Bluetooth S1 Pro e S1 Pro Plus vendute negli Stati Uniti e in Canada tra dicembre 2017 e luglio 2026: con l'invecchiamento possono sciogliersi, fumare o prendere fuoco. Segnalati 7 episodi e 6 danni a proprietà, nessun ferito.",
+      "perche": "Se hai un Bose S1 Pro o S1 Pro Plus, controlla il numero di serie a 17 cifre sotto la batteria: Bose la sostituisce gratis sul suo sito dedicato al richiamo o al numero 800-278-1083. Nel frattempo puoi usare l'altoparlante collegato alla corrente, senza la batteria.",
+      "link": "https://www.androidauthority.com/bose-s1-pro-bluetooth-speaker-battery-recall-3735448/",
+      "source": "Android Authority"
+    }
+  ],
+  "recap": [
+    {
+      "id": "persa-tvos-siri-ai",
+      "when": "2026-11-14",
+      "ref": {
+        "date": "2026-11-14",
+        "id": "tvos-27-2-1-siri-ai-vecchi-apple-tv"
+      },
+      "title": "tvOS 27.2.1 porta Siri AI sugli Apple TV 4K del 2021 e del 2022",
+      "note": "Con l'aggiornamento tvOS 27.2.1, Siri AI non è più un'esclusiva del nuovo Apple TV 4K: arriva anche sui due modelli precedenti, ma va attivata a mano in Impostazioni e resta in prova, in inglese. Il primo Apple TV 4K resta escluso perché non supporta tvOS 27.",
+      "signal": "16 testate, 3 seguiti nei giorni dopo",
+      "link": "https://www.macrumors.com/2026/11/13/apple-releases-tvos-27-2-1/",
+      "source": "MacRumors"
+    },
+    {
+      "id": "persa-iphone18-promax-batteria",
+      "when": "2026-11-12",
+      "ref": {
+        "date": "2026-11-12",
+        "id": "cnet-batteria-iphone18-pro-max"
+      },
+      "title": "iPhone 18 Pro Max primo nel test di autonomia di CNET su 32 telefoni",
+      "note": "Nella prova di CNET su 32 smartphone, fra streaming video e uso misto, l'iPhone 18 Pro Max ha la media di autonomia migliore di tutti, davanti agli Android e allo stesso iPhone Duo, fermo al quarto posto a pari merito con l'iPhone 17e. Per Apple è il secondo anno di fila al primo posto fra i marchi.",
+      "signal": "12 testate",
+      "link": "https://www.iClarified.com/103452/iphone-18-pro-max-tops-cnet-battery-test-of-32-smartphones",
+      "source": "iClarified"
+    }
+  ]
+}

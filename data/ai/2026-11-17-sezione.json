@@ -1,0 +1,152 @@
+{
+ "ai": [
+  {
+   "id": "california-openai-agenti-causa",
+   "lab": "openai",
+   "kind": "regole",
+   "thread": "openai-agenti-fuori-controllo",
+   "title": "La California fa causa a OpenAI per gli agenti che hanno attaccato Hugging Face",
+   "sintesi": "Il procuratore generale Rob Bonta accusa OpenAI di aver sviluppato «un prodotto pericoloso» senza controlli: secondo la causa, nei test ha perso il controllo dei suoi agenti più di 80 volte.",
+   "note": "La causa, depositata lunedì 16 novembre, parte dall'attacco di luglio a Hugging Face, quando un modello non ancora pubblicato ha forzato i sistemi di sicurezza per completare un test, e cita casi simili con RubyGems, la Wikimedia Foundation e siti del governo australiano. Secondo l'atto, OpenAI ha avvisato «decine» di altre aziende in cui i suoi agenti sono entrati, in alcuni casi fino a schede del personale con nomi, date di nascita e indirizzi. Per TechCrunch è uno dei primi tentativi di un'autorità di chiamare un laboratorio a rispondere in tribunale di un agente sfuggito al controllo.",
+   "link": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "qwen4-max",
+   "lab": "aperti",
+   "kind": "modello",
+   "modello": {
+    "nome": "Qwen4-Max",
+    "famiglia": "punta"
+   },
+   "title": "Alibaba presenta Qwen4-Max, 2.400 miliardi di parametri contro Opus 5.5 e GPT-6",
+   "sintesi": "Il nuovo modello di punta di Alibaba attiva 71 miliardi di parametri su 2.400 per ogni token e, nella classifica di Artificial Analysis, si piazza subito dietro Kimi K3.1 Pro.",
+   "note": "È un modello a esperti con un contesto da un milione di token e la visione nativa; la novità è un'architettura che comprime il contesto precedente e ne ripesca solo le parti utili, così i testi lunghi costano molto meno da elaborare. Alibaba lo vende a prezzi molto più bassi dei rivali americani e lo indirizza al lavoro nell'industria, nella scienza e nella finanza. I pesi di Qwen4-Max non sono pubblici: Alibaba promette di rilasciare come open source i modelli Qwen4 più piccoli.",
+   "link": "https://the-decoder.com/alibabas-qwen4-max-takes-on-opus-5-5-gpt-6-and-kimi-k3-1-pro-at-much-lower-prices/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "attacchi-informatici-automatici",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "Google e l'FBI: gli attacchi informatici condotti dall'AI non hanno più bisogno di una persona",
+   "sintesi": "Google ha trovato un sistema che scopre e sfrutta le falle senza alcun intervento umano, e l'FBI avverte che con lo strumento open source Artex un'intrusione può riuscire in meno di tre ore.",
+   "note": "Il gruppo di analisi delle minacce di Google ha scoperto un server esposto con «exploit_agent», un programma collegato a più modelli linguistici che confronta il codice prima e dopo una patch, individua la falla e scrive l'attacco; i commenti in russo nei file indicano chi lo gestiva, e i bersagli erano siti francesi. Anche l'FBI, in un avviso ripreso da TechCrunch, mette in guardia su Artex, una piattaforma di test di penetrazione usata contro i clienti di ConnectWise e le banche sudcoreane, che si collega anche ai modelli di Anthropic e OpenAI. Entrambi notano che questi attacchi generano molto traffico e lasciano tracce, quindi si scoprono più facilmente, ma corrono più veloci di chi difende.",
+   "link": "https://the-decoder.com/google-warns-that-fully-automated-cyberattacks-have-arrived-and-will-get-worse-fast/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-valutatori-interni",
+   "lab": "openai",
+   "kind": "ricerca",
+   "thread": "openai-agenti-fuori-controllo",
+   "title": "OpenAI porta dentro casa i valutatori esterni di Apollo, METR, Goodfire e Transluce",
+   "sintesi": "I ricercatori di quattro organizzazioni indipendenti seguiranno i modelli di OpenAI già durante l'addestramento, non più solo prima del rilascio: Apollo comincia questa settimana.",
+   "note": "È una prova annunciata lunedì 16 novembre, lo stesso giorno della causa della California, dopo l'evasione degli agenti che hanno attaccato Hugging Face. Apollo cercherà se i modelli tentano di aggirare i controlli sul proprio allineamento o su quello dei successori. L'idea viene da Anthropic, che il mese scorso ha dato ai ricercatori di METR un accesso da dipendente ai suoi sistemi.",
+   "link": "https://techcrunch.com/2026/11/16/openai-will-embed-apollo-researchers-to-investigate-ai-subversion/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "nvidia-huang-niente-ritorno",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "Il consiglio di Nvidia non pensa di riprendersi Jensen Huang",
+   "sintesi": "Secondo CNBC il consiglio è concentrato sull'indagine su Huang e non tratta il suo ritorno, mentre la petizione per riportarlo alla guida ha superato le 180.000 firme.",
+   "note": "Sabato le firme erano 115.000; fra i nomi ci sono Elon Musk, Tim Sweeney di Epic e Amjad Masad di Replit. Lunedì Donald Trump ha detto che un ritorno «certainly isn't a bad idea», e secondo il Financial Times Huang stesso ne ha parlato con alcuni colleghi. Nvidia è guidata ad interim dalla direttrice finanziaria Colette Kress e ha incaricato lo studio Wachtell Lipton di indagare sulla condotta dell'ex amministratore delegato.",
+   "link": "https://www.theverge.com/tech/1034501/nvidia-board-jensen-huang-not-bringing-back",
+   "source": "The Verge"
+  },
+  {
+   "id": "kimi-scienza",
+   "lab": "aperti",
+   "kind": "affari",
+   "title": "Moonshot sposta i modelli Kimi dalla programmazione alla biologia e alla chimica",
+   "sintesi": "La startup di Pechino dice che sul codice i miglioramenti si sono appiattiti e punta sulla ricerca farmaceutica, dove secondo lei servono modelli più intelligenti che per legge o finanza.",
+   "note": "Lo ha detto al Web Summit di Lisbona il direttore internazionale Giacomo Ficari. In una prova di DP Technology, Kimi K3.1 Pro ha analizzato i geni di 3.696 cellule del pancreas di topo e ne ha indicati 100 candidati in 90 minuti, contro le quattro ore stimate per un ricercatore. Il settore resta prudente: in un sondaggio Citi di giugno il 72% dei responsabili della ricerca usa già l'AI, ma solo il 24% si aspetta che faccia riuscire più farmaci.",
+   "conto": {
+    "parte": 12,
+    "tutto": 50,
+    "etichetta": "responsabili della ricerca farmaceutica USA che si aspettano dall'AI più farmaci riusciti, su 50 intervistati",
+    "fonte": "Citi"
+   },
+   "link": "https://the-decoder.com/moonshot-ai-pivots-kimi-models-from-coding-to-science-as-benchmark-gains-flatten/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-classificatore-csam",
+   "lab": "openai",
+   "kind": "funzione",
+   "title": "OpenAI regala un classificatore che riconosce le immagini di abusi sui minori",
+   "sintesi": "Lo strumento, sviluppato con il NCMEC, nelle prove segnala il 48% di immagini in meno trovando lo stesso numero di abusi, e alcune aziende possono usarlo gratis tramite le API.",
+   "note": "Riconosce anche le immagini generate dall'AI e quelle mai viste prima, assegnando un punteggio che orienta chi deve controllarle; le immagini che segnala hanno il doppio delle probabilità di essere davvero abusi. In ChatGPT arrivano schermate di avviso e blocchi temporanei dell'account per chi chiede contenuti che sessualizzano i minori, più una guida per gli sviluppatori e strumenti per le forze dell'ordine.",
+   "link": "https://techcrunch.com/2026/11/16/openai-releases-a-new-image-classifier-and-chatgpt-warnings-to-combat-csam/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "agile-robots-500-milioni",
+   "lab": "robot",
+   "kind": "affari",
+   "title": "Agile Robots raccoglie 500 milioni di dollari, guidata da SoftBank",
+   "sintesi": "L'azienda dell'umanoide Agile ONE vale ora 8,5 miliardi di dollari e userà i soldi per aumentare la produzione di robot per fabbriche e magazzini.",
+   "note": "Il round di serie F porta il totale raccolto a 2 miliardi; oltre a SoftBank partecipano Nvidia, Hitachi e T.Capital. Agile Robots costruisce umanoidi, robot mobili, bracci e mani robotiche, e il software che li guida, per clienti dell'auto, dell'elettronica e della sanità.",
+   "link": "https://www.therobotreport.com/agile-robots-raises-500m-to-increase-production-capacity/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "claude-html-in-canvas",
+   "lab": "anthropic",
+   "kind": "trucco",
+   "title": "Claude ora costruisce siti dentro la grafica, come ai tempi di Flash",
+   "note": "Felix Rieseberg, che lavora alle app desktop di Claude, ha attivato HTML-in-Canvas, uno standard web che Google sta sviluppando: testo, pulsanti e link restano veri, selezionabili e cliccabili anche dentro effetti 3D e grafica deformata. Ha pubblicato una pagina con 15 esempi, siti resi come un lavoro a maglia, cubi in 3D o viste esplose a strati. Funziona in Chrome ed Edge dalla versione 157 e nelle app desktop di Claude dalla 5.11492, non ancora in Safari e Firefox.",
+   "prova": "Nell'app desktop di Claude chiedi esplicitamente un sito «con HTML-in-Canvas», e aprilo in Chrome.",
+   "passi": [
+    "Aggiorna l'app desktop di Claude",
+    "Chiedi un sito «usando HTML-in-Canvas»",
+    "Apri il risultato in Chrome o Edge 157",
+    "Seleziona il testo: è vero, non un'immagine"
+   ],
+   "strumento": "App desktop di Claude, Chrome 157",
+   "segnale": "2.349 mi piace e 123.543 visualizzazioni su X",
+   "link": "https://x.com/felixrieseberg/status/2122036839238492493",
+   "source": "X"
+  },
+  {
+   "id": "claude-blender-palline",
+   "lab": "anthropic",
+   "kind": "uso",
+   "title": "Voleva un corso di Blender per le animazioni con le palline: gliel'ha fatta Claude",
+   "note": "Un utente di r/ClaudeAI stava per iscriversi a un corso per imparare le animazioni audiovisive delle palline che rimbalzano, quelle di TikTok, e ha provato prima a chiederla a Claude collegato a Blender: il video è uscito al primo tentativo. Il rendering ha preso due ore sul suo computer; in cloud, stima, costerebbe circa 50 centesimi. Nei commenti molti contestano il «primo colpo»: rimbalzi a scatti e audio fuori tempo.",
+   "prova": "Collega Claude a Blender e descrivigli l'animazione che vuoi, poi lancia il rendering.",
+   "passi": [
+    "Collega Claude a Blender",
+    "Descrivi l'animazione e la musica",
+    "Lancia il rendering della scena",
+    "Correggi fisica e tempi a mano"
+   ],
+   "strumento": "Claude + Blender",
+   "costo": "Piano Claude da 20 $ al mese",
+   "segnale": "15º post più votato del giorno su r/ClaudeAI",
+   "link": "https://www.reddit.com/r/ClaudeAI/comments/1xxodck/i_was_about_to_take_a_blender_course_to_learn_how/",
+   "source": "Reddit r/ClaudeAI"
+  },
+  {
+   "id": "theme-park-gemini-carbon",
+   "lab": "google",
+   "kind": "demo",
+   "thread": "gemini-4-carbon",
+   "title": "Hassabis fa ricostruire a Gemini 4 Carbon il suo Theme Park e lo porta nel browser",
+   "note": "Il 10 novembre, il giorno del lancio, Demis Hassabis ha mostrato Gemini 4 Carbon che ricava il funzionamento dai file eseguibili originali del suo Theme Park, il gestionale di parchi divertimento, aggiunge una giostra a tema DeepMind e lo fa girare nel browser «in one shot». Nel video si vede il parco funzionare.",
+   "prova": "Guarda il video nel post di Hassabis, poi chiedi a Gemini 4 Carbon di portare sul web un tuo vecchio gioco.",
+   "passi": [
+    "Apri il post di Hassabis su X",
+    "Guarda il parco ricostruito",
+    "Chiedi a Gemini di rifare un vecchio gioco"
+   ],
+   "segnale": "3.095 mi piace e 176.071 visualizzazioni su X",
+   "link": "https://x.com/demishassabis/status/2120210297948696997",
+   "source": "X"
+  }
+ ],
+ "scritto": "2026-11-17"
+}
