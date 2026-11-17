@@ -1,0 +1,295 @@
+{
+ "giorno": "2026-11-17",
+ "prima": {
+  "intro": "Una giornata fatta quasi tutta di software. La seconda beta dei sistemi 27.3 corregge il Duo dove le prime recensioni lo avevano criticato, mette un contatore all'intelligenza artificiale di Apple e chiede alle app che vogliono guidare il Mac di dichiararsi. Intorno, si guarda già al 2027, fra il vetro curvo dell'iPhone del ventennale e l'elenco dei prodotti di Gurman, e Apple Pay cambia capo.",
+  "top3": [
+   "Seconda beta di iOS 27.3: Siri AI avrà un limite giornaliero, più alto con iCloud+",
+   "iPhone Duo si sblocca con il volto, ma solo da chiuso e non per pagare",
+   "macOS 27.3 divide in due il permesso che lascia a un'app il controllo del Mac"
+  ],
+  "editoriale": {
+   "titolo": "Il telefono comprato un mese fa non è più lo stesso",
+   "testo": [
+    "Chi ha comprato un iPhone Duo a ottobre se lo vedrà cambiare a dicembre. Con iOS 27.3 si sbloccherà con il volto, anche se solo da chiuso e mai per pagare, e si bloccherà quando lo si chiude: due cose che le prime recensioni gli rimproveravano. Nella stessa beta Apple mette un limite giornaliero alle funzioni di Apple Intelligence che girano sui suoi server, e lo lega ai piani di iCloud+. Sul Mac restringe i permessi che le app di automazione chiedono per controllare tutto.",
+    "Che cosa si compra, allora, quando si compra un prodotto Apple? Sempre di più, una cosa che continua a muoversi dopo l'acquisto, e non sempre nella stessa direzione. Lo sblocco del Duo aggiunge qualcosa che mancava. Il contatore di Siri AI traccia un confine che prima non si vedeva. I nuovi permessi del Mac chiedono più attenzione a chi affida il computer a un agente.",
+    "Nessuna di queste scelte è sbagliata in sé, e i prezzi di iCloud+ restano quelli di oggi. Cambia però quello che serve sapere: cosa c'è adesso, cosa arriva con un aggiornamento, dove finisce quello che è compreso. Sulla quota gratuita di Siri AI le testate non dicono ancora quante richieste valga. È la domanda da tenere aperta fino a dicembre."
+   ],
+   "notizie": [
+    "ios-27-3-beta-2",
+    "iphone-duo-sblocco-volto",
+    "macos-27-3-permessi-agenti"
+   ]
+  },
+  "news": {
+   "ios-27-3-beta-2": {
+    "title": "Seconda beta di iOS 27.3. Siri AI avrà un limite giornaliero, che si alza con iCloud+",
+    "sintesi": "Con la beta 2 dei sistemi 27.3 Apple mette un tetto giornaliero alle funzioni più pesanti di Apple Intelligence: i piani iCloud+ lo alzano fino a venti volte, senza aumenti di prezzo.",
+    "descrizione": "Apple ha distribuito agli sviluppatori la seconda beta di iOS, iPadOS, macOS, watchOS, tvOS e visionOS 27.3, due settimane dopo la prima. La versione definitiva è attesa a dicembre.\n\nLa novità che pesa di più riguarda Apple Intelligence. Le richieste complesse a Siri AI, la creazione e la modifica delle immagini, le automazioni di Comandi e le app di altri sviluppatori che passano dai server di Apple avranno un limite gratuito per dispositivo, che si azzera a mezzanotte. I piani iCloud+ lo alzano, dal doppio con 200 GB fino a venti volte con 12 TB, e i prezzi non cambiano. Secondo iClarified la quota estesa non ci sarà nell'Unione Europea, nel Regno Unito, in Brasile e in Corea del Sud.\n\nRispetto alla beta 1 il Duo si sblocca con il volto, sul Mac cambiano i permessi per le app di automazione, e Siri AI risponde a domande sui dati di Salute e legge un'intera pagina in Safari. In Cina Apple Intelligence arriva anche su iPad e Mac.",
+    "approfondimento": {
+     "titolo": "Siri AI diventa un servizio a consumo, e il conto passa da iCloud+",
+     "punto": "Fin qui Apple Intelligence era compresa nel prezzo del dispositivo. Con iOS 27.3 le funzioni che girano sui server di Apple diventano una quota giornaliera, e per averne di più si passa da un abbonamento che molti pagano già per lo spazio delle foto.",
+     "sotto": [
+      "Il limite non tocca tutto. Riguarda le operazioni che il dispositivo non fa da solo e manda a Private Cloud Compute, i server di Apple: le richieste più complesse a Siri AI, Image Playground, Clean Up, Extend e Spatial Reframing nelle foto, le automazioni di Comandi e le app di altri sviluppatori che si appoggiano agli stessi modelli. La quota gratuita vale per il singolo dispositivo e si azzera a mezzanotte, ora locale. Quella in più che arriva con iCloud+, scrive iClarified, si divide invece fra i membri della famiglia.",
+      "Le testate lette non dicono a quante richieste corrisponda il tetto gratuito, ed è il dato che manca per capire quanto si farà sentire nell'uso di tutti i giorni. Si sa come cresce: il doppio con 200 GB, cinque volte con 2 TB, dieci con 6 TB, venti con 12 TB. Dato che i prezzi dei piani restano quelli di oggi, chi paga già lo spazio per le foto si troverà la quota più alta senza fare niente.",
+      "In Italia la questione per ora resta lontana. Come ricorda iSpazio, le nuove capacità di Siri AI qui non sono disponibili, e la quota estesa è esclusa da tutta l'Unione Europea. Se e come limite e moltiplicatori arriveranno quando Siri AI sbarcherà in Europa, Apple non l'ha detto."
+     ]
+    }
+   },
+   "iphone-duo-sblocco-volto": {
+    "title": "iPhone Duo si sblocca con il volto, ma solo da chiuso e non per pagare",
+    "sintesi": "Con iOS 27.3 beta 2 iPhone Duo riconosce il volto con la fotocamera dello schermo esterno: funziona solo da chiuso e sulla schermata di blocco, non per Apple Pay e password.",
+    "descrizione": "Il Duo non ha il Face ID, e finora si sbloccava solo con il Touch ID del tasto laterale o con il codice. Nella seconda beta di iOS 27.3 compare Unlock with Front Camera, che usa la fotocamera dello schermo esterno: si attiva in Impostazioni, alla voce Touch ID e codice, e per registrare il volto si gira la testa in più direzioni.\n\nI limiti sono stretti. Funziona solo a telefono chiuso e sulla schermata di blocco, e solo se si è usato da poco il Touch ID o il codice, che tornano obbligatori dopo circa 45 minuti senza sblocchi. Apple Pay, le password salvate e l'accesso alle app restano fuori. MacRumors l'ha provata: con una buona luce funziona bene, al buio poco, perché manca il sensore a infrarossi. Il volto resta sul dispositivo. Nella stessa beta il Duo impara anche a bloccarsi quando lo si chiude, invece di passare il contenuto allo schermo esterno.",
+    "approfondimento": {
+     "titolo": "A un mese dal lancio, Apple sta ancora finendo il Duo",
+     "punto": "Lo sblocco con il volto e il blocco alla chiusura rispondono a due delle critiche più frequenti delle prime recensioni. Sono soluzioni software a un limite che resta hardware, e arrivano mentre Apple accelera le consegne.",
+     "sotto": [
+      "Il Face ID degli altri iPhone ricostruisce il volto in tre dimensioni con il sensore TrueDepth, che il Duo non ha. Una fotocamera normale vede un'immagine piatta, ed è per questo che Apple tiene lo sblocco lontano dai pagamenti e dalle password e lo lega a un Touch ID recente: il volto apre la schermata di blocco, ma l'identità la conferma ancora il dito. Apple elenca questi limiti già durante la configurazione. Fra i lettori di MacRumors, intanto, c'è chi si chiede quanto basti una foto per ingannarlo.",
+      "Le due funzioni vanno incontro alle lamentele più comuni delle prime prove: niente Face ID e un telefono che, chiuso, restava acceso sullo schermo esterno. iSpazio collega la rapidità della risposta anche al 30% di Duo restituiti entro i 14 giorni, un dato che circola da giorni e che attribuisce in parte proprio alla mancanza del Face ID. Da dove venga quel numero, l'articolo non lo dice.",
+      "Il Face ID vero resta una questione di componenti: secondo Bloomberg Apple lo prova sul Duo 2, atteso nell'autunno 2027, senza la certezza di arrivare in tempo. Fino ad allora, con iOS 27.3 a dicembre, chi ha un Duo avrà una via di mezzo, comoda per aprire il telefono e non per altro."
+     ]
+    }
+   },
+   "macos-27-3-permessi-agenti": {
+    "title": "macOS 27.3 divide in due il permesso con cui un'app può controllare tutto il Mac",
+    "sintesi": "In macOS 27.3 il permesso che dava a un'app il controllo di tutto il Mac si divide in due, si può limitare a singole app o cartelle e lascia un indicatore nella barra dei menu.",
+    "descrizione": "Con la seconda beta di macOS 27.3 Apple comincia ad applicare quello che aveva annunciato a ottobre. Fino a macOS 27.2 bastava un solo interruttore, Device Control and Data Access, per permettere a un'app di leggere e inviare email, modificare contatti e foto, registrare quello che si digita e lo schermo, controllare qualsiasi altra app. Ora diventano due permessi: Accessibilità, per le tecnologie assistive, e System and App Protection Override, per gli strumenti di automazione che devono aggirare alcune protezioni di macOS.\n\nL'accesso si potrà dare a singole app o cartelle invece che a tutto il Mac, si potrà chiedere al sistema di domandarlo ogni volta, e quando un'app ne controlla un'altra comparirà un indicatore nella barra dei menu. Apple lo motiva con gli agenti di intelligenza artificiale, sempre più capaci e autonomi, che chiedono permessi così ampi da esporre tutto il Mac. I permessi già concessi restano validi.",
+    "approfondimento": {
+     "titolo": "Il Mac non toglie le chiavi agli agenti, ma vuole sapere quando le usano",
+     "punto": "Apple non vieta alle app di intelligenza artificiale di controllare il Mac. Cambia il modo in cui lo chiedono: permessi più piccoli, una conferma che si può pretendere ogni volta, e un segno visibile mentre succede.",
+     "sotto": [
+      "Il vecchio interruttore valeva per tutto o per niente. Gli agenti che lavorano sul Mac al posto di chi li usa, aprendo app, leggendo la posta e compilando moduli, chiedono proprio quello: l'accesso completo. Già il mese scorso Apple aveva scritto che alcuni sviluppatori usano l'accesso completo al disco in modi che mettono a rischio gli utenti, esponendo file, posta, messaggi e cronologia.",
+      "La possibilità di concedere tutto non sparisce, chiarisce 9to5Mac: diventa più esplicito il momento in cui la si concede. Chi sviluppa app di backup o per l'accessibilità può chiedere ad Apple un'autorizzazione apposita per mantenere l'esperienza di oggi sulle installazioni nuove; i dettagli per il backup, scrive MacRumors, arriveranno a breve. Secondo Apple le app già conosciute non sono interessate e continuano a funzionare come prima.",
+      "Restano domande aperte. Apple non ha detto quali siano le app «conosciute», né come si comporteranno gli strumenti di automazione più diffusi davanti ai nuovi permessi. L'indicatore nella barra dei menu ricorda quello che oggi segnala il microfono acceso: sarà l'uso a dire se basta a far notare che un agente sta lavorando."
+     ]
+    }
+   },
+   "iphone-20-pro-vetro-air": {
+    "title": "Il vetro curvo dell'iPhone Air passerebbe all'iPhone del ventennale",
+    "sintesi": "Secondo il leaker Fixed Focus Digital l'iPhone 20 Pro, atteso nel 2027, sarà tutto in vetro e curvo sui quattro lati, con le macchine di produzione dell'iPhone Air adattate.",
+    "descrizione": "Il leaker cinese Fixed Focus Digital ha scritto su Weibo che l'iPhone 20 Pro, il modello del ventennale atteso nell'autunno 2027, avrà un design tutto in vetro, curvo sui quattro lati, senza dire di quanto. L'illustrazione che accompagna il post, descritta da MacRumors, mostra vetro arrotondato davanti e dietro che incontra una cornice metallica dorata e lucida, con i tasti laterali e il modulo delle fotocamere ancora in vista. Lo stesso leaker aveva scritto ad agosto che Apple ha adattato le macchine di produzione dell'iPhone Air per ottenere un vetro più arrotondato.\n\nLa voce va nella direzione già indicata da Mark Gurman su Bloomberg: vetro che si curva sui bordi sia davanti sia dietro, con una sottile fascia di metallo al centro. Apple non ha confermato né il design né il nome, che salterebbe l'iPhone 19.",
+    "approfondimento": {
+     "titolo": "Perché l'iPhone del ventennale potrebbe partire dall'Air",
+     "punto": "Se la voce è giusta, il Pro del 2027 eredita la tecnica del modello più sottile. Secondo lo stesso leaker non è solo una questione estetica: il vetro più arrotondato porterebbe vantaggi su spessore, calore e costi.",
+     "sotto": [
+      "Ad agosto Fixed Focus Digital aveva descritto il lavoro sulle linee di produzione: le macchine pensate per il vetro dell'iPhone Air, adattate per ottenere bordi più arrotondati. Secondo il leaker la scelta porterebbe benefici sullo spessore e sulla dissipazione del calore, e costi di produzione più bassi. Sono affermazioni di una fonte che non porta prove, e Apple non commenta i prodotti futuri.",
+      "MacRumors colloca il design a metà strada fra l'iPhone X e l'iPhone Air. Il riferimento all'X torna anche in Gurman, che parla del cambiamento più grande della linea Pro da quel modello, quello del decimo anniversario.",
+      "Sulle misure circolano numeri di filiera, raccolti da Yahoo: circa 6,41 pollici per il Pro e 6,96 per il Pro Max, spesso arrotondati a 6,4 e 7. Secondo The Apple Post lo schermo sarebbe curvo in modo uniforme sui quattro lati, quasi senza bordi. Nessuna di queste indicazioni è confermata, e su un telefono atteso fra quasi un anno è facile aspettarsi che cambino ancora."
+     ]
+    }
+   },
+   "apple-pay-fugman": {
+    "title": "Corey Fugman prende la guida di Apple Pay e Wallet",
+    "sintesi": "Secondo Bloomberg Corey Fugman, in Apple da 26 anni, succede a Jennifer Bailey alla guida di Apple Pay e Wallet e risponderà a Eddy Cue.",
+    "descrizione": "Apple ha scelto Corey Fugman come nuovo responsabile di Apple Pay e Wallet, scrive Mark Gurman su Bloomberg. In azienda da 26 anni, Fugman viene dal retail di Apple ed era finora senior director della stessa divisione; risponderà a Eddy Cue, che guida i servizi. Prende il posto di Jennifer Bailey, che va in pensione come annunciato ad agosto e resterà come consulente per la transizione nei prossimi mesi.\n\nIl primo dossier è Apple Card, che passa da Goldman Sachs a JPMorgan Chase: il cambio, confermato a gennaio, dovrebbe durare circa 24 mesi, e nel frattempo i conti restano gestiti da Goldman. La divisione gestisce decine di miliardi di transazioni l'anno in oltre 90 mercati.",
+    "approfondimento": {
+     "titolo": "Il dopo Bailey comincia da una banca da cambiare",
+     "punto": "Jennifer Bailey ha costruito Apple Pay da zero. Il suo successore arriva dall'interno e trova un lavoro già avviato: spostare Apple Card da una banca all'altra.",
+     "sotto": [
+      "Bailey aveva guidato l'Apple Online Store prima di creare, nel 2014, Apple Pay e Wallet. Il percorso di Fugman è tutto interno: il retail, poi la divisione pagamenti, e qualche apparizione nelle presentazioni pubbliche di Apple, fra cui la WWDC del 2022, ricorda appsystem.fr.",
+      "Secondo le stime riportate da Bloomberg, Apple Pay porta ad Apple circa 7,5 miliardi di dollari l'anno di commissioni sulle transazioni. Appleosophy la descrive come una parte vitale dei servizi, e con Fugman la divisione resta sotto Eddy Cue.",
+      "Il passaggio di Apple Card a JPMorgan Chase è il punto più delicato del nuovo incarico. Durerà circa due anni, e fino ad allora Goldman Sachs continua a gestire i conti. Come avverrà lo spostamento e se cambierà qualcosa per chi ha la carta, per ora non è noto."
+     ]
+    }
+   },
+   "iphone-20-pro-sensore-17nm": {
+    "title": "Per l'iPhone 20 Pro un sensore nuovo nella fotocamera principale",
+    "sintesi": "Secondo il leaker Ice Universe il sensore principale dell'iPhone 20 Pro avrà lo strato logico a 17 nanometri; non è chiaro se cambierà anche la dimensione.",
+    "descrizione": "Ice Universe scrive su Weibo che il sensore della fotocamera principale dell'iPhone 20 Pro userà un processo a 17 nanometri per lo strato logico, e non aggiunge altro. Nei sensori a strati, spiega MacRumors, i pixel che catturano la luce stanno su un livello e i circuiti che leggono ed elaborano l'immagine su un altro: un processo più avanzato per questi ultimi può dare letture più rapide, consumi più bassi e un'elaborazione più raffinata.\n\nSamsung lavora dal 2024 a un processo di questo tipo, e Apple collabora già con lei ad Austin su sensori a tre strati, ma un legame con questa voce non è confermato. Due indiscrezioni precedenti parlavano di un sensore più grande solo per il teleobiettivo, da 200 megapixel. Per GSMArena il Pro del 2027 terrà l'apertura variabile dell'iPhone 18 Pro."
+   },
+   "iphone-duo-nuovi-ordini-dicembre": {
+    "title": "iPhone Duo, chi lo ordina adesso lo riceve prima di Natale",
+    "sintesi": "Negli Stati Uniti i nuovi ordini di iPhone Duo arrivano fra il 16 e il 23 dicembre invece che il 25 gennaio, e la finestra più corta vale anche sull'Apple Store italiano.",
+    "descrizione": "Fino a giovedì scorso chi ordinava un iPhone Duo dall'Apple Store online negli Stati Uniti si vedeva promettere la consegna per il 25 gennaio. Ora la data è fra il 16 e il 23 dicembre, per tutti i colori e le capacità. Il primo ad accorgersene è stato Max Weinbach, secondo cui Apple sta aumentando la produzione molto in fretta. iSpazio ha controllato la sera del 16 novembre: la finestra più corta vale anche in Italia.\n\nPochi giorni fa era emerso che alcuni ordini già fatti, attesi a gennaio, erano stati anticipati a dicembre. Adesso il cambio riguarda anche chi ordina oggi. Alla presentazione dei conti John Ternus aveva detto che Apple lavorava per consegnare il Duo a quanti più clienti possibile, senza indicare quando domanda e offerta si sarebbero riequilibrate."
+   },
+   "apple-2027-occhiali-quindici-prodotti": {
+    "title": "Nel 2027 di Apple, secondo Gurman, gli occhiali e più di quindici prodotti nuovi",
+    "sintesi": "Nella newsletter Power On Mark Gurman indica la WWDC 2027 per il debutto degli occhiali di Apple e conta oltre quindici altri prodotti nell'anno, dall'iPhone Pro ridisegnato al Duo 2.",
+    "descrizione": "Dopo i prototipi degli occhiali raccontati ieri, la newsletter Power On di Mark Gurman dice anche quando dovrebbero debuttare: alla WWDC 2027. Intorno, il prossimo anno di Apple conta più di quindici prodotti. Fra gli iPhone ci sono il Pro ridisegnato, il Duo 2 e l'Air 2, oltre all'iPhone 18 e al 18e; fra gli iPad, aggiornamenti importanti del modello base, dell'Air e del Pro. Poi un Apple Watch ripensato, i MacBook Pro con M7, M7 Pro e M7 Max, nuovi MacBook Neo e MacBook Air, la casa con il robot da tavolo e, verso la fine dell'anno, AirPods con le fotocamere.\n\nMacRumors, che unisce Gurman ad altre indiscrezioni, arriva a diciotto prodotti e scende nel dettaglio: per l'Air 2 il chip A20 Pro e una fotocamera ultra grandangolare, per il Duo 2 il Face ID in prova ma non garantito."
+   },
+   "iphone-duo-app-ottimizzate-200mila": {
+    "title": "Le app ottimizzate per iPhone Duo sono raddoppiate in dieci giorni",
+    "sintesi": "Secondo Greg Joswiak le app dell'App Store adattate a iPhone Duo sono passate da oltre 100.000 a oltre 200.000 in dieci giorni.",
+    "descrizione": "Greg Joswiak, responsabile del marketing mondiale di Apple, ha scritto su X che le app ottimizzate per iPhone Duo sull'App Store hanno superato le 200.000. All'inizio del mese Apple ne aveva annunciate più di 100.000: in dieci giorni il numero è raddoppiato, e Joswiak si è detto «excited by how quickly developers have embraced» il telefono. Un'app ottimizzata usa tutto lo schermo interno invece di restare in una cornice. Il dato arriva lo stesso giorno della beta di iOS 27.3 che porta lo sblocco con il volto e il blocco alla chiusura. Lo riporta, fra le nostre testate, solo 9to5Mac."
+   },
+   "oprah-iphone-duo-caregiver": {
+    "title": "Oprah regala un iPhone Duo a più di cento caregiver",
+    "sintesi": "Nella puntata del 12 novembre del suo podcast Oprah Winfrey ha regalato un iPhone Duo a più di cento caregiver, e lo ha definito l'iPhone più trasformativo dal primo del 2007.",
+    "descrizione": "Oprah Winfrey ha sorpreso più di cento caregiver, fra infermieri, operatori degli hospice, soccorritori e genitori di bambini con bisogni speciali, regalando a ciascuno un iPhone Duo e un anno di internet e telefono con AT&T. È successo nella puntata del 12 novembre di The Oprah Podcast: il suo primo regalo dal vivo in quindici anni, nel trentesimo anniversario della lista «Favorite Things», che quest'anno conta 79 voci e comprende il Duo.\n\nOprah ha mostrato il suo, aperto e chiuso, appoggiato per una chiamata FaceTime, e ha detto: «It is the most transformational iPhone I've seen since the original back in 2007». Da chiuso, ha aggiunto, «fits in your hand like a passport»."
+   },
+   "canada-c22-apple-cifratura": {
+    "title": "Apple chiede al Canada di cambiare la legge sull'accesso ai dati",
+    "sintesi": "Apple, con Google e Meta, chiede ai senatori canadesi di modificare il Bill C-22: anche con le garanzie aggiunte, dice, la legge minerebbe la cifratura e la privacy.",
+    "descrizione": "Insieme a Google e Meta, Apple fa pressione sui senatori canadesi che esaminano il Bill C-22, la legge sull'accesso ai dati. In una dichiarazione riportata da Bloomberg l'azienda riconosce i passi avanti del governo, ma sostiene che il testo minerebbe ancora la sua capacità di offrire funzioni di privacy e sicurezza, cifratura compresa, «even as AI and other evolving technologies provide hackers with new tools to exploit cybersecurity weaknesses».\n\nDopo l'avvertimento di Apple a maggio, i legislatori avevano escluso l'obbligo di decifrare i dati, salvo quando il fornitore ha creato la cifratura e possiede già la chiave, e quello di introdurre vulnerabilità sistemiche. La legge permetterebbe alle autorità di far conservare fino a sei mesi i metadati: chi comunica con chi, e quando. Signal minaccia di lasciare il Canada. Il governo risponde che il testo «does not authorize indiscriminate surveillance». È ancora all'esame di una commissione del Senato."
+   },
+   "levinson-vendita-azioni": {
+    "title": "Arthur Levinson vende azioni Apple per 31,8 milioni di dollari",
+    "sintesi": "Arthur Levinson, presidente di Apple fino a settembre, ha notificato alla SEC l'intenzione di vendere 90.000 azioni, per un valore di 31,8 milioni di dollari.",
+    "descrizione": "Arthur Levinson, presidente del consiglio di Apple dal 2011 a settembre e oggi consigliere indipendente principale, ha depositato alla SEC il modulo 144 per vendere 90.000 azioni, per un valore di 31.765.885 dollari. Le azioni sono intestate a The Homeplace Trust, di cui è amministratore, e risultano comprate il 27 febbraio 2001; da allora Apple ha frazionato i titoli tre volte. Il modulo è solo un preavviso: la vendita, tramite Charles Schwab, non è ancora avvenuta. A maggio Levinson aveva venduto 250.000 azioni per circa 71,2 milioni, e tre settimane dopo altre 50.000. Gli restano circa 3,7 milioni di azioni."
+   },
+   "apple-com-spagnolo-usa": {
+    "title": "Il sito di Apple per gli Stati Uniti si legge anche in spagnolo",
+    "sintesi": "Apple.com ha una versione in spagnolo per gli Stati Uniti, all'indirizzo apple.com/us-es; l'Apple Store online e i servizi finanziari restano solo in inglese.",
+    "descrizione": "Il sito di Apple per gli Stati Uniti è disponibile in spagnolo, all'indirizzo apple.com/us-es. Chi ha il dispositivo impostato in spagnolo riceve un invito a cambiare lingua, e la versione si sceglie anche dal menu di lingua e paese in fondo alla pagina. L'Apple Store online e i servizi finanziari restano in inglese: chi prova a passare al negozio in spagnolo trova un messaggio con un numero di telefono per l'assistenza nella sua lingua. Il sito del supporto, ricorda MacRumors, aveva già una versione spagnola per gli Stati Uniti."
+   },
+   "slow-horses-rinnovo-decima": {
+    "title": "«Slow Horses» non finisce: Apple TV la rinnova fino alla decima stagione",
+    "sintesi": "Apple TV ha rinnovato «Slow Horses» per la nona e la decima stagione, pochi giorni dopo che Olivia Cooke aveva detto di girare l'ultima.",
+    "descrizione": "Pochi giorni fa Olivia Cooke aveva detto al Times «I am shooting the last season», aggiungendo subito «never say never». Apple TV ha confermato a Deadline la nona e la decima stagione di «Slow Horses», che si aggiungono alla settima e all'ottava già ordinate. Quattro stagioni commissionate in anticipo sono una rarità, e ne fanno la serie originale di Apple TV con più stagioni in programma.\n\nLa sesta si è appena chiusa, e tutte quelle uscite hanno almeno il 95% su Rotten Tomatoes. I romanzi della serie Slough House di Mick Herron, ricorda MacRumors, bastano fino all'ottava: per la nona e la decima la storia potrebbe andare oltre i libri, e Apple non ha detto come."
+   },
+   "grammy-apple-tv-schmigadoon-widows-bay": {
+    "title": "Due candidature ai Grammy per Apple TV, con «Schmigadoon!» e «Widow's Bay»",
+    "sintesi": "L'album di Broadway di «Schmigadoon!» e la colonna sonora di «Widow's Bay» sono candidati ai Grammy 2027; la cerimonia è il 7 febbraio.",
+    "descrizione": "L'adattamento per Broadway di «Schmigadoon!» è candidato come miglior album di teatro musicale, contro CHESS the Musical, The Lost Boys, Ragtime e Two Strangers. La colonna sonora di «Widow's Bay», composta da David Fleming, concorre fra le musiche per i media visivi, con The Odyssey, One Battle After Another, Project Hail Mary e The Mandalorian and Grogu. La cerimonia è il 7 febbraio 2027.\n\nQuest'anno lo spettacolo ha vinto quattro Tony, fra cui quello per il miglior musical. La serie si era fermata dopo due stagioni: Apple ha rinunciato alla terza nel gennaio 2024. «Widow's Bay», scrive MacTech, ha già 19 candidature agli Emmy ed è stata rinnovata."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "Una giornata fatta quasi tutta di software. La seconda beta dei sistemi 27.3 corregge il Duo dove le prime recensioni lo avevano criticato, mette un contatore all'intelligenza artificiale di Apple e chiede alle app che vogliono guidare il Mac di dichiararsi. Il resto guarda già al 2027, con il vetro curvo dell'iPhone del ventennale e l'elenco dei prodotti attesi secondo Gurman. Apple Pay, intanto, cambia responsabile.",
+  "top3": [
+   "Seconda beta di iOS 27.3: Siri AI avrà un limite giornaliero, più alto con iCloud+",
+   "iPhone Duo si sblocca con il volto, ma solo da chiuso e non per pagare",
+   "macOS 27.3 divide in due il permesso che lascia a un'app il controllo del Mac"
+  ],
+  "editoriale": {
+   "titolo": "Il telefono comprato un mese fa non è più lo stesso",
+   "testo": [
+    "Chi ha comprato un iPhone Duo a ottobre se lo vedrà cambiare a dicembre. Con iOS 27.3 si sbloccherà con il volto, anche se solo da chiuso e mai per pagare, e si bloccherà quando lo si chiude: due cose che le prime recensioni gli rimproveravano. Nella stessa beta Apple mette un limite giornaliero alle funzioni di Apple Intelligence che girano sui suoi server, e lo lega ai piani di iCloud+. Sul Mac restringe i permessi che le app di automazione chiedono per controllare tutto.",
+    "Che cosa si compra, allora, quando si compra un prodotto Apple? Sempre più spesso un oggetto che continua a cambiare dopo l'acquisto, e non sempre nella stessa direzione. Lo sblocco con il volto aggiunge al Duo qualcosa che mancava. Il contatore di Siri AI traccia un confine che prima non si vedeva, e i nuovi permessi del Mac chiedono un pò più di attenzione a chi affida il computer a un agente.",
+    "Sono cambiamenti diversi fra loro, e i prezzi di iCloud+ restano quelli di oggi. A chi usa questi prodotti, però, chiedono di tenere a mente qualcosa in più: cosa c'è adesso, cosa arriva con un aggiornamento, dove finisce quello che è compreso. E sul punto che conta di più manca ancora una risposta: le testate non dicono quante richieste valga la quota gratuita di Siri AI."
+   ],
+   "notizie": [
+    "ios-27-3-beta-2",
+    "iphone-duo-sblocco-volto",
+    "macos-27-3-permessi-agenti"
+   ]
+  },
+  "news": {
+   "ios-27-3-beta-2": {
+    "title": "Seconda beta di iOS 27.3. Siri AI avrà un limite giornaliero, che si alza con iCloud+",
+    "sintesi": "Con la beta 2 dei sistemi 27.3 Apple mette un tetto giornaliero alle funzioni più pesanti di Apple Intelligence: i piani iCloud+ lo alzano fino a venti volte, senza aumenti di prezzo.",
+    "descrizione": "Apple ha distribuito agli sviluppatori la seconda beta di iOS, iPadOS, macOS, watchOS, tvOS e visionOS 27.3, due settimane dopo la prima. La versione definitiva è attesa a dicembre.\n\nIl cambiamento più importante riguarda Apple Intelligence. Le richieste complesse a Siri AI, la creazione e la modifica delle immagini, le automazioni di Comandi e le app di altri sviluppatori che passano dai server di Apple avranno un limite gratuito per dispositivo, che si azzera a mezzanotte. I piani iCloud+ lo alzano, dal doppio con 200 GB fino a venti volte con 12 TB, e i prezzi non cambiano. Secondo iClarified la quota estesa non ci sarà nell'Unione Europea, nel Regno Unito, in Brasile e in Corea del Sud.\n\nLe altre novità rispetto alla prima beta: il Duo si sblocca con il volto, sul Mac cambiano i permessi per le app di automazione, Siri AI risponde a domande sui dati di Salute e legge un'intera pagina in Safari. In Cina Apple Intelligence arriva anche su iPad e Mac.",
+    "approfondimento": {
+     "titolo": "Siri AI diventa un servizio a consumo, e il conto passa da iCloud+",
+     "punto": "Fin qui Apple Intelligence era compresa nel prezzo del dispositivo. Con iOS 27.3 le funzioni che girano sui server di Apple diventano una quota giornaliera, e per averne di più si passa da un abbonamento che molti pagano già per lo spazio delle foto.",
+     "sotto": [
+      "Il limite non tocca tutto. Riguarda le operazioni che il dispositivo non fa da solo e manda a Private Cloud Compute, i server di Apple: le richieste più complesse a Siri AI, Image Playground, Clean Up, Extend e Spatial Reframing nelle foto, le automazioni di Comandi e le app di altri sviluppatori che si appoggiano agli stessi modelli. La quota gratuita vale per il singolo dispositivo e si azzera a mezzanotte, ora locale. Quella in più che arriva con iCloud+, scrive iClarified, si divide invece fra i membri della famiglia.",
+      "Le testate lette non dicono a quante richieste corrisponda il tetto gratuito, ed è il dato che manca per capire quanto si farà sentire nell'uso di tutti i giorni. Si sa come cresce: il doppio con 200 GB, cinque volte con 2 TB, dieci con 6 TB, venti con 12 TB. Dato che i prezzi dei piani restano quelli di oggi, chi paga già lo spazio per le foto si troverà la quota più alta senza fare niente.",
+      "In Italia la questione per ora resta lontana. Come ricorda iSpazio, le nuove capacità di Siri AI qui non sono disponibili, e la quota estesa è esclusa da tutta l'Unione Europea. Se e come limite e moltiplicatori arriveranno quando Siri AI sbarcherà in Europa, Apple non l'ha detto."
+     ]
+    }
+   },
+   "iphone-duo-sblocco-volto": {
+    "title": "iPhone Duo si sblocca con il volto, ma solo da chiuso e non per pagare",
+    "sintesi": "Con iOS 27.3 beta 2 iPhone Duo riconosce il volto con la fotocamera dello schermo esterno: funziona solo da chiuso e sulla schermata di blocco, non per Apple Pay e password.",
+    "descrizione": "Il Duo non ha il Face ID, e finora si sbloccava solo con il Touch ID del tasto laterale o con il codice. Nella seconda beta di iOS 27.3 compare Unlock with Front Camera, che usa la fotocamera dello schermo esterno: si attiva in Impostazioni, alla voce Touch ID e codice, e per registrare il volto si gira la testa in più direzioni.\n\nI limiti sono stretti. Funziona solo a telefono chiuso e sulla schermata di blocco, e solo se si è usato da poco il Touch ID o il codice, che tornano obbligatori dopo circa 45 minuti senza sblocchi. Apple Pay, le password salvate e l'accesso alle app restano fuori. MacRumors l'ha provata: con una buona luce funziona bene, al buio poco, perché manca il sensore a infrarossi. I dati del volto non lasciano il telefono. Nella stessa beta il Duo impara anche a bloccarsi quando lo si chiude, invece di passare il contenuto allo schermo esterno.",
+    "approfondimento": {
+     "titolo": "A un mese dal lancio, Apple sta ancora finendo il Duo",
+     "punto": "Lo sblocco con il volto e il blocco alla chiusura rispondono a due delle critiche più frequenti delle prime recensioni. Sono soluzioni software a un limite che resta hardware, e arrivano mentre Apple accelera le consegne.",
+     "sotto": [
+      "Il Face ID degli altri iPhone ricostruisce il volto in tre dimensioni con il sensore TrueDepth, che il Duo non ha. Una fotocamera normale vede un'immagine piatta, ed è per questo che Apple tiene lo sblocco lontano dai pagamenti e dalle password e lo lega a un Touch ID recente: il volto apre la schermata di blocco, ma l'identità la conferma ancora il dito. Apple elenca questi limiti già durante la configurazione. Fra i lettori di MacRumors, intanto, c'è chi si chiede quanto basti una foto per ingannarlo.",
+      "Le due funzioni vanno incontro alle lamentele più comuni delle prime prove: niente Face ID e un telefono che, chiuso, restava acceso sullo schermo esterno. iSpazio collega la rapidità della risposta anche al 30% di Duo restituiti entro i 14 giorni, un dato che circola da giorni e che attribuisce in parte proprio alla mancanza del Face ID. Da dove venga quel numero, l'articolo non lo dice.",
+      "Il Face ID vero resta una questione di componenti: secondo Bloomberg Apple lo prova sul Duo 2, atteso nell'autunno 2027, senza la certezza di arrivare in tempo. Fino ad allora, con iOS 27.3 a dicembre, chi ha un Duo avrà una soluzione intermedia: utile per sbloccare il telefono, non per pagare o per le password."
+     ]
+    }
+   },
+   "macos-27-3-permessi-agenti": {
+    "title": "macOS 27.3 divide in due il permesso con cui un'app può controllare tutto il Mac",
+    "sintesi": "In macOS 27.3 il permesso che dava a un'app il controllo di tutto il Mac si divide in due, si può limitare a singole app o cartelle e lascia un indicatore nella barra dei menu.",
+    "descrizione": "Con la seconda beta di macOS 27.3 Apple comincia ad applicare quello che aveva annunciato a ottobre. Fino a macOS 27.2 bastava un solo interruttore, Device Control and Data Access, per permettere a un'app di leggere e inviare email, modificare contatti e foto, registrare quello che si digita e lo schermo, controllare qualsiasi altra app. Ora diventano due permessi: Accessibilità, per le tecnologie assistive, e System and App Protection Override, per gli strumenti di automazione che devono aggirare alcune protezioni di macOS.\n\nL'accesso si potrà dare a singole app o cartelle invece che a tutto il Mac, si potrà chiedere al sistema di domandarlo ogni volta, e quando un'app ne controlla un'altra comparirà un indicatore nella barra dei menu. Apple lo motiva con gli agenti di intelligenza artificiale, sempre più capaci e autonomi, che chiedono permessi così ampi da esporre tutto il Mac. I permessi già concessi restano validi.",
+    "approfondimento": {
+     "titolo": "Sul Mac gli agenti dovranno chiedere permessi più piccoli",
+     "punto": "Apple non vieta alle app di intelligenza artificiale di controllare il Mac. Cambia il modo in cui lo chiedono: permessi più piccoli, una conferma che si può pretendere ogni volta, e un segno visibile mentre succede.",
+     "sotto": [
+      "Il vecchio interruttore valeva per tutto o per niente. Gli agenti che lavorano sul Mac al posto di chi li usa, aprendo app, leggendo la posta e compilando moduli, chiedono proprio quello: l'accesso completo. Già il mese scorso Apple aveva scritto che alcuni sviluppatori usano l'accesso completo al disco in modi che mettono a rischio gli utenti, esponendo file, posta, messaggi e cronologia.",
+      "La possibilità di concedere tutto non sparisce, chiarisce 9to5Mac: diventa più esplicito il momento in cui la si concede. Chi sviluppa app di backup o per l'accessibilità può chiedere ad Apple un'autorizzazione apposita per mantenere l'esperienza di oggi sulle installazioni nuove; i dettagli per il backup, scrive MacRumors, arriveranno a breve. Secondo Apple le app già conosciute non sono interessate e continuano a funzionare come prima.",
+      "Restano domande aperte. Apple non ha detto quali siano le app «conosciute», né come si comporteranno gli strumenti di automazione più diffusi davanti ai nuovi permessi. L'indicatore nella barra dei menu ricorda quello che oggi segnala il microfono acceso: sarà l'uso a dire se basta a far notare che un agente sta lavorando."
+     ]
+    }
+   },
+   "iphone-20-pro-vetro-air": {
+    "title": "Il vetro curvo dell'iPhone Air passerebbe all'iPhone del ventennale",
+    "sintesi": "Secondo il leaker Fixed Focus Digital l'iPhone 20 Pro, atteso nel 2027, sarebbe tutto in vetro e curvo sui quattro lati, fatto con le macchine dell'iPhone Air adattate.",
+    "descrizione": "Il leaker cinese Fixed Focus Digital ha scritto su Weibo che l'iPhone 20 Pro, il modello del ventennale atteso nell'autunno 2027, avrà un design tutto in vetro, curvo sui quattro lati, senza dire di quanto. L'illustrazione che accompagna il post, descritta da MacRumors, mostra vetro arrotondato davanti e dietro che incontra una cornice metallica dorata e lucida, con i tasti laterali e il modulo delle fotocamere ancora in vista. Lo stesso leaker aveva scritto ad agosto che Apple ha adattato le macchine di produzione dell'iPhone Air per ottenere un vetro più arrotondato.\n\nLa voce va nella direzione già indicata da Mark Gurman su Bloomberg: vetro che si curva sui bordi sia davanti sia dietro, con una sottile fascia di metallo al centro. Apple non ha confermato né il design né il nome, che salterebbe l'iPhone 19.",
+    "approfondimento": {
+     "titolo": "Perché l'iPhone del ventennale potrebbe partire dall'Air",
+     "punto": "Se la voce è giusta, il Pro del 2027 eredita la tecnica del modello più sottile. Secondo lo stesso leaker non è solo una questione estetica: il vetro più arrotondato porterebbe vantaggi su spessore, calore e costi.",
+     "sotto": [
+      "Ad agosto Fixed Focus Digital aveva descritto il lavoro sulle linee di produzione: le macchine pensate per il vetro dell'iPhone Air, adattate per ottenere bordi più arrotondati. Secondo il leaker la scelta porterebbe benefici sullo spessore e sulla dissipazione del calore, e costi di produzione più bassi. Sono affermazioni di una fonte che non porta prove, e Apple non commenta i prodotti futuri.",
+      "MacRumors colloca il design a metà strada fra l'iPhone X e l'iPhone Air. Il riferimento all'X torna anche in Gurman, che parla del cambiamento più grande della linea Pro da quel modello, quello del decimo anniversario.",
+      "Sulle misure circolano numeri di filiera, raccolti da Yahoo: circa 6,41 pollici per il Pro e 6,96 per il Pro Max, spesso arrotondati a 6,4 e 7. Secondo The Apple Post lo schermo sarebbe curvo in modo uniforme sui quattro lati, quasi senza bordi. Nessuna di queste indicazioni è confermata, e su un telefono atteso fra quasi un anno è facile aspettarsi che cambino ancora."
+     ]
+    }
+   },
+   "apple-pay-fugman": {
+    "title": "Corey Fugman prende la guida di Apple Pay e Wallet",
+    "sintesi": "Secondo Bloomberg Corey Fugman, in Apple da 26 anni, succede a Jennifer Bailey alla guida di Apple Pay e Wallet e risponderà a Eddy Cue.",
+    "descrizione": "Apple ha scelto Corey Fugman come nuovo responsabile di Apple Pay e Wallet, scrive Mark Gurman su Bloomberg. In azienda da 26 anni, Fugman viene dal retail di Apple ed era finora senior director della stessa divisione; risponderà a Eddy Cue, che guida i servizi. Prende il posto di Jennifer Bailey, che va in pensione come annunciato ad agosto e resterà come consulente per la transizione nei prossimi mesi.\n\nIl primo dossier è Apple Card, che passa da Goldman Sachs a JPMorgan Chase: il cambio, confermato a gennaio, dovrebbe durare circa 24 mesi, e nel frattempo i conti restano gestiti da Goldman. La divisione gestisce decine di miliardi di transazioni l'anno in oltre 90 mercati.",
+    "approfondimento": {
+     "titolo": "Il dopo Bailey comincia da una banca da cambiare",
+     "punto": "Jennifer Bailey ha costruito Apple Pay da zero. Il suo successore arriva dall'interno e trova un lavoro già avviato: spostare Apple Card da una banca all'altra.",
+     "sotto": [
+      "Bailey aveva guidato l'Apple Online Store prima di creare, nel 2014, Apple Pay e Wallet. Il percorso di Fugman è tutto interno: il retail, poi la divisione pagamenti, e qualche apparizione nelle presentazioni pubbliche di Apple, fra cui la WWDC del 2022, ricorda appsystem.fr.",
+      "Secondo le stime riportate da Bloomberg, Apple Pay porta ad Apple circa 7,5 miliardi di dollari l'anno di commissioni sulle transazioni. È una parte rilevante dei servizi, e con Fugman la divisione resta sotto Eddy Cue, che li guida.",
+      "Il passaggio di Apple Card a JPMorgan Chase è il punto più delicato del nuovo incarico. Durerà circa due anni, e fino ad allora Goldman Sachs continua a gestire i conti. Come avverrà lo spostamento e se cambierà qualcosa per chi ha la carta, per ora non è noto."
+     ]
+    }
+   },
+   "iphone-20-pro-sensore-17nm": {
+    "title": "Per l'iPhone 20 Pro un sensore nuovo nella fotocamera principale",
+    "sintesi": "Secondo il leaker Ice Universe il sensore principale dell'iPhone 20 Pro avrebbe lo strato logico a 17 nanometri; non è chiaro se cambierà anche la dimensione.",
+    "descrizione": "Ice Universe scrive su Weibo che il sensore della fotocamera principale dell'iPhone 20 Pro userà un processo a 17 nanometri per lo strato logico, e non aggiunge altro. Nei sensori a strati, spiega MacRumors, i pixel che catturano la luce stanno su un livello e i circuiti che leggono ed elaborano l'immagine su un altro: un processo più avanzato per questi ultimi può dare letture più rapide, consumi più bassi e un'elaborazione più raffinata.\n\nSamsung lavora dal 2024 a un processo di questo tipo, e Apple collabora già con Samsung ad Austin su sensori a tre strati, ma un legame con questa voce non è confermato. Due indiscrezioni precedenti parlavano di un sensore più grande solo per il teleobiettivo, da 200 megapixel. Per GSMArena il Pro del 2027 terrà l'apertura variabile dell'iPhone 18 Pro."
+   },
+   "iphone-duo-nuovi-ordini-dicembre": {
+    "title": "iPhone Duo, chi lo ordina adesso lo riceve prima di Natale",
+    "sintesi": "Negli Stati Uniti i nuovi ordini di iPhone Duo arrivano fra il 16 e il 23 dicembre invece che il 25 gennaio, e la finestra più corta vale anche sull'Apple Store italiano.",
+    "descrizione": "Fino a giovedì scorso chi ordinava un iPhone Duo dall'Apple Store online negli Stati Uniti si vedeva promettere la consegna per il 25 gennaio. Ora la data è fra il 16 e il 23 dicembre, per tutti i colori e le capacità. Il primo ad accorgersene è stato Max Weinbach, secondo cui Apple sta aumentando la produzione molto in fretta. iSpazio ha controllato la sera del 16 novembre: la finestra più corta vale anche in Italia.\n\nPochi giorni fa era emerso che alcuni ordini già fatti, attesi a gennaio, erano stati anticipati a dicembre. Adesso il cambio riguarda anche chi ordina oggi. Alla presentazione dei conti John Ternus aveva detto che Apple lavorava per consegnare il Duo a quanti più clienti possibile, senza indicare quando domanda e offerta si sarebbero riequilibrate."
+   },
+   "apple-2027-occhiali-quindici-prodotti": {
+    "title": "Nel 2027 di Apple, secondo Gurman, gli occhiali e più di quindici prodotti nuovi",
+    "sintesi": "Nella newsletter Power On Mark Gurman indica la WWDC 2027 per il debutto degli occhiali di Apple e conta oltre quindici altri prodotti nell'anno, dall'iPhone Pro ridisegnato al Duo 2.",
+    "descrizione": "Dopo i prototipi degli occhiali raccontati ieri, la newsletter Power On di Mark Gurman dice anche quando dovrebbero debuttare: alla WWDC 2027. Nello stesso anno, secondo Gurman, Apple dovrebbe presentare più di quindici prodotti. Fra gli iPhone ci sono il Pro ridisegnato, il Duo 2 e l'Air 2, oltre all'iPhone 18 e al 18e; fra gli iPad, aggiornamenti importanti del modello base, dell'Air e del Pro. Poi un Apple Watch ripensato, i MacBook Pro con M7, M7 Pro e M7 Max, nuovi MacBook Neo e MacBook Air, la casa con il robot da tavolo e, verso la fine dell'anno, AirPods con le fotocamere.\n\nMacRumors, che unisce Gurman ad altre indiscrezioni, arriva a diciotto prodotti e scende nel dettaglio: per l'Air 2 il chip A20 Pro e una fotocamera ultra grandangolare, per il Duo 2 il Face ID in prova ma non garantito."
+   },
+   "iphone-duo-app-ottimizzate-200mila": {
+    "title": "Le app ottimizzate per iPhone Duo sono raddoppiate in dieci giorni",
+    "sintesi": "Secondo Greg Joswiak le app dell'App Store adattate a iPhone Duo sono passate da oltre 100.000 a oltre 200.000 in dieci giorni.",
+    "descrizione": "Greg Joswiak, responsabile del marketing mondiale di Apple, ha scritto su X che le app ottimizzate per iPhone Duo sull'App Store hanno superato le 200.000. All'inizio del mese Apple ne aveva annunciate più di 100.000: in dieci giorni il numero è raddoppiato, e Joswiak si è detto «excited by how quickly developers have embraced» il telefono. Un'app ottimizzata usa tutto lo schermo interno invece di restare in una cornice. Il dato arriva lo stesso giorno della beta di iOS 27.3 che porta lo sblocco con il volto e il blocco alla chiusura. Lo riporta, fra le nostre testate, solo 9to5Mac."
+   },
+   "oprah-iphone-duo-caregiver": {
+    "title": "Oprah regala un iPhone Duo a più di cento caregiver",
+    "sintesi": "Nella puntata del 12 novembre del suo podcast Oprah Winfrey ha regalato un iPhone Duo a più di cento caregiver, e lo ha definito l'iPhone più trasformativo dal primo del 2007.",
+    "descrizione": "Oprah Winfrey ha sorpreso più di cento caregiver, fra infermieri, operatori degli hospice, soccorritori e genitori di bambini con bisogni speciali, regalando a ciascuno un iPhone Duo e un anno di internet e telefono con AT&T. È successo nella puntata del 12 novembre di The Oprah Podcast: il suo primo regalo dal vivo in quindici anni, nel trentesimo anniversario della lista «Favorite Things», che quest'anno conta 79 voci e comprende il Duo.\n\nOprah ha mostrato il suo, aperto e chiuso, appoggiato per una chiamata FaceTime, e ha detto: «It is the most transformational iPhone I've seen since the original back in 2007». Da chiuso, ha aggiunto, «fits in your hand like a passport»."
+   },
+   "canada-c22-apple-cifratura": {
+    "title": "Apple chiede al Canada di cambiare la legge sull'accesso ai dati",
+    "sintesi": "Apple, con Google e Meta, chiede ai senatori canadesi di modificare il Bill C-22: anche con le garanzie aggiunte, dice, la legge minerebbe la cifratura e la privacy.",
+    "descrizione": "Insieme a Google e Meta, Apple fa pressione sui senatori canadesi che esaminano il Bill C-22, la legge sull'accesso ai dati. In una dichiarazione riportata da Bloomberg l'azienda riconosce i passi avanti del governo, ma sostiene che il testo minerebbe ancora la sua capacità di offrire funzioni di privacy e sicurezza, cifratura compresa, «even as AI and other evolving technologies provide hackers with new tools to exploit cybersecurity weaknesses».\n\nDopo l'avvertimento di Apple a maggio, i legislatori avevano escluso l'obbligo di decifrare i dati, salvo quando il fornitore ha creato la cifratura e possiede già la chiave, e quello di introdurre vulnerabilità sistemiche. La legge permetterebbe alle autorità di far conservare fino a sei mesi i metadati: chi comunica con chi, e quando. Signal minaccia di lasciare il Canada. Il governo risponde che il testo «does not authorize indiscriminate surveillance». È ancora all'esame di una commissione del Senato."
+   },
+   "levinson-vendita-azioni": {
+    "title": "Arthur Levinson vende azioni Apple per 31,8 milioni di dollari",
+    "sintesi": "Arthur Levinson, presidente di Apple fino a settembre, ha notificato alla SEC l'intenzione di vendere 90.000 azioni, per un valore di 31,8 milioni di dollari.",
+    "descrizione": "Arthur Levinson, presidente del consiglio di Apple dal 2011 a settembre e oggi consigliere indipendente principale, ha depositato alla SEC il modulo 144 per vendere 90.000 azioni, per un valore di 31.765.885 dollari. Le azioni sono intestate a The Homeplace Trust, di cui è amministratore, e risultano comprate il 27 febbraio 2001; da allora Apple ha frazionato i titoli tre volte. Il modulo è solo un preavviso: la vendita, tramite Charles Schwab, non è ancora avvenuta. A maggio Levinson aveva venduto 250.000 azioni per circa 71,2 milioni, e tre settimane dopo altre 50.000. Gli restano circa 3,7 milioni di azioni."
+   },
+   "apple-com-spagnolo-usa": {
+    "title": "Il sito di Apple per gli Stati Uniti si legge anche in spagnolo",
+    "sintesi": "Apple.com ha una versione in spagnolo per gli Stati Uniti, all'indirizzo apple.com/us-es; l'Apple Store online e i servizi finanziari restano solo in inglese.",
+    "descrizione": "Il sito di Apple per gli Stati Uniti è disponibile in spagnolo, all'indirizzo apple.com/us-es. Chi ha il dispositivo impostato in spagnolo riceve un invito a cambiare lingua, e la versione si sceglie anche dal menu di lingua e paese in fondo alla pagina. L'Apple Store online e i servizi finanziari restano in inglese: chi prova a passare al negozio in spagnolo trova un messaggio con un numero di telefono per l'assistenza nella sua lingua. Il sito del supporto, ricorda MacRumors, aveva già una versione spagnola per gli Stati Uniti."
+   },
+   "slow-horses-rinnovo-decima": {
+    "title": "«Slow Horses» non finisce: Apple TV la rinnova fino alla decima stagione",
+    "sintesi": "Apple TV ha rinnovato «Slow Horses» per la nona e la decima stagione, pochi giorni dopo che Olivia Cooke aveva detto di girare l'ultima.",
+    "descrizione": "Pochi giorni fa Olivia Cooke aveva detto al Times «I am shooting the last season», aggiungendo subito «never say never». Apple TV ha confermato a Deadline la nona e la decima stagione di «Slow Horses», che si aggiungono alla settima e all'ottava già ordinate. Quattro stagioni commissionate in anticipo sono una rarità, e ne fanno la serie originale di Apple TV con più stagioni in programma.\n\nLa sesta si è appena chiusa, e tutte quelle uscite hanno almeno il 95% su Rotten Tomatoes. I romanzi della serie Slough House di Mick Herron, ricorda MacRumors, bastano fino all'ottava: per la nona e la decima la storia potrebbe andare oltre i libri, e Apple non ha detto come."
+   },
+   "grammy-apple-tv-schmigadoon-widows-bay": {
+    "title": "Due candidature ai Grammy per Apple TV, con «Schmigadoon!» e «Widow's Bay»",
+    "sintesi": "L'album di Broadway di «Schmigadoon!» e la colonna sonora di «Widow's Bay» sono candidati ai Grammy 2027; la cerimonia è il 7 febbraio.",
+    "descrizione": "L'adattamento per Broadway di «Schmigadoon!» è candidato come miglior album di teatro musicale, contro CHESS the Musical, The Lost Boys, Ragtime e Two Strangers. La colonna sonora di «Widow's Bay», composta da David Fleming, concorre fra le musiche per i media visivi, con The Odyssey, One Battle After Another, Project Hail Mary e The Mandalorian and Grogu. La cerimonia è il 7 febbraio 2027.\n\nQuest'anno lo spettacolo ha vinto quattro Tony, fra cui quello per il miglior musical. La serie si era fermata dopo due stagioni: Apple ha rinunciato alla terza nel gennaio 2024. «Widow's Bay», scrive MacTech, ha già 19 candidature agli Emmy ed è stata rinnovata."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 11,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
