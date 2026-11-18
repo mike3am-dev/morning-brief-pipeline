@@ -1,0 +1,315 @@
+{
+ "giorno": "2026-11-18",
+ "prima": {
+  "intro": "Martedì si è visto quanto dell'iPhone passi da servizi che di solito non si notano: per qualche ora iCloud, App Store e Apple Pay si sono fermati, e Apple ha dovuto precisare che non era un attacco. Nelle stesse ore un attacco vero passava da siti insospettabili e si fermava davanti agli iPhone aggiornati. Intanto Google entra nel portafoglio dell'iPhone, ma non alla cassa, e l'iPhone Duo, a meno di un mese dal lancio, si può riparare in casa.",
+  "top3": [
+   "iCloud, App Store e Apple Music si bloccano per ore: Apple incolpa un aggiornamento interno",
+   "Siti di 178 aziende usati per attaccare gli iPhone non aggiornati",
+   "Google Wallet arriva su iPhone, ma alla cassa resta Apple Pay"
+  ],
+  "editoriale": {
+   "titolo": "Quando si decide se un oggetto si potrà aggiustare?",
+   "testo": [
+    "Martedì Apple ha messo in vendita i ricambi dell'iPhone Duo, con gli attrezzi a noleggio e un listino che va dai 18 centesimi di una vite ai 999 dollari del gruppo dello schermo interno. Nelle stesse ore iFixit apriva HomeView e lo trovava incollato quasi ovunque, con due altoparlanti danneggiati durante lo smontaggio. E da Parigi arrivava la data di un processo, il 17 giugno 2027, in cui Apple dovrà rispondere dell'accusa di aver usato il software per scoraggiare le riparazioni fuori dalla sua rete.",
+    "Sono tre fatti diversi, ma girano attorno alla stessa domanda: la possibilità di aggiustare un oggetto si decide quando si rompe, o quando lo si progetta? Il programma di autoriparazione risponde al momento del guasto, e lo fa per un telefono che iFixit ha giudicato il pieghevole più riparabile. HomeView mostra l'altro momento: se il vetro è incollato a un guscio che disperde il calore, nessun listino di ricambi rende il lavoro semplice. Il processo francese guarda a un terzo livello, quello dei numeri di serie, dove secondo l'accusa un componente sostituito fuori dalla rete autorizzata poteva far perdere al telefono alcune funzioni.",
+    "Per chi compra, la differenza fra queste strade non si vede in negozio, e si scopre il giorno in cui serve. HOP riconosce che dal 2022 Apple ha cominciato a limitare la serializzazione, e dice che l'effetto va ancora verificato: il processo potrebbe chiarire quanto di quella storia appartenga al passato. Nel frattempo, prima di comprare un oggetto nuovo, vale la pena guardare anche quanto costa ripararlo. Per il Duo, da martedì, il listino è pubblico."
+   ],
+   "notizie": [
+    "iphone-duo-ricambi-autoriparazione",
+    "homeview-ifixit-smontaggio",
+    "francia-processo-obsolescenza"
+   ]
+  },
+  "news": {
+   "apple-servizi-aggiornamento-interno": {
+    "title": "iCloud, App Store e Apple Music si bloccano per ore. Apple: colpa di un aggiornamento interno",
+    "sintesi": "Martedì iCloud, App Store, Apple Music e Apple Pay hanno smesso di funzionare per ore; Apple lo attribuisce a un aggiornamento interno ed esclude un attacco informatico.",
+    "descrizione": "Martedì 17 novembre, poco prima delle 18 italiane, molti utenti si sono trovati disconnessi da iCloud senza preavviso. Subito dopo sono arrivati gli errori di verifica all'accesso su iPhone e Mac, l'App Store che non caricava né scaricava app, i problemi con Apple Music, Apple Pay e l'attivazione dei dispositivi nuovi. Anche gli sviluppatori sono rimasti senza App Store Connect.\n\nIn una dichiarazione a Bloomberg, Apple ha spiegato che l'interruzione è stata causata da un aggiornamento interno e che non si è trattato di un attacco informatico: «Many of our systems are back up and running after an internal update caused some outages this morning». Secondo XDA Developers, nel pomeriggio americano iCloud faticava ancora a tornare del tutto; entro mezzanotte, ora italiana, la pagina di stato dava tutti i servizi per ripristinati. È il secondo disservizio in otto giorni: il 10 novembre si erano fermati Mail, Contatti, Calendario e Dov'è.",
+    "approfondimento": {
+     "titolo": "Una settimana di guasti in tutto il settore, e nessun attacco",
+     "punto": "Il disservizio di Apple non è arrivato da solo: negli stessi giorni si sono fermati Microsoft 365, i voli negli Stati Uniti e i servizi di JPMorgan Chase. Nessuno di questi episodi era un attacco informatico, e quello di Apple, per sua stessa ammissione, è nato da una modifica fatta in casa.",
+     "sotto": [
+      "La cronologia ricostruita da iClarified mostra che il primo segnale non è venuto da iCloud. Alle 17:15 italiane la pagina di stato di Apple ha registrato un problema con AppleCare on Device, l'assistenza integrata nei dispositivi; mezz'ora dopo sono arrivati App Store, Apple Music e iCloud, e cinque minuti più tardi App Store Connect. iThinkDifferent precisa che un altro problema, quello sugli acquisti dentro le app, era separato e già risolto: era durato dalle 11:28 alle 12:46, ora italiana, della stessa giornata.",
+      "TechCrunch mette il guasto in fila con gli altri della settimana. Si sono fermati Microsoft 365 e Outlook; i voli negli Stati Uniti sono rimasti a terra per un guasto della FAA, l'agenzia che controlla il traffico aereo; la NSA ha avuto problemi sulla sua rete interna e i clienti di JPMorgan Chase un disservizio bancario. Nessuno di questi episodi era un attacco informatico. Apple lo ha escluso in modo esplicito, e in una giornata in cui si parlava anche di siti compromessi per colpire gli iPhone non era un dettaglio secondario.",
+      "Restano domande senza risposta. Apple non ha detto quale sistema abbia aggiornato, né perché una sola modifica abbia toccato insieme l'accesso all'account, i pagamenti e il negozio di app. Per ora non è noto nemmeno se il guasto del 10 novembre abbia una causa simile: Tbreak li tratta come due episodi distinti, senza legami accertati."
+     ]
+    }
+   },
+   "siti-compromessi-attacco-iphone": {
+    "title": "Siti di BBC, IKEA e Zoom usati per attaccare gli iPhone. Chi ha aggiornato è protetto",
+    "sintesi": "Un attaccante ha inserito codice malevolo nei siti di 178 organizzazioni passando da Optimizely; gli iPhone con iOS 18.7.3 o 26.3 e versioni successive non sono a rischio.",
+    "descrizione": "Secondo Reuters, che riprende la ricerca dell'esperto di sicurezza Scott Helme, un attaccante è riuscito a inserire codice JavaScript malevolo nei siti di 178 organizzazioni, fra cui BBC, CNN, HSBC, IKEA, Zoom, Equifax e Salesforce. La porta d'ingresso era Optimizely, una piattaforma che molti siti usano per mettere a confronto versioni diverse delle pagine e personalizzarle: il codice finiva nei progetti dei suoi clienti.\n\nGli script cercavano di sostituire gli indirizzi dei wallet di criptovalute durante i pagamenti, di intercettare i numeri delle carte di credito, di rubare cookie e schermate e di installare un exploit sui dispositivi iOS. Le versioni aggiornate sono già protette: Apple aveva corretto il sistema il mese scorso, dopo un attacco con lo stesso metodo, e iOS 18.7.3 e 26.3 o successive non sono vulnerabili. Optimizely ha detto a BleepingComputer di aver chiuso la falla, che stava nella registrazione degli account, e di aver avvisato i clienti.",
+    "approfondimento": {
+     "titolo": "Settemila dollari e due kit: quanto ha reso davvero l'attacco",
+     "punto": "Il bottino che si può contare è piccolo, 7.040 dollari finiti nei wallet dell'attaccante. Quello che non si vede sono le carte di credito intercettate, e il modo in cui il codice sceglieva lo strumento d'attacco in base alla versione di iOS.",
+     "sotto": [
+      "Helme ha potuto contare solo quello che è finito nei wallet di criptovalute dell'attaccante, che sono pubblici e si possono seguire: finora 7.040 dollari. Per le carte di pagamento non esiste un conto simile, e per ora non è noto quante siano state intercettate mentre i visitatori le inserivano nei moduli dei siti colpiti.",
+      "MacRumors ha ricostruito come venivano scelti i bersagli. A seconda della versione del sistema, il visitatore riceveva uno di due kit di exploit: Coruna per gli iPhone con iOS dal 13 al 17, DarkSword per iOS 18. Per iOS 26 c'era solo codice che identificava il dispositivo, senza un attacco vero e proprio. Sono i commenti lasciati nel codice del kit, secondo 9to5Mac, a indicare le versioni già protette, ed è da lì che arriva la soglia di iOS 18.7.3 e 26.3.",
+      "Le aziende coinvolte hanno reagito ciascuna a modo suo. Salesforce ed Equifax hanno disattivato Optimizely per precauzione, ed Equifax dice di non aver trovato segni di compromissione nei propri sistemi; HSBC sostiene che sui suoi siti gli script non fossero attivi. Per chi usa un iPhone, la protezione è l'aggiornamento: le versioni precedenti a iOS 18.7.3 e 26.3 erano quelle prese di mira."
+     ]
+    }
+   },
+   "google-wallet-iphone": {
+    "title": "Google Wallet arriva su iPhone negli Stati Uniti, ma non paga alla cassa",
+    "sintesi": "L'app di Google è gratuita sull'App Store americano e gestisce carte fedeltà, biglietti e pagamenti online; per pagare in negozio con l'iPhone serve ancora Apple Pay.",
+    "descrizione": "Google ha pubblicato Google Wallet sull'App Store degli Stati Uniti, gratis e per iPhone con iOS 17 o successivi. L'app raccoglie le carte fedeltà e i pass, che si aggiungono inquadrandoli con la fotocamera, insieme a biglietti, carte d'imbarco e spedizioni ricavate da Gmail. Gestisce anche le carte usate per pagare online con Google Pay e gli acquisti fatti dagli agenti di intelligenza artificiale di Google.\n\nManca però il pagamento contactless: per pagare avvicinando l'iPhone al lettore resta Apple Pay. Google non ha spiegato perché, né se intende chiedere ad Apple l'accesso al chip NFC che iOS concede ad altre app di pagamento. L'interfaccia, nota 9to5Google, usa una barra di navigazione fluttuante nello stile Liquid Glass di Apple.",
+    "approfondimento": {
+     "titolo": "La porta NFC dell'iPhone è aperta, ma bisogna firmare con Apple",
+     "punto": "Da oltre due anni Apple lascia che altre app paghino al tocco su iPhone, in sette paesi. Per farlo servono un accordo commerciale e una commissione, e Google per ora non ha detto se intende passare di lì.",
+     "sotto": [
+      "Fino all'agosto 2024 il chip NFC dell'iPhone, quello che dialoga con i lettori dei negozi, era riservato ad Apple Pay. Con iOS 18.1 Apple ha aperto ad altri sviluppatori l'accesso all'NFC e al Secure Element, la parte protetta del chip in cui stanno i dati delle carte. L'accesso però non è automatico: servono un accordo commerciale con Apple, un permesso specifico e il pagamento di una commissione. Oggi è disponibile in Australia, Brasile, Canada, Giappone, Nuova Zelanda, Regno Unito e Stati Uniti.",
+      "Per questo, osserva Tech Times, l'assenza del pagamento al tocco nell'app di Google non dipende più da un limite tecnico dell'iPhone, ma da una scelta o da una trattativa commerciale. Google non ha detto se l'abbia avviata, e l'importo della commissione che Apple chiede non è indicato.",
+      "Intanto l'app si regge su quello che non passa dall'NFC: le tessere, i biglietti, le spedizioni, i pagamenti online. E punta su un uso nuovo, gli acquisti fatti per conto dell'utente dagli agenti di intelligenza artificiale di Google, che avvengono in rete e non alla cassa."
+     ]
+    }
+   },
+   "iphone-duo-ricambi-autoriparazione": {
+    "title": "Apple vende i ricambi dell'iPhone Duo per ripararlo da sé",
+    "sintesi": "Il Duo entra nel Self Service Repair Store negli Stati Uniti, in Canada e in Europa: lo schermo interno costa 499 dollari, ciascuna delle due batterie 119.",
+    "descrizione": "Apple ha aggiunto l'iPhone Duo al Self Service Repair Store, il suo negozio di ricambi per l'autoriparazione, negli Stati Uniti, in Canada e in Europa. Il manuale era disponibile dal 23 ottobre, giorno del lancio del telefono; ora si possono comprare anche i pezzi, come ha notato per primo 9to5Mac.\n\nNegli Stati Uniti lo schermo interno costa 499 dollari, mentre il gruppo completo dello schermo interno arriva a 999, la stessa cifra che chiede l'assistenza Apple senza AppleCare+. Lo schermo esterno costa 379 dollari, il vetro posteriore 199, la fotocamera 229 e ciascuna delle due batterie 119. Restituendo il pezzo sostituito si ottiene un credito, che per il vetro posteriore porta la spesa a 117,41 dollari. Nel Regno Unito il vetro posteriore costa 179 sterline. La scheda logica è l'unico componente per cui serve il numero di serie del telefono.",
+    "approfondimento": {
+     "titolo": "Per cambiare lo schermo del Duo, gli attrezzi costano quasi quanto il pezzo",
+     "punto": "Il ricambio è solo una parte del conto. Per sostituire lo schermo interno del Duo servono attrezzi che Apple vende a parte o noleggia per una settimana, e un lavoro che iFixit giudica impegnativo anche per il pieghevole più riparabile.",
+     "sotto": [
+      "Chi vuole cambiare da sé lo schermo interno ha due strade. Può noleggiare il kit di attrezzi per sette giorni a 49 dollari, oppure comprarli: la pressa per lo schermo costa 216 dollari, il supporto riscaldato per staccarlo 256,35, il kit dedicato allo schermo interno 490 e il cacciavite dinamometrico 67,05. Poi ci sono i pezzi minori, dallo strato di copertura a 49 dollari alla colla per lo schermo interno a 3,23, fino alle viti a 18 centesimi l'una.",
+      "iFixit ha dato al Duo 5 su 10 di riparabilità: il punteggio migliore fra i pieghevoli, ricorda GSMArena, ma comunque il segno di un lavoro delicato. Il telefono entra nel programma poche settimane dopo iPhone 18 Pro e Pro Max, e meno di quattro settimane dopo il lancio.",
+      "Resta da capire il rapporto con la garanzia, che nei pezzi letti non è chiarito. La domanda pesa di più su un telefono per cui, a ottobre, alcuni possessori hanno segnalato crepe sullo schermo interno. AndroidPure tiene le due cose separate, e per ora non è noto se un intervento fatto in casa cambi la copertura."
+     ]
+    }
+   },
+   "homeview-ifixit-smontaggio": {
+    "title": "Per iFixit HomeView è difficile da riparare senza motivo",
+    "sintesi": "Smontando i due HomeView, iFixit ha trovato adesivo tenace, viti di tipi diversi e due altoparlanti danneggiati durante l'apertura; dentro c'è un chip A18.",
+    "descrizione": "iFixit ha smontato entrambi i modelli di HomeView, quello da tavolo e quello da parete, in vendita dal 13 novembre. Il verdetto è che le scelte di progetto rendono le riparazioni «unreasonably and unnecessarily difficult».\n\nIl vetro frontale è tenuto da un adesivo molto forte, e il guscio di alluminio disperde il calore come un radiatore, così scaldarlo per staccare il vetro serve a poco. Le viti alternano Phillips e Torx, e obbligano a cambiare spesso cacciavite. Durante lo smontaggio un connettore degli altoparlanti si è staccato dai cavi e un secondo altoparlante si è spezzato in due, nonostante l'ammollo nell'alcol isopropilico. Anche la scheda logica, che ospita un chip A18, è fissata al guscio con pasta termica e adesivo, e per staccarla serve parecchia forza.",
+    "approfondimento": {
+     "titolo": "Due HomeView diversi dentro, e nessun voto per giudicarli",
+     "punto": "iFixit non ha ancora un punteggio di riparabilità per questa categoria di prodotti, e il giudizio resta a parole. Intanto lo smontaggio mostra che i due modelli, venduti allo stesso prezzo, sono costruiti in modo diverso.",
+     "sotto": [
+      "I due HomeView costano entrambi 299 dollari negli Stati Uniti e sembrano lo stesso schermo su due supporti, ma dentro cambiano parecchio. Il modello da parete ha una scheda logica più larga, con i banchi di condensatori montati lì, e altoparlanti più piccoli; quello da tavolo sposta i condensatori nella base, dove c'è posto per altoparlanti più grandi. È nella base che iFixit ha trovato le sole parti pensate per essere sostituite, la porta USB-C modulare e i due radiatori passivi. Anche lì, però, un cavo del woofer molto corto complica il rimontaggio.",
+      "Il punteggio da 1 a 10 che iFixit assegna in genere ai suoi smontaggi, per questa categoria non esiste ancora. Al suo posto c'è il giudizio scritto e una battuta di Shahram Mokhtari, riportata da 9to5Mac. Per avere un metro, l'iPhone Duo ha ricevuto 5 su 10, il voto migliore fra i pieghevoli.",
+      "Secondo Macworld, citato da MacTech, i problemi di HomeView non riguardano solo l'hardware: nei forum si raccolgono lamentele su Musica, Foto, configurazione iniziale, risposte di Siri e luminosità automatica dello schermo. Sono segnalazioni di utenti, non difetti accertati, e il loro numero non è noto."
+     ]
+    }
+   },
+   "iphone-20-pro-vetro-campioni": {
+    "title": "Il vetro curvo dell'iPhone 20 Pro compare nei primi campioni",
+    "sintesi": "Ice Universe ha mostrato un vetro curvo sui quattro lati che sarebbe destinato all'iPhone del ventennale; lo schermo OLED sotto resterebbe piatto.",
+    "descrizione": "Dopo l'illustrazione di Fixed Focus Digital uscita ieri, arrivano i primi campioni fisici. Il 14 novembre il leaker Ice Universe ha pubblicato su X il video di un vetro di copertura curvo sui quattro lati che, secondo lui, Apple avrebbe approvato per l'iPhone del ventennale, chiamato per ora iPhone 20 Pro e atteso a settembre 2027. Il 16 novembre, su Weibo, ha aggiunto una pellicola protettiva con lo stesso profilo.\n\nLa curvatura riguarderebbe solo il vetro: il pannello OLED sotto resterebbe piatto, e secondo i leaker è così che Apple eviterebbe i tocchi involontari per cui Samsung ha abbandonato i bordi curvi nel 2024. A differenza dei campioni precedenti, nota GSMArena, questo ha il ritaglio per la Dynamic Island. MacRumors invita alla prudenza: pezzi simili circolano da inizio ottobre, e sono più probabilmente prove dei produttori di accessori, costruite sulle indiscrezioni, che componenti di Apple."
+   },
+   "francia-processo-obsolescenza": {
+    "title": "Apple andrà a processo in Francia per le riparazioni ostacolate dal software",
+    "sintesi": "Dal 17 giugno 2027 Apple risponderà a Parigi dell'accusa di obsolescenza programmata, per aver limitato via software le riparazioni di 24 modelli di iPhone.",
+    "descrizione": "Apple e la sua filiale europea Apple Distribution International saranno processate a Parigi a partire dal 17 giugno 2027, per quattro giorni, con l'accusa di obsolescenza programmata. Il caso, riportato da Le Figaro, nasce da una denuncia presentata il 7 dicembre 2022 dall'associazione HOP, Halte à l'Obsolescence Programmée.\n\nAl centro c'è la serializzazione, cioè il controllo dei numeri di serie dei componenti: fra novembre 2021 e luglio 2024 iOS avrebbe disattivato alcune funzioni quando un pezzo veniva sostituito fuori dalla rete di riparazione autorizzata, con l'obiettivo, secondo l'accusa, di spingere l'acquisto di telefoni nuovi. Il procedimento riguarda 24 modelli di iPhone, e Apple respinge le accuse. Un'udienza preliminare per fissare il calendario è prevista il 25 febbraio 2027. Non è il primo scontro: dopo una denuncia di HOP del 2017 sul rallentamento dei vecchi iPhone, nel 2020 Apple aveva pagato 25 milioni di euro per pratiche commerciali scorrette."
+   },
+   "iphone-duo-fine-mtec-crepe": {
+    "title": "Apple avrebbe fatto ritirare a un fornitore la smentita sulle crepe del Duo",
+    "sintesi": "Secondo The Elec, Apple ha spinto Fine M-Tec, che fornisce le piastre sotto lo schermo pieghevole, a togliere il comunicato in cui negava colpe nelle crepe.",
+    "descrizione": "Secondo il sito coreano The Elec, Apple avrebbe spinto Fine M-Tec a ritirare la dichiarazione pubblicata sul suo sito il 26 ottobre. L'azienda, poco conosciuta, fornirebbe le piastre metalliche interne che sostengono lo schermo pieghevole dell'iPhone Duo. In quel testo sosteneva che i problemi di qualità emersi di recente in alcuni prodotti di un cliente non dipendevano da difetti dei pezzi forniti, e spiegava di averlo scritto per rispondere ad accuse legate a presunti speculatori al ribasso.\n\nPoco dopo Apple aveva riconosciuto il problema delle crepe sullo schermo interno, che secondo AppleInsider ha toccato un numero di telefoni molto piccolo. La ricostruzione di The Elec riguarda il modo in cui il fornitore è stato messo a tacere, non le cause del difetto, che restano da chiarire."
+   },
+   "apple-samsung-dram-lungo-termine": {
+    "title": "Apple tratta con Samsung un contratto per la memoria fino al 2032",
+    "sintesi": "Secondo Maeil Business Newspaper, Apple è vicina a un accordo di quattro-cinque anni con Samsung per la DRAM di iPhone e Mac, con un volume minimo garantito.",
+    "descrizione": "Il quotidiano economico coreano Maeil Business Newspaper scrive che Apple è vicina a firmare con Samsung un contratto di quattro o cinque anni per la DRAM, la memoria di lavoro, destinata a iPhone e Mac. Partirebbe nella prima metà del 2027, con un volume minimo d'acquisto garantito che secondo Macitynet arriva fino al 2031-2032; i prezzi seguirebbero invece l'andamento del mercato. L'accordo non è ancora firmato.\n\nPer Apple è un cambio di abitudine: finora preferiva contratti brevi e usava i rinnovi per ottenere prezzi più bassi, ed era, ricorda iSpazio, l'unico grande gruppo tecnologico senza un accordo lungo con Samsung. La domanda dei data center per l'intelligenza artificiale ha spinto Samsung, SK Hynix e Micron a privilegiare la memoria per server, più redditizia, e quella per telefoni e computer è diventata scarsa. Apple avrebbe già un accordo pluriennale con SK Hynix, a condizioni favorevoli al fornitore. Nella presentazione dei conti del 2 novembre aveva avvertito che la carenza limiterà le scorte di Mac e iPad durante le feste."
+   },
+   "iphone-duo-sblocco-volto-prova": {
+    "title": "The Verge prova lo sblocco col volto del Duo: ingannato una volta in oltre venti tentativi",
+    "sintesi": "Con foto e video The Verge ha provato più di venti volte a ingannare lo sblocco con la fotocamera frontale del Duo, ed è riuscita una volta sola; lo sblocco richiede mezzo secondo.",
+    "descrizione": "Ieri la funzione era appena comparsa nella seconda beta di iOS 27.3; oggi arrivano le prime prove approfondite. The Verge ha usato Unlock with Front Camera, lo sblocco con la fotocamera dello schermo esterno del Duo, che non si serve dei sensori a infrarossi di Face ID e che Apple stessa, durante la configurazione, avverte essere meno sicuro di Touch ID e Face ID.\n\nLo sblocco richiede circa mezzo secondo. Su oltre venti tentativi di ingannarlo con foto e video, uno solo è andato a segno, e dopo ogni tentativo fallito il telefono chiede il Touch ID per l'accesso successivo. Al buio la funzione peggiora, ma meno di quanto avesse riscontrato MacRumors: per farla fallire The Verge ha dovuto cercare angoli molto scuri, come il retro di un camion di notte. Per confronto, 9to5Mac ricorda che Face ID proietta oltre 30.000 punti invisibili e dichiara una probabilità di sblocco casuale inferiore a una su un milione."
+   },
+   "morgan-stanley-iphone-2027": {
+    "title": "Morgan Stanley prevede 270 milioni di iPhone nel 2027, mentre il mercato cala",
+    "sintesi": "Per Morgan Stanley le spedizioni di iPhone saliranno del 7% nel 2027, al 26% del mercato mondiale, mentre quelle di tutti gli smartphone scenderanno del 5%.",
+    "descrizione": "Un rapporto di Morgan Stanley, ripreso da AppleInsider e 9to5Mac, stima che nel 2027 Apple spedirà circa 270 milioni di iPhone, il 7% in più del 2026, arrivando al 26% delle spedizioni mondiali di smartphone. Il mercato nel suo complesso calerebbe del 5%, contro una previsione precedente di crescita del 3,6%, ma meglio del calo del 13,8% stimato per quest'anno.\n\nUna parte della crescita, avverte la banca, potrebbe essere solo spostata: quest'autunno Apple ha lanciato soltanto iPhone 18 Pro e iPhone Duo, e il resto della gamma è atteso all'inizio dell'anno prossimo. Nel sondaggio il 37% dei possessori di iPhone ritiene molto probabile cambiarlo entro dodici mesi. Il 22% di chi non ha un iPhone si dice interessato al Duo, il 34% in Cina, ma la rilevazione è precedente all'uscita. Apple Intelligence pesa sempre meno nella scelta di cambiare telefono, l'autonomia sempre di più."
+   },
+   "salute-ios-27-3-apple-intelligence": {
+    "title": "La nuova app Salute di iOS 27.3 richiede un iPhone con Apple Intelligence",
+    "sintesi": "Le schede Insights e Longevity e i video educativi arriveranno solo sugli iPhone compatibili con Apple Intelligence e con la funzione attiva; sugli altri Salute resta quasi com'è.",
+    "descrizione": "L'app Salute rinnovata che arriva con iOS 27.3, attesa il mese prossimo, avrà bisogno di Apple Intelligence. Lo ha verificato 9to5Mac nella beta: le novità, cioè la scheda Insights, la scheda Longevity, i video educativi e le valutazioni del movimento da fare a casa, compaiono solo sugli iPhone compatibili con Apple Intelligence e su cui la funzione è attiva. Sugli altri l'app resterà in gran parte com'è oggi.\n\nIl nuovo Salute era stato annunciato a settembre insieme ai nuovi Apple Watch, e all'inizio sarà disponibile solo in alcune lingue. Si aggiunge alle oltre venti funzioni di Apple Intelligence arrivate con iOS 27."
+   },
+   "liquid-glass-sfumatura-barre": {
+    "title": "Apple prova a riportare la sfumatura di iOS 26 sotto le barre delle app",
+    "sintesi": "Nella seconda beta di iOS 27.3 c'è, disattivata, una transizione più graduale fra le barre di navigazione e i contenuti che scorrono sotto, come in iOS 26.",
+    "descrizione": "L'ha trovata l'esploratore di codice pdfu nella seconda beta di iOS 27.3: un effetto che riporta su iPhone un dettaglio del Liquid Glass di iOS 26. Quando si scorre una lista, il testo che passa sotto la barra di navigazione in cima a un'app sparirebbe in una sfocatura graduale, invece di fermarsi contro un bordo netto. Per ora l'effetto è nascosto e disattivato.\n\nSecondo pdfu comparirebbe solo con la tinta di Liquid Glass impostata al 25% o meno. 9to5Mac lo legge come un'altra risposta alle critiche sul nuovo aspetto del sistema, dopo il cursore della trasparenza già introdotto."
+   },
+   "epic-122mila-documenti": {
+    "title": "Epic accusa Apple di trattenere 122.000 documenti sulle commissioni",
+    "sintesi": "In un nuovo atto Epic sostiene che Apple tiene per sé oltre il 99% dei documenti su come ha deciso le commissioni per i pagamenti esterni, e chiede multe giornaliere.",
+    "descrizione": "Nel procedimento che deve stabilire quale commissione Apple possa chiedere sui link ai pagamenti esterni, Epic Games accusa l'azienda di trattenere oltre 122.000 documenti su come è arrivata alle percentuali proposte il 13 agosto, fra il 5% e il 15%. Secondo Epic, Apple li classifica come non pertinenti, e trattiene così oltre il 99% dei documenti emersi dalla ricerca negli archivi di chi ha deciso la commissione: Tim Cook, Eddy Cue, Carson Oliver e il nuovo direttore finanziario Kevan Parekh, più Nate Barton, Alex Roman e Phil Schiller.\n\n«This time Apple withholds thousands of documents on bogus claims of irrelevance», scrive Epic, che nel procedimento per oltraggio alla corte accusava Apple di aver invocato a sproposito il segreto professionale. Ora chiede multe giornaliere finché Apple non consegnerà i documenti. Quel primo procedimento, sulla commissione fino al 27% introdotta dopo l'ingiunzione del 2021, è arrivato alla Corte Suprema."
+   },
+   "keke-palmer-podcast-anno": {
+    "title": "Il podcast dell'anno per Apple è «Baby, this is Keke Palmer»",
+    "sintesi": "Apple Podcasts ha scelto come show del 2026 il podcast video di Keke Palmer, prodotto da Wondery; nel 2025 il premio era andato a «The Rest Is History».",
+    "descrizione": "Apple Podcasts ha nominato «Baby, this is Keke Palmer» show dell'anno 2026. Il podcast, prodotto da Wondery con la stessa Palmer come produttrice esecutiva, è stabilmente fra i più seguiti della piattaforma fra i podcast video e comici, e negli ultimi episodi ha ospitato Oprah Winfrey e Anderson .Paak. Apple motiva la scelta con la qualità e l'impatto culturale, e Oliver Schusser, vicepresidente per Podcast, Musica, Sport e Beats, insiste sul formato: «video brings that connection even closer».\n\n«I love how a conversation about entertainment can open up a bigger conversation about life», ha detto Palmer. Il premio del 2025 era andato a «The Rest Is History» di Tom Holland e Dominic Sandbrook, il primo podcast britannico a riceverlo."
+   },
+   "vsco-studio-pro-mac": {
+    "title": "VSCO porta su Mac il suo editor fotografico, con i RAW e le modifiche in serie",
+    "sintesi": "Studio Pro Desktop è il primo editor nativo per Mac di VSCO: legge i RAW di oltre 800 fotocamere, ritocca fino a 500 foto insieme e costa 59,99 dollari l'anno.",
+    "descrizione": "VSCO ha pubblicato Studio Pro Desktop, il suo primo editor fotografico nativo per Mac, dopo la versione per telefono arrivata quest'anno. Apre i file RAW di oltre 800 fotocamere di 20 marchi e importa da Foto, dalle cartelle, dalle schede SD e dai dischi esterni. Si possono ritoccare insieme da 2 a 500 immagini, applicando in tempo reale gli oltre 200 preset dell'azienda, molti ispirati alle pellicole come Kodak Portra, Kodachrome e Fujifilm Velvia. Il motore unisce Core Image RAW di Apple e Reflex, quello di VSCO, e le foto finite si consegnano ai clienti attraverso VSCO Galleries senza esportarle a mano.\n\nIl download è gratuito; le funzioni complete richiedono l'abbonamento, da 4,99 dollari al mese o 59,99 l'anno."
+   },
+   "macos-27-3-indicatore-barra-menu": {
+    "title": "macOS 27.3, come nascondere il nuovo indicatore blu nella barra dei menu",
+    "sintesi": "La seconda beta di macOS 27.3 mostra un indicatore blu quando un'app ne controlla un'altra; 9to5Mac ha trovato un comando del Terminale, non documentato, che lo nasconde.",
+    "descrizione": "Con la seconda beta di macOS 27.3 Apple ha diviso in due i permessi per le app che controllano il Mac, come raccontato ieri, e ha aggiunto un indicatore blu nella barra dei menu che compare quando un'app ne controlla un'altra. Apple lo presenta come una misura di trasparenza, ma per chi usa ogni giorno strumenti di automazione può diventare una pillola sempre accesa.\n\n9to5Mac ha trovato un comando del Terminale che lo nasconde, basato su un'impostazione interna del sistema, e l'ha provato sulla beta: dopo un riavvio l'indicatore sparisce. Il comando non toglie le app dall'elenco dei permessi e non è documentato, quindi Apple potrebbe cambiarlo o eliminarlo in una versione successiva."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "Martedì iCloud, App Store e Apple Pay si sono fermati per qualche ora, e Apple ha precisato che non si trattava di un attacco. Nelle stesse ore un attacco vero passava dai siti di grandi aziende, ma non raggiungeva gli iPhone aggiornati. Google porta il suo Wallet sull'iPhone, senza il pagamento in negozio, e l'iPhone Duo, a meno di un mese dal lancio, ha i ricambi per ripararlo da sé.",
+  "top3": [
+   "iCloud, App Store e Apple Music si bloccano per ore: Apple incolpa un aggiornamento interno",
+   "Siti di 178 organizzazioni usati per attaccare gli iPhone non aggiornati",
+   "Google Wallet arriva su iPhone, ma alla cassa resta Apple Pay"
+  ],
+  "editoriale": {
+   "titolo": "Quando si decide se un oggetto si potrà aggiustare?",
+   "testo": [
+    "Martedì Apple ha messo in vendita i ricambi dell'iPhone Duo, con gli attrezzi a noleggio e un listino che va dai 18 centesimi di una vite ai 999 dollari del gruppo dello schermo interno. Nelle stesse ore iFixit apriva HomeView e lo trovava incollato quasi ovunque, con due altoparlanti danneggiati durante lo smontaggio. E da Parigi arrivava la data di un processo, il 17 giugno 2027, in cui Apple dovrà rispondere dell'accusa di aver usato il software per scoraggiare le riparazioni fuori dalla sua rete.",
+    "Sono tre fatti diversi, ma girano attorno alla stessa domanda: la possibilità di aggiustare un oggetto si decide quando si rompe, o quando lo si progetta? Il programma di autoriparazione risponde al momento del guasto, per un telefono che iFixit giudica il pieghevole più riparabile. HomeView mostra l'altro momento: se il vetro è incollato a un guscio che disperde il calore, nessun listino di ricambi rende il lavoro semplice. Il processo francese riguarda un terzo momento, quello in cui il software controlla i numeri di serie: secondo l'accusa, un pezzo sostituito fuori dalla rete autorizzata poteva togliere al telefono alcune funzioni.",
+    "Per chi compra, la differenza fra queste strade non si vede in negozio, e si scopre il giorno in cui serve. HOP riconosce che dal 2022 Apple ha cominciato a limitare la serializzazione, e dice che l'effetto va ancora verificato: il processo potrebbe chiarire quanto di quella storia appartenga al passato. Nel frattempo, prima di comprare un oggetto nuovo, vale la pena guardare anche quanto costa ripararlo. Per il Duo, da martedì, il listino è pubblico."
+   ],
+   "notizie": [
+    "iphone-duo-ricambi-autoriparazione",
+    "homeview-ifixit-smontaggio",
+    "francia-processo-obsolescenza"
+   ]
+  },
+  "news": {
+   "apple-servizi-aggiornamento-interno": {
+    "title": "iCloud, App Store e Apple Music si bloccano per ore. Apple: colpa di un aggiornamento interno",
+    "sintesi": "Martedì iCloud, App Store, Apple Music e Apple Pay hanno smesso di funzionare per ore; Apple lo attribuisce a un aggiornamento interno ed esclude un attacco informatico.",
+    "descrizione": "Martedì 17 novembre, poco prima delle 18 italiane, molti utenti si sono trovati disconnessi da iCloud senza preavviso. Subito dopo sono arrivati gli errori di verifica all'accesso su iPhone e Mac, l'App Store che non caricava né scaricava app, i problemi con Apple Music, Apple Pay e l'attivazione dei dispositivi nuovi. Anche gli sviluppatori sono rimasti senza App Store Connect.\n\nIn una dichiarazione a Bloomberg, Apple ha spiegato che l'interruzione è stata causata da un aggiornamento interno e che non si è trattato di un attacco informatico: «Many of our systems are back up and running after an internal update caused some outages this morning». Secondo XDA Developers, nel pomeriggio americano iCloud faticava ancora a ripartire del tutto; entro mezzanotte, ora italiana, la pagina di stato dava tutti i servizi per ripristinati. È il secondo disservizio in otto giorni: il 10 novembre si erano fermati Mail, Contatti, Calendario e Dov'è.",
+    "approfondimento": {
+     "titolo": "Una settimana di guasti in tutto il settore, e nessun attacco",
+     "punto": "Il disservizio di Apple non è arrivato da solo: negli stessi giorni si sono fermati Microsoft 365, i voli negli Stati Uniti e i servizi di JPMorgan Chase. Nessuno di questi episodi era un attacco informatico, e quello di Apple, per sua stessa ammissione, è nato da una modifica fatta in casa.",
+     "sotto": [
+      "La cronologia ricostruita da iClarified mostra che il primo segnale non è venuto da iCloud. Alle 17:15 italiane la pagina di stato di Apple ha registrato un problema con AppleCare on Device, l'assistenza integrata nei dispositivi; mezz'ora dopo sono comparsi i problemi di App Store, Apple Music e iCloud, e cinque minuti più tardi quelli di App Store Connect. iThinkDifferent precisa che un altro problema, quello sugli acquisti dentro le app, era separato e già risolto: era durato dalle 11:28 alle 12:46, ora italiana, della stessa giornata.",
+      "TechCrunch mette il guasto in fila con gli altri della settimana. Si sono fermati Microsoft 365 e Outlook; i voli negli Stati Uniti sono rimasti a terra per un guasto della FAA, l'agenzia che controlla il traffico aereo; la NSA ha avuto problemi sulla sua rete interna e i clienti di JPMorgan Chase un disservizio bancario. Nessuno di questi episodi era un attacco informatico. Apple lo ha escluso in modo esplicito, e in una giornata in cui si parlava anche di siti compromessi per colpire gli iPhone non era un dettaglio secondario.",
+      "Restano domande senza risposta. Apple non ha detto quale sistema abbia aggiornato, né perché una sola modifica abbia toccato insieme l'accesso all'account, i pagamenti e il negozio di app. Per ora non è noto nemmeno se il guasto del 10 novembre abbia una causa simile: Tbreak li tratta come due episodi distinti, senza legami accertati."
+     ]
+    }
+   },
+   "siti-compromessi-attacco-iphone": {
+    "title": "Siti di BBC, IKEA e Zoom usati per attaccare gli iPhone. Chi ha aggiornato è protetto",
+    "sintesi": "Un attaccante ha inserito codice malevolo nei siti di 178 organizzazioni passando da Optimizely; gli iPhone con iOS 18.7.3 o 26.3 e versioni successive non sono a rischio.",
+    "descrizione": "Secondo Reuters, che riprende la ricerca dell'esperto di sicurezza Scott Helme, un attaccante è riuscito a inserire codice JavaScript malevolo nei siti di 178 organizzazioni, fra cui BBC, CNN, HSBC, IKEA, Zoom, Equifax e Salesforce. La porta d'ingresso era Optimizely, una piattaforma che molti siti usano per mettere a confronto versioni diverse delle pagine e personalizzarle: il codice finiva nei progetti dei suoi clienti.\n\nGli script cercavano di sostituire gli indirizzi dei wallet di criptovalute durante i pagamenti, di intercettare i numeri delle carte di credito, di rubare cookie e schermate e di installare un exploit sui dispositivi iOS. Chi ha aggiornato non corre rischi: Apple aveva corretto le falle il mese scorso, dopo un attacco con lo stesso metodo, e da iOS 18.7.3 e 26.3 in poi l'iPhone non è vulnerabile. Optimizely ha detto a BleepingComputer di aver chiuso la falla, che stava nella registrazione degli account, e di aver avvisato i clienti.",
+    "approfondimento": {
+     "titolo": "Quanto ha reso l'attacco, e come sceglieva gli iPhone da colpire",
+     "punto": "Il bottino che si può contare è piccolo: 7.040 dollari finiti nei wallet dell'attaccante. Non si sa invece quante carte di credito siano state intercettate. È più chiaro, grazie al codice, come veniva scelto lo strumento d'attacco in base alla versione di iOS.",
+     "sotto": [
+      "Helme ha potuto contare solo quello che è finito nei wallet di criptovalute dell'attaccante, che sono pubblici e si possono seguire: finora 7.040 dollari. Per le carte di pagamento non esiste un conto simile, e per ora non è noto quante siano state intercettate mentre i visitatori le inserivano nei moduli dei siti colpiti.",
+      "MacRumors ha ricostruito come venivano scelti i bersagli. A seconda della versione del sistema, il visitatore riceveva uno di due kit di exploit: Coruna per gli iPhone con iOS dal 13 al 17, DarkSword per iOS 18. Per iOS 26 c'era solo codice che identificava il dispositivo, senza un attacco vero e proprio. Sono i commenti lasciati nel codice del kit, secondo 9to5Mac, a indicare le versioni già protette, ed è da lì che arriva la soglia di iOS 18.7.3 e 26.3.",
+      "Le aziende coinvolte hanno reagito ciascuna a modo suo. Salesforce ed Equifax hanno disattivato Optimizely per precauzione, ed Equifax dice di non aver trovato segni di compromissione nei propri sistemi; HSBC sostiene che sui suoi siti gli script non fossero attivi. Per chi usa un iPhone, la protezione è l'aggiornamento: le versioni precedenti a iOS 18.7.3 e 26.3 erano quelle prese di mira."
+     ]
+    }
+   },
+   "google-wallet-iphone": {
+    "title": "Google Wallet arriva su iPhone negli Stati Uniti, ma non paga alla cassa",
+    "sintesi": "L'app di Google è gratuita sull'App Store americano e gestisce carte fedeltà, biglietti e pagamenti online; per pagare in negozio con l'iPhone serve ancora Apple Pay.",
+    "descrizione": "Google ha pubblicato Google Wallet sull'App Store degli Stati Uniti, gratis e per iPhone con iOS 17 o successivi. L'app raccoglie le carte fedeltà e i pass, che si aggiungono inquadrandoli con la fotocamera, insieme a biglietti, carte d'imbarco e spedizioni ricavate da Gmail. Gestisce anche le carte usate per pagare online con Google Pay e gli acquisti fatti dagli agenti di intelligenza artificiale di Google.\n\nManca però il pagamento contactless: per pagare avvicinando l'iPhone al lettore resta Apple Pay. Google non ha spiegato perché, né se intende chiedere ad Apple l'accesso al chip NFC che iOS concede ad altre app di pagamento. L'interfaccia, nota 9to5Google, usa una barra di navigazione fluttuante nello stile Liquid Glass di Apple.",
+    "approfondimento": {
+     "titolo": "La porta NFC dell'iPhone è aperta, ma bisogna firmare con Apple",
+     "punto": "Da oltre due anni Apple lascia che altre app paghino al tocco su iPhone, in sette paesi. Per farlo servono un accordo commerciale e una commissione, e Google per ora non ha detto se intende passare di lì.",
+     "sotto": [
+      "Fino all'agosto 2024 il chip NFC dell'iPhone, quello che dialoga con i lettori dei negozi, era riservato ad Apple Pay. Con iOS 18.1 Apple ha aperto ad altri sviluppatori l'accesso all'NFC e al Secure Element, la parte protetta del chip in cui stanno i dati delle carte. L'accesso però non è automatico: servono un accordo commerciale con Apple, un permesso specifico e il pagamento di una commissione. Oggi è disponibile in Australia, Brasile, Canada, Giappone, Nuova Zelanda, Regno Unito e Stati Uniti.",
+      "Per questo, osserva Tech Times, l'assenza del pagamento al tocco nell'app di Google non dipende più da un limite tecnico dell'iPhone, ma da una scelta o da una trattativa commerciale. Google non ha detto se l'abbia avviata, e l'importo della commissione che Apple chiede non è indicato.",
+      "Intanto l'app si regge su quello che non passa dall'NFC: le tessere, i biglietti, le spedizioni, i pagamenti online. E punta su un uso nuovo, gli acquisti fatti per conto dell'utente dagli agenti di intelligenza artificiale di Google, che avvengono in rete e non alla cassa."
+     ]
+    }
+   },
+   "iphone-duo-ricambi-autoriparazione": {
+    "title": "Apple vende i ricambi dell'iPhone Duo per ripararlo da sé",
+    "sintesi": "Il Duo entra nel Self Service Repair Store negli Stati Uniti, in Canada e in Europa: lo schermo interno costa 499 dollari, ciascuna delle due batterie 119.",
+    "descrizione": "Apple ha aggiunto l'iPhone Duo al Self Service Repair Store, il suo negozio di ricambi per l'autoriparazione, negli Stati Uniti, in Canada e in Europa. Il manuale era disponibile dal 23 ottobre, giorno del lancio del telefono; ora si possono comprare anche i pezzi, come ha notato per primo 9to5Mac.\n\nNegli Stati Uniti lo schermo interno costa 499 dollari, mentre il gruppo completo dello schermo interno arriva a 999, la stessa cifra che chiede l'assistenza Apple senza AppleCare+. Lo schermo esterno costa 379 dollari, il vetro posteriore 199, la fotocamera 229 e ciascuna delle due batterie 119. Restituendo il pezzo sostituito si ottiene un credito, che per il vetro posteriore porta la spesa a 117,41 dollari. Nel Regno Unito il vetro posteriore costa 179 sterline. La scheda logica è l'unico componente per cui serve il numero di serie del telefono.",
+    "approfondimento": {
+     "titolo": "Per cambiare lo schermo del Duo non basta il ricambio",
+     "punto": "Il ricambio è solo una parte del conto. Per sostituire lo schermo interno del Duo servono attrezzi che Apple vende a parte o noleggia per una settimana, e un lavoro che iFixit giudica impegnativo anche per il pieghevole più riparabile.",
+     "sotto": [
+      "Chi vuole cambiare da sé lo schermo interno ha due strade. Può noleggiare il kit di attrezzi per sette giorni a 49 dollari, oppure comprarli: la pressa per lo schermo costa 216 dollari, il supporto riscaldato per staccarlo 256,35, il kit dedicato allo schermo interno 490 e il cacciavite dinamometrico 67,05. Poi ci sono i pezzi minori, dallo strato di copertura a 49 dollari alla colla per lo schermo interno a 3,23, fino alle viti a 18 centesimi l'una.",
+      "iFixit ha dato al Duo 5 su 10 di riparabilità: il punteggio migliore fra i pieghevoli, ricorda GSMArena, ma comunque il segno di un lavoro delicato. Il Duo è entrato nel programma meno di quattro settimane dopo il lancio, e poche settimane dopo iPhone 18 Pro e Pro Max.",
+      "Resta da capire che cosa succeda alla garanzia: gli articoli usciti finora non lo chiariscono. La domanda pesa di più su un telefono per cui, a ottobre, alcuni possessori hanno segnalato crepe sullo schermo interno. AndroidPure tratta le due questioni separatamente, e per ora non è noto se un intervento fatto in casa cambi la copertura."
+     ]
+    }
+   },
+   "homeview-ifixit-smontaggio": {
+    "title": "Per iFixit HomeView è difficile da riparare senza motivo",
+    "sintesi": "Smontando i due HomeView, iFixit ha trovato adesivo tenace, viti di tipi diversi e due altoparlanti danneggiati durante l'apertura; dentro c'è un chip A18.",
+    "descrizione": "iFixit ha smontato entrambi i modelli di HomeView, quello da tavolo e quello da parete, in vendita dal 13 novembre. Il verdetto è che le scelte di progetto rendono le riparazioni «unreasonably and unnecessarily difficult».\n\nIl vetro frontale è tenuto da un adesivo molto forte, e il guscio di alluminio disperde il calore come un radiatore, così scaldarlo per staccare il vetro serve a poco. Le viti alternano Phillips e Torx, e obbligano a cambiare spesso cacciavite. Durante lo smontaggio un connettore degli altoparlanti si è staccato dai cavi e un secondo altoparlante si è spezzato in due, nonostante l'ammollo nell'alcol isopropilico. Anche la scheda logica, che ospita un chip A18, è fissata al guscio con pasta termica e adesivo, e per staccarla serve parecchia forza.",
+    "approfondimento": {
+     "titolo": "Due HomeView diversi dentro, e nessun voto per giudicarli",
+     "punto": "iFixit non ha ancora un punteggio di riparabilità per questa categoria di prodotti, e il giudizio resta a parole. Intanto lo smontaggio mostra che i due modelli, venduti allo stesso prezzo, sono costruiti in modo diverso.",
+     "sotto": [
+      "I due HomeView costano entrambi 299 dollari negli Stati Uniti e sembrano lo stesso schermo su due supporti, ma dentro cambiano parecchio. Il modello da parete ha una scheda logica più larga, con i banchi di condensatori montati lì, e altoparlanti più piccoli; quello da tavolo sposta i condensatori nella base, dove c'è posto per altoparlanti più grandi. È nella base che iFixit ha trovato le sole parti pensate per essere sostituite, la porta USB-C modulare e i due radiatori passivi. Anche lì, però, un cavo del woofer molto corto complica il rimontaggio.",
+      "Per questa categoria iFixit non ha ancora il punteggio da 1 a 10 che assegna di solito ai suoi smontaggi: al suo posto ci sono il giudizio scritto e una battuta di Shahram Mokhtari, riportata da 9to5Mac. Per avere un metro, l'iPhone Duo ha ricevuto 5 su 10, il voto migliore fra i pieghevoli.",
+      "Secondo Macworld, citato da MacTech, i problemi di HomeView non riguardano solo l'hardware: nei forum si raccolgono lamentele su Musica, Foto, configurazione iniziale, risposte di Siri e luminosità automatica dello schermo. Sono segnalazioni di utenti, non difetti accertati, e il loro numero non è noto."
+     ]
+    }
+   },
+   "iphone-20-pro-vetro-campioni": {
+    "title": "Il vetro curvo dell'iPhone 20 Pro compare nei primi campioni",
+    "sintesi": "Ice Universe ha mostrato un vetro curvo sui quattro lati che sarebbe destinato all'iPhone del ventennale; lo schermo OLED sotto resterebbe piatto.",
+    "descrizione": "Dopo l'illustrazione di Fixed Focus Digital uscita ieri, arrivano i primi campioni fisici. Il 14 novembre il leaker Ice Universe ha pubblicato su X il video di un vetro di copertura curvo sui quattro lati che, secondo lui, Apple avrebbe approvato per l'iPhone del ventennale, chiamato per ora iPhone 20 Pro e atteso a settembre 2027. Il 16 novembre, su Weibo, ha aggiunto una pellicola protettiva con lo stesso profilo.\n\nLa curvatura riguarderebbe solo il vetro: il pannello OLED sotto resterebbe piatto, e secondo i leaker è così che Apple eviterebbe i tocchi involontari per cui Samsung ha abbandonato i bordi curvi nel 2024. A differenza dei campioni precedenti, nota GSMArena, questo ha il ritaglio per la Dynamic Island. MacRumors invita alla prudenza: pezzi simili circolano da inizio ottobre, e sono più probabilmente prove dei produttori di accessori, costruite sulle indiscrezioni, che componenti di Apple."
+   },
+   "francia-processo-obsolescenza": {
+    "title": "Apple andrà a processo in Francia per le riparazioni ostacolate dal software",
+    "sintesi": "Dal 17 giugno 2027 Apple risponderà a Parigi dell'accusa di obsolescenza programmata, per aver limitato via software le riparazioni di 24 modelli di iPhone.",
+    "descrizione": "Apple e la sua filiale europea Apple Distribution International saranno processate a Parigi a partire dal 17 giugno 2027, per quattro giorni, con l'accusa di obsolescenza programmata. Il caso, riportato da Le Figaro, nasce da una denuncia presentata il 7 dicembre 2022 dall'associazione HOP, Halte à l'Obsolescence Programmée.\n\nAl centro c'è la serializzazione, cioè il controllo dei numeri di serie dei componenti: fra novembre 2021 e luglio 2024 iOS avrebbe disattivato alcune funzioni quando un pezzo veniva sostituito fuori dalla rete di riparazione autorizzata, con l'obiettivo, secondo l'accusa, di spingere l'acquisto di telefoni nuovi. Il procedimento riguarda 24 modelli di iPhone, e Apple respinge le accuse. Un'udienza preliminare per fissare il calendario è prevista il 25 febbraio 2027. Non è il primo scontro: dopo una denuncia di HOP del 2017 sul rallentamento dei vecchi iPhone, nel 2020 Apple aveva pagato 25 milioni di euro per pratiche commerciali scorrette."
+   },
+   "iphone-duo-fine-mtec-crepe": {
+    "title": "Apple avrebbe fatto ritirare a un fornitore la smentita sulle crepe del Duo",
+    "sintesi": "Secondo The Elec, Apple ha spinto Fine M-Tec, che fornisce le piastre sotto lo schermo pieghevole, a togliere il comunicato in cui negava colpe nelle crepe.",
+    "descrizione": "Secondo il sito coreano The Elec, Apple avrebbe spinto Fine M-Tec a ritirare la dichiarazione pubblicata sul suo sito il 26 ottobre. L'azienda, poco conosciuta, fornirebbe le piastre metalliche interne che sostengono lo schermo pieghevole dell'iPhone Duo. In quel testo sosteneva che i problemi di qualità emersi di recente in alcuni prodotti di un cliente non dipendevano da difetti dei pezzi forniti, e spiegava di averlo scritto per rispondere ad accuse legate a presunti speculatori al ribasso.\n\nPoco dopo Apple aveva riconosciuto il problema delle crepe sullo schermo interno, che secondo AppleInsider ha toccato un numero di telefoni molto piccolo. La ricostruzione di The Elec riguarda il modo in cui il fornitore sarebbe stato messo a tacere, non le cause del difetto, che restano da chiarire."
+   },
+   "apple-samsung-dram-lungo-termine": {
+    "title": "Apple tratta con Samsung un contratto per la memoria fino al 2032",
+    "sintesi": "Secondo Maeil Business Newspaper, Apple è vicina a un accordo di quattro-cinque anni con Samsung per la DRAM di iPhone e Mac, con un volume minimo garantito.",
+    "descrizione": "Il quotidiano economico coreano Maeil Business Newspaper scrive che Apple è vicina a firmare con Samsung un contratto di quattro o cinque anni per la DRAM, la memoria di lavoro, destinata a iPhone e Mac. Partirebbe nella prima metà del 2027, con un volume minimo d'acquisto garantito che secondo Macitynet arriva fino al 2031-2032; i prezzi seguirebbero invece l'andamento del mercato. L'accordo non è ancora firmato.\n\nPer Apple sarebbe un cambio di abitudine: finora preferiva contratti brevi e usava i rinnovi per ottenere prezzi più bassi, ed era, ricorda iSpazio, l'unico grande gruppo tecnologico senza un accordo lungo con Samsung. La domanda dei data center per l'intelligenza artificiale ha spinto Samsung, SK Hynix e Micron a privilegiare la memoria per server, più redditizia, e quella per telefoni e computer è diventata scarsa. Apple avrebbe già un accordo pluriennale con SK Hynix, a condizioni favorevoli al fornitore. Nella presentazione dei conti del 2 novembre aveva avvertito che la carenza limiterà le scorte di Mac e iPad durante le feste."
+   },
+   "iphone-duo-sblocco-volto-prova": {
+    "title": "The Verge prova lo sblocco col volto del Duo: ingannato una volta in oltre venti tentativi",
+    "sintesi": "Con foto e video The Verge ha provato più di venti volte a ingannare lo sblocco con la fotocamera frontale del Duo, ed è riuscita una volta sola; lo sblocco richiede mezzo secondo.",
+    "descrizione": "Ieri la funzione era appena comparsa nella seconda beta di iOS 27.3; oggi arrivano le prime prove approfondite. The Verge ha provato Unlock with Front Camera, lo sblocco con la fotocamera dello schermo esterno del Duo, che non si serve dei sensori a infrarossi di Face ID e che Apple stessa, durante la configurazione, avverte essere meno sicuro di Touch ID e Face ID.\n\nLo sblocco richiede circa mezzo secondo. Su oltre venti tentativi di ingannarlo con foto e video, uno solo è andato a segno, e dopo ogni tentativo fallito il telefono chiede il Touch ID per l'accesso successivo. Al buio la funzione peggiora, ma meno di quanto avesse riscontrato MacRumors: per farla fallire The Verge ha dovuto cercare angoli molto scuri, come il retro di un camion di notte. Per confronto, 9to5Mac ricorda che Face ID proietta oltre 30.000 punti invisibili e dichiara una probabilità di sblocco casuale inferiore a una su un milione."
+   },
+   "morgan-stanley-iphone-2027": {
+    "title": "Morgan Stanley prevede 270 milioni di iPhone nel 2027, mentre il mercato cala",
+    "sintesi": "Per Morgan Stanley le spedizioni di iPhone saliranno del 7% nel 2027, al 26% del mercato mondiale, mentre quelle di tutti gli smartphone scenderanno del 5%.",
+    "descrizione": "Un rapporto di Morgan Stanley, ripreso da AppleInsider e 9to5Mac, stima che nel 2027 Apple spedirà circa 270 milioni di iPhone, il 7% in più del 2026, arrivando al 26% delle spedizioni mondiali di smartphone. Il mercato nel suo complesso calerebbe del 5%, contro una previsione precedente di crescita del 3,6%, ma meglio del calo del 13,8% stimato per quest'anno.\n\nUna parte della crescita, avverte la banca, potrebbe essere solo spostata: quest'autunno Apple ha lanciato soltanto iPhone 18 Pro e iPhone Duo, e il resto della gamma è atteso all'inizio dell'anno prossimo. Nel sondaggio della banca il 37% dei possessori di iPhone ritiene molto probabile cambiarlo entro dodici mesi. Il 22% di chi non ha un iPhone si dice interessato al Duo, il 34% in Cina, ma la rilevazione è precedente all'uscita. Apple Intelligence pesa sempre meno nella scelta di cambiare telefono, l'autonomia sempre di più."
+   },
+   "salute-ios-27-3-apple-intelligence": {
+    "title": "La nuova app Salute di iOS 27.3 richiede un iPhone con Apple Intelligence",
+    "sintesi": "Le schede Insights e Longevity e i video educativi arriveranno solo sugli iPhone compatibili con Apple Intelligence e con la funzione attiva; sugli altri Salute resta quasi com'è.",
+    "descrizione": "L'app Salute rinnovata che arriva con iOS 27.3, attesa il mese prossimo, avrà bisogno di Apple Intelligence. Lo ha verificato 9to5Mac nella beta: le novità, cioè la scheda Insights, la scheda Longevity, i video educativi e le valutazioni del movimento da fare a casa, compaiono solo sugli iPhone compatibili con Apple Intelligence e su cui la funzione è attiva. Sugli altri l'app resterà in gran parte com'è oggi.\n\nIl nuovo Salute era stato annunciato a settembre insieme ai nuovi Apple Watch, e all'inizio sarà disponibile solo in alcune lingue. Si aggiunge alle oltre venti funzioni di Apple Intelligence arrivate con iOS 27."
+   },
+   "liquid-glass-sfumatura-barre": {
+    "title": "Apple prova a riportare la sfumatura di iOS 26 sotto le barre delle app",
+    "sintesi": "Nella seconda beta di iOS 27.3 c'è, disattivata, una transizione più graduale fra le barre di navigazione e i contenuti che scorrono sotto, come in iOS 26.",
+    "descrizione": "L'ha trovata l'esploratore di codice pdfu nella seconda beta di iOS 27.3: un effetto che riporta su iPhone un dettaglio del Liquid Glass di iOS 26. Quando si scorre una lista, il testo che passa sotto la barra di navigazione in cima a un'app sparirebbe in una sfocatura graduale, invece di fermarsi contro un bordo netto. Per ora l'effetto è nascosto e disattivato.\n\nSecondo pdfu comparirebbe solo con la tinta di Liquid Glass impostata al 25% o meno. 9to5Mac lo legge come un'altra risposta alle critiche sul nuovo aspetto del sistema, dopo il cursore della trasparenza già introdotto."
+   },
+   "epic-122mila-documenti": {
+    "title": "Epic accusa Apple di trattenere 122.000 documenti sulle commissioni",
+    "sintesi": "In un nuovo atto Epic sostiene che Apple tiene per sé oltre il 99% dei documenti su come ha deciso le commissioni per i pagamenti esterni, e chiede multe giornaliere.",
+    "descrizione": "Nel procedimento che deve stabilire quale commissione Apple possa chiedere sui link ai pagamenti esterni, Epic Games accusa l'azienda di trattenere oltre 122.000 documenti su come è arrivata alle percentuali proposte il 13 agosto, fra il 5% e il 15%. Secondo Epic, Apple li classifica come non pertinenti, e trattiene così oltre il 99% dei documenti emersi dalla ricerca negli archivi di chi ha deciso la commissione: Tim Cook, Eddy Cue, Carson Oliver e il nuovo direttore finanziario Kevan Parekh, più Nate Barton, Alex Roman e Phil Schiller.\n\n«This time Apple withholds thousands of documents on bogus claims of irrelevance», scrive Epic, che nel procedimento per oltraggio alla corte accusava Apple di aver invocato a sproposito il segreto professionale. Ora chiede multe giornaliere finché Apple non consegnerà i documenti. Quel primo procedimento, sulla commissione fino al 27% introdotta dopo l'ingiunzione del 2021, è arrivato alla Corte Suprema."
+   },
+   "keke-palmer-podcast-anno": {
+    "title": "Il podcast dell'anno per Apple è «Baby, this is Keke Palmer»",
+    "sintesi": "Apple Podcasts ha scelto come show del 2026 il podcast video di Keke Palmer, prodotto da Wondery; nel 2025 il premio era andato a «The Rest Is History».",
+    "descrizione": "Apple Podcasts ha nominato «Baby, this is Keke Palmer» show dell'anno 2026. Il podcast, prodotto da Wondery con la stessa Palmer come produttrice esecutiva, è stabilmente fra i più seguiti della piattaforma fra i podcast video e comici, e negli ultimi episodi ha ospitato Oprah Winfrey e Anderson .Paak. Apple motiva la scelta con la qualità e l'impatto culturale, e Oliver Schusser, vicepresidente per Podcast, Musica, Sport e Beats, insiste sul formato: «video brings that connection even closer».\n\n«I love how a conversation about entertainment can open up a bigger conversation about life», ha detto Palmer. Il premio del 2025 era andato a «The Rest Is History» di Tom Holland e Dominic Sandbrook, il primo podcast britannico a riceverlo."
+   },
+   "vsco-studio-pro-mac": {
+    "title": "VSCO porta su Mac il suo editor fotografico, con i RAW e le modifiche in serie",
+    "sintesi": "Studio Pro Desktop è il primo editor nativo per Mac di VSCO: legge i RAW di oltre 800 fotocamere, ritocca fino a 500 foto insieme e costa 59,99 dollari l'anno.",
+    "descrizione": "VSCO ha pubblicato Studio Pro Desktop, il suo primo editor fotografico nativo per Mac, dopo la versione per telefono arrivata quest'anno. Apre i file RAW di oltre 800 fotocamere di 20 marchi e importa da Foto, dalle cartelle, dalle schede SD e dai dischi esterni. Si possono ritoccare insieme da 2 a 500 immagini, applicando in tempo reale gli oltre 200 preset dell'azienda, molti ispirati alle pellicole come Kodak Portra, Kodachrome e Fujifilm Velvia. Il motore unisce Core Image RAW di Apple e Reflex, quello di VSCO, e le foto finite si consegnano ai clienti attraverso VSCO Galleries senza esportarle a mano.\n\nIl download è gratuito; le funzioni complete richiedono l'abbonamento, da 4,99 dollari al mese o 59,99 l'anno."
+   },
+   "macos-27-3-indicatore-barra-menu": {
+    "title": "macOS 27.3, come nascondere il nuovo indicatore blu nella barra dei menu",
+    "sintesi": "La seconda beta di macOS 27.3 mostra un indicatore blu quando un'app ne controlla un'altra; 9to5Mac ha trovato un comando del Terminale, non documentato, che lo nasconde.",
+    "descrizione": "Con la seconda beta di macOS 27.3 Apple ha diviso in due i permessi per le app che controllano il Mac, come raccontato ieri, e ha aggiunto un indicatore blu nella barra dei menu che compare quando un'app ne controlla un'altra. Apple lo presenta come una misura di trasparenza, ma per chi usa ogni giorno strumenti di automazione può diventare una pillola sempre accesa.\n\n9to5Mac ha trovato un comando del Terminale che lo nasconde, basato su un'impostazione interna del sistema, e l'ha provato sulla beta: dopo un riavvio l'indicatore sparisce. Il comando non toglie le app dall'elenco dei permessi e non è documentato, quindi Apple potrebbe cambiarlo o eliminarlo in una versione successiva."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 15,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
