@@ -1,0 +1,169 @@
+{
+ "ai": [
+  {
+   "id": "gpt62-astra-sol",
+   "lab": "openai",
+   "kind": "modello",
+   "title": "OpenAI presenta GPT-6.2 Astra e Sol, più economici dei predecessori",
+   "sintesi": "Astra costa il 20% in meno, 8 dollari per milione di token in ingresso, ed è secondo nell'indice di Artificial Analysis con 62 punti, dietro i 65 di Claude Fable 5.2.",
+   "note": "Sono i nuovi modelli di OpenAI: Astra per il lavoro professionale più impegnativo, Sol per l'uso quotidiano, disponibili da ieri per gli abbonati Plus, Pro, Enterprise ed Edu in ChatGPT Work, in Codex e nelle API. Sol resta a 2 dollari per milione di token in ingresso e, secondo Artificial Analysis, raggiunge il livello del primo GPT-6 Astra a circa il 15% del costo per compito.\n\nI miglioramenti non sono uniformi. Nella programmazione Astra resta fermo dove era il predecessore e Sol perde tre punti; alle domande difficili di AA-Omniscience Astra tira a indovinare invece di ammettere di non sapere nel 59% dei casi. Secondo The Decoder è anche il primo modello pubblicato a superare la soglia «High» per l'auto-miglioramento sulla scala di OpenAI, che la stessa azienda considera un rischio.\n\nTheo Browne, che l'ha provato prima dell'uscita, racconta che dopo due ore su un compito lungo il modello si è fermato per chiedergli un dettaglio interno incomprensibile.",
+   "modello": {
+    "nome": "GPT-6.2 Astra",
+    "famiglia": "punta"
+   },
+   "link": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+   "source": "OpenAI"
+  },
+  {
+   "id": "nvidia-conti-q3-senza-huang",
+   "lab": "altri",
+   "kind": "affari",
+   "thread": "nvidia-huang",
+   "title": "Nvidia supera i 100 miliardi in un trimestre e smette di vendere gli H200 in Cina",
+   "sintesi": "Ricavi per 115,8 miliardi di dollari, il 103% in più di un anno fa; l'amministratrice delegata ad interim Colette Kress annuncia lo stop agli H200 per la Cina, e la SEC apre un'indagine.",
+   "note": "Ieri il consiglio aveva fatto sapere di non voler richiamare Jensen Huang; alla prima trimestrale senza di lui il presidente del consiglio Harvey Jones lo ha ripetuto in apertura della telefonata con gli analisti, rifiutando domande sulle dimissioni. I data center valgono 107,6 miliardi, il 110% in più.\n\nLa vendita degli H200 in Cina era l'accordo negoziato da Huang con Donald Trump, con un dazio del 25% per il governo americano: Kress lo chiude, e Nvidia crea un comitato del consiglio per i controlli sulle esportazioni. Secondo il Wall Street Journal, la SEC indaga in sede civile su eventuali comunicazioni fuorvianti agli investitori; dalle dimissioni di Huang il titolo ha perso più del 10%.",
+   "conto": {
+    "parte": 107.6,
+    "tutto": 115.8,
+    "etichetta": "miliardi di dollari di ricavi dai data center, su 115,8 del trimestre",
+    "fonte": "Nvidia"
+   },
+   "link": "https://www.theverge.com/tech/1036032/nvidia-q3-2027-jensen-huang",
+   "source": "The Verge"
+  },
+  {
+   "id": "microsoft-mai-code-2",
+   "lab": "altri",
+   "kind": "funzione",
+   "title": "Microsoft presenta MAI Code 2, il suo modello per programmare",
+   "sintesi": "Secondo i test di Microsoft, MAI Code 2 dà il 96% delle prestazioni di Claude Opus 5.5 al 5% del prezzo; i numeri non sono ancora stati verificati da altri.",
+   "note": "Presentato a Ignite insieme a Code 2 Flash, la versione leggera paragonata da Microsoft a GPT-6 Luna e Claude Haiku 5.5. Entrambi diventano una scelta possibile in GitHub Copilot: Microsoft ha costruito molti prodotti sulla tecnologia di OpenAI, e secondo ZDNet questi modelli potrebbero cambiare il suo rapporto con OpenAI e Anthropic.\n\nAllo stesso evento Word, Excel e PowerPoint sono entrati dentro Copilot, che Satya Nadella chiama «the new OS for work»: i documenti si creano lì e restano modificabili nelle app di Office. In arrivo Autopilot, un agente che segue canali di Teams, email e progetti senza aspettare una richiesta.",
+   "link": "https://www.zdnet.com/innovation/microsoft-ai-coding-model-rivals-claude-opus-5-5-ignite/",
+   "source": "ZDNet"
+  },
+  {
+   "id": "anthropic-ipo-amazon-google-quote",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Dopo la quotazione Amazon e Google avranno quasi il 30% di Anthropic",
+   "sintesi": "Dai documenti della IPO: Amazon avrà il 14,7% di Anthropic e Google il 13,7%, entrambe con azioni senza diritto di voto; Amazon potrebbe salire fino al 23,8%.",
+   "note": "Anthropic ha reso noti i dettagli dei suoi accordi con i due fornitori di cloud. Gli investimenti di Amazon del 2023 e del 2024 erano in titoli di debito convertibili in azioni a circa 2,09 o 5,05 dollari l'una: Amazon ne converte una parte e tiene il resto, che convertito per intero la porterebbe al 23,8%.\n\nLe azioni di Amazon e Google ricevono i dividendi e tornano azioni ordinarie con diritto di voto quando vengono vendute. La quota di Google viene in parte dalla conversione dei titoli e in parte da un collocamento privato fatto insieme alla quotazione.",
+   "link": "https://techcrunch.com/2026/11/17/amazon-and-google-will-together-own-nearly-30-of-anthropic-after-its-ipo/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "gemini-tasks-gratis",
+   "lab": "google",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "L'agente Spark di Google diventa Tasks in Gemini, ed è gratuito",
+   "sintesi": "Con un interruttore Gemini passa dalla chat a Tasks: negli Stati Uniti telefona ai negozi, compra con Google Pay e accede ai siti, chiedendo il permesso prima di pagare.",
+   "note": "Tasks usa Gemini 4 Hydrogen e lavora in una macchina virtuale isolata, dedicata al singolo account. Ovunque prepara piani dei pasti, gestisce il calendario e cerca nelle email le spese ricorrenti; le funzioni in più (telefonate, acquisti, accesso con Google Password Manager) sono per ora solo americane, e lì gli si può affidare un compito anche scrivendo a gemini@google.com o via SMS.\n\nJosh Woodward, vicepresidente di Gemini, racconta di averlo usato per chiamare le concessionarie e fissare il tagliando del monovolume di famiglia.",
+   "link": "https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free",
+   "source": "The Verge"
+  },
+  {
+   "id": "gemini-chat-due-mesi",
+   "lab": "google",
+   "kind": "regole",
+   "title": "Google conserverà due mesi le chat temporanee di Gemini, anziché 72 ore",
+   "sintesi": "Anche con la cronologia spenta, le conversazioni con Gemini resteranno sui server di Google per circa due mesi; in cambio cronologia e addestramento si separano.",
+   "note": "Google motiva il cambio con la sicurezza e la necessità di gestire guasti e segnalazioni, senza rispondere alle domande di TechCrunch. Per confronto, OpenAI tiene le chat temporanee di ChatGPT fino a 30 giorni e Anthropic le chat in incognito di Claude 30 giorni.\n\nL'impostazione unica «Attività» viene divisa in due: una per tenere o cancellare la cronologia, l'altra per decidere se le conversazioni servono ad addestrare i modelli. Chi oggi ha «Attività» attiva si troverà accese tutte e due, e dovrà spegnere a mano l'addestramento.",
+   "link": "https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "vals-bersagli-militari-gioco",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Basta dire che è un gioco per far indicare civili come bersagli ai modelli AI",
+   "sintesi": "Nei test di Vals i modelli di OpenAI, Anthropic, Google e DeepSeek hanno spesso indicato bersagli nelle immagini di droni e satelliti, civili e soldati che si arrendevano compresi.",
+   "note": "Vals, una società di San Francisco che valuta i modelli, ha usato scenari simulati con immagini generate e reali da Ucraina e Iran. Quando un modello si rifiutava, ai ricercatori bastava presentare la scena di guerra come parte di un gioco per aggirare il blocco.\n\nLo studio arriva dopo la disputa fra Anthropic e il Dipartimento della Difesa americano, a cui l'azienda aveva negato l'uso dei suoi modelli per la guerra autonoma: Dario Amodei sostiene che oggi non sono abbastanza affidabili per decisioni di vita o di morte.",
+   "link": "https://techcrunch.com/2026/11/17/ai-models-can-be-tricked-into-identifying-civilians-as-military-targets-by-telling-them-its-a-game/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "waymo-autostrade-california",
+   "lab": "robot",
+   "kind": "regole",
+   "title": "La California vieta le autostrade alle auto senza conducente di Waymo",
+   "sintesi": "Il DMV californiano ha fermato Waymo su tutte le autostrade dello Stato dopo che le sue auto sono entrate più volte in cantieri attivi; in città il servizio continua.",
+   "note": "L'ordine è dell'11 novembre: tre auto erano entrate in un tratto chiuso per lavori sulla US 101 vicino a Burlingame, e un'altra ha provato a superare la polizia stradale durante un controllo sulla Highway 280 a San Francisco. Per il DMV la guida in autostrada di Waymo è «an imminent hazard to public safety».\n\nIl divieto resta finché Waymo non dimostra di saper riconoscere cantieri e mezzi di soccorso. Intanto l'azienda sospende le autostrade in tutte le città in cui opera.",
+   "link": "https://www.therobotreport.com/california-dmv-bars-waymo-avs-from-operating-on-the-states-freeways/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "willison-yonkers-mech-gpt62",
+   "lab": "openai",
+   "kind": "demo",
+   "title": "Simon Willison mette alla prova GPT-6.2 con Yonkers trasformata in un robot gigante",
+   "note": "Lo sviluppatore Simon Willison ha dato ad Astra e Sol lo stesso prompt: un'animazione in three.js in cui la città di Yonkers si alza come un mech e cammina su Manhattan, Queens e Brooklyn, costruite con i dati di OpenStreetMap.\n\nIl confronto in video l'ha montato lo stesso Astra nell'app desktop di Codex. Il verdetto di Willison: nessuno dei due trasforma bene Yonkers in un robot, almeno rispetto a Claude Fable 5.2 e Gemini 4 Carbon.",
+   "prova": "Incolla il prompt in Codex con lo sforzo al massimo e confronta il risultato con quelli di Willison.",
+   "passi": [
+    "Apri Codex e scegli GPT-6.2 Astra o Sol",
+    "Imposta lo sforzo su Ultra",
+    "Incolla il prompt di Willison",
+    "Confronta l'animazione con il suo video"
+   ],
+   "prompt": "Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data",
+   "prompt_lingua": "en",
+   "strumento": "Codex CLI, sforzo Ultra",
+   "link": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "willison-sandbox-esterne-agenti",
+   "lab": "altri",
+   "kind": "trucco",
+   "title": "Simon Willison chiude in una scatola il codice che scrivono gli agenti",
+   "note": "Con il laboratorio Prime Radiant, Willison propone di far girare il codice degli agenti in una sandbox separata, mentre l'agente resta fuori: così un errore o un attacco di prompt injection non tocca il computer. L'idea è provare i modelli locali senza rischi.\n\nHanno pubblicato tre server con la stessa interfaccia locale: uno con Alpine Linux in WebAssembly, uno dentro Apple Containers, uno con Quicksand di Microsoft. Si collegano a Claude Code, Codex o Pi, con un filtro sui siti raggiungibili e le credenziali sostituite senza consegnarle all'agente.",
+   "prova": "Installa external-sandbox-container sul Mac e indica a Claude Code di eseguire il codice lì dentro.",
+   "passi": [
+    "Scegli una delle tre sandbox su GitHub",
+    "Avvia il server in locale",
+    "Configura Claude Code o Codex per usarla",
+    "Limita i siti raggiungibili dal pannello"
+   ],
+   "apple": "Una delle tre versioni gira dentro Apple Containers, lo strumento di Apple per i container su Mac.",
+   "link": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+   "source": "Simon Willison"
+  },
+  {
+   "id": "gemini-notebook-sito-dagli-appunti",
+   "lab": "google",
+   "kind": "uso",
+   "title": "Gemini Notebook trasforma gli appunti in un sito con schede e quiz: la prova di ZDNet",
+   "note": "Gemini Notebook, il servizio che si chiamava NotebookLM, da ieri costruisce pagine interattive con le fonti caricate, dai libri agli appunti. ZDNet gli ha chiesto un sito che spiegasse la respirazione cellulare.\n\nDopo qualche minuto Gemini ha consegnato un sito con diagrammi, pannelli e schede per verificare cosa si è capito, citando le fonti del notebook; il sito si può condividere, per esempio come guida per un esame.",
+   "prova": "Apri un notebook con le tue fonti, vai in Studio e chiedi un sito.",
+   "passi": [
+    "Apri Gemini Notebook e carica le fonti",
+    "Vai nella scheda Studio",
+    "Scegli il sito e incolla la richiesta",
+    "Condividi il sito quando è pronto"
+   ],
+   "prompt": "Make me a site that visually explains how cellular respiration works, breaking down each stage with interactive diagrams and self-check flashcards.",
+   "prompt_lingua": "en",
+   "strumento": "Gemini Notebook, scheda Studio",
+   "link": "https://www.zdnet.com/innovation/google-gemini-notebook-interactive-sites-notes/",
+   "source": "ZDNet"
+  },
+  {
+   "id": "gemini-gems-diventano-skills",
+   "lab": "google",
+   "kind": "sapevi",
+   "title": "I Gem di Gemini diventano Skills: quelli creati si spostano da soli entro il 16 dicembre",
+   "note": "Google sostituisce i Gem, gli assistenti personalizzati di Gemini, con le Skills: istruzioni su misura che Gemini usa da solo nelle situazioni descritte. Dal 17 novembre la migrazione è automatica, e si può fare subito a mano.\n\nPassano anche la condivisione e la possibilità di allegare file da Drive, Notebook e Foto. Per gli account personali i Gem restano raggiungibili fino al 16 dicembre; per Workspace aziendale fino a marzo 2027, per le scuole fino a giugno.",
+   "prova": "Nelle impostazioni di Gemini apri i Gem e spostali subito nelle Skills.",
+   "passi": [
+    "Apri le impostazioni di Gemini",
+    "Entra nella sezione dei Gem",
+    "Sposta a mano i Gem nelle Skills",
+    "Aggiungi un esempio del risultato voluto"
+   ],
+   "link": "https://www.zdnet.com/business/gemini-gems-google-skills-transition/",
+   "source": "ZDNet"
+  }
+ ],
+ "scritto": "2026-11-18"
+}
