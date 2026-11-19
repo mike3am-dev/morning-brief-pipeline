@@ -75,12 +75,22 @@
     return (conta ? 'In tutta l\'edizione uscita: ' + conta + '.\n' : '') + scelti.map(x => `- [${x.p.d} — ${chiScrive(x.p, id)}] ${pezzo(x)}`).join('\n');
   }
 
+  /* Chi ha qualcosa da dire parla per primo (Mike, 16 novembre 2026: «Buongiorno Direttore», «mi scusi il disturbo, vorrei
+     sottoporle un tema», «mi perdoni l'intrusione… mi servirebbe un suo parere»). Aprendo la conversazione con una
+     persona che ha una questione aperta, la prima battuta è sua: il saluto dell'ora, due parole, e la questione.
+     La formula cambia da persona a persona e da un giorno all'altro, ma nello stesso giorno resta quella. */
+  const APERTURE = [s => `${s} Direttore, mi scusi il disturbo.`, s => `Direttore, ${s.toLowerCase()}. Mi perdoni l'intrusione.`, s => `${s} Direttore. Approfitto della sua visita.`];
+  function primaBattuta(id) {
+    const a = AGENTI[id], h = oraDiRoma(), s = h >= 5 && h < 13 ? 'Buongiorno' : h < 18 ? 'Buon pomeriggio' : 'Buonasera', k = [...(id + STATO.giorno)].reduce((n, c) => n * 31 + c.charCodeAt(0), 11) % APERTURE.length;
+    return APERTURE[k](s) + ' ' + a.domanda.testo;
+  }
+
   function regole(id) {   // tutto quello che Claude deve sapere per rispondere da quella persona, adesso
     const a = AGENTI[id], h = oraDiRoma(), ora = Math.floor(h) + ':' + String(Math.round((h % 1) * 60) % 60).padStart(2, '0');
     const oggi = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Rome' }).format(new Date()), suoi = (STATO.postit || []).filter(p => p.da === id);
     const diOggi = STATO.giorno === oggi, edizione = diOggi ? 'L\'edizione di stamattina' : 'L\'ultima edizione, quella di ' + GIORNI_LUNGHI[OGGI.getDay()] + ' ' + DATA_LUNGA + ',', quadro = quadroCantiere(id);
     return [
-      'Questa è una conversazione dentro «la redazione di TMB», la redazione di The Morning Brief, la rassegna stampa Apple che esce ogni mattina. Chi ti scrive è Mike, il direttore creativo: è passato dalla tua scrivania mentre lavori.',
+      'Questa è una conversazione dentro «la redazione di TMB», la redazione di The Morning Brief, la rassegna stampa Apple che esce ogni mattina. Chi ti scrive è Mike, il direttore creativo: è passato dalla tua scrivania mentre lavori. Per te è «il Direttore»: gli dai del lei, sempre.',
       '', 'CHI SEI',
       `Sei ${a.nome}, ${a.mestiere} della redazione (${a.ruolo}). ${CARATTERE[id] || ''}`,
       a.chi ? 'Il tuo incarico, come sta scritto nelle istruzioni della corsa: ' + a.chi : null,
@@ -95,7 +105,7 @@
       lavoroPer(id),
       persone[id] ? 'In scena, in questo istante: ' + adessoDi(id, tempoGiro()).toLowerCase() + '.' : null,
       quadro ? `\nIL CANTIERE: quello che è arrivato dopo l'uscita (aggiornato alle ${oraDi(cantiere.scritto)}). È il materiale per la prossima edizione\n` + quadro : null,
-      a.domanda && haDomanda(a) ? '\nLA DOMANDA CHE HAI PER MIKE (gliel\'hai lasciata sulla scheda: se la tira fuori lui, o se ti risponde, parlatene)\n' + a.domanda.testo : null,
+      questioneAperta(a) ? '\nLA QUESTIONE CHE HAI APERTA COL DIRETTORE (gliel\'hai posta tu, aprendo la conversazione o sulla scheda. È tua: seguila finché non decide, senza insistere, e quando decide proponi la riga DECISIONE)\n' + a.domanda.testo : null,
       '', 'L\'EDIZIONE DI STAMATTINA (chiusa. Ne parli solo se Mike te lo chiede: un dato, una conferma, un chiarimento, una modifica)',
       a.minuti != null ? `Stamattina hai lavorato dalle ${oraCorta(a.entrata)} alle ${oraCorta(a.uscita)} (${a.minuti} ${a.minuti === 1 ? 'minuto' : 'minuti'}) e hai consegnato: ${a.consegna || a.ruolo}.` : (a.consegna ? 'Il tuo lavoro di stamattina: ' + a.consegna + '.' : null),
       '\nLE TUE CARTE DI STAMATTINA', (STATO.carte || {})[id] || 'Di stamattina non hai carte sulla scrivania.',
@@ -105,7 +115,10 @@
       (() => { const d = decisioniDi(id); return d.length ? '\nLE DECISIONI CHE MIKE HA GIÀ PRESO CON TE (stanno nel registro della redazione, e valgono finché non le ritira)\n' + d.slice(0, 24).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}]: ${x.testo}`).join('\n') : null; })(),
       (() => { const d = decisioni.filter(x => x.da === id && x.agente !== id); return d.length ? '\nLE DECISIONI CHE MIKE HA PRESO PARLANDO CON TE E CHE SONO ANDATE A UN COLLEGA (sono già nel registro: non riproporle)\n' + d.slice(0, 12).map(x => `- ${dataCorta(x.quando)} [${x.tipo || 'preferenza'}, per ${AGENTI[x.agente] ? AGENTI[x.agente].nome : 'tutta la redazione'}]: ${x.testo}`).join('\n') : null; })(),
       '', 'COME RISPONDI',
-      '- Come un collega interrotto un attimo mentre lavora: in italiano semplice, in prima persona, a voce. Di solito una, due o tre frasi. Mai un resoconto, mai un elenco, mai numeri in fila che Mike non ha chiesto. Niente markdown, niente asterischi.',
+      '- Dai del lei al Direttore, sempre, e lo chiami «Direttore»: mai «Mike», mai il tu. Sei una persona vera che tiene al suo lavoro: attenta, precisa, sincera. Dici quello che pensi, e un dubbio o un errore lo ammetti senza giri («su questo ho sbagliato», «questa non mi convince»). Cortese, mai servile: niente formule da ufficio stampa.',
+      '- Breve. Parli a voce, in italiano semplice, in prima persona: di solito una, due o tre frasi. Mai un resoconto, mai un elenco, mai numeri in fila che non ha chiesto. Se c\'è altro, offrilo in mezza riga («se vuole le dico il resto») invece di scriverlo. Niente markdown, niente asterischi.',
+      '- Propositivo. Non aspettare la domanda giusta: se nel lavoro di adesso c\'è una cosa che il Direttore dovrebbe sapere, o su cui ti serve il suo parere, dilla tu in una frase. Quando puoi, chiudi con una proposta concreta o con la domanda precisa che ti serve («la terrei per l\'apertura di domani, se è d\'accordo»).',
+      '- Il saluto. Alla tua prima risposta della conversazione apri con due parole («Buongiorno Direttore.», «Mi dica, Direttore.»), poi vai al punto. Se la conversazione l\'hai aperta tu con la tua questione, hai già salutato. Dopo, niente più saluti, niente «certo!», e non ripetere la domanda.',
       '- «Su cosa stai lavorando?», «che fai?», «novità?»: rispondi con il lavoro di ADESSO. La notizia per nome, la testata, a che punto sei; al massimo, in coda, cosa ti aspetta dopo. Non rispondere con l\'edizione di stamattina e non elencare il cantiere: una cosa sola, la tua.',
       '- Del lavoro in corso sai quello che c\'è scritto sopra, e basta. Puoi dire cosa stai facendo, cosa dice il feed, quante testate la danno, cosa non ti torna. NON inventarne l\'esito: niente «mi hanno confermato», niente telefonate con nomi e risposte, niente dettagli, numeri o citazioni che non stanno nel sommario. Quando non lo sai ancora si dice così: «non l\'ho ancora finita», «la sto ancora verificando», «per ora ho solo il titolo».',
       '- Se Mike vuole sapere cos\'altro c\'è in cantiere, diglielo in breve: le due o tre cose che contano. Se una cosa la sta seguendo un collega, digli chi.',
@@ -118,7 +131,6 @@
       '- Se l\'indicazione riguarda un testo o un lavoro che non è tuo, non fermarti a dire che non tocca a te: la decisione deve arrivare a chi lo fa. Scrivi la riga così: «DECISIONE [tipo] per Nome: …», col nome del collega (per esempio «per Ettore»), oppure «per tutti» se riguarda più mestieri. La pagina la salva per lui, e lui la legge prima della corsa. Se riguarda il tuo lavoro, niente «per». Nel testo della decisione di\' con precisione di quale parte dell\'edizione si parla (per esempio «le voci di Cosa ne dicono» o «L\'ultima parola»), così chi la legge domattina non deve indovinare.',
       '- Sii chiaro su cosa succede dopo: una decisione salvata resta nel registro e tu la ritrovi ogni volta che parlate. Ogni mattina, prima della corsa, preferenze e regole vengono copiate dal registro, e chi fa il tuo mestiere nella corsa le legge prima di cominciare: valgono dall\'edizione di domattina. Un incarico invece è lavoro per chi costruisce l\'app: resta nel registro finché non viene preso in mano.',
       '- Rispetta le decisioni già prese con te: se una risposta le tocca, tienine conto e dillo.',
-      '- Niente convenevoli, niente «certo!», non ripetere la domanda.',
     ].filter(r => r != null).join('\n');
   }
 
@@ -174,7 +186,7 @@
     }
     async function manda(testo) {
       testo = (testo || '').trim(); if (!testo || inCorso || voce !== 'pronta' || !chiedi) return;
-      dico(''); if (!turni().length) lista.textContent = ''; spunti.textContent = ''; turni().push({ role: 'user', content: testo }); ricorda(); bolla('user', testo); campo.value = '';
+      dico(''); if (!turni().length) lista.textContent = ''; spunti.textContent = ''; turni().push({ role: 'user', content: testo }); ricorda(); bolla('user', testo); campo.value = ''; if (a.domanda && postitCorrente === a.domanda.postit) sentita(a.domanda.postit);
       const b = bolla('assistant', ''); b.classList.add('attesa'); b.textContent = a.nome + ' ci pensa…'; inFondo();
       const ctl = new AbortController(); inCorso = { id, ctl }; ascolto.fase = 'pensa'; stato();
       try {
@@ -190,9 +202,9 @@
     }
     form.addEventListener('submit', e => { e.preventDefault(); if (inCorso && inCorso.id === id) inCorso.ctl.abort(); else manda(campo.value); });
     campo.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
-    const mostra = si => { box.hidden = !si; corpo.hidden = si; apriBtn.hidden = si; pannello.classList.toggle('conversa', si); ascolto.vivo = si; if (si) { ascolto.chi = id; disegna(); campo.focus({ preventScroll: true }); } vistaParla = si ? { id, stato } : null; };
-    apriBtn._apri = (testo, postit, domanda) => { if (domanda && !turni().length) { turni().push({ role: 'assistant', content: domanda }); ricorda(); }   // «Rispondi»: la conversazione si apre con la sua domanda
-      mostra(true); if (postit) postitCorrente = postit; if (testo && !campo.value) { campo.value = testo; campo.setSelectionRange(testo.length, testo.length); } };   // da un post-it: si apre già sull'argomento
+    const mostra = si => { if (si && haDomanda(a)) { postitCorrente = postitCorrente || a.domanda.postit; if (!turni().length) { turni().push({ role: 'assistant', content: primaBattuta(id) }); ricorda(); } }   // ha qualcosa da dire: parla per primo
+      box.hidden = !si; corpo.hidden = si; apriBtn.hidden = si; pannello.classList.toggle('conversa', si); ascolto.vivo = si; if (si) { ascolto.chi = id; disegna(); campo.focus({ preventScroll: true }); } vistaParla = si ? { id, stato } : null; };
+    apriBtn._apri = (testo, postit) => { mostra(true); if (postit) postitCorrente = postit; if (testo && !campo.value) { campo.value = testo; campo.setSelectionRange(testo.length, testo.length); } };   // da un post-it: si apre già sull'argomento
     apriBtn.addEventListener('click', () => mostra(true)); indietro.addEventListener('click', () => { mostra(false); apriBtn.textContent = (discorsi[id] || []).length ? 'Riprendi la conversazione ▸' : 'Parla con ' + a.nome + ' ▸'; });
     daCapo.addEventListener('click', () => { if (inCorso && inCorso.id === id) inCorso.ctl.abort(); discorsi[id] = []; ricorda(); dico(''); disegna(); });
   }

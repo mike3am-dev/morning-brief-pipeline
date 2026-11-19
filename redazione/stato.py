@@ -341,23 +341,26 @@ def postit(giorno, brief):
 
 
 def domande(pi):
-    """Una domanda sola per persona, detta come la direbbe un collega: è quello che la scheda mostra a Mike, e il
-    pallino rosso accanto al nome. Nasce dai post-it (cioè da cose davvero aperte nei file della corsa)."""
+    """Una questione sola per persona, detta come la direbbe un collega al Direttore (gli si dà del lei): è quello che
+    la scheda mostra a Mike, il pallino rosso accanto al nome, e la prima battuta quando Mike apre la conversazione.
+    Nasce dai post-it, cioè da cose davvero aperte nei file della corsa."""
+    NUMERI = {2: "due", 3: "tre", 4: "quattro", 5: "cinque", 6: "sei"}
     out = {}
     casi = [x for x in pi if x["da"] == "visualista" and x.get("notizia")]
     if casi:
         caso = re.sub(r"^Un grafico per:\s*", "", casi[0]["titolo"])
-        out["visualista"] = {"postit": casi[0]["id"], "testo": "Ogni tanto resto senza il grafico giusto, perché l'app non lo sa ancora disegnare. "
-                             f"L'ultimo caso: «{caso}». Ne scegliamo un paio da far costruire?"}
+        out["visualista"] = {"postit": casi[0]["id"], "testo": "Vorrei sottoporle un tema: ogni tanto resto senza il grafico giusto, perché l'app non lo sa "
+                             f"ancora disegnare. L'ultimo caso: «{caso}». Ne scegliamo insieme un paio da far costruire?"}
     fonti = [x for x in pi if x["da"] == "fonti"]
     if fonti:
         n = len(fonti)
-        out["fonti"] = {"postit": fonti[0]["id"], "testo": ("Nel rapporto sulle fonti c'è una cosa da decidere" if n == 1 else f"Nel rapporto sulle fonti ci sono {n} cose da decidere")
-                        + ". La prima: " + taglia(re.split(r"\s+—\s+|\.\s|:\s", fonti[0]["testo"])[0], 150).rstrip(".") + ". Che facciamo?"}
+        prima = taglia(re.split(r"\s+—\s+|\.\s|:\s", fonti[0]["testo"])[0], 150).rstrip(".")
+        out["fonti"] = {"postit": fonti[0]["id"], "testo": ("Nel rapporto sulle fonti c'è una questione da risolvere, e mi servirebbe un suo parere: " + prima[0].lower() + prima[1:] if n == 1
+                        else f"Nel rapporto sulle fonti ho {NUMERI.get(n, n)} questioni da risolvere, e mi servirebbe un suo parere. La prima: {prima}") + ". Come vuole procedere?"}
     gusto = next((x for x in pi if x["id"] == "gusto-briefing"), None)
     if gusto:
-        out["regia"] = {"postit": gusto["id"], "testo": "È un po' che non guardiamo insieme cosa sta sparendo dalla rassegna, e perché. "
-                        "Di solito lo facciamo ogni due settimane: troviamo dieci minuti?"}
+        out["regia"] = {"postit": gusto["id"], "testo": "Avrei bisogno di dieci minuti del suo tempo: è un po' che non guardiamo insieme cosa sta sparendo "
+                        "dalla rassegna, e perché. Di solito lo facciamo ogni due settimane. Quando le va bene?"}
     return out
 
 

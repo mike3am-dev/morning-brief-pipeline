@@ -1,8 +1,8 @@
   /* ================================================================ etichette, benvenuto, scheda */
   const strato = document.getElementById('etichette'), tags = {};
   const el = (tag, cls, testo) => { const e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; };
-  /* Le etichette non stanno sempre accese: un nome compare quando ci passi sopra col mouse, quando quella persona cambia
-     cosa sta facendo (per un paio di secondi), quando ha qualcosa per te, e mentre la sua scheda è aperta. */
+  /* Le etichette non stanno accese: un nome resta acceso solo se quella persona ha qualcosa da dire o da chiedere a Mike
+     (col pallino rosso), e compare quando ci passi sopra col mouse. */
   // dove sta l'etichetta di quello che non è una persona: i post-it sulla lavagna (e, più giù, il registro e la prima pagina)
   const ancore = { bacheca: new THREE.Vector3(0.12, suLav + 0.06, bacheca.position.z) };
   // le icone di stato: piccole, a tratto, una per cosa che si può stare facendo
@@ -26,12 +26,16 @@
     const ora = performance.now(); if (ora - ultimoStato < 250) return; ultimoStato = ora;
     for (const id in persone) { const b = tags[id], cosa = scenaDi(id), k = iconaPer(id, cosa); if (!b) continue;
       if (b.cosa.nodeValue !== cosa) b.cosa.nodeValue = cosa;
-      if (b.icona !== k) { const primo = b.icona == null; b.icona = k; b.ico.hidden = false; b.ico.firstChild.firstChild.setAttribute('d', ICONE[k]);
-        if (!primo && !fermo) { b.classList.add('pop'); clearTimeout(b.viaPop); b.viaPop = setTimeout(() => b.classList.remove('pop'), 2600); } } }
+      if (b.icona !== k) { b.icona = k; b.ico.hidden = false; b.ico.firstChild.firstChild.setAttribute('d', ICONE[k]); } }   // l'icona cambia, ma il nome non salta più fuori da solo
   }
   for (const a of STATO.agenti) etichetta(a.id, a.nome, persone[a.id] ? a.mestiere : 'torna lunedì', TINTA[a.id] || C.orange);
   // chi ha una domanda per Mike: il nome resta acceso, con un pallino rosso che pulsa. Quando Mike ha risposto (la risposta è nel registro) si spegne
-  const haDomanda = a => !!(a && a.domanda) && !decisioni.some(d => d.postit === a.domanda.postit);
+  // una questione è «aperta» finché la risposta di Mike non è nel registro; ma dopo che Mike l'ha sentita e ha risposto
+  // qualcosa, per oggi il nome si spegne lo stesso: un collega non resta lì a lampeggiare dopo aver parlato
+  const CHIAVE_SENTITE = 'tmb-redazione-sentite-' + STATO.giorno, sentite = new Set((() => { try { return JSON.parse(localStorage.getItem(CHIAVE_SENTITE) || '[]'); } catch (e) { return []; } })());
+  const questioneAperta = a => !!(a && a.domanda) && !decisioni.some(d => d.postit === a.domanda.postit);
+  const haDomanda = a => questioneAperta(a) && !sentite.has(a.domanda.postit);
+  function sentita(postit) { if (!postit || sentite.has(postit)) return; sentite.add(postit); try { localStorage.setItem(CHIAVE_SENTITE, JSON.stringify([...sentite])); } catch (e) { /* pazienza */ } aggiornaAttese(); saluta(); }
   let vistaDomanda = null, vistaLavoro = null, prossimoLavoro = 0;
   function aggiornaAttese() { for (const a of STATO.agenti) if (tags[a.id]) tags[a.id].classList.toggle('aspetta', haDomanda(a)); if (vistaDomanda) vistaDomanda(); }
   if (POSTIT.length) etichetta('bacheca', POSTIT.length + ' post-it', 'per te', C.yellow);
@@ -97,7 +101,7 @@
     const a = AGENTI[id], d = a.domanda, b = el('div', 'domanda');
     const riempi = () => { b.textContent = ''; b.hidden = !haDomanda(a); if (b.hidden) return;
       const t = el('small'); t.append(el('i', 'chiama'), document.createTextNode('Ha una domanda per te'));
-      const btn = el('button', null, 'Rispondi ▸'); btn.type = 'button'; btn.addEventListener('click', () => { const apriBtn = pannello.querySelector('.parla-apri'); if (apriBtn && apriBtn._apri) apriBtn._apri('', d.postit, d.testo); });
+      const btn = el('button', null, 'Rispondi ▸'); btn.type = 'button'; btn.addEventListener('click', () => { const apriBtn = pannello.querySelector('.parla-apri'); if (apriBtn && apriBtn._apri) apriBtn._apri('', d.postit); });
       b.append(t, el('p', null, d.testo), btn); };
     riempi(); vistaDomanda = riempi; return b;
   }

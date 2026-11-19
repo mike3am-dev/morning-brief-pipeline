@@ -1602,6 +1602,13 @@ parlava solo dell'edizione uscita, con resoconti lunghi. Ora:
   per Mike**, detta da collega (`domande` in `redazione/stato.py`: nasce dai post-it, cioè da cose davvero aperte).
   Chi ha una domanda ha **un pallino rosso che pulsa** accanto al nome; si spegne quando Mike risponde e la risposta
   finisce nel registro. Niente più elenco dei gesti né resoconto: quello si chiede a voce.
+- **«Direttore», e il lei** (16 novembre 2026, Mike: «mi devono dare del lei, devono essere attivi, propositivi,
+  attenti, precisi, non perdersi in centomila righe, un po' più umani, veri, sinceri»). Tutti chiamano Mike
+  «Direttore» e gli danno del lei. Chi ha una questione aperta **parla per primo** quando Mike apre la conversazione
+  (`primaBattuta` in `82-parla.js`: il saluto dell'ora, due parole di scusa, la questione). **I nomi nella stanza si
+  accendono solo per chi ha qualcosa da dire o da chiedere**, col pallino rosso, e sotto il mouse: non più da soli
+  quando uno cambia attività, e niente pallini colorati prima dei nomi. Dopo che Mike ha risposto, per quel giorno
+  il nome si spegne anche se la decisione non è ancora nel registro.
 - **La routine del cantiere** è «The Morning Brief — la redazione: il cantiere» (`trig_01RDj8xBmjZ2Fv8ottXhwcWW`,
   prompt in `routine/redazione-cantiere.md`), accesa il 16 novembre 2026 col sì di Mike: ogni due ore dalle 6:40 alle
   22:40 (in UTC `40 5,7,9,11,13,15,17,19,21 * * *`: con l'ora legale si sposta di un'ora, e va bene lo stesso). Stesso
