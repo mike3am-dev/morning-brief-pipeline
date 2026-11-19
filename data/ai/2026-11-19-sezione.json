@@ -1,0 +1,154 @@
+{
+ "ai": [
+  {
+   "id": "anthropic-ipo-83-dollari",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic fissa la quotazione a 83 dollari ed è la più grande IPO della storia",
+   "sintesi": "Anthropic ha venduto 980 milioni di azioni a 83 dollari, sopra la forchetta di 70-78, e raccolto 81,3 miliardi: più dei 75 di SpaceX, il record precedente.",
+   "note": "Il prezzo è stato fissato mercoledì 18 novembre; le azioni erano 825 milioni nel piano iniziale. Al prezzo dell'offerta Anthropic vale circa 1.500 miliardi di dollari, contro i 965 del round privato di maggio e i 2.000 a cui puntava qualche mese fa. Da giovedì 19 si scambia al Nasdaq con il simbolo «ANT»: la prima giornata dirà quanto regge la fiducia nell'AI dopo l'uscita di Jensen Huang da Nvidia.",
+   "link": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "gemini-4-neon",
+   "lab": "google",
+   "kind": "modello",
+   "modello": {
+    "nome": "Gemini 4 Neon",
+    "famiglia": "punta"
+   },
+   "title": "Google presenta Gemini 4 Neon, il suo modello di punta per il lavoro lungo",
+   "sintesi": "Gemini 4 Neon è terzo nell'indice di Artificial Analysis con 61 punti e costa 3 dollari per milione di token in ingresso: è il quarto Gemini nuovo in un mese.",
+   "note": "Google lo destina a programmazione, lavoro d'ufficio e ricerca scientifica: legge testo, immagini, video, audio e PDF in una finestra di un milione di token e usa il computer da solo. Nel Vals Index è secondo con il 70,9%, primo nei test su ricerca legale e fiscale; Google dichiara il tasso di invenzioni più basso mai misurato nei suoi test interni. Costa 15 dollari per milione di token in uscita, il doppio di Hydrogen; secondo The Decoder è l'equivalente di Opus per Anthropic e di Sol per OpenAI.",
+   "link": "https://deepmind.google/blog/introducing-gemini-4-neon/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "muse-dati-privati-dipendenti",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Muse sembrava mostrare dati altrui ai dipendenti di Meta che lo provavano",
+   "sintesi": "Nelle chat interne viste da Reuters, a un dipendente che parlava di pesca Muse ha risposto con i saldi di due conti bancari sconosciuti.",
+   "note": "Durante i test interni lo staff ha segnalato che l'agente sembrava leggere messaggi privati cifrati, confondeva le conversazioni fra utenti diversi e mandava risposte a domande mai fatte; un dipendente ha parlato di «possible cross-account context leak». Un altro dice di averci perso dei soldi: Muse lo ha iscritto a un'assicurazione per il cane da 888 dollari al mese invece di 200. Lo racconta Ars Technica dalle carte pubblicate da Reuters.",
+   "link": "https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "banche-agenti-ai-responsabilita",
+   "lab": "altri",
+   "kind": "regole",
+   "title": "Citibank e PNC: chi dà il conto a un agente AI risponde da solo dei danni",
+   "sintesi": "Citibank ha cambiato le condizioni del conto online: se un agente AI di terzi fa un'operazione sbagliata, anche dopo un attacco informatico, la responsabilità è del cliente.",
+   "note": "JPMorgan e Bank of America, le due banche più grandi degli Stati Uniti, avevano annunciato regole simili il mese scorso; PNC ha cambiato le sue mercoledì. Gli agenti in questione sono quelli a cui si danno le credenziali per analizzare le spese, pagare bollette o fare operazioni. «Customers who choose to grant account access to third-party AI agents are responsible for activities conducted through those agents», ha detto un portavoce di Citi a TechCrunch.",
+   "link": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "openai-amd-chip-ottimizzazione",
+   "lab": "openai",
+   "kind": "ricerca",
+   "title": "I modelli di OpenAI migliorano del 14% una GPU di AMD in meno di cinque mesi",
+   "sintesi": "Lavorando con AMD, i modelli di OpenAI hanno migliorato fino al 14% consumi, prestazioni e area della GPU di punta: secondo OpenAI è circa un anno di progressi.",
+   "note": "Le modifiche si aggiungono a un progetto che gli ingegneri di AMD ottimizzavano da anni, e alcune sono già in un chip mandato in produzione. Lo stesso metodo è servito per Jalapeño, il primo chip di OpenAI per far girare i modelli; nei test su core RISC-V aperti GPT-6.2 Astra ha dato i risultati migliori fra le generazioni provate. Con Synopsys OpenAI prepara GPT-Synopsys, un modello che usa i programmi di progettazione dei chip.",
+   "link": "https://the-decoder.com/openai-says-its-models-delivered-a-years-worth-of-chip-optimization-on-top-of-amds-own-engineering/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "pangram-romanzo-peruviano",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Pangram attribuisce all'AI il 99% di un romanzo premiato, l'editore difende l'autrice",
+   "sintesi": "Il rilevatore Pangram giudica scritto da un'AI il 99% di «Donde el agua trabaja» di David Silva Rojas; l'editore messicano Almadía ha visto i documenti e conferma il premio.",
+   "note": "Secondo El País Pangram ha attribuito all'AI anche più dell'80% delle interviste, di un saggio e della smentita pubblicata su Instagram. L'autrice, in un saggio su The Point Magazine, accusa la critica latinoamericana di aver liquidato le accuse come razziste senza guardare i risultati. Gallimard userà Pangram sui manoscritti dal prossimo anno; l'Authors Guild avverte di non decidere sulla sola base di un rilevatore.",
+   "conto": {
+    "parte": 99,
+    "tutto": 100,
+    "etichetta": "parti del romanzo «Donde el agua trabaja» attribuite all'AI da Pangram, su 100",
+    "fonte": "Pangram, via El País"
+   },
+   "link": "https://the-decoder.com/pangram-flags-99-percent-of-an-award-winning-peruvian-novel-as-ai-generated-but-the-publisher-stands-by-its-author/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "humyn-labs-47-milioni",
+   "lab": "robot",
+   "kind": "affari",
+   "title": "Humyn Labs raccoglie 47 milioni per insegnare ai robot il mondo vero",
+   "sintesi": "Humyn Labs, che raccoglie dati su vista, suono, tatto e movimento in più di 20 paesi per addestrare i robot, ha chiuso un round da 47 milioni di dollari guidato da Accel.",
+   "note": "Il round è fatto di 26 milioni di capitale e 21 di debito, e l'azienda dice di aver superato i 50 milioni di ricavi annualizzati in sei mesi di attività. Lavora con laboratori di AI, aziende di robotica e chi sviluppa modelli del mondo. «The biggest gap was how do you take what's happening in the lab into the real world?», dice il cofondatore Ishank Gupta a The Robot Report.",
+   "link": "https://www.therobotreport.com/humyn-labs-raises-47m-to-collect-real-world-data-for-robotics/",
+   "source": "The Robot Report"
+  },
+  {
+   "id": "genie-4-galleria-mondi",
+   "lab": "google",
+   "kind": "demo",
+   "title": "Genie 4 genera mondi 3D che si cambiano mentre li attraversi, con il sonoro",
+   "note": "Nel nuovo Project Genie si descrive un mondo, ci si entra e, mentre si cammina, un nuovo prompt cambia il tempo, aggiunge un personaggio o sposta l'azione; per la prima volta l'audio, dai rumori di fondo ai dialoghi, segue la scena. Genie 3 resta per le sessioni lunghe, ora fino a tre minuti, con panorami a 360 gradi e mondi concatenati. Una galleria della comunità permette di condividere i mondi e rifare quelli degli altri; tutto porta la filigrana SynthID.",
+   "prova": "Con Google AI Ultra apri Project Genie, scegli Genie 4 e scrivi un prompt mentre esplori",
+   "passi": [
+    "Apri Project Genie con un abbonamento AI Ultra",
+    "Scegli Genie 4 nel selettore dei modelli",
+    "Descrivi il mondo ed entra a esplorarlo",
+    "Scrivi un nuovo prompt per cambiarlo mentre cammini"
+   ],
+   "strumento": "Project Genie (Genie 4)",
+   "costo": "abbonamento Google AI Ultra; per AI Pro c'è la lista d'attesa",
+   "link": "https://deepmind.google/blog/genie-4-is-now-available/",
+   "source": "Google DeepMind"
+  },
+  {
+   "id": "mastra-factory-238-pr",
+   "lab": "altri",
+   "kind": "uso",
+   "title": "Mastra fa mantenere il suo progetto a una fabbrica di agenti: 238 modifiche in una settimana",
+   "note": "Shane, Sam e Abhi, di Mastra,, un framework open source per agenti in TypeScript da quasi 4 milioni di download a settimana, hanno pubblicato Factory, lo strumento con cui lo mantengono: una bacheca kanban di agenti che si chiama da Slack, con memoria, un wiki interno e un ambiente isolato dove gli agenti scrivono codice. La settimana scorsa Factory ha aperto e unito 238 pull request, accanto alle 630 degli sviluppatori. Raccontano che gli ingegneri più esperti lanciano più sessioni in parallelo, come «triage the 20 oldest issues».",
+   "prova": "Leggi il post su Hacker News e scarica Factory dal repository open source di Mastra",
+   "passi": [
+    "Apri il post di Mastra su Hacker News",
+    "Segui il link al repository di Factory",
+    "Collega Factory a Slack e assegnagli una issue"
+   ],
+   "strumento": "Mastra Factory, open source",
+   "segnale": "88 punti e 31 commenti su Hacker News",
+   "link": "https://news.ycombinator.com/item?id=50548660",
+   "source": "Hacker News"
+  },
+  {
+   "id": "snapchat-easy-lens-cli",
+   "lab": "altri",
+   "kind": "trucco",
+   "title": "Gli effetti AR di Snapchat ora si costruiscono descrivendoli a Claude Code o Cursor",
+   "note": "Snapchat ha presentato Easy Lens CLI: chi crea Lens, gli effetti in realtà aumentata dell'app, le descrive a parole all'assistente di programmazione che già usa (Claude Code, Cursor, Codex), e l'assistente fa il lavoro tecnico negli strumenti di Snap. È l'evoluzione di Easy Lens, che genera una Lens da un solo prompt sul web e su mobile. Chi è nel programma Lens+ Payouts può guadagnare dalle Lens fatte così: il mese scorso Snap ha pagato 1,8 milioni di dollari ai creatori.",
+   "prova": "Installa Easy Lens CLI e descrivi la Lens a Claude Code, Cursor o Codex",
+   "passi": [
+    "Installa Easy Lens CLI di Snapchat",
+    "Apri Claude Code, Cursor o Codex nella cartella",
+    "Descrivi a parole l'effetto che vuoi",
+    "Prova la Lens nella fotocamera di Snapchat"
+   ],
+   "strumento": "Easy Lens CLI + Claude Code, Cursor o Codex",
+   "link": "https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "curl-rust-agenti-stenberg",
+   "lab": "altri",
+   "kind": "uso",
+   "title": "Gli agenti riscrivono curl in Rust in tre settimane, ma restano senza 200 correzioni",
+   "note": "Più gruppi hanno fatto convertire da agenti di programmazione le 185.000 righe in C di curl in 340.000 righe di Rust. Daniel Stenberg, l'autore di curl, ha fatto il conto: nelle stesse tre settimane il progetto vero ha unito più di 300 modifiche, fra cui oltre 200 correzioni di bug e alcune falle di sicurezza, che le copie non hanno. «Will these clones keep up?», chiede; Simon Willison ha ripreso la frase.",
+   "prova": "Leggi la citazione sul blog di Simon Willison e il post di Stenberg sulle riscritture in Rust",
+   "passi": [
+    "Apri la citazione sul blog di Simon Willison",
+    "Segui il link al post di Daniel Stenberg",
+    "Confronta le date delle riscritture con i rilasci di curl"
+   ],
+   "link": "https://simonwillison.net/2026/Nov/18/daniel-stenberg/",
+   "source": "Simon Willison"
+  }
+ ],
+ "scritto": "2026-11-19"
+}
