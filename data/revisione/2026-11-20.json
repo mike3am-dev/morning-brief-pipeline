@@ -1,0 +1,289 @@
+{
+ "giorno": "2026-11-20",
+ "prima": {
+  "intro": "Le notizie più importanti di oggi non arrivano da una presentazione. Un annuncio di lavoro mostra l'agente che Apple vuole costruire, un tribunale britannico toglie il segreto all'ordine su iCloud e il software della fotocamera di iPhone perde il suo responsabile. La seconda beta pubblica di iOS 27.3 porta a tutti le novità che gli sviluppatori provano da lunedì, con un problema nuovo per chi ha HomeView.",
+  "top3": [
+   "Apple cerca chi le costruisca un agente che usa il computer come una persona",
+   "Un tribunale obbliga Londra ad ammettere l'ordine segreto su iCloud",
+   "Jon McCormack, capo del software della fotocamera di iPhone, va in pensione"
+  ],
+  "editoriale": {
+   "titolo": "Quanto lasciamo fare a un software che lavora al posto nostro",
+   "testo": [
+    "Fin dove siamo disposti a lasciare che qualcun altro usi il nostro computer al posto nostro? Nella stessa giornata Apple ha messo per iscritto l'agente che vuole costruire, capace di navigare, passare da un'app all'altra e scrivere codice come farebbe una persona. Google ha dato a Gemini per Mac proprio questa capacità. E la beta di macOS 27.3 cambia i permessi con cui un'app può controllare il Mac, con un avviso di Apple agli sviluppatori: concedere l'accesso completo agli strumenti di automazione può mettere a rischio gli utenti.",
+    "Le tre cose si tengono. Un agente utile deve poter aprire le app, toccare i file, compilare i moduli, cioè fare quello che i nuovi permessi rendono più difficile a chi non ha avuto il via libera. Google fa lavorare Gemini in una finestra isolata e gli fa chiedere conferma prima delle azioni importanti. Apple, nel suo annuncio, promette un agente che faccia tutto in privato, ma secondo Bloomberg il progetto è agli inizi e non arriverebbe prima della fine del 2027.",
+    "Nel frattempo lascia Apple Jon McCormack, che difendeva l'idea della fotografia come traccia di qualcosa accaduto davvero. Fra la sua uscita e gli agenti non c'è un legame diretto, e Bloomberg esclude un disaccordo sulla strategia. La domanda che si portava dietro, però, somiglia a questa: fin dove un software può fare al posto nostro prima che il risultato smetta di sembrarci nostro? Per ora la risposta di Apple sta nei permessi, concessi cartella per cartella."
+   ],
+   "notizie": [
+    "apple-agente-ai-annuncio",
+    "ios-27-3-beta-pubblica-2",
+    "mccormack-fotocamera-pensione"
+   ]
+  },
+  "news": {
+   "apple-agente-ai-annuncio": {
+    "title": "Apple cerca chi le costruisca un agente che usa il computer come una persona",
+    "sintesi": "Un annuncio di lavoro di Apple descrive un agente che naviga, usa le app e scrive codice al posto dell'utente; secondo Bloomberg il lancio non arriverebbe prima della fine del 2027.",
+    "descrizione": "Apple sta cercando un responsabile per costruire un agente di intelligenza artificiale capace di usare il computer al posto dell'utente. L'annuncio di lavoro, pubblicato il 17 novembre per un «Senior Engineering Manager, Agentic AI – Proactive», Apple lo descrive così: «Imagine an AI agent that can use a computer the way a capable person does. It browses the web, works across apps, runs commands, writes and debugs code». Il gruppo lavorerà con i team di Siri, delle interfacce e dei modelli Apple Foundation Models, su agenti che pianificano un compito, scelgono lo strumento giusto per ogni passo e affidano le singole parti a sotto-agenti specializzati.\n\nLa notizia l'ha data Bloomberg, che aggiunge due cose: il progetto è in una fase iniziale e Apple ha valutato un lancio non prima della fine del 2027. Nelle stesse ore Google ha portato su Mac un Gemini che fa già questo lavoro, e la beta di macOS 27.3 stringe i permessi con cui le app degli altri possono controllare il computer.",
+    "approfondimento": {
+     "titolo": "Apple scrive il suo agente mentre restringe il campo a quelli degli altri",
+     "punto": "Nella stessa settimana in cui macOS chiede più permessi alle app che controllano il Mac, Apple cerca chi le costruisca il suo agente. Le due mosse si possono leggere insieme: un software che agisce per conto dell'utente, ma dentro confini decisi da Apple.",
+     "sotto": [
+      "L'annuncio descrive un agente «general-purpose»: non risponde a una domanda, porta a termine un lavoro. Pianifica i passi, sceglie per ognuno lo strumento adatto e delega le singole parti a sotto-agenti specializzati. Gli altri ci sono già arrivati: Dots di OpenAI, Duet di Anthropic e Tasks di Google, nato da Gemini Spark, sono agenti dello stesso tipo, e Muse di Meta ha superato i 10 milioni di download in quaranta giorni.",
+      "Il dettaglio più impegnativo sta nell'ultima riga del testo, dove Apple chiede che l'agente faccia tutto «privately». Muse mostra cosa succede quando qualcosa va storto: secondo TechCrunch l'agente di Meta mescola le conversazioni e potrebbe esporre i dati privati di altri utenti. La stessa prudenza si legge nella beta di macOS 27.3, dove Apple ha avvisato gli sviluppatori che concedere l'accesso completo al disco agli strumenti di automazione può mettere a rischio gli utenti.",
+      "Restano aperte le domande sui tempi e sulla forma. Bloomberg parla di un progetto agli inizi e, secondo la stessa fonte, il nuovo amministratore delegato John Ternus starebbe spingendo Craig Federighi ad accelerare sull'intelligenza artificiale. Per ora non è noto se l'agente arriverà dentro Siri o come prodotto a sé, né su quali dispositivi."
+     ]
+    }
+   },
+   "mccormack-fotocamera-pensione": {
+    "title": "Jon McCormack, capo del software della fotocamera di iPhone, va in pensione",
+    "sintesi": "Jon McCormack ha lasciato Apple a fine ottobre dopo più di otto anni; secondo Bloomberg un successore non c'è ancora e i suoi vice passano sotto altri dirigenti.",
+    "descrizione": "Jon McCormack, vicepresidente dell'ingegneria software di Fotocamera e Foto, ha lasciato Apple a fine ottobre per andare in pensione. Lo ha scritto Mark Gurman su Bloomberg. McCormack era entrato in Apple nel 2018, lasciando il ruolo di direttore tecnico del gruppo dispositivi di Amazon, e riportava a Craig Federighi. Apple non ha nominato un successore: i suoi vice stanno passando sotto altri dirigenti.\n\nIl suo compito era tenere insieme il software e i gruppi che progettano l'hardware e i chip della fotocamera. Fra i suoi progetti ci sono la fotocamera frontale Center Stage ridisegnata con iPhone 17, il diaframma variabile di iPhone 18 Pro e l'interfaccia di Fotocamera personalizzabile, con i controlli professionali. Bloomberg lo descrive come un convinto oppositore dell'intelligenza artificiale generativa usata per creare o ritoccare le fotografie, ma precisa che l'uscita non nasce da un disaccordo sulla strategia di Apple. L'addio arriva in una stagione di cambi ai vertici, cominciata a settembre con John Ternus al posto di Tim Cook.",
+    "approfondimento": {
+     "titolo": "Il capo della fotocamera che diffidava delle foto generate",
+     "punto": "Per McCormack una fotografia doveva restare la traccia di qualcosa accaduto davvero. Se ne va mentre i concorrenti spingono sui ritocchi generativi, e Apple non ha ancora detto chi prenderà in mano quella linea.",
+     "sotto": [
+      "La sua idea l'aveva spiegata più volte, con parole quasi uguali: nel 2024 a The Verge, a giugno di quest'anno a Wired. Per lui una foto è la testimonianza di qualcosa che è successo, e un software fotografico deve restituirla al meglio, non costruirne una nuova. I progetti che portano la sua firma vanno in quella direzione: controlli più fini, un diaframma che si regola, una fotocamera frontale che inquadra meglio chi parla.",
+      "Google e Samsung hanno scelto un'altra strada, con strumenti che cancellano elementi dalle foto grazie all'intelligenza artificiale generativa. Bloomberg esclude che il ritiro nasca da un contrasto con Apple, e non c'è motivo di leggerlo come una svolta. Resta però vuoto il posto da cui quella posizione veniva difesa: le sue responsabilità passano ai suoi vice, sotto altri dirigenti, e per ora non è noto chi avrà l'ultima parola sul software della fotocamera."
+     ]
+    }
+   },
+   "regno-unito-tribunale-ordine-icloud": {
+    "title": "Un tribunale obbliga Londra ad ammettere l'ordine segreto su iCloud",
+    "sintesi": "Il governo britannico dovrà riconoscere di aver ordinato ad Apple di aprire l'accesso ai dati cifrati: per i giudici l'idea che ammetterlo nuocesse alla sicurezza nazionale era «fanciful».",
+    "descrizione": "L'Investigatory Powers Tribunal, il tribunale britannico competente sui poteri d'indagine dello Stato, ha ordinato al governo di riconoscere pubblicamente di aver notificato ad Apple un Technical Capability Notice: un ordine segreto che può obbligare un'azienda a modificare i propri servizi per consentire l'accesso ai dati, anche quando sono cifrati. Il governo si era sempre rifiutato di confermarlo o smentirlo. I giudici hanno definito «fanciful» l'idea che ammetterlo danneggiasse la sicurezza nazionale, anche perché briefing autorizzati con i giornali, a partire dal Financial Times, avevano già fatto circolare la notizia.\n\nIl filo era fermo da due mesi. Apple ha presentato l'ultimo ricorso a luglio, dopo un secondo ordine che riguarderebbe solo gli utenti britannici; il primo, che toccava anche quelli americani, era stato ritirato dopo un contrasto con Washington. Dal febbraio 2025 Apple non offre più ai nuovi utenti britannici la Protezione avanzata dei dati. A TechCrunch l'azienda ha detto di accogliere con favore la decisione.",
+    "approfondimento": {
+     "titolo": "Un segreto che conoscevano tutti: perché Londra ha perso",
+     "punto": "Il governo britannico non ha perso sulla sostanza dell'ordine, ma sul diritto di tacerlo. La questione vera, se Londra possa costringere Apple ad aprire i dati cifrati di iCloud, resta aperta.",
+     "sotto": [
+      "Il governo si era chiuso nella formula del «neither confirm nor deny»: non confermare e non smentire, qualunque cosa uscisse sui giornali. Il tribunale l'ha messa da parte con un argomento quasi pratico. Nella sentenza si legge che «anyone with even a passing interest in this topic already knows that the respondent has served a technical capability notice on Apple». A pesare sono stati soprattutto i briefing che ministri e alti funzionari avevano autorizzato con la stampa, che avevano già rotto il riserbo in modo informale.",
+      "Per chi usa iCloud nel Regno Unito la conseguenza pratica resta quella del febbraio 2025, quando Apple ha smesso di offrire la Protezione avanzata dei dati ai nuovi utenti. Chi l'aveva già attivata la conserva, ma Apple non può spegnerla al posto loro: secondo MacRumors dovranno farlo da sé, entro una scadenza che non è ancora stata comunicata.",
+      "Le strade aperte sono due: il ricorso di Apple contro il secondo ordine, presentato a luglio, e la causa separata di Liberty e Privacy International per conto di due persone, che aspetta un'udienza finale nel 2027. La decisione non chiude nessuna delle due, ma da oggi dell'ordine si può parlare in pubblico."
+     ]
+    }
+   },
+   "ios-27-3-beta-pubblica-2": {
+    "title": "Seconda beta pubblica per iOS 27.3. L'uscita per tutti è attesa a metà dicembre",
+    "sintesi": "Apple apre a tutti la seconda beta di iOS, iPadOS, macOS, watchOS e tvOS 27.3, la stessa build degli sviluppatori; l'uscita definitiva è attesa a metà dicembre.",
+    "descrizione": "Apple ha rilasciato la seconda beta pubblica di iOS, iPadOS, macOS, watchOS e tvOS 27.3, insieme a una versione rivista della beta 2 per gli sviluppatori. Chi segue le beta pubbliche riceve quindi la stessa build che gli sviluppatori provano dal 16 novembre. Per la versione definitiva Apple indica la metà di dicembre.\n\nLa novità più visibile riguarda iPhone Duo, che da chiuso si sblocca con il volto grazie alla fotocamera dello schermo esterno; pagamenti e password restano affidati a Touch ID o al codice. Sul Mac arrivano le schede verticali di Safari e permessi più fini per l'accesso completo al disco. Su iPad un doppio tocco in cima alla finestra la porta a tutto schermo, e Apple TV riceve la prima beta di Siri AI. Con la beta arriva anche un problema per chi ha HomeView, che raccontiamo a parte.",
+    "approfondimento": {
+     "titolo": "Quanto lavora Siri AI prima di fermarsi, e cosa cambia sul Duo chiuso",
+     "punto": "Le novità di questa beta che si sentono di più nell'uso di ogni giorno non sono funzioni nuove ma regole: quante richieste avanzate concede Siri AI, e quando il Duo chiuso si fida del volto di chi lo tiene in mano.",
+     "sotto": [
+      "Con iOS 27.3 Siri AI ha un limite giornaliero. Le richieste di base continuano anche oltre la soglia; quelle avanzate si fermano fino al giorno dopo. Più capacità arriva con gli abbonamenti iCloud+ da 200 GB in su, mentre il piano da 50 GB resta al livello standard. Per ora non è noto quante richieste avanzate stiano dentro la soglia, né se Apple la cambierà prima della versione definitiva.",
+      "Lo sblocco col volto del Duo chiuso ha confini precisi. Serve solo ad aprire il telefono: pagamenti, password e accesso alle app restano affidati a Touch ID o al codice, e dopo 45 minuti senza sblocco il telefono li chiede di nuovo. Accanto arriva Attention Aware, che tiene acceso lo schermo esterno finché lo si guarda e abbassa il volume di alcuni avvisi, senza bisogno di riconoscere il volto."
+     ]
+    }
+   },
+   "f1-academy-apple-tv": {
+    "title": "Apple TV trasmetterà F1 Academy negli Stati Uniti dal 2027",
+    "sintesi": "Dal 2027 F1 Academy, il campionato tutto femminile della Formula 1, sarà in esclusiva su Apple TV negli Stati Uniti, compreso nell'abbonamento: sette weekend, da Jeddah a Las Vegas.",
+    "descrizione": "Dalla prossima stagione F1 Academy, il campionato di sviluppo tutto femminile della Formula 1, sarà trasmesso in esclusiva su Apple TV negli Stati Uniti, senza costi oltre all'abbonamento. Lo ha annunciato Apple. Nata nel 2022, con un livello paragonabile alla Formula 4, la serie arriva alla quinta stagione con sette weekend di gara. Si parte a Jeddah dal 19 al 21 marzo 2027, poi Shanghai, Montreal, Silverstone e per la prima volta l'Hungaroring; le ultime due tappe sono negli Stati Uniti, ad Austin dal 22 al 24 ottobre e a Las Vegas dal 18 al 20 novembre.\n\nSecondo Apple, F1 Academy è oggi la serie più seguita dopo la Formula 1. L'accordo si aggiunge alla partnership con la Formula 1 cominciata quest'anno, che dura fino al 2031.",
+    "approfondimento": {
+     "titolo": "Per un campionato di sviluppo, farsi vedere fa parte della gara",
+     "punto": "F1 Academy mette la visibilità al centro della sua missione, e Apple le offre uno spazio fisso dentro l'abbonamento. Per Apple è un tassello in più nel rapporto con la Formula 1, che con il film F1 le ha già dato un successo al botteghino.",
+     "sotto": [
+      "F1 Academy è un campionato di sviluppo: in genere serie come questa servono a far crescere pilote che un giorno possano correre nelle categorie superiori. Per un campionato così la visibilità non è un dettaglio, e Susie Wolff, che lo dirige, l'ha messa al centro dell'annuncio. Negli Stati Uniti le gare avranno un posto fisso dentro l'abbonamento di Apple TV, e il calendario si chiude proprio lì, fra Austin e Las Vegas.",
+      "L'accordo entra nella partnership quinquennale fra Apple e la Formula 1, partita quest'anno e rafforzata dal successo al botteghino del film F1, prodotto da Apple. Per ora Apple non ha annunciato un documentario sul campionato; Netflix e Disney+ ne hanno già trasmesso uno ciascuno, ricorda Engadget."
+     ]
+    }
+   },
+   "imac-oled-rinvio": {
+    "title": "L'iMac con schermo OLED potrebbe slittare, o non arrivare affatto",
+    "sintesi": "Secondo The Elec, Apple discute con Samsung Display se rinviare o abbandonare l'iMac OLED atteso fra il 2029 e il 2030: i pannelli grandi costano troppo per un computer che vende poco.",
+    "descrizione": "Apple starebbe valutando con Samsung Display se rinviare o abbandonare il passaggio dell'iMac allo schermo OLED, finora atteso fra il 2029 e il 2030. Lo scrive The Elec, sito coreano che segue la filiera degli schermi. Il motivo è il costo: i pannelli OLED di grande formato restano cari, e l'iMac vende troppo poco per distribuirne il prezzo su molte unità. Pesa anche il precedente dell'iPad Pro OLED, che non ha venduto quanto sperato: secondo The Elec, nel 2026 le consegne dei suoi pannelli caleranno del 18%.\n\nMacitynet ricostruisce le tappe del progetto. A dicembre 2025 Apple aveva chiesto a Samsung Display e LG Display un pannello OLED da 24 pollici, con 218 pixel per pollice come l'attuale Retina 4,5K e 600 nit di luminosità; LG avrebbe poi fermato lo sviluppo del suo. Secondo iSpazio, per ora si discute soprattutto di un rinvio, non di una cancellazione."
+   },
+   "homeview-siri-ios-27-3-beta": {
+    "title": "Con iOS 27.3 beta, Siri su HomeView non risponde più sui contenuti personali",
+    "sintesi": "Apple ha confermato che con un iPhone in beta di iOS 27.3 Siri su HomeView 27.2.1 rifiuta le richieste personali; non c'è una beta di HomeView per rimediare, si aspetta dicembre.",
+    "descrizione": "HomeView 27.2.1, uscito ieri, ha corretto alcuni errori di Siri AI legati all'abbinamento con gli iPhone che hanno iOS 27.3 beta. Ne ha però introdotto uno nuovo, che Apple ha confermato: se l'iPhone abbinato è in beta, Siri su HomeView rifiuta le richieste che riguardano i contenuti personali e risponde con un messaggio: «I can't help with that because your personal device is on newer software.»\n\nPer ora non esiste una beta di HomeView che metta in pari i due dispositivi. Chi ha installato la beta pubblica di iOS 27.3, uscita in questi giorni, resta quindi senza quelle risposte fino alle versioni definitive, attese a metà dicembre."
+   },
+   "epic-documenti-risposta-apple": {
+    "title": "Apple risponde a Epic sui 122.000 documenti: le parole cercate erano troppo larghe",
+    "sintesi": "Apple respinge l'accusa di aver trattenuto oltre 122.000 documenti sulle commissioni: i termini di ricerca di Epic, sostiene, pescavano di tutto, perfino il commissioner della NFL.",
+    "descrizione": "Dopo l'accusa di Epic, che sostiene che Apple abbia trattenuto senza motivo più di 122.000 documenti sulle commissioni dell'App Store, arriva la risposta di Apple in tribunale. Erano i termini di ricerca chiesti da Epic a essere «overbroad»: «commission*», con il carattere jolly, trovava anche i documenti su commissioni governative e private e ogni occorrenza di «commissioner», compresi quelli che parlano del commissioner della NFL. Allo stesso modo «fee*» agganciava materiale che con la causa non c'entra.\n\nIl contenzioso riguarda quanto Apple possa trattenere sugli acquisti fatti con sistemi di pagamento esterni: il 13 agosto ha proposto commissioni dal 5 al 15%. Epic aveva chiesto sedici categorie di documenti, dalle analisi d'impatto finanziario alle strategie per scoraggiare i link verso l'esterno. In parallelo la Corte Suprema deve decidere se confermare la condanna di Apple per oltraggio."
+   },
+   "apple-music-radio-50-milioni": {
+    "title": "Apple Music Radio supera i 50 milioni di ascoltatori al mese",
+    "sintesi": "Zane Lowe ha detto a Billboard che Apple Music Radio, nata come Beats 1, ha più di 50 milioni di ascoltatori unici al mese: è il primo dato pubblico dal 2019.",
+    "descrizione": "Apple Music Radio, la rete radiofonica nata undici anni fa come Beats 1, ha più di 50 milioni di ascoltatori unici al mese. Il numero l'ha dato Zane Lowe, direttore creativo globale di Apple Music, in una lunga intervista con Kristin Robinson per la serie On the Record di Billboard. È il primo dato da anni: nel 2019 Eddy Cue parlava genericamente di decine di milioni di ascoltatori. Quest'anno la radio ha trasmesso musica di oltre 6.500 artisti, più della metà emergenti o nuovi.\n\nLowe, arrivato da BBC Radio 1, ha ricordato che all'inizio, nonostante i contatti, le risorse di Apple e il sostegno di Jimmy Iovine, «it was kind of crickets». Le difficoltà a ottenere i grandi nomi spinsero la programmazione verso artisti agli esordi, come Billie Eilish, Khalid e Bryson Tiller."
+   },
+   "wild-things-siegfried-roy": {
+    "title": "Jude Law e Andrew Garfield sono Siegfried e Roy nella nuova serie di Apple TV",
+    "sintesi": "Wild Things, serie limitata in sette episodi di John Hoffman sui due illusionisti di Las Vegas, debutta su Apple TV venerdì 16 aprile 2027.",
+    "descrizione": "Apple TV ha presentato con un primo teaser Wild Things, serie limitata in sette episodi sulla storia di Siegfried e Roy, gli illusionisti di Las Vegas famosi per i loro spettacoli con le tigri bianche. Jude Law interpreta Siegfried, Andrew Garfield Roy, e tutti e due sono anche produttori esecutivi. La serie debutta in tutto il mondo venerdì 16 aprile 2027.\n\nL'ha creata John Hoffman, autore di Only Murders in the Building, che ne è anche showrunner; il primo episodio lo dirige Matt Shakman e fra i produttori c'è Brian Grazer. Nasce dal podcast Wild Things: Siegfried & Roy, otto puntate uscite nel 2022 su Apple Podcasts. La carriera dei due finì nel 2003, dopo il celebre attacco della tigre Montecore; si esibirono insieme un'ultima volta nel 2009."
+   },
+   "jp-morgan-sondaggio-iphone": {
+    "title": "Per J.P. Morgan la voglia di un iPhone nuovo è la più alta degli ultimi anni",
+    "sintesi": "Nel sondaggio annuale di J.P. Morgan il 73% di chi pensa a un nuovo iPhone vuole comprarlo nel 2026, contro il 71% del 2025; negli Stati Uniti chi viene da Android guarda al Duo.",
+    "descrizione": "Il sondaggio annuale di J.P. Morgan sui consumatori, che AppleInsider ha potuto vedere, registra l'interesse più alto degli ultimi anni per un nuovo iPhone. Fra gli intervistati che pensano di comprarne uno, il 73% intende farlo nel 2026: erano il 71% nel 2025 e il 68% nel 2024. A trainare sono iPhone 18 Pro e 18 Pro Max.\n\nNegli Stati Uniti, secondo lo stesso studio, chi viene da Android è attirato soprattutto da iPhone Duo, il primo pieghevole di Apple. Il sondaggio non è pubblico, e per ora lo racconta solo AppleInsider."
+   },
+   "apple-black-friday-carte-regalo": {
+    "title": "Il Black Friday di Apple: una carta regalo fino a 300 dollari, dal 27 al 30 novembre",
+    "sintesi": "Dal 27 al 30 novembre Apple regala una carta fino a 300 dollari con l'acquisto di alcuni prodotti, invece di tagliare i prezzi; iPhone 18 Pro e iPhone Duo restano esclusi.",
+    "descrizione": "Apple ha annunciato la promozione di quattro giorni per il Black Friday e il Cyber Monday. Dal 27 al 30 novembre, online e negli Apple Store, chi compra un prodotto compreso nell'offerta riceve una carta regalo Apple da spendere in seguito. Il valore cambia con il prodotto: fino a 300 dollari con i MacBook Pro di fascia alta, 200 con un MacBook Air, fino a 125 con gli iPad, fino a 100 con Apple Watch e alcuni iPhone, fra cui per la prima volta iPhone Air. Restano fuori le novità dell'anno, iPhone 18 Pro e iPhone Duo.\n\nCome negli anni scorsi Apple non abbassa i prezzi di listino: la carta vale per hardware, accessori, app e abbonamenti, e si somma alla permuta e alle rate con Apple Card. Gli sconti diretti li fanno i rivenditori, a partire da Amazon, che ha già ribassato AirPods Pro 3 e i nuovi MacBook Pro M6."
+   },
+   "iphone-duo-amazon-consegna": {
+    "title": "iPhone Duo arriva prima da Amazon che da Apple: consegna a fine novembre",
+    "sintesi": "Amazon indica per la prima volta una consegna di iPhone Duo il 26-27 novembre, mentre sul sito di Apple l'attesa va dal 21 al 30 dicembre; ci sono anche cinque rate senza interessi.",
+    "descrizione": "Per la prima volta Amazon indica una data di consegna per iPhone Duo: il 26-27 novembre. Lo ha notato Macitynet. Chi lo ordina sul sito di Apple, invece, lo riceve fra il 21 e il 30 dicembre.\n\nAmazon propone anche il pagamento in cinque rate senza interessi e il reso fino al 15 gennaio, che torna utile a chi lo compra come regalo di Natale."
+   },
+   "apple-tv-black-friday-6-99": {
+    "title": "Negli Stati Uniti Apple TV costa 6,99 dollari al mese per sei mesi",
+    "sintesi": "Fino al 30 novembre, negli Stati Uniti, i nuovi abbonati ad Apple TV e chi torna pagano 6,99 dollari al mese per un massimo di sei mesi, meno della metà dei 14,99 del prezzo pieno.",
+    "descrizione": "Apple ha lanciato un'offerta per il Black Friday sul suo servizio di streaming. Negli Stati Uniti, fino alle 20 del 30 novembre, ora del Pacifico, i nuovi abbonati e chi torna dopo aver disdetto, se ne ha i requisiti, possono abbonarsi ad Apple TV a 6,99 dollari al mese per un massimo di sei mesi. Il prezzo normale è 14,99 dollari al mese, quindi lo sconto supera la metà, e il servizio resta senza pubblicità.\n\nL'offerta arriva nello stesso giorno in cui Apple TV ha annunciato due titoli per il 2027: le gare di F1 Academy e la serie Wild Things."
+   },
+   "halide-3-4-iphone-duo": {
+    "title": "Halide 3.4 usa lo schermo esterno di iPhone Duo come mirino e come luce",
+    "sintesi": "L'app fotografica Halide 3.4 porta su iPhone Duo un mirino più grande, l'anteprima sullo schermo esterno per chi viene ritratto e una luce di riempimento per i ritratti al buio.",
+    "descrizione": "Lux Optics ha pubblicato Halide 3.4, l'aggiornamento dell'app per la fotografia professionale. Con iPhone Duo aperto, la nuova modalità XL sostituisce l'anteprima dell'ultima foto con un mirino più grande, e i comandi ai due lati permettono di scattare a due mani. Lo schermo esterno può ripetere i comandi o mostrare il mirino a tutto schermo, così chi viene fotografato vede l'inquadratura. Con poca luce, lo stesso schermo fa da luce di riempimento, più morbida, per i ritratti: gli sviluppatori consigliano di portare la luminosità al massimo prima dello scatto.\n\nL'istogramma ora corre lungo la piega, e l'editor Photo Lab si usa con il Duo socchiuso. Sugli altri iPhone tornano gli istogrammi di colore e luminosità e l'autoscatto di Halide Mark II."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "Le notizie più importanti di oggi non arrivano da una presentazione. Un annuncio di lavoro mostra l'agente che Apple vuole costruire, un tribunale britannico toglie il segreto all'ordine su iCloud e il software della fotocamera di iPhone perde il suo responsabile. La seconda beta pubblica di iOS 27.3 porta a tutti le novità che gli sviluppatori provano da lunedì, con un problema nuovo per chi ha HomeView.",
+  "top3": [
+   "Apple cerca chi le costruisca un agente che usa il computer come una persona",
+   "Un tribunale obbliga Londra ad ammettere l'ordine segreto su iCloud",
+   "Jon McCormack, capo del software della fotocamera di iPhone, va in pensione"
+  ],
+  "editoriale": {
+   "titolo": "Quanto lasciamo fare a un software che lavora al posto nostro",
+   "testo": [
+    "Fin dove siamo disposti a lasciare che qualcun altro usi il nostro computer al posto nostro? Nella stessa giornata Apple ha messo per iscritto l'agente che vuole costruire, capace di navigare, passare da un'app all'altra e scrivere codice come farebbe una persona. Google ha dato a Gemini per Mac proprio questa capacità. E la beta di macOS 27.3 cambia i permessi con cui un'app può controllare il Mac, con un avviso di Apple agli sviluppatori: concedere l'accesso completo agli strumenti di automazione può mettere a rischio gli utenti.",
+    "I tre fatti sono legati. Un agente utile deve poter aprire le app, toccare i file, compilare i moduli, cioè fare quello che i nuovi permessi rendono più difficile a chi non ha avuto il via libera. Google fa lavorare Gemini in una finestra isolata e gli fa chiedere conferma prima delle azioni importanti. Apple, nel suo annuncio, promette un agente che faccia tutto in privato, ma secondo Bloomberg il progetto è agli inizi e non arriverebbe prima della fine del 2027.",
+    "Nel frattempo lascia Apple Jon McCormack, che difendeva l'idea della fotografia come traccia di qualcosa accaduto davvero. Fra la sua uscita e gli agenti non c'è un legame diretto, e Bloomberg esclude un disaccordo sulla strategia. La domanda che la sua idea di fotografia poneva, però, è simile: fin dove un software può fare al posto nostro prima che il risultato smetta di sembrarci nostro? Per ora la risposta di Apple sta nei permessi, concessi cartella per cartella."
+   ],
+   "notizie": [
+    "apple-agente-ai-annuncio",
+    "ios-27-3-beta-pubblica-2",
+    "mccormack-fotocamera-pensione"
+   ]
+  },
+  "news": {
+   "apple-agente-ai-annuncio": {
+    "title": "Apple cerca chi le costruisca un agente che usa il computer come una persona",
+    "sintesi": "Un annuncio di lavoro di Apple descrive un agente che naviga, usa le app e scrive codice al posto dell'utente; secondo Bloomberg il lancio non arriverebbe prima della fine del 2027.",
+    "descrizione": "Apple sta cercando un responsabile per costruire un agente di intelligenza artificiale capace di usare il computer al posto dell'utente. Nell'annuncio, pubblicato il 17 novembre per la posizione di «Senior Engineering Manager, Agentic AI – Proactive», Apple scrive: «Imagine an AI agent that can use a computer the way a capable person does. It browses the web, works across apps, runs commands, writes and debugs code». Il gruppo lavorerà con i team di Siri, delle interfacce e dei modelli Apple Foundation Models, su agenti che pianificano un compito, scelgono lo strumento giusto per ogni passo e affidano le singole parti a sotto-agenti specializzati.\n\nLa notizia l'ha data Bloomberg, che aggiunge due cose: il progetto è in una fase iniziale e Apple ha valutato un lancio non prima della fine del 2027. Nelle stesse ore Google ha portato su Mac un Gemini che fa già questo lavoro, e la beta di macOS 27.3 stringe i permessi con cui le app di terze parti possono controllare il computer.",
+    "approfondimento": {
+     "titolo": "Apple scrive il suo agente mentre restringe il campo a quelli degli altri",
+     "punto": "Nella stessa settimana in cui macOS chiede più permessi alle app che controllano il Mac, Apple cerca chi le costruisca il suo agente. Le due mosse si possono leggere insieme: un software che agisce per conto dell'utente, ma dentro confini decisi da Apple.",
+     "sotto": [
+      "L'annuncio descrive un agente «general-purpose»: non risponde a una domanda, porta a termine un lavoro. Pianifica i passi, sceglie per ognuno lo strumento adatto e delega le singole parti a sotto-agenti specializzati. Gli altri ci sono già arrivati: Dots di OpenAI, Duet di Anthropic e Tasks di Google, nato da Gemini Spark, sono agenti dello stesso tipo, e Muse di Meta ha superato i 10 milioni di download in quaranta giorni.",
+      "Nell'ultima riga dell'annuncio Apple chiede che l'agente faccia tutto «privately». Muse mostra cosa succede quando qualcosa va storto: secondo TechCrunch l'agente di Meta mescola le conversazioni e potrebbe esporre i dati privati di altri utenti. La stessa prudenza si legge nella beta di macOS 27.3, dove Apple ha avvisato gli sviluppatori che concedere l'accesso completo al disco agli strumenti di automazione può mettere a rischio gli utenti.",
+      "Restano aperte le domande sui tempi e sulla forma. Bloomberg parla di un progetto agli inizi e, secondo la stessa fonte, il nuovo amministratore delegato John Ternus starebbe spingendo Craig Federighi ad accelerare sull'intelligenza artificiale. Per ora non è noto se l'agente arriverà dentro Siri o come prodotto a sé, né su quali dispositivi."
+     ]
+    }
+   },
+   "mccormack-fotocamera-pensione": {
+    "title": "Jon McCormack, capo del software della fotocamera di iPhone, va in pensione",
+    "sintesi": "Jon McCormack ha lasciato Apple a fine ottobre dopo più di otto anni; secondo Bloomberg un successore non c'è ancora e i suoi vice passano sotto altri dirigenti.",
+    "descrizione": "Jon McCormack, vicepresidente dell'ingegneria software di Fotocamera e Foto, ha lasciato Apple a fine ottobre per andare in pensione. Lo ha scritto Mark Gurman su Bloomberg. McCormack era entrato in Apple nel 2018, lasciando il ruolo di direttore tecnico del gruppo dispositivi di Amazon, e riportava a Craig Federighi. Apple non ha nominato un successore: i suoi vice stanno passando sotto altri dirigenti.\n\nIl suo compito era tenere insieme il software e i gruppi che progettano l'hardware e i chip della fotocamera. Fra i suoi progetti ci sono la fotocamera frontale Center Stage ridisegnata con iPhone 17, il diaframma variabile di iPhone 18 Pro e l'interfaccia di Fotocamera personalizzabile, con i controlli professionali. Bloomberg lo descrive come un convinto oppositore dell'intelligenza artificiale generativa usata per creare o ritoccare le fotografie, ma precisa che l'uscita non nasce da un disaccordo sulla strategia di Apple. L'addio arriva in una stagione di cambi ai vertici, cominciata a settembre con John Ternus al posto di Tim Cook.",
+    "approfondimento": {
+     "titolo": "Il capo della fotocamera che diffidava delle foto generate",
+     "punto": "Per McCormack una fotografia doveva restare la traccia di qualcosa accaduto davvero. Se ne va mentre i concorrenti spingono sui ritocchi generativi, e Apple non ha ancora detto chi prenderà in mano quella linea.",
+     "sotto": [
+      "La sua idea l'aveva spiegata più volte, con parole quasi uguali: nel 2024 a The Verge, a giugno di quest'anno a Wired. Per lui una foto è la testimonianza di qualcosa che è successo, e un software fotografico deve restituirla al meglio, non costruirne una nuova. I progetti che portano la sua firma vanno in quella direzione: controlli più fini, un diaframma che si regola, una fotocamera frontale che inquadra meglio chi parla.",
+      "Google e Samsung hanno scelto un'altra strada, con strumenti che cancellano elementi dalle foto grazie all'intelligenza artificiale generativa. Bloomberg esclude che il ritiro nasca da un contrasto con Apple, e non c'è motivo di leggerlo come una svolta. Resta però vuoto il posto da cui quella posizione veniva difesa: le sue responsabilità passano ai suoi vice, sotto altri dirigenti, e per ora non è noto chi avrà l'ultima parola sul software della fotocamera."
+     ]
+    }
+   },
+   "regno-unito-tribunale-ordine-icloud": {
+    "title": "Un tribunale obbliga Londra ad ammettere l'ordine segreto su iCloud",
+    "sintesi": "Il governo britannico dovrà riconoscere di aver ordinato ad Apple di aprire l'accesso ai dati cifrati: per i giudici l'idea che ammetterlo nuocesse alla sicurezza nazionale era «fanciful».",
+    "descrizione": "L'Investigatory Powers Tribunal, il tribunale britannico competente sui poteri d'indagine dello Stato, ha ordinato al governo di riconoscere pubblicamente di aver notificato ad Apple un Technical Capability Notice: un ordine segreto che può obbligare un'azienda a modificare i propri servizi per consentire l'accesso ai dati, anche quando sono cifrati. Il governo si era sempre rifiutato di confermarlo o smentirlo. I giudici hanno definito «fanciful» l'idea che ammetterlo danneggiasse la sicurezza nazionale, anche perché briefing autorizzati con i giornali, a partire dal Financial Times, avevano già fatto circolare la notizia.\n\nLa vicenda era ferma da due mesi. Apple ha presentato l'ultimo ricorso a luglio, dopo un secondo ordine che riguarderebbe solo gli utenti britannici; il primo, che toccava anche quelli americani, era stato ritirato dopo un contrasto con Washington. Dal febbraio 2025 Apple non offre più ai nuovi utenti britannici la Protezione avanzata dei dati. A TechCrunch l'azienda ha detto di accogliere con favore la decisione.",
+    "approfondimento": {
+     "titolo": "Un segreto che conoscevano tutti: perché Londra ha perso",
+     "punto": "Il governo britannico non ha perso sulla sostanza dell'ordine, ma sul diritto di tacerlo. La questione di fondo, se Londra possa costringere Apple ad aprire i dati cifrati di iCloud, resta aperta.",
+     "sotto": [
+      "Il governo si era chiuso nella formula del «neither confirm nor deny»: non confermare e non smentire, qualunque cosa uscisse sui giornali. Il tribunale l'ha messa da parte con un argomento quasi pratico. Nella sentenza si legge che «anyone with even a passing interest in this topic already knows that the respondent has served a technical capability notice on Apple». A pesare sono stati soprattutto i briefing che ministri e alti funzionari avevano autorizzato con la stampa, che avevano già rotto il riserbo in modo informale.",
+      "Per chi usa iCloud nel Regno Unito la conseguenza pratica resta quella del febbraio 2025, quando Apple ha smesso di offrire la Protezione avanzata dei dati ai nuovi utenti. Chi l'aveva già attivata la conserva, ma Apple non può spegnerla al posto loro: secondo MacRumors dovranno farlo da sé, entro una scadenza che non è ancora stata comunicata.",
+      "Le strade aperte sono due: il ricorso di Apple contro il secondo ordine, presentato a luglio, e la causa separata di Liberty e Privacy International per conto di due persone, che aspetta un'udienza finale nel 2027. La decisione non chiude nessuna delle due, ma da oggi dell'ordine si può parlare in pubblico."
+     ]
+    }
+   },
+   "ios-27-3-beta-pubblica-2": {
+    "title": "Seconda beta pubblica per iOS 27.3. L'uscita per tutti è attesa a metà dicembre",
+    "sintesi": "Apple apre a tutti la seconda beta di iOS, iPadOS, macOS, watchOS e tvOS 27.3, la stessa build degli sviluppatori; l'uscita definitiva è attesa a metà dicembre.",
+    "descrizione": "Apple ha rilasciato la seconda beta pubblica di iOS, iPadOS, macOS, watchOS e tvOS 27.3, insieme a una versione rivista della beta 2 per gli sviluppatori. Chi segue le beta pubbliche riceve quindi la stessa build che gli sviluppatori provano dal 16 novembre. Per la versione definitiva Apple indica la metà di dicembre.\n\nLa novità più visibile riguarda iPhone Duo, che da chiuso si sblocca con il volto grazie alla fotocamera dello schermo esterno; pagamenti e password restano affidati a Touch ID o al codice. Sul Mac arrivano le schede verticali di Safari e permessi più fini per l'accesso completo al disco. Su iPad un doppio tocco in cima alla finestra la porta a tutto schermo, e Apple TV riceve la prima beta di Siri AI. Con la beta arriva anche un problema per chi ha HomeView, che raccontiamo a parte.",
+    "approfondimento": {
+     "titolo": "Quanto lavora Siri AI prima di fermarsi, e cosa cambia sul Duo chiuso",
+     "punto": "Le novità di questa beta che si sentono di più nell'uso di ogni giorno non sono funzioni nuove ma regole: quante richieste avanzate concede Siri AI, e quando il Duo chiuso si fida del volto di chi lo tiene in mano.",
+     "sotto": [
+      "Con iOS 27.3 Siri AI ha un limite giornaliero. Le richieste di base continuano anche oltre la soglia; quelle avanzate si fermano fino al giorno dopo. Più capacità arriva con gli abbonamenti iCloud+ da 200 GB in su, mentre il piano da 50 GB resta al livello standard. Per ora non è noto quante richieste avanzate stiano dentro la soglia, né se Apple la cambierà prima della versione definitiva.",
+      "Lo sblocco col volto del Duo chiuso ha confini precisi. Serve solo ad aprire il telefono: pagamenti, password e accesso alle app restano affidati a Touch ID o al codice, e dopo 45 minuti senza sblocco il telefono li chiede di nuovo. Accanto arriva Attention Aware, che tiene acceso lo schermo esterno finché lo si guarda e abbassa il volume di alcuni avvisi, senza bisogno di riconoscere il volto."
+     ]
+    }
+   },
+   "f1-academy-apple-tv": {
+    "title": "Apple TV trasmetterà F1 Academy negli Stati Uniti dal 2027",
+    "sintesi": "Dal 2027 F1 Academy, il campionato tutto femminile della Formula 1, sarà in esclusiva su Apple TV negli Stati Uniti, compreso nell'abbonamento: sette weekend, da Jeddah a Las Vegas.",
+    "descrizione": "Dalla prossima stagione F1 Academy, il campionato di sviluppo tutto femminile della Formula 1, sarà trasmesso in esclusiva su Apple TV negli Stati Uniti, senza costi oltre all'abbonamento. Lo ha annunciato Apple. Nata nel 2022, con un livello paragonabile alla Formula 4, la serie arriva alla quinta stagione con sette weekend di gara. Si parte a Jeddah dal 19 al 21 marzo 2027, poi Shanghai, Montreal, Silverstone e per la prima volta l'Hungaroring; le ultime due tappe sono negli Stati Uniti, ad Austin dal 22 al 24 ottobre e a Las Vegas dal 18 al 20 novembre.\n\nSecondo Apple, F1 Academy è oggi la serie più seguita dopo la Formula 1. L'accordo si aggiunge alla partnership con la Formula 1 cominciata quest'anno, che dura fino al 2031.",
+    "approfondimento": {
+     "titolo": "Per un campionato di sviluppo, farsi vedere fa parte della gara",
+     "punto": "F1 Academy mette la visibilità al centro della sua missione, e Apple le offre uno spazio fisso dentro l'abbonamento. Per Apple è un tassello in più nel rapporto con la Formula 1, che con il film F1 le ha già dato un successo al botteghino.",
+     "sotto": [
+      "F1 Academy è un campionato di sviluppo: in genere serie come questa servono a far crescere pilote che un giorno possano correre nelle categorie superiori. Per un campionato così la visibilità non è un dettaglio, e Susie Wolff, che lo dirige, l'ha messa al centro dell'annuncio. Negli Stati Uniti le gare avranno un posto fisso dentro l'abbonamento di Apple TV, e il calendario si chiude proprio lì, fra Austin e Las Vegas.",
+      "L'accordo entra nella partnership quinquennale fra Apple e la Formula 1, partita quest'anno e rafforzata dal successo al botteghino del film F1, prodotto da Apple. Per ora Apple non ha annunciato un documentario sul campionato; Netflix e Disney+ ne hanno già trasmesso uno ciascuno, ricorda Engadget."
+     ]
+    }
+   },
+   "imac-oled-rinvio": {
+    "title": "L'iMac con schermo OLED potrebbe slittare o non arrivare affatto",
+    "sintesi": "Secondo The Elec, Apple discute con Samsung Display se rinviare o abbandonare l'iMac OLED atteso fra il 2029 e il 2030: i pannelli grandi costano troppo per un computer che vende poco.",
+    "descrizione": "Apple starebbe valutando con Samsung Display se rinviare o abbandonare il passaggio dell'iMac allo schermo OLED, finora atteso fra il 2029 e il 2030. Lo scrive The Elec, sito coreano che segue la filiera degli schermi. Il motivo è il costo: i pannelli OLED di grande formato restano cari, e l'iMac vende troppo poco per distribuirne il prezzo su molte unità. Pesa anche il precedente dell'iPad Pro OLED, che non ha venduto quanto sperato: secondo The Elec, nel 2026 le consegne dei suoi pannelli caleranno del 18%.\n\nMacitynet ricostruisce le tappe del progetto. A dicembre 2025 Apple aveva chiesto a Samsung Display e LG Display un pannello OLED da 24 pollici, con 218 pixel per pollice come l'attuale Retina 4,5K e 600 nit di luminosità; LG avrebbe poi fermato lo sviluppo del suo. Secondo iSpazio, per ora si discute soprattutto di un rinvio, non di una cancellazione."
+   },
+   "homeview-siri-ios-27-3-beta": {
+    "title": "Con iOS 27.3 beta, Siri su HomeView non risponde più sui contenuti personali",
+    "sintesi": "Apple ha confermato che con un iPhone in beta di iOS 27.3 Siri su HomeView 27.2.1 rifiuta le richieste personali; non c'è una beta di HomeView per rimediare, si aspetta dicembre.",
+    "descrizione": "HomeView 27.2.1, uscito ieri, ha corretto alcuni errori di Siri AI legati all'abbinamento con gli iPhone che hanno iOS 27.3 beta. Ne ha però introdotto uno nuovo, che Apple ha confermato: se l'iPhone abbinato è in beta, Siri su HomeView rifiuta le richieste che riguardano i contenuti personali e risponde con un messaggio: «I can't help with that because your personal device is on newer software.»\n\nPer ora non esiste una beta di HomeView che metta in pari i due dispositivi. Chi ha installato la beta pubblica di iOS 27.3, uscita in questi giorni, resta quindi senza quelle risposte fino alle versioni definitive, attese a metà dicembre."
+   },
+   "epic-documenti-risposta-apple": {
+    "title": "Apple risponde a Epic sui 122.000 documenti: i termini di ricerca erano troppo ampi",
+    "sintesi": "Apple respinge l'accusa di aver trattenuto oltre 122.000 documenti sulle commissioni: i termini di ricerca di Epic, sostiene, pescavano di tutto, perfino il commissioner della NFL.",
+    "descrizione": "Dopo l'accusa di Epic, che sostiene che Apple abbia trattenuto senza motivo più di 122.000 documenti sulle commissioni dell'App Store, arriva la risposta di Apple in tribunale. Secondo l'azienda, erano i termini di ricerca chiesti da Epic a essere «overbroad»: «commission*», con il carattere jolly, trovava anche i documenti su commissioni governative e private e ogni occorrenza di «commissioner», compresi quelli che parlano del commissioner della NFL. Allo stesso modo «fee*» agganciava materiale che con la causa non c'entra.\n\nIl contenzioso riguarda quanto Apple possa trattenere sugli acquisti fatti con sistemi di pagamento esterni: il 13 agosto ha proposto commissioni dal 5 al 15%. Epic aveva chiesto sedici categorie di documenti, dalle analisi d'impatto finanziario alle strategie per scoraggiare i link verso l'esterno. In parallelo la Corte Suprema deve decidere se confermare la condanna di Apple per oltraggio."
+   },
+   "apple-music-radio-50-milioni": {
+    "title": "Apple Music Radio supera i 50 milioni di ascoltatori al mese",
+    "sintesi": "Zane Lowe ha detto a Billboard che Apple Music Radio, nata come Beats 1, ha più di 50 milioni di ascoltatori unici al mese: è il primo dato pubblico dal 2019.",
+    "descrizione": "Apple Music Radio, la rete radiofonica nata undici anni fa come Beats 1, ha più di 50 milioni di ascoltatori unici al mese. Il numero l'ha dato Zane Lowe, direttore creativo globale di Apple Music, in una lunga intervista con Kristin Robinson per la serie On the Record di Billboard. È il primo dato da anni: nel 2019 Eddy Cue parlava genericamente di decine di milioni di ascoltatori. Quest'anno la radio ha trasmesso musica di oltre 6.500 artisti, più della metà emergenti o nuovi.\n\nLowe, arrivato da BBC Radio 1, ha ricordato che all'inizio, nonostante i contatti, le risorse di Apple e il sostegno di Jimmy Iovine, «it was kind of crickets». Le difficoltà a ottenere i grandi nomi spinsero la programmazione verso artisti agli esordi, come Billie Eilish, Khalid e Bryson Tiller."
+   },
+   "wild-things-siegfried-roy": {
+    "title": "Jude Law e Andrew Garfield sono Siegfried e Roy nella nuova serie di Apple TV",
+    "sintesi": "Wild Things, serie limitata in sette episodi di John Hoffman sui due illusionisti di Las Vegas, debutta su Apple TV venerdì 16 aprile 2027.",
+    "descrizione": "Apple TV ha presentato con un primo teaser Wild Things, serie limitata in sette episodi sulla storia di Siegfried e Roy, gli illusionisti di Las Vegas famosi per i loro spettacoli con le tigri bianche. Jude Law interpreta Siegfried, Andrew Garfield Roy, e tutti e due sono anche produttori esecutivi. La serie debutta in tutto il mondo venerdì 16 aprile 2027.\n\nL'ha creata John Hoffman, autore di Only Murders in the Building, che ne è anche showrunner; il primo episodio lo dirige Matt Shakman e fra i produttori c'è Brian Grazer. Nasce dal podcast Wild Things: Siegfried & Roy, otto puntate uscite nel 2022 su Apple Podcasts. La carriera dei due finì nel 2003, dopo il celebre attacco della tigre Montecore; si esibirono insieme un'ultima volta nel 2009."
+   },
+   "jp-morgan-sondaggio-iphone": {
+    "title": "Per J.P. Morgan la voglia di un iPhone nuovo è la più alta degli ultimi anni",
+    "sintesi": "Nel sondaggio annuale di J.P. Morgan il 73% di chi pensa a un nuovo iPhone vuole comprarlo nel 2026, contro il 71% del 2025; negli Stati Uniti chi viene da Android guarda al Duo.",
+    "descrizione": "Il sondaggio annuale di J.P. Morgan sui consumatori, che AppleInsider ha potuto vedere, registra l'interesse più alto degli ultimi anni per un nuovo iPhone. Fra gli intervistati che pensano di comprarne uno, il 73% intende farlo nel 2026: erano il 71% nel 2025 e il 68% nel 2024. A trainare sono iPhone 18 Pro e 18 Pro Max.\n\nNegli Stati Uniti, secondo lo stesso studio, chi viene da Android è attirato soprattutto da iPhone Duo, il primo pieghevole di Apple. Il sondaggio non è pubblico, e per ora lo racconta solo AppleInsider."
+   },
+   "apple-black-friday-carte-regalo": {
+    "title": "Il Black Friday di Apple: una carta regalo fino a 300 dollari, dal 27 al 30 novembre",
+    "sintesi": "Dal 27 al 30 novembre Apple regala una carta fino a 300 dollari con l'acquisto di alcuni prodotti, invece di tagliare i prezzi; iPhone 18 Pro e iPhone Duo restano esclusi.",
+    "descrizione": "Apple ha annunciato la promozione di quattro giorni per il Black Friday e il Cyber Monday. Dal 27 al 30 novembre, online e negli Apple Store, chi compra un prodotto compreso nell'offerta riceve una carta regalo Apple da spendere in seguito. Il valore cambia con il prodotto: fino a 300 dollari con i MacBook Pro di fascia alta, 200 con un MacBook Air, fino a 125 con gli iPad, fino a 100 con Apple Watch e alcuni iPhone, fra cui per la prima volta iPhone Air. Restano fuori le novità dell'anno, iPhone 18 Pro e iPhone Duo.\n\nCome negli anni scorsi Apple non abbassa i prezzi di listino: la carta vale per hardware, accessori, app e abbonamenti, e si somma alla permuta e alle rate con Apple Card. Gli sconti diretti li fanno i rivenditori, a partire da Amazon, che ha già ribassato AirPods Pro 3 e i nuovi MacBook Pro M6."
+   },
+   "iphone-duo-amazon-consegna": {
+    "title": "iPhone Duo arriva prima da Amazon che da Apple: consegna a fine novembre",
+    "sintesi": "Amazon indica per la prima volta una consegna di iPhone Duo il 26-27 novembre, mentre sul sito di Apple l'attesa va dal 21 al 30 dicembre; ci sono anche cinque rate senza interessi.",
+    "descrizione": "Per la prima volta Amazon indica una data di consegna per iPhone Duo: il 26-27 novembre. Lo ha notato Macitynet. Chi lo ordina sul sito di Apple, invece, lo riceve fra il 21 e il 30 dicembre.\n\nAmazon propone anche il pagamento in cinque rate senza interessi e il reso fino al 15 gennaio, che torna utile a chi lo compra come regalo di Natale."
+   },
+   "apple-tv-black-friday-6-99": {
+    "title": "Negli Stati Uniti Apple TV costa 6,99 dollari al mese per sei mesi",
+    "sintesi": "Fino al 30 novembre, negli Stati Uniti, i nuovi abbonati ad Apple TV e chi torna pagano 6,99 dollari al mese per un massimo di sei mesi, meno della metà dei 14,99 del prezzo pieno.",
+    "descrizione": "Apple ha lanciato un'offerta per il Black Friday sul suo servizio di streaming. Negli Stati Uniti, fino alle 20 del 30 novembre, ora del Pacifico, i nuovi abbonati e chi torna dopo aver disdetto, se ne ha i requisiti, possono abbonarsi ad Apple TV a 6,99 dollari al mese per un massimo di sei mesi. Il prezzo normale è 14,99 dollari al mese, quindi lo sconto supera la metà, e il servizio resta senza pubblicità.\n\nL'offerta arriva nello stesso giorno in cui Apple TV ha annunciato due titoli per il 2027: le gare di F1 Academy e la serie Wild Things."
+   },
+   "halide-3-4-iphone-duo": {
+    "title": "Halide 3.4 usa lo schermo esterno di iPhone Duo come mirino e come luce",
+    "sintesi": "L'app fotografica Halide 3.4 porta su iPhone Duo un mirino più grande, l'anteprima sullo schermo esterno per chi viene ritratto e una luce di riempimento per i ritratti al buio.",
+    "descrizione": "Lux Optics ha pubblicato Halide 3.4, l'aggiornamento dell'app per la fotografia professionale. Con iPhone Duo aperto, la nuova modalità XL sostituisce l'anteprima dell'ultima foto con un mirino più grande, e i comandi ai due lati permettono di scattare a due mani. Lo schermo esterno può ripetere i comandi o mostrare il mirino a tutto schermo, così chi viene fotografato vede l'inquadratura. Con poca luce, lo stesso schermo fa da luce di riempimento, più morbida, per i ritratti: gli sviluppatori consigliano di portare la luminosità al massimo prima dello scatto.\n\nL'istogramma ora corre lungo la piega, e l'editor Photo Lab si usa con il Duo socchiuso. Sugli altri iPhone tornano gli istogrammi di colore e luminosità e l'autoscatto di Halide Mark II."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 8,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
