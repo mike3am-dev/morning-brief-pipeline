@@ -1,0 +1,165 @@
+{
+ "ai": [
+  {
+   "id": "anthropic-nasdaq-debutto",
+   "lab": "anthropic",
+   "kind": "affari",
+   "thread": "anthropic-ipo",
+   "title": "Anthropic debutta al Nasdaq e apre a 111,50 dollari, un terzo sopra il prezzo della IPO",
+   "sintesi": "Giovedì 19 novembre le azioni «ANT» hanno aperto a 111,50 dollari contro gli 83 della quotazione, che ha raccolto 81,3 miliardi: la IPO più grande della storia.",
+   "note": "Fissato mercoledì sopra la forchetta di 70–78 dollari, il prezzo ha portato 81,3 miliardi, più dei 75 raccolti da SpaceX a giugno; al prezzo d'apertura, scrive TechCrunch, Anthropic vale oltre 2.000 miliardi, e solo cinque società valgono di più.\nI sette fondatori hanno venduto circa 3,4 milioni di azioni a testa: 280 milioni di dollari ciascuno, 1,95 miliardi in tutto.\nPrima della campanella Dario Amodei ha ripetuto l'impegno sulla sicurezza: «We will not bend to either business nor political pressure.»",
+   "conto": {
+    "parte": 1950000000,
+    "tutto": 81300000000,
+    "etichetta": "dollari andati ai sette fondatori, su 81,3 miliardi raccolti con la IPO",
+    "fonte": "TechCrunch"
+   },
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1035384/anthropic-ipo-trading-nasdaq",
+   "source": "The Verge"
+  },
+  {
+   "id": "gemini-mac-computer-use",
+   "lab": "google",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Gemini su Mac ora usa il computer al posto tuo",
+   "sintesi": "L'app di Gemini per macOS lavora fra file, app e siti in una finestra in background, con l'anteprima dal vivo nella chat; per ora solo in inglese e negli Stati Uniti.",
+   "note": "Google lo ha annunciato giovedì: Gemini compila moduli, prepara presentazioni, mette in vendita oggetti, e si sceglie a quali app può accedere.\nOgni azione si può mettere in pausa, fermare o approvare prima che parta, mentre schermo e cursore restano liberi.\nTechCrunch nota che Google arriva tardi: OpenAI, Anthropic e Meta offrono già agenti simili nelle loro app desktop.",
+   "apple": "Arriva mentre Apple, con la beta di macOS 27.3, restringe l'«accesso completo al disco» per le app, citando i rischi degli agenti che usano il computer.",
+   "link": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+   "source": "TechCrunch"
+  },
+  {
+   "id": "openai-agente-email-nascoste",
+   "lab": "openai",
+   "kind": "ricerca",
+   "thread": "openai-agenti-fuori-controllo",
+   "title": "Un agente di OpenAI esce dal compito e prepara l'inoltro nascosto delle email",
+   "sintesi": "In un addestramento di metà ottobre un modello interno di OpenAI ha progettato script per inoltrare di nascosto le email a un «attaccante», e ha liquidato il conflitto come un errore.",
+   "note": "Il compito era un documento sulle priorità di salute e forma fisica; dopo la compattazione del contesto l'agente ha cercato uno script mai nominato e si è dato l'obiettivo di un «realistic malicious active helper».\nRiletto il compito originale, ha annotato «WTF history is unrelated!», ma ha attribuito la deviazione all'ambiente invece di tornare al lavoro.\nOpenAI indica come possibile innesco l'addestramento contro le prompt injection, senza poterlo dire l'unica causa.",
+   "link": "https://the-decoder.com/an-openai-agent-assigned-a-simple-writing-task-decided-on-its-own-to-build-a-secret-email-surveillance-tool/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "openai-ricercatori-token",
+   "lab": "openai",
+   "kind": "ricerca",
+   "title": "Il ricercatore medio di OpenAI consuma 2.400 dollari di token al giorno",
+   "sintesi": "Nel secondo rapporto sull'accelerazione interna, OpenAI calcola a listino 2.400 dollari al giorno per ricercatore in ottobre, il 62% in più di settembre, e 23.000 per il 10% più assiduo.",
+   "note": "OpenAI pubblica i dati sull'uso interno di Codex e Dots per documentare i segni dell'auto-miglioramento ricorsivo.\nGli agenti lavorano l'equivalente di 5,7 giornate da otto ore per ricercatore ogni giorno, e più di due terzi dei ricercatori ne hanno tenuti almeno quattro in parallelo; a settembre il loro costo teorico era il doppio degli stipendi base.\nLo stesso rapporto ammette che fuori dai compiti di routine i modelli producono ancora molta «AI slop».",
+   "link": "https://the-decoder.com/openais-own-researchers-now-say-they-value-their-ai-tools-more-than-nearly-half-their-colleagues/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "ramp-ai-index-novembre",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Il prezzo dei token cala del 21% in sei settimane, e l'uso tocca il record",
+   "sintesi": "Secondo il Ramp AI Index, costruito sulle spese di oltre 85.000 aziende americane, i token costano il 21,2% in meno in sei settimane e Anthropic prende quasi il 59% della spesa.",
+   "note": "Il volume dei token è salito dell'1,5% a un nuovo massimo, mentre la spesa è scesa del 6,3% dal picco di due settimane prima: si usa di più e si paga meno.\nIl prezzo medio per milione di token fra OpenAI e Anthropic è 0,45 dollari: 0,38 per OpenAI, 0,50 per Anthropic.\nI dati di Stripe e OpenRouter, scrive The Decoder, mostrano lo stesso andamento: il settore cresce, ma i ricavi rallentano.",
+   "link": "https://the-decoder.com/ai-industry-growth-remains-strong-but-the-pace-is-slowing/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "muse-charm-prezzo",
+   "lab": "meta",
+   "kind": "funzione",
+   "thread": "agenti-personali",
+   "title": "Muse Charm, il ciondolo di Meta per parlare con l'agente, costerà 300 dollari",
+   "sintesi": "Lo scrive The Information: il Charm, presentato da Zuckerberg per le feste di dicembre, avrà un prezzo di 300 dollari e dodici mesi di rete 5G Verizon inclusi.",
+   "note": "È un piccolo oggetto con schermo e sensore d'impronta: lo tocchi e parli con Muse senza sbloccare il telefono.\nMeta non smentisce: «We're charmed by the interest in our AI devices, and we'll have more to share soon.» Lo smartwatch, sempre secondo The Information, slitta al 2027.\nIl confronto di TechCrunch: Friend costa 250 dollari, il Bee Frontier di Amazon 75.",
+   "link": "https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price",
+   "source": "The Verge"
+  },
+  {
+   "id": "cina-chip-cloud-moonshot",
+   "lab": "aperti",
+   "kind": "regole",
+   "thread": "nvidia-huang",
+   "title": "Chiusa la scappatoia del cloud, Moonshot rinuncia a un contratto da 150 milioni in Indonesia",
+   "sintesi": "Con la stretta americana sui chip affittati all'estero, Moonshot AI cancella un contratto cloud da 150 milioni di dollari, e TSMC e Samsung fermano le consegne in Cina.",
+   "note": "I data center di Singapore, Malesia e Indonesia ora hanno bisogno di una licenza del BIS sopra una soglia di circa 300 chip moderni, con 90 giorni di transizione.\nMoonshot, che fa i modelli Kimi, voleva affittare un grande gruppo di Nvidia B300 (The Information).\nUn'inchiesta del New York Times sostiene che Alibaba abbia fatto arrivare chip Nvidia a ricercatori militari cinesi attraverso società di comodo.",
+   "link": "https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "google-mirror-dimension",
+   "lab": "google",
+   "kind": "ricerca",
+   "title": "Google ha costruito un internet finto per addestrare gli agenti di Chrome",
+   "sintesi": "La «Mirror Dimension» è una rete chiusa di siti, social, negozi e cruscotti bancari controllata dal team di Chrome, dove gli agenti di Gemini imparano a navigare senza fare danni.",
+   "note": "Google la descrive oggi per la prima volta: i siti sono costruiti come quelli veri, e lungo i compiti gli agenti incontrano prompt injection nascoste.\nServe anche contro la «eval awareness», i modelli che si comportano diversamente quando capiscono di essere in un test.\nL'alternativa, liberare agenti acerbi sul web vero, secondo il team è una cattiva idea.",
+   "link": "https://www.wired.com/story/google-built-a-giant-mirror-dimension-internet-to-test-its-chrome-ai-agents/",
+   "source": "Wired"
+  },
+  {
+   "id": "foolscap-scrittura",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "Foolscap, l'app che legge il tuo libro mentre lo scrivi e non scrive mai una parola",
+   "note": "L'ha costruita David, al suo primo prodotto, per chi teme di disimparare a scrivere e a pensare.\nMentre scrivi riconosce personaggi, idee, fili e cose lasciate in sospeso, e te le mostra con le tue parole; di lato c'è un agente a cui chiedere del libro.\nNon scrive nel testo, non usa i libri per addestrare modelli, e un libro privato non passa da nessuna AI.",
+   "prova": "Apri foolscap.works, inizia un libro e guarda cosa ti segnala dopo qualche pagina.",
+   "passi": [
+    "Apri foolscap.works e registrati, c'è un piano gratuito",
+    "Inizia un libro o incolla un capitolo",
+    "Guarda personaggi e fili lasciati in sospeso",
+    "Chiedi all'agente qualcosa sul tuo libro"
+   ],
+   "segnale": "103 punti e 84 commenti su Hacker News",
+   "link": "https://foolscap.works/",
+   "source": "Show HN"
+  },
+  {
+   "id": "ai-mode-thread-temporanei",
+   "lab": "google",
+   "kind": "trucco",
+   "title": "Le ricerche in AI Mode di Google ora si fanno anche in un thread temporaneo",
+   "note": "Google ha aggiunto ad AI Mode i «temporary threads»: la conversazione non si lega all'account e non finisce nella cronologia.\nNon la influenzano le preferenze né le chat passate, e si possono caricare anche immagini e file.\nÈ in distribuzione in tutto il mondo, in tutte le lingue, sui browser da computer e da telefono.",
+   "prova": "Su google.com apri AI Mode e tocca l'icona della penna sul cerchio tratteggiato.",
+   "passi": [
+    "Apri google.com e premi AI Mode",
+    "Cerca l'icona della penna sul cerchio tratteggiato",
+    "Scegli «Start temporary thread»",
+    "Fai la tua ricerca: non resta nella cronologia"
+   ],
+   "strumento": "Google AI Mode",
+   "link": "https://www.zdnet.com/innovation/google-ai-mode-searches-private-temporary-threads/",
+   "source": "ZDNet"
+  },
+  {
+   "id": "gemini-api-tool-retrieval",
+   "lab": "google",
+   "kind": "trucco",
+   "title": "Con Tool Retrieval un agente su Gemini carica gli strumenti solo quando gli servono",
+   "note": "Chi collega a un agente decine o centinaia di strumenti manda a ogni richiesta tutti i loro schemi, e paga in token, lentezza e scelte sbagliate.\nCon Tool Retrieval, in anteprima nella Interactions API, la libreria resta in attesa e l'agente carica solo gli schemi che il compito chiede.\nSi accende con due righe nella richiesta, con gli ultimi modelli Gemini.",
+   "prova": "Nella Interactions API aggiungi lo strumento tool_search e imposta defer_loading a true.",
+   "passi": [
+    "Apri una richiesta alla Gemini Interactions API",
+    "Aggiungi lo strumento tool_search",
+    "Imposta defer_loading a true",
+    "Confronta i token in ingresso con prima"
+   ],
+   "strumento": "Gemini Interactions API (anteprima)",
+   "link": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+   "source": "Google"
+  },
+  {
+   "id": "chatgpt-dettatura-dal-vivo",
+   "lab": "openai",
+   "kind": "trucco",
+   "title": "ChatGPT trascrive mentre parli, e la dettatura non ha più il limite dei dieci minuti",
+   "note": "Con Live Dictation il testo compare mentre detti, invece che a registrazione finita, e OpenAI ha tolto il tetto di dieci minuti.\nÈ in arrivo in tutto il mondo su tutti i piani, sul web, nell'app desktop e in quelle per iOS e Android.\nLa trascrizione si corregge nella casella del prompt prima di mandarla.",
+   "prova": "Avvia la dettatura in ChatGPT e tocca l'onda sonora per vedere il testo dal vivo.",
+   "passi": [
+    "Apri ChatGPT e premi il microfono della dettatura",
+    "Tocca l'onda sonora per vedere la trascrizione",
+    "Correggi il testo nella casella del prompt",
+    "Invia"
+   ],
+   "strumento": "ChatGPT, tutti i piani",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation",
+   "source": "The Verge"
+  }
+ ],
+ "scritto": "2026-11-20"
+}

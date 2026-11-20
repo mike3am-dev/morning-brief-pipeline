@@ -1,0 +1,121 @@
+{
+ "date": "2026-11-20",
+ "title": "The Morning Brief – 20 novembre 2026",
+ "generated_at": "2026-11-20T06:30:00+01:00",
+ "window": "Ultime 26 ore",
+ "stats": {
+  "articoli_letti": 1161,
+  "notizie_selezionate": null
+ },
+ "feed_notes": [
+  "Anthropic cookbook: parse-error, nessuna data leggibile",
+  "Everyeye: html-not-feed, nessuna data leggibile",
+  "Guardian Environment: html-not-feed, nessuna data leggibile",
+  "feed troncato BGR (redazionale): 20 voci, la più vecchia di 14.3h su una finestra di 26h",
+  "feed troncato Tom's Hardware IT (redazionale): 20 voci, la più vecchia di 10.3h su una finestra di 26h",
+  "Pagine in più lette, ora coprono la finestra: Gizmodo, Macitynet, Nintendo Everything, PlayStation LifeStyle, iSpazio"
+ ],
+ "radar": [
+  {
+   "id": "motorola-razr-flex-duo",
+   "topic": "hardware-indipendente",
+   "title": "Motorola mostra il Razr Flex, il pieghevole a libro che sfida l'iPhone Duo",
+   "note": "Nuovi render del prossimo pieghevole Motorola, diffusi dal leaker SammyGuru, mostrano il Razr Flex in due colori — verde con finitura a tessuto e beige effetto pelle — con schermo esterno da circa 5 pollici e interno da 6,9 una volta aperto: lo stesso formato largo dell'iPhone Duo e del Galaxy Z Fold 8. La cerniera permetterebbe al telefono di restare in piedi da solo a metà apertura; le prime indiscrezioni parlano di un prezzo vicino ai 1.700 dollari negli Stati Uniti.",
+   "link": "https://www.engadget.com/2322557/leaked-images-may-show-motorolas-answer-to-the-iphone-duo/",
+   "source": "Engadget"
+  }
+ ],
+ "social": [
+  {
+   "id": "social-apple-backdoor-uk-hn",
+   "origine": "eco",
+   "title": "Su Hacker News si discute ancora del backdoor segreto che il Regno Unito aveva chiesto ad Apple",
+   "note": "567 punti e 259 commenti sul thread che riprende la sconfitta legale del governo britannico, costretto a rendere pubblico l'ordine segreto con cui aveva chiesto ad Apple un accesso nascosto ai dati cifrati degli utenti; nei commenti si discute soprattutto delle conseguenze per la crittografia end-to-end altrove.",
+   "link": "https://news.ycombinator.com/item?id=50562113",
+   "source": "Hacker News",
+   "eco_di": "UK government forced to disclose secret Apple backdoor order"
+  },
+  {
+   "id": "social-wireguard-macos-5gbit",
+   "origine": "nuovo",
+   "title": "Su Hacker News si parla di come il client WireGuard su macOS sia arrivato a 5 Gbit/s",
+   "note": "66 punti e 7 commenti sul post del team di Firezone, che racconta come ha ottimizzato il client WireGuard per macOS fino a superare i 5 Gbit/s di throughput; nei commenti si confrontano le prestazioni con altre VPN e con lo stesso client su altre piattaforme.",
+   "link": "https://www.firezone.dev/blog/apple-client-performance",
+   "source": "Hacker News"
+  }
+ ],
+ "banco": [
+  {
+   "id": "banco-motorola-razr-flex",
+   "kind": "confronto",
+   "topic": "pieghevoli",
+   "title": "Motorola mostra il Razr Flex, il suo pieghevole a libro contro iPhone Duo e Galaxy Z Fold 8",
+   "orig": "Leaked images may show Motorola's answer to the iPhone Duo",
+   "note": "Nuovi render del Razr Flex, diffusi dal leaker SammyGuru e in linea con un'immagine circolata poche ore prima, mostrano il telefono in due colori — verde con finitura a tessuto e beige effetto pelle — con schermo esterno di circa 5 pollici e interno di 6,9 una volta aperto, in formato largo come l'iPhone Duo e il Galaxy Z Fold 8 (7,6 pollici interno, 5,5 esterno). La cerniera permetterebbe al telefono di restare in piedi da solo a metà apertura. Secondo le prime indiscrezioni costerà circa 1.700 dollari negli Stati Uniti.",
+   "perche": "«Motorola sta per lanciare il suo pieghevole a libro, il Razr Flex: stessa idea dell'iPhone Duo e del Galaxy Z Fold 8, schermo esterno da circa 5 pollici e interno da 6,9 una volta aperto. Le prime indiscrezioni parlano di un prezzo vicino ai 1.700 dollari negli Stati Uniti.»",
+   "link": "https://www.engadget.com/2322557/leaked-images-may-show-motorolas-answer-to-the-iphone-duo/",
+   "source": "Engadget"
+  },
+  {
+   "id": "banco-openai-phone-foxconn",
+   "kind": "curiosità",
+   "topic": "assistenti-ai",
+   "title": "Foxconn assemblerà il primo smartphone di OpenAI, dicono le indiscrezioni",
+   "orig": "OpenAI's first smartphone could launch in 2027 with help from iPhone manufacturer",
+   "note": "Secondo il quotidiano cinese Securities Times, la filiale di Foxconn FIH Mobile — uno dei principali assemblatori di iPhone — avrebbe ottenuto l'ordine per costruire il primo smartphone di OpenAI, con un debutto possibile a fine 2027 o nel 2028. Nella filiera comparirebbero anche altri fornitori di Apple, come Luxshare Precision e AAC Technologies. Il telefono avrebbe un chip MediaTek Dimensity 9600 a 2 nanometri personalizzato, due unità dedicate all'elaborazione IA e una fotocamera pensata per far «capire» all'IA l'ambiente circostante; il sistema operativo non è ancora noto.",
+   "perche": "«Sì, se ne parla: OpenAI vorrebbe un telefono tutto suo, assemblato dalla stessa Foxconn che produce gli iPhone, con un chip pensato apposta per l'IA. Non arriverebbe prima della fine del 2027, e per ora non si sa nemmeno che sistema operativo avrà.»",
+   "link": "https://www.androidauthority.com/openai-phone-foxconn-assembly-3737193/",
+   "source": "Android Authority"
+  },
+  {
+   "id": "banco-xiaomi-18-pro-review",
+   "kind": "recensione",
+   "topic": "flagship-compatti",
+   "title": "Xiaomi 18 Pro, la prova: un flagship compatto con doppia fotocamera da 200 megapixel",
+   "orig": "Xiaomi 18 Pro (Global) review",
+   "note": "Nella prova di GSMArena, il Xiaomi 18 Pro tiene lo schermo a 6,4 pollici per restare maneggevole rispetto ai flagship sempre più grandi, ma non rinuncia a hardware da punta: due fotocamere da 200 megapixel, principale e periscopica, il chip Qualcomm di punta e un secondo schermo OLED da 2,7 pollici sul retro, che fa da mirino per i selfie, mostra notifiche e fa girare mini-app. Il display principale arriva a 4.000 nit di picco e introduce la «Smart Privacy Display», che restringe l'angolo di visione per proteggere lo schermo da occhi indiscreti. Il corpo è certificato IP68; si parte da 1.099 sterline per 256 GB.",
+   "perche": "«È un flagship Android pensato per chi non vuole un telefono enorme: schermo da 6,4 pollici, due fotocamere da 200 megapixel e un secondo schermo sul retro che fa anche da mirino per i selfie. Parte da 1.099 sterline.»",
+   "link": "https://www.gsmarena.com/xiaomi_18_pro-review-3015.php",
+   "source": "GSMArena"
+  },
+  {
+   "id": "banco-huawei-gt7-pro-sci",
+   "kind": "recensione",
+   "topic": "smartwatch",
+   "title": "Huawei Watch GT7 Pro, provato sulla neve: la modalità sci che su Apple Watch costa un abbonamento",
+   "orig": "Huawei GT7 Pro provato sulla neve. Il primo smartwatch con una vera modalità sci",
+   "note": "Nella prova di DDay.it, il Watch GT7 Pro introduce una modalità sci e snowboard con le mappe dei comprensori incluse e gratuite; secondo la testata è il primo smartwatch a offrire un'analisi dettagliata di come si scia, non solo il tracciamento della discesa. Su Apple Watch, scrive DDay, l'unica strada per avere qualcosa di simile sono le app di terzi, a pagamento. La cassa è in lega di titanio con lunetta in ceramica nanocristallina e vetro zaffiro, per 55,5 grammi di peso.",
+   "perche": "«Il nuovo Watch GT7 Pro di Huawei ha una modalità sci e snowboard con le mappe delle piste già incluse, gratis. Su Apple Watch, per avere qualcosa di simile, servono app di terzi a pagamento.»",
+   "link": "https://www.dday.it/redazione/59297/huawei-gt7-pro-provato-sulla-neve-il-primo-smartwatch-con-una-vera-modalit%C3%A0-sci",
+   "source": "DDay.it"
+  }
+ ],
+ "recap": [
+  {
+   "id": "persa-apple-servizi-aggiornamento-interno",
+   "when": "2026-11-18",
+   "ref": {
+    "date": "2026-11-18",
+    "id": "apple-servizi-aggiornamento-interno"
+   },
+   "title": "iCloud, App Store e Apple Music si bloccano per ore. Apple: colpa di un aggiornamento interno",
+   "note": "Martedì 17 novembre molti utenti sono rimasti disconnessi da iCloud, con l'App Store che non caricava le app e problemi anche su Apple Music, Apple Pay e App Store Connect. Apple ha detto a Bloomberg che la causa era un aggiornamento interno, non un attacco informatico: è il secondo disservizio in otto giorni, dopo quello del 10 novembre su Mail, Contatti, Calendario e Dov'è.",
+   "signal": "28 testate",
+   "link": "https://9to5mac.com/2026/11/17/icloud-app-store-and-other-apple-services-hit-by-ongoing-outage/",
+   "source": "9to5Mac"
+  },
+  {
+   "id": "persa-iphone-20-pro-vetro-campioni",
+   "when": "2026-11-18",
+   "ref": {
+    "date": "2026-11-18",
+    "id": "iphone-20-pro-vetro-campioni"
+   },
+   "title": "Il vetro curvo dell'iPhone 20 Pro compare nei primi campioni",
+   "note": "Il leaker Ice Universe aveva pubblicato il video di un vetro di copertura curvo sui quattro lati che sarebbe stato approvato per l'iPhone del ventennale, con lo schermo OLED sotto che resterebbe piatto; MacRumors invitava alla prudenza, perché pezzi simili circolano da inizio ottobre e sono più probabilmente prove di produttori di accessori. Il giorno dopo lo stesso Ice Universe ha scritto che Apple proverebbe quattro prototipi, due con vetro piatto e due curvo, e che il Pro potrebbe tornare al titanio.",
+   "signal": "27 testate, 1 seguito nei giorni dopo",
+   "link": "https://www.macrumors.com/2026/11/17/iphone-20-pro-screen-protectors-rumored-design/",
+   "source": "MacRumors"
+  }
+ ]
+}
