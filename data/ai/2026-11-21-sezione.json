@@ -1,0 +1,124 @@
+{
+ "ai": [
+  {
+   "id": "alpoge-riemann-claude",
+   "lab": "anthropic",
+   "kind": "ricerca",
+   "title": "Levent Alpöge, matematico di Anthropic, dice di aver dimostrato l'ipotesi di Riemann con Claude",
+   "sintesi": "Alpöge ha pubblicato sul suo sito una dimostrazione in Lean dell'ipotesi di Riemann, scritta con Claude: nessuno l'ha ancora verificata e Anthropic non commenta.",
+   "note": "L'ipotesi, del 1859, riguarda la distribuzione dei numeri primi ed è uno dei sette problemi del Millennio. Alpöge scrive che il metodo risolve anche l'ipotesi generalizzata e che con Claude ha formalizzato gli argomenti «without assumptions»; ha avvisato Dario Amodei domenica sera e ha aspettato la quotazione di giovedì.\nIl Clay Institute vuole una dimostrazione pubblicata e due anni di vaglio prima del premio da un milione. Lo stesso giorno Ravi Vakil, a Stanford, ha anticipato una dimostrazione dell'ipotesi generalizzata di Alessandro Masullo: «It is all human, with no AI».",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
+   "source": "The Verge",
+   "conto": {
+    "parte": 1,
+    "tutto": 7,
+    "etichetta": "problemi del Millennio risolti ufficialmente in 25 anni, su 7",
+    "fonte": "The Verge"
+   }
+  },
+  {
+   "id": "openai-ragionamento-distillazione",
+   "lab": "openai",
+   "kind": "ricerca",
+   "title": "OpenAI rende quasi impossibile estrarre il ragionamento di GPT-6.2 Astra",
+   "sintesi": "Nei test interni di OpenAI gli attacchi che estraggono il ragionamento protetto riescono nello 0,2% dei casi su GPT-6.2 Astra, contro il 54% su GPT-6 Astra.",
+   "note": "OpenAI ha pubblicato come difende i modelli dalla «distillazione avversaria»: chi usa le risposte di un modello di punta, senza permesso, per addestrarne uno simile e senza le stesse protezioni.\nLe difese combinano addestramento mirato, filtri su messaggi e chiamate agli strumenti e controlli sull'API; sulle richieste in corso gli attacchi scendono dal 22,9 allo 0,9%. Alcune migliorie arrivano anche a GPT-6 Astra.\nAnche Anthropic combatte gli stessi attacchi, e ha chiuso decine di migliaia di account.",
+   "link": "https://openai.com/index/combatting-adversarial-distillation",
+   "source": "OpenAI"
+  },
+  {
+   "id": "metr-orizzonte-giudizio",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "METR aggiorna il grafico più citato dell'AI: i modelli crescono ancora, ma non nei compiti di giudizio",
+   "sintesi": "Nel nuovo grafico di METR nessuna delle valutazioni progettate dai modelli è stata giudicata utile dai ricercatori, anche se nel software i modelli battono quasi ogni persona.",
+   "note": "Il grafico misura i compiti che un modello porta a termine in base a quanto ci metterebbe una persona; la versione di prima mostrava la durata raddoppiare ogni quattro mesi.\nL'aggiornamento aggiunge compiti più lunghi e più aperti, come inventare nuove valutazioni o dare un voto ad argomenti filosofici: lì i modelli restano sotto le persone.\nConta per la ricerca sull'AI fatta dall'AI, il tema acceso dal rapporto METR di inizio mese su Anthropic.",
+   "link": "https://www.technologyreview.com/2026/11/20/1149399/the-most-misunderstood-graph-in-ai-just-got-a-major-update/",
+   "source": "MIT Technology Review"
+  },
+  {
+   "id": "signal-blocca-agenti-schermo",
+   "lab": "altri",
+   "kind": "regole",
+   "title": "Signal blocca gli screenshot per non far leggere le chat a Siri AI e Gemini",
+   "sintesi": "Su iOS 27 Signal impedisce gli screenshot, e su Android scatta una protezione quando un assistente AI prova a catturare lo schermo.",
+   "note": "Gli assistenti di sistema leggono lo schermo per eseguire le richieste, e così prendono i messaggi già decifrati: per la presidente Meredith Whittaker gli agenti sono «hostile to privacy», e a Reuters Signal ha parlato di minaccia «existential».\nThe Decoder ricorda che Muse di Meta ha già catturato contenuti di Signal.\nSu iOS compare un'opzione per bloccare gli screenshot e la lettura dello schermo da parte di Siri AI.",
+   "apple": "Su iOS 27 Signal tiene fuori Siri AI e la sua Onscreen Awareness dalle chat.",
+   "link": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app",
+   "source": "The Verge",
+   "thread": "agenti-personali"
+  },
+  {
+   "id": "canarini-router-ai",
+   "lab": "altri",
+   "kind": "ricerca",
+   "title": "Due milioni di prompt con segreti esca: almeno tre fornitori di AI erano stati violati",
+   "sintesi": "HD Moore di Dragos ha mandato quasi due milioni di prompt con chiavi e password esca: le chiavi rubate sono state usate decine di migliaia di volte su AWS.",
+   "note": "Il test riguarda i «router» come OpenRouter e Vercel, che leggono il prompt in chiaro e lo smistano al modello più adatto o meno caro.\nOgni segreto andava a un fornitore solo, così si vedeva chi l'aveva perso: tre fornitori erano compromessi, alcuni rivenditori registravano i prompt, e diversi ignoravano la richiesta di non conservare i dati.\nIn due casi le richieste rubate erano segnate «Zero Data Retention».",
+   "link": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+   "source": "Ars Technica"
+  },
+  {
+   "id": "nvidia-inception-diffusione",
+   "lab": "altri",
+   "kind": "affari",
+   "title": "Nvidia vicina a comprare Inception, la startup dei modelli linguistici a diffusione",
+   "sintesi": "Secondo The Information Nvidia sta per acquistare Inception per almeno 500 milioni di dollari, con premi per i suoi oltre 30 dipendenti.",
+   "note": "Inception non genera il testo una parola alla volta: come i modelli per le immagini, affina tutta la risposta per passaggi. Il suo ultimo modello è Mercury 3.\nI tre fondatori, i professori Stefano Ermon, Aditya Grover e Volodymyr Kuleshov, entrerebbero in Nvidia, che punta a rafforzare la sua famiglia aperta Nemotron. L'interesse di Microsoft era già noto.",
+   "link": "https://the-decoder.com/nvidia-bets-at-least-500-million-on-inceptions-diffusion-models-to-strengthen-its-open-source-nemotron-lineup/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "muse-unfollow-instagram",
+   "lab": "meta",
+   "kind": "uso",
+   "title": "Con Muse si fa pulizia su Instagram di chi non ricambia il follow",
+   "note": "Khalil Roberts, 31 anni, ha chiesto a Muse chi non lo seguiva più e di togliere il follow: in pochi minuti l'agente ha trovato 151 profili e ha allegato un foglio Excel con nome, categoria e link, chiedendo conferma prima di procedere.\nHa raccontato la pulizia del 7 novembre su X con le istruzioni, e su X, Instagram e Facebook altri l'hanno rifatta; c'è chi dice di aver tolto più di mille follow.\nC'è anche un uso più ordinato: una appassionata di concorsi si fa portare da Muse cinque profili ogni poche ore, e li toglie lei a mano.",
+   "prova": "Chiedi a Muse di elencarti chi non ricambia il follow, e decidi tu chi togliere",
+   "passi": [
+    "Apri Muse collegato al tuo Instagram",
+    "Chiedi chi non ti segue fra quelli che segui",
+    "Controlla il foglio Excel che allega",
+    "Conferma, o togli tu i profili a mano"
+   ],
+   "strumento": "Muse di Meta",
+   "link": "https://www.wired.com/story/muse-is-unleashing-a-world-of-pettiness-on-instagram/",
+   "source": "Wired",
+   "thread": "agenti-personali"
+  },
+  {
+   "id": "hermes-agent-teams",
+   "lab": "aperti",
+   "kind": "trucco",
+   "title": "Hermes Agent arriva in Teams, e il trucco di un collega diventa un'abilità di tutti",
+   "note": "Nous Research porta il suo agente open source dentro Microsoft Teams: gli si affidano analisi, bozze di documenti o la posta, e il risultato torna nella stessa chat.\nHermes trasforma da solo i flussi riusciti in «skill», una descrizione più il codice; con Collective Wisdom chi ne ha una la condivide con il resto del gruppo.\nGli agenti girano in microVM isolate su Azure, e l'app per il computer è nel Microsoft Store.",
+   "prova": "Scarica Hermes dal Microsoft Store e fagli rifare un lavoro che ripeti ogni settimana",
+   "passi": [
+    "Installa Hermes Agent dal Microsoft Store",
+    "Affidagli un lavoro che fai spesso",
+    "Salva il flusso riuscito come skill",
+    "Condividila col gruppo da Collective Wisdom"
+   ],
+   "strumento": "Hermes Agent + Microsoft Teams",
+   "link": "https://the-decoder.com/hermes-agents-collective-wisdom-feature-turns-one-employees-ai-trick-into-the-whole-teams-skill/",
+   "source": "The Decoder"
+  },
+  {
+   "id": "opencomputer-devin-aperto",
+   "lab": "altri",
+   "kind": "demo",
+   "title": "OpenComputer, un'alternativa open source a Devin, piace su Hacker News",
+   "note": "Il repository diggerhq/opencomputer su GitHub si presenta come un'alternativa open source a Devin, l'agente che programma da solo.\nÈ fra le Show HN con più trazione del giorno.\nIl codice è aperto: si legge e si prova senza abbonamento.",
+   "prova": "Apri il repository su GitHub e segui le istruzioni del README",
+   "passi": [
+    "Apri github.com/diggerhq/opencomputer",
+    "Leggi il README per l'installazione",
+    "Dagli un primo compito di programmazione"
+   ],
+   "segnale": "79 punti e 22 commenti su Hacker News",
+   "link": "https://github.com/diggerhq/opencomputer",
+   "source": "Hacker News"
+  }
+ ],
+ "scritto": "2026-11-21"
+}

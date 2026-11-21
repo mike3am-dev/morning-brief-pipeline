@@ -11429,9 +11429,15 @@
    "vote": -0.5,
    "seen": true,
    "how": "lettura"
+  },
+  {
+   "story": "2026-11-20/apple-agente-ai-annuncio",
+   "vote": 0.25,
+   "seen": true,
+   "how": "lettura"
   }
  ],
- "pulled": "2026-11-20T04:35:46",
+ "pulled": "2026-11-21T04:36:41",
  "last_report": "2026-09-14",
  "rules": [
   {
@@ -11796,15 +11802,6 @@
   },
   {
    "asse": "fonte",
-   "valore": "Engadget",
-   "verso": "declassa",
-   "su": 1,
-   "giu": 11,
-   "scarto": -0.12,
-   "nota": "fonte «Engadget»: aperta 1 volta su 12, sotto la media"
-  },
-  {
-   "asse": "fonte",
    "valore": "GSMArena",
    "verso": "declassa",
    "su": 11,
@@ -12005,10 +12002,10 @@
    "asse": "fonte",
    "valore": "The Verge",
    "verso": "promuovi",
-   "su": 25,
+   "su": 26,
    "giu": 44,
-   "scarto": 0.12,
-   "nota": "fonte «The Verge»: aperta 25 volte su 69, sopra la media"
+   "scarto": 0.13,
+   "nota": "fonte «The Verge»: aperta 26 volte su 70, sopra la media"
   },
   {
    "asse": "categoria",
@@ -12029,15 +12026,6 @@
    "nota": "categoria «watch»: aperta 3 volte su 7, sopra la media"
   },
   {
-   "asse": "fonte",
-   "valore": "iClarified",
-   "verso": "promuovi",
-   "su": 14,
-   "giu": 25,
-   "scarto": 0.14,
-   "nota": "fonte «iClarified»: aperta 14 volte su 39, sopra la media"
-  },
-  {
    "asse": "categoria",
    "valore": "apple",
    "verso": "promuovi",
@@ -12045,6 +12033,15 @@
    "giu": 10,
    "scarto": 0.15,
    "nota": "categoria «apple»: aperta 10 volte su 20, sopra la media"
+  },
+  {
+   "asse": "fonte",
+   "valore": "iClarified",
+   "verso": "promuovi",
+   "su": 15,
+   "giu": 25,
+   "scarto": 0.15,
+   "nota": "fonte «iClarified»: aperta 15 volte su 40, sopra la media"
   },
   {
    "asse": "fonte",
