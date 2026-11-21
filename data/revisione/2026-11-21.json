@@ -1,0 +1,295 @@
+{
+ "giorno": "2026-11-21",
+ "prima": {
+  "intro": "Oggi l'intelligenza artificiale di Apple si misura con quello che vede e che sente. Signal la tiene fuori dalle chat perché iOS non le offre strumenti più fini, e la prova di Siri Recap mostra quanto poco resti di una conversazione quando la privacy viene prima. Intanto prende forma la primavera di iPhone, e Bloomberg racconta un HomeView che si muove da solo.",
+  "top3": [
+   "Signal chiude gli screenshot su iPhone per tenere fuori Siri AI",
+   "iPhone Air 2 avrà due fotocamere, e potrebbe arrivare a marzo",
+   "Apple studia un HomeView con lo schermo su un braccio robotico"
+  ],
+  "editoriale": {
+   "titolo": "Quanto deve vedere un assistente per esserci utile?",
+   "testo": [
+    "Signal ha deciso di bloccare gli screenshot su iPhone per impedire a Siri AI di leggere le chat, e ha spiegato a Reuters che lo fa perché Apple non dà agli sviluppatori strumenti più precisi. Nelle stesse ore MacRumors ha raccontato due settimane con Siri Recap, la funzione che fa ascoltare le conversazioni all'Apple Watch: l'audio viene cancellato subito, e i riassunti che restano sono brevi, imprecisi, senza i nomi di chi parla.",
+    "Messi uno accanto all'altro, i due casi pongono una domanda che finora restava sullo sfondo: quanto deve vedere e sentire un assistente per servire davvero, e chi decide dove si ferma? Oggi la scelta spetta soprattutto a chi usa il telefono, che può escludere un'app da Siri AI o limitare Recap a certi orari. Ma le scelte di uno ricadono anche sugli altri. La protezione di Signal non vale se l'altra persona nella chat l'ha spenta, e chi parla accanto a un orologio non sa che sta ascoltando.",
+    "Ieri abbiamo raccontato l'annuncio con cui Apple cerca chi le costruisca un agente capace di usare le app al posto nostro; oggi Bloomberg descrive un HomeView che segue le persone nella stanza. Sono progetti che, per funzionare, dovranno vedere e sentire più di quanto faccia la Siri di oggi. È facile aspettarsi che la questione torni, e che a chiedere regole più chiare non resti soltanto Signal."
+   ],
+   "notizie": [
+    "signal-blocca-screenshot-siri",
+    "siri-recap-prova-macrumors",
+    "homeview-ultra-braccio-robotico"
+   ]
+  },
+  "news": {
+   "signal-blocca-screenshot-siri": {
+    "title": "Signal blocca gli screenshot su iPhone per tenere Siri AI fuori dalle chat",
+    "sintesi": "L'ultimo aggiornamento di Signal attiva di serie l'opzione «Block Siri AI»: niente screenshot né anteprime nel selettore delle app, perché iOS non offre agli sviluppatori strumenti più precisi.",
+    "descrizione": "Chi aggiorna Signal su iPhone e prova a fare uno screenshot dentro l'app trova il messaggio «Screenshot prevented by 'Block Siri AI' setting». La nuova opzione, attiva di serie, impedisce a Siri AI di leggere le conversazioni e toglie le anteprime delle chat dal selettore delle app. Chi vuole tornare a fare screenshot la spegne dalle impostazioni sulla privacy di Signal.\n\nSignal ha spiegato a Reuters che è una soluzione di ripiego: Apple non offre agli sviluppatori strumenti più precisi per tenere i contenuti di un'app lontani da Siri AI e dagli agenti di terze parti. Su Android la protezione scatta quando un assistente come Gemini prova a leggere lo schermo; sul Mac, per ora, non c'è. L'anno scorso Signal aveva preso la stessa strada contro Recall, la funzione di Windows 11 che cattura lo schermo.",
+    "approfondimento": {
+     "titolo": "La cifratura finisce dove comincia lo schermo",
+     "punto": "Signal cifra i messaggi da un capo all'altro, ma un assistente che legge lo schermo li trova già in chiaro. Bloccare gli screenshot è l'unico appiglio che iOS lascia oggi a un'app, e Signal stessa ammette che non basta.",
+     "sotto": [
+      "La crittografia end-to-end protegge un messaggio mentre viaggia e mentre è salvato sul telefono. Quando compare sullo schermo, però, è testo leggibile come qualsiasi altro, e un assistente integrato nel sistema lo vede come lo vede chi tiene in mano il telefono. Per questo Signal non ha toccato la cifratura: ha chiuso le due strade da cui passa un'immagine dello schermo, lo screenshot e l'anteprima nel selettore delle app.",
+      "La protezione vale solo sul proprio telefono. Se l'altra persona nella chat l'ha disattivata, un agente può leggere i messaggi dal suo dispositivo. Sul Mac non c'è, su Android non copre tutti i modelli, e non impedisce a un agente di arrivare ai dati per altre vie, come i file salvati sul dispositivo. Secondo un'inchiesta di Reuters citata da Engadget, Muse di Meta legge già i messaggi di Signal grazie ai permessi concessi durante la configurazione: le notifiche su Android, l'accessibilità sul Mac.",
+      "Apple permette già di escludere un'app da Siri AI, ma è una scelta che resta all'utente, app per app, e Signal invece di rimandare a quell'opzione ha preferito intervenire da sé. Quello che chiede ad Apple, Google e Microsoft è altro: strumenti e documentazione per gli sviluppatori, così che sia l'app a stabilire cosa un assistente può leggere senza rinunciare alle funzioni di sempre. Se e quando arriveranno, per ora non è noto."
+     ]
+    }
+   },
+   "iphone-air-2-dummy-due-fotocamere": {
+    "title": "I primi modelli fisici di iPhone Air 2 mostrano due fotocamere",
+    "sintesi": "Le riproduzioni pubblicate da Sonny Dickson mostrano su iPhone Air 2 due fotocamere affiancate, contro una del primo modello; iPhone 18 cambia poco. L'uscita è attesa a marzo 2027.",
+    "descrizione": "Il leaker Sonny Dickson ha pubblicato le foto dei primi dummy di iPhone Air 2 e iPhone 18, riproduzioni fisiche dei due telefoni. Sull'Air 2 le fotocamere diventano due, affiancate in orizzontale sulla sinistra del rilievo posteriore, con microfono e flash a destra. Il primo iPhone Air ne ha una sola, la Fusion da 48 megapixel; secondo l'analista Jeff Pu la seconda sarebbe un ultragrandangolare, anche questo da 48 megapixel.\n\niPhone 18 tiene due lenti in verticale in un rilievo più piccolo, con un aspetto vicino a quello di iPhone 17. Per l'Air 2 le stime parlano di chip A20 Pro, modem Apple C2, schermo da 6,5 pollici e 12 GB di RAM. Tutti e due sono attesi a marzo 2027, insieme a iPhone 18e. Due giorni fa la notizia era l'avvio della produzione degli schermi, fra dicembre e gennaio.",
+    "approfondimento": {
+     "titolo": "Il calendario di iPhone si divide in due stagioni",
+     "punto": "Se le stime reggono, a marzo 2027 arriveranno in primavera iPhone 18 e Air 2, mentre a settembre resteranno i Pro. I tempi tornano con quello che si sa della produzione degli schermi, ma la data resta una previsione.",
+     "sotto": [
+      "Fino a iPhone 17 il modello base e i Pro arrivavano insieme, a settembre. Le stime riportate da Deccan Chronicle e da iSpazio spostano iPhone 18 e iPhone Air 2 a marzo 2027, accanto a iPhone 18e: in autunno resterebbero così solo i modelli Pro. Apple non ha detto nulla sul calendario, e per ora si tratta di previsioni di chi segue la catena di fornitura.",
+      "I tempi, però, tornano con quello che si è letto in questi giorni. Il 19 novembre la notizia era l'avvio della produzione degli schermi di iPhone 18 e Air 2 fra dicembre e gennaio; oggi arrivano le riproduzioni fisiche, che in genere circolano quando il disegno esterno è ormai deciso. Un lancio a marzo lascerebbe un paio di mesi fra i pannelli e i negozi.",
+      "La seconda fotocamera è la modifica attesa da più tempo: The Information ne scriveva già nel novembre 2025, come parte di una revisione del progetto. Resta da capire quanto inciderà su spessore e peso. Le stime parlano di un corpo di circa 5,2 millimetri, di una batteria più grande e di un peso inferiore al primo Air, ma nessuna di queste cifre viene da Apple."
+     ]
+    }
+   },
+   "homeview-ultra-braccio-robotico": {
+    "title": "Apple prepara un HomeView con lo schermo su un braccio che segue chi si muove",
+    "sintesi": "Secondo Bloomberg, Apple lavora a una versione di HomeView da circa 1.000 dollari con lo schermo su un braccio robotico che segue l'utente nella stanza; potrebbe arrivare nel 2027 o slittare al 2028.",
+    "descrizione": "L'HomeView appena uscito va girato a mano. Secondo Mark Gurman di Bloomberg, Apple lavora a una versione, che potrebbe chiamarsi HomeView Ultra, con lo schermo montato su un braccio robotico che segue l'utente nella stanza e resta sempre leggibile. Il prezzo stimato è di circa 1.000 dollari, contro i 300 del modello di oggi. Il movimento si appoggerebbe a DockKit, il sistema di inseguimento delle persone che Apple offre già ad alcuni produttori di accessori.\n\nIl debutto è stimato nel 2027, con la possibilità di slittare al 2028: i ritardi di Siri hanno già spostato il calendario dell'HomeView base. Resta poi un problema pratico, quello di un braccio che si muove da solo in cucina e può urtare gli oggetti vicini, che richiede di riconoscere gli ostacoli.",
+    "approfondimento": {
+     "titolo": "Il robot di casa che Apple insegue dal 2019",
+     "punto": "Il braccio di HomeView Ultra è l'ultima forma di un progetto nato sette anni fa, che è passato per l'Apple Car e per l'arrivo di ChatGPT. Secondo Bloomberg oggi ha un sostenitore in John Ternus.",
+     "sotto": [
+      "Secondo la ricostruzione di Bloomberg il progetto, nome in codice J595, nasce nel 2019 e per un periodo guarda anche all'abitacolo dell'Apple Car. Nel 2021 Kevin Lynch prende lo Special Projects Group da Doug Field, passato a Ford, si concentra sull'auto e lascia il robot a Chris Saari. Con l'arrivo di ChatGPT, alla fine del 2022, l'idea si sposta verso un assistente che prende l'iniziativa. Nel 2024, chiusa l'Apple Car, il lavoro si concentra sulla robotica per la casa.",
+      "John Ternus viene descritto come scettico verso le scommesse costose, dall'Apple Car a Vision Pro, ma convinto dai robot domestici. Il braccio non sarebbe l'unica strada: Apple avrebbe studiato anche un robot su ruote che segue il proprietario, un dispositivo che vola dentro casa e macchine per singole faccende, come piegare il bucato. L'idea è un robot per ogni compito, non un umanoide che fa tutto. Gli ingegneri penserebbero già a una seconda generazione, con le funzioni giudicate troppo ambiziose per la prima.",
+      "Il calendario dipende ancora da Siri, cioè dal software che ha già fatto slittare l'HomeView di oggi. Quando e a che prezzo una versione con il braccio potrebbe arrivare in Europa, per ora non è noto."
+     ]
+    }
+   },
+   "siri-recap-prova-macrumors": {
+    "title": "Siri Recap alla prova: protegge la privacy, ma ricorda poco",
+    "sintesi": "Dopo due settimane con la beta di watchOS 27.3, MacRumors trova i riassunti di Siri Recap troppo brevi e imprecisi sulle conversazioni importanti; la funzione arriva a dicembre.",
+    "descrizione": "Siri Recap, in prova con la beta di watchOS 27.3, fa ascoltare le conversazioni ad Apple Watch Series 12 e Ultra 4 per ricavarne un riassunto. L'audio resta separato dalle app, da Apple e dal resto del sistema, e viene cancellato appena il riassunto è pronto. MacRumors l'ha usato per due settimane e conclude che proprio queste protezioni ne limitano l'utilità: i riassunti sono troppo brevi, non dicono chi ha parlato e non c'è l'audio originale con cui confrontarli.\n\nRecap riconosce quando si guarda un film o una serie, ma non distingue un video di YouTube da una conversazione vera, e ha riassunto dialoghi a cui l'autore non partecipava. Chi sta intorno non vede alcun segnale che l'orologio sta ascoltando. Si può limitare la funzione a certi orari o luoghi. Arriverà a tutti con watchOS 27.3, a dicembre.",
+    "approfondimento": {
+     "titolo": "Chi parla accanto a un Apple Watch non sa di essere ascoltato",
+     "punto": "Siri Recap ascolta senza avvisare chi sta intorno, ed è il punto su cui a inizio novembre si erano fermati alcuni avvocati americani. La prova di MacRumors aggiunge l'altra metà del problema: anche chi lo usa ne ricava poco.",
+     "sotto": [
+      "L'8 novembre avevamo raccontato il parere di avvocati di quattro stati americani, secondo cui Siri Recap e Live Rewind possono violare le leggi sulle intercettazioni. La prova di MacRumors conferma il presupposto di quella discussione: quando la funzione è accesa l'orologio ascolta, e chi sta intorno non ha modo di saperlo. L'autore racconta che i primi riassunti venivano da video di YouTube e di Instagram, e che Recap ha riassunto conversazioni a cui lui non partecipava, invece di aspettare la sua voce.",
+      "Gli altri limiti vengono dal modo in cui Apple ha costruito la funzione. Per non conservare l'audio, Recap tiene solo un testo breve, senza i nomi di chi parla e senza nulla con cui verificarlo. Funziona meglio con gli scambi brevi e di poco conto; dopo alcune visite dal veterinario, dove le informazioni arrivano tutte insieme, i riassunti sono risultati troppo concisi e imprecisi. MacRumors distingue fra i problemi che possono migliorare prima dell'uscita e quelli che dipendono dall'impostazione stessa.",
+      "Il giudizio non è unanime: su 9to5Mac, chi è passato alla Series 12 cita Recap fra i quattro motivi per cui è contento dell'aggiornamento. Se Apple aggiungerà un segnale visibile per chi sta accanto, per ora non è noto."
+     ]
+    }
+   },
+   "microsoft-to-do-chiude-2027": {
+    "title": "Microsoft chiude To Do il 30 giugno 2027, anche su iPhone e Mac",
+    "sintesi": "Le app di To Do smettono di funzionare il 30 giugno 2027 su tutte le piattaforme; chi ha un account Microsoft personale non potrà passare a Planner e dovrà scegliere un'altra app.",
+    "descrizione": "Microsoft ritira To Do, il gestore di attività nato dall'acquisto di Wunderlist. Le app per iPhone, iPad, Mac, Windows, Android e web smettono di funzionare il 30 giugno 2027; il servizio e la sincronizzazione chiuderanno più tardi. Per gli account di lavoro e di scuola la destinazione è Planner, che da dicembre riceve una nuova sezione «My tasks». Le liste però non passano da sole: restano visibili in Planner fino al 30 giugno, e prima della chiusura Microsoft offrirà un modo per esportarle.\n\nChi usa To Do con un account personale, anche pagando Microsoft 365 Personal o Family, non può accedere a Planner e deve cambiare app. Sul Mac Planner si usa solo dal browser o dentro Teams: Microsoft non prevede un'app nativa, e nessuna delle due strade permette di lavorare offline come l'app di oggi.",
+    "approfondimento": {
+     "titolo": "Dove vanno le liste di chi usava To Do",
+     "punto": "Per chi ha un account personale, To Do non ha un'erede Microsoft. Le alternative non mancano, da Promemoria a Todoist, ma il passaggio dipende da un'esportazione di cui Microsoft non ha ancora detto nulla.",
+     "sotto": [
+      "To Do è arrivato su iPhone in anteprima nell'aprile 2017, come successore di Wunderlist, che Microsoft aveva comprato nel 2015 insieme alla sua società, 6Wunderkinder. Lo faceva la stessa squadra, e ne aveva ereditato le qualità che l'avevano reso popolare: semplicità, liste condivise, sincronizzazione fra piattaforme. L'app nativa per Mac è arrivata nel giugno 2019, con il lavoro offline e le email di Outlook contrassegnate; Wunderlist ha chiuso nel maggio 2020.",
+      "La strada indicata da Microsoft passa da Planner e quindi da Teams, che 9to5Mac giudica pesante e simile a una pagina web più che a un'app. Il punto che decide il resto è l'esportazione: MacRumors nota che Microsoft non ha spiegato cosa conterrà né se altre app potranno importarla.",
+      "Per chi resta sui dispositivi Apple, 9to5Mac indica Promemoria, che sincronizza le liste fra iPhone, iPad e Mac e permette di condividerle con la famiglia via iCloud. Per chi usa anche Windows o Android suggerisce Todoist, che ha app per tutte le piattaforme. Fino al 30 giugno To Do continua a funzionare."
+     ]
+    }
+   },
+   "apple-mondiali-nessuna-offerta": {
+    "title": "Apple non trasmetterà i Mondiali 2030 e 2034",
+    "sintesi": "Secondo Sports Media Watch, Apple si è ritirata dalla corsa ai diritti dei Mondiali 2030 e 2034, con offerte salite oltre 1,5 miliardi di dollari; Disney e Skydance avevano già rinunciato.",
+    "descrizione": "Apple si è tirata fuori dalla corsa ai diritti televisivi dei Mondiali di calcio del 2030 e del 2034, dopo Disney e Skydance. Lo riporta Sports Media Watch, secondo cui Apple è l'ultima a ritirarsi; non è chiaro in quale fase, e potrebbe non aver mai presentato un'offerta formale. Le offerte hanno superato 1,5 miliardi di dollari.\n\nPer i Mondiali del 2026 Apple aveva puntato su Apple Sports, con una copertura completa del torneo, come passo verso un pubblico sportivo più internazionale. L'app continuerà a seguire anche le prossime edizioni, ma le partite non saranno su Apple TV."
+   },
+   "fotocamera-iphone-marineau-mes": {
+    "title": "Fotocamera e Foto di iPhone passano a Sebastien Marineau-Mes",
+    "sintesi": "Dopo l'uscita di Jon McCormack Apple non nomina un nuovo vicepresidente: i team di Fotocamera e Foto tornano sotto Sebastien Marineau-Mes, che oggi lavora soprattutto all'AI nei sistemi.",
+    "descrizione": "Ieri si sapeva che Jon McCormack, vicepresidente del software di Fotocamera e Foto, era andato in pensione a fine ottobre, dopo più di otto anni in Apple, senza un successore. Ora c'è un nome: secondo Bloomberg, ripreso da iSpazio, i suoi gruppi passano a Sebastien Marineau-Mes, che li aveva già guidati in passato e oggi si occupa soprattutto di portare l'intelligenza artificiale nei sistemi operativi. Non arriva quindi un vicepresidente dedicato alla fotocamera.\n\nMcCormack era fra i più convinti oppositori dell'uso dell'intelligenza artificiale generativa per modificare le foto. In autunno ha lasciato Apple anche Jennifer Bailey, che guidava Apple Pay e Wallet, mentre John Ternus rivede l'organizzazione per renderla più rapida."
+   },
+   "gm-chiavi-auto-wallet": {
+    "title": "Le chiavi dell'auto in Wallet arrivano su Chevrolet e GMC a dicembre",
+    "sintesi": "GM estende le chiavi digitali di Apple Wallet da alcune Cadillac a Chevrolet e GMC: nove modelli compatibili al debutto, la maggior parte da dicembre, e altri in arrivo.",
+    "descrizione": "General Motors porta le chiavi dell'auto in Apple Wallet su Cadillac, Chevrolet e GMC, con nove modelli compatibili al lancio. Apple aveva annunciato l'accordo a giugno 2025, e fra fine settembre e ottobre la funzione è arrivata su alcune Cadillac. L'allargamento vero comincia a dicembre, con Chevrolet e GMC.\n\nGM dice che il supporto «will continue across additional GM vehicles over time». Chi ha un'auto compatibile lo vedrà segnalato nella sezione «What's New» dell'app del veicolo."
+   },
+   "whatsapp-gruppi-1500": {
+    "title": "WhatsApp porta i gruppi a 1.500 persone, anche su iPhone",
+    "sintesi": "Il limite dei gruppi di WhatsApp sale da 1.024 a 1.500 membri su Android e iPhone, anche nelle Community; il rilascio è graduale e i gruppi esistenti si adeguano da soli.",
+    "descrizione": "WhatsApp alza il numero massimo di partecipanti a un gruppo da 1.024 a 1.500, su Android e su iPhone. Lo ha notato WABetaInfo, che segue le versioni dell'app: la novità è già arrivata ad alcuni utenti con le versioni più recenti e si allargherà nelle prossime settimane, senza una data annunciata.\n\nI gruppi esistenti si adeguano da soli, senza toccare le impostazioni: chi aveva già raggiunto il limite potrà aggiungere fino a 476 persone. Il nuovo tetto vale anche per i gruppi dentro le Community, mentre il gruppo degli annunci resta a 2.000 membri."
+   },
+   "calendario-ios-27-siri": {
+    "title": "In iOS 27 il Calendario capisce le frasi, e Siri AI sposta gli appuntamenti",
+    "sintesi": "Con iOS 27 un evento si crea scrivendolo come una frase, e Siri AI può aggiungere un calendario intero, spostare un pranzo o rispondere su cosa c'è in agenda.",
+    "descrizione": "Il Calendario di iOS 27 ha due novità che 9to5Mac aspettava da tempo. La prima è l'inserimento in linguaggio naturale: l'evento si scrive come una frase, invece di riempire i campi uno per uno. Non è ancora al livello di Fantastical, l'app di terze parti, ma per la testata è «a step in the right direction».\n\nLa seconda è Siri AI, che ora gestisce il calendario: aggiunge più eventi insieme, li modifica con una richiesta come «Move today's lunch to next Wednesday instead» e risponde alle domande sugli appuntamenti. L'autore le ha chiesto di inserire tutte le partite dei Dallas Cowboys appena è uscito il calendario della NFL, e ha funzionato. Altre capacità arriveranno con iOS 27.3."
+   },
+   "smart-reply-stile-personale": {
+    "title": "Le risposte suggerite di Messaggi imparano lo stile di chi scrive",
+    "sintesi": "In iOS 27 Smart Reply, in Mail e Messaggi, tiene conto anche dello stile personale dell'utente: per 9to5Mac è la prima volta che i suggerimenti sembrano davvero propri.",
+    "descrizione": "Le risposte suggerite di Mail e Messaggi, arrivate nel 2024 con Apple Intelligence, in iOS 27 guardano anche a come scrive l'utente, non solo al contesto della conversazione. Apple lo descrive così: «Smart Reply in Mail and Messages can now draw on a user's personalized writing style».\n\nSu 9to5Mac l'autore racconta che con iOS 18 non le usava quasi mai, perché non sembravano scritte da lui, e che adesso lo convincono quasi sempre. Il limite è il numero: i suggerimenti sono sempre due, e non si può scorrere per vederne altri."
+   },
+   "imac-m6-recensione-appleinsider": {
+    "title": "iMac M6 alla prova di AppleInsider: stesso disegno, molto più spazio per l'AI",
+    "sintesi": "Per AppleInsider l'iMac da 24 pollici con M6 è «aggressively fine»: il disegno resta quello di prima, il Neural Engine è molto più veloce e il prezzo parte da 1.499 dollari.",
+    "descrizione": "AppleInsider ha recensito il nuovo iMac da 24 pollici con chip M6 e l'ha definito «aggressively fine»: nessun difetto, nessuna sorpresa. Il disegno è lo stesso del modello precedente, ancora molto riuscito ma ormai datato.\n\nLa novità sta nel chip. M6 porta un Neural Engine molto più veloce, pensato per gli strumenti di intelligenza artificiale che girano sul computer, la direzione verso cui l'iMac si sta spostando da una generazione all'altra. Il prezzo parte da 1.499 dollari. Il giudizio finale della testata è «charming, albeit profoundly iterative»."
+   },
+   "watch-series-12-quattro-motivi": {
+    "title": "Apple Watch Series 12, quattro ragioni per lasciare la Series 11",
+    "sintesi": "Su 9to5Mac chi è passato alla Series 12 cita il chip S11, i nuovi sensori, Siri Recap e la ricarica: 15 minuti danno 12 ore di autonomia, contro le 8 della Series 11.",
+    "descrizione": "Un autore di 9to5Mac spiega perché è contento di essere passato ad Apple Watch Series 12. Il chip S11 è molto più veloce dell'S10, dopo anni in cui il processore era cambiato poco, e Siri AI, la novità principale di watchOS 27, ne trae vantaggio.\n\nIl nuovo Health Sensing System misura meglio battito e passi e porta tre complicazioni che prima non c'erano: il battito in tempo reale, il conteggio dei passi e un punteggio di prontezza. L'autonomia è simile a quella della Series 11, ma negli allenamenti all'aperto dura il 25% in più. Anche la ricarica è più rapida: 15 minuti bastano per 12 ore."
+   },
+   "presunto-innocente-stagione-2": {
+    "title": "Presunto innocente torna su Apple TV il 19 febbraio",
+    "sintesi": "La seconda stagione della serie antologica di David E. Kelley, con Rachel Brosnahan e Matthew Rhys, debutta su Apple TV venerdì 19 febbraio 2027 con due episodi, poi uno a settimana.",
+    "descrizione": "La seconda stagione di Presunto innocente, la serie antologica legale di David E. Kelley, debutta su Apple TV venerdì 19 febbraio 2027 con i primi due episodi, poi uno alla settimana fino al 2 aprile. Rachel Brosnahan, anche produttrice esecutiva, è l'avvocata difensore Lelia Reynolds, contro il marito procuratore distrettuale, interpretato da Matthew Rhys, in un caso di omicidio che mette a rischio carriere e matrimonio.\n\nLa storia viene da Dissection of a Murder, il romanzo d'esordio di Jo Murray. Nel cast ci sono anche Courtney B. Vance e Fiona Shaw. Jake Gyllenhaal, protagonista della prima stagione nel 2024, resta fra i produttori."
+   },
+   "tsmc-ordini-cina-16nm": {
+    "title": "TSMC ferma gli ordini cinesi di chip a 16 nanometri e meno",
+    "sintesi": "Con la regola americana in vigore dal 19 novembre, TSMC avrebbe chiesto ai clienti cinesi di non ordinare più chip a 16 nanometri o meno senza licenza; fino al giorno prima la soglia era 7.",
+    "descrizione": "Dal 19 novembre è in vigore una nuova regola del Dipartimento del Commercio americano sull'accesso remoto ai semiconduttori avanzati. Secondo persone informate sentite da Reuters, TSMC, che produce i chip di iPhone e Mac, ha chiesto ai clienti cinesi colpiti di non ordinare più chip a 16 nanometri o meno senza una licenza di esportazione degli Stati Uniti. Fino al giorno prima alcuni progettisti cinesi potevano ancora ordinare chip a 7 nanometri. TSMC non ha commentato.\n\nLa regola non fissa una soglia in nanometri: i 16 sono il modo in cui TSMC la starebbe applicando. Le aziende cinesi restano ai processi a 28 e 40 nanometri, senza la memoria HBM dei data center per l'intelligenza artificiale. Il 19 novembre il titolo TSMC ha chiuso in calo del 2,93%."
+   }
+  }
+ },
+ "dopo": {
+  "intro": "La giornata ruota attorno a quanto l'intelligenza artificiale di Apple può vedere e ascoltare. Signal blocca gli screenshot su iPhone per tenere fuori Siri AI, perché iOS non le offre strumenti più precisi, e la prova di Siri Recap su Apple Watch mostra quanto poco resti di una conversazione quando l'audio viene cancellato subito. Intanto prende forma la primavera di iPhone, e Bloomberg descrive un HomeView con lo schermo su un braccio robotico.",
+  "top3": [
+   "Signal chiude gli screenshot su iPhone per tenere fuori Siri AI",
+   "I primi modelli fisici di iPhone Air 2 mostrano due fotocamere",
+   "Apple studia un HomeView con lo schermo su un braccio robotico"
+  ],
+  "editoriale": {
+   "titolo": "Quanto deve vedere un assistente per esserci utile?",
+   "testo": [
+    "Signal ha deciso di bloccare gli screenshot su iPhone per impedire a Siri AI di leggere le chat, e ha spiegato a Reuters che lo fa perché Apple non dà agli sviluppatori strumenti più precisi. Nelle stesse ore MacRumors ha raccontato due settimane con Siri Recap, la funzione che fa ascoltare le conversazioni ad Apple Watch: l'audio viene cancellato subito, e i riassunti che restano sono brevi, imprecisi, senza i nomi di chi parla.",
+    "Messi uno accanto all'altro, i due casi pongono una domanda che finora restava sullo sfondo: quanto deve vedere e sentire un assistente per servire davvero, e chi decide dove si ferma? Oggi la scelta spetta soprattutto a chi usa il telefono, che può escludere un'app da Siri AI o limitare Recap a certi orari. Ma le scelte di uno ricadono anche sugli altri. La protezione di Signal non vale se l'altra persona nella chat l'ha spenta, e chi parla accanto a un orologio non sa che lo sta ascoltando.",
+    "Ieri abbiamo raccontato l'annuncio con cui Apple cerca chi le costruisca un agente capace di usare le app al posto nostro; oggi Bloomberg descrive un HomeView che segue le persone nella stanza. Sono progetti che, per funzionare, dovranno vedere e sentire più di quanto faccia la Siri di oggi. È facile aspettarsi che la questione torni, e che a chiedere regole più chiare non resti soltanto Signal."
+   ],
+   "notizie": [
+    "signal-blocca-screenshot-siri",
+    "siri-recap-prova-macrumors",
+    "homeview-ultra-braccio-robotico"
+   ]
+  },
+  "news": {
+   "signal-blocca-screenshot-siri": {
+    "title": "Signal blocca gli screenshot su iPhone per tenere Siri AI fuori dalle chat",
+    "sintesi": "L'ultimo aggiornamento di Signal attiva di serie l'opzione «Block Siri AI»: niente screenshot né anteprime nel selettore delle app, perché iOS non offre agli sviluppatori strumenti più precisi.",
+    "descrizione": "Chi aggiorna Signal su iPhone e prova a fare uno screenshot dentro l'app trova il messaggio «Screenshot prevented by 'Block Siri AI' setting». La nuova opzione, attiva di serie, impedisce a Siri AI di leggere le conversazioni e toglie le anteprime delle chat dal selettore delle app. Chi vuole tornare a fare screenshot la spegne dalle impostazioni sulla privacy di Signal.\n\nSignal ha spiegato a Reuters che è una soluzione di ripiego: Apple non offre agli sviluppatori strumenti più precisi per tenere i contenuti di un'app lontani da Siri AI e dagli agenti di terze parti. Su Android la protezione scatta quando un assistente come Gemini prova a leggere lo schermo; sul Mac, per ora, non c'è. L'anno scorso Signal aveva preso la stessa strada contro Recall, la funzione di Windows 11 che cattura lo schermo.",
+    "approfondimento": {
+     "titolo": "La cifratura finisce dove comincia lo schermo",
+     "punto": "Signal cifra i messaggi da un capo all'altro, ma un assistente che legge lo schermo li trova già in chiaro. Bloccare gli screenshot è l'unico appiglio che iOS lascia oggi a un'app, e Signal stessa ammette che non basta.",
+     "sotto": [
+      "La crittografia end-to-end protegge un messaggio mentre viaggia e mentre è salvato sul telefono. Quando compare sullo schermo, però, è testo leggibile come qualsiasi altro, e un assistente integrato nel sistema lo vede come lo vede chi tiene in mano il telefono. Per questo Signal non ha toccato la cifratura: ha chiuso le due strade da cui passa un'immagine dello schermo, lo screenshot e l'anteprima nel selettore delle app.",
+      "La protezione vale solo sul proprio telefono. Se l'altra persona nella chat l'ha disattivata, un agente può leggere i messaggi dal suo dispositivo. Sul Mac non c'è, su Android non copre tutti i modelli, e non impedisce a un agente di arrivare ai dati per altre vie, come i file salvati sul dispositivo. Secondo un'inchiesta di Reuters citata da Engadget, Muse di Meta legge già i messaggi di Signal grazie ai permessi concessi durante la configurazione: le notifiche su Android, l'accessibilità sul Mac.",
+      "Apple permette già di escludere un'app da Siri AI, ma è una scelta che resta all'utente, app per app, e Signal invece di rimandare a quell'opzione ha preferito intervenire da sé. Quello che chiede ad Apple, Google e Microsoft è altro: strumenti e documentazione per gli sviluppatori, così che sia l'app a stabilire cosa un assistente può leggere senza rinunciare alle funzioni di sempre. Se e quando arriveranno, per ora non è noto."
+     ]
+    }
+   },
+   "iphone-air-2-dummy-due-fotocamere": {
+    "title": "I primi modelli fisici di iPhone Air 2 mostrano due fotocamere",
+    "sintesi": "Le riproduzioni pubblicate da Sonny Dickson mostrano su iPhone Air 2 due fotocamere affiancate, contro una del primo modello; iPhone 18 cambia poco. L'uscita è attesa a marzo 2027.",
+    "descrizione": "Il leaker Sonny Dickson ha pubblicato le foto dei primi dummy di iPhone Air 2 e iPhone 18, riproduzioni fisiche dei due telefoni. Sull'Air 2 le fotocamere diventano due, affiancate in orizzontale sulla sinistra del rilievo posteriore, con microfono e flash a destra. Il primo iPhone Air ne ha una sola, la Fusion da 48 megapixel; secondo l'analista Jeff Pu la seconda sarebbe un ultragrandangolare, anche questo da 48 megapixel.\n\niPhone 18 tiene due lenti in verticale in un rilievo più piccolo, con un aspetto vicino a quello di iPhone 17. Per l'Air 2 le stime parlano di chip A20 Pro, modem Apple C2, schermo da 6,5 pollici e 12 GB di RAM. Tutti e due sono attesi a marzo 2027, insieme a iPhone 18e. Due giorni fa si era saputo che la produzione degli schermi partirà fra dicembre e gennaio.",
+    "approfondimento": {
+     "titolo": "Il calendario di iPhone si divide in due stagioni",
+     "punto": "Se le stime reggono, iPhone 18 e Air 2 arriveranno a marzo 2027 e a settembre resteranno solo i Pro. I tempi tornano con quello che si sa della produzione degli schermi, ma la data resta una previsione.",
+     "sotto": [
+      "Fino a iPhone 17 il modello base e i Pro arrivavano insieme, a settembre. Le stime riportate da Deccan Chronicle e da iSpazio spostano iPhone 18 e iPhone Air 2 a marzo 2027, accanto a iPhone 18e: in autunno resterebbero così solo i modelli Pro. Apple non ha detto nulla sul calendario, e per ora si tratta di previsioni di chi segue la catena di fornitura.",
+      "I tempi, però, tornano con quello che si è letto in questi giorni. Il 19 novembre la notizia era l'avvio della produzione degli schermi di iPhone 18 e Air 2 fra dicembre e gennaio; oggi arrivano le riproduzioni fisiche, che di solito circolano quando il disegno esterno è ormai deciso. Un lancio a marzo lascerebbe un paio di mesi fra i pannelli e i negozi.",
+      "La seconda fotocamera è la modifica attesa da più tempo: The Information ne scriveva già nel novembre 2025, come parte di una revisione del progetto. Resta da capire quanto inciderà su spessore e peso. Le stime parlano di un corpo di circa 5,2 millimetri, di una batteria più grande e di un peso inferiore al primo Air, ma nessuna di queste cifre viene da Apple."
+     ]
+    }
+   },
+   "homeview-ultra-braccio-robotico": {
+    "title": "Bloomberg: Apple lavora a un HomeView con lo schermo su un braccio robotico",
+    "sintesi": "Secondo Bloomberg, Apple lavora a una versione di HomeView da circa 1.000 dollari con lo schermo su un braccio robotico che segue l'utente nella stanza; potrebbe arrivare nel 2027 o slittare al 2028.",
+    "descrizione": "L'HomeView appena uscito va girato a mano. Secondo Mark Gurman di Bloomberg, Apple lavora a una versione, che potrebbe chiamarsi HomeView Ultra, con lo schermo montato su un braccio robotico che segue l'utente nella stanza e resta sempre leggibile. Il prezzo stimato è di circa 1.000 dollari, contro i 300 del modello di oggi. Il movimento si appoggerebbe a DockKit, il sistema di inseguimento delle persone che Apple offre già ad alcuni produttori di accessori.\n\nIl debutto è stimato nel 2027, con la possibilità di slittare al 2028: i ritardi di Siri hanno già spostato il calendario dell'HomeView base. Resta poi un problema pratico: un braccio che si muove da solo in cucina può urtare gli oggetti vicini, e deve saper riconoscere gli ostacoli.",
+    "approfondimento": {
+     "titolo": "Il robot di casa che Apple insegue dal 2019",
+     "punto": "Il braccio di HomeView Ultra è l'ultima forma di un progetto nato sette anni fa, che è passato per l'Apple Car e per l'arrivo di ChatGPT. Secondo Bloomberg oggi ha un sostenitore in John Ternus.",
+     "sotto": [
+      "Secondo la ricostruzione di Bloomberg il progetto, nome in codice J595, nasce nel 2019 e per un periodo guarda anche all'abitacolo dell'Apple Car. Nel 2021 Kevin Lynch prende lo Special Projects Group da Doug Field, passato a Ford, si concentra sull'auto e lascia il robot a Chris Saari. Con l'arrivo di ChatGPT, alla fine del 2022, l'idea si sposta verso un assistente che prende l'iniziativa. Nel 2024, chiusa l'Apple Car, il lavoro si concentra sulla robotica per la casa.",
+      "John Ternus viene descritto come scettico verso le scommesse costose, dall'Apple Car a Vision Pro, ma convinto dai robot domestici. Il braccio non sarebbe l'unica strada: Apple avrebbe studiato anche un robot su ruote che segue il proprietario, un dispositivo che vola dentro casa e macchine per singole faccende, come piegare il bucato. L'idea è un robot per ogni compito, non un umanoide che fa tutto. Gli ingegneri penserebbero già a una seconda generazione, con le funzioni giudicate troppo ambiziose per la prima.",
+      "Il calendario dipende ancora da Siri, cioè dal software che ha già fatto slittare l'HomeView di oggi. Quando e a che prezzo una versione con il braccio potrebbe arrivare in Europa, per ora non è noto."
+     ]
+    }
+   },
+   "siri-recap-prova-macrumors": {
+    "title": "Siri Recap alla prova: protegge la privacy, ma ricorda poco",
+    "sintesi": "Dopo due settimane con la beta di watchOS 27.3, MacRumors trova i riassunti di Siri Recap troppo brevi e imprecisi sulle conversazioni importanti; la funzione arriva a dicembre.",
+    "descrizione": "Siri Recap, in prova con la beta di watchOS 27.3, fa ascoltare le conversazioni ad Apple Watch Series 12 e Ultra 4 per ricavarne un riassunto. L'audio resta separato dalle app, da Apple e dal resto del sistema, e viene cancellato appena il riassunto è pronto. MacRumors l'ha usato per due settimane e conclude che proprio queste protezioni ne limitano l'utilità: i riassunti sono troppo brevi, non dicono chi ha parlato e non c'è l'audio originale con cui confrontarli.\n\nRecap riconosce quando si guarda un film o una serie, ma non distingue un video di YouTube da una conversazione vera, e ha riassunto dialoghi a cui l'autore non partecipava. Chi sta intorno non vede alcun segnale che l'orologio stia ascoltando. Si può limitare la funzione a certi orari o luoghi. Arriverà a tutti con watchOS 27.3, a dicembre.",
+    "approfondimento": {
+     "titolo": "Chi parla accanto a un Apple Watch non sa di essere ascoltato",
+     "punto": "Siri Recap ascolta senza avvisare chi sta intorno, ed è il punto su cui a inizio novembre si erano fermati alcuni avvocati americani. La prova di MacRumors aggiunge l'altra metà del problema: anche chi lo usa ne ricava poco.",
+     "sotto": [
+      "L'8 novembre avevamo raccontato il parere di avvocati di quattro stati americani, secondo cui Siri Recap e Live Rewind possono violare le leggi sulle intercettazioni. La prova di MacRumors conferma il presupposto di quella discussione: quando la funzione è accesa l'orologio ascolta, e chi sta intorno non ha modo di saperlo. L'autore racconta che i primi riassunti venivano da video di YouTube e di Instagram, e che Recap ha riassunto conversazioni a cui lui non partecipava, invece di aspettare la sua voce.",
+      "Gli altri limiti vengono dal modo in cui Apple ha costruito la funzione. Per non conservare l'audio, Recap tiene solo un testo breve, senza i nomi di chi parla e senza nulla con cui verificarlo. Funziona meglio con gli scambi brevi e di poco conto; dopo alcune visite dal veterinario, dove le informazioni arrivano tutte insieme, i riassunti sono risultati troppo concisi e imprecisi. MacRumors distingue fra i problemi che possono migliorare prima dell'uscita e quelli che dipendono dall'impostazione stessa.",
+      "Il giudizio non è unanime: su 9to5Mac, chi è passato alla Series 12 cita Recap fra i quattro motivi per cui è contento dell'aggiornamento. Se Apple aggiungerà un segnale visibile per chi sta accanto, per ora non è noto."
+     ]
+    }
+   },
+   "microsoft-to-do-chiude-2027": {
+    "title": "Microsoft chiude To Do il 30 giugno 2027, anche su iPhone e Mac",
+    "sintesi": "Le app di To Do smettono di funzionare il 30 giugno 2027 su tutte le piattaforme; chi ha un account Microsoft personale non potrà passare a Planner e dovrà scegliere un'altra app.",
+    "descrizione": "Microsoft ritira To Do, il gestore di attività nato dall'acquisto di Wunderlist. Le app per iPhone, iPad, Mac, Windows, Android e web smettono di funzionare il 30 giugno 2027; il servizio e la sincronizzazione chiuderanno più tardi. Per gli account di lavoro e di scuola la destinazione è Planner, che da dicembre riceve una nuova sezione «My tasks». Le liste però non passano da sole: restano visibili in Planner fino al 30 giugno, e prima della chiusura Microsoft offrirà un modo per esportarle.\n\nChi usa To Do con un account personale, anche pagando Microsoft 365 Personal o Family, non può accedere a Planner e deve cambiare app. Sul Mac Planner si usa solo dal browser o dentro Teams: Microsoft non prevede un'app nativa, e nessuna delle due strade permette di lavorare offline come l'app di oggi.",
+    "approfondimento": {
+     "titolo": "Dove vanno le liste di chi usava To Do",
+     "punto": "Per chi ha un account personale, To Do non ha un'erede Microsoft. Le alternative non mancano, da Promemoria a Todoist, ma il passaggio dipende da un'esportazione di cui Microsoft non ha ancora detto nulla.",
+     "sotto": [
+      "To Do è arrivato su iPhone in anteprima nell'aprile 2017, come successore di Wunderlist, che Microsoft aveva comprato nel 2015 insieme alla sua società, 6Wunderkinder. Lo faceva la stessa squadra, e ne aveva ereditato le qualità che l'avevano reso popolare: semplicità, liste condivise, sincronizzazione fra piattaforme. L'app nativa per Mac è arrivata nel giugno 2019, con il lavoro offline e le email di Outlook contrassegnate; Wunderlist ha chiuso nel maggio 2020.",
+      "La strada indicata da Microsoft passa da Planner e quindi da Teams, che 9to5Mac giudica pesante e simile a una pagina web più che a un'app. Il nodo è l'esportazione: MacRumors nota che Microsoft non ha spiegato cosa conterrà né se altre app potranno importarla.",
+      "Per chi resta sui dispositivi Apple, 9to5Mac indica Promemoria, che sincronizza le liste fra iPhone, iPad e Mac e permette di condividerle con la famiglia via iCloud. Per chi usa anche Windows o Android suggerisce Todoist, che ha app per tutte le piattaforme. Fino al 30 giugno To Do continua a funzionare."
+     ]
+    }
+   },
+   "apple-mondiali-nessuna-offerta": {
+    "title": "Apple non trasmetterà i Mondiali 2030 e 2034",
+    "sintesi": "Secondo Sports Media Watch, Apple si è ritirata dalla corsa ai diritti dei Mondiali 2030 e 2034, con offerte salite oltre 1,5 miliardi di dollari; Disney e Skydance avevano già rinunciato.",
+    "descrizione": "Apple si è tirata fuori dalla corsa ai diritti televisivi dei Mondiali di calcio del 2030 e del 2034, dopo Disney e Skydance. Lo riporta Sports Media Watch, secondo cui Apple è l'ultima a ritirarsi; non è chiaro in quale fase, e potrebbe non aver mai presentato un'offerta formale. Le offerte hanno superato 1,5 miliardi di dollari.\n\nPer i Mondiali del 2026 Apple aveva puntato su Apple Sports, con una copertura completa del torneo, come passo verso un pubblico sportivo più internazionale. L'app continuerà a seguire anche le prossime edizioni, ma le partite non saranno su Apple TV."
+   },
+   "fotocamera-iphone-marineau-mes": {
+    "title": "Fotocamera e Foto di iPhone passano a Sebastien Marineau-Mes",
+    "sintesi": "Dopo l'uscita di Jon McCormack Apple non nomina un nuovo vicepresidente: i team di Fotocamera e Foto tornano sotto Sebastien Marineau-Mes, che oggi lavora soprattutto all'AI nei sistemi.",
+    "descrizione": "Ieri si sapeva che Jon McCormack, vicepresidente del software di Fotocamera e Foto, era andato in pensione a fine ottobre, dopo più di otto anni in Apple, senza un successore. Ora c'è un nome: secondo Bloomberg, ripreso da iSpazio, i suoi gruppi passano a Sebastien Marineau-Mes, che li aveva già guidati in passato e oggi si occupa soprattutto di portare l'intelligenza artificiale nei sistemi operativi. Non arriva quindi un vicepresidente dedicato alla fotocamera.\n\nMcCormack era fra i più convinti oppositori dell'uso dell'intelligenza artificiale generativa per modificare le foto. In autunno ha lasciato Apple anche Jennifer Bailey, che guidava Apple Pay e Wallet, mentre John Ternus rivede l'organizzazione per renderla più rapida."
+   },
+   "gm-chiavi-auto-wallet": {
+    "title": "Le chiavi dell'auto in Wallet arrivano su Chevrolet e GMC a dicembre",
+    "sintesi": "GM estende le chiavi digitali di Apple Wallet da alcune Cadillac a Chevrolet e GMC: nove modelli compatibili al debutto, la maggior parte da dicembre, e altri in arrivo.",
+    "descrizione": "General Motors porta le chiavi dell'auto in Apple Wallet su Cadillac, Chevrolet e GMC, con nove modelli compatibili al lancio. Apple aveva annunciato l'accordo a giugno 2025, e fra fine settembre e ottobre la funzione è arrivata su alcune Cadillac. L'allargamento vero comincia a dicembre, con Chevrolet e GMC.\n\nGM dice che il supporto «will continue across additional GM vehicles over time». Chi ha un'auto compatibile lo vedrà segnalato nella sezione «What's New» dell'app del veicolo."
+   },
+   "whatsapp-gruppi-1500": {
+    "title": "WhatsApp porta i gruppi a 1.500 persone, anche su iPhone",
+    "sintesi": "Il limite dei gruppi di WhatsApp sale da 1.024 a 1.500 membri su Android e iPhone, anche nelle Community; il rilascio è graduale e i gruppi esistenti si adeguano da soli.",
+    "descrizione": "WhatsApp alza il numero massimo di partecipanti a un gruppo da 1.024 a 1.500, su Android e su iPhone. Lo ha notato WABetaInfo, che segue le versioni dell'app: la novità è già arrivata ad alcuni utenti con le versioni più recenti e si allargherà nelle prossime settimane, senza una data annunciata.\n\nI gruppi esistenti si adeguano da soli, senza toccare le impostazioni: chi aveva già raggiunto il limite potrà aggiungere fino a 476 persone. Il nuovo tetto vale anche per i gruppi dentro le Community, mentre il gruppo degli annunci resta a 2.000 membri."
+   },
+   "calendario-ios-27-siri": {
+    "title": "In iOS 27 gli eventi del Calendario si scrivono come frasi",
+    "sintesi": "Con iOS 27 un evento si crea scrivendolo come una frase, e Siri AI può aggiungere un calendario intero, spostare un pranzo o rispondere su cosa c'è in agenda.",
+    "descrizione": "Il Calendario di iOS 27 ha due novità che 9to5Mac aspettava da tempo. La prima è l'inserimento in linguaggio naturale: l'evento si scrive come una frase, invece di riempire i campi uno per uno. Non è ancora al livello di Fantastical, l'app di terze parti, ma per la testata è «a step in the right direction».\n\nLa seconda è Siri AI, che ora gestisce il calendario: aggiunge più eventi insieme, li modifica con una richiesta come «Move today's lunch to next Wednesday instead» e risponde alle domande sugli appuntamenti. L'autore le ha chiesto di inserire tutte le partite dei Dallas Cowboys appena è uscito il calendario della NFL, e ha funzionato. Altre capacità arriveranno con iOS 27.3."
+   },
+   "smart-reply-stile-personale": {
+    "title": "Le risposte suggerite di Messaggi imparano lo stile di chi scrive",
+    "sintesi": "In iOS 27 Smart Reply, in Mail e Messaggi, tiene conto anche dello stile personale dell'utente: per 9to5Mac è la prima volta che i suggerimenti sembrano davvero propri.",
+    "descrizione": "Le risposte suggerite di Mail e Messaggi, arrivate nel 2024 con Apple Intelligence, in iOS 27 guardano anche a come scrive l'utente, non solo al contesto della conversazione. Apple lo descrive così: «Smart Reply in Mail and Messages can now draw on a user's personalized writing style».\n\nSu 9to5Mac l'autore racconta che con iOS 18 non le usava quasi mai, perché non sembravano scritte da lui, e che adesso lo convincono quasi sempre. Il limite è il numero: i suggerimenti sono sempre due, e non si può scorrere per vederne altri."
+   },
+   "imac-m6-recensione-appleinsider": {
+    "title": "iMac M6 alla prova di AppleInsider: stesso disegno, Neural Engine molto più veloce",
+    "sintesi": "Per AppleInsider l'iMac da 24 pollici con M6 è «aggressively fine»: il disegno resta quello di prima, il Neural Engine è molto più veloce e il prezzo parte da 1.499 dollari.",
+    "descrizione": "AppleInsider ha recensito il nuovo iMac da 24 pollici con chip M6 e l'ha definito «aggressively fine»: nessun difetto, nessuna sorpresa. Il disegno è lo stesso del modello precedente, ancora molto riuscito ma ormai datato.\n\nLa novità sta nel chip. M6 porta un Neural Engine molto più veloce, pensato per gli strumenti di intelligenza artificiale che girano sul computer, la direzione verso cui l'iMac si sta spostando da una generazione all'altra. Il prezzo parte da 1.499 dollari. Il giudizio finale della testata è «charming, albeit profoundly iterative»."
+   },
+   "watch-series-12-quattro-motivi": {
+    "title": "Apple Watch Series 12, quattro ragioni per lasciare la Series 11",
+    "sintesi": "Su 9to5Mac chi è passato alla Series 12 cita il chip S11, i nuovi sensori, Siri Recap e la ricarica: 15 minuti danno 12 ore di autonomia, contro le 8 della Series 11.",
+    "descrizione": "Un autore di 9to5Mac spiega perché è contento di essere passato ad Apple Watch Series 12. Il chip S11 è molto più veloce dell'S10, dopo anni in cui il processore era cambiato poco, e Siri AI, la novità principale di watchOS 27, ne trae vantaggio.\n\nIl nuovo Health Sensing System misura meglio battito e passi e porta tre complicazioni che prima non c'erano: il battito in tempo reale, il conteggio dei passi e un punteggio di prontezza. L'autonomia è simile a quella della Series 11, ma negli allenamenti all'aperto dura il 25% in più. Anche la ricarica è più rapida: 15 minuti bastano per 12 ore."
+   },
+   "presunto-innocente-stagione-2": {
+    "title": "Presunto innocente torna su Apple TV il 19 febbraio",
+    "sintesi": "La seconda stagione della serie antologica di David E. Kelley, con Rachel Brosnahan e Matthew Rhys, debutta su Apple TV venerdì 19 febbraio 2027 con due episodi, poi uno a settimana.",
+    "descrizione": "La seconda stagione di Presunto innocente, la serie antologica legale di David E. Kelley, debutta su Apple TV venerdì 19 febbraio 2027 con i primi due episodi, poi uno alla settimana fino al 2 aprile. Rachel Brosnahan, anche produttrice esecutiva, è l'avvocata difensore Lelia Reynolds, contro il marito procuratore distrettuale, interpretato da Matthew Rhys, in un caso di omicidio che mette a rischio carriere e matrimonio.\n\nLa storia viene da Dissection of a Murder, il romanzo d'esordio di Jo Murray. Nel cast ci sono anche Courtney B. Vance e Fiona Shaw. Jake Gyllenhaal, protagonista della prima stagione nel 2024, resta fra i produttori."
+   },
+   "tsmc-ordini-cina-16nm": {
+    "title": "TSMC ferma gli ordini cinesi di chip a 16 nanometri e meno",
+    "sintesi": "Con la regola americana in vigore dal 19 novembre, TSMC avrebbe chiesto ai clienti cinesi di non ordinare più chip a 16 nanometri o meno senza licenza; fino al giorno prima la soglia era 7.",
+    "descrizione": "Dal 19 novembre è in vigore una nuova regola del Dipartimento del Commercio americano sull'accesso remoto ai semiconduttori avanzati. Secondo persone informate sentite da Reuters, TSMC, che produce i chip di iPhone e Mac, ha chiesto ai clienti cinesi colpiti di non ordinare più chip a 16 nanometri o meno senza una licenza di esportazione degli Stati Uniti. Fino al giorno prima alcuni progettisti cinesi potevano ancora ordinare chip a 7 nanometri. TSMC non ha commentato.\n\nLa regola non fissa una soglia in nanometri: i 16 sono il modo in cui TSMC la starebbe applicando. Le aziende cinesi restano ai processi a 28 e 40 nanometri, senza la memoria HBM dei data center per l'intelligenza artificiale. Il 19 novembre il titolo TSMC ha chiuso in calo del 2,93%."
+   }
+  }
+ },
+ "rapporto": {
+  "riscritti": 12,
+  "ripristinati": [],
+  "numeri_nuovi": [],
+  "formule": []
+ }
+}
